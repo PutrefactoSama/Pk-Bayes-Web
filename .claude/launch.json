@@ -1,0 +1,14 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "pkbayes-app-preview",
+      "runtimeExecutable": "bash",
+      "runtimeArgs": [
+        "-c",
+        "cd '/private/tmp/claude-501/-Users-pablosaezriquelme-Desktop-P-gina-web-1-0/4f066c5c-7436-4202-ac9c-f6d55644d9f2/scratchpad/pk-bayes/frontend' && npx vite --port 5183 --host 127.0.0.1"
+      ],
+      "port": 5183
+    }
+  ]
+}

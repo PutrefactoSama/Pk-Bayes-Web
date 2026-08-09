@@ -78,9 +78,10 @@ Todos los botones "Entrar a PK-Bayes" (`data-app-link`) y los enlaces de contact
 
 ## 3. Precios mostrados
 
-Los importes en `precios.html` (p. ej. "Desde 950€ / trimestre" para el Piloto Clínico)
-son **precios de referencia** propuestos porque la especificación técnica del software
-no incluía tarifas comerciales definidas. Edítalos directamente en el HTML de
+El plan Piloto Clínico está fijado en **1.000 USD / año** (fase de prueba del modelo).
+Los demás importes en `precios.html` siguen siendo **precios de referencia** propuestos
+porque la especificación técnica del software no incluía tarifas comerciales completas
+para el resto de planes. Edítalos directamente en el HTML de
 `precios.html` cuando definas tus precios finales.
 
 ## 4. Desplegar
