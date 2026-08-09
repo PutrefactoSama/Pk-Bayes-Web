@@ -1,0 +1,324 @@
+<meta charset="UTF-8">
+<title>Casos clínicos y ejemplos — PK-Bayes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Tres flujos de trabajo reales con datos sintéticos: ajuste de vancomicina en UCI, corrección de fenitoína por hipoalbuminemia y calibración de priors institucionales con Shadow Learning.">
+<meta name="theme-color" content="#0f1c33">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+
+<header class="site-header">
+  <div class="container">
+    <div class="nav-row">
+      <a href="index.html" class="brand">
+        <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+          <rect width="64" height="64" rx="16" fill="#0f1c33"/>
+          <path d="M10 40 C 18 40, 20 20, 28 20 C 34 20, 34 34, 40 34 C 46 34, 46 24, 54 24" fill="none" stroke="#0891b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="40" cy="34" r="4" fill="#ffffff"/>
+        </svg>
+        <span>PK-Bayes<small>Precision Dosing Platform</small></span>
+      </a>
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <a href="funcionalidades.html">Funcionalidades</a>
+        <a href="farmacos.html">Fármacos y modelos</a>
+        <a href="ejemplos.html">Casos clínicos</a>
+        <a href="precios.html">Precios</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="acceso.html" class="btn btn-secondary btn-sm hide-mobile">Acceso clientes</a>
+        <a href="precios.html" class="btn btn-primary btn-sm">Empezar ahora</a>
+        <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu">
+      <a href="index.html">Inicio</a>
+      <a href="funcionalidades.html">Funcionalidades</a>
+      <a href="farmacos.html">Fármacos y modelos</a>
+      <a href="ejemplos.html">Casos clínicos</a>
+      <a href="precios.html">Precios</a>
+      <a href="acceso.html">Acceso clientes</a>
+      <div class="nav-actions">
+        <a href="precios.html" class="btn btn-primary btn-block">Empezar ahora</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Inicio</a> <span>/</span> <span>Casos clínicos</span></div>
+      <span class="eyebrow on-dark mt-16" style="display:inline-flex">3 flujos de trabajo completos</span>
+      <h1>PK-Bayes en acción, paso a paso</h1>
+      <p class="lead">Tres escenarios que muestran cómo cada rol clínico usa la plataforma en el día a día — desde el ingreso del paciente hasta el ajuste final de dosis.</p>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container">
+      <div class="disclaimer red reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
+        <div><strong>Datos sintéticos.</strong> Los pacientes, identificadores y valores numéricos de esta página son ficticios y se usan únicamente con fines ilustrativos y comerciales. No representan a personas reales ni deben usarse como referencia clínica.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASO 1 -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Caso 1 · Farmacéutico clínico en UCI</span>
+        <h2>Vancomicina en un paciente con función renal cambiante</h2>
+        <p>Paciente sintético <strong>#482</strong> — 68 años, varón, 82 kg, ingreso por sepsis de origen respiratorio. Función renal fluctuante durante el ingreso.</p>
+      </div>
+
+      <div class="timeline reveal">
+        <div class="timeline-step">
+          <div class="timeline-dot">1</div>
+          <div class="timeline-card">
+            <h4>Ingreso y primera dosis</h4>
+            <p>Se registra al paciente con peso, talla y creatinina inicial (1.1 mg/dL). PK-Bayes propone una dosis de carga basada en el modelo poblacional Goti et al. 2018.</p>
+            <div class="tags"><span class="badge badge-primary">Vancomicina</span><span class="badge badge-navy" style="background:#eef1f6;color:var(--text-muted)">Creatinina 1.1 mg/dL</span></div>
+          </div>
+        </div>
+        <div class="timeline-step is-alert">
+          <div class="timeline-dot">2</div>
+          <div class="timeline-card">
+            <h4>Primer nivel medido (TDM)</h4>
+            <p>A las 24h se obtiene un nivel valle de <strong>9.8 mg/L</strong>, por debajo del rango objetivo. La creatinina sube a 1.6 mg/dL — la función renal se está deteriorando.</p>
+            <div class="tags"><span class="badge badge-amber">Valle bajo</span><span class="badge badge-red">Función renal en descenso</span></div>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <div class="timeline-dot">3</div>
+          <div class="timeline-card">
+            <h4>Recálculo bayesiano MAP</h4>
+            <p>PK-Bayes combina el nuevo nivel con el CL(t) actualizado según la creatinina más reciente, recalculando el CL y Vd individuales del paciente en segundos.</p>
+            <div class="tags"><span class="badge badge-primary">Estimación MAP</span></div>
+          </div>
+        </div>
+        <div class="timeline-step is-done">
+          <div class="timeline-dot">4</div>
+          <div class="timeline-card">
+            <h4>Ajuste de dosis y nueva simulación</h4>
+            <p>El sistema simula un nuevo esquema (dosis ajustada, mismo intervalo) y predice un valle proyectado de <strong>17.2 mg/L</strong> — dentro del rango objetivo.</p>
+            <div class="tags"><span class="badge badge-green">En rango proyectado</span></div>
+          </div>
+        </div>
+        <div class="timeline-step is-done">
+          <div class="timeline-dot">5</div>
+          <div class="timeline-card">
+            <h4>Seguimiento</h4>
+            <p>El paciente pasa a la columna "En Rango (Estables)" del Kanban de triaje clínico, visible para todo el equipo.</p>
+            <div class="tags"><span class="badge badge-green">Estable</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="simulator mt-32 reveal" data-pk-simulator>
+        <div class="simulator-head">
+          <div>
+            <span class="badge badge-teal"><span class="badge-dot"></span> Prueba tú mismo</span>
+            <h4 class="mt-8">Reproduce el ajuste de dosis del paciente #482</h4>
+          </div>
+          <span class="text-muted" style="font-size:.82rem">Modelo ilustrativo de 1 compartimento</span>
+        </div>
+        <div class="simulator-body">
+          <div class="simulator-controls">
+            <div class="control-group">
+              <div class="control-label"><span>Dosis</span><span class="val" data-out="dose">1000 mg</span></div>
+              <input type="range" min="500" max="2000" step="250" value="1000" data-ctrl="dose">
+            </div>
+            <div class="control-group">
+              <div class="control-label"><span>Intervalo</span><span class="val" data-out="interval">12 h</span></div>
+              <select class="control-select" data-ctrl="interval">
+                <option value="8">Cada 8 horas</option>
+                <option value="12" selected>Cada 12 horas</option>
+                <option value="24">Cada 24 horas</option>
+              </select>
+            </div>
+            <div class="control-group">
+              <div class="control-label"><span>Aclaramiento renal (CL)</span><span class="val" data-out="cl">2.6 L/h</span></div>
+              <input type="range" min="1.5" max="8" step="0.1" value="2.6" data-ctrl="cl">
+              <div class="text-muted" style="font-size:.78rem;margin-top:6px">Baja el CL para simular el deterioro renal del paciente</div>
+            </div>
+            <div class="control-group">
+              <div class="control-label"><span>Volumen distribución (Vd)</span><span class="val" data-out="vd">52 L</span></div>
+              <input type="range" min="28" max="70" step="1" value="52" data-ctrl="vd">
+            </div>
+            <div class="sim-readouts">
+              <div class="sim-readout"><div class="k">Pico estimado</div><div class="v" data-out="peak">–</div></div>
+              <div class="sim-readout"><div class="k">Valle estimado</div><div class="v" data-out="trough">–</div></div>
+            </div>
+          </div>
+          <div class="simulator-chart">
+            <svg data-chart viewBox="0 0 640 320" role="img" aria-label="Curva de concentración simulada"></svg>
+            <div class="flex justify-between mt-16" style="font-size:.78rem;flex-wrap:wrap;gap:8px">
+              <span><span style="display:inline-block;width:10px;height:10px;background:var(--teal);border-radius:50%;margin-right:6px"></span>Concentración simulada</span>
+              <span><span style="display:inline-block;width:10px;height:10px;background:var(--green);border-radius:50%;margin-right:6px"></span>Rango objetivo ilustrativo (15–20 mg/L)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASO 2 -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Caso 2 · Médico en Neurología</span>
+        <h2>Fenitoína con hipoalbuminemia: un nivel "normal" que engaña</h2>
+        <p>Paciente sintético <strong>#205</strong> — 45 años, mujer, ingreso por estatus epiléptico. Albúmina sérica baja (2.4 g/dL).</p>
+      </div>
+      <div class="timeline reveal">
+        <div class="timeline-step">
+          <div class="timeline-dot">1</div>
+          <div class="timeline-card">
+            <h4>Nivel total medido</h4>
+            <p>Se reporta un nivel total de fenitoína de <strong>14 mg/L</strong> — dentro del rango de referencia habitual (10–20 mg/L). A simple vista, parece un valor tranquilizador.</p>
+            <div class="tags"><span class="badge badge-primary">Fenitoína</span><span class="badge badge-navy" style="background:#eef1f6;color:var(--text-muted)">Albúmina 2.4 g/dL</span></div>
+          </div>
+        </div>
+        <div class="timeline-step is-alert">
+          <div class="timeline-dot">2</div>
+          <div class="timeline-card">
+            <h4>Corrección de Sheiner-Tozer</h4>
+            <p>PK-Bayes aplica la corrección por albúmina baja y recalcula la fracción libre farmacológicamente activa — revelando un riesgo de toxicidad enmascarado por el nivel total "normal".</p>
+            <div class="tags"><span class="badge badge-red">Riesgo enmascarado</span></div>
+          </div>
+        </div>
+        <div class="timeline-step is-alert">
+          <div class="timeline-dot">3</div>
+          <div class="timeline-card">
+            <h4>Alerta clínica</h4>
+            <p>El paciente se marca en el Kanban como "Fuera de Rango — Acción", pese a que el nivel bruto inicial parecía aceptable a primera vista.</p>
+            <div class="tags"><span class="badge badge-red">Acción requerida</span></div>
+          </div>
+        </div>
+        <div class="timeline-step is-done">
+          <div class="timeline-dot">4</div>
+          <div class="timeline-card">
+            <h4>Ajuste y seguimiento</h4>
+            <p>El equipo clínico reduce la dosis con base en el nivel corregido y programa un nuevo control en 24 horas para confirmar la respuesta.</p>
+            <div class="tags"><span class="badge badge-green">Plan de seguimiento</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASO 3 -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Caso 3 · Farmacometrista / Investigador</span>
+        <h2>De la calibración institucional a un dataset PopPK</h2>
+        <p>Vista de cohorte completa, sin un paciente individual — así se ve la mejora continua del modelo a nivel de todo el hospital.</p>
+      </div>
+      <div class="timeline reveal">
+        <div class="timeline-step">
+          <div class="timeline-dot">1</div>
+          <div class="timeline-card">
+            <h4>Acumulación de casos</h4>
+            <p>Tras varios meses de uso, el estrato renal "ClCr 30–45 mL/min" acumula 11 casos válidos de vancomicina, superando el umbral mínimo de calibración.</p>
+            <div class="tags"><span class="badge badge-primary">11 casos válidos</span></div>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <div class="timeline-dot">2</div>
+          <div class="timeline-card">
+            <h4>Evaluación con Shadow Learning</h4>
+            <p>El motor compara el modelo Rodvold et al. 1988 frente a los datos reales del hospital: RMSE 5.4 mg/L, MPE −11.8% — el modelo tiende a subestimar el aclaramiento en esta población.</p>
+            <div class="tags"><span class="badge badge-amber">Sesgo detectado</span></div>
+          </div>
+        </div>
+        <div class="timeline-step is-done">
+          <div class="timeline-dot">3</div>
+          <div class="timeline-card">
+            <h4>Calibración del prior local</h4>
+            <p>Se habilita el prior institucional para ese estrato, con mejor ajuste frente a los datos reales (RMSE 2.4 mg/L).</p>
+            <div class="tags"><span class="badge badge-green">Prior local activo</span></div>
+          </div>
+        </div>
+        <div class="timeline-step is-done">
+          <div class="timeline-dot">4</div>
+          <div class="timeline-card">
+            <h4>Exportación PopPK</h4>
+            <p>El farmacometrista exporta el dataset completo del estrato en formato compatible con NONMEM para un análisis poblacional más profundo.</p>
+            <div class="tags"><span class="badge badge-teal">Export .csv</span></div>
+          </div>
+        </div>
+      </div>
+      <p class="center mt-32 reveal"><a href="funcionalidades.html#shadow-learning" class="btn btn-secondary">Ver cómo funciona Shadow Learning →</a></p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="cta-band reveal">
+        <div>
+          <h2>Prueba estos flujos con tus propios datos</h2>
+          <p>Empieza con un piloto clínico en tu unidad, o solicita acceso académico para investigación.</p>
+        </div>
+        <a href="precios.html" class="btn btn-on-dark btn-lg">Ver precios →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand">
+          <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="16" fill="#132a4d"/>
+            <path d="M10 40 C 18 40, 20 20, 28 20 C 34 20, 34 34, 40 34 C 46 34, 46 24, 54 24" fill="none" stroke="#5fd4e8" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="40" cy="34" r="4" fill="#ffffff"/>
+          </svg>
+          <span>PK-Bayes</span>
+        </a>
+        <p>Plataforma clínica de dosificación farmacocinética de precisión y optimización bayesiana en tiempo real, para vancomicina y fenitoína.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Producto</h5>
+        <ul>
+          <li><a href="funcionalidades.html">Funcionalidades</a></li>
+          <li><a href="farmacos.html">Fármacos y modelos</a></li>
+          <li><a href="ejemplos.html">Casos clínicos</a></li>
+          <li><a href="precios.html">Precios</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Acceso</h5>
+        <ul>
+          <li><a href="acceso.html">Acceso clientes</a></li>
+          <li><a data-app-link href="#" rel="noopener">Abrir plataforma PK-Bayes ↗</a></li>
+          <li><a href="precios.html">Solicitar prueba piloto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contacto</h5>
+        <ul>
+          <li><a data-contact-email data-subject="Consulta general PK-Bayes" href="#"><span data-contact-email-text>contacto</span></a></li>
+          <li><a data-contact-email data-subject="Solicitud de demo — PK-Bayes" href="#">Solicitar una demo</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year></span> PK-Bayes. Todos los derechos reservados.</span>
+      <span>Hecho para equipos de farmacocinética clínica.</span>
+    </div>
+    <p class="footer-legal-note">PK-Bayes es un software de apoyo a la decisión clínica (CDSS). Todas las recomendaciones generadas deben ser revisadas e interpretadas por un profesional sanitario cualificado antes de aplicarse a un paciente real. Los ejemplos, casos clínicos y simulaciones de este sitio web usan datos sintéticos y tienen fines exclusivamente informativos y comerciales.</p>
+  </div>
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/simulator.js"></script>

@@ -1,0 +1,220 @@
+<meta charset="UTF-8">
+<title>Fármacos y modelos PK — PK-Bayes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Vancomicina y fenitoína: modelos farmacocinéticos de la literatura integrados en PK-Bayes, aclaramiento renal dinámico, cinética de Michaelis-Menten y corrección de Sheiner-Tozer.">
+<meta name="theme-color" content="#0f1c33">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+
+<header class="site-header">
+  <div class="container">
+    <div class="nav-row">
+      <a href="index.html" class="brand">
+        <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+          <rect width="64" height="64" rx="16" fill="#0f1c33"/>
+          <path d="M10 40 C 18 40, 20 20, 28 20 C 34 20, 34 34, 40 34 C 46 34, 46 24, 54 24" fill="none" stroke="#0891b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="40" cy="34" r="4" fill="#ffffff"/>
+        </svg>
+        <span>PK-Bayes<small>Precision Dosing Platform</small></span>
+      </a>
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <a href="funcionalidades.html">Funcionalidades</a>
+        <a href="farmacos.html">Fármacos y modelos</a>
+        <a href="ejemplos.html">Casos clínicos</a>
+        <a href="precios.html">Precios</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="acceso.html" class="btn btn-secondary btn-sm hide-mobile">Acceso clientes</a>
+        <a href="precios.html" class="btn btn-primary btn-sm">Empezar ahora</a>
+        <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu">
+      <a href="index.html">Inicio</a>
+      <a href="funcionalidades.html">Funcionalidades</a>
+      <a href="farmacos.html">Fármacos y modelos</a>
+      <a href="ejemplos.html">Casos clínicos</a>
+      <a href="precios.html">Precios</a>
+      <a href="acceso.html">Acceso clientes</a>
+      <div class="nav-actions">
+        <a href="precios.html" class="btn btn-primary btn-block">Empezar ahora</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Inicio</a> <span>/</span> <span>Fármacos y modelos</span></div>
+      <span class="eyebrow on-dark mt-16" style="display:inline-flex">Fase 1 del roadmap</span>
+      <h1>Dos fármacos de alto riesgo, dos enfoques matemáticos distintos</h1>
+      <p class="lead">PK-Bayes soporta hoy Vancomicina (cinética lineal, modelos compartimentales) y Fenitoína (cinética no lineal saturable). Así es como cada modelo se aplica.</p>
+    </div>
+  </section>
+
+  <!-- VANCOMICINA -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Antibiótico intrahospitalario</span>
+        <h2>Vancomicina — cinética lineal y modelos compartimentales</h2>
+        <p>PK-Bayes integra cuatro modelos poblacionales de dos compartimentos publicados en la literatura, más un modelo simplificado de un compartimento para cálculos rápidos.</p>
+      </div>
+
+      <div class="table-wrap reveal">
+        <table>
+          <thead>
+            <tr><th>Modelo</th><th>Compartimentos</th><th>Referencia</th><th>Contexto de uso</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Goti et al.</strong></td><td>2</td><td class="mono">Goti CM et al., 2018</td><td>Modelo poblacional de amplio uso general en adultos</td></tr>
+            <tr><td><strong>Rodvold et al.</strong></td><td>2</td><td class="mono">Rodvold KA et al., 1988</td><td>Uno de los modelos clásicos de referencia</td></tr>
+            <tr><td><strong>Thomson et al.</strong></td><td>2</td><td class="mono">Thomson AH et al., 2009</td><td>Ampliamente validado en cohortes hospitalarias</td></tr>
+            <tr><td><strong>Yamamoto et al.</strong></td><td>2</td><td class="mono">Yamamoto M et al., 2009</td><td>Validado en población japonesa</td></tr>
+            <tr><td><strong>Modelo simplificado</strong></td><td>1</td><td class="mono">—</td><td>Estimación rápida cuando no se requiere alta granularidad</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid grid-2 mt-32">
+        <div class="card reveal">
+          <div class="icon-wrap icon-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
+          <h3>Aclaramiento renal dinámico — CL(t)</h3>
+          <p class="text-secondary mt-8">Registra históricos de múltiples laboratorios de creatinina sérica para modelar cómo cambia la función renal del paciente día a día, en lugar de asumir un valor fijo al ingreso.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon-wrap icon-amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></div>
+          <h3>Ajuste ante diálisis / TRRC</h3>
+          <p class="text-secondary mt-8">Ajusta automáticamente los cálculos ante terapias de diálisis o terapia de reemplazo renal continuo (TRRC/HD), donde el aclaramiento del fármaco cambia bruscamente.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FENITOÍNA -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Anticonvulsivante</span>
+        <h2>Fenitoína — cinética no lineal de Michaelis-Menten</h2>
+        <p>A dosis terapéuticas, los mecanismos de eliminación hepática de la fenitoína se saturan. PK-Bayes resuelve matemáticamente este aclaramiento no lineal en lugar de asumir una cinética lineal simple.</p>
+      </div>
+
+      <div class="grid grid-2">
+        <div class="card reveal">
+          <span class="badge badge-primary">Cinética saturable</span>
+          <h3 class="mt-16">Ecuación de Michaelis-Menten</h3>
+          <p class="text-secondary mt-8">El aclaramiento depende de dos parámetros individuales: la velocidad máxima de metabolismo (<span class="mono">Vmax</span>) y la concentración a la que se alcanza la mitad de esa velocidad (<span class="mono">Km</span>). PK-Bayes estima ambos parámetros de forma bayesiana para cada paciente.</p>
+          <div class="example-box mt-16">
+            <span class="label">Por qué importa</span>
+            <p>Con cinética saturable, duplicar la dosis <em>no</em> duplica el nivel en sangre de forma predecible — pequeños incrementos pueden producir aumentos desproporcionados de concentración. Un cálculo lineal tradicional puede llevar a toxicidad sin advertirlo.</p>
+          </div>
+        </div>
+        <div class="card reveal">
+          <span class="badge badge-teal">Corrección de niveles</span>
+          <h3 class="mt-16">Corrección de Sheiner-Tozer</h3>
+          <p class="text-secondary mt-8">Corrige automáticamente los niveles de concentración medidos cuando el paciente tiene albúmina sérica baja o insuficiencia renal terminal, calculando la fracción de fármaco libre (farmacológicamente activa) en sangre.</p>
+          <div class="example-box teal mt-16">
+            <span class="label">Ejemplo real</span>
+            <p>Un nivel total de fenitoína "normal" en un paciente con hipoalbuminemia puede ocultar una fracción libre elevada y tóxica. PK-Bayes aplica la corrección para revelar el riesgo real antes de que se manifieste clínicamente.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRIORS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Motor adaptativo local</span>
+        <h2>Modelos Poblacionales Locales (Priors Institucionales)</h2>
+        <p>Más allá de la literatura, PK-Bayes aprende de tu propio hospital.</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card reveal">
+          <div class="icon-wrap">12</div>
+          <h3 class="mt-8">Estratos de función renal</h3>
+          <p class="text-secondary mt-8">Cada paciente se clasifica en uno de 12 estratos según su función renal.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon-wrap icon-green">10</div>
+          <h3 class="mt-8">Casos válidos mínimos</h3>
+          <p class="text-secondary mt-8">Umbral necesario por estrato antes de habilitar la calibración local.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon-wrap icon-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 12h8M12 8v8"/><circle cx="12" cy="12" r="10"/></svg></div>
+          <h3 class="mt-8">Prior mixto</h3>
+          <p class="text-secondary mt-8">Combina el modelo de literatura con el prior local según la confianza estadística acumulada.</p>
+        </div>
+      </div>
+      <p class="center mt-32 reveal"><a href="funcionalidades.html#priors" class="btn btn-secondary">Ver cómo funciona en detalle →</a></p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="disclaimer red reveal">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
+        <div><strong>Uso clínico responsable.</strong> PK-Bayes es un software de apoyo a la decisión clínica (CDSS). Los parámetros, modelos y correcciones descritos en esta página son los integrados en la plataforma, pero toda recomendación de dosis debe ser siempre revisada por un profesional sanitario cualificado antes de aplicarse a un paciente real.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand">
+          <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="16" fill="#132a4d"/>
+            <path d="M10 40 C 18 40, 20 20, 28 20 C 34 20, 34 34, 40 34 C 46 34, 46 24, 54 24" fill="none" stroke="#5fd4e8" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="40" cy="34" r="4" fill="#ffffff"/>
+          </svg>
+          <span>PK-Bayes</span>
+        </a>
+        <p>Plataforma clínica de dosificación farmacocinética de precisión y optimización bayesiana en tiempo real, para vancomicina y fenitoína.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Producto</h5>
+        <ul>
+          <li><a href="funcionalidades.html">Funcionalidades</a></li>
+          <li><a href="farmacos.html">Fármacos y modelos</a></li>
+          <li><a href="ejemplos.html">Casos clínicos</a></li>
+          <li><a href="precios.html">Precios</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Acceso</h5>
+        <ul>
+          <li><a href="acceso.html">Acceso clientes</a></li>
+          <li><a data-app-link href="#" rel="noopener">Abrir plataforma PK-Bayes ↗</a></li>
+          <li><a href="precios.html">Solicitar prueba piloto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contacto</h5>
+        <ul>
+          <li><a data-contact-email data-subject="Consulta general PK-Bayes" href="#"><span data-contact-email-text>contacto</span></a></li>
+          <li><a data-contact-email data-subject="Solicitud de demo — PK-Bayes" href="#">Solicitar una demo</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year></span> PK-Bayes. Todos los derechos reservados.</span>
+      <span>Hecho para equipos de farmacocinética clínica.</span>
+    </div>
+    <p class="footer-legal-note">PK-Bayes es un software de apoyo a la decisión clínica (CDSS). Todas las recomendaciones generadas deben ser revisadas e interpretadas por un profesional sanitario cualificado antes de aplicarse a un paciente real. Los ejemplos, casos clínicos y simulaciones de este sitio web usan datos sintéticos y tienen fines exclusivamente informativos y comerciales.</p>
+  </div>
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>

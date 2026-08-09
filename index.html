@@ -1,0 +1,358 @@
+<meta charset="UTF-8">
+<title>PK-Bayes — Dosificación farmacocinética de precisión con IA bayesiana</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="PK-Bayes es un software de apoyo a la decisión clínica (CDSS) que calcula pautas de dosificación individualizadas para vancomicina y fenitoína mediante estimación bayesiana MAP en tiempo real.">
+<meta name="theme-color" content="#0f1c33">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+
+<header class="site-header">
+  <div class="container">
+    <div class="nav-row">
+      <a href="index.html" class="brand">
+        <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+          <rect width="64" height="64" rx="16" fill="#0f1c33"/>
+          <path d="M10 40 C 18 40, 20 20, 28 20 C 34 20, 34 34, 40 34 C 46 34, 46 24, 54 24" fill="none" stroke="#0891b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="40" cy="34" r="4" fill="#ffffff"/>
+        </svg>
+        <span>PK-Bayes<small>Precision Dosing Platform</small></span>
+      </a>
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <a href="funcionalidades.html">Funcionalidades</a>
+        <a href="farmacos.html">Fármacos y modelos</a>
+        <a href="ejemplos.html">Casos clínicos</a>
+        <a href="precios.html">Precios</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="acceso.html" class="btn btn-secondary btn-sm hide-mobile">Acceso clientes</a>
+        <a href="precios.html" class="btn btn-primary btn-sm">Empezar ahora</a>
+        <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu">
+      <a href="index.html">Inicio</a>
+      <a href="funcionalidades.html">Funcionalidades</a>
+      <a href="farmacos.html">Fármacos y modelos</a>
+      <a href="ejemplos.html">Casos clínicos</a>
+      <a href="precios.html">Precios</a>
+      <a href="acceso.html">Acceso clientes</a>
+      <div class="nav-actions">
+        <a href="precios.html" class="btn btn-primary btn-block">Empezar ahora</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div>
+        <span class="eyebrow on-dark">Software de Apoyo a la Decisión Clínica (CDSS)</span>
+        <h1>Dosificación de precisión, calculada en segundos — no en nomogramas estáticos.</h1>
+        <p class="lead">PK-Bayes combina modelos farmacocinéticos publicados con estimación bayesiana MAP en tiempo real para vancomicina y fenitoína, ayudando a tu equipo a evitar la subdosificación y la toxicidad en pacientes con márgenes terapéuticos estrechos.</p>
+        <div class="hero-cta">
+          <a href="precios.html" class="btn btn-on-dark btn-lg">Ver precios y empezar</a>
+          <a href="funcionalidades.html" class="btn btn-outline-on-dark btn-lg">Explorar funcionalidades</a>
+        </div>
+        <div class="hero-stats">
+          <div class="hero-stat"><b data-count-to="2">0</b><span>Fármacos con modelos validados</span></div>
+          <div class="hero-stat"><b data-count-to="4">0</b><span>Modelos PK de literatura (vancomicina)</span></div>
+          <div class="hero-stat"><b data-count-to="12">0</b><span>Estratos de función renal</span></div>
+          <div class="hero-stat"><b>Segundos</b><span>Para recalcular CL y Vd individuales (MAP)</span></div>
+        </div>
+      </div>
+      <div class="hero-visual reveal">
+        <div class="hero-visual-head">
+          <h4>Curva de concentración — vista previa</h4>
+          <span class="badge badge-navy">Ilustrativo</span>
+        </div>
+        <svg viewBox="0 0 420 210" aria-hidden="true">
+          <rect x="0" y="86" width="420" height="52" fill="#0891b2" opacity="0.15"/>
+          <line x1="0" y1="86" x2="420" y2="86" stroke="#0891b2" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
+          <line x1="0" y1="138" x2="420" y2="138" stroke="#0891b2" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
+          <path d="M0,150 C 20,40 40,20 60,60 C 80,100 90,120 110,150 C 130,40 150,20 170,60 C 190,100 200,120 220,150 C 240,40 260,20 280,60 C 300,100 310,120 330,150 C 350,40 370,20 390,60 C 400,80 410,95 420,110"
+                fill="none" stroke="#5fd4e8" stroke-width="2.5" stroke-linecap="round"/>
+          <line x1="0" y1="180" x2="420" y2="180" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+        </svg>
+        <div class="flex justify-between mt-16" style="font-size:.78rem;color:var(--text-on-dark-muted)">
+          <span>0h</span><span>Rango objetivo</span><span>72h</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROBLEMA -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">El problema clínico</span>
+        <h2>Un margen terapéutico estrecho no perdona errores de cálculo</h2>
+        <p class="lead">Fármacos de uso crítico como la <strong>vancomicina</strong> (antibiótico intrahospitalario) y la <strong>fenitoína</strong> (anticonvulsivante esencial en neurología y urgencias) tienen una ventana de dosis muy estrecha entre la ineficacia y la toxicidad.</p>
+      </div>
+      <div class="grid grid-2">
+        <div class="card reveal">
+          <div class="icon-wrap icon-amber">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
+          </div>
+          <h3>Si la dosis es demasiado baja</h3>
+          <p class="text-secondary mt-8">El tratamiento falla: la infección avanza sin control o las convulsiones no se detienen, con riesgo de selección de resistencias antimicrobianas y peor pronóstico clínico.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon-wrap icon-red">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 22h20L12 2Z"/><path d="M12 9v5M12 17h.01"/></svg>
+          </div>
+          <h3>Si la dosis es demasiado alta</h3>
+          <p class="text-secondary mt-8">El fármaco se vuelve tóxico: daño renal agudo por vancomicina, o toxicidad neurológica y arritmias por fenitoína — con estancias hospitalarias más largas y peor desenlace.</p>
+        </div>
+      </div>
+      <p class="lead mt-32 reveal">La capacidad de cada paciente para depurar estos fármacos varía drásticamente según el peso, la edad, el sexo biológico, la función renal cambiante o los niveles de proteínas en sangre. Los nomogramas y fórmulas manuales tradicionales son estáticos y fallan a menudo en pacientes críticos. <strong>PK-Bayes reemplaza esa aproximación estática por un modelo que se actualiza con cada nuevo dato del paciente.</strong></p>
+    </div>
+  </section>
+
+  <!-- CÓMO FUNCIONA -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head center reveal" style="max-width:640px">
+        <span class="eyebrow">Flujo de trabajo</span>
+        <h2>De los datos del paciente a una recomendación de dosis, en 4 pasos</h2>
+      </div>
+      <div class="grid grid-4">
+        <div class="card reveal">
+          <div class="icon-wrap">1</div>
+          <h3>Registra al paciente</h3>
+          <p class="text-secondary mt-8">Peso, talla, edad, sexo y creatinina sérica — la base para el modelo poblacional inicial.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon-wrap icon-teal">2</div>
+          <h3>Introduce niveles medidos</h3>
+          <p class="text-secondary mt-8">Uno o dos niveles plasmáticos (pico y/o valle) del monitoreo terapéutico (TDM).</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon-wrap icon-green">3</div>
+          <h3>Estimación bayesiana MAP</h3>
+          <p class="text-secondary mt-8">El motor calcula el aclaramiento (CL) y volumen de distribución (Vd) individuales en segundos.</p>
+        </div>
+        <div class="card reveal">
+          <div class="icon-wrap icon-amber">4</div>
+          <h3>Simula y decide</h3>
+          <p class="text-secondary mt-8">Visualiza la curva prevista y ajusta dosis/intervalo antes de prescribir.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUNCIONALIDADES -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Funcionalidades</span>
+        <h2>Todo lo que necesita tu equipo de farmacocinética clínica</h2>
+        <p>Seis capacidades centrales, pensadas para el flujo real de trabajo hospitalario — desde el ingreso del paciente hasta la exportación de datos para investigación.</p>
+      </div>
+      <div class="grid grid-3">
+        <div class="card feature-card reveal">
+          <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
+          <h3>Estimación Bayesiana MAP</h3>
+          <p>Calcula en tiempo real el CL y Vd individuales del paciente a partir de una o dos muestras de sangre.</p>
+          <a href="funcionalidades.html#map" class="card-link">Ver más →</a>
+        </div>
+        <div class="card feature-card reveal">
+          <div class="icon-wrap icon-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></div>
+          <h3>Simulador de Dosificación</h3>
+          <p>Prueba una dosis e intervalo y visualiza al instante la curva de concentración prevista.</p>
+          <a href="funcionalidades.html#simulador" class="card-link">Ver más →</a>
+        </div>
+        <div class="card feature-card reveal">
+          <div class="icon-wrap icon-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="4" height="16" rx="1"/><rect x="10" y="4" width="4" height="10" rx="1"/><rect x="17" y="4" width="4" height="13" rx="1"/></svg></div>
+          <h3>Kanban de Triaje Clínico</h3>
+          <p>Clasifica automáticamente a los pacientes hospitalizados en 4 columnas de flujo de trabajo.</p>
+          <a href="funcionalidades.html#kanban" class="card-link">Ver más →</a>
+        </div>
+        <div class="card feature-card reveal">
+          <div class="icon-wrap icon-amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></div>
+          <h3>Shadow Learning</h3>
+          <p>Evalúa de forma no invasiva la precisión (RMSE) y el sesgo (MPE) de los modelos frente a tus pacientes reales.</p>
+          <a href="funcionalidades.html#shadow-learning" class="card-link">Ver más →</a>
+        </div>
+        <div class="card feature-card reveal">
+          <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
+          <h3>Modelos Poblacionales Locales</h3>
+          <p>Calibra priors mixtos propios del hospital tras acumular casos válidos por estrato renal.</p>
+          <a href="funcionalidades.html#priors" class="card-link">Ver más →</a>
+        </div>
+        <div class="card feature-card reveal">
+          <div class="icon-wrap icon-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></div>
+          <h3>Exportación PopPK</h3>
+          <p>Genera datasets compatibles con NONMEM y Monolix, listos para modelado poblacional avanzado.</p>
+          <a href="funcionalidades.html#export" class="card-link">Ver más →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FÁRMACOS -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Fase 1</span>
+        <h2>Dos fármacos de alto riesgo, modelados con rigor</h2>
+      </div>
+      <div class="grid grid-2">
+        <div class="card drug-card reveal">
+          <div class="drug-head">
+            <h3>Vancomicina</h3>
+            <span class="badge badge-primary">Cinética lineal</span>
+          </div>
+          <p class="text-secondary">Modelos de 2 compartimentos de la literatura, un modelo simplificado de 1 compartimento y aclaramiento renal dinámico CL(t) a partir del histórico de creatinina.</p>
+          <ul class="mini-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Goti et al. 2018 · Rodvold et al. 1988 · Thomson et al. 2009 · Yamamoto et al. 2009</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Ajuste automático ante diálisis o TRRC</li>
+          </ul>
+        </div>
+        <div class="card drug-card teal reveal">
+          <div class="drug-head">
+            <h3>Fenitoína</h3>
+            <span class="badge badge-teal">Cinética no lineal</span>
+          </div>
+          <p class="text-secondary">Resuelve el aclaramiento saturable mediante la ecuación de Michaelis-Menten (Vmax y Km), con corrección de Sheiner-Tozer.</p>
+          <ul class="mini-list">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Corrige niveles medidos con albúmina baja o IRT</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Calcula la fracción de fármaco libre en sangre</li>
+          </ul>
+        </div>
+      </div>
+      <p class="center mt-32 reveal"><a href="farmacos.html" class="btn btn-secondary">Ver todos los modelos y su literatura →</a></p>
+    </div>
+  </section>
+
+  <!-- PERSONAS -->
+  <section class="section">
+    <div class="container">
+      <div class="section-head center reveal" style="max-width:640px">
+        <span class="eyebrow">Diseñado para</span>
+        <h2>Cada rol clínico, con su propia vista</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="card persona-card reveal">
+          <div class="persona-avatar">FC</div>
+          <h3>Farmacéutico Clínico</h3>
+          <p class="text-secondary mt-8">Realiza el Monitoreo Terapéutico de Fármacos (TDM) y propone ajustes de dosis basados en niveles medidos.</p>
+        </div>
+        <div class="card persona-card reveal">
+          <div class="persona-avatar">MI</div>
+          <h3>Médico / Intensivista</h3>
+          <p class="text-secondary mt-8">Prescribe y necesita ver la evolución temporal y el riesgo de toxicidad de sus pacientes a pie de cama.</p>
+        </div>
+        <div class="card persona-card reveal">
+          <div class="persona-avatar">FM</div>
+          <h3>Farmacometrista / Investigador</h3>
+          <p class="text-secondary mt-8">Analiza cohortes completas de forma retrospectiva para optimizar el comportamiento del fármaco en su población local.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING TEASER -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head center reveal" style="max-width:640px">
+        <span class="eyebrow">Precios</span>
+        <h2>Un plan para cada etapa: investigación, piloto o todo el hospital</h2>
+      </div>
+      <div class="grid grid-3">
+        <div class="card pricing-card reveal">
+          <span class="pricing-name">Académico</span>
+          <div class="pricing-price"><span class="amount">Gratis</span></div>
+          <p class="pricing-desc">Para universidades y laboratorios de investigación — simulación y análisis retrospectivo.</p>
+          <a href="precios.html" class="btn btn-secondary btn-block">Ver detalles</a>
+        </div>
+        <div class="card pricing-card pricing-card--featured reveal">
+          <span class="pricing-ribbon">Más elegido</span>
+          <span class="pricing-name">Piloto Clínico</span>
+          <div class="pricing-price"><span class="amount">Desde 950€</span><span class="period">/ trimestre</span></div>
+          <p class="pricing-desc">Licencia de 3–6 meses para evaluar el sistema en una unidad clínica.</p>
+          <a href="precios.html" class="btn btn-primary btn-block">Ver detalles</a>
+        </div>
+        <div class="card pricing-card reveal">
+          <span class="pricing-name">Hospitalario</span>
+          <div class="pricing-price"><span class="amount">A medida</span></div>
+          <p class="pricing-desc">Suscripción anual por camas/volumen, con integración HL7/FHIR y auditoría clínica.</p>
+          <a href="precios.html" class="btn btn-secondary btn-block">Ver detalles</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-band reveal">
+        <div>
+          <h2>¿Listo para dejar atrás los nomogramas estáticos?</h2>
+          <p>Empieza con un piloto clínico en tu unidad o solicita acceso académico para investigación.</p>
+        </div>
+        <div class="flex gap-12 flex-wrap">
+          <a href="precios.html" class="btn btn-on-dark btn-lg">Ver precios</a>
+          <a href="#" data-contact-email data-subject="Quiero una demo de PK-Bayes" class="btn btn-outline-on-dark btn-lg">Contactar ventas</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand">
+          <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="16" fill="#132a4d"/>
+            <path d="M10 40 C 18 40, 20 20, 28 20 C 34 20, 34 34, 40 34 C 46 34, 46 24, 54 24" fill="none" stroke="#5fd4e8" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="40" cy="34" r="4" fill="#ffffff"/>
+          </svg>
+          <span>PK-Bayes</span>
+        </a>
+        <p>Plataforma clínica de dosificación farmacocinética de precisión y optimización bayesiana en tiempo real, para vancomicina y fenitoína.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Producto</h5>
+        <ul>
+          <li><a href="funcionalidades.html">Funcionalidades</a></li>
+          <li><a href="farmacos.html">Fármacos y modelos</a></li>
+          <li><a href="ejemplos.html">Casos clínicos</a></li>
+          <li><a href="precios.html">Precios</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Acceso</h5>
+        <ul>
+          <li><a href="acceso.html">Acceso clientes</a></li>
+          <li><a data-app-link href="#" rel="noopener">Abrir plataforma PK-Bayes ↗</a></li>
+          <li><a href="precios.html">Solicitar prueba piloto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contacto</h5>
+        <ul>
+          <li><a data-contact-email data-subject="Consulta general PK-Bayes" href="#"><span data-contact-email-text>contacto</span></a></li>
+          <li><a data-contact-email data-subject="Solicitud de demo — PK-Bayes" href="#">Solicitar una demo</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year></span> PK-Bayes. Todos los derechos reservados.</span>
+      <span>Hecho para equipos de farmacocinética clínica.</span>
+    </div>
+    <p class="footer-legal-note">PK-Bayes es un software de apoyo a la decisión clínica (CDSS). Todas las recomendaciones generadas deben ser revisadas e interpretadas por un profesional sanitario cualificado antes de aplicarse a un paciente real. Los ejemplos, casos clínicos y simulaciones de este sitio web usan datos sintéticos y tienen fines exclusivamente informativos y comerciales.</p>
+  </div>
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>

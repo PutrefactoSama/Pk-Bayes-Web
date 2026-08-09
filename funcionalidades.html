@@ -1,0 +1,325 @@
+<meta charset="UTF-8">
+<title>Funcionalidades — PK-Bayes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Descubre con ejemplos reales cómo funciona la estimación bayesiana MAP, el simulador de dosificación, el Kanban de triaje clínico, Shadow Learning, los priors institucionales y la exportación PopPK de PK-Bayes.">
+<meta name="theme-color" content="#0f1c33">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+
+<header class="site-header">
+  <div class="container">
+    <div class="nav-row">
+      <a href="index.html" class="brand">
+        <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+          <rect width="64" height="64" rx="16" fill="#0f1c33"/>
+          <path d="M10 40 C 18 40, 20 20, 28 20 C 34 20, 34 34, 40 34 C 46 34, 46 24, 54 24" fill="none" stroke="#0891b2" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="40" cy="34" r="4" fill="#ffffff"/>
+        </svg>
+        <span>PK-Bayes<small>Precision Dosing Platform</small></span>
+      </a>
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="index.html">Inicio</a>
+        <a href="funcionalidades.html">Funcionalidades</a>
+        <a href="farmacos.html">Fármacos y modelos</a>
+        <a href="ejemplos.html">Casos clínicos</a>
+        <a href="precios.html">Precios</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="acceso.html" class="btn btn-secondary btn-sm hide-mobile">Acceso clientes</a>
+        <a href="precios.html" class="btn btn-primary btn-sm">Empezar ahora</a>
+        <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="mobile-menu">
+      <a href="index.html">Inicio</a>
+      <a href="funcionalidades.html">Funcionalidades</a>
+      <a href="farmacos.html">Fármacos y modelos</a>
+      <a href="ejemplos.html">Casos clínicos</a>
+      <a href="precios.html">Precios</a>
+      <a href="acceso.html">Acceso clientes</a>
+      <div class="nav-actions">
+        <a href="precios.html" class="btn btn-primary btn-block">Empezar ahora</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Inicio</a> <span>/</span> <span>Funcionalidades</span></div>
+      <span class="eyebrow on-dark mt-16" style="display:inline-flex">6 capacidades centrales</span>
+      <h1>Todo lo que hace PK-Bayes, explicado con ejemplos reales</h1>
+      <p class="lead">Desde el cálculo bayesiano individual hasta la exportación para investigación poblacional — así es como cada funcionalidad se usa en el día a día clínico.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <!-- 01 · MAP -->
+      <div class="feature-detail" id="map">
+        <div class="num">01</div>
+        <div>
+          <span class="badge badge-primary">Motor bayesiano</span>
+          <h3 class="mt-16">Estimación Bayesiana MAP en Tiempo Real</h3>
+          <div class="feature-detail-body">
+            <div>
+              <p>A partir de una o dos muestras de sangre (niveles plasmáticos de pico o valle), el algoritmo calcula en segundos los parámetros individuales exactos de depuración (<strong>CL</strong>) y volumen de distribución (<strong>Vd</strong>) del paciente, ajustando el modelo poblacional a su realidad fisiológica.</p>
+              <ul class="mini-list">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Combina el prior poblacional (literatura o local) con los niveles medidos del paciente</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Se recalcula cada vez que llega un nuevo laboratorio o nivel plasmático</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Aplica automáticamente el modelo correspondiente según el fármaco (2-compartimentos, 1-compartimento o Michaelis-Menten)</li>
+              </ul>
+            </div>
+            <div class="example-box">
+              <span class="label">Ejemplo real</span>
+              <p>Un paciente en UCI recibe vancomicina. Tras el segundo nivel valle registrado, PK-Bayes recalcula su CL y Vd individuales en segundos, y actualiza la recomendación de dosis antes de la siguiente administración — sin esperar a un farmacometrista disponible.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 02 · Simulador -->
+      <div class="feature-detail" id="simulador">
+        <div class="num">02</div>
+        <div>
+          <span class="badge badge-teal">Simulación interactiva</span>
+          <h3 class="mt-16">Simulador de Esquemas de Dosificación Futuros</h3>
+          <p class="mt-8">El clínico introduce una dosis tentativa (ej. 1000 mg) y un intervalo (ej. cada 12 horas) y ve de inmediato, en un gráfico interactivo, cómo responderá la concentración en sangre del paciente — anticipando si estará dentro del rango terapéutico óptimo antes de prescribir.</p>
+
+          <div class="simulator mt-32" data-pk-simulator>
+            <div class="simulator-head">
+              <div>
+                <span class="badge badge-teal"><span class="badge-dot"></span> Prueba interactiva</span>
+                <h4 class="mt-8">Vancomicina — simulación de esquema de dosis</h4>
+              </div>
+              <span class="text-muted" style="font-size:.82rem">Modelo ilustrativo de 1 compartimento</span>
+            </div>
+            <div class="simulator-body">
+              <div class="simulator-controls">
+                <div class="control-group">
+                  <div class="control-label"><span>Dosis</span><span class="val" data-out="dose">1000 mg</span></div>
+                  <input type="range" min="500" max="2000" step="250" value="1000" data-ctrl="dose">
+                </div>
+                <div class="control-group">
+                  <div class="control-label"><span>Intervalo</span><span class="val" data-out="interval">12 h</span></div>
+                  <select class="control-select" data-ctrl="interval">
+                    <option value="8">Cada 8 horas</option>
+                    <option value="12" selected>Cada 12 horas</option>
+                    <option value="24">Cada 24 horas</option>
+                  </select>
+                </div>
+                <div class="control-group">
+                  <div class="control-label"><span>Aclaramiento renal (CL)</span><span class="val" data-out="cl">3.5 L/h</span></div>
+                  <input type="range" min="1.5" max="8" step="0.1" value="3.5" data-ctrl="cl">
+                  <div class="text-muted" style="font-size:.78rem;margin-top:6px">Simula la función renal del paciente</div>
+                </div>
+                <div class="control-group">
+                  <div class="control-label"><span>Volumen distribución (Vd)</span><span class="val" data-out="vd">45 L</span></div>
+                  <input type="range" min="28" max="70" step="1" value="45" data-ctrl="vd">
+                </div>
+                <div class="sim-readouts">
+                  <div class="sim-readout"><div class="k">Pico estimado</div><div class="v" data-out="peak">–</div></div>
+                  <div class="sim-readout"><div class="k">Valle estimado</div><div class="v" data-out="trough">–</div></div>
+                </div>
+              </div>
+              <div class="simulator-chart">
+                <svg data-chart viewBox="0 0 640 320" role="img" aria-label="Curva de concentración simulada en función del tiempo"></svg>
+                <div class="flex justify-between mt-16" style="font-size:.78rem;flex-wrap:wrap;gap:8px">
+                  <span><span style="display:inline-block;width:10px;height:10px;background:var(--teal);border-radius:50%;margin-right:6px"></span>Concentración simulada</span>
+                  <span><span style="display:inline-block;width:10px;height:10px;background:var(--green);border-radius:50%;margin-right:6px"></span>Rango objetivo ilustrativo (15–20 mg/L)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="disclaimer mt-16">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
+            <div><strong>Nota:</strong> este widget usa una ecuación simplificada de 1 compartimento con fines demostrativos. El simulador real de PK-Bayes usa el motor bayesiano completo con los modelos de literatura o priors institucionales calibrados. No usar para decisiones clínicas.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 03 · Kanban -->
+      <div class="feature-detail" id="kanban">
+        <div class="num">03</div>
+        <div>
+          <span class="badge badge-green">Gestión de servicio</span>
+          <h3 class="mt-16">Tablero Kanban de Triaje Clínico</h3>
+          <p class="mt-8">Un dashboard tipo Kanban que clasifica automáticamente a los pacientes hospitalizados del servicio en 4 columnas de flujo de trabajo, para que el equipo sepa de un vistazo quién necesita atención.</p>
+
+          <div class="kanban mt-24">
+            <div class="kanban-col kanban-col--incomplete">
+              <div class="kanban-col-head"><h4>Datos incompletos</h4><span class="kanban-count">3</span></div>
+              <div class="kanban-card"><div class="pid">Paciente #482</div><div class="meta">Falta creatinina sérica</div></div>
+              <div class="kanban-card"><div class="pid">Paciente #511</div><div class="meta">Falta peso y talla</div></div>
+              <div class="kanban-card"><div class="pid">Paciente #398</div><div class="meta">Sin dosis registrada</div></div>
+            </div>
+            <div class="kanban-col kanban-col--pending">
+              <div class="kanban-col-head"><h4>Pendiente estimación</h4><span class="kanban-count">2</span></div>
+              <div class="kanban-card"><div class="pid">Paciente #276</div><div class="meta">Nuevo nivel valle disponible</div></div>
+              <div class="kanban-card"><div class="pid">Paciente #340</div><div class="meta">Creatinina actualizada hoy</div></div>
+            </div>
+            <div class="kanban-col kanban-col--stable">
+              <div class="kanban-col-head"><h4>En rango (estables)</h4><span class="kanban-count">5</span></div>
+              <div class="kanban-card"><div class="pid">Paciente #120</div><div class="meta">Vancomicina · dentro de rango</div></div>
+              <div class="kanban-card"><div class="pid">Paciente #205</div><div class="meta">Fenitoína · dentro de rango</div></div>
+            </div>
+            <div class="kanban-col kanban-col--action">
+              <div class="kanban-col-head"><h4>Fuera de rango</h4><span class="kanban-count">1</span></div>
+              <div class="kanban-card"><div class="pid">Paciente #487</div><div class="meta">Riesgo de nefrotoxicidad — ajuste urgente</div></div>
+            </div>
+          </div>
+          <p class="text-muted mt-16" style="font-size:.82rem">Ejemplo ilustrativo con pacientes sintéticos, solo para representar la interfaz.</p>
+        </div>
+      </div>
+
+      <!-- 04 · Shadow Learning -->
+      <div class="feature-detail" id="shadow-learning">
+        <div class="num">04</div>
+        <div>
+          <span class="badge badge-amber">Mejora continua</span>
+          <h3 class="mt-16">Shadow Learning (Aprendizaje en Sombra)</h3>
+          <div class="feature-detail-body">
+            <div>
+              <p>Una capa retrospectiva que evalúa, de forma no invasiva, qué tan precisos son los modelos clínicos de la literatura frente a los pacientes reales del hospital — reportando métricas de precisión (<strong>RMSE</strong>) y sesgo (<strong>MPE</strong>) para guiar la recalibración.</p>
+              <p class="text-secondary mt-16">Esto permite a farmacometristas detectar si, por ejemplo, un modelo publicado sobrestima o subestima sistemáticamente el aclaramiento en su población específica de pacientes.</p>
+            </div>
+            <div class="example-box">
+              <span class="label">Ejemplo ilustrativo de salida del reporte</span>
+              <div class="table-wrap mt-8" style="border:none;background:transparent">
+                <table style="min-width:0">
+                  <thead><tr><th>Modelo</th><th>RMSE</th><th>MPE</th></tr></thead>
+                  <tbody>
+                    <tr><td>Goti et al. 2018</td><td class="mono">3.1 mg/L</td><td class="mono">+4.2%</td></tr>
+                    <tr><td>Rodvold et al. 1988</td><td class="mono">5.4 mg/L</td><td class="mono">−11.8%</td></tr>
+                    <tr><td>Prior institucional</td><td class="mono">2.4 mg/L</td><td class="mono">+1.1%</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 05 · Priors -->
+      <div class="feature-detail" id="priors">
+        <div class="num">05</div>
+        <div>
+          <span class="badge badge-primary">Aprendizaje institucional</span>
+          <h3 class="mt-16">Modelos Poblacionales Locales (Priors Institucionales)</h3>
+          <div class="feature-detail-body">
+            <div>
+              <p>Combina modelos estándar de la literatura con un motor adaptativo local. Clasifica a los pacientes en <strong>12 estratos de función renal</strong> y, tras acumular <strong>10 casos válidos</strong> en un estrato, el hospital puede calibrar sus propios modelos de población locales (priors mixtos).</p>
+              <ul class="mini-list">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> 12 estratos según función renal del paciente</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Umbral mínimo de 10 casos válidos por estrato para calibrar</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> El prior mixto combina literatura + datos locales según confianza estadística</li>
+              </ul>
+            </div>
+            <div class="example-box teal">
+              <span class="label">Ejemplo real</span>
+              <p>Un hospital con alta proporción de pacientes con insuficiencia renal terminal acumula 14 casos válidos en ese estrato. PK-Bayes empieza a ponderar más su propio prior calibrado que el modelo genérico de la literatura para esos pacientes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 06 · Export -->
+      <div class="feature-detail" id="export">
+        <div class="num">06</div>
+        <div>
+          <span class="badge badge-teal">Investigación</span>
+          <h3 class="mt-16">Exportación de Datos Poblacionales (PopPK)</h3>
+          <div class="feature-detail-body">
+            <div>
+              <p>Exporta datasets estructurados con formato compatible para herramientas de modelado avanzado como <strong>NONMEM</strong> y <strong>Monolix</strong> — en formato <span class="mono">.csv</span> con compatibilidad de codificación inmediata para Excel, incluyendo covariables dinámicas en el tiempo.</p>
+              <p class="text-secondary mt-16">Ideal para farmacometristas que necesitan pasar de datos clínicos crudos a un dataset listo para modelado poblacional, sin trabajo manual de limpieza.</p>
+            </div>
+            <div class="example-box">
+              <span class="label">Ejemplo — cabecera de dataset exportado</span>
+              <div class="table-wrap mt-8" style="border:none;background:transparent">
+                <table style="min-width:0">
+                  <thead><tr><th class="mono">ID</th><th class="mono">TIME</th><th class="mono">DV</th><th class="mono">AMT</th><th class="mono">CLCR</th><th class="mono">ALB</th></tr></thead>
+                  <tbody>
+                    <tr><td class="mono">014</td><td class="mono">12.0</td><td class="mono">18.3</td><td class="mono">1000</td><td class="mono">54</td><td class="mono">3.1</td></tr>
+                    <tr><td class="mono">014</td><td class="mono">24.0</td><td class="mono">.</td><td class="mono">1000</td><td class="mono">49</td><td class="mono">2.9</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="cta-band reveal" style="background:linear-gradient(120deg, var(--sidebar-bg), #163360)">
+        <div>
+          <h2>Míralo funcionar en un caso clínico completo</h2>
+          <p>Sigue paso a paso cómo PK-Bayes ajusta la dosis de un paciente real de UCI, de principio a fin.</p>
+        </div>
+        <a href="ejemplos.html" class="btn btn-on-dark btn-lg">Ver casos clínicos →</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="brand">
+          <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true">
+            <rect width="64" height="64" rx="16" fill="#132a4d"/>
+            <path d="M10 40 C 18 40, 20 20, 28 20 C 34 20, 34 34, 40 34 C 46 34, 46 24, 54 24" fill="none" stroke="#5fd4e8" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="40" cy="34" r="4" fill="#ffffff"/>
+          </svg>
+          <span>PK-Bayes</span>
+        </a>
+        <p>Plataforma clínica de dosificación farmacocinética de precisión y optimización bayesiana en tiempo real, para vancomicina y fenitoína.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Producto</h5>
+        <ul>
+          <li><a href="funcionalidades.html">Funcionalidades</a></li>
+          <li><a href="farmacos.html">Fármacos y modelos</a></li>
+          <li><a href="ejemplos.html">Casos clínicos</a></li>
+          <li><a href="precios.html">Precios</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Acceso</h5>
+        <ul>
+          <li><a href="acceso.html">Acceso clientes</a></li>
+          <li><a data-app-link href="#" rel="noopener">Abrir plataforma PK-Bayes ↗</a></li>
+          <li><a href="precios.html">Solicitar prueba piloto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contacto</h5>
+        <ul>
+          <li><a data-contact-email data-subject="Consulta general PK-Bayes" href="#"><span data-contact-email-text>contacto</span></a></li>
+          <li><a data-contact-email data-subject="Solicitud de demo — PK-Bayes" href="#">Solicitar una demo</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year></span> PK-Bayes. Todos los derechos reservados.</span>
+      <span>Hecho para equipos de farmacocinética clínica.</span>
+    </div>
+    <p class="footer-legal-note">PK-Bayes es un software de apoyo a la decisión clínica (CDSS). Todas las recomendaciones generadas deben ser revisadas e interpretadas por un profesional sanitario cualificado antes de aplicarse a un paciente real. Los ejemplos, casos clínicos y simulaciones de este sitio web usan datos sintéticos y tienen fines exclusivamente informativos y comerciales.</p>
+  </div>
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/simulator.js"></script>
