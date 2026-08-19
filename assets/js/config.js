@@ -15,7 +15,7 @@
  * los botones de pago mostrarán un aviso explicando que falta
  * configurar Stripe, en lugar de fallar en silencio.
  */
-const PKBAYES_CONFIG = {
+window.PKBAYES_CONFIG = {
   // URL real de la aplicación clínica PK-Bayes (dominio propio; sin sesión activa muestra el login)
   APP_URL: "https://app.pk-bayes.com",
 
