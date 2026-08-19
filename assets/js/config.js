@@ -16,8 +16,8 @@
  * configurar Stripe, en lugar de fallar en silencio.
  */
 const PKBAYES_CONFIG = {
-  // URL real de la aplicación clínica PK-Bayes (a la que se accede tras el pago / login)
-  APP_URL: "https://pk-bayes-frontend.onrender.com",
+  // URL real de la aplicación clínica PK-Bayes (dominio propio; sin sesión activa muestra el login)
+  APP_URL: "https://app.pk-bayes.com",
 
   // Email de contacto comercial / soporte (usado en mailto: de "Contactar ventas", "Solicitar demo", etc.)
   CONTACT_EMAIL: "pabloisaezr@gmail.com",
