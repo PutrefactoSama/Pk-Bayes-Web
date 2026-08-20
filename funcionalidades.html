@@ -1,7 +1,7 @@
 <meta charset="UTF-8">
 <title>Funcionalidades — PK-Bayes</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Descubre con ejemplos reales cómo funciona la estimación bayesiana MAP, el simulador de dosificación, el Kanban de triaje clínico, Shadow Learning, los priors institucionales y la exportación PopPK de PK-Bayes.">
+<meta name="description" content="Cómo funciona PK-Bayes en el día a día: estimación bayesiana MAP, predictor de dosis y simulación manual what-if, panel de pacientes multi-hospital, desempeño institucional, priors locales, exportación PopPK y administración de accesos.">
 <meta name="theme-color" content="#0f1c33">
 <link rel="icon" type="image/png" href="assets/img/favicon-64.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,9 +49,9 @@
   <section class="page-hero">
     <div class="container">
       <div class="breadcrumb"><a href="index.html">Inicio</a> <span>/</span> <span>Funcionalidades</span></div>
-      <span class="eyebrow on-dark mt-16" style="display:inline-flex">6 capacidades centrales</span>
-      <h1>Todo lo que hace PK-Bayes, explicado con ejemplos reales</h1>
-      <p class="lead">Desde el cálculo bayesiano individual hasta la exportación para investigación poblacional — así es como cada funcionalidad se usa en el día a día clínico.</p>
+      <span class="eyebrow on-dark mt-16" style="display:inline-flex">7 capacidades centrales</span>
+      <h1>Todo lo que hace PK-Bayes, tal como funciona hoy</h1>
+      <p class="lead">Desde el ingreso del paciente hasta la exportación para investigación poblacional — sin adornos, esto es exactamente lo que ve cada rol clínico en pantalla.</p>
     </div>
   </section>
 
@@ -66,34 +66,34 @@
           <h3 class="mt-16">Estimación Bayesiana MAP en Tiempo Real</h3>
           <div class="feature-detail-body">
             <div>
-              <p>A partir de una o dos muestras de sangre (niveles plasmáticos de pico o valle), el algoritmo calcula en segundos los parámetros individuales exactos de depuración (<strong>CL</strong>) y volumen de distribución (<strong>Vd</strong>) del paciente, ajustando el modelo poblacional a su realidad fisiológica.</p>
+              <p>A partir de una o dos muestras de sangre (niveles plasmáticos medidos), el algoritmo calcula en segundos los parámetros individuales de depuración (<strong>CL</strong>) y volumen de distribución (<strong>Vd</strong>) del paciente. La ficha de resultados muestra los tres niveles de parámetros lado a lado: <strong>Individual</strong> (estimado para ese paciente), <strong>Poblacional</strong> (del modelo de literatura) e <strong>Institucional</strong> (del prior calibrado por tu hospital, cuando existe).</p>
               <ul class="mini-list">
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Combina el prior poblacional (literatura o local) con los niveles medidos del paciente</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Se recalcula cada vez que llega un nuevo laboratorio o nivel plasmático</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Aplica automáticamente el modelo correspondiente según el fármaco (2-compartimentos, 1-compartimento o Michaelis-Menten)</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Función renal calculada con Cockcroft-Gault, usando peso ideal y peso ajustado según composición corporal</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Se recalcula cada vez que llega un nuevo nivel plasmático o una nueva creatinina</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Aplica el modelo correspondiente según el fármaco (2-compartimentos, 1-compartimento o Michaelis-Menten)</li>
               </ul>
             </div>
             <div class="example-box">
               <span class="label">Ejemplo real</span>
-              <p>Un paciente en UCI recibe vancomicina. Tras el segundo nivel valle registrado, PK-Bayes recalcula su CL y Vd individuales en segundos, y actualiza la recomendación de dosis antes de la siguiente administración — sin esperar a un farmacometrista disponible.</p>
+              <p>Un paciente en UCI recibe vancomicina. Tras el segundo nivel valle registrado, PK-Bayes recalcula su CL y Vd individuales y los compara con el prior poblacional (Goti et al. 2018) y el institucional del hospital, para que el clínico vea de un vistazo si su caso se comporta como "el promedio" o se aleja de él.</p>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 02 · Simulador -->
+      <!-- 02 · Predictor + Simulación what-if -->
       <div class="feature-detail" id="simulador">
         <div class="num">02</div>
         <div>
-          <span class="badge badge-teal">Simulación interactiva</span>
-          <h3 class="mt-16">Simulador de Esquemas de Dosificación Futuros</h3>
-          <p class="mt-8">El clínico introduce una dosis tentativa (ej. 1000 mg) y un intervalo (ej. cada 12 horas) y ve de inmediato, en un gráfico interactivo, cómo responderá la concentración en sangre del paciente — anticipando si estará dentro del rango terapéutico óptimo antes de prescribir.</p>
+          <span class="badge badge-teal">Predicción y simulación</span>
+          <h3 class="mt-16">Predictor de Dosis y Simulación Manual (What-If)</h3>
+          <p class="mt-8">El <strong>Predictor de Dosis</strong> propone un esquema terapéutico sugerido (dosis a administrar, duración de infusión, intervalo) con el Cmax y Cmin poblacional esperados. Si el clínico quiere explorar otra alternativa antes de decidir, la <strong>Simulación Manual (what-if)</strong> deja probar dosis e intervalos distintos y ver de inmediato la curva de concentración resultante.</p>
 
           <div class="simulator mt-32" data-pk-simulator>
             <div class="simulator-head">
               <div>
-                <span class="badge badge-teal"><span class="badge-dot"></span> Prueba interactiva</span>
-                <h4 class="mt-8">Vancomicina — simulación de esquema de dosis</h4>
+                <span class="badge badge-teal"><span class="badge-dot"></span> Demo interactiva</span>
+                <h4 class="mt-8">Prueba el concepto de "what-if" — Vancomicina</h4>
               </div>
               <span class="text-muted" style="font-size:.82rem">Modelo ilustrativo de 1 compartimento</span>
             </div>
@@ -136,65 +136,62 @@
           </div>
           <div class="disclaimer mt-16">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
-            <div><strong>Nota:</strong> este widget usa una ecuación simplificada de 1 compartimento con fines demostrativos. El simulador real de PK-Bayes usa el motor bayesiano completo con los modelos de literatura o priors institucionales calibrados. No usar para decisiones clínicas.</div>
+            <div><strong>Nota:</strong> este widget es una versión simplificada e ilustrativa (1 compartimento) del concepto de "what-if" — la app real usa el motor bayesiano completo con los tres niveles de parámetros (individual/poblacional/institucional) y modelos de 1-2 compartimentos según el fármaco. No usar para decisiones clínicas.</div>
           </div>
         </div>
       </div>
 
-      <!-- 03 · Kanban -->
-      <div class="feature-detail" id="kanban">
+      <!-- 03 · Panel de pacientes multi-hospital -->
+      <div class="feature-detail" id="pacientes">
         <div class="num">03</div>
         <div>
-          <span class="badge badge-green">Gestión de servicio</span>
-          <h3 class="mt-16">Tablero Kanban de Triaje Clínico</h3>
-          <p class="mt-8">Un dashboard tipo Kanban que clasifica automáticamente a los pacientes hospitalizados del servicio en 4 columnas de flujo de trabajo, para que el equipo sepa de un vistazo quién necesita atención.</p>
+          <span class="badge badge-green">Gestión clínica</span>
+          <h3 class="mt-16">Panel de Pacientes Multi-Hospital</h3>
+          <p class="mt-8">Una lista filtrable con todos los pacientes que tu equipo está siguiendo — por hospital, por fármaco, y separando los que ya tienen datos suficientes ("DataSet") de los que aún dependen del modelo institucional. Las alertas clínicas (sub-terapéutico, riesgo de toxicidad, en rango) se ven directamente en cada ficha, sin tener que entrar a revisar caso por caso.</p>
 
-          <div class="kanban mt-24">
-            <div class="kanban-col kanban-col--incomplete">
-              <div class="kanban-col-head"><h4>Datos incompletos</h4><span class="kanban-count">3</span></div>
-              <div class="kanban-card"><div class="pid">Paciente #482</div><div class="meta">Falta creatinina sérica</div></div>
-              <div class="kanban-card"><div class="pid">Paciente #511</div><div class="meta">Falta peso y talla</div></div>
-              <div class="kanban-card"><div class="pid">Paciente #398</div><div class="meta">Sin dosis registrada</div></div>
+          <div class="card mt-24" style="padding:0;overflow:hidden">
+            <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+              <span class="badge badge-navy" style="background:#eef1f6;color:var(--text-muted)">Todos los hospitales ▾</span>
+              <span class="badge badge-navy" style="background:#eef1f6;color:var(--text-muted)">Todos los fármacos ▾</span>
+              <span class="badge badge-navy" style="background:#eef1f6;color:var(--text-muted)">☐ Sin hospital asignado</span>
             </div>
-            <div class="kanban-col kanban-col--pending">
-              <div class="kanban-col-head"><h4>Pendiente estimación</h4><span class="kanban-count">2</span></div>
-              <div class="kanban-card"><div class="pid">Paciente #276</div><div class="meta">Nuevo nivel valle disponible</div></div>
-              <div class="kanban-card"><div class="pid">Paciente #340</div><div class="meta">Creatinina actualizada hoy</div></div>
-            </div>
-            <div class="kanban-col kanban-col--stable">
-              <div class="kanban-col-head"><h4>En rango (estables)</h4><span class="kanban-count">5</span></div>
-              <div class="kanban-card"><div class="pid">Paciente #120</div><div class="meta">Vancomicina · dentro de rango</div></div>
-              <div class="kanban-card"><div class="pid">Paciente #205</div><div class="meta">Fenitoína · dentro de rango</div></div>
-            </div>
-            <div class="kanban-col kanban-col--action">
-              <div class="kanban-col-head"><h4>Fuera de rango</h4><span class="kanban-count">1</span></div>
-              <div class="kanban-card"><div class="pid">Paciente #487</div><div class="meta">Riesgo de nefrotoxicidad — ajuste urgente</div></div>
+            <div class="table-wrap" style="border:none;border-radius:0">
+              <table>
+                <thead>
+                  <tr><th>Paciente</th><th>Fármaco</th><th>Hospital</th><th>Actualizado</th><th>Alerta</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td>Paciente #482</td><td>Vancomicina</td><td>Hospital Higueras</td><td class="mono">hace 2h</td><td><span class="badge badge-green"><span class="badge-dot"></span> En rango</span></td></tr>
+                  <tr><td>Paciente #511</td><td>Fenitoína</td><td>Hospital Regional de Concepción</td><td class="mono">hace 45 min</td><td><span class="badge badge-amber"><span class="badge-dot"></span> Riesgo de toxicidad</span></td></tr>
+                  <tr><td>Paciente #398</td><td>Vancomicina</td><td>Hospital Clínico del Sur</td><td class="mono">hace 1 día</td><td><span class="badge badge-red"><span class="badge-dot"></span> Sub-terapéutico</span></td></tr>
+                  <tr><td>Paciente #276</td><td>Fenitoína</td><td>Hospital Higueras</td><td class="mono">hace 3h</td><td><span class="badge badge-green"><span class="badge-dot"></span> En rango</span></td></tr>
+                </tbody>
+              </table>
             </div>
           </div>
-          <p class="text-muted mt-16" style="font-size:.82rem">Ejemplo ilustrativo con pacientes sintéticos, solo para representar la interfaz.</p>
+          <p class="text-muted mt-16" style="font-size:.82rem">Ejemplo ilustrativo con pacientes sintéticos, solo para representar la interfaz real.</p>
         </div>
       </div>
 
-      <!-- 04 · Shadow Learning -->
-      <div class="feature-detail" id="shadow-learning">
+      <!-- 04 · Desempeño institucional -->
+      <div class="feature-detail" id="desempeno">
         <div class="num">04</div>
         <div>
           <span class="badge badge-amber">Mejora continua</span>
-          <h3 class="mt-16">Shadow Learning (Aprendizaje en Sombra)</h3>
+          <h3 class="mt-16">Panel de Desempeño Institucional</h3>
           <div class="feature-detail-body">
             <div>
-              <p>Una capa retrospectiva que evalúa, de forma no invasiva, qué tan precisos son los modelos clínicos de la literatura frente a los pacientes reales del hospital — reportando métricas de precisión (<strong>RMSE</strong>) y sesgo (<strong>MPE</strong>) para guiar la recalibración.</p>
-              <p class="text-secondary mt-16">Esto permite a farmacometristas detectar si, por ejemplo, un modelo publicado sobrestima o subestima sistemáticamente el aclaramiento en su población específica de pacientes.</p>
+              <p>Una capa de evaluación retrospectiva que mide qué tan bien predicen los modelos de literatura frente a los pacientes reales de tu hospital, con tres métricas estándar — <strong>RMSE</strong>, <strong>MAE</strong> y <strong>Bias</strong> (todas en mg/L) — desglosadas por rango de función renal (VFG). Así se detecta si un modelo publicado sobrestima o subestima sistemáticamente el aclaramiento en tu población.</p>
             </div>
             <div class="example-box">
-              <span class="label">Ejemplo ilustrativo de salida del reporte</span>
+              <span class="label">Ejemplo ilustrativo del panel</span>
               <div class="table-wrap mt-8" style="border:none;background:transparent">
                 <table style="min-width:0">
-                  <thead><tr><th>Modelo</th><th>RMSE</th><th>MPE</th></tr></thead>
+                  <thead><tr><th>Rango VFG</th><th>RMSE</th><th>MAE</th><th>Bias</th></tr></thead>
                   <tbody>
-                    <tr><td>Goti et al. 2018</td><td class="mono">3.1 mg/L</td><td class="mono">+4.2%</td></tr>
-                    <tr><td>Rodvold et al. 1988</td><td class="mono">5.4 mg/L</td><td class="mono">−11.8%</td></tr>
-                    <tr><td>Prior institucional</td><td class="mono">2.4 mg/L</td><td class="mono">+1.1%</td></tr>
+                    <tr><td>30–45 mL/min</td><td class="mono">5.4 mg/L</td><td class="mono">4.1 mg/L</td><td class="mono">−2.3 mg/L</td></tr>
+                    <tr><td>45–60 mL/min</td><td class="mono">3.2 mg/L</td><td class="mono">2.6 mg/L</td><td class="mono">+0.4 mg/L</td></tr>
+                    <tr><td>60–90 mL/min</td><td class="mono">2.4 mg/L</td><td class="mono">1.9 mg/L</td><td class="mono">+0.1 mg/L</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -211,16 +208,16 @@
           <h3 class="mt-16">Modelos Poblacionales Locales (Priors Institucionales)</h3>
           <div class="feature-detail-body">
             <div>
-              <p>Combina modelos estándar de la literatura con un motor adaptativo local. Clasifica a los pacientes en <strong>12 estratos de función renal</strong> y, tras acumular <strong>10 casos válidos</strong> en un estrato, el hospital puede calibrar sus propios modelos de población locales (priors mixtos).</p>
+              <p>Combina los modelos estándar de la literatura con un motor adaptativo local. Clasifica a los pacientes por rango de función renal (VFG) y, al acumular suficientes casos válidos en un estrato, tu hospital puede calibrar su propio prior — mostrado como parámetro "Institucional" junto al individual y poblacional en cada ficha.</p>
               <ul class="mini-list">
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> 12 estratos según función renal del paciente</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Umbral mínimo de 10 casos válidos por estrato para calibrar</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> El prior mixto combina literatura + datos locales según confianza estadística</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Estratificación por rango de función renal (VFG)</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> El panel de Desempeño Institucional confirma cuándo el prior local ya es más preciso que el de la literatura</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Cada hospital de la plataforma tiene su propio prior, independiente de los demás</li>
               </ul>
             </div>
             <div class="example-box teal">
               <span class="label">Ejemplo real</span>
-              <p>Un hospital con alta proporción de pacientes con insuficiencia renal terminal acumula 14 casos válidos en ese estrato. PK-Bayes empieza a ponderar más su propio prior calibrado que el modelo genérico de la literatura para esos pacientes.</p>
+              <p>Un hospital con alta proporción de pacientes en diálisis o TRRC acumula suficientes casos en ese estrato. El panel de Desempeño Institucional muestra que el prior local ya tiene menor RMSE que el modelo genérico de la literatura para esos pacientes.</p>
             </div>
           </div>
         </div>
@@ -234,8 +231,8 @@
           <h3 class="mt-16">Exportación de Datos Poblacionales (PopPK)</h3>
           <div class="feature-detail-body">
             <div>
-              <p>Exporta datasets estructurados con formato compatible para herramientas de modelado avanzado como <strong>NONMEM</strong> y <strong>Monolix</strong> — en formato <span class="mono">.csv</span> con compatibilidad de codificación inmediata para Excel, incluyendo covariables dinámicas en el tiempo.</p>
-              <p class="text-secondary mt-16">Ideal para farmacometristas que necesitan pasar de datos clínicos crudos a un dataset listo para modelado poblacional, sin trabajo manual de limpieza.</p>
+              <p>Exporta los pacientes de tu hospital directamente desde el navegador, en formato <span class="mono">.csv</span> compatible con <strong>NONMEM</strong> y <strong>Monolix</strong>, con soporte completo para el histórico de aclaramiento renal dinámico CL(t) — incluida la modalidad renal (nativa, diálisis o TRRC) de cada paciente en el tiempo.</p>
+              <p class="text-secondary mt-16">Pensado para farmacometristas que necesitan pasar de datos clínicos crudos a un dataset listo para modelado poblacional, sin trabajo manual de limpieza.</p>
             </div>
             <div class="example-box">
               <span class="label">Ejemplo — cabecera de dataset exportado</span>
@@ -248,6 +245,29 @@
                   </tbody>
                 </table>
               </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 07 · Administración multi-hospital -->
+      <div class="feature-detail" id="administracion">
+        <div class="num">07</div>
+        <div>
+          <span class="badge badge-primary">Control de acceso</span>
+          <h3 class="mt-16">Administración Multi-Hospital y Aprobación de Accesos</h3>
+          <div class="feature-detail-body">
+            <div>
+              <p>Cada hospital tiene su propio espacio dentro de la plataforma, con tres niveles de rol: <strong>Supermaestro</strong> (control total de todos los hospitales), <strong>Admin/Master</strong> (administra su propio hospital) y <strong>Clínico/User</strong> (uso diario). El acceso se otorga con códigos de invitación propios de cada hospital, o queda pendiente de aprobación manual cuando alguien se registra sin uno.</p>
+              <ul class="mini-list">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Códigos de invitación por hospital (uno para clínicos, otro para administradores)</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Cuentas sin invitación válida quedan "pendientes" hasta que el supermaestro las revise y acepte</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Auditoría de cada cambio hecho sobre la ficha de un paciente, con registro de quién y cuándo</li>
+              </ul>
+            </div>
+            <div class="example-box">
+              <span class="label">Ejemplo real</span>
+              <p>Una nueva farmacéutica se registra eligiendo su hospital de una lista, sin código de invitación. Su cuenta queda "pendiente" y visible en el panel del supermaestro, quien la acepta con un clic — ella recibe un correo automático avisándole que ya puede ingresar.</p>
             </div>
           </div>
         </div>

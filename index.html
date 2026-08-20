@@ -150,44 +150,50 @@
       <div class="section-head reveal">
         <span class="eyebrow">Funcionalidades</span>
         <h2>Todo lo que necesita tu equipo de farmacocinética clínica</h2>
-        <p>Seis capacidades centrales, pensadas para el flujo real de trabajo hospitalario — desde el ingreso del paciente hasta la exportación de datos para investigación.</p>
+        <p>Siete capacidades centrales, tal como existen hoy en la plataforma — desde el ingreso del paciente hasta la exportación de datos para investigación.</p>
       </div>
       <div class="grid grid-3">
         <div class="card feature-card reveal">
           <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
           <h3>Estimación Bayesiana MAP</h3>
-          <p>Calcula en tiempo real el CL y Vd individuales del paciente a partir de una o dos muestras de sangre.</p>
+          <p>Calcula en tiempo real el CL y Vd individuales del paciente, junto a los parámetros poblacional e institucional.</p>
           <a href="funcionalidades.html#map" class="card-link">Ver más →</a>
         </div>
         <div class="card feature-card reveal">
           <div class="icon-wrap icon-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></div>
-          <h3>Simulador de Dosificación</h3>
-          <p>Prueba una dosis e intervalo y visualiza al instante la curva de concentración prevista.</p>
+          <h3>Predictor y Simulación What-If</h3>
+          <p>Un esquema terapéutico sugerido, más una simulación manual para explorar alternativas antes de decidir.</p>
           <a href="funcionalidades.html#simulador" class="card-link">Ver más →</a>
         </div>
         <div class="card feature-card reveal">
-          <div class="icon-wrap icon-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="4" height="16" rx="1"/><rect x="10" y="4" width="4" height="10" rx="1"/><rect x="17" y="4" width="4" height="13" rx="1"/></svg></div>
-          <h3>Kanban de Triaje Clínico</h3>
-          <p>Clasifica automáticamente a los pacientes hospitalizados en 4 columnas de flujo de trabajo.</p>
-          <a href="funcionalidades.html#kanban" class="card-link">Ver más →</a>
+          <div class="icon-wrap icon-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg></div>
+          <h3>Panel de Pacientes Multi-Hospital</h3>
+          <p>Lista filtrable por hospital y fármaco, con las alertas clínicas de cada paciente visibles de un vistazo.</p>
+          <a href="funcionalidades.html#pacientes" class="card-link">Ver más →</a>
         </div>
         <div class="card feature-card reveal">
           <div class="icon-wrap icon-amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg></div>
-          <h3>Shadow Learning</h3>
-          <p>Evalúa de forma no invasiva la precisión (RMSE) y el sesgo (MPE) de los modelos frente a tus pacientes reales.</p>
-          <a href="funcionalidades.html#shadow-learning" class="card-link">Ver más →</a>
+          <h3>Panel de Desempeño Institucional</h3>
+          <p>RMSE, MAE y Bias por rango de función renal, para saber cuándo tu prior local ya supera al de la literatura.</p>
+          <a href="funcionalidades.html#desempeno" class="card-link">Ver más →</a>
         </div>
         <div class="card feature-card reveal">
           <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5"/><path d="M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></div>
           <h3>Modelos Poblacionales Locales</h3>
-          <p>Calibra priors mixtos propios del hospital tras acumular casos válidos por estrato renal.</p>
+          <p>Calibra priors institucionales propios del hospital tras acumular casos válidos por estrato renal.</p>
           <a href="funcionalidades.html#priors" class="card-link">Ver más →</a>
         </div>
         <div class="card feature-card reveal">
           <div class="icon-wrap icon-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg></div>
           <h3>Exportación PopPK</h3>
-          <p>Genera datasets compatibles con NONMEM y Monolix, listos para modelado poblacional avanzado.</p>
+          <p>Genera datasets compatibles con NONMEM y Monolix, con aclaramiento renal dinámico incluido.</p>
           <a href="funcionalidades.html#export" class="card-link">Ver más →</a>
+        </div>
+        <div class="card feature-card reveal">
+          <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+          <h3>Administración Multi-Hospital</h3>
+          <p>Roles por hospital, códigos de invitación y aprobación manual de cada cuenta nueva antes de ingresar.</p>
+          <a href="funcionalidades.html#administracion" class="card-link">Ver más →</a>
         </div>
       </div>
     </div>

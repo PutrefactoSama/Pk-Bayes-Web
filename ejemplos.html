@@ -1,7 +1,7 @@
 <meta charset="UTF-8">
 <title>Casos clínicos y ejemplos — PK-Bayes</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Tres flujos de trabajo reales con datos sintéticos: ajuste de vancomicina en UCI, corrección de fenitoína por hipoalbuminemia y calibración de priors institucionales con Shadow Learning.">
+<meta name="description" content="Tres flujos de trabajo reales con datos sintéticos: ajuste de vancomicina en UCI, corrección de fenitoína por hipoalbuminemia y calibración de priors institucionales con el Panel de Desempeño Institucional.">
 <meta name="theme-color" content="#0f1c33">
 <link rel="icon" type="image/png" href="assets/img/favicon-64.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -110,7 +110,7 @@
           <div class="timeline-dot">5</div>
           <div class="timeline-card">
             <h4>Seguimiento</h4>
-            <p>El paciente pasa a la columna "En Rango (Estables)" del Kanban de triaje clínico, visible para todo el equipo.</p>
+            <p>El paciente aparece en el Panel de Pacientes del hospital con la alerta "En rango" en verde, visible para todo el equipo sin tener que abrir su ficha.</p>
             <div class="tags"><span class="badge badge-green">Estable</span></div>
           </div>
         </div>
@@ -193,7 +193,7 @@
           <div class="timeline-dot">3</div>
           <div class="timeline-card">
             <h4>Alerta clínica</h4>
-            <p>El paciente se marca en el Kanban como "Fuera de Rango — Acción", pese a que el nivel bruto inicial parecía aceptable a primera vista.</p>
+            <p>La ficha del paciente muestra la alerta "Riesgo de toxicidad" en el Panel de Pacientes, pese a que el nivel bruto inicial parecía aceptable a primera vista.</p>
             <div class="tags"><span class="badge badge-red">Acción requerida</span></div>
           </div>
         </div>
@@ -222,15 +222,15 @@
           <div class="timeline-dot">1</div>
           <div class="timeline-card">
             <h4>Acumulación de casos</h4>
-            <p>Tras varios meses de uso, el estrato renal "ClCr 30–45 mL/min" acumula 11 casos válidos de vancomicina, superando el umbral mínimo de calibración.</p>
-            <div class="tags"><span class="badge badge-primary">11 casos válidos</span></div>
+            <p>Tras varios meses de uso, el rango de función renal (VFG) "30–45 mL/min" acumula suficientes casos válidos de vancomicina, superando el umbral mínimo de calibración institucional.</p>
+            <div class="tags"><span class="badge badge-primary">Umbral superado</span></div>
           </div>
         </div>
         <div class="timeline-step">
           <div class="timeline-dot">2</div>
           <div class="timeline-card">
-            <h4>Evaluación con Shadow Learning</h4>
-            <p>El motor compara el modelo Rodvold et al. 1988 frente a los datos reales del hospital: RMSE 5.4 mg/L, MPE −11.8% — el modelo tiende a subestimar el aclaramiento en esta población.</p>
+            <h4>Evaluación en el Panel de Desempeño Institucional</h4>
+            <p>El panel compara el modelo Rodvold et al. 1988 frente a los datos reales del hospital para ese rango VFG: RMSE 5.4 mg/L, Bias −2.3 mg/L — el modelo tiende a subestimar el aclaramiento en esta población.</p>
             <div class="tags"><span class="badge badge-amber">Sesgo detectado</span></div>
           </div>
         </div>
@@ -238,7 +238,7 @@
           <div class="timeline-dot">3</div>
           <div class="timeline-card">
             <h4>Calibración del prior local</h4>
-            <p>Se habilita el prior institucional para ese estrato, con mejor ajuste frente a los datos reales (RMSE 2.4 mg/L).</p>
+            <p>Se habilita el prior institucional para ese rango VFG, con mejor ajuste frente a los datos reales (RMSE 2.4 mg/L) — ahora se muestra como parámetro "Institucional" en la ficha de cada paciente.</p>
             <div class="tags"><span class="badge badge-green">Prior local activo</span></div>
           </div>
         </div>
@@ -246,12 +246,12 @@
           <div class="timeline-dot">4</div>
           <div class="timeline-card">
             <h4>Exportación PopPK</h4>
-            <p>El farmacometrista exporta el dataset completo del estrato en formato compatible con NONMEM para un análisis poblacional más profundo.</p>
+            <p>El farmacometrista exporta el dataset de ese hospital en formato compatible con NONMEM directamente desde el Panel de Pacientes, para un análisis poblacional más profundo.</p>
             <div class="tags"><span class="badge badge-teal">Export .csv</span></div>
           </div>
         </div>
       </div>
-      <p class="center mt-32 reveal"><a href="funcionalidades.html#shadow-learning" class="btn btn-secondary">Ver cómo funciona Shadow Learning →</a></p>
+      <p class="center mt-32 reveal"><a href="funcionalidades.html#desempeno" class="btn btn-secondary">Ver cómo funciona el Panel de Desempeño →</a></p>
     </div>
   </section>
 
