@@ -51,7 +51,7 @@
     <div class="container hero-grid">
       <div>
         <span class="eyebrow on-dark">Software de Apoyo a la Decisión Clínica (CDSS)</span>
-        <h1>Dosificación de precisión, calculada en segundos — no en nomogramas estáticos.</h1>
+        <h1>Dosificación de precisión, calculada en segundos.</h1>
         <p class="lead">PK-Bayes combina modelos farmacocinéticos publicados con estimación bayesiana MAP en tiempo real para vancomicina y fenitoína, ayudando a tu equipo a evitar la subdosificación y la toxicidad en pacientes con márgenes terapéuticos estrechos.</p>
         <div class="hero-cta">
           <a href="precios.html" class="btn btn-on-dark btn-lg">Ver precios y empezar</a>
@@ -60,55 +60,80 @@
         <div class="hero-stats">
           <div class="hero-stat"><b data-count-to="2">0</b><span>Fármacos con modelos validados</span></div>
           <div class="hero-stat"><b data-count-to="4">0</b><span>Modelos PK de literatura (vancomicina)</span></div>
-          <div class="hero-stat"><b data-count-to="12">0</b><span>Estratos de función renal</span></div>
           <div class="hero-stat"><b>Segundos</b><span>Para recalcular CL y Vd individuales (MAP)</span></div>
         </div>
       </div>
-      <div class="hero-visual reveal">
-        <div class="hero-visual-head">
-          <h4>Curva de concentración — vista previa</h4>
-          <span class="badge badge-navy">Ilustrativo</span>
+
+      <div class="mockup-window on-dark reveal">
+        <div class="mockup-titlebar">
+          <span class="mockup-dot" style="background:#ff5f57"></span>
+          <span class="mockup-dot" style="background:#febc2e"></span>
+          <span class="mockup-dot" style="background:#28c840"></span>
+          <span class="mockup-url">app.pk-bayes.com</span>
         </div>
-        <svg viewBox="0 0 420 210" aria-hidden="true">
-          <rect x="0" y="86" width="420" height="52" fill="#0891b2" opacity="0.15"/>
-          <line x1="0" y1="86" x2="420" y2="86" stroke="#0891b2" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
-          <line x1="0" y1="138" x2="420" y2="138" stroke="#0891b2" stroke-width="1" stroke-dasharray="4 4" opacity="0.5"/>
-          <path d="M0,150 C 20,40 40,20 60,60 C 80,100 90,120 110,150 C 130,40 150,20 170,60 C 190,100 200,120 220,150 C 240,40 260,20 280,60 C 300,100 310,120 330,150 C 350,40 370,20 390,60 C 400,80 410,95 420,110"
-                fill="none" stroke="#5fd4e8" stroke-width="2.5" stroke-linecap="round"/>
-          <line x1="0" y1="180" x2="420" y2="180" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
-        </svg>
-        <div class="flex justify-between mt-16" style="font-size:.78rem;color:var(--text-on-dark-muted)">
-          <span>0h</span><span>Rango objetivo</span><span>72h</span>
+        <div class="mockup-body">
+          <div class="flex justify-between items-center">
+            <h4 style="color:#fff;font-size:.85rem;font-weight:700">Parámetros — Vancomicina</h4>
+            <span class="badge badge-navy">Paciente #482</span>
+          </div>
+          <div class="mt-16" style="border-top:1px solid rgba(255,255,255,0.08)">
+            <div class="param-row" style="border-color:rgba(255,255,255,0.08)">
+              <span class="param-label" style="color:var(--text-on-dark-muted)">CL (L/h)</span>
+              <span class="param-val is-individual">3.8</span>
+              <span class="param-val is-pop">4.2</span>
+              <span class="param-val is-inst">3.9</span>
+            </div>
+            <div class="param-row" style="border-color:rgba(255,255,255,0.08)">
+              <span class="param-label" style="color:var(--text-on-dark-muted)">Vd (L)</span>
+              <span class="param-val is-individual">52</span>
+              <span class="param-val is-pop">48</span>
+              <span class="param-val is-inst">51</span>
+            </div>
+          </div>
+          <div class="param-legend">
+            <span><span class="dot" style="background:var(--primary)"></span>Individual</span>
+            <span><span class="dot" style="background:#9fb0cc"></span>Poblacional</span>
+            <span><span class="dot" style="background:var(--teal)"></span>Institucional</span>
+          </div>
+          <svg viewBox="0 0 420 150" aria-hidden="true" style="margin-top:18px">
+            <rect x="0" y="62" width="420" height="38" fill="#0891b2" opacity="0.15"/>
+            <path d="M0,110 C 20,30 40,15 60,45 C 80,75 90,90 110,110 C 130,30 150,15 170,45 C 190,75 200,90 220,110 C 240,30 260,15 280,45 C 300,75 310,90 330,110 C 350,30 370,15 390,45 C 400,60 410,72 420,82"
+                  class="draw-path" fill="none" stroke="#5fd4e8" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+          <div class="flex justify-between" style="font-size:.72rem;color:var(--text-on-dark-muted)">
+            <span>0h</span><span>Rango objetivo</span><span>36h</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROBLEMA -->
+  <!-- PROBLEMA — minimalista -->
   <section class="section">
     <div class="container">
-      <div class="section-head reveal">
+      <div class="statement-block reveal">
         <span class="eyebrow">El problema clínico</span>
-        <h2>Un margen terapéutico estrecho no perdona errores de cálculo</h2>
-        <p class="lead">Fármacos de uso crítico como la <strong>vancomicina</strong> (antibiótico intrahospitalario) y la <strong>fenitoína</strong> (anticonvulsivante esencial en neurología y urgencias) tienen una ventana de dosis muy estrecha entre la ineficacia y la toxicidad.</p>
+        <h2 class="mt-16">Un margen terapéutico estrecho no perdona errores de cálculo.</h2>
+        <p class="statement-sub">Fármacos de uso crítico como la <strong>vancomicina</strong> y la <strong>fenitoína</strong> tienen una ventana de dosis muy estrecha entre la ineficacia y la toxicidad. La capacidad de cada paciente para depurarlos varía según peso, edad, función renal cambiante o niveles de proteínas en sangre — los nomogramas estáticos fallan a menudo en pacientes críticos.</p>
       </div>
-      <div class="grid grid-2">
-        <div class="card reveal">
-          <div class="icon-wrap icon-amber">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
+
+      <div class="grid grid-2 mt-48" style="gap:56px">
+        <div class="reveal">
+          <div class="flex items-center gap-12">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
+            <h3 style="font-size:1.05rem">Dosis demasiado baja</h3>
           </div>
-          <h3>Si la dosis es demasiado baja</h3>
-          <p class="text-secondary mt-8">El tratamiento falla: la infección avanza sin control o las convulsiones no se detienen, con riesgo de selección de resistencias antimicrobianas y peor pronóstico clínico.</p>
+          <p class="text-secondary mt-8">El tratamiento falla: la infección avanza sin control o las convulsiones no se detienen, con riesgo de resistencias antimicrobianas y peor pronóstico.</p>
         </div>
-        <div class="card reveal">
-          <div class="icon-wrap icon-red">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 22h20L12 2Z"/><path d="M12 9v5M12 17h.01"/></svg>
+        <div class="reveal">
+          <div class="flex items-center gap-12">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 2 22h20L12 2Z"/><path d="M12 9v5M12 17h.01"/></svg>
+            <h3 style="font-size:1.05rem">Dosis demasiado alta</h3>
           </div>
-          <h3>Si la dosis es demasiado alta</h3>
-          <p class="text-secondary mt-8">El fármaco se vuelve tóxico: daño renal agudo por vancomicina, o toxicidad neurológica y arritmias por fenitoína — con estancias hospitalarias más largas y peor desenlace.</p>
+          <p class="text-secondary mt-8">El fármaco se vuelve tóxico: daño renal agudo por vancomicina, o toxicidad neurológica y arritmias por fenitoína — estancias más largas y peor desenlace.</p>
         </div>
       </div>
-      <p class="lead mt-32 reveal">La capacidad de cada paciente para depurar estos fármacos varía drásticamente según el peso, la edad, el sexo biológico, la función renal cambiante o los niveles de proteínas en sangre. Los nomogramas y fórmulas manuales tradicionales son estáticos y fallan a menudo en pacientes críticos. <strong>PK-Bayes reemplaza esa aproximación estática por un modelo que se actualiza con cada nuevo dato del paciente.</strong></p>
+      <p class="lead mt-48 reveal"><strong>PK-Bayes reemplaza esa aproximación estática por un modelo que se actualiza con cada nuevo dato del paciente.</strong></p>
     </div>
   </section>
 
@@ -249,44 +274,13 @@
     </div>
   </section>
 
-  <!-- PRICING TEASER -->
-  <section class="section section-alt">
-    <div class="container">
-      <div class="section-head center reveal" style="max-width:640px">
-        <span class="eyebrow">Precios</span>
-        <h2>Un plan para cada etapa: investigación, piloto o todo el hospital</h2>
-      </div>
-      <div class="grid grid-3">
-        <div class="card pricing-card reveal">
-          <span class="pricing-name">Académico</span>
-          <div class="pricing-price"><span class="amount">Gratis</span></div>
-          <p class="pricing-desc">Para universidades y laboratorios de investigación — simulación y análisis retrospectivo.</p>
-          <a href="precios.html" class="btn btn-secondary btn-block">Ver detalles</a>
-        </div>
-        <div class="card pricing-card pricing-card--featured reveal">
-          <span class="pricing-ribbon">Más elegido</span>
-          <span class="pricing-name">Piloto Clínico</span>
-          <div class="pricing-price"><span class="amount">1.000 USD</span><span class="period">/ año</span></div>
-          <p class="pricing-desc">Suscripción anual para evaluar el sistema en una unidad clínica, durante la fase de prueba del modelo.</p>
-          <a href="precios.html" class="btn btn-primary btn-block">Ver detalles</a>
-        </div>
-        <div class="card pricing-card reveal">
-          <span class="pricing-name">Hospitalario</span>
-          <div class="pricing-price"><span class="amount">A medida</span></div>
-          <p class="pricing-desc">Suscripción anual por camas/volumen, con infraestructura dedicada y auditoría clínica.</p>
-          <a href="precios.html" class="btn btn-secondary btn-block">Ver detalles</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- CTA FINAL -->
   <section class="section">
     <div class="container">
       <div class="cta-band reveal">
         <div>
           <h2>¿Listo para dejar atrás los nomogramas estáticos?</h2>
-          <p>Empieza con un piloto clínico en tu unidad o solicita acceso académico para investigación.</p>
+          <p>Prueba PK-Bayes gratis durante 14 días, luego continúa con el plan académico u hospitalario.</p>
         </div>
         <div class="flex gap-12 flex-wrap">
           <a href="precios.html" class="btn btn-on-dark btn-lg">Ver precios</a>

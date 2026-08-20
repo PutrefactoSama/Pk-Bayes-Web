@@ -1,7 +1,7 @@
 <meta charset="UTF-8">
 <title>Precios — PK-Bayes</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Planes de PK-Bayes: acceso académico gratuito, piloto clínico anual y suscripción hospitalaria institucional con infraestructura dedicada.">
+<meta name="description" content="Planes de PK-Bayes: prueba gratuita de 14 días, suscripción anual académica (800 USD) y suscripción anual hospitalaria (1.000 USD).">
 <meta name="theme-color" content="#0f1c33">
 <link rel="icon" type="image/png" href="assets/img/favicon-64.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -50,8 +50,8 @@
     <div class="container">
       <div class="breadcrumb"><a href="index.html">Inicio</a> <span>/</span> <span>Precios</span></div>
       <span class="eyebrow on-dark mt-16" style="display:inline-flex">Planes</span>
-      <h1>Un plan para cada etapa: investigación, piloto o todo el hospital</h1>
-      <p class="lead">Empieza gratis para investigación, valida el sistema con un piloto clínico en tu unidad, o despliega PK-Bayes en todo el hospital con infraestructura dedicada.</p>
+      <h1>Prueba PK-Bayes gratis, luego elige el plan de tu institución</h1>
+      <p class="lead">Empieza con una prueba gratuita de 14 días con acceso completo a la plataforma. Después, continúa con una suscripción anual académica u hospitalaria, según tu institución.</p>
     </div>
   </section>
 
@@ -60,49 +60,47 @@
       <div class="grid grid-3">
 
         <div class="card pricing-card reveal">
-          <span class="pricing-name">Académico / Investigación</span>
-          <div class="pricing-price"><span class="amount">Gratis</span></div>
-          <p class="pricing-desc">Para universidades y laboratorios que realizan análisis retrospectivo o simulación, sin uso clínico directo en pacientes.</p>
+          <span class="pricing-name">Prueba gratuita</span>
+          <div class="pricing-price"><span class="amount">Gratis</span><span class="period">/ 14 días</span></div>
+          <p class="pricing-desc">Acceso completo a la plataforma por 14 días, para conocer el flujo real de trabajo antes de decidir tu plan.</p>
           <ul class="pricing-features">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Simulador de dosificación y modelos de literatura</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> 1 usuario</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Exportación PopPK limitada</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Soporte por email/comunidad</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Vancomicina y Fenitoína — todos los modelos</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Estimación bayesiana MAP y simulación what-if</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Sin costo durante los 14 días</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Soporte por email durante la prueba</li>
           </ul>
-          <a href="#" data-contact-email data-subject="Solicitud de acceso académico — PK-Bayes" class="btn btn-secondary btn-block">Solicitar acceso académico</a>
+          <a href="#" data-app-link class="btn btn-secondary btn-block">Comenzar prueba gratuita</a>
+        </div>
+
+        <div class="card pricing-card reveal">
+          <span class="pricing-name">Académico / Investigación</span>
+          <div class="pricing-price"><span class="amount">800 USD</span><span class="period">/ año</span></div>
+          <p class="pricing-desc">Suscripción anual para universidades y laboratorios que investigan o enseñan farmacocinética clínica.</p>
+          <ul class="pricing-features">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Vancomicina y Fenitoína — todos los modelos</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Estimación bayesiana MAP ilimitada</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Exportación PopPK para NONMEM/Monolix</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Soporte por email</li>
+          </ul>
+          <button class="btn btn-secondary btn-block" data-checkout-plan="academico">Empezar plan académico</button>
         </div>
 
         <div class="card pricing-card pricing-card--featured reveal">
           <span class="pricing-ribbon">Más elegido</span>
-          <span class="pricing-name">Piloto Clínico</span>
-          <div class="pricing-price"><span class="amount">1.000 USD</span><span class="period">/ año*</span></div>
-          <p class="pricing-desc">Suscripción anual para evaluar el sistema en una sola unidad del hospital (ej. UCI o Infectología), durante la fase de prueba del modelo.</p>
+          <span class="pricing-name">Hospitalario</span>
+          <div class="pricing-price"><span class="amount">1.000 USD</span><span class="period">/ año</span></div>
+          <p class="pricing-desc">Suscripción anual para una institución hospitalaria — desde una unidad clínica (ej. UCI o Infectología) hasta todo el hospital.</p>
           <ul class="pricing-features">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> 1 unidad clínica</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Vancomicina y Fenitoína — todos los modelos</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Estimación bayesiana MAP ilimitada</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Priors institucionales calibrados por tu unidad</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Todo lo incluido en el plan Académico</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Priors institucionales calibrados por tu hospital</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Panel de Desempeño Institucional</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Onboarding y soporte prioritario</li>
           </ul>
-          <button class="btn btn-primary btn-block" data-checkout-plan="piloto">Empezar piloto clínico</button>
-        </div>
-
-        <div class="card pricing-card reveal">
-          <span class="pricing-name">Hospitalario Institucional</span>
-          <div class="pricing-price"><span class="amount">A medida</span></div>
-          <p class="pricing-desc">Suscripción anual (SaaS o local) según número de camas o volumen de pacientes monitoreados al año.</p>
-          <ul class="pricing-features">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Todo lo incluido en Piloto Clínico</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Auditoría inmutable de cambios clínicos</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Exportación PopPK sin límites, para todo tu volumen de pacientes</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Infraestructura Supabase dedicada</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Soporte dedicado + SLA</li>
-          </ul>
-          <a href="#" data-contact-email data-subject="Cotización plan Hospitalario — PK-Bayes" class="btn btn-secondary btn-block">Contactar a ventas</a>
+          <button class="btn btn-primary btn-block" data-checkout-plan="hospitalario">Empezar plan hospitalario</button>
         </div>
 
       </div>
-      <p class="pricing-note reveal">* Precios de referencia, configurables por el equipo de PK-Bayes según alcance. Contáctanos para una cotización institucional a medida.</p>
+      <p class="pricing-note reveal">Los planes se facturan de forma anual en USD. Para volúmenes grandes o necesidades particulares, contáctanos y coordinamos una cotización a medida.</p>
     </div>
   </section>
 
@@ -142,20 +140,20 @@
           <div class="accordion-panel"><div class="accordion-panel-inner">Tras completar el pago en Stripe recibirás una confirmación y llegarás a una página de bienvenida con un botón directo para entrar a la plataforma PK-Bayes e iniciar sesión.</div></div>
         </div>
         <div class="accordion-item">
-          <button class="accordion-trigger"><span>¿Puedo cancelar el Piloto Clínico?</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
-          <div class="accordion-panel"><div class="accordion-panel-inner">Sí. El Piloto Clínico es una suscripción anual (1.000 USD/año) sin permanencia forzosa más allá del periodo ya contratado — puedes cancelar antes de la renovación.</div></div>
+          <button class="accordion-trigger"><span>¿Cómo funciona la prueba gratuita de 14 días?</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="accordion-panel"><div class="accordion-panel-inner">Al crear tu cuenta obtienes acceso completo a la plataforma durante 14 días sin costo. Al finalizar la prueba, continúas con el plan Académico (800 USD/año) o Hospitalario (1.000 USD/año) según tu institución.</div></div>
         </div>
         <div class="accordion-item">
-          <button class="accordion-trigger"><span>¿Cómo se protegen los datos clínicos?</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
-          <div class="accordion-panel"><div class="accordion-panel-inner">El plan Hospitalario incluye infraestructura dedicada y auditoría inmutable de cambios clínicos. Contáctanos para el detalle técnico y de cumplimiento normativo aplicable a tu país o región.</div></div>
+          <button class="accordion-trigger"><span>¿Puedo cancelar mi suscripción?</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="accordion-panel"><div class="accordion-panel-inner">Sí. Los planes Académico y Hospitalario son suscripciones anuales sin permanencia forzosa más allá del periodo ya contratado — puedes cancelar antes de la renovación.</div></div>
         </div>
         <div class="accordion-item">
           <button class="accordion-trigger"><span>¿PK-Bayes sustituye el criterio clínico?</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
           <div class="accordion-panel"><div class="accordion-panel-inner">No. PK-Bayes es un software de apoyo a la decisión clínica (CDSS). Toda recomendación de dosis debe ser siempre revisada e interpretada por un profesional sanitario cualificado.</div></div>
         </div>
         <div class="accordion-item">
-          <button class="accordion-trigger"><span>¿Puedo probarlo antes de pagar?</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
-          <div class="accordion-panel"><div class="accordion-panel-inner">El plan Académico permite evaluar el simulador sin coste para fines de investigación. Para uso clínico real, el Piloto Clínico es el punto de entrada recomendado.</div></div>
+          <button class="accordion-trigger"><span>¿Cuál es la diferencia entre el plan Académico y el Hospitalario?</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>
+          <div class="accordion-panel"><div class="accordion-panel-inner">Ambos incluyen los mismos modelos y la estimación bayesiana MAP. El plan Hospitalario está pensado para uso clínico en una unidad u hospital, e incluye además priors institucionales calibrados y el Panel de Desempeño Institucional.</div></div>
         </div>
         <div class="accordion-item">
           <button class="accordion-trigger"><span>¿Qué métodos de pago aceptan?</span><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg></button>

@@ -27,8 +27,8 @@ window.PKBAYES_CONFIG = {
 
   // Price IDs de Stripe (Dashboard → Producto → Precios). mode: "payment" (pago único) o "subscription".
   PRICES: {
-    piloto: {
-      id: "price_ID_PLAN_PILOTO_CLINICO",
+    academico: {
+      id: "price_ID_PLAN_ACADEMICO",
       mode: "subscription",
     },
     hospitalario: {
