@@ -1,7 +1,7 @@
 <meta charset="UTF-8">
 <title>Funcionalidades — PK-Bayes</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Cómo funciona PK-Bayes en el día a día: estimación bayesiana MAP, predictor de dosis y simulación manual what-if, panel de pacientes multi-hospital, desempeño institucional, priors locales, exportación PopPK y administración de accesos.">
+<meta name="description" content="Cómo funciona PK-Bayes en el día a día: estimación bayesiana MAP, predictor de dosis y simulación manual what-if, panel de desempeño institucional, priors locales y exportación PopPK.">
 <meta name="theme-color" content="#0f1c33">
 <link rel="icon" type="image/png" href="assets/img/favicon-64.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -49,7 +49,7 @@
   <section class="page-hero">
     <div class="container">
       <div class="breadcrumb"><a href="index.html">Inicio</a> <span>/</span> <span>Funcionalidades</span></div>
-      <span class="eyebrow on-dark mt-16" style="display:inline-flex">7 capacidades centrales</span>
+      <span class="eyebrow on-dark mt-16" style="display:inline-flex">5 capacidades centrales</span>
       <h1>Todo lo que hace PK-Bayes, tal como funciona hoy</h1>
       <p class="lead">Desde el ingreso del paciente hasta la exportación para investigación poblacional — sin adornos, esto es exactamente lo que ve cada rol clínico en pantalla.</p>
     </div>
@@ -141,41 +141,9 @@
         </div>
       </div>
 
-      <!-- 03 · Panel de pacientes multi-hospital -->
-      <div class="feature-detail" id="pacientes">
-        <div class="num">03</div>
-        <div>
-          <span class="badge badge-green">Gestión clínica</span>
-          <h3 class="mt-16">Panel de Pacientes Multi-Hospital</h3>
-          <p class="mt-8">Una lista filtrable con todos los pacientes que tu equipo está siguiendo — por hospital, por fármaco, y separando los que ya tienen datos suficientes ("DataSet") de los que aún dependen del modelo institucional. Las alertas clínicas (sub-terapéutico, riesgo de toxicidad, en rango) se ven directamente en cada ficha, sin tener que entrar a revisar caso por caso.</p>
-
-          <div class="card mt-24" style="padding:0;overflow:hidden">
-            <div style="padding:16px 20px;border-bottom:1px solid var(--border);display:flex;gap:10px;flex-wrap:wrap;align-items:center">
-              <span class="badge badge-navy" style="background:#eef1f6;color:var(--text-muted)">Todos los hospitales ▾</span>
-              <span class="badge badge-navy" style="background:#eef1f6;color:var(--text-muted)">Todos los fármacos ▾</span>
-              <span class="badge badge-navy" style="background:#eef1f6;color:var(--text-muted)">☐ Sin hospital asignado</span>
-            </div>
-            <div class="table-wrap" style="border:none;border-radius:0">
-              <table>
-                <thead>
-                  <tr><th>Paciente</th><th>Fármaco</th><th>Hospital</th><th>Actualizado</th><th>Alerta</th></tr>
-                </thead>
-                <tbody>
-                  <tr><td>Paciente #482</td><td>Vancomicina</td><td>Hospital Higueras</td><td class="mono">hace 2h</td><td><span class="badge badge-green"><span class="badge-dot"></span> En rango</span></td></tr>
-                  <tr><td>Paciente #511</td><td>Fenitoína</td><td>Hospital Regional de Concepción</td><td class="mono">hace 45 min</td><td><span class="badge badge-amber"><span class="badge-dot"></span> Riesgo de toxicidad</span></td></tr>
-                  <tr><td>Paciente #398</td><td>Vancomicina</td><td>Hospital Clínico del Sur</td><td class="mono">hace 1 día</td><td><span class="badge badge-red"><span class="badge-dot"></span> Sub-terapéutico</span></td></tr>
-                  <tr><td>Paciente #276</td><td>Fenitoína</td><td>Hospital Higueras</td><td class="mono">hace 3h</td><td><span class="badge badge-green"><span class="badge-dot"></span> En rango</span></td></tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          <p class="text-muted mt-16" style="font-size:.82rem">Ejemplo ilustrativo con pacientes sintéticos, solo para representar la interfaz real.</p>
-        </div>
-      </div>
-
-      <!-- 04 · Desempeño institucional -->
+      <!-- 03 · Desempeño institucional -->
       <div class="feature-detail" id="desempeno">
-        <div class="num">04</div>
+        <div class="num">03</div>
         <div>
           <span class="badge badge-amber">Mejora continua</span>
           <h3 class="mt-16">Panel de Desempeño Institucional</h3>
@@ -202,7 +170,7 @@
 
       <!-- 05 · Priors -->
       <div class="feature-detail" id="priors">
-        <div class="num">05</div>
+        <div class="num">04</div>
         <div>
           <span class="badge badge-primary">Aprendizaje institucional</span>
           <h3 class="mt-16">Modelos Poblacionales Locales (Priors Institucionales)</h3>
@@ -225,7 +193,7 @@
 
       <!-- 06 · Export -->
       <div class="feature-detail" id="export">
-        <div class="num">06</div>
+        <div class="num">05</div>
         <div>
           <span class="badge badge-teal">Investigación</span>
           <h3 class="mt-16">Exportación de Datos Poblacionales (PopPK)</h3>
@@ -245,29 +213,6 @@
                   </tbody>
                 </table>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 07 · Administración multi-hospital -->
-      <div class="feature-detail" id="administracion">
-        <div class="num">07</div>
-        <div>
-          <span class="badge badge-primary">Control de acceso</span>
-          <h3 class="mt-16">Administración Multi-Hospital y Aprobación de Accesos</h3>
-          <div class="feature-detail-body">
-            <div>
-              <p>Cada hospital tiene su propio espacio dentro de la plataforma, con tres niveles de rol: <strong>Supermaestro</strong> (control total de todos los hospitales), <strong>Admin/Master</strong> (administra su propio hospital) y <strong>Clínico/User</strong> (uso diario). El acceso se otorga con códigos de invitación propios de cada hospital, o queda pendiente de aprobación manual cuando alguien se registra sin uno.</p>
-              <ul class="mini-list">
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Códigos de invitación por hospital (uno para clínicos, otro para administradores)</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Cuentas sin invitación válida quedan "pendientes" hasta que el supermaestro las revise y acepte</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Auditoría de cada cambio hecho sobre la ficha de un paciente, con registro de quién y cuándo</li>
-              </ul>
-            </div>
-            <div class="example-box">
-              <span class="label">Ejemplo real</span>
-              <p>Una nueva farmacéutica se registra eligiendo su hospital de una lista, sin código de invitación. Su cuenta queda "pendiente" y visible en el panel del supermaestro, quien la acepta con un clic — ella recibe un correo automático avisándole que ya puede ingresar.</p>
             </div>
           </div>
         </div>
