@@ -670,3 +670,300 @@ select.control-select {
 .draw-path { stroke-dasharray: 900; stroke-dashoffset: 900; animation: draw-curve 2.4s .4s cubic-bezier(.4,0,.2,1) forwards; }
 @keyframes draw-curve { to { stroke-dashoffset: 0; } }
 @media (prefers-reduced-motion: reduce) { .draw-path { animation: none; stroke-dashoffset: 0; } }
+
+/* =========================================================================
+   MATRIZ COMPARATIVA DE COMPETENCIA (High-impact comparison UI)
+   ========================================================================= */
+.comp-wrapper {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  margin-top: 36px;
+}
+.comp-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 780px;
+}
+.comp-table th, .comp-table td {
+  padding: 16px 20px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.92rem;
+  vertical-align: middle;
+}
+.comp-table th {
+  background: #f8fafc;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  font-weight: 700;
+  border-bottom: 2px solid var(--border);
+}
+.comp-table tr:last-child td { border-bottom: none; }
+.comp-table th.col-highlight,
+.comp-table td.col-highlight {
+  background: rgba(11, 92, 173, 0.04);
+  border-left: 2px solid rgba(11, 92, 173, 0.15);
+  border-right: 2px solid rgba(11, 92, 173, 0.15);
+  position: relative;
+}
+.comp-table th.col-highlight {
+  background: var(--primary-light);
+  color: var(--primary);
+  border-top: 3px solid var(--primary);
+}
+.comp-brand-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.05rem;
+  font-weight: 800;
+}
+.comp-feature-name {
+  font-weight: 700;
+  color: var(--text-primary);
+  display: block;
+}
+.comp-feature-sub {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  display: block;
+  margin-top: 3px;
+}
+.comp-status-yes {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+  color: var(--green);
+  font-size: 0.88rem;
+}
+.comp-status-no {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+.comp-status-warn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  color: var(--amber);
+  font-size: 0.88rem;
+}
+.comp-badge-exclusive {
+  background: linear-gradient(135deg, var(--primary), var(--teal));
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 3px 8px;
+  border-radius: 999px;
+  margin-left: 6px;
+  vertical-align: middle;
+}
+
+/* =========================================================================
+   VENTAJAS CLÍNICAS (Clinical Advantage Cards with visual accents)
+   ========================================================================= */
+.advantage-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 26px;
+  position: relative;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+.advantage-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary);
+}
+.advantage-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.advantage-icon-box {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--primary-light);
+  color: var(--primary);
+}
+.advantage-icon-box.teal { background: var(--teal-light); color: var(--teal); }
+.advantage-icon-box.green { background: var(--green-light); color: var(--green); }
+.advantage-icon-box.amber { background: var(--amber-light); color: var(--amber); }
+.advantage-icon-box.red { background: var(--red-light); color: var(--red); }
+.advantage-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #f1f5f9;
+  color: var(--text-secondary);
+}
+.advantage-card h3 { font-size: 1.15rem; margin-bottom: 8px; }
+.advantage-card p { font-size: 0.92rem; color: var(--text-secondary); line-height: 1.55; }
+.advantage-metric-bar {
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+.advantage-metric-val {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+.advantage-metric-lbl {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* =========================================================================
+   PIPELINE VISUAL DE FLUJO CLÍNICO (4 pasos conectados)
+   ========================================================================= */
+.clinical-pipeline {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  position: relative;
+  margin-top: 36px;
+}
+.pipeline-step-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  position: relative;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+.pipeline-step-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+.pipeline-badge-num {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--sidebar-bg);
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pipeline-arrow {
+  color: var(--text-muted);
+  font-weight: bold;
+}
+.pipeline-step-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+.pipeline-step-card p { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.5; }
+.pipeline-footer-pill {
+  margin-top: auto;
+  padding-top: 14px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+@media (max-width: 900px) {
+  .clinical-pipeline { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 580px) {
+  .clinical-pipeline { grid-template-columns: 1fr; }
+}
+
+/* =========================================================================
+   MICRO-VISUALIZADORES DE UI (Gráficos embebidos en tarjetas)
+   ========================================================================= */
+.micro-chart-card {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  margin-top: 14px;
+}
+.micro-chart-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+}
+.metric-chip-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.metric-chip {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.metric-chip .chip-label { color: var(--text-muted); }
+.metric-chip .chip-value { font-weight: 800; color: var(--text-primary); }
+.metric-chip.active-individual .chip-value { color: var(--primary); }
+.metric-chip.active-pop .chip-value { color: var(--text-secondary); }
+.metric-chip.active-inst .chip-value { color: var(--teal); }
+
+/* Banner de Certificación y Guías Clínicas */
+.clinical-standards-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 16px 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  margin-top: 36px;
+  flex-wrap: wrap;
+  font-size: 0.82rem;
+  color: var(--text-on-dark-muted);
+}
+.standards-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+.standards-item svg { color: #5fd4e8; width: 16px; height: 16px; }
+
