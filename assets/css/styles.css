@@ -978,26 +978,54 @@ select.control-select {
 .metric-chip.active-pop .chip-value { color: var(--text-secondary); }
 .metric-chip.active-inst .chip-value { color: var(--teal); }
 
-/* Banner de Certificación y Guías Clínicas */
-.clinical-standards-bar {
+/* Barra Explicativa de Funcionamiento Clínico */
+.clinical-feature-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 36px;
+}
+.clinical-feature-pill {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: var(--radius-panel, 12px);
+  backdrop-filter: blur(8px);
+  transition: all 0.2s ease;
+}
+.clinical-feature-pill:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(14, 165, 233, 0.35);
+  transform: translateY(-2px);
+}
+.clinical-feature-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 9px;
+  background: rgba(14, 165, 233, 0.15);
+  color: #38bdf8;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 28px;
-  padding: 16px 24px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 999px;
-  margin-top: 36px;
-  flex-wrap: wrap;
-  font-size: 0.82rem;
+  flex-shrink: 0;
+}
+.clinical-feature-icon svg { width: 19px; height: 19px; }
+.clinical-feature-content h4 {
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+.clinical-feature-content p {
   color: var(--text-on-dark-muted);
+  font-size: 0.8rem;
+  line-height: 1.45;
+  margin: 0;
 }
-.standards-item {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-weight: 600;
+@media (max-width: 900px) {
+  .clinical-feature-bar { grid-template-columns: 1fr; }
 }
-.standards-item svg { color: #5fd4e8; width: 16px; height: 16px; }
 

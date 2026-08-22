@@ -63,12 +63,6 @@
           <a href="precios.html" class="btn btn-on-dark btn-lg">Probar 14 días gratis</a>
           <a href="funcionalidades.html" class="btn btn-outline-on-dark btn-lg">Ver funcionalidades</a>
         </div>
-
-        <div class="hero-stats">
-          <div class="hero-stat"><b>&lt; 2s</b><span>Recálculo bayesiano MAP individual</span></div>
-          <div class="hero-stat"><b>AUC24 / MIC</b><span>Dosificación guiada (Guías ASHP 2020)</span></div>
-          <div class="hero-stat"><b>3 Niveles</b><span>Individual · Poblacional · Institucional</span></div>
-        </div>
       </div>
 
       <!-- MOCKUP CLÍNICO EN HERO -->
@@ -103,7 +97,7 @@
             </div>
             <div class="param-row" style="border-color:rgba(255,255,255,0.08)">
               <span class="param-label" style="color:var(--text-on-dark-muted)">AUC24 / MIC estimada</span>
-              <span class="param-val is-individual" style="color:#5fd4e8">485 mg·h/L</span>
+              <span class="param-val is-individual" style="color:#38bdf8">485 mg·h/L</span>
               <span class="param-val is-pop">340 mg·h/L</span>
               <span class="param-val is-inst">460 mg·h/L</span>
             </div>
@@ -142,22 +136,35 @@
     </div>
 
     <div class="container">
-      <div class="clinical-standards-bar reveal">
-        <div class="standards-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span>Consenso ASHP / IDSA / SIDP 2020 (AUC-Guided)</span>
+      <div class="clinical-feature-bar reveal">
+        <div class="clinical-feature-pill">
+          <div class="clinical-feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="clinical-feature-content">
+            <h4>1. Monitoreo TDM sin valles rígidos</h4>
+            <p>Muestras en cualquier hora del intervalo; el motor bayesiano calcula la curva real sin forzar extracciones nocturnas.</p>
+          </div>
         </div>
-        <div class="standards-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-          <span>Cinética Michaelis-Menten & Sheiner-Tozer</span>
+
+        <div class="clinical-feature-pill">
+          <div class="clinical-feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <div class="clinical-feature-content">
+            <h4>2. Parámetros Trifásicos Transparentes</h4>
+            <p>Compara el aclaramiento (CL) individual frente al poblacional (Goti/Rodvold) y el prior calibrado por tu hospital.</p>
+          </div>
         </div>
-        <div class="standards-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg>
-          <span>Modelos Validados (Goti, Rodvold, Thomson, Yamamoto)</span>
-        </div>
-        <div class="standards-item">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-          <span>Exportación PopPK a NONMEM y Monolix</span>
+
+        <div class="clinical-feature-pill">
+          <div class="clinical-feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg>
+          </div>
+          <div class="clinical-feature-content">
+            <h4>3. Simulación What-If & AUC24</h4>
+            <p>Prueba dosis y regímenes alternativos antes de prescribir, asegurando el target terapéutico de 400–600 mg·h/L.</p>
+          </div>
         </div>
       </div>
     </div>
