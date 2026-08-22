@@ -35,6 +35,10 @@ window.PKBAYES_CONFIG = {
       id: "price_ID_PLAN_HOSPITALARIO",
       mode: "subscription",
     },
+    institucional_academico: {
+      id: "price_ID_PLAN_INSTITUCIONAL_ACADEMICO",
+      mode: "subscription",
+    },
   },
 
   // A dónde redirige Stripe tras el pago (deben ser URLs absolutas de tu dominio publicado)
