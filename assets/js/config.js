@@ -28,7 +28,7 @@ window.PKBAYES_CONFIG = {
 
   PRICES: {
     plan_completo: {
-      id: "price_ID_PLAN_COMPLETO_1350",
+      id: "price_1U7faR191OQzNkCPVWuSVqmA",
       mode: "subscription",
     },
   },
