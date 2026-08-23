@@ -71,35 +71,36 @@
         <div>
           <div class="flex items-center gap-8 flex-wrap">
             <span class="badge badge-primary">Motor Bayesiano</span>
-            <span class="badge badge-green">Tiempo Real</span>
+            <span class="badge badge-green">&lt; 100 ms Fitting</span>
           </div>
           <h3 class="mt-16">Estimación Bayesiana MAP en Tiempo Real (Maximum A Posteriori)</h3>
           <div class="feature-detail-body">
             <div>
-              <p>A partir de una o dos muestras plasmáticas de monitoreo terapéutico (TDM), el algoritmo combina la información poblacional previa (el <em>prior</em> de literatura o institucional) con los datos empíricos observados del paciente para encontrar los parámetros farmacocinéticos individuales más probables (<strong>CL</strong>, <strong>Vd</strong>, <strong>Vmax</strong>, <strong>Km</strong>).</p>
+              <p>Resuelve el compromiso matemático óptimo entre el <em>prior</em> poblacional (de literatura validada o calibrado por el hospital) y las concentraciones séricas medidas del paciente, entregando de forma instantánea <strong>CL</strong>, <strong>V1</strong>, <strong>Q</strong>, <strong>V2</strong>, <strong>t1/2</strong>, <strong>AUC24</strong> y el coeficiente de variación (<strong>CV%</strong>).</p>
               
               <p class="mt-16 text-secondary">A diferencia de las aproximaciones de un solo punto o nomogramas tradicionales, <strong>no requiere que la muestra se extraiga estrictamente en el valle pre-dosis</strong>: el motor sitúa la muestra en cualquier momento del intervalo de infusión con total rigor matemático.</p>
 
               <ul class="mini-list mt-16">
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Función renal dinámica:</strong> Cockcroft-Gault con ajuste por peso ideal y peso corregido según composición corporal.</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Transparencia trifásica:</strong> Visualiza en la misma tabla los valores <em>Individual</em>, <em>Poblacional</em> e <em>Institucional</em> con sus varianzas.</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Recálculo continuo:</strong> Actualización instantánea (&lt; 2 segundos) con cada nuevo laboratorio de creatinina o nivel TDM.</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Modelos bicompartimentales robustos:</strong> Goti et al. (2018) con variabilidad interindividual de V1 optimizada a límites fisiológicos (~30% BSV) para evitar sobreajuste ante muestreos limitados (1 nivel valle).</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Transparencia trifásica:</strong> Visualiza en la misma interfaz los valores <em>Individual</em>, <em>Poblacional</em> e <em>Institucional</em>.</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Gráficos interactivos:</strong> Curva de concentración vs. tiempo con visualización de rango terapéutico, niveles observados con intervalos de confianza y zoom/pan fluidos.</li>
               </ul>
             </div>
             
             <div class="example-box">
-              <span class="label">Ficha de Parámetros Clínicos (Ejemplo Real)</span>
+              <span class="label">Ficha de Parámetros Farmacocinéticos (Ejemplo Real)</span>
               <div class="table-wrap mt-8" style="border:none;background:transparent">
                 <table style="min-width:0">
-                  <thead><tr><th>Parámetro</th><th>Individual</th><th>Poblacional</th><th>Institucional</th></tr></thead>
+                  <thead><tr><th>Parámetro</th><th>Individual (MAP)</th><th>Poblacional (Goti)</th><th>Prior Local</th></tr></thead>
                   <tbody>
                     <tr><td><strong>CL (Aclaramiento)</strong></td><td class="mono" style="color:var(--primary);font-weight:700">2.65 L/h</td><td class="mono">3.80 L/h</td><td class="mono" style="color:var(--teal)">2.80 L/h</td></tr>
-                    <tr><td><strong>Vd (Volumen)</strong></td><td class="mono" style="color:var(--primary);font-weight:700">54.2 L</td><td class="mono">48.0 L</td><td class="mono" style="color:var(--teal)">52.0 L</td></tr>
+                    <tr><td><strong>V1 (Vol. Central)</strong></td><td class="mono" style="color:var(--primary);font-weight:700">54.2 L</td><td class="mono">48.0 L</td><td class="mono" style="color:var(--teal)">52.0 L</td></tr>
                     <tr><td><strong>t1/2 (Vida media)</strong></td><td class="mono" style="color:var(--primary);font-weight:700">14.1 h</td><td class="mono">8.7 h</td><td class="mono" style="color:var(--teal)">12.9 h</td></tr>
+                    <tr><td><strong>AUC24 estimado</strong></td><td class="mono" style="color:var(--green);font-weight:700">485 mg·h/L</td><td class="mono">340 mg·h/L</td><td class="mono" style="color:var(--teal)">460 mg·h/L</td></tr>
                   </tbody>
                 </table>
               </div>
-              <p class="mt-8 text-secondary" style="font-size:0.84rem">El clínico identifica de inmediato que el paciente elimina el fármaco un 30% más lento que el promedio poblacional, evitando una sobredosis inminente.</p>
+              <p class="mt-8 text-secondary" style="font-size:0.84rem">El clínico detecta al instante que el aclaramiento del paciente es un 30% inferior al poblacional, previniendo sobreacumulación tóxica.</p>
             </div>
           </div>
         </div>
@@ -111,11 +112,11 @@
         <div>
           <div class="flex items-center gap-8 flex-wrap">
             <span class="badge badge-teal">Predicción y Simulación</span>
-            <span class="badge badge-primary">Guías ASHP 2020</span>
+            <span class="badge badge-primary">Consenso ASHP/IDSA 2020</span>
           </div>
-          <h3 class="mt-16">Predictor de Dosis y Simulación What-If Interactiva</h3>
-          <p class="mt-8">El <strong>Predictor de Dosis</strong> sugiere automáticamente la pauta terapéutica óptima (dosis en mg, tiempo de infusión en horas e intervalo de administración) dirigida al objetivo clínico de <strong>AUC24/MIC de 400–600 mg·h/L</strong>.</p>
-          <p class="mt-8 text-secondary">Si el clínico desea probar esquemas alternativos (ej. ajustar de q12h a q8h o evaluar una dosis de carga), la <strong>Simulación What-If</strong> calcula la nueva curva de concentración plasmática en tiempo real antes de prescribir.</p>
+          <h3 class="mt-16">Predictor de Regímenes Posológicos y Simulación What-If</h3>
+          <p class="mt-8">Permite al clínico simular cualquier dosis (mg), duración de infusión e intervalo de administración (<strong>τ = 6, 8, 12, 24, 36, 48 horas</strong> o <strong>infusión continua 24h</strong>) observando de inmediato las concentraciones proyectadas en estado estacionario (<strong>Cmax,ss</strong>, <strong>Cmin,ss</strong> y <strong>AUC24</strong>).</p>
+          <p class="mt-8 text-secondary">Alineado al estándar de oro de las guías internacionales 2020: alcanzar una <strong>AUC24/CIM de 400–600 mg·h/L</strong> (asumiendo CIM = 1 mg/L en caldo de microdilución) o valles seguros de 15–20 mg/L en infecciones graves.</p>
 
           <div class="simulator mt-32" data-pk-simulator>
             <div class="simulator-head">
@@ -157,14 +158,14 @@
                 <svg data-chart viewBox="0 0 640 320" role="img" aria-label="Curva de concentración simulada en función del tiempo"></svg>
                 <div class="flex justify-between mt-16" style="font-size:.78rem;flex-wrap:wrap;gap:8px">
                   <span><span style="display:inline-block;width:10px;height:10px;background:var(--teal);border-radius:50%;margin-right:6px"></span>Concentración proyectada</span>
-                  <span><span style="display:inline-block;width:10px;height:10px;background:var(--green);border-radius:50%;margin-right:6px"></span>Rango terapéutico objetivo (15–20 mg/L)</span>
+                  <span><span style="display:inline-block;width:10px;height:10px;background:var(--green);border-radius:50%;margin-right:6px"></span>Diana terapéutica (AUC24/CIM 400–600 mg·h/L · Valles 15–20 mg/L)</span>
                 </div>
               </div>
             </div>
           </div>
           <div class="disclaimer mt-16">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
-            <div><strong>Nota metodológica:</strong> este widget web ilustra el concepto reactivo de "what-if". La plataforma clínica de producción utiliza el motor bayesiano completo con modelos de 2 compartimentos, covariables continuas, ajuste de infusión IV continua/intermitente y cinéticas saturables.</div>
+            <div><strong>Nota metodológica:</strong> este widget ilustra el concepto reactivo de "what-if". La plataforma de producción ejecuta el motor completo resolviendo sistemas acoplados de ecuaciones diferenciales (ODEs) con covariables continuas, infusiones intermitentes/continuas y cinéticas saturables.</div>
           </div>
         </div>
       </div>
@@ -175,61 +176,98 @@
         <div>
           <div class="flex items-center gap-8 flex-wrap">
             <span class="badge badge-green">Paciente Crítico & UCI</span>
-            <span class="badge badge-teal">TRRC / Hemodiálisis</span>
+            <span class="badge badge-teal">ODEs Runge-Kutta 45</span>
           </div>
-          <h3 class="mt-16">Aclaramiento Renal Dinámico CL(t) y Terapias de Reemplazo Renal</h3>
+          <h3 class="mt-16">Cinética Renal Dinámica CL(t) y Soporte Integral de Diálisis</h3>
           <div class="feature-detail-body">
             <div>
-              <p>En pacientes con sepsis, shock o fallo multiorgánico, la función renal no es una constante estática. PK-Bayes almacena el histórico de creatininas séricas y genera una curva de aclaramiento en función del tiempo <strong>CL(t)</strong>.</p>
-              <p class="mt-16 text-secondary">Para pacientes sometidos a <strong>Hemodiálisis intermitente (HD)</strong> o <strong>Terapia de Reemplazo Renal Continuo (TRRC / CVVH / CVVHDF)</strong>, el software parametriza:</p>
+              <p>En pacientes con sepsis, shock séptico o falla multiorgánica, la función renal fluctúa drásticamente. PK-Bayes resuelve la curva temporal mediante <code>scipy.integrate.solve_ivp</code> (Runge-Kutta 45), <strong>preservando la cantidad de masa en cada compartimento (A1(t), A2(t))</strong> en las fronteras de infusión y cambio de laboratorio, garantizando continuidad física y precisión milimétrica.</p>
+              
+              <p class="mt-16 text-secondary">Manejo nativo y dinámico de terapias de reemplazo renal:</p>
               <ul class="mini-list mt-16">
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Flujo de sangre efectivo (<span class="mono">Qb</span>) y duración de la sesión.</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Tasa de efluente y coeficiente de cribado / extracción del filtro.</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Aclaramiento residual nativo entre sesiones.</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>CRRT Continuo (CVVH / CVVHD / CVVHDF):</strong> Cálculo automático mediante <span class="mono">CL_CRRT = Tasa Efluente × Coef. Tamizado + CL_residual</span>.</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Hemodiálisis Intermitente (HD):</strong> Modelado por flujo sanguíneo (<span class="mono">Qb</span>), duración de sesión, coeficiente de extracción (<span class="mono">E_HD</span>) e intervalo interdialisítico.</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Marcadores en tiempo real:</strong> Visualización gráfica de <span class="mono">🧪 Cr: X.X mg/dL</span> en el instante exacto de la toma.</li>
               </ul>
             </div>
             
-            <div class="example-box teal">
-              <span class="label">Ajuste en Paciente Crítico</span>
-              <p>Un paciente séptico en TRRC requiere dosis de vancomicina significativamente distintas a un paciente en hemodiálisis intermitente. PK-Bayes adapta el aclaramiento extracorpóreo automáticamente, evitando tanto la subdosificación como la acumulación tóxica.</p>
+            <div class="formula-card teal">
+              <span class="badge badge-teal" style="font-size:0.72rem">Ecuaciones de Diálisis Continua (CRRT)</span>
+              <span class="formula-main">CL_total(t) = CL_residual(t) + (Q_efluente · S_filtro)</span>
+              <div class="formula-legend">
+                <span><strong>Q_efluente:</strong> Tasa de efluente (mL/kg/h)</span>
+                <span><strong>S_filtro:</strong> Coeficiente de tamizado / cribado</span>
+                <span><strong>CL_residual:</strong> Función renal nativa</span>
+                <span><strong>Preservación de masa:</strong> A1(t+), A2(t+) continuos</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- 04 · Desempeño y Priors Institucionales -->
-      <div class="feature-detail" id="priors">
+      <!-- 04 · Dashboard de Métricas Farmacocinéticas -->
+      <div class="feature-detail" id="dashboard">
         <div class="num">04</div>
         <div>
           <div class="flex items-center gap-8 flex-wrap">
-            <span class="badge badge-amber">Aprendizaje Continuo</span>
-            <span class="badge badge-primary">Ventaja Exclusiva</span>
+            <span class="badge badge-primary">Dashboard de Inteligencia</span>
+            <span class="badge badge-teal">Evolución Longitudinal</span>
           </div>
-          <h3 class="mt-16">Panel de Desempeño Institucional y Priors Propios</h3>
+          <h3 class="mt-16">Dashboard de Métricas Farmacocinéticas y Análisis de Cohortes</h3>
           <div class="feature-detail-body">
             <div>
-              <p>Los modelos farmacocinéticos de la literatura fueron creados con cohortes específicas de otros países que no siempre reflejan la epidemiología de tu hospital. PK-Bayes evalúa retrospectivamente el desempeño de los modelos en tu centro mediante tres métricas estándar:</p>
+              <p>Otorga una visión de inteligencia clínica institucional sobre toda la cohorte de pacientes hospitalizados en la unidad o servicio:</p>
               
               <ul class="mini-list mt-16">
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>RMSE (Root Mean Square Error):</strong> Mide la precisión global de predicción en mg/L.</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>MAE (Mean Absolute Error):</strong> Magnitud media del error de predicción.</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Bias (Sesgo Medio):</strong> Detecta si el modelo sobrestima (+) o subestima (−) el aclaramiento local.</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Gráficos Longitudinales Pareados:</strong> Evolución temporal de dosis administradas (mg/día o por toma) sincronizada con la evolución de niveles plasmáticos frente a la franja 15–20 mg/L.</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Multiselección y Trazabilidad Cruzada:</strong> Selecciona 1, 2 o múltiples pacientes; sus curvas se iluminan con colores clínicos distintos en ambos paneles.</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Interacción por Hover:</strong> Al pasar el cursor sobre cualquier punto, se resalta la trayectoria completa de ese paciente en ambos gráficos.</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Estadísticas Dinámicas e Intervalos de Confianza (IC95%):</strong> Cálculo de media poblacional o media de cohorte seleccionada con IC95% en tiempo real.</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Filtrado por Unidad y Modo Foco:</strong> Segmentación instantánea entre Cama Básica vs UCI/UTI y alternancia "Ver todo" / "Foco cohorte".</li>
               </ul>
-
-              <p class="mt-16 text-secondary">Al acumular casos válidos en un estrato de función renal (VFG), tu hospital puede <strong>calibrar su propio prior institucional</strong>, superando la precisión de los modelos genéricos.</p>
             </div>
             
-            <div class="example-box">
-              <span class="label">Métricas del Panel Institucional</span>
-              <div class="table-wrap mt-8" style="border:none;background:transparent">
-                <table style="min-width:0">
-                  <thead><tr><th>Estrato VFG</th><th>RMSE Literatura</th><th>RMSE Prior Local</th><th>Estado</th></tr></thead>
-                  <tbody>
-                    <tr><td>30–45 mL/min</td><td class="mono">5.4 mg/L</td><td class="mono" style="color:var(--green);font-weight:700">2.4 mg/L</td><td><span class="badge badge-green">Prior Activo</span></td></tr>
-                    <tr><td>45–60 mL/min</td><td class="mono">3.2 mg/L</td><td class="mono" style="color:var(--green);font-weight:700">1.8 mg/L</td><td><span class="badge badge-green">Prior Activo</span></td></tr>
-                    <tr><td>60–90 mL/min</td><td class="mono">2.4 mg/L</td><td class="mono">2.2 mg/L</td><td><span class="badge badge-amber">Acumulando</span></td></tr>
-                  </tbody>
-                </table>
+            <!-- Mockup Visual del Dashboard Longitudinal -->
+            <div class="cohort-dashboard-mockup">
+              <div class="cohort-toolbar">
+                <div class="patient-pill-selector">
+                  <span class="patient-pill p1">● Paciente #482 (UCI)</span>
+                  <span class="patient-pill p2">● Paciente #319 (Infecto)</span>
+                  <span class="patient-pill p3">● Paciente #504 (Nefro)</span>
+                </div>
+                <div class="flex items-center gap-8" style="font-size:0.75rem;color:var(--text-on-dark-muted)">
+                  <span>Filtro: <strong>UCI / Cama Crítica</strong></span>
+                  <span class="badge badge-teal" style="font-size:0.65rem">IC95% Activo</span>
+                </div>
+              </div>
+              <div class="cohort-charts-grid">
+                <div class="cohort-chart-box">
+                  <h5><span>Evolución Temporal de Dosis (mg/día)</span> <span>Dosis Media: 2.250 mg</span></h5>
+                  <svg viewBox="0 0 280 90" style="width:100%">
+                    <line x1="0" y1="75" x2="280" y2="75" stroke="rgba(255,255,255,0.1)" stroke-dasharray="2,2"/>
+                    <line x1="0" y1="45" x2="280" y2="45" stroke="rgba(255,255,255,0.1)" stroke-dasharray="2,2"/>
+                    <!-- Paciente 1 -->
+                    <polyline points="20,70 80,45 150,45 220,30 260,30" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+                    <circle cx="260" cy="30" r="3.5" fill="#38bdf8"/>
+                    <!-- Paciente 2 -->
+                    <polyline points="20,60 80,60 150,50 220,50 260,50" fill="none" stroke="#10b981" stroke-width="2"/>
+                    <!-- Paciente 3 -->
+                    <polyline points="20,80 80,70 150,60 220,60 260,60" fill="none" stroke="#f59e0b" stroke-width="2"/>
+                  </svg>
+                </div>
+                <div class="cohort-chart-box">
+                  <h5><span>Niveles Plasmáticos (mg/L)</span> <span style="color:#38bdf8">Diana 15–20 mg/L</span></h5>
+                  <svg viewBox="0 0 280 90" style="width:100%">
+                    <rect x="0" y="30" width="280" height="30" fill="#0ea5e9" opacity="0.15"/>
+                    <!-- Banda IC95% -->
+                    <path d="M 0,42 Q 140,40 280,43 L 280,52 Q 140,54 0,52 Z" fill="#38bdf8" opacity="0.2"/>
+                    <!-- Curvas -->
+                    <polyline points="20,80 80,62 150,44 220,40 260,38" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+                    <circle cx="150" cy="44" r="3.5" fill="#38bdf8"/>
+                    <polyline points="20,72 80,50 150,48 220,46 260,45" fill="none" stroke="#10b981" stroke-width="2"/>
+                    <polyline points="20,85 80,78 150,55 220,48 260,47" fill="none" stroke="#f59e0b" stroke-width="2"/>
+                  </svg>
+                </div>
               </div>
             </div>
           </div>
@@ -242,31 +280,105 @@
         <div>
           <div class="flex items-center gap-8 flex-wrap">
             <span class="badge badge-teal">Investigación Farmacocinética</span>
-            <span class="badge badge-primary">NONMEM · Monolix</span>
+            <span class="badge badge-primary">NONMEM · Monolix · R</span>
           </div>
-          <h3 class="mt-16">Pipeline de Exportación PopPK en 1 Clic</h3>
+          <h3 class="mt-16">Motor de Creación de Datasets PopPK en 1 Clic</h3>
           <div class="feature-detail-body">
             <div>
-              <p>Elimina meses de trabajo manual en hojas de cálculo y limpieza propensa a errores. PK-Bayes exporta toda la cohorte clínica de tu hospital en formato <span class="mono">.csv</span> normalizado y listo para modelado farmacocinético poblacional en <strong>NONMEM</strong> y <strong>Monolix</strong>.</p>
+              <p>Elimina meses de limpieza manual propensa a error. PK-Bayes reconstruye dinámicamente los eventos tiempo-dependientes y exporta datasets normalizados en <strong>NONMEM</strong>, <strong>Monolix</strong>, <strong>R (mrgsolve, nlmixr2, tidyverse)</strong> y <strong>Python (pandas)</strong> con codificación UTF-8 con BOM (\uFEFF) para apertura inmediata en Excel.</p>
               
               <ul class="mini-list mt-16">
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Columnas estándar: <span class="mono">ID, TIME, EVID, AMT, DV, RATE, CMT, CLCR, ALB</span>.</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Integración completa del histórico de función renal y modalidad de diálisis en cada evento.</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Ideal para tesis universitarias, publicaciones científicas y farmacometría hospitalaria.</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Reconstrucción de Eventos:</strong> <span class="mono" style="color:#38bdf8">EVID=1</span> (dosis y tasa de infusión), <span class="mono" style="color:#10b981">EVID=0</span> (niveles medidos), <span class="mono" style="color:#f59e0b">EVID=2</span> (cambios de creatinina / función renal).</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Clasificación de Perfiles Renales:</strong> Detección automática de <em>AKI</em> (aumento ≥ 0.3 mg/dL o ≥ 50% basal), <em>Recuperación Renal</em> o <em>Estabilidad</em>.</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Covariables Completas:</strong> <span class="mono">ID, TIME, EVID, AMT, RATE, DV, MDV, AGE, WT, SEX, SCR, CRCL, STRATUM, SETTING</span>.</li>
               </ul>
             </div>
             
+            <div>
+              <div class="code-block-dataset">
+                <div class="dataset-header">
+                  <span>dataset_poppk_pkbayes.csv</span>
+                  <span style="font-size:0.7rem;color:#10b981">NONMEM & Monolix Ready</span>
+                </div>
+<span class="dataset-row">ID,TIME,EVID,AMT,RATE,DV,MDV,AGE,WT,SEX,SCR,CRCL,SETTING</span>
+<span class="evid-1">0482,0.00,1,1000,1000,.,1,68,82,1,1.10,72.4,ICU</span>
+<span class="evid-0">0482,12.00,0,.,.,18.40,0,68,82,1,1.10,72.4,ICU</span>
+<span class="evid-2">0482,24.00,2,.,.,.,1,68,82,1,1.60,48.2,ICU_AKI</span>
+<span class="evid-1">0482,24.00,1,750,750,.,1,68,82,1,1.60,48.2,ICU_AKI</span>
+<span class="evid-0">0482,36.00,0,.,.,15.20,0,68,82,1,1.60,48.2,ICU_AKI</span>
+              </div>
+              <p class="text-secondary mt-8" style="font-size:0.8rem">Archivo estructurado listo para ejecutar modelos no lineales de efectos mixtos (NLME) para publicaciones científicas y acreditación hospitalaria.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 06 · Desempeño y Priors Institucionales -->
+      <div class="feature-detail" id="priors">
+        <div class="num">06</div>
+        <div>
+          <div class="flex items-center gap-8 flex-wrap">
+            <span class="badge badge-amber">Aprendizaje Continuo</span>
+            <span class="badge badge-primary">Ventaja Exclusiva</span>
+          </div>
+          <h3 class="mt-16">Panel de Desempeño Institucional y Priors Propios</h3>
+          <div class="feature-detail-body">
+            <div>
+              <p>Los modelos de literatura fueron desarrollados en poblaciones foráneas. PK-Bayes evalúa retrospectivamente el desempeño en tu propio centro mediante tres métricas estándar:</p>
+              
+              <ul class="mini-list mt-16">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>RMSE (Root Mean Square Error):</strong> Mide la precisión global de predicción en mg/L.</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>MAE (Mean Absolute Error):</strong> Magnitud media del error de predicción.</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Bias (Sesgo Medio):</strong> Detecta si el modelo sobrestima (+) o subestima (−) el aclaramiento local.</li>
+              </ul>
+
+              <p class="mt-16 text-secondary">Al acumular casos en un estrato de función renal (VFG), tu hospital puede <strong>calibrar un prior híbrido adaptativo</strong> con la epidemiología y patrones de prescripción propios.</p>
+            </div>
+            
             <div class="example-box">
-              <span class="label">Estructura del Dataset Exportado</span>
+              <span class="label">Métricas del Panel de Desempeño</span>
               <div class="table-wrap mt-8" style="border:none;background:transparent">
                 <table style="min-width:0">
-                  <thead><tr><th class="mono">ID</th><th class="mono">TIME</th><th class="mono">EVID</th><th class="mono">AMT</th><th class="mono">DV</th><th class="mono">CLCR</th></tr></thead>
+                  <thead><tr><th>Estrato VFG</th><th>RMSE Literatura</th><th>RMSE Prior Local</th><th>Estado</th></tr></thead>
                   <tbody>
-                    <tr><td class="mono">014</td><td class="mono">0.0</td><td class="mono">1</td><td class="mono">1000</td><td class="mono">.</td><td class="mono">54</td></tr>
-                    <tr><td class="mono">014</td><td class="mono">12.0</td><td class="mono">0</td><td class="mono">.</td><td class="mono">18.3</td><td class="mono">52</td></tr>
-                    <tr><td class="mono">014</td><td class="mono">24.0</td><td class="mono">1</td><td class="mono">1000</td><td class="mono">.</td><td class="mono">49</td></tr>
+                    <tr><td>30–45 mL/min</td><td class="mono">5.4 mg/L</td><td class="mono" style="color:var(--green);font-weight:700">2.4 mg/L</td><td><span class="badge badge-green">Prior Calibrado</span></td></tr>
+                    <tr><td>45–60 mL/min</td><td class="mono">3.2 mg/L</td><td class="mono" style="color:var(--green);font-weight:700">1.8 mg/L</td><td><span class="badge badge-green">Prior Calibrado</span></td></tr>
+                    <tr><td>60–90 mL/min</td><td class="mono">2.4 mg/L</td><td class="mono">2.2 mg/L</td><td><span class="badge badge-amber">Acumulando</span></td></tr>
                   </tbody>
                 </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 07 · Seguridad y Auditoría -->
+      <div class="feature-detail" id="seguridad">
+        <div class="num">07</div>
+        <div>
+          <div class="flex items-center gap-8 flex-wrap">
+            <span class="badge badge-green">Seguridad y Trazabilidad</span>
+            <span class="badge badge-primary">Auditoría Clínica</span>
+          </div>
+          <h3 class="mt-16">Seguridad, Auditoría Clínica y Control de Calidad QC</h3>
+          <div class="feature-detail-body">
+            <div>
+              <p>Diseñado para los más altos estándares hospitalarios de integridad clínica y protección de datos:</p>
+              
+              <ul class="mini-list mt-16">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Auditoría Clínica por Paciente (PatientChangeAuditModal):</strong> Trazabilidad completa por evento (quién, qué y cuándo se modificó cada dosis, creatinina o nivel).</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Validación Automática de Datos (Control de Calidad QC):</strong> Alertas visuales ante dosis duplicadas, tiempos de infusión incoherentes o niveles séricos inverosímiles.</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Aislamiento Institucional Multi-Tenant:</strong> Políticas estrictas de Row Level Security (RLS) en PostgreSQL / Supabase con cifrado TLS 1.3 de 256 bits.</li>
+              </ul>
+            </div>
+            
+            <div class="card" style="background:#f8fafc;border-color:var(--border)">
+              <span class="label" style="color:var(--text-muted)">Garantías de Cumplimiento</span>
+              <div class="qc-badge-row">
+                <span class="qc-pill verified">✓ Trazabilidad inmutable por usuario</span>
+                <span class="qc-pill verified">✓ RLS Multi-Tenant por Hospital</span>
+                <span class="qc-pill verified">✓ QC automático de niveles TDM</span>
+                <span class="qc-pill verified">✓ Cifrado bancario TLS 1.3</span>
               </div>
             </div>
           </div>

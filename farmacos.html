@@ -67,11 +67,11 @@
     <div class="container">
       <div class="section-head reveal">
         <div class="flex items-center gap-8 flex-wrap">
-          <span class="eyebrow">Antibiótico Crítico</span>
-          <span class="badge badge-primary">Guías ASHP/IDSA 2020</span>
+          <span class="eyebrow">Antibiótico Glicopéptido</span>
+          <span class="badge badge-primary">Consenso ASHP/IDSA/PIDS/SIDP 2020</span>
         </div>
-        <h2 class="mt-16">Vancomicina — Cinética Lineal y Modelos Multicompartimentales</h2>
-        <p class="lead">Las guías internacionales de consenso 2020 abandonaron el monitoreo exclusivo de valles (15–20 µg/mL) por su alto riesgo de nefrotoxicidad y establecieron como estándar de oro la dosificación guiada por <strong>AUC24/MIC (400–600 mg·h/L)</strong> mediante estimación bayesiana.</p>
+        <h2 class="mt-16">Vancomicina — Cinética Lineal Multicompartimental y ODEs</h2>
+        <p class="lead">Las guías internacionales de consenso 2020 abandonaron el monitoreo exclusivo de valles por su alto riesgo de nefrotoxicidad y establecieron como estándar de oro la dosificación guiada por <strong>AUC24/CIM (400–600 mg·h/L)</strong> mediante estimación bayesiana.</p>
       </div>
 
       <div class="table-wrap reveal">
@@ -81,59 +81,73 @@
               <th>Modelo Poblacional</th>
               <th>Compartimentos</th>
               <th>Referencia Bibliográfica</th>
-              <th>Población y Contexto Clínico</th>
+              <th>Optimización y Contexto Clínico</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><strong>Goti et al.</strong></td>
+              <td><strong>Goti et al. (2018)</strong></td>
               <td><span class="badge badge-primary">2 Comp.</span></td>
               <td class="mono">Goti CM et al., Ther Drug Monit 2018</td>
-              <td>Adultos hospitalizados generales y pacientes en UCI; recomendado como prior de amplio espectro.</td>
+              <td>Variabilidad interindividual de V1 optimizada a límites fisiológicos (~30% BSV) para evitar sobreajustes ante muestreos de 1 nivel valle en adultos y UCI.</td>
             </tr>
             <tr>
-              <td><strong>Rodvold et al.</strong></td>
+              <td><strong>Rodvold et al. (1988)</strong></td>
               <td><span class="badge badge-primary">2 Comp.</span></td>
               <td class="mono">Rodvold KA et al., Antimicrob Agents Chemother 1988</td>
-              <td>Modelo clásico de referencia con amplia validación histórica.</td>
+              <td>Modelo clásico de referencia para pacientes hospitalizados adultos con amplia validación histórica.</td>
             </tr>
             <tr>
-              <td><strong>Thomson et al.</strong></td>
+              <td><strong>Thomson et al. (2009)</strong></td>
               <td><span class="badge badge-primary">2 Comp.</span></td>
               <td class="mono">Thomson AH et al., J Antimicrob Chemother 2009</td>
-              <td>Validado en grandes cohortes hospitalarias británicas y europeas.</td>
+              <td>Modelo bicompartimental con covariables completas de peso corporal y función renal en pacientes hospitalarios.</td>
             </tr>
             <tr>
-              <td><strong>Yamamoto et al.</strong></td>
+              <td><strong>Yamamoto et al. (2009)</strong></td>
               <td><span class="badge badge-primary">2 Comp.</span></td>
               <td class="mono">Yamamoto M et al., Biol Pharm Bull 2009</td>
-              <td>Calibrado y validado en pacientes de ascendencia asiática.</td>
+              <td>Calibrado y validado en pacientes adultos con covariables ajustadas.</td>
             </tr>
             <tr>
               <td><strong>Modelo Simplificado</strong></td>
               <td><span class="badge badge-teal">1 Comp.</span></td>
               <td class="mono">Sawchuk-Zaske / 1-Compartment PK</td>
-              <td>Estimaciones preliminares rápidas cuando no se dispone de histórico multivariado.</td>
+              <td>Para evaluaciones rápidas a pie de cama o docencia clínica.</td>
+            </tr>
+            <tr>
+              <td><strong>Prior Institucional VFG</strong></td>
+              <td><span class="badge badge-green">Híbrido Local</span></td>
+              <td class="mono">Calibración Local por Hospital</td>
+              <td>Modelo adaptativo entrenado con los casos clínicos y patrones de prescripción del propio centro de salud.</td>
             </tr>
           </tbody>
         </table>
       </div>
 
-      <div class="grid grid-2 mt-32">
+      <div class="grid grid-3 mt-32">
         <div class="card reveal">
           <div class="advantage-icon-box teal">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>
           </div>
-          <h3 class="mt-16">Aclaramiento Renal Dinámico — CL(t)</h3>
-          <p class="text-secondary mt-8">En sepsis o shock, la función renal fluctúa drásticamente hora a hora. PK-Bayes modela la evolución temporal del aclaramiento <span class="mono">CL(t)</span> a partir de cada creatinina sérica registrada, recalculando el aclaramiento del fármaco de manera continua en lugar de asumir un valor fijo al ingreso.</p>
+          <h3 class="mt-16">ODEs Continuas (RK45) y CL(t)</h3>
+          <p class="text-secondary mt-8">En Falla Renal Aguda (AKI) y recuperación, el motor resuelve numéricamente la curva temporal mediante <code>scipy.integrate.solve_ivp</code> (Runge-Kutta 45), preservando la masa en A1(t) y A2(t) ante cada nueva creatinina.</p>
+        </div>
+
+        <div class="card reveal">
+          <div class="advantage-icon-box green">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <h3 class="mt-16">Dosificación Empírica Inicial</h3>
+          <p class="text-secondary mt-8">Calculadora inmediata de dosis de carga (25–35 mg/kg) y regímenes de mantenimiento antes de contar con niveles plasmáticos, ajustada a peso real, ideal o ajustado y Cockcroft-Gault / CKD-EPI.</p>
         </div>
 
         <div class="card reveal">
           <div class="advantage-icon-box amber">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v4M12 18v4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M2 12h4M18 12h4M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg>
           </div>
-          <h3 class="mt-16">Módulo de Diálisis y Terapias TRRC</h3>
-          <p class="text-secondary mt-8">Integra parámetros técnicos de sesión: flujo sanguíneo (<span class="mono">Qb</span>), tasa de efluente, duración del procedimiento y coeficiente de cribado del filtro. Permite dosificar con precisión milimétrica a pacientes en hemodiálisis intermitente o terapia continua de reemplazo renal.</p>
+          <h3 class="mt-16">Diálisis y Terapias TRRC</h3>
+          <p class="text-secondary mt-8">Modelado dinámico de CRRT continuo (tasa efluente y tamizado de filtro), Hemodiálisis Intermitente (Qb, duración y E_HD) y enfermedad renal crónica terminal.</p>
         </div>
       </div>
     </div>
@@ -144,34 +158,46 @@
     <div class="container">
       <div class="section-head reveal">
         <div class="flex items-center gap-8 flex-wrap">
-          <span class="eyebrow">Anticonvulsivante de Alto Riesgo</span>
-          <span class="badge badge-teal">Cinética Saturable</span>
+          <span class="eyebrow">Anticonvulsivante de Estrecho Margen</span>
+          <span class="badge badge-teal">Cinética No Lineal Saturable</span>
         </div>
-        <h2 class="mt-16">Fenitoína — Cinética No Lineal de Michaelis-Menten y Fracción Libre</h2>
-        <p class="lead">A dosis terapéuticas habituales, las enzimas hepáticas responsables del metabolismo de la fenitoína (CYP2C9 y CYP2C19) se saturan. Pequeños aumentos en la dosis diaria pueden provocar incrementos exponenciales y desproporcionados en los niveles plasmáticos.</p>
+        <h2 class="mt-16">Fenitoína — Michaelis-Menten y Corrección por Fracción Libre</h2>
+        <p class="lead">A dosis terapéuticas habituales, las enzimas hepáticas responsables del metabolismo de la fenitoína (CYP2C9 y CYP2C19) se saturan. Pequeños incrementos en la dosis diaria provocan aumentos desproporcionados en los niveles plasmáticos.</p>
       </div>
 
       <div class="grid grid-2">
         <div class="card reveal">
           <span class="badge badge-primary">Ecuación de Michaelis-Menten</span>
           <h3 class="mt-16">Estimación Bayesiana de Vmax y Km</h3>
-          <p class="text-secondary mt-8">La velocidad de eliminación de la fenitoína sigue la relación matemática:</p>
-          <div class="micro-chart-card mt-16" style="text-align:center;padding:16px;font-family:monospace;font-size:1.05rem;color:var(--primary);font-weight:700">
-            Velocidad (dosis/día) = (Vmax · C) / (Km + C)
+          <p class="text-secondary mt-8">Cálculo no lineal de concentración en estado estacionario y estimación individualizada de velocidad máxima metabólica (<span class="mono">Vmax</span>) y constante de Michaelis (<span class="mono">Km</span>):</p>
+          
+          <div class="formula-card mt-16">
+            <span class="formula-main">R = [ (Vmax · Css) / (Km + Css) ] · (S / F)</span>
+            <div class="formula-legend">
+              <span><strong>R:</strong> Dosis diaria requerida (mg/día)</span>
+              <span><strong>Css:</strong> Concentración estado estacionario</span>
+              <span><strong>S / F:</strong> Forma salina y biodisponibilidad</span>
+              <span><strong>Vmax, Km:</strong> Parámetros MAP individuales</span>
+            </div>
           </div>
-          <p class="text-secondary mt-16">PK-Bayes estima de manera individualizada la velocidad máxima de metabolismo (<span class="mono">Vmax</span>) y la constante de afinidad (<span class="mono">Km</span>), advirtiendo al médico cuándo el paciente entra en la zona vertical de riesgo tóxico.</p>
+          <p class="text-secondary mt-8">Alerta al clínico antes de que el paciente entre en la zona vertical hiperbólica de neurotoxicidad (ataxia, nistagmo, encefalopatía).</p>
         </div>
 
         <div class="card reveal">
-          <span class="badge badge-teal">Unión a Proteínas Plasmáticas</span>
-          <h3 class="mt-16">Corrección Automática de Sheiner-Tozer</h3>
-          <p class="text-secondary mt-8">La fenitoína se une en un 90% a la albúmina sérica. En pacientes con hipoalbuminemia (desnutrición, sepsis, quemados) o insuficiencia renal terminal (IRT), la fracción libre activa aumenta drásticamente aunque el nivel total reportado por laboratorio parezca "normal".</p>
+          <span class="badge badge-teal">Unión a Proteínas Plasmáticas (90%)</span>
+          <h3 class="mt-16">Normalización por Sheiner-Tozer</h3>
+          <p class="text-secondary mt-8">En pacientes con hipoalbuminemia (sepsis, quemados, desnutrición) o insuficiencia renal terminal en diálisis, la fracción libre activa aumenta peligrosamente aunque el nivel total reportado parezca dentro de rango.</p>
           
-          <div class="example-box teal mt-16">
-            <span class="label">Fórmula de Sheiner-Tozer Integrada</span>
-            <p><strong>C_corregida = C_medida / [(0.2 · Albúmina) + 0.1]</strong><br><small style="color:var(--text-muted)">(Factor 0.1 en pacientes con ClCr &lt; 20 mL/min / IRT)</small></p>
-            <p class="mt-8">Evita que el equipo clínico caiga en la falsa seguridad de un nivel de 14 mg/L cuando la fracción libre real ya supera el umbral de neurotoxicidad.</p>
+          <div class="formula-card teal mt-16">
+            <span class="formula-main">C_corregida = C_medida / [ (0.2 · Albúmina) + 0.1 ]</span>
+            <div class="formula-legend">
+              <span><strong>C_medida:</strong> Nivel sérico total (mg/L)</span>
+              <span><strong>Albúmina:</strong> Concentración sérica (g/dL)</span>
+              <span><strong>Factor 0.1:</strong> Pacientes con ClCr &lt; 20 mL/min / IRT</span>
+              <span><strong>Objetivo libre:</strong> 1.0 – 2.0 mg/L</span>
+            </div>
           </div>
+          <p class="text-secondary mt-8">Evita la falsa tranquilidad de un nivel de 14 mg/L cuando la fracción libre activa ya supera el umbral de intoxicación.</p>
         </div>
       </div>
     </div>

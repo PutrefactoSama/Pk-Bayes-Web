@@ -71,54 +71,49 @@
     </div>
   </section>
 
-  <!-- CASO 1 -->
+  <!-- CASO 1: AKI DINÁMICO & RK45 -->
   <section class="section">
     <div class="container">
       <div class="section-head reveal">
-        <span class="eyebrow">Caso 1 · Farmacéutico clínico en UCI</span>
-        <h2>Vancomicina en un paciente con función renal cambiante</h2>
-        <p>Paciente sintético <strong>#482</strong> — 68 años, varón, 82 kg, ingreso por sepsis de origen respiratorio. Función renal fluctuante durante el ingreso.</p>
+        <div class="flex items-center gap-8 flex-wrap">
+          <span class="eyebrow">Caso 1 · Farmacia Clínica & UCI</span>
+          <span class="badge badge-teal">ODEs Runge-Kutta 45</span>
+        </div>
+        <h2 class="mt-8">Vancomicina en Falla Renal Aguda Dinámica (AKI) y Recuperación</h2>
+        <p>Paciente sintético <strong>#482</strong> — 68 años, varón, 82 kg, ingreso en UCI por sepsis respiratoria con creatinina fluctuante (1.1 → 1.6 → 2.4 → 1.8 mg/dL).</p>
       </div>
 
       <div class="timeline reveal">
         <div class="timeline-step">
           <div class="timeline-dot">1</div>
           <div class="timeline-card">
-            <h4>Ingreso y primera dosis</h4>
-            <p>Se registra al paciente con peso, talla y creatinina inicial (1.1 mg/dL). PK-Bayes propone una dosis de carga basada en el modelo poblacional Goti et al. 2018.</p>
-            <div class="tags"><span class="badge badge-primary">Vancomicina</span><span class="badge badge-navy" style="background:#eef1f6;color:var(--text-muted)">Creatinina 1.1 mg/dL</span></div>
+            <h4>Ingreso y Dosificación Empírica Guiada por AUC</h4>
+            <p>Se registra peso, talla y creatinina sérica inicial (1.1 mg/dL, ClCr 72 mL/min). PK-Bayes propone dosis de carga de 25 mg/kg (2000 mg en infusión de 2h) y mantenimiento de 1000 mg q12h basado en Goti et al. 2018 (BSV V1 ~30%).</p>
+            <div class="tags"><span class="badge badge-primary">Vancomicina</span><span class="badge badge-navy" style="background:#eef1f6;color:var(--text-muted)">Cr 1.1 mg/dL · ClCr 72 mL/min</span></div>
           </div>
         </div>
         <div class="timeline-step is-alert">
           <div class="timeline-dot">2</div>
           <div class="timeline-card">
-            <h4>Primer nivel medido (TDM)</h4>
-            <p>A las 24h se obtiene un nivel valle de <strong>9.8 mg/L</strong>, por debajo del rango objetivo. La creatinina sube a 1.6 mg/dL — la función renal se está deteriorando.</p>
-            <div class="tags"><span class="badge badge-amber">Valle bajo</span><span class="badge badge-red">Función renal en descenso</span></div>
+            <h4>Deterioro Renal (AKI) y TDM a las 24h</h4>
+            <p>La creatinina asciende bruscamente a <strong>1.6 mg/dL</strong> (AKI estadio 1). Se extrae nivel TDM aleatorio a las 24h reportando <strong>18.4 mg/L</strong>. En sistemas estáticos se asumiría error o se promediaría a ciegas; PK-Bayes resuelve por tramos mediante <code>scipy.integrate.solve_ivp</code> preservando la masa en A1(t) y A2(t).</p>
+            <div class="tags"><span class="badge badge-amber">Nivel 18.4 mg/L</span><span class="badge badge-red">AKI: Cr 1.6 mg/dL (ClCr 48 mL/min)</span></div>
           </div>
         </div>
         <div class="timeline-step">
           <div class="timeline-dot">3</div>
           <div class="timeline-card">
-            <h4>Recálculo bayesiano MAP</h4>
-            <p>PK-Bayes combina el nuevo nivel con el CL(t) actualizado según la creatinina más reciente, recalculando el CL y Vd individuales del paciente en segundos.</p>
-            <div class="tags"><span class="badge badge-primary">Estimación MAP</span></div>
+            <h4>Recálculo Bayesiano MAP Instantáneo</h4>
+            <p>El motor actualiza los parámetros individuales en &lt; 100 ms: el aclaramiento individual cae a <strong>CL = 2.65 L/h</strong> y Vd = 54.2 L. Si se mantuviese la pauta de 1000 mg q12h, el AUC24 acumulado superaría los 680 mg·h/L con alto riesgo de nefrotoxicidad severa.</p>
+            <div class="tags"><span class="badge badge-primary">CL Indiv: 2.65 L/h</span><span class="badge badge-teal">Preservación de masa RK45</span></div>
           </div>
         </div>
         <div class="timeline-step is-done">
           <div class="timeline-dot">4</div>
           <div class="timeline-card">
-            <h4>Ajuste de dosis y nueva simulación</h4>
-            <p>El sistema simula un nuevo esquema (dosis ajustada, mismo intervalo) y predice un valle proyectado de <strong>17.2 mg/L</strong> — dentro del rango objetivo.</p>
-            <div class="tags"><span class="badge badge-green">En rango proyectado</span></div>
-          </div>
-        </div>
-        <div class="timeline-step is-done">
-          <div class="timeline-dot">5</div>
-          <div class="timeline-card">
-            <h4>Seguimiento</h4>
-            <p>El paciente queda marcado con la alerta "En rango" en verde, visible para todo el equipo sin tener que abrir su ficha completa.</p>
-            <div class="tags"><span class="badge badge-green">Estable</span></div>
+            <h4>Simulación What-If y Ajuste de Prescripción</h4>
+            <p>El farmacéutico simula una reducción a <strong>750 mg q12h</strong> (o 1000 mg q18h). La predicción en estado estacionario proyecta un <strong>AUC24/CIM de 485 mg·h/L</strong> y valle de 16.2 mg/L, situando al paciente en el rango óptimo según el consenso ASHP 2020.</p>
+            <div class="tags"><span class="badge badge-green">Diana Alcanzada: AUC24 485 mg·h/L</span></div>
           </div>
         </div>
       </div>
@@ -127,32 +122,32 @@
         <div class="simulator-head">
           <div>
             <span class="badge badge-teal"><span class="badge-dot"></span> Prueba tú mismo</span>
-            <h4 class="mt-8">Reproduce el ajuste de dosis del paciente #482</h4>
+            <h4 class="mt-8">Reproduce el ajuste What-If del paciente #482</h4>
           </div>
-          <span class="text-muted" style="font-size:.82rem">Modelo ilustrativo de 1 compartimento</span>
+          <span class="text-muted" style="font-size:.82rem">Modelo educativo ilustrativo interactivo</span>
         </div>
         <div class="simulator-body">
           <div class="simulator-controls">
             <div class="control-group">
-              <div class="control-label"><span>Dosis</span><span class="val" data-out="dose">1000 mg</span></div>
-              <input type="range" min="500" max="2000" step="250" value="1000" data-ctrl="dose">
+              <div class="control-label"><span>Dosis</span><span class="val" data-out="dose">750 mg</span></div>
+              <input type="range" min="500" max="2000" step="250" value="750" data-ctrl="dose">
             </div>
             <div class="control-group">
               <div class="control-label"><span>Intervalo</span><span class="val" data-out="interval">12 h</span></div>
               <select class="control-select" data-ctrl="interval">
-                <option value="8">Cada 8 horas</option>
-                <option value="12" selected>Cada 12 horas</option>
-                <option value="24">Cada 24 horas</option>
+                <option value="8">Cada 8 horas (q8h)</option>
+                <option value="12" selected>Cada 12 horas (q12h)</option>
+                <option value="24">Cada 24 horas (q24h)</option>
               </select>
             </div>
             <div class="control-group">
-              <div class="control-label"><span>Aclaramiento renal (CL)</span><span class="val" data-out="cl">2.6 L/h</span></div>
-              <input type="range" min="1.5" max="8" step="0.1" value="2.6" data-ctrl="cl">
-              <div class="text-muted" style="font-size:.78rem;margin-top:6px">Baja el CL para simular el deterioro renal del paciente</div>
+              <div class="control-label"><span>Aclaramiento (CL)</span><span class="val" data-out="cl">2.65 L/h</span></div>
+              <input type="range" min="1.5" max="8" step="0.1" value="2.65" data-ctrl="cl">
+              <div class="text-muted" style="font-size:.78rem;margin-top:6px">Simula el aclaramiento individual recalculado</div>
             </div>
             <div class="control-group">
-              <div class="control-label"><span>Volumen distribución (Vd)</span><span class="val" data-out="vd">52 L</span></div>
-              <input type="range" min="28" max="70" step="1" value="52" data-ctrl="vd">
+              <div class="control-label"><span>Volumen distribución (Vd)</span><span class="val" data-out="vd">54 L</span></div>
+              <input type="range" min="28" max="70" step="1" value="54" data-ctrl="vd">
             </div>
             <div class="sim-readouts">
               <div class="sim-readout"><div class="k">Pico estimado</div><div class="v" data-out="peak">–</div></div>
@@ -163,7 +158,7 @@
             <svg data-chart viewBox="0 0 640 320" role="img" aria-label="Curva de concentración simulada"></svg>
             <div class="flex justify-between mt-16" style="font-size:.78rem;flex-wrap:wrap;gap:8px">
               <span><span style="display:inline-block;width:10px;height:10px;background:var(--teal);border-radius:50%;margin-right:6px"></span>Concentración simulada</span>
-              <span><span style="display:inline-block;width:10px;height:10px;background:var(--green);border-radius:50%;margin-right:6px"></span>Rango objetivo ilustrativo (15–20 mg/L)</span>
+              <span><span style="display:inline-block;width:10px;height:10px;background:var(--green);border-radius:50%;margin-right:6px"></span>Diana terapéutica (AUC24/CIM 400–600 mg·h/L)</span>
             </div>
           </div>
         </div>
@@ -171,94 +166,123 @@
     </div>
   </section>
 
-  <!-- CASO 2 -->
+  <!-- CASO 2: TERAPIA DE REEMPLAZO RENAL CONTINUO (CRRT) -->
   <section class="section section-alt">
     <div class="container">
       <div class="section-head reveal">
-        <span class="eyebrow">Caso 2 · Médico en Neurología</span>
-        <h2>Fenitoína con hipoalbuminemia: un nivel "normal" que engaña</h2>
-        <p>Paciente sintético <strong>#205</strong> — 45 años, mujer, ingreso por estatus epiléptico. Albúmina sérica baja (2.4 g/dL).</p>
+        <div class="flex items-center gap-8 flex-wrap">
+          <span class="eyebrow">Caso 2 · Medicina Intensiva & Nefrología</span>
+          <span class="badge badge-green">TRRC / CVVHDF</span>
+        </div>
+        <h2 class="mt-8">Vancomicina en Shock Séptico y Hemodiafiltración Continua</h2>
+        <p>Paciente sintético <strong>#612</strong> — 54 años, varón, 78 kg en anuria bajo CVVHDF con tasa de efluente de 30 mL/kg/h.</p>
       </div>
       <div class="timeline reveal">
         <div class="timeline-step">
           <div class="timeline-dot">1</div>
           <div class="timeline-card">
-            <h4>Nivel total medido</h4>
-            <p>Se reporta un nivel total de fenitoína de <strong>14 mg/L</strong> — dentro del rango de referencia habitual (10–20 mg/L). A simple vista, parece un valor tranquilizador.</p>
-            <div class="tags"><span class="badge badge-primary">Fenitoína</span><span class="badge badge-navy" style="background:#eef1f6;color:var(--text-muted)">Albúmina 2.4 g/dL</span></div>
+            <h4>Parametrización de la Terapia Extracorpórea</h4>
+            <p>El intensivista ingresa los parámetros técnicos del circuito: Tasa de Efluente = 2.340 mL/h (30 mL/kg/h), Coeficiente de Tamizado del filtro polisulfona S = 0.80 y Aclaramiento residual = 0 L/h (anuria).</p>
+            <div class="tags"><span class="badge badge-primary">CVVHDF</span><span class="badge badge-navy" style="background:#eef1f6;color:var(--text-muted)">Efluente 30 mL/kg/h · S = 0.8</span></div>
           </div>
         </div>
-        <div class="timeline-step is-alert">
+        <div class="timeline-step">
           <div class="timeline-dot">2</div>
           <div class="timeline-card">
-            <h4>Corrección de Sheiner-Tozer</h4>
-            <p>PK-Bayes aplica la corrección por albúmina baja y recalcula la fracción libre farmacológicamente activa — revelando un riesgo de toxicidad enmascarado por el nivel total "normal".</p>
-            <div class="tags"><span class="badge badge-red">Riesgo enmascarado</span></div>
-          </div>
-        </div>
-        <div class="timeline-step is-alert">
-          <div class="timeline-dot">3</div>
-          <div class="timeline-card">
-            <h4>Alerta clínica</h4>
-            <p>La ficha del paciente muestra la alerta "Riesgo de toxicidad", pese a que el nivel bruto inicial parecía aceptable a primera vista.</p>
-            <div class="tags"><span class="badge badge-red">Acción requerida</span></div>
+            <h4>Cálculo Dinámico de Aclaramiento Extracorpóreo</h4>
+            <p>PK-Bayes calcula automáticamente <span class="mono">CL_CRRT = (2.34 L/h × 0.80) = 1.87 L/h</span> y parametriza el volumen de distribución aumentado por reanimación hídrica (Vd = 62 L).</p>
+            <div class="tags"><span class="badge badge-teal">CL_CRRT = 1.87 L/h</span></div>
           </div>
         </div>
         <div class="timeline-step is-done">
-          <div class="timeline-dot">4</div>
+          <div class="timeline-dot">3</div>
           <div class="timeline-card">
-            <h4>Ajuste y seguimiento</h4>
-            <p>El equipo clínico reduce la dosis con base en el nivel corregido y programa un nuevo control en 24 horas para confirmar la respuesta.</p>
-            <div class="tags"><span class="badge badge-green">Plan de seguimiento</span></div>
+            <h4>Prescripción Óptima sin Riesgo de Subdosificación</h4>
+            <p>Los nomogramas convencionales subdosifican a estos pacientes al tratarlos como "falla renal terminal estándar". PK-Bayes propone una dosis de carga de 1.750 mg seguida de 1.000 mg cada 24h, logrando AUC24 de 510 mg·h/L y control rápido de la bacteriemia.</p>
+            <div class="tags"><span class="badge badge-green">Eficacia Máxima sin Toxicidad</span></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CASO 3 -->
+  <!-- CASO 3: FENITOÍNA & SHEINER-TOZER -->
   <section class="section">
     <div class="container">
       <div class="section-head reveal">
-        <span class="eyebrow">Caso 3 · Farmacometrista / Investigador</span>
-        <h2>De la calibración institucional a un dataset PopPK</h2>
-        <p>Vista de cohorte completa, sin un paciente individual — así se ve la mejora continua del modelo a nivel de todo el hospital.</p>
+        <div class="flex items-center gap-8 flex-wrap">
+          <span class="eyebrow">Caso 3 · Neurología & Farmacia</span>
+          <span class="badge badge-amber">Cinética Saturable Michaelis-Menten</span>
+        </div>
+        <h2 class="mt-8">Fenitoína con Hipoalbuminemia: El Peligro del Nivel "Aparentemente Normal"</h2>
+        <p>Paciente sintética <strong>#205</strong> — 45 años, mujer, 58 kg, ingreso por crisis convulsivas en racimo. Albúmina sérica de 2.4 g/dL.</p>
       </div>
       <div class="timeline reveal">
         <div class="timeline-step">
           <div class="timeline-dot">1</div>
           <div class="timeline-card">
-            <h4>Acumulación de casos</h4>
-            <p>Tras varios meses de uso, el rango de función renal (VFG) "30–45 mL/min" acumula suficientes casos válidos de vancomicina, superando el umbral mínimo de calibración institucional.</p>
-            <div class="tags"><span class="badge badge-primary">Umbral superado</span></div>
+            <h4>Nivel Total Notificado por Laboratorio</h4>
+            <p>Se reporta un nivel sérico total de fenitoína de <strong>14.0 mg/L</strong> — dentro de la ventana histórica convencional (10–20 mg/L). A simple vista, el valor parece seguro.</p>
+            <div class="tags"><span class="badge badge-primary">Fenitoína Total: 14.0 mg/L</span><span class="badge badge-navy" style="background:#eef1f6;color:var(--text-muted)">Albúmina: 2.4 g/dL</span></div>
           </div>
         </div>
-        <div class="timeline-step">
+        <div class="timeline-step is-alert">
           <div class="timeline-dot">2</div>
           <div class="timeline-card">
-            <h4>Evaluación en el Panel de Desempeño Institucional</h4>
-            <p>El panel compara el modelo Rodvold et al. 1988 frente a los datos reales del hospital para ese rango VFG: RMSE 5.4 mg/L, Bias −2.3 mg/L — el modelo tiende a subestimar el aclaramiento en esta población.</p>
-            <div class="tags"><span class="badge badge-amber">Sesgo detectado</span></div>
+            <h4>Normalización Inmediata por Sheiner-Tozer</h4>
+            <p>PK-Bayes aplica la ecuación <span class="mono">C_corregida = 14.0 / [(0.2 × 2.4) + 0.1] = 24.1 mg/L</span>. Al tener solo 2.4 g/dL de albúmina, la fracción libre de fármaco no unido a proteínas se encuentra en <strong>2.4 mg/L</strong> (rango seguro: 1.0–2.0 mg/L).</p>
+            <div class="tags"><span class="badge badge-red">Nivel Corregido Real: 24.1 mg/L (Tóxico)</span></div>
           </div>
         </div>
         <div class="timeline-step is-done">
           <div class="timeline-dot">3</div>
           <div class="timeline-card">
-            <h4>Calibración del prior local</h4>
-            <p>Se habilita el prior institucional para ese rango VFG, con mejor ajuste frente a los datos reales (RMSE 2.4 mg/L) — ahora se muestra como parámetro "Institucional" en la ficha de cada paciente.</p>
-            <div class="tags"><span class="badge badge-green">Prior local activo</span></div>
-          </div>
-        </div>
-        <div class="timeline-step is-done">
-          <div class="timeline-dot">4</div>
-          <div class="timeline-card">
-            <h4>Exportación PopPK</h4>
-            <p>El farmacometrista exporta el dataset de ese hospital en formato compatible con NONMEM, para un análisis poblacional más profundo.</p>
-            <div class="tags"><span class="badge badge-teal">Export .csv</span></div>
+            <h4>Ajuste no lineal de Michaelis-Menten</h4>
+            <p>El motor estima <span class="mono">Vmax = 7.2 mg/kg/día</span> y <span class="mono">Km = 4.8 mg/L</span>, indicando que el paciente opera en la zona no lineal saturable. Se desescala la dosis diaria de 350 mg a 275 mg/día, resolviendo los síntomas tempranos de ataxia y nistagmo.</p>
+            <div class="tags"><span class="badge badge-green">Dosis Ajustada con Éxito</span></div>
           </div>
         </div>
       </div>
-      <p class="center mt-32 reveal"><a href="funcionalidades.html#desempeno" class="btn btn-secondary">Ver cómo funciona el Panel de Desempeño →</a></p>
+    </div>
+  </section>
+
+  <!-- CASO 4: FARMACOMETRÍA POPPK & DASHBOARD -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <div class="flex items-center gap-8 flex-wrap">
+          <span class="eyebrow">Caso 4 · Farmacometría e Investigación</span>
+          <span class="badge badge-teal">NONMEM · Monolix · Dashboard</span>
+        </div>
+        <h2 class="mt-8">De la Cohorte Hospitalaria al Estudio PopPK y Calibración Local</h2>
+        <p>Servicio de Farmacia Clínica — Análisis longitudinal de 150 pacientes con vancomicina y exportación PopPK automatizada.</p>
+      </div>
+      <div class="timeline reveal">
+        <div class="timeline-step">
+          <div class="timeline-dot">1</div>
+          <div class="timeline-card">
+            <h4>Monitoreo en el Dashboard Longitudinal Pareado</h4>
+            <p>El equipo visualiza en tiempo real las trayectorias sincronizadas de dosis diaria vs niveles plasmáticos, comparando camas básicas vs UCI con cálculo dinámico de Media e Intervalo de Confianza del 95% (IC95%).</p>
+            <div class="tags"><span class="badge badge-primary">Multiselección de Cohorte</span><span class="badge badge-teal">IC95% Dinámico</span></div>
+          </div>
+        </div>
+        <div class="timeline-step">
+          <div class="timeline-dot">2</div>
+          <div class="timeline-card">
+            <h4>Detección de Sesgo y Calibración de Prior Institucional</h4>
+            <p>En el estrato VFG 30–45 mL/min, el Panel de Desempeño detecta que los modelos foráneos tienen RMSE de 5.4 mg/L. Al calibrar el prior local con los datos del centro, el error se reduce a RMSE 2.4 mg/L.</p>
+            <div class="tags"><span class="badge badge-green">Prior Institucional Activo</span></div>
+          </div>
+        </div>
+        <div class="timeline-step is-done">
+          <div class="timeline-dot">3</div>
+          <div class="timeline-card">
+            <h4>Exportación PopPK en 1 Clic con Eventos EVID=0,1,2</h4>
+            <p>El investigador descarga el dataset estructurado en formato CSV UTF-8 con BOM (\uFEFF) para correr modelos no lineales de efectos mixtos (NLME) en NONMEM, Monolix y R sin requerir limpieza manual de datos.</p>
+            <div class="tags"><span class="badge badge-teal">Dataset NONMEM/Monolix Listo</span></div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
