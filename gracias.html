@@ -2,9 +2,9 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Pago Confirmado — PK-Bayes</title>
+  <title>Inscripción y Pago Confirmado — PK-Bayes</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Tu pago se ha procesado correctamente. Accede ahora a la plataforma PK-Bayes.">
+  <meta name="description" content="Tu inscripción y pago se han procesado correctamente. Tu acceso institucional está en proceso de activación.">
   <meta name="theme-color" content="#0a192f">
   <meta name="robots" content="noindex">
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
@@ -36,6 +36,8 @@
         <a href="ejemplos.html" data-i18n="nav.cases">Casos clínicos</a>
       </nav>
       <div class="nav-actions">
+        <a href="acceso.html" class="btn btn-secondary btn-sm hide-mobile" data-i18n="nav.login">Acceso clientes</a>
+        
         <!-- Selector de Idioma -->
         <div class="lang-selector">
           <button class="lang-btn" type="button" aria-label="Cambiar idioma">
@@ -50,8 +52,6 @@
             <button type="button" class="lang-item" data-lang="ja"><span class="lang-flag">🇯🇵</span> <span>日本語</span><span class="lang-check">✓</span></button>
           </div>
         </div>
-
-        <a href="acceso.html" class="btn btn-secondary btn-sm hide-mobile" data-i18n="nav.login">Acceso clientes</a>
       </div>
     </div>
   </div>
@@ -60,21 +60,62 @@
 <main>
   <section class="section">
     <div class="container">
-      <div class="auth-shell">
-        <div class="card auth-card reveal center">
-          <div class="auth-icon" style="background:var(--green);margin-left:auto;margin-right:auto">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="26" height="26"><path d="M20 6 9 17l-5-5"/></svg>
+      <div class="auth-shell" style="max-width:680px;margin:0 auto">
+        <div class="card auth-card reveal center" style="padding:36px">
+          <div class="auth-icon" style="background:var(--green);margin-left:auto;margin-right:auto;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="30" height="30"><path d="M20 6 9 17l-5-5"/></svg>
           </div>
-          <h1 class="h2">¡Pago confirmado!</h1>
-          <p class="text-secondary mt-8">Gracias por tu compra. Hemos enviado la confirmación y los detalles de facturación a tu correo electrónico.</p>
-          <p class="text-muted mt-16" style="font-size:.8rem" id="session-ref"></p>
-          <a href="#" data-app-link class="btn btn-primary btn-lg btn-block mt-24">Entrar a PK-Bayes →</a>
-          <a href="index.html" class="btn btn-ghost btn-block mt-8" data-i18n="nav.home">Volver al inicio</a>
+          
+          <h1 class="h2 mt-20">¡Inscripción y Pago Confirmados!</h1>
+          <p class="lead mt-12" style="font-size:1.05rem;color:var(--text-secondary)">
+            Hemos recibido tu suscripción al <strong>Plan Completo de PK-Bayes</strong>. Se ha enviado un correo electrónico de confirmación con el recibo de tu transacción.
+          </p>
+
+          <!-- Timeline / Estado de Activación -->
+          <div class="mt-28" style="background:#f8fafc;border:1px solid var(--border);border-radius:12px;padding:20px;text-align:left">
+            <h3 style="font-size:0.95rem;font-weight:700;color:var(--text-primary);margin-bottom:14px">Estado del Proceso de Activación:</h3>
+            
+            <div style="display:flex;flex-direction:column;gap:14px;font-size:0.88rem">
+              <div style="display:flex;align-items:flex-start;gap:10px">
+                <span style="color:var(--green);font-weight:700">✓</span>
+                <div>
+                  <strong>Paso 1: Pago y registro recibido</strong>
+                  <div style="color:var(--text-muted);font-size:0.8rem">Confirmado a través de Stripe.</div>
+                </div>
+              </div>
+
+              <div style="display:flex;align-items:flex-start;gap:10px">
+                <span style="color:var(--primary);font-weight:700">⏳</span>
+                <div>
+                  <strong style="color:var(--primary)">Paso 2: Aprovisionamiento institucional (En curso)</strong>
+                  <div style="color:var(--text-secondary);font-size:0.82rem;margin-top:2px">
+                    Durante las <strong>próximas horas</strong>, nuestro equipo técnico habilitará el entorno seguro para tu institución.
+                  </div>
+                </div>
+              </div>
+
+              <div style="display:flex;align-items:flex-start;gap:10px">
+                <span style="color:var(--text-muted);font-weight:700">✉️</span>
+                <div>
+                  <strong>Paso 3: Notificación de acceso con credenciales activas</strong>
+                  <div style="color:var(--text-muted);font-size:0.8rem">Recibirás un segundo correo con tus claves de usuario y el enlace directo para operar en <code>app.pk-bayes.com</code>.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-muted mt-20" style="font-size:.82rem" id="session-ref"></p>
+          
+          <div class="mt-24 flex items-center justify-center gap-12 flex-wrap">
+            <a href="index.html" class="btn btn-primary" data-i18n="nav.home">Volver al inicio</a>
+            <a href="acceso.html" class="btn btn-secondary" data-i18n="nav.login">Ir a Acceso Clientes</a>
+          </div>
         </div>
-        <div class="card mt-24 reveal">
-          <h3 class="h4">¿No recibiste el correo de confirmación?</h3>
-          <p class="text-secondary mt-8" style="font-size:.9rem">Revisa la carpeta de spam o escríbenos y lo resolvemos.</p>
-          <a href="#" data-contact-email data-subject="No recibí confirmación de pago — PK-Bayes" class="btn btn-ghost mt-16" style="padding-left:0">Contactar soporte →</a>
+
+        <div class="card mt-24 reveal" style="padding:24px">
+          <h3 class="h4">¿Requieres dar de alta a miembros adicionales de tu equipo o agilizar tu acceso?</h3>
+          <p class="text-secondary mt-8" style="font-size:.9rem">Escríbenos directamente indicando el nombre de tu hospital o institución y te asistiremos de inmediato.</p>
+          <a href="#" data-contact-email data-subject="Activación de cuenta institucional — PK-Bayes" class="btn btn-ghost mt-12" style="padding-left:0;color:var(--primary);font-weight:600">Contactar a soporte y operaciones →</a>
         </div>
       </div>
     </div>
@@ -98,7 +139,7 @@
     const sid = params.get("session_id");
     const el = document.getElementById("session-ref");
     if (sid && el) {
-      el.textContent = "Referencia de pago: " + sid.slice(0, 24) + (sid.length > 24 ? "…" : "");
+      el.textContent = "Referencia de transacción: " + sid.slice(0, 24) + (sid.length > 24 ? "…" : "");
     }
   })();
 </script>
