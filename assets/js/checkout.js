@@ -1,13 +1,9 @@
 /**
- * PK-Bayes — Checkout con Stripe (integración sin backend)
+ * PK-Bayes — Checkout con Stripe
  * ---------------------------------------------------------------
- * Usa Stripe.js "redirectToCheckout" con Price IDs predefinidos.
- * Solo necesita la clave PÚBLICA (pk_...) — nunca una clave secreta.
- * Ref: https://stripe.com/docs/payments/checkout/client
- *
- * Si PKBAYES_CONFIG todavía tiene los valores de ejemplo, se muestra
- * un aviso in situ explicando qué falta configurar, en vez de
- * intentar un cobro real o fallar sin explicación.
+ * Soporta dos métodos:
+ * 1. Stripe Payment Link directo (URL de Checkout alojada por Stripe)
+ * 2. Stripe.js redirectToCheckout con Price ID y clave pública
  */
 (function () {
   "use strict";
@@ -18,23 +14,35 @@
 
   async function startCheckout(planKey, button) {
     const cfg = window.PKBAYES_CONFIG;
+
+    // 1. Si existe un Stripe Payment Link directo configurado
+    if (cfg && cfg.STRIPE_PAYMENT_LINK && cfg.STRIPE_PAYMENT_LINK.trim() !== "" && !isPlaceholder(cfg.STRIPE_PAYMENT_LINK)) {
+      const originalText = button.textContent;
+      button.disabled = true;
+      button.textContent = "Redirigiendo a Stripe…";
+      window.location.href = cfg.STRIPE_PAYMENT_LINK.trim();
+      return;
+    }
+
     const plan = cfg && cfg.PRICES ? cfg.PRICES[planKey] : null;
 
+    // 2. Si no hay Payment Link ni clave configurada, avisar amigablemente
     if (!cfg || isPlaceholder(cfg.STRIPE_PUBLISHABLE_KEY) || !plan || isPlaceholder(plan.id)) {
       window.pkbayesToast(
-        "Stripe todavía no está configurado",
-        "Añade tu clave pública y los Price ID de cada plan en assets/js/config.js para activar el cobro real."
+        "Configuración de Stripe requerida",
+        "Para procesar pagos reales de $1.350 USD/año, ingresa tu Stripe Payment Link (https://buy.stripe.com/...) o tu clave pública y Price ID en assets/js/config.js."
       );
       return;
     }
 
+    // 3. Checkout con Stripe.js
     const originalText = button.textContent;
     button.disabled = true;
     button.textContent = "Redirigiendo a pago seguro…";
 
     try {
       if (!window.Stripe) {
-        throw new Error("Stripe.js no se cargó (revisa tu conexión o bloqueadores de script).");
+        throw new Error("Stripe.js no se cargó (revisa tu conexión a internet).");
       }
       const stripe = window.Stripe(cfg.STRIPE_PUBLISHABLE_KEY);
       const base = location.href.replace(/[^/]*$/, "");
