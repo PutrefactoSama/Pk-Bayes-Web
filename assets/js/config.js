@@ -21,10 +21,10 @@ window.PKBAYES_CONFIG = {
 
   // OPCIÓN A: Enlace de pago directo de Stripe (Payment Link)
   // Si tienes un Payment Link de Stripe, pégalo aquí:
-  STRIPE_PAYMENT_LINK: "",
+  STRIPE_PAYMENT_LINK: "https://buy.stripe.com/test_14A5kvbzE9O6cJrb4teQM00",
 
   // OPCIÓN B: Checkout con Stripe.js
-  STRIPE_PUBLISHABLE_KEY: "pk_live_TU_CLAVE_PUBLICA_AQUI",
+  STRIPE_PUBLISHABLE_KEY: "pk_test_51U2NE3191OQzNkCPqF3NAKDjcDCDs91h4tWI9ctVDWPHDL5CG16q7eJAIfM2dGzenKkpofmmWxXfwyPlenxfNtsQ00DqMxReFf",
 
   PRICES: {
     plan_completo: {
