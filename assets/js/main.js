@@ -127,10 +127,13 @@
     el.textContent = new Date().getFullYear();
   });
 
-  /* ---------- Enlaces "Acceder a la app" / mailto centralizados por config.js ---------- */
+  /* ---------- Enlaces "Acceder a la app" / "Registrarse" / mailto centralizados por config.js ---------- */
   if (window.PKBAYES_CONFIG) {
     document.querySelectorAll("[data-app-link]").forEach((el) => {
       el.setAttribute("href", PKBAYES_CONFIG.APP_URL);
+    });
+    document.querySelectorAll("[data-register-link]").forEach((el) => {
+      el.setAttribute("href", PKBAYES_CONFIG.REGISTER_URL || PKBAYES_CONFIG.APP_URL);
     });
     document.querySelectorAll("[data-contact-email]").forEach((el) => {
       const subject = el.getAttribute("data-subject") || "Consulta sobre PK-Bayes";

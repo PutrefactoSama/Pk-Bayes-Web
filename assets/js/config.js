@@ -13,8 +13,11 @@
  * 2) Pega el Price ID de tu producto en PRICES.plan_completo.id ("price_...")
  */
 window.PKBAYES_CONFIG = {
-  // URL real de la aplicación clínica PK-Bayes
+  // URL de acceso a la aplicación clínica PK-Bayes
   APP_URL: "https://app.pk-bayes.com",
+
+  // URL directa de registro / prueba gratuita (14 días)
+  REGISTER_URL: "https://app.pk-bayes.com",
 
   // Email de contacto comercial / soporte
   CONTACT_EMAIL: "pabloisaezr@gmail.com",
