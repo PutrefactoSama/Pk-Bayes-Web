@@ -30,13 +30,28 @@
         </div>
       </a>
       <nav class="nav-links" aria-label="Navegación principal">
-        <a href="index.html">Inicio</a>
-        <a href="funcionalidades.html">Funcionalidades</a>
-        <a href="farmacos.html">Fármacos y modelos</a>
-        <a href="ejemplos.html">Casos clínicos</a>
+        <a href="index.html" data-i18n="nav.home">Inicio</a>
+        <a href="funcionalidades.html" data-i18n="nav.features">Funcionalidades</a>
+        <a href="farmacos.html" data-i18n="nav.drugs">Fármacos y modelos</a>
+        <a href="ejemplos.html" data-i18n="nav.cases">Casos clínicos</a>
       </nav>
       <div class="nav-actions">
-        <a href="acceso.html" class="btn btn-secondary btn-sm hide-mobile">Acceso clientes</a>
+        <!-- Selector de Idioma -->
+        <div class="lang-selector">
+          <button class="lang-btn" type="button" aria-label="Cambiar idioma">
+            <svg class="lang-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span class="lang-current-label">🇪🇸 Español</span>
+            <svg class="lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="lang-dropdown">
+            <button type="button" class="lang-item active" data-lang="es"><span class="lang-flag">🇪🇸</span> <span>Español</span><span class="lang-check">✓</span></button>
+            <button type="button" class="lang-item" data-lang="en"><span class="lang-flag">🇺🇸</span> <span>English</span><span class="lang-check">✓</span></button>
+            <button type="button" class="lang-item" data-lang="zh"><span class="lang-flag">🇨🇳</span> <span>中文</span><span class="lang-check">✓</span></button>
+            <button type="button" class="lang-item" data-lang="ja"><span class="lang-flag">🇯🇵</span> <span>日本語</span><span class="lang-check">✓</span></button>
+          </div>
+        </div>
+
+        <a href="acceso.html" class="btn btn-secondary btn-sm hide-mobile" data-i18n="nav.login">Acceso clientes</a>
       </div>
     </div>
   </div>
@@ -52,8 +67,8 @@
           </div>
           <h1 class="h2">Pago cancelado</h1>
           <p class="text-secondary mt-8">No se ha realizado ningún cargo a tu cuenta. Puedes retomar el proceso en cualquier momento.</p>
-          <a href="precios.html" class="btn btn-primary btn-lg btn-block mt-24">Volver a precios</a>
-          <a href="index.html" class="btn btn-ghost btn-block mt-8">Volver al inicio</a>
+          <a href="precios.html" class="btn btn-primary btn-lg btn-block mt-24" data-i18n="nav.cta">Volver a precios</a>
+          <a href="index.html" class="btn btn-ghost btn-block mt-8" data-i18n="nav.home">Volver al inicio</a>
         </div>
         <div class="card mt-24 reveal">
           <h3 class="h4">¿Tienes dudas antes de pagar?</h3>
@@ -68,12 +83,13 @@
 <footer class="site-footer">
   <div class="container">
     <div class="footer-bottom" style="border-top:none;padding-top:0">
-      <span>© <span data-year></span> PK-Bayes. Todos los derechos reservados.</span>
+      <span>© <span data-year></span> PK-Bayes. <span data-i18n="footer.rights">Todos los derechos reservados.</span></span>
     </div>
   </div>
 </footer>
 
 <script src="assets/js/config.js"></script>
+<script src="assets/js/i18n.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>

@@ -29,27 +29,58 @@
         </div>
       </a>
       <nav class="nav-links" aria-label="Navegación principal">
-        <a href="index.html">Inicio</a>
-        <a href="funcionalidades.html">Funcionalidades</a>
-        <a href="farmacos.html">Fármacos y modelos</a>
-        <a href="ejemplos.html">Casos clínicos</a>
+        <a href="index.html" data-i18n="nav.home">Inicio</a>
+        <a href="funcionalidades.html" data-i18n="nav.features">Funcionalidades</a>
+        <a href="farmacos.html" data-i18n="nav.drugs">Fármacos y modelos</a>
+        <a href="ejemplos.html" data-i18n="nav.cases">Casos clínicos</a>
       </nav>
       <div class="nav-actions">
-        <a href="acceso.html" class="btn btn-secondary btn-sm hide-mobile">Acceso clientes</a>
-        <a href="precios.html" class="btn btn-primary btn-sm">Empezar ahora</a>
+        <!-- Selector de Idioma -->
+        <div class="lang-selector">
+          <button class="lang-btn" type="button" aria-label="Cambiar idioma">
+            <svg class="lang-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span class="lang-current-label">🇪🇸 Español</span>
+            <svg class="lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="lang-dropdown">
+            <button type="button" class="lang-item active" data-lang="es"><span class="lang-flag">🇪🇸</span> <span>Español</span><span class="lang-check">✓</span></button>
+            <button type="button" class="lang-item" data-lang="en"><span class="lang-flag">🇺🇸</span> <span>English</span><span class="lang-check">✓</span></button>
+            <button type="button" class="lang-item" data-lang="zh"><span class="lang-flag">🇨🇳</span> <span>中文</span><span class="lang-check">✓</span></button>
+            <button type="button" class="lang-item" data-lang="ja"><span class="lang-flag">🇯🇵</span> <span>日本語</span><span class="lang-check">✓</span></button>
+          </div>
+        </div>
+
+        <a href="acceso.html" class="btn btn-secondary btn-sm hide-mobile" data-i18n="nav.login">Acceso clientes</a>
+        <a href="precios.html" class="btn btn-primary btn-sm" data-i18n="nav.cta">Empezar ahora</a>
         <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
     </div>
     <div class="mobile-menu">
-      <a href="index.html">Inicio</a>
-      <a href="funcionalidades.html">Funcionalidades</a>
-      <a href="farmacos.html">Fármacos y modelos</a>
-      <a href="ejemplos.html">Casos clínicos</a>
-      <a href="acceso.html">Acceso clientes</a>
+      <a href="index.html" data-i18n="nav.home">Inicio</a>
+      <a href="funcionalidades.html" data-i18n="nav.features">Funcionalidades</a>
+      <a href="farmacos.html" data-i18n="nav.drugs">Fármacos y modelos</a>
+      <a href="ejemplos.html" data-i18n="nav.cases">Casos clínicos</a>
+      <a href="acceso.html" data-i18n="nav.login">Acceso clientes</a>
+      
+      <!-- Selector de Idioma Móvil -->
+      <div class="lang-selector">
+        <button class="lang-btn" type="button" aria-label="Cambiar idioma">
+          <svg class="lang-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span class="lang-current-label">🇪🇸 Español</span>
+          <svg class="lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="lang-dropdown">
+          <button type="button" class="lang-item active" data-lang="es"><span class="lang-flag">🇪🇸</span> <span>Español</span><span class="lang-check">✓</span></button>
+          <button type="button" class="lang-item" data-lang="en"><span class="lang-flag">🇺🇸</span> <span>English</span><span class="lang-check">✓</span></button>
+          <button type="button" class="lang-item" data-lang="zh"><span class="lang-flag">🇨🇳</span> <span>中文</span><span class="lang-check">✓</span></button>
+          <button type="button" class="lang-item" data-lang="ja"><span class="lang-flag">🇯🇵</span> <span>日本語</span><span class="lang-check">✓</span></button>
+        </div>
+      </div>
+
       <div class="nav-actions">
-        <a href="precios.html" class="btn btn-primary btn-block">Empezar ahora</a>
+        <a href="precios.html" class="btn btn-primary btn-block" data-i18n="nav.cta">Empezar ahora</a>
       </div>
     </div>
   </div>
@@ -58,10 +89,10 @@
 <main>
   <section class="page-hero">
     <div class="container">
-      <div class="breadcrumb"><a href="index.html">Inicio</a> <span>/</span> <span>Empezar ahora</span></div>
-      <span class="eyebrow on-dark mt-16" style="display:inline-flex">Precios Transparentes</span>
-      <h1>Prueba PK-Bayes gratis, luego elige el plan para tu institución</h1>
-      <p class="lead">Democratizamos la dosificación bayesiana de precisión: sin presupuestos opacos de cinco cifras ni cláusulas de permanencia abusivas. Comienza con 14 días gratis con acceso completo.</p>
+      <div class="breadcrumb"><a href="index.html" data-i18n="nav.home">Inicio</a> <span>/</span> <span data-i18n="nav.cta">Empezar ahora</span></div>
+      <span class="eyebrow on-dark mt-16" style="display:inline-flex" data-i18n="pricing.eyebrow">Precios Transparentes</span>
+      <h1 data-i18n="pricing.title">Prueba PK-Bayes gratis, luego elige el plan para tu institución</h1>
+      <p class="lead" data-i18n="pricing.lead">Democratizamos la dosificación bayesiana de precisión: sin presupuestos opacos de cinco cifras ni cláusulas de permanencia abusivas. Comienza con 14 días gratis con acceso completo.</p>
     </div>
   </section>
 
@@ -71,9 +102,9 @@
 
         <!-- PLAN 1: PRUEBA GRATUITA -->
         <div class="card pricing-card reveal">
-          <span class="pricing-name">Prueba Gratuita</span>
-          <div class="pricing-price"><span class="amount">0 USD</span><span class="period">/ 14 días</span></div>
-          <p class="pricing-desc">Acceso completo a las herramientas clínicas durante 14 días sin costo, para validar la precisión y el flujo de trabajo con tu equipo.</p>
+          <span class="pricing-name" data-i18n="pricing.plan_free_name">Prueba Gratuita</span>
+          <div class="pricing-price"><span class="amount" data-i18n="pricing.plan_free_price">0 USD</span><span class="period" data-i18n="pricing.plan_free_period">/ 14 días</span></div>
+          <p class="pricing-desc" data-i18n="pricing.plan_free_desc">Acceso completo a las herramientas clínicas durante 14 días sin costo, para validar la precisión y el flujo de trabajo con tu equipo.</p>
           <ul class="pricing-features">
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Modelos validados de Vancomicina (1 y 2 comp.)</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Estimación bayesiana MAP en tiempo real</li>
@@ -84,15 +115,15 @@
             <li style="color:var(--text-muted);opacity:0.8"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--text-muted)"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> <em>No incluye descarga de bases de datos PopPK</em></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Sin tarjeta de crédito requerida · Expira en 14 días</li>
           </ul>
-          <a href="#" data-app-link class="btn btn-secondary btn-block">Iniciar prueba gratis (14 días)</a>
+          <a href="#" data-app-link class="btn btn-secondary btn-block" data-i18n="pricing.plan_free_btn">Iniciar prueba gratis (14 días)</a>
         </div>
 
         <!-- PLAN 2: PLAN COMPLETO (PLAN ÚNICO) -->
         <div class="card pricing-card pricing-card--featured reveal">
-          <span class="pricing-ribbon">Plan Completo</span>
-          <span class="pricing-name">Institucional Completo</span>
-          <div class="pricing-price"><span class="amount">1.350 USD</span><span class="period">/ año</span></div>
-          <p class="pricing-desc">Licencia anual completa con acceso ilimitado para toda la institución, todos los módulos clínicos y exportación de datos.</p>
+          <span class="pricing-ribbon" data-i18n="pricing.plan_comp_ribbon">Plan Completo</span>
+          <span class="pricing-name" data-i18n="pricing.plan_comp_name">Institucional Completo</span>
+          <div class="pricing-price"><span class="amount" data-i18n="pricing.plan_comp_price">1.350 USD</span><span class="period" data-i18n="pricing.plan_comp_period">/ año</span></div>
+          <p class="pricing-desc" data-i18n="pricing.plan_comp_desc">Licencia anual completa con acceso ilimitado para toda la institución, todos los módulos clínicos y exportación de datos.</p>
           <ul class="pricing-features">
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Acceso 100% completo e ilimitado para toda la institución</strong></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Usuarios clínicos y pacientes ilimitados</li>
@@ -103,7 +134,7 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Auditoría clínica inmutable por paciente y control de calidad QC</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Onboarding para el equipo médico y soporte prioritario</li>
           </ul>
-          <button class="btn btn-primary btn-block" data-checkout-plan="plan_completo">Suscribir Plan Completo ($1.350 USD/año)</button>
+          <button class="btn btn-primary btn-block" data-checkout-plan="plan_completo" data-i18n="pricing.plan_comp_btn">Suscribir Plan Completo ($1.350 USD/año)</button>
         </div>
 
       </div>
@@ -185,22 +216,22 @@
             <span class="brand-tag">Clinical MAP Workstation</span>
           </div>
         </a>
-        <p>Plataforma clínica de dosificación farmacocinética de precisión y optimización bayesiana MAP en tiempo real para vancomicina (activo) y nuevos fármacos en desarrollo.</p>
+        <p data-i18n="footer.desc">Plataforma clínica de dosificación farmacocinética de precisión y optimización bayesiana MAP en tiempo real para vancomicina (activo) y nuevos fármacos en desarrollo.</p>
       </div>
       <div class="footer-col">
-        <h5>Producto</h5>
+        <h5 data-i18n="footer.product">Producto</h5>
         <ul>
-          <li><a href="funcionalidades.html">Funcionalidades</a></li>
-          <li><a href="farmacos.html">Fármacos y modelos</a></li>
-          <li><a href="ejemplos.html">Casos clínicos</a></li>
+          <li><a href="funcionalidades.html" data-i18n="nav.features">Funcionalidades</a></li>
+          <li><a href="farmacos.html" data-i18n="nav.drugs">Fármacos y modelos</a></li>
+          <li><a href="ejemplos.html" data-i18n="nav.cases">Casos clínicos</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Acceso</h5>
+        <h5 data-i18n="footer.access">Acceso</h5>
         <ul>
-          <li><a href="acceso.html">Acceso clientes</a></li>
+          <li><a href="acceso.html" data-i18n="nav.login">Acceso clientes</a></li>
           <li><a data-app-link href="#" rel="noopener">Abrir plataforma PK-Bayes ↗</a></li>
-          <li><a href="precios.html">Empezar prueba gratis</a></li>
+          <li><a href="precios.html" data-i18n="nav.trial">Empezar prueba gratis</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -212,7 +243,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© <span data-year></span> PK-Bayes. Todos los derechos reservados.</span>
+      <span>© <span data-year></span> PK-Bayes. <span data-i18n="footer.rights">Todos los derechos reservados.</span></span>
       <span>Desarrollado para equipos de farmacocinética clínica.</span>
     </div>
     <p class="footer-legal-note">PK-Bayes es un software de apoyo a la decisión clínica (CDSS). Todas las recomendaciones generadas deben ser revisadas e interpretadas por un profesional sanitario cualificado antes de aplicarse a un paciente real. Los ejemplos, casos clínicos y simulaciones de este sitio web usan datos sintéticos y tienen fines exclusivamente informativos y comerciales.</p>
@@ -221,6 +252,7 @@
 
 <script src="https://js.stripe.com/v3/"></script>
 <script src="assets/js/config.js"></script>
+<script src="assets/js/i18n.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="assets/js/checkout.js"></script>
 </body>

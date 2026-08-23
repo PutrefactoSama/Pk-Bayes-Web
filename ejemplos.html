@@ -29,27 +29,58 @@
         </div>
       </a>
       <nav class="nav-links" aria-label="Navegación principal">
-        <a href="index.html">Inicio</a>
-        <a href="funcionalidades.html">Funcionalidades</a>
-        <a href="farmacos.html">Fármacos y modelos</a>
-        <a href="ejemplos.html" class="active">Casos clínicos</a>
+        <a href="index.html" data-i18n="nav.home">Inicio</a>
+        <a href="funcionalidades.html" data-i18n="nav.features">Funcionalidades</a>
+        <a href="farmacos.html" data-i18n="nav.drugs">Fármacos y modelos</a>
+        <a href="ejemplos.html" class="active" data-i18n="nav.cases">Casos clínicos</a>
       </nav>
       <div class="nav-actions">
-        <a href="acceso.html" class="btn btn-secondary btn-sm hide-mobile">Acceso clientes</a>
-        <a href="precios.html" class="btn btn-primary btn-sm">Empezar ahora</a>
+        <!-- Selector de Idioma -->
+        <div class="lang-selector">
+          <button class="lang-btn" type="button" aria-label="Cambiar idioma">
+            <svg class="lang-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span class="lang-current-label">🇪🇸 Español</span>
+            <svg class="lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="lang-dropdown">
+            <button type="button" class="lang-item active" data-lang="es"><span class="lang-flag">🇪🇸</span> <span>Español</span><span class="lang-check">✓</span></button>
+            <button type="button" class="lang-item" data-lang="en"><span class="lang-flag">🇺🇸</span> <span>English</span><span class="lang-check">✓</span></button>
+            <button type="button" class="lang-item" data-lang="zh"><span class="lang-flag">🇨🇳</span> <span>中文</span><span class="lang-check">✓</span></button>
+            <button type="button" class="lang-item" data-lang="ja"><span class="lang-flag">🇯🇵</span> <span>日本語</span><span class="lang-check">✓</span></button>
+          </div>
+        </div>
+
+        <a href="acceso.html" class="btn btn-secondary btn-sm hide-mobile" data-i18n="nav.login">Acceso clientes</a>
+        <a href="precios.html" class="btn btn-primary btn-sm" data-i18n="nav.cta">Empezar ahora</a>
         <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
     </div>
     <div class="mobile-menu">
-      <a href="index.html">Inicio</a>
-      <a href="funcionalidades.html">Funcionalidades</a>
-      <a href="farmacos.html">Fármacos y modelos</a>
-      <a href="ejemplos.html" class="active">Casos clínicos</a>
-      <a href="acceso.html">Acceso clientes</a>
+      <a href="index.html" data-i18n="nav.home">Inicio</a>
+      <a href="funcionalidades.html" data-i18n="nav.features">Funcionalidades</a>
+      <a href="farmacos.html" data-i18n="nav.drugs">Fármacos y modelos</a>
+      <a href="ejemplos.html" class="active" data-i18n="nav.cases">Casos clínicos</a>
+      <a href="acceso.html" data-i18n="nav.login">Acceso clientes</a>
+      
+      <!-- Selector de Idioma Móvil -->
+      <div class="lang-selector">
+        <button class="lang-btn" type="button" aria-label="Cambiar idioma">
+          <svg class="lang-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span class="lang-current-label">🇪🇸 Español</span>
+          <svg class="lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="lang-dropdown">
+          <button type="button" class="lang-item active" data-lang="es"><span class="lang-flag">🇪🇸</span> <span>Español</span><span class="lang-check">✓</span></button>
+          <button type="button" class="lang-item" data-lang="en"><span class="lang-flag">🇺🇸</span> <span>English</span><span class="lang-check">✓</span></button>
+          <button type="button" class="lang-item" data-lang="zh"><span class="lang-flag">🇨🇳</span> <span>中文</span><span class="lang-check">✓</span></button>
+          <button type="button" class="lang-item" data-lang="ja"><span class="lang-flag">🇯🇵</span> <span>日本語</span><span class="lang-check">✓</span></button>
+        </div>
+      </div>
+
       <div class="nav-actions">
-        <a href="precios.html" class="btn btn-primary btn-block">Empezar ahora</a>
+        <a href="precios.html" class="btn btn-primary btn-block" data-i18n="nav.cta">Empezar ahora</a>
       </div>
     </div>
   </div>
@@ -324,22 +355,22 @@
             <span class="brand-tag">Clinical MAP Workstation</span>
           </div>
         </a>
-        <p>Plataforma clínica de dosificación farmacocinética de precisión y optimización bayesiana MAP en tiempo real para vancomicina (activo) y nuevos fármacos en desarrollo.</p>
+        <p data-i18n="footer.desc">Plataforma clínica de dosificación farmacocinética de precisión y optimización bayesiana MAP en tiempo real para vancomicina (activo) y nuevos fármacos en desarrollo.</p>
       </div>
       <div class="footer-col">
-        <h5>Producto</h5>
+        <h5 data-i18n="footer.product">Producto</h5>
         <ul>
-          <li><a href="funcionalidades.html">Funcionalidades</a></li>
-          <li><a href="farmacos.html">Fármacos y modelos</a></li>
-          <li><a href="ejemplos.html">Casos clínicos</a></li>
+          <li><a href="funcionalidades.html" data-i18n="nav.features">Funcionalidades</a></li>
+          <li><a href="farmacos.html" data-i18n="nav.drugs">Fármacos y modelos</a></li>
+          <li><a href="ejemplos.html" data-i18n="nav.cases">Casos clínicos</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Acceso</h5>
+        <h5 data-i18n="footer.access">Acceso</h5>
         <ul>
-          <li><a href="acceso.html">Acceso clientes</a></li>
+          <li><a href="acceso.html" data-i18n="nav.login">Acceso clientes</a></li>
           <li><a data-app-link href="#" rel="noopener">Abrir plataforma PK-Bayes ↗</a></li>
-          <li><a href="precios.html">Empezar prueba gratis</a></li>
+          <li><a href="precios.html" data-i18n="nav.trial">Empezar prueba gratis</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -351,7 +382,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© <span data-year></span> PK-Bayes. Todos los derechos reservados.</span>
+      <span>© <span data-year></span> PK-Bayes. <span data-i18n="footer.rights">Todos los derechos reservados.</span></span>
       <span>Desarrollado para equipos de farmacocinética clínica.</span>
     </div>
     <p class="footer-legal-note">PK-Bayes es un software de apoyo a la decisión clínica (CDSS). Todas las recomendaciones generadas deben ser revisadas e interpretadas por un profesional sanitario cualificado antes de aplicarse a un paciente real. Los ejemplos, casos clínicos y simulaciones de este sitio web usan datos sintéticos y tienen fines exclusivamente informativos y comerciales.</p>
@@ -359,6 +390,7 @@
 </footer>
 
 <script src="assets/js/config.js"></script>
+<script src="assets/js/i18n.js"></script>
 <script src="assets/js/main.js"></script>
 <script src="assets/js/simulator.js"></script>
 </body>

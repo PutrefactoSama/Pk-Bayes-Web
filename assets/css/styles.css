@@ -1392,5 +1392,133 @@ select.control-select {
   z-index: 2;
 }
 
+/* =========================================================================
+   Selector de Idioma Multi-idioma (i18n)
+   ========================================================================= */
+.lang-selector {
+  position: relative;
+  display: inline-block;
+}
+.lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  background: #f1f5f9;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.lang-btn:hover {
+  background: #e2e8f0;
+  border-color: var(--border-strong);
+}
+.lang-btn svg.lang-globe {
+  width: 16px;
+  height: 16px;
+  color: var(--primary);
+}
+.lang-btn svg.lang-chevron {
+  width: 14px;
+  height: 14px;
+  color: var(--text-muted);
+  transition: transform 0.2s ease;
+}
+.lang-selector.open .lang-btn svg.lang-chevron {
+  transform: rotate(180deg);
+}
+
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 140px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: var(--shadow-lg);
+  padding: 6px;
+  z-index: 1000;
+  display: none;
+  flex-direction: column;
+  gap: 2px;
+  animation: fadeInDown 0.2s ease forwards;
+}
+.lang-selector.open .lang-dropdown {
+  display: flex;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.lang-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.lang-item:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+.lang-item.active {
+  background: rgba(14, 165, 233, 0.12);
+  color: var(--primary);
+  font-weight: 700;
+}
+.lang-item .lang-flag {
+  font-size: 1rem;
+}
+.lang-item .lang-check {
+  margin-left: auto;
+  font-size: 0.8rem;
+  color: var(--primary);
+  opacity: 0;
+}
+.lang-item.active .lang-check {
+  opacity: 1;
+}
+
+/* En la cabecera oscura o hero si aplica */
+.site-header .lang-btn {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+/* Selector en menú móvil */
+.mobile-menu .lang-selector {
+  width: 100%;
+  margin: 8px 0;
+}
+.mobile-menu .lang-btn {
+  width: 100%;
+  justify-content: space-between;
+}
+.mobile-menu .lang-dropdown {
+  position: static;
+  width: 100%;
+  margin-top: 4px;
+  box-shadow: none;
+  border-color: var(--border);
+}
+
+
 
 

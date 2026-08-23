@@ -29,27 +29,58 @@
         </div>
       </a>
       <nav class="nav-links" aria-label="Navegación principal">
-        <a href="index.html" class="active">Inicio</a>
-        <a href="funcionalidades.html">Funcionalidades</a>
-        <a href="farmacos.html">Fármacos y modelos</a>
-        <a href="ejemplos.html">Casos clínicos</a>
+        <a href="index.html" class="active" data-i18n="nav.home">Inicio</a>
+        <a href="funcionalidades.html" data-i18n="nav.features">Funcionalidades</a>
+        <a href="farmacos.html" data-i18n="nav.drugs">Fármacos y modelos</a>
+        <a href="ejemplos.html" data-i18n="nav.cases">Casos clínicos</a>
       </nav>
       <div class="nav-actions">
-        <a href="acceso.html" class="btn btn-secondary btn-sm hide-mobile">Acceso clientes</a>
-        <a href="precios.html" class="btn btn-primary btn-sm">Empezar ahora</a>
+        <!-- Selector de Idioma -->
+        <div class="lang-selector">
+          <button class="lang-btn" type="button" aria-label="Cambiar idioma">
+            <svg class="lang-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            <span class="lang-current-label">🇪🇸 Español</span>
+            <svg class="lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="lang-dropdown">
+            <button type="button" class="lang-item active" data-lang="es"><span class="lang-flag">🇪🇸</span> <span>Español</span><span class="lang-check">✓</span></button>
+            <button type="button" class="lang-item" data-lang="en"><span class="lang-flag">🇺🇸</span> <span>English</span><span class="lang-check">✓</span></button>
+            <button type="button" class="lang-item" data-lang="zh"><span class="lang-flag">🇨🇳</span> <span>中文</span><span class="lang-check">✓</span></button>
+            <button type="button" class="lang-item" data-lang="ja"><span class="lang-flag">🇯🇵</span> <span>日本語</span><span class="lang-check">✓</span></button>
+          </div>
+        </div>
+
+        <a href="acceso.html" class="btn btn-secondary btn-sm hide-mobile" data-i18n="nav.login">Acceso clientes</a>
+        <a href="precios.html" class="btn btn-primary btn-sm" data-i18n="nav.cta">Empezar ahora</a>
         <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
           <span></span><span></span><span></span>
         </button>
       </div>
     </div>
     <div class="mobile-menu">
-      <a href="index.html" class="active">Inicio</a>
-      <a href="funcionalidades.html">Funcionalidades</a>
-      <a href="farmacos.html">Fármacos y modelos</a>
-      <a href="ejemplos.html">Casos clínicos</a>
-      <a href="acceso.html">Acceso clientes</a>
+      <a href="index.html" class="active" data-i18n="nav.home">Inicio</a>
+      <a href="funcionalidades.html" data-i18n="nav.features">Funcionalidades</a>
+      <a href="farmacos.html" data-i18n="nav.drugs">Fármacos y modelos</a>
+      <a href="ejemplos.html" data-i18n="nav.cases">Casos clínicos</a>
+      <a href="acceso.html" data-i18n="nav.login">Acceso clientes</a>
+      
+      <!-- Selector de Idioma Móvil -->
+      <div class="lang-selector">
+        <button class="lang-btn" type="button" aria-label="Cambiar idioma">
+          <svg class="lang-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          <span class="lang-current-label">🇪🇸 Español</span>
+          <svg class="lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="lang-dropdown">
+          <button type="button" class="lang-item active" data-lang="es"><span class="lang-flag">🇪🇸</span> <span>Español</span><span class="lang-check">✓</span></button>
+          <button type="button" class="lang-item" data-lang="en"><span class="lang-flag">🇺🇸</span> <span>English</span><span class="lang-check">✓</span></button>
+          <button type="button" class="lang-item" data-lang="zh"><span class="lang-flag">🇨🇳</span> <span>中文</span><span class="lang-check">✓</span></button>
+          <button type="button" class="lang-item" data-lang="ja"><span class="lang-flag">🇯🇵</span> <span>日本語</span><span class="lang-check">✓</span></button>
+        </div>
+      </div>
+
       <div class="nav-actions">
-        <a href="precios.html" class="btn btn-primary btn-block">Empezar ahora</a>
+        <a href="precios.html" class="btn btn-primary btn-block" data-i18n="nav.cta">Empezar ahora</a>
       </div>
     </div>
   </div>
@@ -60,13 +91,13 @@
   <section class="hero">
     <div class="container hero-grid">
       <div>
-        <span class="eyebrow on-dark">Software de Apoyo a la Decisión Clínica (CDSS)</span>
-        <h1>Plataforma de Precisión Farmacocinética y Dosificación Bayesiana en Tiempo Real</h1>
-        <p class="lead">PK-Bayes optimiza la monitorización terapéutica (TDM) de estrecho margen terapéutico para <strong>Vancomicina</strong> (activo) y avanza en el desarrollo de <strong>Fenitoína</strong>. Combina estimación bayesiana MAP, resolución de ecuaciones diferenciales ordinarias (ODEs RK45) con preservación de masa ante cambios de creatinina y aprendizaje poblacional institucional adaptativo.</p>
+        <span class="eyebrow on-dark" data-i18n="hero.eyebrow">Software de Apoyo a la Decisión Clínica (CDSS)</span>
+        <h1 data-i18n="hero.title">Plataforma de Precisión Farmacocinética y Dosificación Bayesiana en Tiempo Real</h1>
+        <p class="lead" data-i18n-html="hero.lead">PK-Bayes optimiza la monitorización terapéutica (TDM) de estrecho margen terapéutico para <strong>Vancomicina</strong> (activo) y avanza en el desarrollo de <strong>Fenitoína</strong>. Combina estimación bayesiana MAP, resolución de ecuaciones diferenciales ordinarias (ODEs RK45) con preservación de masa ante cambios de creatinina y aprendizaje poblacional institucional adaptativo.</p>
         
         <div class="hero-cta">
-          <a href="precios.html" class="btn btn-on-dark btn-lg">Probar 14 días gratis</a>
-          <a href="funcionalidades.html" class="btn btn-outline-on-dark btn-lg">Ver capacidades clínicas</a>
+          <a href="precios.html" class="btn btn-on-dark btn-lg" data-i18n="hero.btn_trial">Probar 14 días gratis</a>
+          <a href="funcionalidades.html" class="btn btn-outline-on-dark btn-lg" data-i18n="hero.btn_features">Ver capacidades clínicas</a>
         </div>
       </div>
 
@@ -154,42 +185,42 @@
   <section class="section" style="background:#030d1b;padding-top:56px;padding-bottom:64px">
     <div class="container">
       <div class="section-head center reveal">
-        <span class="eyebrow on-dark">La Plataforma en Acción</span>
-        <h2 style="color:#fff">Experiencia Clínica Real de Precisión Farmacocinética</h2>
-        <p class="lead" style="color:var(--text-on-dark-muted)">Recorre las 5 vistas esenciales de PK-Bayes: desde el triage asistencial y biometría renal hasta la estimación bayesiana MAP y el análisis de cohorte.</p>
+        <span class="eyebrow on-dark" data-i18n="tour.section_eyebrow">La Plataforma en Acción</span>
+        <h2 style="color:#fff" data-i18n="tour.section_title">Experiencia Clínica Real de Precisión Farmacocinética</h2>
+        <p class="lead" style="color:var(--text-on-dark-muted)" data-i18n="tour.section_lead">Recorre las 5 vistas esenciales de PK-Bayes: desde el triage asistencial y biometría renal hasta la estimación bayesiana MAP y el análisis de cohorte.</p>
       </div>
 
       <div class="app-tour-wrapper reveal">
         <!-- Pestañas del Tour -->
         <div class="app-tour-tabs" role="tablist">
           <button class="app-tour-tab active" data-tour-tab="0">
-            <span class="app-tour-tab-num">VISTA 01</span>
-            <span class="app-tour-tab-title">Resumen & Dashboard</span>
-            <span class="app-tour-tab-sub">Triage UCI vs Básica</span>
+            <span class="app-tour-tab-num" data-i18n="tour.tab1_num">VISTA 01</span>
+            <span class="app-tour-tab-title" data-i18n="tour.tab1_title">Resumen & Dashboard</span>
+            <span class="app-tour-tab-sub" data-i18n="tour.tab1_sub">Triage UCI vs Básica</span>
             <div class="app-tour-progress"></div>
           </button>
           <button class="app-tour-tab" data-tour-tab="1">
-            <span class="app-tour-tab-num">VISTA 02</span>
-            <span class="app-tour-tab-title">Datos & Biometría</span>
-            <span class="app-tour-tab-sub">Cockcroft-Gault & CKD-EPI</span>
+            <span class="app-tour-tab-num" data-i18n="tour.tab2_num">VISTA 02</span>
+            <span class="app-tour-tab-title" data-i18n="tour.tab2_title">Datos & Biometría</span>
+            <span class="app-tour-tab-sub" data-i18n="tour.tab2_sub">Cockcroft-Gault & CKD-EPI</span>
             <div class="app-tour-progress"></div>
           </button>
           <button class="app-tour-tab" data-tour-tab="2">
-            <span class="app-tour-tab-num">VISTA 03</span>
-            <span class="app-tour-tab-title">Monitorización PK</span>
-            <span class="app-tour-tab-sub">Curva Continua & AKI</span>
+            <span class="app-tour-tab-num" data-i18n="tour.tab3_num">VISTA 03</span>
+            <span class="app-tour-tab-title" data-i18n="tour.tab3_title">Monitorización PK</span>
+            <span class="app-tour-tab-sub" data-i18n="tour.tab3_sub">Curva Continua & AKI</span>
             <div class="app-tour-progress"></div>
           </button>
           <button class="app-tour-tab" data-tour-tab="3">
-            <span class="app-tour-tab-num">VISTA 04</span>
-            <span class="app-tour-tab-title">Estimación & What-If</span>
-            <span class="app-tour-tab-sub">Ajuste MAP & Predictor</span>
+            <span class="app-tour-tab-num" data-i18n="tour.tab4_num">VISTA 04</span>
+            <span class="app-tour-tab-title" data-i18n="tour.tab4_title">Estimación & What-If</span>
+            <span class="app-tour-tab-sub" data-i18n="tour.tab4_sub">Ajuste MAP & Predictor</span>
             <div class="app-tour-progress"></div>
           </button>
           <button class="app-tour-tab" data-tour-tab="4">
-            <span class="app-tour-tab-num">VISTA 05</span>
-            <span class="app-tour-tab-title">Evolución Cohorte</span>
-            <span class="app-tour-tab-sub">Dosis vs Niveles (IC95%)</span>
+            <span class="app-tour-tab-num" data-i18n="tour.tab5_num">VISTA 05</span>
+            <span class="app-tour-tab-title" data-i18n="tour.tab5_title">Evolución Cohorte</span>
+            <span class="app-tour-tab-sub" data-i18n="tour.tab5_sub">Dosis vs Niveles (IC95%)</span>
             <div class="app-tour-progress"></div>
           </button>
         </div>
@@ -203,7 +234,7 @@
               <span style="background:#28c840"></span>
             </div>
             <span class="app-tour-url">app.pk-bayes.com</span>
-            <span class="app-tour-badge"><span class="live-pulse-dot"></span> EN VIVO</span>
+            <span class="app-tour-badge"><span class="live-pulse-dot"></span> <span data-i18n="common.live">EN VIVO</span></span>
           </div>
 
           <!-- SLIDE 1: Resumen de Pacientes -->
@@ -211,10 +242,10 @@
             <img src="assets/img/screens/screen-01-dashboard-pacientes.png" alt="Resumen de pacientes y dashboard general en PK-Bayes" class="app-tour-img" loading="eager">
             <div class="app-tour-caption">
               <div class="app-tour-caption-text">
-                <h4><span class="live-pulse-dot"></span> Dashboard Asistencial y Resumen de Pacientes</h4>
-                <p>Monitoreo activo multihospital con clasificación automática por gravedad (Sala Básica vs Sala Crítica / UCI), control de fármaco activo y acceso directo a expedientes clínicos con auditoría.</p>
+                <h4><span class="live-pulse-dot"></span> <span data-i18n="tour.slide1_title">Dashboard Asistencial y Resumen de Pacientes</span></h4>
+                <p data-i18n="tour.slide1_desc">Monitoreo activo multihospital con clasificación automática por gravedad (Sala Básica vs Sala Crítica / UCI), control de fármaco activo y acceso directo a expedientes clínicos con auditoría.</p>
               </div>
-              <a href="funcionalidades.html#dashboard" class="btn btn-sm btn-outline-on-dark">Ver detalles →</a>
+              <a href="funcionalidades.html#dashboard" class="btn btn-sm btn-outline-on-dark" data-i18n="common.details">Ver detalles →</a>
             </div>
           </div>
 
@@ -223,10 +254,10 @@
             <img src="assets/img/screens/screen-02-datos-paciente.png" alt="Datos del paciente, función renal y biometría en PK-Bayes" class="app-tour-img" loading="lazy">
             <div class="app-tour-caption">
               <div class="app-tour-caption-text">
-                <h4><span class="live-pulse-dot"></span> Demografía, Función Renal Dinámica y Biometría</h4>
-                <p>Cálculo instantáneo de CrCl (Cockcroft-Gault), eGFR (CKD-EPI), estratificación en rangos de función renal y normalización antropométrica de IMC, peso ideal y peso ajustado.</p>
+                <h4><span class="live-pulse-dot"></span> <span data-i18n="tour.slide2_title">Demografía, Función Renal Dinámica y Biometría</span></h4>
+                <p data-i18n="tour.slide2_desc">Cálculo instantáneo de CrCl (Cockcroft-Gault), eGFR (CKD-EPI), estratificación en rangos de función renal y normalización antropométrica de IMC, peso ideal y peso ajustado.</p>
               </div>
-              <a href="funcionalidades.html#renal" class="btn btn-sm btn-outline-on-dark">Ver biometría →</a>
+              <a href="funcionalidades.html#renal" class="btn btn-sm btn-outline-on-dark" data-i18n="common.details">Ver biometría →</a>
             </div>
           </div>
 
@@ -235,10 +266,10 @@
             <img src="assets/img/screens/screen-03-monitorizacion-curva.png" alt="Historial de dosis y curva de simulación PK continua con fluctuaciones de creatinina" class="app-tour-img" loading="lazy">
             <div class="app-tour-caption">
               <div class="app-tour-caption-text">
-                <h4><span class="live-pulse-dot"></span> Monitorización PK y Curva ODE con Eventos Renales (AKI)</h4>
-                <p>Registro cronológico de dosis administradas, integración de valles TDM y resolución numérica continua por ODEs RK45 reflejando caídas o recuperaciones agudas de función renal (Cr: 1.0 → 5.0 → 10.0 mg/dL).</p>
+                <h4><span class="live-pulse-dot"></span> <span data-i18n="tour.slide3_title">Monitorización PK y Curva ODE con Eventos Renales (AKI)</span></h4>
+                <p data-i18n="tour.slide3_desc">Registro cronológico de dosis administradas, integración de valles TDM y resolución numérica continua por ODEs RK45 reflejando caídas o recuperaciones agudas de función renal (Cr: 1.0 → 5.0 → 10.0 mg/dL).</p>
               </div>
-              <a href="funcionalidades.html#dialisis" class="btn btn-sm btn-outline-on-dark">Ver cinética ODE →</a>
+              <a href="funcionalidades.html#dialisis" class="btn btn-sm btn-outline-on-dark" data-i18n="common.details">Ver cinética ODE →</a>
             </div>
           </div>
 
@@ -247,10 +278,10 @@
             <img src="assets/img/screens/screen-04-estimacion-map-predictor.png" alt="Resultado de estimación bayesiana MAP y predictor interactivo de esquemas what-if" class="app-tour-img" loading="lazy">
             <div class="app-tour-caption">
               <div class="app-tour-caption-text">
-                <h4><span class="live-pulse-dot"></span> Estimación Bayesiana MAP y Predictor What-If en Tiempo Real</h4>
-                <p>Ajuste bayesiano Maximum A Posteriori con comparación paramétrica (Poblacional vs Individual: AUC24, Vd, CL, t1/2), semáforo de metas terapéuticas y simulación interactiva de regímenes con alertas de toxicidad.</p>
+                <h4><span class="live-pulse-dot"></span> <span data-i18n="tour.slide4_title">Estimación Bayesiana MAP y Predictor What-If en Tiempo Real</span></h4>
+                <p data-i18n="tour.slide4_desc">Ajuste bayesiano Maximum A Posteriori con comparación paramétrica (Poblacional vs Individual: AUC24, Vd, CL, t1/2), semáforo de metas terapéuticas y simulación interactiva de regímenes con alertas de toxicidad.</p>
               </div>
-              <a href="funcionalidades.html#bayesiano" class="btn btn-sm btn-outline-on-dark">Ver estimador MAP →</a>
+              <a href="funcionalidades.html#bayesiano" class="btn btn-sm btn-outline-on-dark" data-i18n="common.details">Ver estimador MAP →</a>
             </div>
           </div>
 
@@ -259,10 +290,10 @@
             <img src="assets/img/screens/screen-05-evolucion-longitudinal.png" alt="Evolución longitudinal de la monitorización con correlación de dosis vs niveles séricos" class="app-tour-img" loading="lazy">
             <div class="app-tour-caption">
               <div class="app-tour-caption-text">
-                <h4><span class="live-pulse-dot"></span> Evolución Longitudinal de la Monitorización y Bandas IC95%</h4>
-                <p>Análisis agregado de cohorte con gráficos pareados: evolución temporal de dosis administradas (716 eventos) vs concentraciones plasmáticas reales frente al rango diana (15–20 mg/L) con cálculo de media e IC95%.</p>
+                <h4><span class="live-pulse-dot"></span> <span data-i18n="tour.slide5_title">Evolución Longitudinal de la Monitorización y Bandas IC95%</span></h4>
+                <p data-i18n="tour.slide5_desc">Análisis agregado de cohorte con gráficos pareados: evolución temporal de dosis administradas (716 eventos) vs concentraciones plasmáticas reales frente al rango diana (15–20 mg/L) con cálculo de media e IC95%.</p>
               </div>
-              <a href="funcionalidades.html#dashboard" class="btn btn-sm btn-outline-on-dark">Ver analítica institucional →</a>
+              <a href="funcionalidades.html#dashboard" class="btn btn-sm btn-outline-on-dark" data-i18n="common.details">Ver analítica institucional →</a>
             </div>
           </div>
         </div>
@@ -274,9 +305,9 @@
   <section class="section">
     <div class="container">
       <div class="statement-block reveal">
-        <span class="eyebrow">El desafío clínico</span>
-        <h2 class="mt-16">La variabilidad farmacocinética exige precisión matemática</h2>
-        <p class="statement-sub">Fármacos críticos de estrecho margen como la <strong>vancomicina</strong> presentan una farmacocinética altamente variable. En pacientes con sepsis, daño renal fluctuante (AKI) o hemodiálisis, los nomogramas rígidos y las hojas de cálculo fallan a menudo, aumentando la estancia hospitalaria y la morbimortalidad.</p>
+        <span class="eyebrow" data-i18n="problem.eyebrow">El desafío clínico</span>
+        <h2 class="mt-16" data-i18n="problem.title">La variabilidad farmacocinética exige precisión matemática</h2>
+        <p class="statement-sub" data-i18n-html="problem.sub">Fármacos críticos de estrecho margen como la <strong>vancomicina</strong> presentan una farmacocinética altamente variable. En pacientes con sepsis, daño renal fluctuante (AKI) o hemodiálisis, los nomogramas rígidos y las hojas de cálculo fallan a menudo, aumentando la estancia hospitalaria y la morbimortalidad.</p>
       </div>
 
       <div class="grid grid-3 mt-48">
@@ -284,24 +315,24 @@
           <div class="advantage-icon-box amber">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
           </div>
-          <h3 class="mt-16">Subdosificación y Fracaso Terapéutico</h3>
-          <p class="text-secondary mt-8">Un cálculo empírico conservador produce concentraciones subterapéuticas (AUC24 &lt; 400 mg·h/L): la infección bacteriana avanza sin control y aumenta el riesgo de selección de cepas resistentes.</p>
+          <h3 class="mt-16" data-i18n="problem.card1_title">Subdosificación y Fracaso Terapéutico</h3>
+          <p class="text-secondary mt-8" data-i18n="problem.card1_desc">Un cálculo empírico conservador produce concentraciones subterapéuticas (AUC24 &lt; 400 mg·h/L): la infección bacteriana avanza sin control y aumenta el riesgo de selección de cepas resistentes.</p>
         </div>
 
         <div class="card reveal">
           <div class="advantage-icon-box red">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 22h20L12 2Z"/><path d="M12 9v5M12 17h.01"/></svg>
           </div>
-          <h3 class="mt-16">Toxicidad y Daño Renal Agudo</h3>
-          <p class="text-secondary mt-8">La acumulación de vancomicina desencadena lesión renal aguda (IRA/AKI). PK-Bayes permite controlar con precisión el rango objetivo de AUC24 (400–600 mg·h/L) para minimizar el daño nefrótico.</p>
+          <h3 class="mt-16" data-i18n="problem.card2_title">Toxicidad y Daño Renal Agudo</h3>
+          <p class="text-secondary mt-8" data-i18n="problem.card2_desc">La acumulación de vancomicina desencadena lesión renal aguda (IRA/AKI). PK-Bayes permite controlar con precisión el rango objetivo de AUC24 (400–600 mg·h/L) para minimizar el daño nefrótico.</p>
         </div>
 
         <div class="card reveal">
           <div class="advantage-icon-box teal">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
-          <h3 class="mt-16">Rigidez de Muestreo TDM</h3>
-          <p class="text-secondary mt-8">Los nomogramas tradicionales quedan inutilizados si la muestra no se extrae en el minuto exacto del valle. PK-Bayes admite niveles extraídos en cualquier momento del intervalo sin perder precisión.</p>
+          <h3 class="mt-16" data-i18n="problem.card3_title">Rigidez de Muestreo TDM</h3>
+          <p class="text-secondary mt-8" data-i18n="problem.card3_desc">Los nomogramas tradicionales quedan inutilizados si la muestra no se extrae en el minuto exacto del valle. PK-Bayes admite niveles extraídos en cualquier momento del intervalo sin perder precisión.</p>
         </div>
       </div>
     </div>
@@ -311,8 +342,8 @@
   <section class="section section-alt">
     <div class="container">
       <div class="section-head center reveal">
-        <span class="eyebrow">Flujo Clínico Inteligente</span>
-        <h2>De los datos del paciente a la dosis óptima en 4 pasos</h2>
+        <span class="eyebrow" data-i18n="workflow.eyebrow">Flujo Clínico Inteligente</span>
+        <h2 data-i18n="workflow.title">De los datos del paciente a la dosis óptima en 4 pasos</h2>
         <p class="lead">Un flujo de trabajo diseñado para farmacia clínica, medicina intensiva, infectología y nefrología, que reduce horas de cálculo manual a segundos de análisis interactivo.</p>
       </div>
 
@@ -322,8 +353,8 @@
             <span class="pipeline-badge-num">1</span>
             <span class="pipeline-arrow">→</span>
           </div>
-          <h3>1. Ingreso y Función Renal Dinámica CL(t)</h3>
-          <p>Registra creatininas seriadas y covariables. El motor resuelve por tramos mediante <code>scipy.integrate.solve_ivp</code> (Runge-Kutta 45) con preservación de masa en los compartimentos A1(t) y A2(t), integrando diálisis o TRRC (CRRT/HD).</p>
+          <h3 data-i18n="workflow.step1_title">1. Ingreso y Biometría</h3>
+          <p data-i18n="workflow.step1_desc">Demografía, función renal dinámica (Cockcroft-Gault, CKD-EPI) y comorbilidades a pie de cama.</p>
           <div class="pipeline-footer-pill"><span>✓</span> ODEs RK45 + Preservación de Masa</div>
         </div>
 
@@ -332,8 +363,8 @@
             <span class="pipeline-badge-num">2</span>
             <span class="pipeline-arrow">→</span>
           </div>
-          <h3>2. Monitoreo TDM sin Restricción Horaria</h3>
-          <p>Ingresa niveles plasmáticos medidos (pico, valle o muestra aleatoria). Olvídate de descartar muestras por atrasos: el motor posiciona el nivel exacto en la curva temporal con marcadores 🧪 Cr y cálculo de AUC continuo.</p>
+          <h3 data-i18n="workflow.step2_title">2. Registro TDM</h3>
+          <p data-i18n="workflow.step2_desc">Ingreso de dosis administradas y niveles plasmáticos séricos extraídos a cualquier hora.</p>
           <div class="pipeline-footer-pill"><span>✓</span> 100% de muestras aprovechables</div>
         </div>
 
@@ -342,8 +373,8 @@
             <span class="pipeline-badge-num">3</span>
             <span class="pipeline-arrow">→</span>
           </div>
-          <h3>3. Estimación Bayesiana MAP en Tiempo Real</h3>
-          <p>Combina los priors poblacionales (Goti 2018 con BSV V1 ~30%, Rodvold, Thomson, Yamamoto) con los niveles del paciente para estimar CL, V1, Q, V2, t1/2 y CV%, o cinética saturable Michaelis-Menten (Vmax, Km).</p>
+          <h3 data-i18n="workflow.step3_title">3. Ajuste MAP en < 100 ms</h3>
+          <p data-i18n="workflow.step3_desc">Resolución numérica de ODEs y estimación Bayesiana Maximum A Posteriori individualizada.</p>
           <div class="pipeline-footer-pill"><span>✓</span> Individual vs Pop vs Institucional</div>
         </div>
 
@@ -352,8 +383,8 @@
             <span class="pipeline-badge-num">4</span>
             <span class="pipeline-arrow" style="color:var(--green)">✓</span>
           </div>
-          <h3>4. Simulación What-If y Prescripción Segura</h3>
-          <p>Simula cualquier dosis, duración de infusión e intervalo (τ = 6, 8, 12, 24, 36, 48h o infusión continua 24h). Observa de inmediato Cmax,ss, Cmin,ss y el target terapéutico AUC24/CIM 400–600 mg·h/L.</p>
+          <h3 data-i18n="workflow.step4_title">4. Simulación What-If</h3>
+          <p data-i18n="workflow.step4_desc">Proyección interactiva de regímenes, optimización de AUC24/CIM (400–600) y exportación clínica.</p>
           <div class="pipeline-footer-pill"><span>✓</span> AUC24 / CIM 400–600 asegurada</div>
         </div>
       </div>
@@ -364,8 +395,8 @@
   <section class="section">
     <div class="container">
       <div class="section-head reveal">
-        <span class="eyebrow">Arquitectura y Capacidades</span>
-        <h2>Tecnología de dosificación de precisión diseñada para el mundo real</h2>
+        <span class="eyebrow" data-i18n="bento.eyebrow">Capacidades de la Plataforma</span>
+        <h2 data-i18n="bento.title">Tecnología farmacométrica avanzada en una interfaz moderna</h2>
         <p class="lead">Seis módulos clínicos integrados que conectan la cama del paciente con la mejora continua institucional y la investigación avanzada.</p>
       </div>
 
@@ -373,8 +404,8 @@
         <!-- BENTO 1: MAP -->
         <div class="bento-cell span-2 dark reveal">
           <div class="bento-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
-          <h3>Estimación Bayesiana MAP Multivariada</h3>
-          <p>Calcula en &lt; 100 ms el aclaramiento y volumen de distribución reales del paciente. Muestra la comparativa de tres niveles de parámetros (Individual, Poblacional e Institucional) con su coeficiente de variación (CV%).</p>
+          <h3 data-i18n="bento.card1_title">Estimación Bayesiana MAP Multivariada</h3>
+          <p data-i18n="bento.card1_desc">Calcula el perfil farmacocinético individual (CL, V1, Q, V2, t1/2, AUC24) en menos de 100 ms.</p>
           
           <div class="micro-chart-card" style="background:rgba(255,255,255,0.06);border-color:rgba(255,255,255,0.12);margin-top:18px">
             <div class="micro-chart-title" style="color:var(--text-on-dark-muted)">
@@ -393,8 +424,8 @@
         <!-- BENTO 2: WHAT-IF & AUC24 -->
         <div class="bento-cell span-2 reveal">
           <div class="bento-icon" style="background:var(--teal-light);color:var(--teal)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"/><path d="M17 7h4v4"/></svg></div>
-          <h3>Simulador What-If y Predictor de Dosis Interactivo</h3>
-          <p>Permite al clínico simular cualquier dosis (mg), tiempo de infusión e intervalo (τ = 6, 8, 12, 24, 36, 48h o infusión continua 24h) observando de inmediato Cmax,ss, Cmin,ss y AUC24 según consenso ASHP 2020.</p>
+          <h3 data-i18n="bento.card2_title">Vancomicina: Consenso ASHP 2020</h3>
+          <p data-i18n="bento.card2_desc">Dosificación guiada por AUC24/CIM (400–600 mg·h/L) con modelos de 2 compartimentos (Goti 2018 BSV 30%).</p>
           
           <div class="micro-chart-card">
             <div class="micro-chart-title">
@@ -412,32 +443,32 @@
         <!-- BENTO 3: ODEs RK45 & AKI -->
         <div class="bento-cell reveal">
           <div class="bento-icon" style="background:var(--green-light);color:var(--green)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-          <h3>Cinética Renal No Estacionaria (ODEs RK45)</h3>
-          <p>Resuelve numéricamente la curva temporal con preservación de masa en A1(t) y A2(t) ante Falla Renal Aguda (AKI) y recuperación.</p>
+          <h3 data-i18n="bento.card3_title">Cinética Renal Dinámica (ODEs RK45)</h3>
+          <p data-i18n="bento.card3_desc">Resuelve numéricamente la curva temporal con preservación de masa en A1(t) y A2(t) ante Falla Renal Aguda (AKI).</p>
           <a href="funcionalidades.html#dialisis" class="card-link">Ver resolución de ODEs →</a>
         </div>
 
         <!-- BENTO 4: FENITOÍNA EN ROADMAP -->
         <div class="bento-cell reveal">
           <div class="bento-icon" style="background:var(--amber-light);color:var(--amber)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-          <h3>Próximamente: Fenitoína</h3>
-          <p>Alcances en desarrollo: modelado de saturación hepática (Michaelis-Menten) y corrección de fracción libre en hipoalbuminemia por Sheiner-Tozer.</p>
+          <h3 data-i18n="bento.card4_title">Próximamente: Fenitoína</h3>
+          <p data-i18n="bento.card4_desc">Alcances en desarrollo: modelado de saturación hepática (Michaelis-Menten) y corrección de fracción libre por Sheiner-Tozer.</p>
           <a href="farmacos.html#fenitoina" class="card-link">Ver alcances en desarrollo →</a>
         </div>
 
         <!-- BENTO 5: DASHBOARD DE COHORTES -->
         <div class="bento-cell reveal">
           <div class="bento-icon" style="background:var(--teal-light);color:var(--teal)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
-          <h3>Dashboard Longitudinal de Cohortes</h3>
-          <p>Gráficos pareados dosis vs niveles, multiselección sincronizada por paciente, filtros Cama Básica vs UCI y cálculo de IC95% en tiempo real.</p>
+          <h3 data-i18n="bento.card5_title">Dashboard Longitudinal de Cohortes</h3>
+          <p data-i18n="bento.card5_desc">Gráficos pareados dosis vs niveles, multiselección sincronizada por paciente, filtros UCI y cálculo de IC95%.</p>
           <a href="funcionalidades.html#dashboard" class="card-link">Explorar dashboard →</a>
         </div>
 
         <!-- BENTO 6: POPPK EXPORT -->
         <div class="bento-cell reveal">
           <div class="bento-icon" style="background:var(--primary-light);color:var(--primary)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
-          <h3>Bases de Datos PopPK para NONMEM y Monolix</h3>
-          <p>Automatiza la construcción y estructuración de la base de datos de pacientes para modelado farmacocinético poblacional e investigación.</p>
+          <h3 data-i18n="bento.card6_title">Bases de Datos PopPK para NONMEM y Monolix</h3>
+          <p data-i18n="bento.card6_desc">Automatiza la construcción y estructuración de la base de datos de pacientes para modelado farmacocinético poblacional.</p>
           <a href="funcionalidades.html#export" class="card-link">Ver integración PopPK →</a>
         </div>
       </div>
@@ -754,22 +785,22 @@
             <span class="brand-tag">Clinical MAP Workstation</span>
           </div>
         </a>
-        <p>Plataforma clínica de dosificación farmacocinética de precisión y optimización bayesiana MAP en tiempo real para vancomicina (activo) y nuevos fármacos en desarrollo.</p>
+        <p data-i18n="footer.desc">Plataforma clínica de dosificación farmacocinética de precisión y optimización bayesiana MAP en tiempo real para vancomicina (activo) y nuevos fármacos en desarrollo.</p>
       </div>
       <div class="footer-col">
-        <h5>Producto</h5>
+        <h5 data-i18n="footer.product">Producto</h5>
         <ul>
-          <li><a href="funcionalidades.html">Funcionalidades</a></li>
-          <li><a href="farmacos.html">Fármacos y modelos</a></li>
-          <li><a href="ejemplos.html">Casos clínicos</a></li>
+          <li><a href="funcionalidades.html" data-i18n="nav.features">Funcionalidades</a></li>
+          <li><a href="farmacos.html" data-i18n="nav.drugs">Fármacos y modelos</a></li>
+          <li><a href="ejemplos.html" data-i18n="nav.cases">Casos clínicos</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Acceso</h5>
+        <h5 data-i18n="footer.access">Acceso</h5>
         <ul>
-          <li><a href="acceso.html">Acceso clientes</a></li>
+          <li><a href="acceso.html" data-i18n="nav.login">Acceso clientes</a></li>
           <li><a data-app-link href="#" rel="noopener">Abrir plataforma PK-Bayes ↗</a></li>
-          <li><a href="precios.html">Empezar prueba gratis</a></li>
+          <li><a href="precios.html" data-i18n="nav.trial">Empezar prueba gratis</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -781,7 +812,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© <span data-year></span> PK-Bayes. Todos los derechos reservados.</span>
+      <span>© <span data-year></span> PK-Bayes. <span data-i18n="footer.rights">Todos los derechos reservados.</span></span>
       <span>Desarrollado para equipos de farmacocinética clínica.</span>
     </div>
     <p class="footer-legal-note">PK-Bayes es un software de apoyo a la decisión clínica (CDSS). Todas las recomendaciones generadas deben ser revisadas e interpretadas por un profesional sanitario cualificado antes de aplicarse a un paciente real. Los ejemplos, casos clínicos y simulaciones de este sitio web usan datos sintéticos y tienen fines exclusivamente informativos y comerciales.</p>
@@ -789,6 +820,7 @@
 </footer>
 
 <script src="assets/js/config.js"></script>
+<script src="assets/js/i18n.js"></script>
 <script src="assets/js/main.js"></script>
 </body>
 </html>
