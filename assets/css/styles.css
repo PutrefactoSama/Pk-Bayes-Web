@@ -1134,4 +1134,263 @@ select.control-select {
   color: #065f46;
 }
 
+/* =========================================================================
+   Showcase Interactivo de la App Real (Tour de Capturas + Animaciones)
+   ========================================================================= */
+.app-tour-wrapper {
+  margin-top: 36px;
+  background: #071527;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-xl, 20px);
+  padding: 28px;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6);
+  position: relative;
+  overflow: hidden;
+}
+.app-tour-wrapper::before {
+  content: "";
+  position: absolute;
+  top: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.2) 0%, rgba(14, 165, 233, 0) 70%);
+  pointer-events: none;
+}
+
+/* Barra de pestañas interactivas */
+.app-tour-tabs {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  scrollbar-width: thin;
+}
+.app-tour-tab {
+  flex: 1;
+  min-width: 170px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 12px 14px;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  color: #fff;
+}
+.app-tour-tab:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(14, 165, 233, 0.3);
+}
+.app-tour-tab.active {
+  background: rgba(14, 165, 233, 0.12);
+  border-color: #0ea5e9;
+  box-shadow: 0 0 20px rgba(14, 165, 233, 0.15);
+}
+.app-tour-tab-num {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: #38bdf8;
+  display: block;
+  margin-bottom: 4px;
+}
+.app-tour-tab-title {
+  font-size: 0.86rem;
+  font-weight: 700;
+  display: block;
+  line-height: 1.25;
+}
+.app-tour-tab-sub {
+  font-size: 0.72rem;
+  color: var(--text-on-dark-muted);
+  display: block;
+  margin-top: 3px;
+}
+.app-tour-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: #38bdf8;
+  width: 0%;
+  transition: width 0.1s linear;
+}
+.app-tour-tab.active .app-tour-progress {
+  animation: tourProgress 6s linear forwards;
+}
+
+@keyframes tourProgress {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+
+/* Pantalla / Visor de Captura Real */
+.app-tour-display {
+  position: relative;
+  border-radius: 14px;
+  background: #020b17;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+}
+.app-tour-titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: #0f1e36;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.app-tour-dots {
+  display: flex;
+  gap: 7px;
+}
+.app-tour-dots span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.app-tour-url {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  padding: 3px 18px;
+  font-size: 0.74rem;
+  color: #93c5fd;
+  font-family: monospace;
+}
+.app-tour-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #10b981;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 2px 8px;
+  border-radius: 6px;
+}
+
+.app-tour-slide {
+  display: none;
+  position: relative;
+}
+.app-tour-slide.active {
+  display: block;
+  animation: fadeInSlide 0.35s ease forwards;
+}
+@keyframes fadeInSlide {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.app-tour-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  cursor: zoom-in;
+  transition: transform 0.3s ease;
+}
+.app-tour-slide:hover .app-tour-img {
+  transform: scale(1.008);
+}
+
+/* Pie explicativo de la captura */
+.app-tour-caption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 16px 20px;
+  background: #09172c;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+.app-tour-caption-text h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.app-tour-caption-text p {
+  font-size: 0.8rem;
+  color: var(--text-on-dark-muted);
+  margin-top: 4px;
+  max-width: 760px;
+}
+
+/* Hotspots animados palpitando tipo GIF */
+.live-pulse-dot {
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+  position: relative;
+  display: inline-block;
+}
+.live-pulse-dot::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  border: 2px solid #10b981;
+  animation: livePulse 1.8s infinite cubic-bezier(0.4, 0, 0.6, 1);
+}
+@keyframes livePulse {
+  0% { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* Estilo para imágenes reales en secciones de módulos y casos */
+.real-screen-frame {
+  background: #09172c;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: var(--radius-lg, 14px);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  margin-top: 18px;
+  position: relative;
+}
+.real-screen-frame img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+.real-screen-frame:hover img {
+  transform: scale(1.01);
+}
+.real-screen-tag {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(6, 18, 36, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #38bdf8;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 2;
+}
+
+
 

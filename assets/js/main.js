@@ -140,4 +140,64 @@
       el.textContent = PKBAYES_CONFIG.CONTACT_EMAIL;
     });
   }
+
+  /* ---------- Showcase Interactivo de Capturas Reales (Tour Auto-Play) ---------- */
+  const tourTabs = document.querySelectorAll(".app-tour-tab");
+  const tourSlides = document.querySelectorAll(".app-tour-slide");
+  if (tourTabs.length && tourSlides.length) {
+    let currentIdx = 0;
+    let tourTimer = null;
+    const tourDuration = 6000;
+
+    function goToSlide(idx) {
+      tourTabs.forEach((tab, i) => {
+        tab.classList.toggle("active", i === idx);
+        // Reset progress bar animation
+        const prog = tab.querySelector(".app-tour-progress");
+        if (prog) {
+          prog.style.animation = "none";
+          void prog.offsetWidth; // trigger reflow
+          if (i === idx) {
+            prog.style.animation = `tourProgress ${tourDuration}ms linear forwards`;
+          }
+        }
+      });
+      tourSlides.forEach((slide, i) => {
+        slide.classList.toggle("active", i === idx);
+      });
+      currentIdx = idx;
+    }
+
+    function startAutoTour() {
+      stopAutoTour();
+      tourTimer = setInterval(() => {
+        const next = (currentIdx + 1) % tourTabs.length;
+        goToSlide(next);
+      }, tourDuration);
+    }
+
+    function stopAutoTour() {
+      if (tourTimer) {
+        clearInterval(tourTimer);
+        tourTimer = null;
+      }
+    }
+
+    tourTabs.forEach((tab, i) => {
+      tab.addEventListener("click", () => {
+        goToSlide(i);
+        startAutoTour(); // Restart timer on click
+      });
+    });
+
+    const wrapper = document.querySelector(".app-tour-wrapper");
+    if (wrapper) {
+      wrapper.addEventListener("mouseenter", stopAutoTour);
+      wrapper.addEventListener("mouseleave", startAutoTour);
+    }
+
+    goToSlide(0);
+    startAutoTour();
+  }
 })();
+

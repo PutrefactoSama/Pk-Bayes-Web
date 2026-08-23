@@ -150,6 +150,126 @@
     </div>
   </section>
 
+  <!-- SHOWCASE INTERACTIVO: LA PLATAFORMA REAL EN ACCIÓN -->
+  <section class="section" style="background:#030d1b;padding-top:56px;padding-bottom:64px">
+    <div class="container">
+      <div class="section-head center reveal">
+        <span class="eyebrow on-dark">La Plataforma en Acción</span>
+        <h2 style="color:#fff">Experiencia Clínica Real de Precisión Farmacocinética</h2>
+        <p class="lead" style="color:var(--text-on-dark-muted)">Recorre las 5 vistas esenciales de PK-Bayes: desde el triage asistencial y biometría renal hasta la estimación bayesiana MAP y el análisis de cohorte.</p>
+      </div>
+
+      <div class="app-tour-wrapper reveal">
+        <!-- Pestañas del Tour -->
+        <div class="app-tour-tabs" role="tablist">
+          <button class="app-tour-tab active" data-tour-tab="0">
+            <span class="app-tour-tab-num">VISTA 01</span>
+            <span class="app-tour-tab-title">Resumen & Dashboard</span>
+            <span class="app-tour-tab-sub">Triage UCI vs Básica</span>
+            <div class="app-tour-progress"></div>
+          </button>
+          <button class="app-tour-tab" data-tour-tab="1">
+            <span class="app-tour-tab-num">VISTA 02</span>
+            <span class="app-tour-tab-title">Datos & Biometría</span>
+            <span class="app-tour-tab-sub">Cockcroft-Gault & CKD-EPI</span>
+            <div class="app-tour-progress"></div>
+          </button>
+          <button class="app-tour-tab" data-tour-tab="2">
+            <span class="app-tour-tab-num">VISTA 03</span>
+            <span class="app-tour-tab-title">Monitorización PK</span>
+            <span class="app-tour-tab-sub">Curva Continua & AKI</span>
+            <div class="app-tour-progress"></div>
+          </button>
+          <button class="app-tour-tab" data-tour-tab="3">
+            <span class="app-tour-tab-num">VISTA 04</span>
+            <span class="app-tour-tab-title">Estimación & What-If</span>
+            <span class="app-tour-tab-sub">Ajuste MAP & Predictor</span>
+            <div class="app-tour-progress"></div>
+          </button>
+          <button class="app-tour-tab" data-tour-tab="4">
+            <span class="app-tour-tab-num">VISTA 05</span>
+            <span class="app-tour-tab-title">Evolución Cohorte</span>
+            <span class="app-tour-tab-sub">Dosis vs Niveles (IC95%)</span>
+            <div class="app-tour-progress"></div>
+          </button>
+        </div>
+
+        <!-- Pantallas del Tour -->
+        <div class="app-tour-display">
+          <div class="app-tour-titlebar">
+            <div class="app-tour-dots">
+              <span style="background:#ff5f57"></span>
+              <span style="background:#febc2e"></span>
+              <span style="background:#28c840"></span>
+            </div>
+            <span class="app-tour-url">app.pk-bayes.com</span>
+            <span class="app-tour-badge"><span class="live-pulse-dot"></span> EN VIVO</span>
+          </div>
+
+          <!-- SLIDE 1: Resumen de Pacientes -->
+          <div class="app-tour-slide active">
+            <img src="assets/img/screens/screen-01-dashboard-pacientes.png" alt="Resumen de pacientes y dashboard general en PK-Bayes" class="app-tour-img" loading="eager">
+            <div class="app-tour-caption">
+              <div class="app-tour-caption-text">
+                <h4><span class="live-pulse-dot"></span> Dashboard Asistencial y Resumen de Pacientes</h4>
+                <p>Monitoreo activo multihospital con clasificación automática por gravedad (Sala Básica vs Sala Crítica / UCI), control de fármaco activo y acceso directo a expedientes clínicos con auditoría.</p>
+              </div>
+              <a href="funcionalidades.html#dashboard" class="btn btn-sm btn-outline-on-dark">Ver detalles →</a>
+            </div>
+          </div>
+
+          <!-- SLIDE 2: Datos del Paciente -->
+          <div class="app-tour-slide">
+            <img src="assets/img/screens/screen-02-datos-paciente.png" alt="Datos del paciente, función renal y biometría en PK-Bayes" class="app-tour-img" loading="lazy">
+            <div class="app-tour-caption">
+              <div class="app-tour-caption-text">
+                <h4><span class="live-pulse-dot"></span> Demografía, Función Renal Dinámica y Biometría</h4>
+                <p>Cálculo instantáneo de CrCl (Cockcroft-Gault), eGFR (CKD-EPI), estratificación en rangos de función renal y normalización antropométrica de IMC, peso ideal y peso ajustado.</p>
+              </div>
+              <a href="funcionalidades.html#renal" class="btn btn-sm btn-outline-on-dark">Ver biometría →</a>
+            </div>
+          </div>
+
+          <!-- SLIDE 3: Monitorización PK y Curva Continua -->
+          <div class="app-tour-slide">
+            <img src="assets/img/screens/screen-03-monitorizacion-curva.png" alt="Historial de dosis y curva de simulación PK continua con fluctuaciones de creatinina" class="app-tour-img" loading="lazy">
+            <div class="app-tour-caption">
+              <div class="app-tour-caption-text">
+                <h4><span class="live-pulse-dot"></span> Monitorización PK y Curva ODE con Eventos Renales (AKI)</h4>
+                <p>Registro cronológico de dosis administradas, integración de valles TDM y resolución numérica continua por ODEs RK45 reflejando caídas o recuperaciones agudas de función renal (Cr: 1.0 → 5.0 → 10.0 mg/dL).</p>
+              </div>
+              <a href="funcionalidades.html#dialisis" class="btn btn-sm btn-outline-on-dark">Ver cinética ODE →</a>
+            </div>
+          </div>
+
+          <!-- SLIDE 4: Estimación Bayesiana MAP y Predictor -->
+          <div class="app-tour-slide">
+            <img src="assets/img/screens/screen-04-estimacion-map-predictor.png" alt="Resultado de estimación bayesiana MAP y predictor interactivo de esquemas what-if" class="app-tour-img" loading="lazy">
+            <div class="app-tour-caption">
+              <div class="app-tour-caption-text">
+                <h4><span class="live-pulse-dot"></span> Estimación Bayesiana MAP y Predictor What-If en Tiempo Real</h4>
+                <p>Ajuste bayesiano Maximum A Posteriori con comparación paramétrica (Poblacional vs Individual: AUC24, Vd, CL, t1/2), semáforo de metas terapéuticas y simulación interactiva de regímenes con alertas de toxicidad.</p>
+              </div>
+              <a href="funcionalidades.html#bayesiano" class="btn btn-sm btn-outline-on-dark">Ver estimador MAP →</a>
+            </div>
+          </div>
+
+          <!-- SLIDE 5: Evolución Longitudinal de Cohorte -->
+          <div class="app-tour-slide">
+            <img src="assets/img/screens/screen-05-evolucion-longitudinal.png" alt="Evolución longitudinal de la monitorización con correlación de dosis vs niveles séricos" class="app-tour-img" loading="lazy">
+            <div class="app-tour-caption">
+              <div class="app-tour-caption-text">
+                <h4><span class="live-pulse-dot"></span> Evolución Longitudinal de la Monitorización y Bandas IC95%</h4>
+                <p>Análisis agregado de cohorte con gráficos pareados: evolución temporal de dosis administradas (716 eventos) vs concentraciones plasmáticas reales frente al rango diana (15–20 mg/L) con cálculo de media e IC95%.</p>
+              </div>
+              <a href="funcionalidades.html#dashboard" class="btn btn-sm btn-outline-on-dark">Ver analítica institucional →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- EL PROBLEMA CLÍNICO -->
   <section class="section">
     <div class="container">
