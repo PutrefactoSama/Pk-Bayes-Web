@@ -1,0 +1,7 @@
+name = "pkbayes-notifications"
+main = "src/index.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+ADMIN_EMAIL = "pabloisaezr@gmail.com"
+FROM_EMAIL = "PK-Bayes <onboarding@resend.dev>"
