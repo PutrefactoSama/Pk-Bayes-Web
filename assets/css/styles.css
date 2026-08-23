@@ -525,6 +525,7 @@ select.control-select {
 @media (max-width: 800px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 520px) { .footer-grid { grid-template-columns: 1fr; } }
 .footer-brand .brand { color: #fff; }
+.footer-brand .brand-mark { background: #ffffff; border-radius: 10px; padding: 3px; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
 .footer-grid p { font-size: 0.88rem; margin-top: 12px; max-width: 280px; }
 .footer-col h5 { color: #fff; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; }
 .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
