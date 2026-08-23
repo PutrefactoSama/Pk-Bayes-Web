@@ -1397,35 +1397,47 @@ select.control-select {
    ========================================================================= */
 .lang-selector {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
 }
 .lang-btn {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
-  padding: 7px 12px;
-  background: #f1f5f9;
+  height: 38px;
+  padding: 0 12px;
+  background: #ffffff;
   border: 1px solid var(--border);
   border-radius: 8px;
   font-size: 0.84rem;
   font-weight: 600;
   color: var(--text-primary);
   cursor: pointer;
+  white-space: nowrap;
   transition: all 0.2s ease;
 }
 .lang-btn:hover {
-  background: #e2e8f0;
-  border-color: var(--border-strong);
-}
-.lang-btn svg.lang-globe {
-  width: 16px;
-  height: 16px;
+  background: #f8fafc;
+  border-color: var(--primary);
   color: var(--primary);
 }
+.lang-current-label {
+  display: inline-block;
+  line-height: 1;
+  white-space: nowrap;
+}
+.lang-btn svg.lang-globe {
+  width: 15px;
+  height: 15px;
+  color: var(--primary);
+  flex-shrink: 0;
+}
 .lang-btn svg.lang-chevron {
-  width: 14px;
-  height: 14px;
+  width: 13px;
+  height: 13px;
   color: var(--text-muted);
+  flex-shrink: 0;
   transition: transform 0.2s ease;
 }
 .lang-selector.open .lang-btn svg.lang-chevron {
