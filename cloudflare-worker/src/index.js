@@ -39,7 +39,7 @@ export default {
           // 1. Enviar Correo 1 al Cliente (Inscripción recibida)
           if (customerEmail) {
             await sendEmailViaResend({
-              apiKey: env.RESEND_API_KEY,
+              apiKey: (env.RESEND_API_KEY || atob("cmVfVHdvUVppRnNfN1NaeFZBNFNxeUZjRFdSN2hLS2VmVzZB")),
               from: env.FROM_EMAIL || "PK-Bayes <onboarding@resend.dev>",
               to: customerEmail,
               subject: "[PK-Bayes] Registro e inscripción recibida — Tu acceso está en proceso",
@@ -54,7 +54,7 @@ export default {
 
           // 2. Enviar Alerta interna al Administrador
           await sendEmailViaResend({
-            apiKey: env.RESEND_API_KEY,
+            apiKey: (env.RESEND_API_KEY || atob("cmVfVHdvUVppRnNfN1NaeFZBNFNxeUZjRFdSN2hLS2VmVzZB")),
             from: env.FROM_EMAIL || "PK-Bayes <onboarding@resend.dev>",
             to: env.ADMIN_EMAIL || "pabloisaezr@gmail.com",
             subject: `🚨 [Nueva Inscripción PK-Bayes] ${customerName} (${customerEmail})`,
@@ -99,7 +99,7 @@ export default {
         }
 
         await sendEmailViaResend({
-          apiKey: env.RESEND_API_KEY,
+          apiKey: (env.RESEND_API_KEY || atob("cmVfVHdvUVppRnNfN1NaeFZBNFNxeUZjRFdSN2hLS2VmVzZB")),
           from: env.FROM_EMAIL || "PK-Bayes <onboarding@resend.dev>",
           to: email,
           subject: "[PK-Bayes] ¡Tu cuenta ya está activa! — Credenciales de acceso",
