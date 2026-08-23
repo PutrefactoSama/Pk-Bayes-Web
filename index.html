@@ -62,7 +62,7 @@
       <div>
         <span class="eyebrow on-dark">Software de Apoyo a la Decisión Clínica (CDSS)</span>
         <h1>Plataforma de Precisión Farmacocinética y Dosificación Bayesiana en Tiempo Real</h1>
-        <p class="lead">PK-Bayes optimiza la monitorización terapéutica (TDM) de estrecho margen terapéutico para <strong>Vancomicina</strong> y <strong>Fenitoína</strong>. Combina estimación bayesiana MAP, resolución de ecuaciones diferenciales ordinarias (ODEs RK45) con preservación de masa ante cambios de creatinina y aprendizaje poblacional institucional adaptativo.</p>
+        <p class="lead">PK-Bayes optimiza la monitorización terapéutica (TDM) de estrecho margen terapéutico para <strong>Vancomicina</strong> (activo) y avanza en el desarrollo de <strong>Fenitoína</strong>. Combina estimación bayesiana MAP, resolución de ecuaciones diferenciales ordinarias (ODEs RK45) con preservación de masa ante cambios de creatinina y aprendizaje poblacional institucional adaptativo.</p>
         
         <div class="hero-cta">
           <a href="precios.html" class="btn btn-on-dark btn-lg">Probar 14 días gratis</a>
@@ -155,8 +155,8 @@
     <div class="container">
       <div class="statement-block reveal">
         <span class="eyebrow">El desafío clínico</span>
-        <h2 class="mt-16">Un margen terapéutico estrecho no perdona aproximaciones estáticas.</h2>
-        <p class="statement-sub">Fármacos críticos como la <strong>vancomicina</strong> y la <strong>fenitoína</strong> presentan una farmacocinética altamente variable. En pacientes críticos con sepsis, daño renal fluctuante (AKI) o hipoalbuminemia, los nomogramas rígidos y las hojas de cálculo fallan a menudo, aumentando la estancia hospitalaria y la morbimortalidad.</p>
+        <h2 class="mt-16">La variabilidad farmacocinética exige precisión matemática</h2>
+        <p class="statement-sub">Fármacos críticos de estrecho margen como la <strong>vancomicina</strong> presentan una farmacocinética altamente variable. En pacientes con sepsis, daño renal fluctuante (AKI) o hemodiálisis, los nomogramas rígidos y las hojas de cálculo fallan a menudo, aumentando la estancia hospitalaria y la morbimortalidad.</p>
       </div>
 
       <div class="grid grid-3 mt-48">
@@ -164,8 +164,8 @@
           <div class="advantage-icon-box amber">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
           </div>
-          <h3 class="mt-16">Subdosificación y Fracaso</h3>
-          <p class="text-secondary mt-8">Un cálculo conservador produce concentraciones subterapéuticas (AUC24 &lt; 400 mg·h/L): la infección bacteriana avanza sin control o las crisis epilépticas se repiten, induciendo resistencia antimicrobiana.</p>
+          <h3 class="mt-16">Subdosificación y Fracaso Terapéutico</h3>
+          <p class="text-secondary mt-8">Un cálculo empírico conservador produce concentraciones subterapéuticas (AUC24 &lt; 400 mg·h/L): la infección bacteriana avanza sin control y aumenta el riesgo de selección de cepas resistentes.</p>
         </div>
 
         <div class="card reveal">
@@ -173,7 +173,7 @@
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 2 22h20L12 2Z"/><path d="M12 9v5M12 17h.01"/></svg>
           </div>
           <h3 class="mt-16">Toxicidad y Daño Renal Agudo</h3>
-          <p class="text-secondary mt-8">La acumulación de vancomicina desencadena lesión renal aguda (IRA/AKI), mientras que la saturación hepática no lineal de fenitoína satura las enzimas CYP2C9 provocando ataxia, nistagmo y neurotoxicidad.</p>
+          <p class="text-secondary mt-8">La acumulación de vancomicina desencadena lesión renal aguda (IRA/AKI). PK-Bayes permite controlar con precisión el rango objetivo de AUC24 (400–600 mg·h/L) para minimizar el daño nefrótico.</p>
         </div>
 
         <div class="card reveal">
@@ -297,12 +297,12 @@
           <a href="funcionalidades.html#dialisis" class="card-link">Ver resolución de ODEs →</a>
         </div>
 
-        <!-- BENTO 4: FENITOÍNA & SHEINER-TOZER -->
+        <!-- BENTO 4: FENITOÍNA EN ROADMAP -->
         <div class="bento-cell reveal">
           <div class="bento-icon" style="background:var(--amber-light);color:var(--amber)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
-          <h3>Fenitoína: Michaelis-Menten & Sheiner-Tozer</h3>
-          <p>Modela saturación enzimática (Vmax, Km) y normaliza la fracción libre en hipoalbuminemia y diálisis para evitar neurotoxicidad.</p>
-          <a href="farmacos.html#fenitoina" class="card-link">Ver cinética no lineal →</a>
+          <h3>Próximamente: Fenitoína</h3>
+          <p>Alcances en desarrollo: modelado de saturación hepática (Michaelis-Menten) y corrección de fracción libre en hipoalbuminemia por Sheiner-Tozer.</p>
+          <a href="farmacos.html#fenitoina" class="card-link">Ver alcances en desarrollo →</a>
         </div>
 
         <!-- BENTO 5: DASHBOARD DE COHORTES -->
@@ -316,9 +316,9 @@
         <!-- BENTO 6: POPPK EXPORT -->
         <div class="bento-cell reveal">
           <div class="bento-icon" style="background:var(--primary-light);color:var(--primary)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div>
-          <h3>Datasets PopPK para NONMEM y Monolix</h3>
-          <p>Genera datasets estandarizados con covariables dinámicas y eventos EVID=0,1,2 con codificación UTF-8 BOM para Excel, R y Python.</p>
-          <a href="funcionalidades.html#export" class="card-link">Ver pipeline PopPK →</a>
+          <h3>Bases de Datos PopPK para NONMEM y Monolix</h3>
+          <p>Automatiza la construcción y estructuración de la base de datos de pacientes para modelado farmacocinético poblacional e investigación.</p>
+          <a href="funcionalidades.html#export" class="card-link">Ver integración PopPK →</a>
         </div>
       </div>
     </div>
@@ -520,8 +520,8 @@
           <h3>Precios Transparentes y Accesibles</h3>
           <p>Hacemos accesible la dosificación bayesiana de precisión para hospitales públicos, clínicas y universidades, sin barreras contractuales abusivas.</p>
           <div class="advantage-metric-bar">
-            <span class="advantage-metric-val">$1.000 / año</span>
-            <span class="advantage-metric-lbl">por institución hospitalaria completa</span>
+            <span class="advantage-metric-val">$1.350 / año</span>
+            <span class="advantage-metric-lbl">Plan Completo con todo incluido</span>
           </div>
         </div>
       </div>
@@ -532,9 +532,9 @@
   <section class="section section-alt">
     <div class="container">
       <div class="section-head reveal">
-        <span class="eyebrow">Fase 1 del Roadmap</span>
-        <h2>Dos fármacos de alto riesgo, modelados con rigor científico</h2>
-        <p class="lead">Modelos farmacocinéticos validados en la literatura internacional para resolver cinéticas lineales y no lineales complejas.</p>
+        <span class="eyebrow">Roadmap Farmacocinético</span>
+        <h2>Modelos validados y nuevas integraciones de alto impacto</h2>
+        <p class="lead">Vancomicina activa para dosificación clínica de precisión, con nuevos módulos en desarrollo para cinéticas saturables.</p>
       </div>
 
       <div class="grid grid-2">
@@ -542,30 +542,30 @@
           <div class="drug-head">
             <div>
               <h3>Vancomicina</h3>
-              <span class="text-muted" style="font-size:0.85rem">Antibiótico glicopéptido · Cinética lineal</span>
+              <span class="text-muted" style="font-size:0.85rem">Antibiótico glicopéptido · Cinética lineal bicompartimental</span>
             </div>
-            <span class="badge badge-primary">Modelos 1 & 2 Comp.</span>
+            <span class="badge badge-green">Activo en Plataforma</span>
           </div>
-          <p class="text-secondary mt-8">Cumple con las guías de consenso 2020 (ASHP/IDSA/PIDS/SIDP) para dosificación guiada por AUC24/MIC (400–600 mg·h/L). Incluye aclaramiento renal dinámico CL(t) y soporte de diálisis / TRRC.</p>
+          <p class="text-secondary mt-8">Cumple con las guías de consenso internacional 2020 (ASHP/IDSA/PIDS/SIDP) para dosificación guiada por AUC24/CIM (400–600 mg·h/L). Incluye cinética renal dinámica CL(t) y soporte de diálisis / TRRC.</p>
           <ul class="mini-list">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Modelos integrados: Goti et al. 2018 · Rodvold et al. 1988 · Thomson et al. 2009 · Yamamoto et al. 2009</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Modelo simplificado de 1 compartimento para estimaciones rápidas</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Ajuste hemodinámico automático ante sesiones de diálisis o TRRC</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Modelos integrados: Goti et al. 2018 (BSV V1 ~30%) · Rodvold · Thomson · Yamamoto</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Resolución continua por ODEs Runge-Kutta 45 preservando masa</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Ajuste hemodinámico ante hemodiálisis intermitente o TRRC en UCI</li>
           </ul>
         </div>
 
-        <div class="card drug-card teal reveal">
+        <div class="card drug-card amber reveal">
           <div class="drug-head">
             <div>
               <h3>Fenitoína</h3>
-              <span class="text-muted" style="font-size:0.85rem">Anticonvulsivante · Cinética no lineal saturable</span>
+              <span class="text-muted" style="font-size:0.85rem">Anticonvulsivante · Cinética saturable Michaelis-Menten</span>
             </div>
-            <span class="badge badge-teal">Michaelis-Menten</span>
+            <span class="badge badge-amber">Próximamente</span>
           </div>
-          <p class="text-secondary mt-8">Modela la saturación de los sistemas enzimáticos hepáticos mediante la ecuación de Michaelis-Menten (Vmax y Km), evitando incrementos imprevistos de concentración.</p>
+          <p class="text-secondary mt-8">Próxima integración: modelado de la saturación enzimática hepática mediante Michaelis-Menten (Vmax y Km), evitando incrementos no lineales y desproporcionados de concentración.</p>
           <ul class="mini-list">
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Corrección automática de Sheiner-Tozer para hipoalbuminemia e insuficiencia renal terminal</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Cálculo de la fracción libre farmacológicamente activa en sangre</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Cálculo de la fracción libre farmacológicamente activa en sangre (1.0–2.0 mg/L)</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> Alertas tempranas ante concentraciones plasmáticas en zona de saturación</li>
           </ul>
         </div>
@@ -634,7 +634,7 @@
             <span class="brand-tag">Clinical MAP Workstation</span>
           </div>
         </a>
-        <p>Plataforma clínica de dosificación farmacocinética de precisión y optimización bayesiana MAP en tiempo real para vancomicina y fenitoína.</p>
+        <p>Plataforma clínica de dosificación farmacocinética de precisión y optimización bayesiana MAP en tiempo real para vancomicina (activo) y nuevos fármacos en desarrollo.</p>
       </div>
       <div class="footer-col">
         <h5>Producto</h5>

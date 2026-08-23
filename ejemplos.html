@@ -209,40 +209,40 @@
     </div>
   </section>
 
-  <!-- CASO 3: FENITOÍNA & SHEINER-TOZER -->
+  <!-- CASO 3: PRÓXIMA INTEGRACIÓN (FENITOÍNA) -->
   <section class="section">
     <div class="container">
       <div class="section-head reveal">
         <div class="flex items-center gap-8 flex-wrap">
-          <span class="eyebrow">Caso 3 · Neurología & Farmacia</span>
-          <span class="badge badge-amber">Cinética Saturable Michaelis-Menten</span>
+          <span class="eyebrow">Próxima Integración · Roadmap</span>
+          <span class="badge badge-amber">En Desarrollo</span>
         </div>
-        <h2 class="mt-8">Fenitoína con Hipoalbuminemia: El Peligro del Nivel "Aparentemente Normal"</h2>
-        <p>Paciente sintética <strong>#205</strong> — 45 años, mujer, 58 kg, ingreso por crisis convulsivas en racimo. Albúmina sérica de 2.4 g/dL.</p>
+        <h2 class="mt-8">Alcance Futuro: Fenitoína con Cinética Saturable y Corrección de Sheiner-Tozer</h2>
+        <p>Simulación del futuro módulo de Fenitoína — Paciente en UCI con hipoalbuminemia (2.4 g/dL) y nivel sérico total aparentemente "dentro de rango".</p>
       </div>
       <div class="timeline reveal">
         <div class="timeline-step">
           <div class="timeline-dot">1</div>
           <div class="timeline-card">
-            <h4>Nivel Total Notificado por Laboratorio</h4>
-            <p>Se reporta un nivel sérico total de fenitoína de <strong>14.0 mg/L</strong> — dentro de la ventana histórica convencional (10–20 mg/L). A simple vista, el valor parece seguro.</p>
+            <h4>Nivel Total Aparentemente Normal</h4>
+            <p>Se reporta un nivel sérico total de fenitoína de <strong>14.0 mg/L</strong> (rango habitual 10–20 mg/L), lo que en un análisis convencional daría una falsa sensación de seguridad.</p>
             <div class="tags"><span class="badge badge-primary">Fenitoína Total: 14.0 mg/L</span><span class="badge badge-navy" style="background:#eef1f6;color:var(--text-muted)">Albúmina: 2.4 g/dL</span></div>
           </div>
         </div>
         <div class="timeline-step is-alert">
           <div class="timeline-dot">2</div>
           <div class="timeline-card">
-            <h4>Normalización Inmediata por Sheiner-Tozer</h4>
-            <p>PK-Bayes aplica la ecuación <span class="mono">C_corregida = 14.0 / [(0.2 × 2.4) + 0.1] = 24.1 mg/L</span>. Al tener solo 2.4 g/dL de albúmina, la fracción libre de fármaco no unido a proteínas se encuentra en <strong>2.4 mg/L</strong> (rango seguro: 1.0–2.0 mg/L).</p>
-            <div class="tags"><span class="badge badge-red">Nivel Corregido Real: 24.1 mg/L (Tóxico)</span></div>
+            <h4>Corrección Automática por Fracción Libre</h4>
+            <p>El algoritmo de Sheiner-Tozer proyectará el nivel corregido real en <strong>24.1 mg/L</strong>, revelando que la fracción libre activa se encuentra en rango neurotóxico (2.4 mg/L frente al límite seguro de 2.0 mg/L).</p>
+            <div class="tags"><span class="badge badge-red">Nivel Corregido: 24.1 mg/L (Riesgo Tóxico)</span></div>
           </div>
         </div>
         <div class="timeline-step is-done">
           <div class="timeline-dot">3</div>
           <div class="timeline-card">
-            <h4>Ajuste no lineal de Michaelis-Menten</h4>
-            <p>El motor estima <span class="mono">Vmax = 7.2 mg/kg/día</span> y <span class="mono">Km = 4.8 mg/L</span>, indicando que el paciente opera en la zona no lineal saturable. Se desescala la dosis diaria de 350 mg a 275 mg/día, resolviendo los síntomas tempranos de ataxia y nistagmo.</p>
-            <div class="tags"><span class="badge badge-green">Dosis Ajustada con Éxito</span></div>
+            <h4>Ajuste No Lineal por Michaelis-Menten</h4>
+            <p>El módulo estimará los parámetros individuales Vmax y Km para calcular la dosis de desescalada exacta, evitando que el paciente entre en la zona hiperbólica de saturación hepática.</p>
+            <div class="tags"><span class="badge badge-green">Protección ante Sobredosificación</span></div>
           </div>
         </div>
       </div>
@@ -254,11 +254,11 @@
     <div class="container">
       <div class="section-head reveal">
         <div class="flex items-center gap-8 flex-wrap">
-          <span class="eyebrow">Caso 4 · Farmacometría e Investigación</span>
-          <span class="badge badge-teal">NONMEM · Monolix · Dashboard</span>
+          <span class="eyebrow">Caso 3 · Farmacometría e Investigación</span>
+          <span class="badge badge-teal">NONMEM & Monolix</span>
         </div>
-        <h2 class="mt-8">De la Cohorte Hospitalaria al Estudio PopPK y Calibración Local</h2>
-        <p>Servicio de Farmacia Clínica — Análisis longitudinal de 150 pacientes con vancomicina y exportación PopPK automatizada.</p>
+        <h2 class="mt-8">De la Cohorte Hospitalaria a la Creación de la Base de Datos PopPK</h2>
+        <p>Servicio de Farmacia Clínica — Análisis longitudinal de cohorte de vancomicina y exportación automatizada para modelado poblacional.</p>
       </div>
       <div class="timeline reveal">
         <div class="timeline-step">
@@ -280,23 +280,23 @@
         <div class="timeline-step is-done">
           <div class="timeline-dot">3</div>
           <div class="timeline-card">
-            <h4>Exportación PopPK en 1 Clic con Eventos EVID=0,1,2</h4>
-            <p>El investigador descarga el dataset estructurado en formato CSV UTF-8 con BOM (\uFEFF) para correr modelos no lineales de efectos mixtos (NLME) en NONMEM, Monolix y R sin requerir limpieza manual de datos.</p>
-            <div class="tags"><span class="badge badge-teal">Dataset NONMEM/Monolix Listo</span></div>
+            <h4>Generación de la Base de Datos PopPK en 1 Clic</h4>
+            <p>El investigador exporta la base de datos completa de su hospital estructurada y estandarizada para su uso directo en <strong>NONMEM</strong> y <strong>Monolix</strong>, eliminando semanas de trabajo manual y facilitando publicaciones científicas.</p>
+            <div class="tags"><span class="badge badge-teal">Exportación PopPK Lista</span><span class="badge badge-primary">NONMEM & Monolix</span></div>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section section-alt">
+  <section class="section">
     <div class="container">
       <div class="cta-band reveal">
         <div>
           <h2>Prueba estos flujos con tus propios datos</h2>
-          <p>Prueba PK-Bayes gratis durante 14 días, luego continúa con el plan académico u hospitalario.</p>
+          <p>Comienza hoy tu prueba gratuita de 14 días sin costo, o adquiere el Plan Completo con acceso total y exportación de bases de datos PopPK.</p>
         </div>
-        <a href="precios.html" class="btn btn-on-dark btn-lg">Ver precios →</a>
+        <a href="precios.html" class="btn btn-on-dark btn-lg">Ver plan y precios →</a>
       </div>
     </div>
   </section>
@@ -314,7 +314,7 @@
             <span class="brand-tag">Clinical MAP Workstation</span>
           </div>
         </a>
-        <p>Plataforma clínica de dosificación farmacocinética de precisión y optimización bayesiana MAP en tiempo real para vancomicina y fenitoína.</p>
+        <p>Plataforma clínica de dosificación farmacocinética de precisión y optimización bayesiana MAP en tiempo real para vancomicina (activo) y nuevos fármacos en desarrollo.</p>
       </div>
       <div class="footer-col">
         <h5>Producto</h5>

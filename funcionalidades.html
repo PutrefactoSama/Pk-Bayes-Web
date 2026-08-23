@@ -283,34 +283,30 @@
         <div>
           <div class="flex items-center gap-8 flex-wrap">
             <span class="badge badge-teal">Investigación Farmacocinética</span>
-            <span class="badge badge-primary">NONMEM · Monolix · R</span>
+            <span class="badge badge-primary">NONMEM & Monolix</span>
           </div>
-          <h3 class="mt-16">Motor de Creación de Datasets PopPK en 1 Clic</h3>
+          <h3 class="mt-16">Generación Automatizada de Bases de Datos PopPK</h3>
           <div class="feature-detail-body">
             <div>
-              <p>Elimina meses de limpieza manual propensa a error. PK-Bayes reconstruye dinámicamente los eventos tiempo-dependientes y exporta datasets normalizados en <strong>NONMEM</strong>, <strong>Monolix</strong>, <strong>R (mrgsolve, nlmixr2, tidyverse)</strong> y <strong>Python (pandas)</strong> con codificación UTF-8 con BOM (\uFEFF) para apertura inmediata en Excel.</p>
+              <p>PK-Bayes automatiza la construcción y estructuración de la base de datos farmacocinética de tus pacientes para su uso directo en software de modelado poblacional como <strong>NONMEM</strong> y <strong>Monolix</strong>, así como en entornos de análisis en <strong>R</strong> y <strong>Python</strong>.</p>
               
+              <p class="mt-16 text-secondary">Elimina semanas de transcripción y limpieza manual de registros clínicos, integrando dosis, tasas de infusión, niveles plasmáticos medidos, evolución de la función renal y covariables demográficas en un formato estructurado y estandarizado con un solo clic.</p>
+
               <ul class="mini-list mt-16">
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Reconstrucción de Eventos:</strong> <span class="mono" style="color:#38bdf8">EVID=1</span> (dosis y tasa de infusión), <span class="mono" style="color:#10b981">EVID=0</span> (niveles medidos), <span class="mono" style="color:#f59e0b">EVID=2</span> (cambios de creatinina / función renal).</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Clasificación de Perfiles Renales:</strong> Detección automática de <em>AKI</em> (aumento ≥ 0.3 mg/dL o ≥ 50% basal), <em>Recuperación Renal</em> o <em>Estabilidad</em>.</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Covariables Completas:</strong> <span class="mono">ID, TIME, EVID, AMT, RATE, DV, MDV, AGE, WT, SEX, SCR, CRCL, STRATUM, SETTING</span>.</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Compatibilidad directa:</strong> Archivos listos para ejecutar modelos farmacométricos poblacionales sin necesidad de preprocesamiento.</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Investigación y docencia:</strong> Ideal para desarrollo de modelos institucionales propios, tesis y publicaciones científicas.</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Exclusivo del Plan Completo:</strong> Funcionalidad disponible para instituciones con suscripción activa.</li>
               </ul>
             </div>
             
-            <div>
-              <div class="code-block-dataset">
-                <div class="dataset-header">
-                  <span>dataset_poppk_pkbayes.csv</span>
-                  <span style="font-size:0.7rem;color:#10b981">NONMEM & Monolix Ready</span>
-                </div>
-<span class="dataset-row">ID,TIME,EVID,AMT,RATE,DV,MDV,AGE,WT,SEX,SCR,CRCL,SETTING</span>
-<span class="evid-1">0482,0.00,1,1000,1000,.,1,68,82,1,1.10,72.4,ICU</span>
-<span class="evid-0">0482,12.00,0,.,.,18.40,0,68,82,1,1.10,72.4,ICU</span>
-<span class="evid-2">0482,24.00,2,.,.,.,1,68,82,1,1.60,48.2,ICU_AKI</span>
-<span class="evid-1">0482,24.00,1,750,750,.,1,68,82,1,1.60,48.2,ICU_AKI</span>
-<span class="evid-0">0482,36.00,0,.,.,15.20,0,68,82,1,1.60,48.2,ICU_AKI</span>
+            <div class="card" style="background:#f8fafc;border-color:var(--border);align-self:start">
+              <span class="label" style="color:var(--primary);font-weight:700">Integración con Farmacometría</span>
+              <p class="text-secondary mt-8" style="font-size:0.88rem">Exportación con un clic de toda la cohorte institucional estructurada y validada para su procesamiento inmediato en herramientas avanzadas de modelado farmacocinético poblacional.</p>
+              <div class="flex gap-8 mt-16 flex-wrap">
+                <span class="badge badge-teal">NONMEM Ready</span>
+                <span class="badge badge-primary">Monolix Ready</span>
+                <span class="badge badge-navy" style="background:#eef1f6;color:var(--text-muted)">R / Python</span>
               </div>
-              <p class="text-secondary mt-8" style="font-size:0.8rem">Archivo estructurado listo para ejecutar modelos no lineales de efectos mixtos (NLME) para publicaciones científicas y acreditación hospitalaria.</p>
             </div>
           </div>
         </div>
@@ -397,7 +393,7 @@
       <div class="cta-band reveal">
         <div>
           <h2>Observa el flujo en un paciente real</h2>
-          <p>Revisa tres casos clínicos sintéticos completos: vancomicina en UCI, fenitoína con hipoalbuminemia y calibración de prior hospitalario.</p>
+          <p>Revisa los casos clínicos prácticos: vancomicina en UCI con AKI dinámico, paciente crítico en TRRC y calibración de prior hospitalario.</p>
         </div>
         <a href="ejemplos.html" class="btn btn-on-dark btn-lg">Ver casos clínicos →</a>
       </div>
@@ -417,7 +413,7 @@
             <span class="brand-tag">Clinical MAP Workstation</span>
           </div>
         </a>
-        <p>Plataforma clínica de dosificación farmacocinética de precisión y optimización bayesiana MAP en tiempo real para vancomicina y fenitoína.</p>
+        <p>Plataforma clínica de dosificación farmacocinética de precisión y optimización bayesiana MAP en tiempo real para vancomicina (activo) y nuevos fármacos en desarrollo.</p>
       </div>
       <div class="footer-col">
         <h5>Producto</h5>

@@ -61,7 +61,7 @@
       <div class="breadcrumb"><a href="index.html">Inicio</a> <span>/</span> <span>Fármacos y modelos</span></div>
       <span class="eyebrow on-dark mt-16" style="display:inline-flex">Fase 1 del Roadmap</span>
       <h1>Modelos farmacocinéticos de referencia, respaldados por la evidencia</h1>
-      <p class="lead">PK-Bayes soporta hoy dos de los fármacos con mayor índice de morbimortalidad por errores de dosificación: Vancomicina (cinética lineal compartimental) y Fenitoína (cinética no lineal saturable).</p>
+      <p class="lead">PK-Bayes optimiza hoy la monitorización y dosificación de precisión de <strong>Vancomicina</strong> (cinética lineal bicompartimental y ODEs continuas) y avanza en el desarrollo e integración de <strong>Fenitoína</strong> (cinética saturable de Michaelis-Menten).</p>
     </div>
   </section>
 
@@ -161,46 +161,46 @@
     <div class="container">
       <div class="section-head reveal">
         <div class="flex items-center gap-8 flex-wrap">
-          <span class="eyebrow">Anticonvulsivante de Estrecho Margen</span>
-          <span class="badge badge-teal">Cinética No Lineal Saturable</span>
+          <span class="eyebrow">Próxima Integración · Roadmap</span>
+          <span class="badge badge-amber">En Desarrollo</span>
         </div>
-        <h2 class="mt-16">Fenitoína — Michaelis-Menten y Corrección por Fracción Libre</h2>
-        <p class="lead">A dosis terapéuticas habituales, las enzimas hepáticas responsables del metabolismo de la fenitoína (CYP2C9 y CYP2C19) se saturan. Pequeños incrementos en la dosis diaria provocan aumentos desproporcionados en los niveles plasmáticos.</p>
+        <h2 class="mt-16">Fenitoína — Alcances Clínicos y Cinética Saturable de Michaelis-Menten</h2>
+        <p class="lead">Módulo actualmente en fase de integración y validación algorítmica. Conoce los alcances farmacocinéticos que incorporará la plataforma para la dosificación de precisión de este anticonvulsivante de estrecho margen.</p>
       </div>
 
       <div class="grid grid-2">
         <div class="card reveal">
-          <span class="badge badge-primary">Ecuación de Michaelis-Menten</span>
-          <h3 class="mt-16">Estimación Bayesiana de Vmax y Km</h3>
-          <p class="text-secondary mt-8">Cálculo no lineal de concentración en estado estacionario y estimación individualizada de velocidad máxima metabólica (<span class="mono">Vmax</span>) y constante de Michaelis (<span class="mono">Km</span>):</p>
+          <span class="badge badge-primary">Alcance 1: Cinética Hepática No Lineal</span>
+          <h3 class="mt-16">Estimación de Vmax y Km</h3>
+          <p class="text-secondary mt-8">A dosis terapéuticas habituales, las enzimas hepáticas (CYP2C9 y CYP2C19) se saturan. El módulo incorporará la estimación individualizada de la velocidad máxima de eliminación (<span class="mono">Vmax</span>) y la constante de afinidad (<span class="mono">Km</span>) para predecir concentraciones en estado estacionario evitando incrementos bruscos de toxicidad:</p>
           
           <div class="formula-card mt-16">
             <span class="formula-main">R = [ (Vmax · Css) / (Km + Css) ] · (S / F)</span>
             <div class="formula-legend">
-              <span><strong>R:</strong> Dosis diaria requerida (mg/día)</span>
+              <span><strong>R:</strong> Dosis diaria estimada (mg/día)</span>
               <span><strong>Css:</strong> Concentración estado estacionario</span>
               <span><strong>S / F:</strong> Forma salina y biodisponibilidad</span>
-              <span><strong>Vmax, Km:</strong> Parámetros MAP individuales</span>
+              <span><strong>Vmax, Km:</strong> Parámetros individuales</span>
             </div>
           </div>
-          <p class="text-secondary mt-8">Alerta al clínico antes de que el paciente entre en la zona vertical hiperbólica de neurotoxicidad (ataxia, nistagmo, encefalopatía).</p>
+          <p class="text-secondary mt-8">Permitirá alertar tempranamente ante prescripciones que sitúen al paciente en la pendiente vertical hiperbólica de riesgo neurotóxico.</p>
         </div>
 
         <div class="card reveal">
-          <span class="badge badge-teal">Unión a Proteínas Plasmáticas (90%)</span>
-          <h3 class="mt-16">Normalización por Sheiner-Tozer</h3>
-          <p class="text-secondary mt-8">En pacientes con hipoalbuminemia (sepsis, quemados, desnutrición) o insuficiencia renal terminal en diálisis, la fracción libre activa aumenta peligrosamente aunque el nivel total reportado parezca dentro de rango.</p>
+          <span class="badge badge-teal">Alcance 2: Fracción Libre Activa</span>
+          <h3 class="mt-16">Corrección Automática por Sheiner-Tozer</h3>
+          <p class="text-secondary mt-8">Dado que la fenitoína se une en un 90% a la albúmina sérica, en pacientes con hipoalbuminemia o insuficiencia renal terminal el nivel plasmático total no refleja la concentración libre activa.</p>
           
           <div class="formula-card teal mt-16">
             <span class="formula-main">C_corregida = C_medida / [ (0.2 · Albúmina) + 0.1 ]</span>
             <div class="formula-legend">
-              <span><strong>C_medida:</strong> Nivel sérico total (mg/L)</span>
-              <span><strong>Albúmina:</strong> Concentración sérica (g/dL)</span>
+              <span><strong>C_medida:</strong> Nivel sérico total reportado</span>
+              <span><strong>Albúmina:</strong> Concentración en g/dL</span>
               <span><strong>Factor 0.1:</strong> Pacientes con ClCr &lt; 20 mL/min / IRT</span>
-              <span><strong>Objetivo libre:</strong> 1.0 – 2.0 mg/L</span>
+              <span><strong>Diana libre:</strong> 1.0 – 2.0 mg/L</span>
             </div>
           </div>
-          <p class="text-secondary mt-8">Evita la falsa tranquilidad de un nivel de 14 mg/L cuando la fracción libre activa ya supera el umbral de intoxicación.</p>
+          <p class="text-secondary mt-8">Evitará la infraestimación del riesgo en pacientes críticos o desnutridos cuyos niveles totales parezcan dentro del rango habitual.</p>
         </div>
       </div>
     </div>
@@ -261,7 +261,7 @@
             <span class="brand-tag">Clinical MAP Workstation</span>
           </div>
         </a>
-        <p>Plataforma clínica de dosificación farmacocinética de precisión y optimización bayesiana MAP en tiempo real para vancomicina y fenitoína.</p>
+        <p>Plataforma clínica de dosificación farmacocinética de precisión y optimización bayesiana MAP en tiempo real para vancomicina (activo) y nuevos fármacos en desarrollo.</p>
       </div>
       <div class="footer-col">
         <h5>Producto</h5>

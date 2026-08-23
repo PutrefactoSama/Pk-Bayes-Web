@@ -27,16 +27,8 @@ window.PKBAYES_CONFIG = {
 
   // Price IDs de Stripe (Dashboard → Producto → Precios). mode: "payment" (pago único) o "subscription".
   PRICES: {
-    academico: {
-      id: "price_ID_PLAN_ACADEMICO",
-      mode: "subscription",
-    },
-    hospitalario: {
-      id: "price_ID_PLAN_HOSPITALARIO",
-      mode: "subscription",
-    },
-    institucional_academico: {
-      id: "price_ID_PLAN_INSTITUCIONAL_ACADEMICO",
+    plan_completo: {
+      id: "price_ID_PLAN_COMPLETO_1350",
       mode: "subscription",
     },
   },
