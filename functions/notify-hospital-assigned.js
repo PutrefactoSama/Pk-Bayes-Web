@@ -20,7 +20,7 @@ export async function onRequestPost(context) {
           Authorization: `Bearer ${resendKey}`,
         },
         body: JSON.stringify({
-          from: env.FROM_EMAIL || "PK-Bayes <onboarding@resend.dev>",
+          from: env.FROM_EMAIL || "PK-Bayes <notificaciones@pk-bayes.com>",
           to: email,
           subject: `[PK-Bayes] Asignación institucional — Has sido vinculado/a a ${hospital}`,
           html: `

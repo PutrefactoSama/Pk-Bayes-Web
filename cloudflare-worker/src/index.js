@@ -14,7 +14,7 @@ export async function onRequestPost(context) {
 
       const resendKey = env.RESEND_API_KEY || (typeof atob !== "undefined" ? atob("cmVfVHdvUVppRnNfN1NaeFZBNFNxeUZjRFdSN2hLS2VmVzZB") : "");
       const adminEmail = env.ADMIN_EMAIL || "pabloisaezr@gmail.com";
-      const fromAddress = env.FROM_EMAIL || "PK-Bayes <onboarding@resend.dev>";
+      const fromAddress = env.FROM_EMAIL || "PK-Bayes <notificaciones@pk-bayes.com>";
 
       // Generar contraseña temporal segura automática
       const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
@@ -44,7 +44,7 @@ export async function onRequestPost(context) {
           
           if (!res.ok) {
             const errData = await res.json().catch(() => ({}));
-            // Si Resend bloquea el envío por ser dominio no verificado (onboarding@resend.dev solo permite enviar a tu propio email)
+            // Si Resend bloquea el envío por ser dominio no verificado (notificaciones@pk-bayes.com solo permite enviar a tu propio email)
             if (toEmail !== adminEmail) {
               console.warn("Resend test mode limit: reintentando envio a adminEmail con copia...");
               await fetch("https://api.resend.com/emails", {
