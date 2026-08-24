@@ -71,6 +71,16 @@ export default {
                         <p style="margin:4px 0">✉️ <strong>Correo Electrónico:</strong> <a href="mailto:pabloisaezr@gmail.com" style="color:#0ea5e9;font-weight:600;text-decoration:none">pabloisaezr@gmail.com</a></p>
                       </div>
 
+                      <!-- Advertencia No Responder -->
+                      <div style="background:#fff1f2;border:1px solid #fecdd3;border-radius:8px;padding:14px 16px;margin:24px 0;font-size:13px;color:#9f1239">
+                        <p style="margin:0 0 4px;font-weight:700">⚠️ Por favor no responder a este correo automático.</p>
+                        <p style="margin:0;color:#881337;line-height:1.5">
+                          En caso de dudas, consultas o requerimientos, por favor comunicarse directamente a:<br>
+                          • <strong>Correo Electrónico:</strong> <a href="mailto:pabloisaezr@gmail.com" style="color:#be123c;font-weight:600;text-decoration:none">pabloisaezr@gmail.com</a><br>
+                          • <strong>WhatsApp:</strong> <a href="https://wa.me/56988627558" style="color:#be123c;font-weight:600;text-decoration:none">+56 9 8862 7558</a>
+                        </p>
+                      </div>
+
                       <p style="margin-top:28px;margin-bottom:4px">Atentamente,</p>
                       <p style="font-weight:700;color:#0a192f;margin-top:0">El equipo de PK-Bayes</p>
                     </div>
@@ -119,6 +129,10 @@ export default {
                         <li>Generar contraseña temporal.</li>
                         <li>Enviar el "Correo 3" de Activación.</li>
                       </ol>
+                    </div>
+
+                    <div style="background:#fff1f2;border:1px solid #fecdd3;border-radius:8px;padding:12px 14px;margin-top:20px;font-size:12px;color:#9f1239">
+                      <strong>⚠️ Mensaje automático del sistema PK-Bayes.</strong> No responder a este remitente.
                     </div>
                   </div>
                 `,
@@ -187,6 +201,16 @@ export default {
                       </p>
                       <p style="margin:4px 0">📱 <strong>WhatsApp Directo:</strong> <a href="https://wa.me/56988627558" style="color:#0ea5e9;font-weight:600;text-decoration:none">+56 9 8862 7558</a></p>
                       <p style="margin:4px 0">✉️ <strong>Correo Electrónico:</strong> <a href="mailto:pabloisaezr@gmail.com" style="color:#0ea5e9;font-weight:600;text-decoration:none">pabloisaezr@gmail.com</a></p>
+                    </div>
+
+                    <!-- Advertencia No Responder -->
+                    <div style="background:#fff1f2;border:1px solid #fecdd3;border-radius:8px;padding:14px 16px;margin:24px 0;font-size:13px;color:#9f1239">
+                      <p style="margin:0 0 4px;font-weight:700">⚠️ Por favor no responder a este correo automático.</p>
+                      <p style="margin:0;color:#881337;line-height:1.5">
+                        En caso de dudas, consultas o requerimientos, por favor comunicarse directamente a:<br>
+                        • <strong>Correo Electrónico:</strong> <a href="mailto:pabloisaezr@gmail.com" style="color:#be123c;font-weight:600;text-decoration:none">pabloisaezr@gmail.com</a><br>
+                        • <strong>WhatsApp:</strong> <a href="https://wa.me/56988627558" style="color:#be123c;font-weight:600;text-decoration:none">+56 9 8862 7558</a>
+                      </p>
                     </div>
 
                     <p style="font-weight:600;color:#0f172a;margin-top:24px">Bienvenido/a al siguiente nivel en optimización de dosis.</p>
