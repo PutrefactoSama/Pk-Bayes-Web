@@ -204,23 +204,10 @@
               
               <p class="mt-16 text-secondary">Manejo nativo y dinámico de terapias de reemplazo renal:</p>
               <ul class="mini-list mt-16">
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>CRRT Continuo (CVVH / CVVHD / CVVHDF):</strong> Cálculo automático mediante <span class="mono">CL_CRRT = Tasa Efluente × Coef. Tamizado + CL_residual</span>.</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>CRRT Continuo (CVVH / CVVHD / CVVHDF):</strong> Cálculo automático considerando tasa de efluente, coeficiente de tamizado y aclaramiento residual.</li>
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Hemodiálisis Intermitente (HD):</strong> Modelado por flujo sanguíneo (<span class="mono">Qb</span>), duración de sesión, coeficiente de extracción (<span class="mono">E_HD</span>) e intervalo interdialisítico.</li>
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Marcadores en tiempo real:</strong> Visualización gráfica de <span class="mono">🧪 Cr: X.X mg/dL</span> en el instante exacto de la toma.</li>
               </ul>
-            </div>
-            
-            <div>
-              <div class="formula-card teal">
-                <span class="badge badge-teal" style="font-size:0.72rem">Ecuaciones de Diálisis Continua (CRRT)</span>
-                <span class="formula-main">CL_total(t) = CL_residual(t) + (Q_efluente · S_filtro)</span>
-                <div class="formula-legend">
-                  <span><strong>Q_efluente:</strong> Tasa de efluente (mL/kg/h)</span>
-                  <span><strong>S_filtro:</strong> Coeficiente de tamizado / cribado</span>
-                  <span><strong>CL_residual:</strong> Función renal nativa</span>
-                  <span><strong>Preservación de masa:</strong> A1(t+), A2(t+) continuos</span>
-                </div>
-              </div>
             </div>
           </div>
         </div>

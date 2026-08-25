@@ -145,12 +145,6 @@
               <td>Calibrado y validado en pacientes adultos con covariables ajustadas.</td>
             </tr>
             <tr>
-              <td><strong>Modelo Simplificado</strong></td>
-              <td><span class="badge badge-teal">1 Comp.</span></td>
-              <td class="mono">Sawchuk-Zaske / 1-Compartment PK</td>
-              <td>Para evaluaciones rápidas a pie de cama o docencia clínica.</td>
-            </tr>
-            <tr>
               <td><strong>Prior Institucional VFG</strong></td>
               <td><span class="badge badge-green">Híbrido Local</span></td>
               <td class="mono">Calibración Local por Hospital</td>
@@ -165,8 +159,8 @@
           <div class="advantage-icon-box teal">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg>
           </div>
-          <h3 class="mt-16">ODEs Continuas (RK45) y CL(t)</h3>
-          <p class="text-secondary mt-8">En Falla Renal Aguda (AKI) y recuperación, el motor resuelve numéricamente la curva temporal mediante <code>scipy.integrate.solve_ivp</code> (Runge-Kutta 45), preservando la masa en A1(t) y A2(t) ante cada nueva creatinina.</p>
+          <h3 class="mt-16">ODEs Continuas y CL(t)</h3>
+          <p class="text-secondary mt-8">En Falla Renal Aguda (AKI) y recuperación, el motor resuelve numéricamente la curva temporal preservando la masa en A1(t) y A2(t) ante cada nueva creatinina.</p>
         </div>
 
         <div class="card reveal">
@@ -204,35 +198,15 @@
         <div class="card reveal">
           <span class="badge badge-primary">Alcance 1: Cinética Hepática No Lineal</span>
           <h3 class="mt-16">Estimación de Vmax y Km</h3>
-          <p class="text-secondary mt-8">A dosis terapéuticas habituales, las enzimas hepáticas (CYP2C9 y CYP2C19) se saturan. El módulo incorporará la estimación individualizada de la velocidad máxima de eliminación (<span class="mono">Vmax</span>) y la constante de afinidad (<span class="mono">Km</span>) para predecir concentraciones en estado estacionario evitando incrementos bruscos de toxicidad:</p>
-          
-          <div class="formula-card mt-16">
-            <span class="formula-main">R = [ (Vmax · Css) / (Km + Css) ] · (S / F)</span>
-            <div class="formula-legend">
-              <span><strong>R:</strong> Dosis diaria estimada (mg/día)</span>
-              <span><strong>Css:</strong> Concentración estado estacionario</span>
-              <span><strong>S / F:</strong> Forma salina y biodisponibilidad</span>
-              <span><strong>Vmax, Km:</strong> Parámetros individuales</span>
-            </div>
-          </div>
+          <p class="text-secondary mt-8">A dosis terapéuticas habituales, las enzimas hepáticas (CYP2C9 y CYP2C19) se saturan. El módulo incorporará la estimación individualizada de la velocidad máxima de eliminación y la constante de afinidad para predecir concentraciones en estado estacionario evitando incrementos bruscos de toxicidad.</p>
           <p class="text-secondary mt-8">Permitirá alertar tempranamente ante prescripciones que sitúen al paciente en la pendiente vertical hiperbólica de riesgo neurotóxico.</p>
         </div>
 
         <div class="card reveal">
           <span class="badge badge-teal">Alcance 2: Fracción Libre Activa</span>
-          <h3 class="mt-16">Corrección Automática por Sheiner-Tozer</h3>
+          <h3 class="mt-16">Corrección Automática de Fracción Libre</h3>
           <p class="text-secondary mt-8">Dado que la fenitoína se une en un 90% a la albúmina sérica, en pacientes con hipoalbuminemia o insuficiencia renal terminal el nivel plasmático total no refleja la concentración libre activa.</p>
-          
-          <div class="formula-card teal mt-16">
-            <span class="formula-main">C_corregida = C_medida / [ (0.2 · Albúmina) + 0.1 ]</span>
-            <div class="formula-legend">
-              <span><strong>C_medida:</strong> Nivel sérico total reportado</span>
-              <span><strong>Albúmina:</strong> Concentración en g/dL</span>
-              <span><strong>Factor 0.1:</strong> Pacientes con ClCr &lt; 20 mL/min / IRT</span>
-              <span><strong>Diana libre:</strong> 1.0 – 2.0 mg/L</span>
-            </div>
-          </div>
-          <p class="text-secondary mt-8">Evitará la infraestimación del riesgo en pacientes críticos o desnutridos cuyos niveles totales parezcan dentro del rango habitual.</p>
+          <p class="text-secondary mt-8">Normaliza automáticamente los niveles séricos reportados en función de la concentración de albúmina y la función renal del paciente, evitando la infraestimación del riesgo en pacientes críticos o desnutridos.</p>
         </div>
       </div>
     </div>
