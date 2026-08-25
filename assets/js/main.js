@@ -434,10 +434,45 @@
     });
   }
 
+  /* ---------- 4. Feature Slider Controller (Recurso de Slide) ---------- */
+  function initFeatureSlider() {
+    const tabs = document.querySelectorAll(".slider-tab-btn");
+    const panels = document.querySelectorAll(".feature-slide-panel");
+    const dots = document.querySelectorAll(".slider-dot");
+    const prevBtn = document.getElementById("sliderPrevBtn");
+    const nextBtn = document.getElementById("sliderNextBtn");
+
+    if (!panels.length) return;
+
+    let currentIndex = 0;
+
+    function goToSlide(index) {
+      if (index < 0) index = panels.length - 1;
+      if (index >= panels.length) index = 0;
+      currentIndex = index;
+
+      tabs.forEach((t, i) => t.classList.toggle("active", i === currentIndex));
+      panels.forEach((p, i) => p.classList.toggle("active", i === currentIndex));
+      dots.forEach((d, i) => d.classList.toggle("active", i === currentIndex));
+    }
+
+    tabs.forEach((tab, index) => {
+      tab.addEventListener("click", () => goToSlide(index));
+    });
+
+    dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => goToSlide(index));
+    });
+
+    if (prevBtn) prevBtn.addEventListener("click", () => goToSlide(currentIndex - 1));
+    if (nextBtn) nextBtn.addEventListener("click", () => goToSlide(currentIndex + 1));
+  }
+
   // Initialize Dossier Controllers
   initEmpiricalCalc();
   initPKSimulator();
   initVFGStrata();
+  initFeatureSlider();
 })();
 
 

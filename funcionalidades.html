@@ -88,71 +88,113 @@
 </header>
 
 <main>
-  <!-- HERO ESTILO LANDING PAGE (NAVY CON GLASS CARD PREVIEW) -->
-  <section class="hero">
-    <div class="container hero-grid">
-      <div>
-        <span class="eyebrow on-dark">🚀 Arquitectura Técnica • Módulos Clínicos & Algoritmos de Precisión</span>
-        <h1>Funcionalidades <span class="brand-nobreak">PK-Bayes</span>: Suite Completa de Dosificación de Precisión</h1>
-        <p class="lead">Desde el cálculo Bayesiano MAP a pie de cama hasta la exportación estandarizada PopPK para investigación poblacional avanzada. Transparencia matemática, continuidad renal en paciente crítico y rigor clínico de nivel internacional.</p>
-        
-        <div class="hero-audience-chips">
-          <span class="hero-chip">🏥 UCI & Infectología</span>
-          <span class="hero-chip">💊 Farmacia Hospitalaria</span>
-          <span class="hero-chip">📈 Monitoreo TDM</span>
-          <span class="hero-chip">🔬 Investigación PopPK</span>
-        </div>
-
-        <div class="hero-actions mt-32">
-          <a href="precios.html" class="btn btn-primary btn-lg">Solicitar Demo Hospitalaria</a>
-          <a href="#map" class="btn btn-outline-on-dark btn-lg">Explorar Módulos Clínicos ↓</a>
-        </div>
-      </div>
-
-      <div class="hero-card-preview">
-        <div class="glass-card">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-8">
-              <span class="pulse-dot"></span>
-              <span class="badge badge-teal">Motor MAP & ODE Activo</span>
-            </div>
-            <span class="text-muted" style="font-size:0.8rem">Arquitectura Modular 100% CDSS</span>
-          </div>
-
-          <div class="grid grid-2 mt-20" style="gap:14px">
-            <div class="stat-box">
-              <span class="stat-num">&lt; 100 ms</span>
-              <span class="stat-label">Fitting Bayesiano Instantáneo</span>
-            </div>
-            <div class="stat-box">
-              <span class="stat-num">400–600</span>
-              <span class="stat-label">mg·h/L Target AUC₂₄/CIM</span>
-            </div>
-            <div class="stat-box">
-              <span class="stat-num">1 Clic</span>
-              <span class="stat-label">Exportación PopPK NONMEM</span>
-            </div>
-            <div class="stat-box">
-              <span class="stat-num">PostgreSQL</span>
-              <span class="stat-label">Aislamiento RLS Bank-Grade</span>
-            </div>
-          </div>
-
-          <div class="mt-16" style="border-top:1px solid rgba(255,255,255,0.1);padding-top:12px">
-            <div class="flex items-center justify-between" style="font-size:0.82rem;color:var(--text-on-dark-muted)">
-              <span>Integración Hospitalaria: <strong style="color:var(--green)">Multi-Tenant Activo</strong></span>
-              <span>Vancomicina + Fenitoína</span>
-            </div>
-          </div>
-        </div>
-      </div>
+  <!-- CABECERA CLARA SIN FONDO AZUL PORTADA -->
+  <section class="section-tight" style="background:#ffffff;border-bottom:1px solid var(--border)">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Inicio</a> <span>/</span> <span>Funcionalidades</span></div>
+      <span class="eyebrow mt-16" style="display:inline-flex">Arquitectura Clínica Completa</span>
+      <h1 class="mt-8">Tecnología farmacocinética de precisión, explicada en detalle</h1>
+      <p class="lead">Explore la suite modular de herramientas clínicas y analíticas de PK-Bayes mediante el selector interactivo de slides o revisando cada módulo en profundidad.</p>
     </div>
   </section>
 
-  <!-- NAVEGACIÓN RÁPIDA ENTRE MÓDULOS -->
-  <section class="section-tight" style="background:var(--bg-page);border-bottom:1px solid var(--border)">
+  <!-- RECURSO INTERACTIVO DE SLIDES (SLIDER DE FUNCIONALIDADES) -->
+  <section class="feature-slider-section">
     <div class="container">
-      <div class="features-quick-nav">
+      <div class="feature-slider-card">
+        <!-- Navegación de Píldoras/Tabs del Slider -->
+        <div class="slider-tabs-header">
+          <button class="slider-tab-btn active" type="button" data-slide="0">⚡ 1. Motor MAP Bayesiano</button>
+          <button class="slider-tab-btn" type="button" data-slide="1">📈 2. Simulación What-If</button>
+          <button class="slider-tab-btn" type="button" data-slide="2">🧪 3. Falla Renal CL(t) & Diálisis</button>
+          <button class="slider-tab-btn" type="button" data-slide="3">🔬 4. Exportación PopPK NONMEM</button>
+        </div>
+
+        <!-- Contenedor de Paneles de Slides -->
+        <div class="feature-slide-container">
+          <!-- Slide 1 -->
+          <div class="feature-slide-panel active">
+            <div class="slide-content-side">
+              <span class="badge badge-primary">Motor Bayesiano &lt;100 ms</span>
+              <h3>Fitting Determinista MAP (Maximum A Posteriori)</h3>
+              <p>Resuelve el compromiso matemático entre el prior poblacional y los niveles plasmáticos séricos medidos. Genera parámetros individuales (CL, V₁, Q, V₂, t½) con acotamiento de variabilidad (BSV ~30%) sin requerir muestreos rígidos en el valle pre-dosis.</p>
+              <a href="#map" class="btn btn-secondary btn-sm mt-16">Ver detalles del Módulo 01 ↓</a>
+            </div>
+            <div class="slide-graphic-side">
+              <div class="stat-box" style="background:#f0f9ff;border-color:rgba(14,165,233,0.3)">
+                <span class="stat-num" style="color:var(--primary)">&lt; 100 ms</span>
+                <span class="stat-label" style="color:var(--text-secondary)">Tiempo de convergencia algorítmica en SciPy L-BFGS-B.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 2 -->
+          <div class="feature-slide-panel">
+            <div class="slide-content-side">
+              <span class="badge badge-teal">Predicción Posológica ASHP 2020</span>
+              <h3>Predictor Posológico y Simulación What-If</h3>
+              <p>Simule cualquier régimen de dosis (mg), intervalo de infusión (q8h, q12h, q24h o continua) observando de inmediato las concentraciones proyectadas en estado estacionario (Cmax,ss, Cmin,ss y AUC24/CIM 400–600 mg·h/L).</p>
+              <a href="#simulador" class="btn btn-secondary btn-sm mt-16">Probar simulador interactivo ↓</a>
+            </div>
+            <div class="slide-graphic-side">
+              <div class="stat-box" style="background:#f0fdf4;border-color:rgba(16,185,129,0.3)">
+                <span class="stat-num" style="color:var(--green-dark)">400–600</span>
+                <span class="stat-label" style="color:var(--text-secondary)">mg·h/L Target terapéutico AUC₂₄/CIM en Vancomicina.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 3 -->
+          <div class="feature-slide-panel">
+            <div class="slide-content-side">
+              <span class="badge badge-green">Paciente Crítico & UCI</span>
+              <h3>Cinética Renal Dinámica CL(t) y Diálisis</h3>
+              <p>Resolución continua de ecuaciones diferenciales ordinarias (ODEs) ante sepsis y falla renal aguda (AKI), manteniendo la continuidad física de la masa acumulada A₁(t) y A₂(t). Soporte nativo para CRRT (CVVH/D/F) y hemodiálisis intermitente.</p>
+              <a href="#dialisis" class="btn btn-secondary btn-sm mt-16">Ver modelos renales ↓</a>
+            </div>
+            <div class="slide-graphic-side">
+              <div class="stat-box" style="background:#fef3c7;border-color:rgba(245,158,11,0.3)">
+                <span class="stat-num" style="color:var(--amber-dark)">CL(t) Continuo</span>
+                <span class="stat-label" style="color:var(--text-secondary)">Preservación de masa ante fluctuaciones de Creatinina.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 4 -->
+          <div class="feature-slide-panel">
+            <div class="slide-content-side">
+              <span class="badge badge-amber">Investigación R&D</span>
+              <h3>Exportación Automatizada PopPK (NONMEM & Monolix)</h3>
+              <p>Estructura automáticamente la base de datos de pacientes en formato estandarizado listo para investigación poblacional y análisis en R y Python con 1 solo clic.</p>
+              <a href="#export" class="btn btn-secondary btn-sm mt-16">Ver formato de datos ↓</a>
+            </div>
+            <div class="slide-graphic-side">
+              <div class="stat-box" style="background:#f3e8ff;border-color:rgba(168,85,247,0.3)">
+                <span class="stat-num" style="color:#7e22ce">1 Clic</span>
+                <span class="stat-label" style="color:var(--text-secondary)">Generación estandarizada de datasets .csv.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer con Botones de Navegación del Slider -->
+        <div class="slider-controls-footer">
+          <div class="slider-dots">
+            <span class="slider-dot active" data-slide="0"></span>
+            <span class="slider-dot" data-slide="1"></span>
+            <span class="slider-dot" data-slide="2"></span>
+            <span class="slider-dot" data-slide="3"></span>
+          </div>
+
+          <div class="slider-nav-btns">
+            <button class="slider-arrow-btn" id="sliderPrevBtn" type="button" aria-label="Slide anterior">←</button>
+            <button class="slider-arrow-btn" id="sliderNextBtn" type="button" aria-label="Siguiente slide">→</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Barra de Accesos Directos a Módulos -->
+      <div class="features-quick-nav mt-32">
         <a href="#map">⚡ 01 Motor MAP</a>
         <a href="#simulador">📈 02 Simulación What-If</a>
         <a href="#dialisis">🧪 03 Falla Renal & Diálisis</a>
@@ -206,7 +248,7 @@
         <ul class="mini-list">
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Modelos bicompartimentales robustos:</strong> Goti et al. (2018) con acotamiento de variabilidad interindividual (BSV) en V₁ (~30%) para evitar sobreajuste ante muestreos de 1 nivel valle.</li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Transparencia trifásica:</strong> Visualiza en la misma interfaz los valores <em>Individual</em>, <em>Poblacional</em> e <em>Institucional</em>.</li>
-          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Gráficos interactivos:</strong> Curva de concentración vs. tiempo con franja de rango terapéutico, niveles observados y herramientas fluidas de zoom/pan.</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Gráficos interactivos:</strong> Curva de concentración vs. tiempo con visualización de rango terapéutico, niveles observados e intervalos de confianza.</li>
         </ul>
       </div>
     </div>
