@@ -2268,26 +2268,28 @@ select.control-select {
   justify-content: space-between;
   gap: 14px;
   flex-wrap: wrap;
-  background: #0f172a;
-  color: #fff;
+  background: var(--bg-card);
+  color: var(--text-primary);
   border-radius: var(--radius-lg);
   padding: 22px;
   margin-top: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
 }
 .rnd-flow-node {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: var(--bg-page);
+  border: 1px solid var(--border-soft);
   padding: 10px 16px;
   border-radius: 10px;
   font-size: 0.86rem;
   font-weight: 600;
+  color: var(--text-primary);
 }
 .rnd-flow-arrow {
-  color: #38bdf8;
+  color: var(--primary);
   font-size: 1.2rem;
   font-weight: 800;
 }
