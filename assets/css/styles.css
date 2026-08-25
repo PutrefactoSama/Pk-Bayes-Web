@@ -1636,6 +1636,334 @@ select.control-select {
   border-color: var(--border);
 }
 
+/* =========================================================================
+   Componentes del Dossier Técnico-Comercial PK-Bayes
+   ========================================================================= */
+
+/* --- Formula Box --- */
+.math-formula-box {
+  background: #061224;
+  color: #f8fafc;
+  border: 1px solid rgba(14, 165, 233, 0.3);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  margin: 20px 0;
+  box-shadow: 0 8px 32px rgba(10, 25, 47, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+.math-formula-box::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 4px; height: 100%;
+  background: linear-gradient(180deg, var(--teal), var(--primary));
+}
+.math-formula-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--teal);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.math-formula-expr {
+  font-family: "Fira Code", "SFMono-Regular", Consolas, monospace;
+  font-size: 1.1rem;
+  color: #38bdf8;
+  padding: 8px 12px;
+  background: rgba(14, 165, 233, 0.08);
+  border-radius: 8px;
+  display: inline-block;
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+/* --- Algorithmic Flowchart --- */
+.flowchart-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 28px;
+}
+@media (min-width: 900px) {
+  .flowchart-wrapper {
+    flex-direction: row;
+    align-items: stretch;
+  }
+}
+.flowchart-step-card {
+  flex: 1;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px;
+  position: relative;
+  transition: all 0.25s ease;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+.flowchart-step-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary);
+  box-shadow: var(--shadow-lg);
+}
+.flowchart-step-badge {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--primary);
+  background: var(--primary-light);
+  padding: 4px 10px;
+  border-radius: 99px;
+  align-self: flex-start;
+  margin-bottom: 12px;
+}
+.flowchart-step-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+.flowchart-step-desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.flowchart-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  padding: 8px 0;
+}
+@media (min-width: 900px) {
+  .flowchart-connector {
+    padding: 0 4px;
+  }
+  .flowchart-connector svg {
+    transform: rotate(-90deg);
+  }
+}
+
+/* --- Empirical Calculator --- */
+.empirical-calc-card {
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--primary);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  box-shadow: var(--shadow-md);
+}
+.calc-input-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+.calc-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.calc-field label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+}
+.calc-field input, .calc-field select {
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  background: var(--bg-page);
+  color: var(--text-primary);
+  transition: border-color 0.15s ease;
+}
+.calc-field input:focus, .calc-field select:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+.calc-results-box {
+  background: var(--sidebar-bg);
+  color: #ffffff;
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+.calc-res-item {
+  text-align: center;
+}
+.calc-res-val {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #38bdf8;
+  display: block;
+}
+.calc-res-lbl {
+  font-size: 0.78rem;
+  color: var(--text-on-dark-muted);
+  margin-top: 4px;
+  display: block;
+}
+
+/* --- Renal Timeline & VFG Strata Grid --- */
+.vfg-strata-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+}
+.vfg-stratum-chip {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.vfg-stratum-chip:hover, .vfg-stratum-chip.active {
+  border-color: var(--teal);
+  background: var(--teal-soft);
+  box-shadow: 0 4px 12px rgba(14, 165, 233, 0.15);
+}
+.vfg-range {
+  font-size: 0.9rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  display: block;
+}
+.vfg-status {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--teal-strong);
+  margin-top: 4px;
+  display: block;
+}
+
+/* --- PK Interactive Curve Simulator --- */
+.pk-sim-box {
+  background: #0a192f;
+  color: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-lg);
+}
+.pk-canvas-wrapper {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  background: #061224;
+  border-radius: var(--radius);
+  border: 1px solid rgba(14, 165, 233, 0.2);
+  margin: 16px 0;
+  overflow: hidden;
+}
+.pk-canvas-wrapper canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.pk-controls-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 16px;
+  border-radius: var(--radius);
+}
+.pk-slider-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.pk-slider-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.82rem;
+  color: var(--text-on-dark-muted);
+}
+.pk-slider-label strong {
+  color: #38bdf8;
+}
+.pk-slider-group input[type="range"] {
+  width: 100%;
+  accent-color: var(--teal);
+  cursor: pointer;
+}
+
+/* --- NONMEM Code & Audit Modal Preview --- */
+.code-preview-window {
+  background: #0f172a;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  margin-top: 20px;
+}
+.code-window-header {
+  background: #1e293b;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #94a3b8;
+  font-family: monospace;
+}
+.code-window-body {
+  padding: 16px;
+  font-family: "Fira Code", monospace;
+  font-size: 0.82rem;
+  color: #e2e8f0;
+  overflow-x: auto;
+  white-space: pre;
+  line-height: 1.6;
+}
+
+/* --- Commercial Matrix Table --- */
+.sales-matrix-table table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+.sales-matrix-table th {
+  background: var(--sidebar-bg);
+  color: #ffffff;
+  padding: 16px;
+  text-align: left;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+.sales-matrix-table td {
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+.sales-matrix-table tr:last-child td {
+  border-bottom: none;
+}
+.sales-matrix-table tr:hover td {
+  background: rgba(14, 165, 233, 0.03);
+}
+.sales-matrix-table td.advantage-cell {
+  background: rgba(14, 165, 233, 0.06);
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
 
 
 

@@ -207,5 +207,237 @@
     goToSlide(0);
     startAutoTour();
   }
+
+  /* =========================================================================
+     Dossier Técnico-Comercial: Interactive UI Controllers
+     ========================================================================= */
+
+  /* ---------- 1. Calculadora Empírica AUC-Guiada (ASHP/IDSA 2020) ---------- */
+  function initEmpiricalCalc() {
+    const weightEl = document.getElementById("empWeight");
+    const scrEl = document.getElementById("empScr");
+    const ageEl = document.getElementById("empAge");
+    const sexEl = document.getElementById("empSex");
+    const micEl = document.getElementById("empMic");
+
+    if (!weightEl || !scrEl) return;
+
+    function recalculate() {
+      const weight = parseFloat(weightEl.value) || 70;
+      const scr = parseFloat(scrEl.value) || 1.0;
+      const age = parseFloat(ageEl.value) || 55;
+      const isFemale = sexEl ? sexEl.value === "f" : false;
+      const mic = parseFloat(micEl ? micEl.value : 1.0) || 1.0;
+
+      // Cockcroft-Gault CrCl
+      let crcl = ((140 - age) * weight) / (72 * scr);
+      if (isFemale) crcl *= 0.85;
+
+      // Loading dose (25 mg/kg, step 250mg, max 2000mg)
+      let loadingDose = Math.min(2000, Math.round((weight * 25) / 250) * 250);
+
+      // Maintenance dose & interval based on CrCl
+      let maintDose = 1000;
+      let interval = 12;
+      if (crcl > 80) {
+        maintDose = Math.round((weight * 15) / 250) * 250;
+        interval = 12;
+      } else if (crcl >= 50) {
+        maintDose = Math.round((weight * 15) / 250) * 250;
+        interval = 12;
+      } else if (crcl >= 30) {
+        maintDose = Math.round((weight * 12.5) / 250) * 250;
+        interval = 24;
+      } else {
+        maintDose = Math.round((weight * 10) / 250) * 250;
+        interval = 48;
+      }
+
+      // Projected AUC24 / MIC
+      const dailyDose = (maintDose * 24) / interval;
+      const ke = 0.00083 * crcl + 0.0044; // approx ke
+      const vd = 0.7 * weight;
+      const auc24 = dailyDose / (ke * vd);
+      const aucMicRatio = Math.round(auc24 / mic);
+
+      // DOM Updates
+      const resCrcl = document.getElementById("resEmpCrcl");
+      const resLoad = document.getElementById("resEmpLoad");
+      const resMaint = document.getElementById("resEmpMaint");
+      const resAuc = document.getElementById("resEmpAuc");
+
+      if (resCrcl) resCrcl.textContent = Math.round(crcl) + " mL/min";
+      if (resLoad) resLoad.textContent = loadingDose + " mg";
+      if (resMaint) resMaint.textContent = `${maintDose} mg q${interval}h`;
+      if (resAuc) resAuc.textContent = `${aucMicRatio} h`;
+    }
+
+    [weightEl, scrEl, ageEl, sexEl, micEl].forEach((el) => {
+      if (el) el.addEventListener("input", recalculate);
+    });
+    recalculate();
+  }
+
+  /* ---------- 2. Simulador Interactivo de Curva PK (Canvas) & Dose Predictor ---------- */
+  function initPKSimulator() {
+    const canvas = document.getElementById("pkCanvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+
+    const doseSlider = document.getElementById("simDoseSlider");
+    const intervalSlider = document.getElementById("simIntervalSlider");
+    const crclSlider = document.getElementById("simCrclSlider");
+
+    const doseValEl = document.getElementById("simDoseVal");
+    const intervalValEl = document.getElementById("simIntervalVal");
+    const crclValEl = document.getElementById("simCrclVal");
+
+    const cmaxEl = document.getElementById("simCmaxRes");
+    const cminEl = document.getElementById("simCminRes");
+    const auc24El = document.getElementById("simAuc24Res");
+
+    function draw() {
+      const width = canvas.width = canvas.parentElement.clientWidth || 600;
+      const height = canvas.height = canvas.parentElement.clientHeight || 280;
+
+      const dose = parseFloat(doseSlider ? doseSlider.value : 1000);
+      const interval = parseFloat(intervalSlider ? intervalSlider.value : 12);
+      const crcl = parseFloat(crclSlider ? crclSlider.value : 70);
+
+      if (doseValEl) doseValEl.textContent = dose + " mg";
+      if (intervalValEl) intervalValEl.textContent = `q${interval}h`;
+      if (crclValEl) crclValEl.textContent = crcl + " mL/min";
+
+      // PK calculations
+      const ke = 0.00083 * crcl + 0.0044;
+      const vd = 0.7 * 70; // 70 kg std
+      const cmax = (dose / vd) / (1 - Math.exp(-ke * interval));
+      const cmin = cmax * Math.exp(-ke * interval);
+      const dailyDose = (dose * 24) / interval;
+      const auc24 = dailyDose / (ke * vd);
+
+      if (cmaxEl) cmaxEl.textContent = cmax.toFixed(1) + " mg/L";
+      if (cminEl) cminEl.textContent = cmin.toFixed(1) + " mg/L";
+      if (auc24El) auc24El.textContent = Math.round(auc24) + " mg·h/L";
+
+      // Drawing setup
+      ctx.clearRect(0, 0, width, height);
+
+      // Target band background (15 to 20 mg/L trough equivalent / 400-600 AUC)
+      const padding = 35;
+      const graphW = width - padding * 2;
+      const graphH = height - padding * 2;
+      const maxY = 45;
+
+      const y15 = height - padding - (15 / maxY) * graphH;
+      const y20 = height - padding - (20 / maxY) * graphH;
+
+      // Target band fill
+      ctx.fillStyle = "rgba(16, 185, 129, 0.12)";
+      ctx.fillRect(padding, y20, graphW, y15 - y20);
+
+      // Target band text
+      ctx.fillStyle = "#10b981";
+      ctx.font = "11px sans-serif";
+      ctx.fillText("Rango Objetivo Trough (15–20 mg/L)", padding + 8, y20 + 14);
+
+      // Grid lines
+      ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+      ctx.lineWidth = 1;
+      for (let yVal = 0; yVal <= maxY; yVal += 15) {
+        const y = height - padding - (yVal / maxY) * graphH;
+        ctx.beginPath();
+        ctx.moveTo(padding, y);
+        ctx.lineTo(width - padding, y);
+        ctx.stroke();
+        ctx.fillStyle = "rgba(255,255,255,0.4)";
+        ctx.fillText(yVal, 10, y + 4);
+      }
+
+      // Draw Population Prior curve (Dashed Blue)
+      ctx.beginPath();
+      ctx.strokeStyle = "rgba(56, 189, 248, 0.4)";
+      ctx.setLineDash([4, 4]);
+      ctx.lineWidth = 2;
+      for (let x = 0; x <= graphW; x += 2) {
+        const t = (x / graphW) * 48; // 48h timeline
+        const tInInterval = t % interval;
+        const cPrior = ((1000 / vd) / (1 - Math.exp(-0.04 * interval))) * Math.exp(-0.04 * tInInterval);
+        const y = height - padding - (Math.min(cPrior, maxY) / maxY) * graphH;
+        if (x === 0) ctx.moveTo(padding + x, y);
+        else ctx.lineTo(padding + x, y);
+      }
+      ctx.stroke();
+      ctx.setLineDash([]);
+
+      // Draw Individual MAP Adjusted Curve (Solid Cyan)
+      ctx.beginPath();
+      ctx.strokeStyle = "#0ea5e9";
+      ctx.lineWidth = 3;
+      for (let x = 0; x <= graphW; x += 2) {
+        const t = (x / graphW) * 48;
+        const tInInterval = t % interval;
+        const cInd = cmax * Math.exp(-ke * tInInterval);
+        const y = height - padding - (Math.min(cInd, maxY) / maxY) * graphH;
+        if (x === 0) ctx.moveTo(padding + x, y);
+        else ctx.lineTo(padding + x, y);
+      }
+      ctx.stroke();
+
+      // Lab marker dot (🧪 Cr: 1.8 mg/dL)
+      const labX = padding + graphW * 0.45;
+      const labY = height - padding - (cmin * 1.1 / maxY) * graphH;
+      ctx.fillStyle = "#f59e0b";
+      ctx.beginPath();
+      ctx.arc(labX, labY, 6, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = "#ffffff";
+      ctx.font = "bold 11px sans-serif";
+      ctx.fillText("🧪 Lab Cr: 1.8 mg/dL", labX + 10, labY - 4);
+    }
+
+    [doseSlider, intervalSlider, crclSlider].forEach((s) => {
+      if (s) s.addEventListener("input", draw);
+    });
+
+    window.addEventListener("resize", draw);
+    draw();
+  }
+
+  /* ---------- 3. Selector de Estratos VFG y Prior Mixto ---------- */
+  function initVFGStrata() {
+    const chips = document.querySelectorAll(".vfg-stratum-chip");
+    const labelEl = document.getElementById("vfgSelectedLabel");
+    const weightEl = document.getElementById("vfgLocalWeight");
+    const formulaEl = document.getElementById("vfgFormulaDisplay");
+
+    if (!chips.length) return;
+
+    chips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        chips.forEach((c) => c.classList.remove("active"));
+        chip.classList.add("active");
+
+        const range = chip.getAttribute("data-range");
+        const count = parseInt(chip.getAttribute("data-count") || "0", 10);
+        const isLocalActive = count >= 10;
+        const weight = isLocalActive ? Math.min(0.85, (count / 40).toFixed(2)) : 0.0;
+
+        if (labelEl) labelEl.textContent = `Estrato: VFG ${range} mL/min (${count} pacientes)`;
+        if (weightEl) weightEl.textContent = isLocalActive ? `w_local = ${(weight * 100).toFixed(0)}% (Aprendizaje Activo)` : `w_local = 0% (Requiere N ≥ 10)`;
+        if (formulaEl) {
+          formulaEl.textContent = isLocalActive
+            ? `θ_prior = ${(1 - weight).toFixed(2)} · θ_literatura + ${weight} · θ_local_hospital`
+            : `θ_prior = 1.00 · θ_literatura (Sin prior local todavía)`;
+        }
+      });
+    });
+  }
+
+  // Initialize Dossier Controllers
+  initEmpiricalCalc();
+  initPKSimulator();
+  initVFGStrata();
 })();
+
 
