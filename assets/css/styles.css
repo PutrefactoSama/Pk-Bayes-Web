@@ -2148,15 +2148,168 @@ select.control-select {
   font-weight: 700;
   color: var(--text-primary);
 }
-.sales-card-desc {
-  font-size: 0.92rem;
+/* =========================================================================
+   Funcionalidades Page — Graphic UI Resources & Architectural Components
+   ========================================================================= */
+
+/* Quick Nav Bar */
+.features-quick-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 12px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  margin-top: 24px;
+  box-shadow: var(--shadow-sm);
+  white-space: nowrap;
+}
+.features-quick-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 0.84rem;
+  font-weight: 600;
   color: var(--text-secondary);
-  line-height: 1.55;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+.features-quick-nav a:hover {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+/* Feature Graphic Container Box */
+.feature-graphic-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-top: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Tri-Phase MAP Grid */
+.map-triphase-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+.map-phase-card {
   background: var(--bg-page);
   border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  padding: 18px;
+  position: relative;
+  transition: all 0.2s ease;
+}
+.map-phase-card:hover {
+  border-color: var(--primary);
+  transform: translateY(-2px);
+}
+.map-phase-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.map-phase-num {
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--primary);
+  background: var(--primary-light);
+  padding: 3px 9px;
+  border-radius: 99px;
+}
+
+/* Dialysis Modality Grid */
+.dialysis-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+.dialysis-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  transition: all 0.2s ease;
+}
+.dialysis-card:hover {
+  border-color: var(--teal);
+  box-shadow: var(--shadow-md);
+}
+.dialysis-icon {
+  width: 40px;
+  height: 40px;
   border-radius: 10px;
-  padding: 14px 16px;
-  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+}
+.dialysis-icon.teal { background: var(--teal-light); color: var(--teal-strong); }
+.dialysis-icon.blue { background: var(--primary-light); color: var(--primary); }
+.dialysis-icon.green { background: var(--green-light); color: var(--green-dark); }
+
+/* R&D NONMEM Export Flow */
+.rnd-export-flow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  flex-wrap: wrap;
+  background: #0f172a;
+  color: #fff;
+  border-radius: var(--radius-lg);
+  padding: 22px;
+  margin-top: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.rnd-flow-node {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 0.86rem;
+  font-weight: 600;
+}
+.rnd-flow-arrow {
+  color: #38bdf8;
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+/* Security Quadrant */
+.security-quad-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+.security-quad-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  transition: all 0.2s ease;
+}
+.security-quad-card:hover {
+  border-color: var(--green);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
 }
 
 

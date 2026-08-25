@@ -94,6 +94,16 @@
       <span class="eyebrow on-dark mt-16" style="display:inline-flex">Arquitectura Clínica Completa</span>
       <h1>Tecnología farmacocinética de precisión, explicada en detalle</h1>
       <p class="lead">Desde el ingreso del paciente a pie de cama hasta la exportación para investigación poblacional avanzada — sin cajas negras, esto es exactamente cómo funciona cada módulo de PK-Bayes.</p>
+
+      <div class="features-quick-nav">
+        <a href="#map">⚡ 01 Motor MAP</a>
+        <a href="#simulador">📈 02 Simulación</a>
+        <a href="#dialisis">🧪 03 Falla Renal CL(t)</a>
+        <a href="#dashboard">📊 04 Cohortes</a>
+        <a href="#export">🔬 05 Export PopPK</a>
+        <a href="#priors">🎓 06 Priors</a>
+        <a href="#seguridad">🛡️ 07 Seguridad</a>
+      </div>
     </div>
   </section>
 
@@ -113,9 +123,37 @@
             <div>
               <p>Resuelve el compromiso matemático óptimo entre el <em>prior</em> poblacional (de literatura validada o calibrado por el hospital) y las concentraciones séricas medidas del paciente, entregando de forma instantánea <strong>CL</strong>, <strong>V1</strong>, <strong>Q</strong>, <strong>V2</strong>, <strong>t1/2</strong>, <strong>AUC24</strong> y el coeficiente de variación (<strong>CV%</strong>).</p>
               
-              <p class="mt-16 text-secondary">A diferencia de las aproximaciones de un solo punto o nomogramas tradicionales, <strong>no requiere que la muestra se extraiga estrictamente en el valle pre-dosis</strong>: el motor sitúa la muestra en cualquier momento del intervalo de infusión con total rigor matemático.</p>
+              <p class="mt-16 text-secondary">A diferencia de las aproximaciones de un solo punto o nomogramas tradicionales, <strong>no requiere que la muestra se extraiga strictly en el valle pre-dosis</strong>: el motor sitúa la muestra en cualquier momento del intervalo de infusión con total rigor matemático.</p>
 
-              <ul class="mini-list mt-16">
+              <!-- Diagrama Trifásico MAP -->
+              <div class="map-triphase-grid">
+                <div class="map-phase-card">
+                  <div class="map-phase-header">
+                    <span class="map-phase-num">Fase 1 • Prior</span>
+                    <span class="badge badge-primary">Poblacional</span>
+                  </div>
+                  <strong>Prior Poblacional / Hospitalario</strong>
+                  <p class="text-secondary mt-4" style="font-size:0.84rem">Carga parámetros iniciales de la literatura o entrenados localmente.</p>
+                </div>
+                <div class="map-phase-card">
+                  <div class="map-phase-header">
+                    <span class="map-phase-num">Fase 2 • Muestra</span>
+                    <span class="badge badge-teal">Lab TDM</span>
+                  </div>
+                  <strong>Nivel Plasmático Sérico</strong>
+                  <p class="text-secondary mt-4" style="font-size:0.84rem">Sin restricciones rígidas de toma valle/pico. Muestreo flexible en cualquier hora.</p>
+                </div>
+                <div class="map-phase-card">
+                  <div class="map-phase-header">
+                    <span class="map-phase-num">Fase 3 • Fitting</span>
+                    <span class="badge badge-green">&lt; 100 ms</span>
+                  </div>
+                  <strong>Posterior Individualizado</strong>
+                  <p class="text-secondary mt-4" style="font-size:0.84rem">Obtención instantánea de CL, V₁, Q, V₂, t½ y AUC₂₄ individual con CV%.</p>
+                </div>
+              </div>
+
+              <ul class="mini-list mt-20">
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Modelos bicompartimentales robustos:</strong> Goti et al. (2018) con variabilidad interindividual de V1 optimizada a límites fisiológicos (~30% BSV) para evitar sobreajuste ante muestreos limitados (1 nivel valle).</li>
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Transparencia trifásica:</strong> Visualiza en la misma interfaz los valores <em>Individual</em>, <em>Poblacional</em> e <em>Institucional</em>.</li>
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Gráficos interactivos:</strong> Curva de concentración vs. tiempo con visualización de rango terapéutico, niveles observados con intervalos de confianza y zoom/pan fluidos.</li>
@@ -184,12 +222,7 @@
           </div>
           <div class="disclaimer mt-16">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>
-            <div><strong>Nota metodológica:</strong> este widget ilustra el concepto reactivo de "what-if". La plataforma de producción ejecuta el motor completo resolviendo sistemas acoplados de ecuaciones diferenciales (ODEs) con covariables continuas, infusiones intermitentes/continuas y cinéticas saturables.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 03 · CL(t) y Diálisis -->
+            <div><strong>Nota metodológica:</strong> este widget ilustra el concepto reactivo de "what-if". La plataforma de producción ejecuta el mo      <!-- 03 · CL(t) y Diálisis -->
       <div class="feature-detail" id="dialisis">
         <div class="num">03</div>
         <div>
@@ -200,13 +233,33 @@
           <h3 class="mt-16">Cinética Renal Dinámica CL(t) y Soporte Integral de Diálisis</h3>
           <div class="feature-detail-body">
             <div>
-              <p>En pacientes con sepsis, shock séptico o falla multiorgánica, la función renal fluctúa drásticamente. PK-Bayes resuelve la curva temporal mediante <code>scipy.integrate.solve_ivp</code> (Runge-Kutta 45), <strong>preservando la cantidad de masa en cada compartimento (A1(t), A2(t))</strong> en las fronteras de infusión y cambio de laboratorio, garantizando continuidad física y precisión milimétrica.</p>
+              <p>En pacientes con sepsis, shock séptico o falla multiorgánica, la función renal fluctúa drásticamente. PK-Bayes resuelve la curva temporal mediante métodos numéricos continuos, <strong>preservando la cantidad de masa en cada compartimento (A1(t), A2(t))</strong> en las fronteras de infusión y cambio de laboratorio, garantizando continuidad física y precisión milimétrica.</p>
               
               <p class="mt-16 text-secondary">Manejo nativo y dinámico de terapias de reemplazo renal:</p>
-              <ul class="mini-list mt-16">
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>CRRT Continuo (CVVH / CVVHD / CVVHDF):</strong> Cálculo automático considerando tasa de efluente, coeficiente de tamizado y aclaramiento residual.</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Hemodiálisis Intermitente (HD):</strong> Modelado por flujo sanguíneo (<span class="mono">Qb</span>), duración de sesión, coeficiente de extracción (<span class="mono">E_HD</span>) e intervalo interdialisítico.</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Marcadores en tiempo real:</strong> Visualización gráfica de <span class="mono">🧪 Cr: X.X mg/dL</span> en el instante exacto de la toma.</li>
+
+              <!-- Tarjetas Gráficas de Modalidades de Diálisis -->
+              <div class="dialysis-grid">
+                <div class="dialysis-card">
+                  <div class="dialysis-icon teal">💧</div>
+                  <h4>CRRT Continuo (CVVH / CVVHD / CVVHDF)</h4>
+                  <p class="text-secondary mt-4" style="font-size:0.86rem">Cálculo dinámico considerando tasa de efluente, coeficiente de tamizado y aclaramiento residual del paciente.</p>
+                </div>
+                <div class="dialysis-card">
+                  <div class="dialysis-icon blue">🩸</div>
+                  <h4>Hemodiálisis Intermitente (HD)</h4>
+                  <p class="text-secondary mt-4" style="font-size:0.86rem">Modelado preciso mediante flujo sanguíneo (Qb), duración de sesión y coeficiente de extracción interdialisítico.</p>
+                </div>
+                <div class="dialysis-card">
+                  <div class="dialysis-icon green">📈</div>
+                  <h4>AKIN / KDIGO en Tiempo Real</h4>
+                  <p class="text-secondary mt-4" style="font-size:0.86rem">Resolución de ODEs ante curvas fluctuantes de Creatinina manteniendo la continuidad física de masa A₁(t), A₂(t).</p>
+                </div>
+              </div>
+
+              <ul class="mini-list mt-20">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>CRRT Continuo:</strong> Cálculo automático de aclaramiento continuo acumulado.</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Hemodiálisis Intermitente:</strong> Intervalo interdialisítico con rebote post-diálisis.</li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Marcadores en tiempo real:</strong> Visualización gráfica de creatinina plasmática sincronizada.</li>
               </ul>
             </div>
           </div>
@@ -253,7 +306,18 @@
               
               <p class="mt-16 text-secondary">Elimina semanas de transcripción y limpieza manual de registros clínicos, integrando dosis, tasas de infusión, niveles plasmáticos medidos, evolución de la función renal y covariables demográficas en un formato estructurado y estandarizado con un solo clic.</p>
 
-              <ul class="mini-list mt-16">
+              <!-- Diagrama de Flujo R&D Pipeline -->
+              <div class="rnd-export-flow">
+                <div class="rnd-flow-node">🏥 Registros EHR Hospital</div>
+                <span class="rnd-flow-arrow">➔</span>
+                <div class="rnd-flow-node">⚡ Estandarizador PK-Bayes</div>
+                <span class="rnd-flow-arrow">➔</span>
+                <div class="rnd-flow-node">📊 NONMEM / Monolix (.csv)</div>
+                <span class="rnd-flow-arrow">➔</span>
+                <div class="rnd-flow-node">🔬 R & Python Analytics</div>
+              </div>
+
+              <ul class="mini-list mt-20">
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Compatibilidad directa:</strong> Archivos listos para ejecutar modelos farmacométricos poblacionales sin necesidad de preprocesamiento.</li>
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Investigación y docencia:</strong> Ideal para desarrollo de modelos institucionales propios, tesis y publicaciones científicas.</li>
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Exclusivo del Plan Completo:</strong> Funcionalidad disponible para instituciones con suscripción activa.</li>
@@ -315,11 +379,28 @@
             <div>
               <p>Diseñado para los más altos estándares hospitalarios de integridad clínica y protección de datos:</p>
               
-              <ul class="mini-list mt-16">
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Biometría y Función Renal Automatizada:</strong> Cockcroft-Gault, CKD-EPI, IMC, peso ideal y peso ajustado instantáneos por paciente.</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Auditoría Clínica por Paciente:</strong> Trazabilidad completa por evento (quién, qué y cuándo se modificó cada registro).</li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6 9 17l-5-5"/></svg> <strong>Aislamiento Institucional Multi-Tenant:</strong> Políticas estrictas de Row Level Security (RLS) en PostgreSQL con cifrado TLS 1.3 de 256 bits.</li>
-              </ul>
+              <div class="security-quad-grid">
+                <div class="security-quad-card">
+                  <div style="font-size:1.4rem;margin-bottom:8px">🛡️</div>
+                  <h4>Aislamiento PostgreSQL RLS</h4>
+                  <p class="text-secondary mt-4" style="font-size:0.84rem">Multi-Tenant nativo donde los datos de cada institución están completamente aislados a nivel de base de datos.</p>
+                </div>
+                <div class="security-quad-card">
+                  <div style="font-size:1.4rem;margin-bottom:8px">📋</div>
+                  <h4>Auditoría por Paciente</h4>
+                  <p class="text-secondary mt-4" style="font-size:0.84rem">Trazabilidad inmutable por usuario, registrando autor, fecha, hora y cambios exactos de cada dosis o nivel.</p>
+                </div>
+                <div class="security-quad-card">
+                  <div style="font-size:1.4rem;margin-bottom:8px">⚖️</div>
+                  <h4>Biometría Renal Automática</h4>
+                  <p class="text-secondary mt-4" style="font-size:0.84rem">Cálculo instantáneo de Cockcroft-Gault, CKD-EPI, IMC, Peso Ideal y Peso Ajustado por paciente.</p>
+                </div>
+                <div class="security-quad-card">
+                  <div style="font-size:1.4rem;margin-bottom:8px">🔐</div>
+                  <h4>Cifrado Bancario TLS 1.3</h4>
+                  <p class="text-secondary mt-4" style="font-size:0.84rem">Comunicaciones y almacenamiento en reposo con cifrado militar de 256 bits y control QC continuo.</p>
+                </div>
+              </div>
 
               <div class="card mt-24" style="background:#f8fafc;border-color:var(--border)">
                 <span class="label" style="color:var(--text-muted);font-weight:700;font-size:0.78rem;text-transform:uppercase;letter-spacing:0.05em">Garantías de Cumplimiento</span>
