@@ -91,14 +91,14 @@
     <div class="container hero-grid">
       <div>
         <span class="eyebrow on-dark">🚀 Dossier Técnico-Comercial • SaaS Clínico CDSS & Medicina de Precisión</span>
-        <h1>Plataforma pk-bayes: Dosificación Farmacocinética de Precisión, MAP & Aprendizaje Adaptativo</h1>
+        <h1>Plataforma <span class="brand-nobreak">PK-Bayes</span>: Dosificación Farmacocinética de Precisión, MAP & Aprendizaje Adaptativo</h1>
         <p class="lead">Solución Software as a Service (SaaS) médica de vanguardia diseñada para la optimización individualizada de dosis de fármacos de estrecho margen terapéutico (<strong>Vancomicina</strong> y <strong>Fenitoína</strong>). Transforma el Monitoreo Terapéutico (TDM) en un entorno predictivo dinámico impulsado por estimación bayesiana MAP, resolución de ODEs ante falla renal aguda y aprendizaje institucional en tiempo real.</p>
         
-        <div class="flex items-center gap-8 flex-wrap mt-16">
-          <span class="badge badge-teal">Directores Médicos</span>
-          <span class="badge badge-primary">Jefes de Farmacia Clínica</span>
-          <span class="badge badge-amber">CTOs / Jefes de TI</span>
-          <span class="badge badge-green">Comités de Licitación</span>
+        <div class="hero-audience-chips">
+          <span class="hero-chip">🏥 Directores Médicos</span>
+          <span class="hero-chip">💊 Jefes de Farmacia Clínica</span>
+          <span class="hero-chip">💻 CTOs & Jefes de TI</span>
+          <span class="hero-chip">🏛️ Comités de Licitación</span>
         </div>
 
         <div class="hero-actions mt-24">
@@ -117,22 +117,22 @@
             <span class="text-muted" style="font-size:0.8rem">Goti 2-Comp (BSV 30%)</span>
           </div>
 
-          <div class="grid grid-2 mt-16" style="gap:12px">
+          <div class="grid grid-2 mt-20" style="gap:14px">
             <div class="stat-box">
               <span class="stat-num">&lt; 100 ms</span>
               <span class="stat-label">Cálculo Bayesiano MAP</span>
             </div>
             <div class="stat-box">
               <span class="stat-num">400–600</span>
-              <span class="stat-label">mg·h/L Diana AUC₂₄/CIM</span>
+              <span class="stat-label">mg·h/L Target AUC₂₄/CIM</span>
             </div>
             <div class="stat-box">
               <span class="stat-num">1 Clic</span>
-              <span class="stat-label">Export PopPK NONMEM</span>
+              <span class="stat-label">Exportación PopPK NONMEM</span>
             </div>
             <div class="stat-box">
               <span class="stat-num">PostgreSQL</span>
-              <span class="stat-label">Seguridad Bank-Grade RLS</span>
+              <span class="stat-label">Aislamiento RLS Bank-Grade</span>
             </div>
           </div>
 
@@ -528,37 +528,56 @@
         <p class="lead">Beneficios clínicos y ventajas estratégicas para la institución compradora.</p>
       </div>
 
-      <div class="sales-matrix-table mt-32 reveal">
-        <table>
-          <thead>
-            <tr>
-              <th>Beneficio Clínico / Técnico</th>
-              <th>Ventaja Competitiva para el Hospital</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td><strong>Optimización Bayesiana MAP</strong></td>
-              <td class="advantage-cell">Ajustes precisos con 1 o 2 niveles plasmáticos, reduciendo días de estancia hospitalaria.</td>
-            </tr>
-            <tr>
-              <td><strong>Aclaramiento Renal Variable CL(t)</strong></td>
-              <td class="advantage-cell">Modela cambios abruptos de creatinina (AKI) en UCI sin perder masa de fármaco.</td>
-            </tr>
-            <tr>
-              <td><strong>Aprendizaje Poblacional Institucional</strong></td>
-              <td class="advantage-cell">El software se adapta a la genética/fisiología específica de la población del hospital.</td>
-            </tr>
-            <tr>
-              <td><strong>Formato R&D (NONMEM / Monolix)</strong></td>
-              <td class="advantage-cell">Ideal para centros acreditados, hospitales universitarios e investigación clínica.</td>
-            </tr>
-            <tr>
-              <td><strong>Seguridad PostgreSQL RLS</strong></td>
-              <td class="advantage-cell">Privacidad de datos totalmente aislada por institución y máxima velocidad de carga.</td>
-            </tr>
-          </tbody>
-        </table>
+      <div class="sales-grid-matrix mt-32 reveal">
+        <div class="sales-card">
+          <div class="sales-card-header">
+            <div class="sales-icon-box blue">🎯</div>
+            <div class="sales-card-title">Optimización Bayesiana MAP</div>
+          </div>
+          <div class="sales-card-desc">
+            <strong>Ventaja Competitiva:</strong> Ajustes precisos con 1 o 2 niveles plasmáticos, reduciendo días de estancia hospitalaria y acelerando el alcance del objetivo terapéutico.
+          </div>
+        </div>
+
+        <div class="sales-card">
+          <div class="sales-card-header">
+            <div class="sales-icon-box teal">📈</div>
+            <div class="sales-card-title">Aclaramiento Renal Variable CL(t)</div>
+          </div>
+          <div class="sales-card-desc">
+            <strong>Ventaja Competitiva:</strong> Modela cambios abruptos de creatinina (AKI) en UCI mediante ODEs sin discontinuidades ni pérdida de masa de fármaco.
+          </div>
+        </div>
+
+        <div class="sales-card">
+          <div class="sales-card-header">
+            <div class="sales-icon-box green">🏛️</div>
+            <div class="sales-card-title">Aprendizaje Poblacional Institucional</div>
+          </div>
+          <div class="sales-card-desc">
+            <strong>Ventaja Competitiva:</strong> El software se adapta de forma continua a la genética, nutrición y fisiología de la población específica de su hospital.
+          </div>
+        </div>
+
+        <div class="sales-card">
+          <div class="sales-card-header">
+            <div class="sales-icon-box purple">🔬</div>
+            <div class="sales-card-title">Formato R&D (NONMEM / Monolix)</div>
+          </div>
+          <div class="sales-card-desc">
+            <strong>Ventaja Competitiva:</strong> Generación en 1 clic de datasets estandarizados, ideal para centros acreditados, hospitales universitarios e investigación clínica.
+          </div>
+        </div>
+
+        <div class="sales-card">
+          <div class="sales-card-header">
+            <div class="sales-icon-box amber">🛡️</div>
+            <div class="sales-card-title">Seguridad PostgreSQL RLS</div>
+          </div>
+          <div class="sales-card-desc">
+            <strong>Ventaja Competitiva:</strong> Privacidad de datos totalmente aislada por institución con políticas Row Level Security (RLS) de grado bancario.
+          </div>
+        </div>
       </div>
     </div>
   </section>
