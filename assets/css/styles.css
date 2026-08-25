@@ -760,17 +760,23 @@ select.control-select {
 .accordion-panel-inner { padding: 0 4px 20px; color: var(--text-secondary); font-size: 0.94rem; max-width: 760px; }
 
 /* =========================================================================
-   CTA banda final
+   CTA banda final (Tema Claro Armónico)
    ========================================================================= */
 .cta-band {
-  background: radial-gradient(circle at 10% 20%, #0b2246 0%, var(--sidebar-bg) 90%), var(--sidebar-bg);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #ffffff;
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 56px; color: #fff;
-  display: flex; align-items: center; justify-content: space-between; gap: 30px; flex-wrap: wrap;
+  padding: 40px 48px;
+  color: var(--text-primary);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: wrap;
 }
-.cta-band h2 { color: #fff; }
-.cta-band p { color: var(--text-on-dark-muted); margin-top: 10px; }
+.cta-band h2 { color: var(--text-primary); }
+.cta-band p { color: var(--text-secondary); margin-top: 8px; }
 
 /* =========================================================================
    Access / login
@@ -778,8 +784,8 @@ select.control-select {
 .auth-shell { max-width: 460px; margin: 0 auto; }
 .auth-card { padding: 36px; }
 .auth-icon {
-  width: 52px; height: 52px; border-radius: 14px; background: var(--sidebar-bg); color: #fff;
-  display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
+  width: 48px; height: 48px; border-radius: 12px; background: var(--primary-light); color: var(--primary);
+  display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
 }
 .form-field { margin-bottom: 16px; }
 .form-field label { display: block; font-size: 0.85rem; font-weight: 700; margin-bottom: 7px; }
@@ -792,25 +798,25 @@ select.control-select {
 .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: var(--border); }
 
 /* =========================================================================
-   Footer (Espaciado Homogéneo & Riqueza Visual)
+   Footer (Vertical Compacto & Espaciado Homogéneo)
    ========================================================================= */
 .site-footer {
   background: var(--sidebar-bg);
   color: var(--text-on-dark-muted);
-  padding: 64px 0 32px;
+  padding: 36px 0 20px;
 }
 .footer-grid {
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr 1.1fr;
-  gap: 48px;
-  padding-bottom: 40px;
+  gap: 36px;
+  padding-bottom: 24px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 @media (max-width: 900px) {
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
 }
 @media (max-width: 520px) {
-  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 20px; }
 }
 .footer-brand .brand {
   color: #ffffff;
@@ -822,10 +828,10 @@ select.control-select {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 .footer-brand p {
-  font-size: 0.88rem;
-  line-height: 1.6;
+  font-size: 0.85rem;
+  line-height: 1.5;
   color: var(--text-on-dark-muted);
-  margin-top: 14px;
+  margin-top: 10px;
   max-width: 340px;
 }
 .footer-col h5 {
@@ -834,15 +840,15 @@ select.control-select {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
 }
 .footer-col ul {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 .footer-col a {
-  font-size: 0.88rem;
+  font-size: 0.85rem;
   color: var(--text-on-dark-muted);
   transition: color 0.2s ease;
 }
@@ -853,18 +859,18 @@ select.control-select {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 24px;
+  padding-top: 16px;
   flex-wrap: wrap;
-  gap: 12px;
-  font-size: 0.82rem;
+  gap: 10px;
+  font-size: 0.8rem;
   color: var(--text-on-dark-muted);
 }
 .footer-legal-note {
-  font-size: 0.76rem;
-  line-height: 1.6;
+  font-size: 0.74rem;
+  line-height: 1.5;
   max-width: 960px;
-  margin-top: 18px;
-  opacity: 0.7;
+  margin-top: 12px;
+  opacity: 0.65;
 }
 
 /* =========================================================================

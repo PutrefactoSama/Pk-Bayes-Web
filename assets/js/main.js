@@ -342,7 +342,7 @@
       ctx.fillText("Rango Objetivo Trough (15–20 mg/L)", padding + 8, y20 + 14);
 
       // Grid lines
-      ctx.strokeStyle = "rgba(255, 255, 255, 0.08)";
+      ctx.strokeStyle = "rgba(15, 23, 42, 0.08)";
       ctx.lineWidth = 1;
       for (let yVal = 0; yVal <= maxY; yVal += 15) {
         const y = height - padding - (yVal / maxY) * graphH;
@@ -350,13 +350,13 @@
         ctx.moveTo(padding, y);
         ctx.lineTo(width - padding, y);
         ctx.stroke();
-        ctx.fillStyle = "rgba(255,255,255,0.4)";
+        ctx.fillStyle = "#64748b";
         ctx.fillText(yVal, 10, y + 4);
       }
 
       // Draw Population Prior curve (Dashed Blue)
       ctx.beginPath();
-      ctx.strokeStyle = "rgba(56, 189, 248, 0.4)";
+      ctx.strokeStyle = "rgba(14, 165, 233, 0.5)";
       ctx.setLineDash([4, 4]);
       ctx.lineWidth = 2;
       for (let x = 0; x <= graphW; x += 2) {
@@ -372,7 +372,7 @@
 
       // Draw Individual MAP Adjusted Curve (Solid Cyan)
       ctx.beginPath();
-      ctx.strokeStyle = "#0ea5e9";
+      ctx.strokeStyle = "#0284c7";
       ctx.lineWidth = 3;
       for (let x = 0; x <= graphW; x += 2) {
         const t = (x / graphW) * 48;
@@ -391,7 +391,7 @@
       ctx.beginPath();
       ctx.arc(labX, labY, 6, 0, Math.PI * 2);
       ctx.fill();
-      ctx.fillStyle = "#ffffff";
+      ctx.fillStyle = "#1e293b";
       ctx.font = "bold 11px sans-serif";
       ctx.fillText("🧪 Lab Cr: 1.8 mg/dL", labX + 10, labY - 4);
     }
