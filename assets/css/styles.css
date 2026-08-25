@@ -548,22 +548,42 @@ body.menu-open .mobile-menu {
 .mini-list svg { width: 18px; height: 18px; flex-shrink: 0; margin-top: 3px; color: var(--green); }
 .mini-list strong { color: var(--text-primary); font-weight: 700; display: inline; }
 
-/* QC Badge Row & Pills */
-.qc-badge-row {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 12px;
-  margin-top: 14px;
-}
-.qc-pill {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+/* QC Badge Row & Compliance Card (Centrado & Espacio Optimizado) */
+.qc-compliance-card {
+  text-align: center;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 12px 16px;
-  font-size: 0.88rem;
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  margin-top: 24px;
+  box-shadow: var(--shadow-sm);
+}
+.qc-compliance-card .label {
+  display: inline-block;
+  color: var(--text-muted);
+  font-weight: 800;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 6px;
+}
+.qc-badge-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+}
+.qc-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-page);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 9px 18px;
+  font-size: 0.86rem;
   font-weight: 600;
   color: var(--text-primary);
   box-shadow: var(--shadow-sm);
@@ -575,7 +595,7 @@ body.menu-open .mobile-menu {
 }
 .qc-pill.verified {
   border-color: rgba(16, 185, 129, 0.3);
-  background: rgba(16, 185, 129, 0.05);
+  background: rgba(16, 185, 129, 0.07);
   color: #065f46;
 }
 
