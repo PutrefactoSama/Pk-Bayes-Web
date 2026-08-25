@@ -792,21 +792,80 @@ select.control-select {
 .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: var(--border); }
 
 /* =========================================================================
-   Footer
+   Footer (Espaciado Homogéneo & Riqueza Visual)
    ========================================================================= */
-.site-footer { background: var(--sidebar-bg); color: var(--text-on-dark-muted); padding: 64px 0 28px; }
-.footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; padding-bottom: 44px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-@media (max-width: 800px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 520px) { .footer-grid { grid-template-columns: 1fr; } }
-.footer-brand .brand { color: #fff; }
-.footer-brand .brand-mark { background: #ffffff; border-radius: 10px; padding: 3px; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
-.footer-grid p { font-size: 0.88rem; margin-top: 12px; max-width: 280px; }
-.footer-col h5 { color: #fff; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 16px; }
-.footer-col ul { display: flex; flex-direction: column; gap: 10px; }
-.footer-col a { font-size: 0.9rem; transition: color .15s ease; }
-.footer-col a:hover { color: #fff; }
-.footer-bottom { display: flex; justify-content: space-between; align-items: center; padding-top: 26px; flex-wrap: wrap; gap: 12px; font-size: 0.82rem; }
-.footer-legal-note { font-size: 0.78rem; line-height: 1.6; max-width: 900px; margin-top: 20px; opacity: 0.75; }
+.site-footer {
+  background: var(--sidebar-bg);
+  color: var(--text-on-dark-muted);
+  padding: 64px 0 32px;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.1fr;
+  gap: 48px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+@media (max-width: 900px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
+}
+@media (max-width: 520px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+}
+.footer-brand .brand {
+  color: #ffffff;
+}
+.footer-brand .brand-mark {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 3px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+.footer-brand p {
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: var(--text-on-dark-muted);
+  margin-top: 14px;
+  max-width: 340px;
+}
+.footer-col h5 {
+  color: #ffffff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 18px;
+}
+.footer-col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.footer-col a {
+  font-size: 0.88rem;
+  color: var(--text-on-dark-muted);
+  transition: color 0.2s ease;
+}
+.footer-col a:hover {
+  color: #ffffff;
+}
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.82rem;
+  color: var(--text-on-dark-muted);
+}
+.footer-legal-note {
+  font-size: 0.76rem;
+  line-height: 1.6;
+  max-width: 960px;
+  margin-top: 18px;
+  opacity: 0.7;
+}
 
 /* =========================================================================
    Utilidades
@@ -822,12 +881,36 @@ select.control-select {
 .justify-between { justify-content: space-between; }
 .w-full { width: 100%; }
 
-/* Page hero (secundario, más compacto que el de home) */
-.page-hero { background: var(--sidebar-bg); color: #fff; padding: 56px 0 68px; }
-.page-hero .lead { color: var(--text-on-dark-muted); max-width: 640px; margin-top: 14px; }
-.page-hero h1 { color: #fff; margin-top: 14px; }
-.breadcrumb { font-size: 0.82rem; color: var(--text-on-dark-muted); display: flex; gap: 8px; align-items: center; }
-.breadcrumb a:hover { color: #fff; }
+/* Page hero (secundario, tema claro armónico sin azul oscuro) */
+.page-hero {
+  background: #ffffff;
+  color: var(--text-primary);
+  padding: 48px 0 56px;
+  border-bottom: 1px solid var(--border);
+}
+.page-hero .lead {
+  color: var(--text-secondary);
+  max-width: 640px;
+  margin-top: 14px;
+}
+.page-hero h1 {
+  color: var(--text-primary);
+  margin-top: 14px;
+}
+.breadcrumb {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.breadcrumb a {
+  color: var(--text-secondary);
+  transition: color 0.15s ease;
+}
+.breadcrumb a:hover {
+  color: var(--primary);
+}
 
 /* Toast (config Stripe) */
 .toast {

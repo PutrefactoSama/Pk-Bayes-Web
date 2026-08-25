@@ -164,7 +164,7 @@
       "pricing.plan_comp_btn": "Suscribir Plan Completo ($1.350 USD/año)",
       "pricing.plan_comp_ribbon": "Plan Completo",
 
-      "footer.desc": "Plataforma clínica de dosificación farmacocinética de precisión y optimización bayesiana MAP en tiempo real para vancomicina (activo) y nuevos fármacos en desarrollo.",
+      "footer.desc": "Plataforma clínica de dosificación farmacocinética de precisión y optimización bayesiana MAP en tiempo real.",
       "footer.product": "Producto",
       "footer.access": "Acceso",
       "footer.security": "Seguridad y Rigor",
