@@ -322,28 +322,36 @@ body.menu-open .mobile-menu {
 }
 
 /* =========================================================================
-   Hero (fondo navy oscuro)
-   ========================================================================= */
-/* =========================================================================
-   Hero (fondo navy oscuro) & Glass Visual System
+   Hero (Fondo Claro Armónico - Sin azul oscuro)
    ========================================================================= */
 .hero {
-  position: relative; overflow: hidden;
-  background: radial-gradient(1100px 500px at 15% -10%, #16294a 0%, var(--sidebar-bg) 55%), var(--sidebar-bg);
-  color: var(--text-on-dark);
-  padding: 76px 0 96px;
+  position: relative;
+  overflow: hidden;
+  background: #ffffff;
+  color: var(--text-primary);
+  padding: 68px 0 80px;
+  border-bottom: 1px solid var(--border);
 }
 .hero::after {
-  content: ""; position: absolute; inset: 0; pointer-events: none;
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
   background-image:
-    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+    linear-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
   background-size: 42px 42px;
   mask-image: radial-gradient(700px 400px at 20% 20%, black, transparent 70%);
 }
-.hero-grid { position: relative; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 48px; align-items: center; }
+.hero-grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 48px;
+  align-items: center;
+}
 .hero h1 {
-  color: #fff;
+  color: var(--text-primary);
   margin: 18px 0 20px;
   font-size: clamp(2rem, 1.4rem + 2.2vw, 3.1rem);
   font-weight: 800;
@@ -355,7 +363,11 @@ body.menu-open .mobile-menu {
 .brand-nobreak {
   white-space: nowrap;
 }
-.hero .lead { color: var(--text-on-dark-muted); max-width: 560px; line-height: 1.65; }
+.hero .lead {
+  color: var(--text-secondary);
+  max-width: 560px;
+  line-height: 1.65;
+}
 
 .hero-audience-chips {
   display: flex;
@@ -370,18 +382,17 @@ body.menu-open .mobile-menu {
   gap: 6px;
   font-size: 0.82rem;
   font-weight: 600;
-  color: #e0f2fe;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--text-primary);
+  background: var(--bg-page);
+  border: 1px solid var(--border);
   padding: 7px 14px;
   border-radius: 999px;
-  backdrop-filter: blur(4px);
   transition: all 0.2s ease;
 }
 .hero-chip:hover {
-  background: rgba(14, 165, 233, 0.15);
-  border-color: rgba(14, 165, 233, 0.4);
-  color: #ffffff;
+  background: var(--primary-light);
+  border-color: var(--primary);
+  color: var(--primary);
 }
 
 .hero-actions {
@@ -395,22 +406,20 @@ body.menu-open .mobile-menu {
   margin: 0;
 }
 .hero-stats { display: flex; gap: 34px; margin-top: 44px; flex-wrap: wrap; }
-.hero-stat b { display: block; font-size: 1.7rem; font-weight: 800; color: #fff; }
-.hero-stat span { font-size: 0.82rem; color: var(--text-on-dark-muted); }
+.hero-stat b { display: block; font-size: 1.7rem; font-weight: 800; color: var(--text-primary); }
+.hero-stat span { font-size: 0.82rem; color: var(--text-secondary); }
 
-/* Glass Card & Stat Boxes */
+/* Hero Card Preview & Stat Boxes (Fondo Claro) */
 .glass-card {
-  background: rgba(10, 25, 47, 0.78);
-  border: 1px solid rgba(14, 165, 233, 0.25);
+  background: #ffffff;
+  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 28px;
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35), 0 0 30px rgba(14, 165, 233, 0.12);
+  box-shadow: var(--shadow-md);
 }
 .stat-box {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-page);
+  border: 1px solid var(--border-soft);
   border-radius: 12px;
   padding: 16px;
   display: flex;
@@ -419,11 +428,11 @@ body.menu-open .mobile-menu {
   transition: all 0.2s ease;
 }
 .stat-box:hover {
-  background: rgba(14, 165, 233, 0.08);
-  border-color: rgba(14, 165, 233, 0.3);
+  border-color: var(--primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
 }
 .stat-num {
-  font-size: 1.35rem;
   font-weight: 800;
   color: #38bdf8;
   line-height: 1.2;
