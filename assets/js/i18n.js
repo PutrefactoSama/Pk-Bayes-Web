@@ -1,12 +1,14 @@
 /**
- * PK-Bayes — Motor de Internacionalización (i18n)
+ * PK-Bayes — Motor de Internacionalización (i18n) con Geolocalización de Idioma
  * Soporta: Español (es), English (en), 中文 (zh), 日本語 (ja)
- * Con detección automática inteligente del idioma del navegador y terminología médica precisa.
+ * Detección automática por zona horaria, idioma del navegador y GeoIP (mismo criterio
+ * que la app clínica), con terminología médica precisa en las 4 traducciones.
  */
 (function () {
   "use strict";
 
   const STORAGE_KEY = "pkbayes_lang";
+  const MANUAL_FLAG_KEY = "pkbayes_lang_manual";
   const SUPPORTED_LANGS = ["es", "en", "zh", "ja"];
 
   const LANG_NAMES = {
@@ -22,6 +24,158 @@
     zh: "🇨🇳",
     ja: "🇯🇵"
   };
+
+  // ── Geolocalización de idioma (mismo criterio que la app clínica) ─────────
+  // 1) localStorage (elección manual previa) 2) Zona horaria del dispositivo
+  // (Intl, instantáneo y sin permisos) 3) navigator.languages 4) GeoIP en
+  // segundo plano (api.country.is) solo como último recurso, sin bloquear el
+  // primer render.
+
+  // Mapeo de Zonas Horarias IANA a idioma
+  const TIMEZONE_TO_LANG = {
+    // China / Taiwán / Hong Kong / Macau
+    "asia/shanghai": "zh",
+    "asia/chongqing": "zh",
+    "asia/harbin": "zh",
+    "asia/urumqi": "zh",
+    "asia/hong_kong": "zh",
+    "asia/macau": "zh",
+    "asia/taipei": "zh",
+    "asia/beijing": "zh", // alias no estándar que algunos runtimes viejos reportan
+
+    // Japón
+    "asia/tokyo": "ja",
+
+    // España y Latinoamérica (Español)
+    "europe/madrid": "es",
+    "atlantic/canary": "es",
+    "america/santiago": "es",
+    "america/punta_arenas": "es",
+    "pacific/easter": "es",
+    "america/buenos_aires": "es",
+    "america/argentina/buenos_aires": "es",
+    "america/cordoba": "es",
+    "america/rosario": "es",
+    "america/mendoza": "es",
+    "america/bogota": "es",
+    "america/lima": "es",
+    "america/mexico_city": "es",
+    "america/cancun": "es",
+    "america/monterrey": "es",
+    "america/tijuana": "es",
+    "america/hermosillo": "es",
+    "america/chihuahua": "es",
+    "america/mazatlan": "es",
+    "america/merida": "es",
+    "america/matamoros": "es",
+    "america/caracas": "es",
+    "america/montevideo": "es",
+    "america/la_paz": "es",
+    "america/guayaquil": "es",
+    "pacific/galapagos": "es",
+    "america/costa_rica": "es",
+    "america/guatemala": "es",
+    "america/panama": "es",
+    "america/santo_domingo": "es",
+    "america/asuncion": "es",
+    "america/havana": "es",
+    "america/tegucigalpa": "es",
+    "america/el_salvador": "es",
+    "america/managua": "es",
+    "america/puerto_rico": "es",
+
+    // Países de habla inglesa / internacional (Inglés)
+    "america/new_york": "en",
+    "america/chicago": "en",
+    "america/los_angeles": "en",
+    "america/denver": "en",
+    "america/phoenix": "en",
+    "america/anchorage": "en",
+    "pacific/honolulu": "en",
+    "europe/london": "en",
+    "australia/sydney": "en",
+    "australia/melbourne": "en",
+    "australia/brisbane": "en",
+    "australia/perth": "en",
+    "australia/adelaide": "en",
+    "pacific/auckland": "en"
+  };
+
+  // Mapeo de código de país ISO-3166 (GeoIP) a idioma
+  const COUNTRY_TO_LANG = {
+    // Chino
+    CN: "zh", TW: "zh", HK: "zh", MO: "zh",
+    // Japonés
+    JP: "ja",
+    // Español
+    ES: "es", CL: "es", AR: "es", CO: "es", PE: "es", MX: "es", UY: "es",
+    BO: "es", EC: "es", CR: "es", GT: "es", PA: "es", DO: "es", PY: "es",
+    VE: "es", HN: "es", SV: "es", NI: "es", CU: "es", PR: "es",
+    // Inglés
+    US: "en", GB: "en", CA: "en", AU: "en", NZ: "en", IE: "en", ZA: "en",
+    SG: "en", IN: "en"
+  };
+
+  // Detección instantánea (0ms, sin red): localStorage → zona horaria → navigator.languages.
+  // "confident" indica si alguna señal síncrona dio un resultado real (evita pisar el
+  // idioma ya mostrado con el resultado de GeoIP si ya hubo una señal confiable, previniendo
+  // el "flash" de que la página cargue en un idioma y cambie sola 1-2s después).
+  function detectGeoAndLocaleLanguage() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved && SUPPORTED_LANGS.includes(saved)) {
+        return { language: saved, confident: true };
+      }
+
+      const tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || "").toLowerCase();
+      if (tz && TIMEZONE_TO_LANG[tz]) {
+        return { language: TIMEZONE_TO_LANG[tz], confident: true };
+      }
+      // Solo Europe/London y Australia/* son inequívocamente de habla inglesa dentro de
+      // los 4 idiomas soportados -- a propósito no hay catch-all "america/*" acá: la
+      // mayoría de América es hispanohablante.
+      if (tz.startsWith("europe/london") || tz.startsWith("australia/")) {
+        return { language: "en", confident: true };
+      }
+
+      const navLangs = navigator.languages || [navigator.language || navigator.userLanguage || ""];
+      for (let i = 0; i < navLangs.length; i++) {
+        const l = (navLangs[i] || "").toLowerCase();
+        if (l.startsWith("zh")) return { language: "zh", confident: true };
+        if (l.startsWith("ja")) return { language: "ja", confident: true };
+        if (l.startsWith("es")) return { language: "es", confident: true };
+        if (l.startsWith("en")) return { language: "en", confident: true };
+      }
+    } catch (e) {
+      // Fallback seguro
+    }
+    return { language: "es", confident: false };
+  }
+
+  // Consulta de país por IP en segundo plano (no bloqueante). Solo se llama cuando ninguna
+  // señal síncrona dio un resultado confiable y el usuario no eligió idioma manualmente.
+  // Nota de privacidad: esto envía la IP del visitante a un tercero (api.country.is) desde
+  // el navegador. Se deja client-side a propósito (sitio 100% estático, sin backend propio
+  // al que reenviar la IP) y con timeout corto para no demorar la experiencia.
+  function detectLanguageByIP(onDetected) {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 2000);
+      fetch("https://api.country.is/", { signal: controller.signal })
+        .then((res) => res.json())
+        .then((data) => {
+          clearTimeout(timeoutId);
+          const countryCode = data && data.country ? String(data.country).toUpperCase() : null;
+          const matchedLang = countryCode ? COUNTRY_TO_LANG[countryCode] : null;
+          if (matchedLang) onDetected(matchedLang, countryCode);
+        })
+        .catch(() => {
+          // Si falla o se bloquea la red externa, se mantiene la detección de zona horaria/navegador
+        });
+    } catch (e) {
+      // No-op
+    }
+  }
 
   const I18N = {
     es: {
@@ -507,7 +661,178 @@
     "func.std_lbl": "⚡ Estandarizador PK-Bayes",
     "func.nonmem_csv_lbl": "📊 NONMEM / Monolix (.csv)",
     "func.rand_py_lbl": "🔬 R & Python Analytics",
-    "func.prior_calibrated_lbl": "Prior Calibrado"
+    "func.prior_calibrated_lbl": "Prior Calibrado",
+    "nav.brand_title": "PK-Bayes",
+    "nav.brand_sub": "Sistema de Dosificación de Precisión",
+    "nav.brand_tag": "Estación Clínica MAP",
+    "func.slide3_t": "Cinética Renal Dinámica CL(t) y Diálisis",
+    "func.slide3_p": "Resolución continua de ecuaciones diferenciales ordinarias (ODEs) ante sepsis y falla renal aguda (AKI), manteniendo la continuidad física de la masa acumulada A₁(t) y A₂(t). Soporte nativo para CRRT (CVVH/D/F) y hemodiálisis intermitente.",
+    "func.slide3_see_models": "Ver modelos renales ↓",
+    "func.slide3_cl_badge": "CL(t) Continuo",
+    "func.slide3_lbl_cl": "Preservación de masa ante fluctuaciones de Creatinina.",
+    "func.slide4_eyebrow": "Investigación R&D",
+    "func.slide4_title": "Exportación Automatizada PopPK (NONMEM & Monolix)",
+    "func.slide4_lead": "Estructura automáticamente la base de datos de pacientes en formato estandarizado listo para investigación poblacional y análisis en R y Python con 1 solo clic.",
+    "func.slide4_btn_format": "Ver formato de datos ↓",
+    "func.slide4_badge_csv": "Generación estandarizada de datasets .csv.",
+    "func.m1_main_title": "Estimación Bayesiana MAP en Tiempo Real (Maximum A Posteriori)",
+    "func.m1_main_desc": "Resuelve el compromiso matemático óptimo entre el prior poblacional y las concentraciones séricas medidas del paciente, entregando de forma instantánea CL, V₁, Q, V₂, t½ y AUC₂₄.",
+    "func.flow_step1_badge": "Fase 01 • Entrada de Parámetros",
+    "func.flow_step1_t": "📥 Prior Poblacional / Hospitalario",
+    "func.flow_step1_d": "Carga el modelo farmacocinético validado (Goti 2-Comp, Rodvold, Thomson, Yamamoto o Prior Institucional calibrado por el hospital).",
+    "func.flow_step2_badge": "Fase 02 • Muestreo Sérico Flexible",
+    "func.flow_step2_t": "🧪 1 o 2 Niveles Plasmáticos Medidos",
+    "func.flow_step2_d": "Sin restricciones rígidas de toma valle/pico: el algoritmo ubica la muestra en cualquier momento del intervalo de infusión con total rigor matemático.",
+    "func.flow_step3_badge": "Fase 03 • Fitting & Predictor",
+    "func.flow_step3_t": "⚙️ Output Posterior (< 100 ms)",
+    "func.flow_step3_d": "Genera la curva de concentración continua individualizada y entrega CL, V₁, Q, V₂, t½ y AUC₂₄ con intervalos de confianza y coeficiente de variación (CV%).",
+    "func.m2_header_badge": "Módulo 02 • Simulación Posológica",
+    "func.m2_header_title": "Predictor de Regímenes Posológicos y Simulación What-If",
+    "func.m2_header_desc": "Simule cualquier régimen de dosis (mg), intervalo (τ = 6, 8, 12, 24, 36, 48h o infusión continua 24h) y observe instantáneamente las concentraciones proyectadas en estado estacionario.",
+    "func.m2_sim_badge": "Simulador Clínico Interactivo",
+    "func.m2_sim_title": "Exploración de Régimen What-If — Vancomicina",
+    "func.m2_sim_sub": "Modelo educativo ilustrativo interactivo",
+    "func.m2_sim_lbl_dose": "Dosis administrada",
+    "func.m2_sim_lbl_tau": "Intervalo de dosis",
+    "func.m2_sim_opt_q8": "Cada 8 horas (q8h)",
+    "func.m2_sim_opt_q12": "Cada 12 horas (q12h)",
+    "func.m2_sim_opt_q24": "Cada 24 horas (q24h)",
+    "func.m2_sim_lbl_cl": "Aclaramiento (CL)",
+    "func.m2_sim_lbl_cl_desc": "Simula el estado de la función renal",
+    "func.m2_sim_lbl_vd": "Volumen distribución (Vd)",
+    "func.m2_sim_res_cmax": "Pico proyectado",
+    "func.m2_sim_res_cmin": "Valle proyectado",
+    "func.m2_sim_res_conc": "Concentración proyectada",
+    "func.m2_sim_res_target": "Diana terapéutica (AUC24/CIM 400–600 mg·h/L · Valles 15–20 mg/L)",
+    "func.m3_header_badge": "Módulo 03 • Paciente Crítico & UCI",
+    "func.m3_header_title": "Cinética Renal Dinámica CL(t) y Soporte Integral de Diálisis",
+    "func.m3_header_desc": "En pacientes con sepsis, shock séptico o AKI fluctuante, PK-Bayes resuelve la curva temporal mediante métodos numéricos preservando la continuidad física de la masa de fármaco (A₁(t), A₂(t)).",
+    "func.m3_c_crrt_t": "CRRT Continuo (CVVH / CVVHD / CVVHDF)",
+    "func.m3_c_crrt_d": "Cálculo dinámico considerando tasa de efluente, coeficiente de tamizado de membrana y aclaramiento renal residual del paciente.",
+    "func.m3_c_hd_t": "Hemodiálisis Intermitente (HD)",
+    "func.m3_c_hd_d": "Modelado preciso mediante flujo sanguíneo (Qb), duración de sesión, coeficiente de extracción interdialisítico y efecto rebote.",
+    "func.m3_c_kdigo_t": "AKIN / KDIGO en Tiempo Real",
+    "func.m3_c_kdigo_d": "Resolución de ODEs ante curvas fluctuantes de Creatinina manteniendo la continuidad física de masa A₁(t) y A₂(t) sin discontinuidades artificiales.",
+    "func.m4_header_badge": "Módulo 04 • Inteligencia Institucional",
+    "func.m4_header_title": "Dashboard de Métricas Farmacocinéticas y Análisis de Cohortes",
+    "func.m4_header_desc": "Visión de inteligencia clínica sobre toda la cohorte de pacientes hospitalizados en la unidad o servicio para seguimiento epidemiológico y control de calidad.",
+    "func.m4_c_paired_t": "Gráficos Longitudinales Pareados",
+    "func.m4_c_paired_d": "Evolución temporal de dosis administradas (mg/día) sincronizada en paralelo con los niveles séricos plasmáticos frente al rango diana de 15–20 mg/L.",
+    "func.m4_c_multi_t": "Multiselección & Trazabilidad Cruzada",
+    "func.m4_c_multi_d": "Selecciona 1, 2 o múltiples pacientes; sus trayectorias se iluminan con colores clínicos diferenciados en ambos paneles al pasar el cursor (hover).",
+    "common.open_platform": "Abrir plataforma PK-Bayes ↗",
+    "common.contact_btn": "contacto",
+    "common.request_demo_nav": "Solicitar una demo",
+    "common.developed_team": "Desarrollado para equipos de farmacocinética clínica.",
+    "common.legal_full": "PK-Bayes es un software de apoyo a la decisión clínica (CDSS). Todas las recomendaciones generadas deben ser revisadas e interpretadas por un profesional sanitario cualificado antes de aplicarse a un paciente real. Los ejemplos, casos clínicos y simulaciones de este sitio web usan datos sintéticos y tienen fines exclusivamente informativos y comerciales.",
+    "func.m1_list_b1": "<svg fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" viewbox=\"0 0 24 24\"><path d=\"M20 6 9 17l-5-5\"></path></svg> <strong>Modelos bicompartimentales robustos:</strong> Goti et al. (2018) con acotamiento de variabilidad interindividual (BSV) en V₁ (~30%) para evitar sobreajuste ante muestreos de 1 nivel valle.",
+    "func.m1_list_b2": "<svg fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" viewbox=\"0 0 24 24\"><path d=\"M20 6 9 17l-5-5\"></path></svg> <strong>Transparencia trifásica:</strong> Visualiza en la misma interfaz los valores <em>Individual</em>, <em>Poblacional</em> e <em>Institucional</em>.",
+    "func.m1_list_b3": "<svg fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" viewbox=\"0 0 24 24\"><path d=\"M20 6 9 17l-5-5\"></path></svg> <strong>Gráficos interactivos:</strong> Curva de concentración vs. tiempo con visualización de rango terapéutico, niveles observados e intervalos de confianza.",
+    "func.m2_sim_note": "<strong>Nota metodológica:</strong> este widget ilustra el concepto reactivo de \"what-if\". La plataforma de producción ejecuta el motor completo resolviendo sistemas acoplados de ecuaciones diferenciales ordinarias (ODEs) con covariables continuas e infusiones intermitentes o continuas.",
+    "common.dose_lbl": "Dosis:",
+    "common.interval_lbl": "Intervalo:",
+    "common.crcl_lbl": "CrCl:",
+    "common.poppk_exp_lbl": "PopPK Exporter",
+    "common.csv_utf8_lbl": "CSV UTF-8 BOM",
+    "common.clin_gov_lbl": "Gobernanza Clínica",
+    "common.immutable_lbl": "Inmutable",
+    "common.frontend_lbl": "Frontend",
+    "common.backend_lbl": "Backend API",
+    "common.db_lbl": "Base de Datos",
+    "common.request_demo_btn": "Solicitar Demo",
+    "common.tag_rk45": "ODEs Runge-Kutta 45",
+    "common.tag_vanco": "Vancomicina",
+    "common.tag_cr11": "Cr 1.1 mg/dL · ClCr 72 mL/min",
+    "common.tag_lvl184": "Nivel 18.4 mg/L",
+    "common.tag_aki16": "AKI: Cr 1.6 mg/dL (ClCr 48 mL/min)",
+    "common.tag_cl265": "CL Indiv: 2.65 L/h",
+    "common.tag_rk45_mass": "Preservación de masa RK45",
+    "common.tag_target485": "Diana Alcanzada: AUC24 485 mg·h/L",
+    "cases.c2_tag_overdose": "Protección ante Sobredosificación",
+    "cases.c3_head_badge": "Caso 3 · Farmacometría e Investigación",
+    "cases.c3_head_title": "De la Cohorte Hospitalaria a la Creación de la Base de Datos PopPK",
+    "cases.c3_head_desc": "Servicio de Farmacia Clínica — Análisis longitudinal de cohorte de vancomicina y exportación automatizada para modelado poblacional.",
+    "cases.c3_s1_head": "Monitoreo en el Dashboard Longitudinal Pareado",
+    "cases.c3_s1_desc": "El equipo visualiza en tiempo real las trayectorias sincronizadas de dosis diaria vs niveles plasmáticos, comparando camas básicas vs UCI con cálculo dinámico de Media e Intervalo de Confianza del 95% (IC95%).",
+    "cases.c3_tag_multi": "Multiselección de Cohorte",
+    "cases.c3_tag_ic95": "IC95% Dinámico",
+    "cases.c3_s2_head": "Detección de Sesgo y Calibración de Prior Institucional",
+    "cases.c3_s2_desc": "En el estrato VFG 30–45 mL/min, el Panel de Desempeño detecta que los modelos foráneos tienen RMSE de 5.4 mg/L. Al calibrar el prior local con los datos del centro, el error se reduce a RMSE 2.4 mg/L.",
+    "cases.c3_tag_prior_active": "Prior Institucional Activo",
+    "cases.c3_s3_head": "Generación de la Base de Datos PopPK en 1 Clic",
+    "cases.c3_tag_ready": "Exportación PopPK Lista",
+    "cases.bottom_title": "Prueba estos flujos con tus propios datos",
+    "cases.bottom_desc": "Comienza hoy tu prueba gratuita de 14 días sin costo, o adquiere el Plan Completo con acceso total y exportación de bases de datos PopPK.",
+    "cases.cta_plan_btn": "Ver plan y precios →",
+    "cases.c3_s3_desc": "El investigador exporta la base de datos completa de su hospital estructurada y estandarizada para su uso directo en <strong>NONMEM</strong> y <strong>Monolix</strong>, eliminando semanas de trabajo manual y facilitando publicaciones científicas.",
+    "common.consensus_ashp2020": "Consenso ASHP/IDSA/PIDS/SIDP 2020",
+    "common.comp_2": "2 Comp.",
+    "farm.vanco_c1_t": "ODEs Continuas y CL(t)",
+    "farm.vanco_c1_d": "En Falla Renal Aguda (AKI) y recuperación, el motor resuelve numéricamente la curva temporal preservando la masa en A1(t) y A2(t) ante cada nueva creatinina.",
+    "farm.vanco_c2_t": "Dosificación Empírica Inicial",
+    "farm.vanco_c2_d": "Calculadora inmediata de dosis de carga (25–35 mg/kg) y regímenes de mantenimiento antes de contar con niveles plasmáticos, ajustada a peso real, ideal o ajustado y Cockcroft-Gault / CKD-EPI.",
+    "farm.vanco_c3_t": "Diálisis y Terapias TRRC",
+    "farm.vanco_c3_d": "Modelado dinámico de CRRT continuo (tasa efluente y tamizado de filtro), Hemodiálisis Intermitente (Qb, duración y E_HD) y enfermedad renal crónica terminal.",
+    "farm.pheny_pipe_badge": "Próxima Integración · Roadmap",
+    "farm.pheny_dev_badge": "En Desarrollo",
+    "farm.pheny_scope_t": "Fenitoína — Alcances Clínicos y Cinética Saturable de Michaelis-Menten",
+    "farm.pheny_scope_d": "Módulo actualmente en fase de integración y validación algorítmica. Conoce los alcances farmacocinéticos que incorporará la plataforma para la dosificación de precisión de este anticonvulsivante de estrecho margen.",
+    "farm.pheny_sc1_badge": "Alcance 1: Cinética Hepática No Lineal",
+    "farm.pheny_sc1_t": "Estimación de Vmax y Km",
+    "farm.pheny_sc1_d1": "A dosis terapéuticas habituales, las enzimas hepáticas (CYP2C9 y CYP2C19) se saturan. El módulo incorporará la estimación individualizada de la velocidad máxima de eliminación y la constante de afinidad para predecir concentraciones en estado estacionario evitando incrementos bruscos de toxicidad.",
+    "farm.pheny_sc1_d2": "Permitirá alertar tempranamente ante prescripciones que sitúen al paciente en la pendiente vertical hiperbólica de riesgo neurotóxico.",
+    "farm.pheny_sc2_badge": "Alcance 2: Fracción Libre Activa",
+    "farm.pheny_free_frac_t": "Corrección Automática de Fracción Libre",
+    "farm.pheny_free_frac_p1": "Dado que la fenitoína se une en un 90% a la albúmina sérica, en pacientes con hipoalbuminemia o insuficiencia renal terminal el nivel plasmático total no refleja la concentración libre activa.",
+    "farm.pheny_free_frac_p2": "Normaliza automáticamente los niveles séricos reportados en función de la concentración de albúmina y la función renal del paciente, evitando la infraestimación del riesgo en pacientes críticos o desnutridos.",
+    "farm.adapt_badge": "Inteligencia Adaptativa",
+    "farm.adapt_title": "Modelos Poblacionales Propios de tu Hospital",
+    "farm.adapt_lead": "La plataforma no impone un modelo único cerrado: evoluciona con la casuística de tu propio centro sanitario.",
+    "farm.adapt_c1_t": "Estratificación Renal (VFG)",
+    "farm.adapt_c1_d": "Los pacientes se agrupan automáticamente en 12 estratos de filtración glomerular para capturar variaciones farmacocinéticas específicas por grado de función renal.",
+    "farm.adapt_c2_t": "Umbral de Calibración Local",
+    "farm.adapt_c2_d": "Al acumular un mínimo de 10 casos válidos por estrato, el sistema habilita la opción de calibrar el prior propio del hospital, validado mediante RMSE y Bias.",
+    "farm.adapt_c3_t": "Prior Mixto de Confianza",
+    "farm.adapt_c3_d": "Pondera estadísticamente la literatura médica internacional con la evidencia empírica acumulada en tu centro, garantizando máxima robustez matemática.",
+    "farm.adapt_btn": "Explorar panel de desempeño institucional →",
+    "farm.disclaimer_full": "<strong>Uso Clínico Responsable:</strong> PK-Bayes es un software de apoyo a la decisión clínica (CDSS). Los parámetros, modelos compartimentales y correcciones descritos en esta página son herramientas de asistencia; toda recomendación farmacoterapéutica debe ser validada por un profesional sanitario cualificado antes de su administración al paciente.",
+    "gracias.msg_full": "Hemos recibido tu suscripción al <strong>Plan Completo de PK-Bayes</strong>. Se ha enviado un correo electrónico de confirmación con el recibo de tu transacción.",
+    "pricing.faq_block_1": "La prueba gratuita te permite utilizar todas las herramientas clínicas de la plataforma sin costo durante 14 días: estimación bayesiana MAP en tiempo real, simulación What-If, ajuste por cinética renal dinámica CL(t), soporte de hemodiálisis/TRRC y dashboard longitudinal de cohortes. La gran limitación es que <strong>no incluye la descarga/exportación de bases de datos PopPK y el modelo institucional propio de su centro asistencial</strong>. No requiere tarjeta de crédito y expira automáticamente a los 14 días.",
+    "pricing.faq_block_2": "El Plan Completo otorga acceso total e ilimitado para toda tu institución hospitalaria o universitaria: usuarios y pacientes ilimitados, calibración de priors institucionales locales con las métricas de tu centro (RMSE/Bias), soporte prioritario y la <strong>generación y descarga ilimitada de bases de datos PopPK estructuradas para NONMEM y Monolix</strong>.",
+    "pricing.faq_block_3": "PK-Bayes proporciona estimación bayesiana MAP con modelos de 2 compartimentos y resolución ODE Runge-Kutta 45 continua preservando masa, añadiendo dos innovaciones clave: la <strong>calibración de priors adaptativos propios</strong> de tu hospital y la <strong>exportación directa para farmacometría PopPK</strong>. Además, somos el <strong>software más económico del mercado, sin trucos y con soporte personalizado</strong>, a una fracción del costo de soluciones internacionales que cobran entre $15.000 y $50.000+ USD anuales.",
+    "pricing.faq_block_4": "No. PK-Bayes es un sistema de apoyo a la decisión clínica (CDSS). Proporciona cálculos matemáticos y curvas proyectadas para fundamentar la decisión terapéutica, pero la prescripción y validación final es siempre responsabilidad del equipo sanitario a cargo del paciente.",
+    "pricing.faq_block_5": "Sí. La suscripción al Plan Completo es anual sin contratos de permanencia forzosa. Puedes cancelar la renovación automática en cualquier momento antes de la fecha de vencimiento.",
+    "js.vfg_stratum_label": "Estrato: VFG {range} mL/min ({count} pacientes)",
+    "js.vfg_weight_active": "w_local = {pct}% (Aprendizaje Activo)",
+    "js.vfg_weight_inactive": "w_local = 0% (Requiere N ≥ 10)",
+    "js.vfg_formula_active": "θ_prior = {a} · θ_literatura + {b} · θ_local_hospital",
+    "js.vfg_formula_inactive": "θ_prior = 1.00 · θ_literatura (Sin prior local todavía)",
+    "js.checkout_redirect_stripe": "Redirigiendo a Stripe…",
+    "js.checkout_redirect_secure": "Redirigiendo a pago seguro…",
+    "js.checkout_stripe_config_title": "Configuración de Stripe requerida",
+    "js.checkout_stripe_config_desc": "Para procesar pagos reales de $1.350 USD/año, ingresa tu Stripe Payment Link (https://buy.stripe.com/...) o tu clave pública y Price ID en assets/js/config.js.",
+    "js.checkout_stripe_not_loaded": "Stripe.js no se cargó (revisa tu conexión a internet).",
+    "js.checkout_failed_title": "No se pudo iniciar el pago",
+    "js.checkout_failed_desc": "Inténtalo de nuevo en unos minutos.",
+    "common.status_prior_lit": "(Prior Lit.)",
+    "common.status_active": "(Activo)",
+    "common.status_calibrated": "(Calibrado)",
+    "meta.title_index": "PK-Bayes — Dossier Técnico-Comercial & Estación de Trabajo Clínico MAP",
+    "meta.desc_index": "Plataforma clínica CDSS de medicina de precisión, dosificación bayesiana MAP en tiempo real y aprendizaje poblacional institucional adaptativo para vancomicina y fenitoína.",
+    "meta.title_features": "Funcionalidades — PK-Bayes Precision Dosing",
+    "meta.desc_features": "Descubre las capacidades de PK-Bayes: estimación bayesiana MAP en tiempo real, simulación what-if multicompartimental, aclaramiento renal dinámico CL(t), priors institucionales y exportación PopPK.",
+    "meta.title_drugs": "Fármacos y Modelos PK — PK-Bayes",
+    "meta.desc_drugs": "Modelos farmacocinéticos validados en PK-Bayes: Vancomicina (cinética lineal multicompartimental, guías ASHP 2020 AUC/MIC) y Fenitoína (cinética saturable Michaelis-Menten, corrección Sheiner-Tozer).",
+    "meta.title_cases": "Casos Clínicos y Ejemplos — PK-Bayes",
+    "meta.desc_cases": "Tres flujos de trabajo reales con datos sintéticos: ajuste de vancomicina en UCI, corrección de fenitoína por hipoalbuminemia y calibración de priors institucionales.",
+    "meta.title_pricing": "Precios y Planes — PK-Bayes",
+    "meta.desc_pricing": "Planes de PK-Bayes: prueba gratuita de 14 días y Plan Completo institucional ($1.350 USD/año) con acceso ilimitado y exportación de bases de datos PopPK. Sin contratos opacos.",
+    "meta.title_access": "Acceso Clientes — PK-Bayes",
+    "meta.desc_access": "Accede a la plataforma clínica PK-Bayes si ya tienes una cuenta activa, o comienza tu prueba gratuita de 14 días.",
+    "meta.title_thanks": "Inscripción y Pago Confirmado — PK-Bayes",
+    "meta.desc_thanks": "Tu inscripción y pago se han procesado correctamente. Tu acceso institucional está en proceso de activación.",
+    "meta.title_cancel": "Pago Cancelado — PK-Bayes",
+    "meta.desc_cancel": "El proceso de pago fue cancelado. No se ha realizado ningún cargo."
 },
     en: {
     "nav.home": "Home",
@@ -992,7 +1317,178 @@
     "func.std_lbl": "⚡ PK-Bayes Standardizer",
     "func.nonmem_csv_lbl": "📊 NONMEM / Monolix (.csv)",
     "func.rand_py_lbl": "🔬 R & Python Analytics",
-    "func.prior_calibrated_lbl": "Calibrated Prior"
+    "func.prior_calibrated_lbl": "Calibrated Prior",
+    "nav.brand_title": "PK-Bayes",
+    "nav.brand_sub": "Precision Dosing System",
+    "nav.brand_tag": "Clinical MAP Workstation",
+    "func.slide3_t": "Dynamic Renal Kinetics CL(t) and Dialysis",
+    "func.slide3_p": "Continuous ODE resolution for sepsis and acute kidney injury (AKI), preserving the physical continuity of cumulative mass A₁(t) and A₂(t). Native support for CRRT (CVVH/D/F) and intermittent hemodialysis.",
+    "func.slide3_see_models": "View renal models ↓",
+    "func.slide3_cl_badge": "Continuous CL(t)",
+    "func.slide3_lbl_cl": "Mass preservation across Creatinine fluctuations.",
+    "func.slide4_eyebrow": "R&D Research",
+    "func.slide4_title": "Automated PopPK Export (NONMEM & Monolix)",
+    "func.slide4_lead": "Automatically structures your patient database in a standardized format ready for population research and R/Python analysis in a single click.",
+    "func.slide4_btn_format": "View data format ↓",
+    "func.slide4_badge_csv": "Standardized .csv dataset generation.",
+    "func.m1_main_title": "Real-Time Bayesian MAP Estimation (Maximum A Posteriori)",
+    "func.m1_main_desc": "Solves the optimal mathematical trade-off between the population prior and the patient's measured serum concentrations, instantly delivering CL, V₁, Q, V₂, t½ and AUC₂₄.",
+    "func.flow_step1_badge": "Phase 01 • Parameter Input",
+    "func.flow_step1_t": "📥 Population / Institutional Prior",
+    "func.flow_step1_d": "Loads the validated pharmacokinetic model (Goti 2-Comp, Rodvold, Thomson, Yamamoto, or a hospital-calibrated Institutional Prior).",
+    "func.flow_step2_badge": "Phase 02 • Flexible Serum Sampling",
+    "func.flow_step2_t": "🧪 1 or 2 Measured Plasma Levels",
+    "func.flow_step2_d": "No rigid trough/peak sampling restrictions: the algorithm places the sample at any point in the dosing interval with full mathematical rigor.",
+    "func.flow_step3_badge": "Phase 03 • Fitting & Predictor",
+    "func.flow_step3_t": "⚙️ Posterior Output (< 100 ms)",
+    "func.flow_step3_d": "Generates the individualized continuous concentration curve and delivers CL, V₁, Q, V₂, t½ and AUC₂₄ with confidence intervals and coefficient of variation (CV%).",
+    "func.m2_header_badge": "Module 02 • Dosing Simulation",
+    "func.m2_header_title": "Dosing Regimen Predictor & What-If Simulation",
+    "func.m2_header_desc": "Simulate any dosing regimen (mg), interval (τ = 6, 8, 12, 24, 36, 48h or 24h continuous infusion) and instantly observe the projected steady-state concentrations.",
+    "func.m2_sim_badge": "Interactive Clinical Simulator",
+    "func.m2_sim_title": "What-If Regimen Exploration — Vancomycin",
+    "func.m2_sim_sub": "Interactive illustrative educational model",
+    "func.m2_sim_lbl_dose": "Administered dose",
+    "func.m2_sim_lbl_tau": "Dosing interval",
+    "func.m2_sim_opt_q8": "Every 8 hours (q8h)",
+    "func.m2_sim_opt_q12": "Every 12 hours (q12h)",
+    "func.m2_sim_opt_q24": "Every 24 hours (q24h)",
+    "func.m2_sim_lbl_cl": "Clearance (CL)",
+    "func.m2_sim_lbl_cl_desc": "Simulates renal function status",
+    "func.m2_sim_lbl_vd": "Volume of distribution (Vd)",
+    "func.m2_sim_res_cmax": "Projected peak",
+    "func.m2_sim_res_cmin": "Projected trough",
+    "func.m2_sim_res_conc": "Projected concentration",
+    "func.m2_sim_res_target": "Therapeutic target (AUC24/MIC 400–600 mg·h/L · Trough 15–20 mg/L)",
+    "func.m3_header_badge": "Module 03 • Critical Care & ICU Patient",
+    "func.m3_header_title": "Dynamic Renal Kinetics CL(t) & Comprehensive Dialysis Support",
+    "func.m3_header_desc": "In patients with sepsis, septic shock, or fluctuating AKI, PK-Bayes resolves the time curve using numerical methods while preserving the physical continuity of drug mass (A₁(t), A₂(t)).",
+    "func.m3_c_crrt_t": "Continuous CRRT (CVVH / CVVHD / CVVHDF)",
+    "func.m3_c_crrt_d": "Dynamic calculation factoring effluent rate, membrane sieving coefficient, and the patient's residual renal clearance.",
+    "func.m3_c_hd_t": "Intermittent Hemodialysis (IHD)",
+    "func.m3_c_hd_d": "Precise modeling using blood flow (Qb), session duration, interdialytic extraction coefficient, and post-dialysis rebound effect.",
+    "func.m3_c_kdigo_t": "Real-Time AKIN / KDIGO",
+    "func.m3_c_kdigo_d": "ODE resolution for fluctuating Creatinine curves, maintaining the physical continuity of mass A₁(t) and A₂(t) without artificial discontinuities.",
+    "func.m4_header_badge": "Module 04 • Institutional Intelligence",
+    "func.m4_header_title": "Pharmacokinetic Metrics Dashboard & Cohort Analysis",
+    "func.m4_header_desc": "A clinical intelligence view of the entire cohort of hospitalized patients in the unit or service for epidemiological tracking and quality control.",
+    "func.m4_c_paired_t": "Paired Longitudinal Charts",
+    "func.m4_c_paired_d": "Time evolution of administered doses (mg/day) synchronized in parallel with plasma serum levels against the 15–20 mg/L target range.",
+    "func.m4_c_multi_t": "Multi-Select & Cross-Traceability",
+    "func.m4_c_multi_d": "Select 1, 2, or multiple patients; their trajectories highlight in differentiated clinical colors across both panels on hover.",
+    "common.open_platform": "Open PK-Bayes platform ↗",
+    "common.contact_btn": "contact",
+    "common.request_demo_nav": "Request a demo",
+    "common.developed_team": "Built for clinical pharmacokinetics teams.",
+    "common.legal_full": "PK-Bayes is a Clinical Decision Support System (CDSS). All generated dosing recommendations must be reviewed and interpreted by a licensed healthcare professional before clinical administration. Case studies and simulations on this website use synthetic data and are intended solely for educational and commercial purposes.",
+    "func.m1_list_b1": "<svg fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" viewbox=\"0 0 24 24\"><path d=\"M20 6 9 17l-5-5\"></path></svg> <strong>Robust two-compartment models:</strong> Goti et al. (2018) with interindividual variability (BSV) bounding on V₁ (~30%) to prevent overfitting with single trough-level sampling.",
+    "func.m1_list_b2": "<svg fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" viewbox=\"0 0 24 24\"><path d=\"M20 6 9 17l-5-5\"></path></svg> <strong>Three-tier transparency:</strong> View <em>Individual</em>, <em>Population</em>, and <em>Institutional</em> values side by side in the same interface.",
+    "func.m1_list_b3": "<svg fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" viewbox=\"0 0 24 24\"><path d=\"M20 6 9 17l-5-5\"></path></svg> <strong>Interactive charts:</strong> Concentration-vs-time curve displaying the therapeutic range, observed levels, and confidence intervals.",
+    "func.m2_sim_note": "<strong>Methodological note:</strong> this widget illustrates the reactive \"what-if\" concept. The production platform runs the full engine, solving coupled systems of ordinary differential equations (ODEs) with continuous covariates and intermittent or continuous infusions.",
+    "common.dose_lbl": "Dose:",
+    "common.interval_lbl": "Interval:",
+    "common.crcl_lbl": "CrCl:",
+    "common.poppk_exp_lbl": "PopPK Exporter",
+    "common.csv_utf8_lbl": "CSV UTF-8 BOM",
+    "common.clin_gov_lbl": "Clinical Governance",
+    "common.immutable_lbl": "Immutable",
+    "common.frontend_lbl": "Frontend",
+    "common.backend_lbl": "Backend API",
+    "common.db_lbl": "Database",
+    "common.request_demo_btn": "Request Demo",
+    "common.tag_rk45": "Runge-Kutta 45 ODEs",
+    "common.tag_vanco": "Vancomycin",
+    "common.tag_cr11": "Cr 1.1 mg/dL · CrCl 72 mL/min",
+    "common.tag_lvl184": "Level 18.4 mg/L",
+    "common.tag_aki16": "AKI: Cr 1.6 mg/dL (CrCl 48 mL/min)",
+    "common.tag_cl265": "Individual CL: 2.65 L/h",
+    "common.tag_rk45_mass": "RK45 mass conservation",
+    "common.tag_target485": "Target Achieved: AUC24 485 mg·h/L",
+    "cases.c2_tag_overdose": "Overdose Protection",
+    "cases.c3_head_badge": "Case 3 · Pharmacometrics & Research",
+    "cases.c3_head_title": "From Hospital Cohort to PopPK Database Creation",
+    "cases.c3_head_desc": "Clinical Pharmacy Service — Longitudinal vancomycin cohort analysis and automated export for population modeling.",
+    "cases.c3_s1_head": "Monitoring on the Paired Longitudinal Dashboard",
+    "cases.c3_s1_desc": "The team views in real time the synchronized trajectories of daily dose vs. plasma levels, comparing general ward vs. ICU beds with dynamic Mean and 95% Confidence Interval (95% CI) calculation.",
+    "cases.c3_tag_multi": "Cohort Multi-Selection",
+    "cases.c3_tag_ic95": "Dynamic 95% CI",
+    "cases.c3_s2_head": "Bias Detection & Institutional Prior Calibration",
+    "cases.c3_s2_desc": "In the GFR 30–45 mL/min strata, the Performance Dashboard detects that external models show an RMSE of 5.4 mg/L. After calibrating the local prior with the center's data, the error drops to RMSE 2.4 mg/L.",
+    "cases.c3_tag_prior_active": "Institutional Prior Active",
+    "cases.c3_s3_head": "One-Click PopPK Database Generation",
+    "cases.c3_tag_ready": "PopPK Export Ready",
+    "cases.bottom_title": "Try these workflows with your own data",
+    "cases.bottom_desc": "Start your free 14-day trial today at no cost, or get the Full Plan with total access and PopPK database export.",
+    "cases.cta_plan_btn": "View plan & pricing →",
+    "cases.c3_s3_desc": "The researcher exports the hospital's complete structured and standardized database for direct use in <strong>NONMEM</strong> and <strong>Monolix</strong>, eliminating weeks of manual work and facilitating scientific publications.",
+    "common.consensus_ashp2020": "ASHP/IDSA/PIDS/SIDP 2020 Consensus",
+    "common.comp_2": "2-Comp.",
+    "farm.vanco_c1_t": "Continuous ODEs & CL(t)",
+    "farm.vanco_c1_d": "In Acute Kidney Injury (AKI) and recovery, the engine numerically resolves the time curve, preserving mass in A1(t) and A2(t) with each new creatinine value.",
+    "farm.vanco_c2_t": "Initial Empirical Dosing",
+    "farm.vanco_c2_d": "Instant loading dose (25–35 mg/kg) and maintenance regimen calculator before plasma levels are available, adjusted for actual, ideal, or adjusted body weight and Cockcroft-Gault / CKD-EPI.",
+    "farm.vanco_c3_t": "Dialysis & CRRT Therapies",
+    "farm.vanco_c3_d": "Dynamic modeling of continuous CRRT (effluent rate and filter sieving), Intermittent Hemodialysis (Qb, duration and E_HD), and end-stage renal disease.",
+    "farm.pheny_pipe_badge": "Upcoming Integration · Roadmap",
+    "farm.pheny_dev_badge": "In Development",
+    "farm.pheny_scope_t": "Phenytoin — Clinical Scope & Saturable Michaelis-Menten Kinetics",
+    "farm.pheny_scope_d": "This module is currently in the algorithmic integration and validation phase. Learn about the pharmacokinetic scope the platform will incorporate for precision dosing of this narrow-therapeutic-index anticonvulsant.",
+    "farm.pheny_sc1_badge": "Scope 1: Nonlinear Hepatic Kinetics",
+    "farm.pheny_sc1_t": "Vmax and Km Estimation",
+    "farm.pheny_sc1_d1": "At typical therapeutic doses, hepatic enzymes (CYP2C9 and CYP2C19) become saturated. The module will incorporate individualized estimation of the maximum elimination rate and affinity constant to predict steady-state concentrations, avoiding sudden toxicity spikes.",
+    "farm.pheny_sc1_d2": "It will enable early alerts for prescriptions that place the patient on the steep hyperbolic slope of neurotoxic risk.",
+    "farm.pheny_sc2_badge": "Scope 2: Active Free Fraction",
+    "farm.pheny_free_frac_t": "Automatic Free Fraction Correction",
+    "farm.pheny_free_frac_p1": "Since phenytoin is 90% bound to serum albumin, in patients with hypoalbuminemia or end-stage renal disease, the total plasma level does not reflect the active free concentration.",
+    "farm.pheny_free_frac_p2": "Automatically normalizes reported serum levels based on the patient's albumin concentration and renal function, avoiding risk underestimation in critical or malnourished patients.",
+    "farm.adapt_badge": "Adaptive Intelligence",
+    "farm.adapt_title": "Your Hospital's Own Population Models",
+    "farm.adapt_lead": "The platform doesn't impose a single closed model: it evolves with your own healthcare center's case mix.",
+    "farm.adapt_c1_t": "Renal Stratification (GFR)",
+    "farm.adapt_c1_d": "Patients are automatically grouped into 12 glomerular filtration strata to capture pharmacokinetic variations specific to each degree of renal function.",
+    "farm.adapt_c2_t": "Local Calibration Threshold",
+    "farm.adapt_c2_d": "Once at least 10 valid cases per stratum have accumulated, the system enables calibration of the hospital's own prior, validated via RMSE and Bias.",
+    "farm.adapt_c3_t": "Confidence-Weighted Hybrid Prior",
+    "farm.adapt_c3_d": "Statistically weighs international medical literature against the empirical evidence accumulated at your center, ensuring maximum mathematical robustness.",
+    "farm.adapt_btn": "Explore institutional performance dashboard →",
+    "farm.disclaimer_full": "<strong>Responsible Clinical Use:</strong> PK-Bayes is a Clinical Decision Support System (CDSS). The parameters, compartmental models, and corrections described on this page are assistive tools; every pharmacotherapeutic recommendation must be validated by a licensed healthcare professional before administration to the patient.",
+    "gracias.msg_full": "We have received your subscription to the <strong>PK-Bayes Full Plan</strong>. A confirmation email with your transaction receipt has been sent.",
+    "pricing.faq_block_1": "The free trial lets you use all of the platform's clinical tools at no cost for 14 days: real-time Bayesian MAP estimation, What-If simulation, dynamic renal kinetics CL(t) adjustment, hemodialysis/CRRT support, and longitudinal cohort dashboard. The main limitation is that it <strong>does not include downloading/exporting PopPK databases or your own institutional model</strong>. No credit card required, and it automatically expires after 14 days.",
+    "pricing.faq_block_2": "The Full Plan grants full, unlimited access for your entire hospital or university institution: unlimited users and patients, local institutional prior calibration with your center's metrics (RMSE/Bias), priority support, and <strong>unlimited generation and download of structured PopPK databases for NONMEM and Monolix</strong>.",
+    "pricing.faq_block_3": "PK-Bayes provides Bayesian MAP estimation with two-compartment models and continuous mass-conserving Runge-Kutta 45 ODE resolution, adding two key innovations: <strong>your own adaptive institutional prior calibration</strong> and <strong>direct export for PopPK pharmacometrics</strong>. We are also the <strong>most affordable software on the market, with no gimmicks and personalized support</strong>, at a fraction of the cost of international solutions charging $15,000 to $50,000+ USD per year.",
+    "pricing.faq_block_4": "No. PK-Bayes is a Clinical Decision Support System (CDSS). It provides mathematical calculations and projected curves to inform the therapeutic decision, but the final prescription and validation always remain the responsibility of the healthcare team caring for the patient.",
+    "pricing.faq_block_5": "Yes. The Full Plan subscription is annual with no mandatory lock-in contracts. You can cancel automatic renewal at any time before the expiration date.",
+    "js.vfg_stratum_label": "Stratum: GFR {range} mL/min ({count} patients)",
+    "js.vfg_weight_active": "w_local = {pct}% (Local Learning Active)",
+    "js.vfg_weight_inactive": "w_local = 0% (Requires N ≥ 10)",
+    "js.vfg_formula_active": "θ_prior = {a} · θ_literature + {b} · θ_local_hospital",
+    "js.vfg_formula_inactive": "θ_prior = 1.00 · θ_literature (No local prior yet)",
+    "js.checkout_redirect_stripe": "Redirecting to Stripe…",
+    "js.checkout_redirect_secure": "Redirecting to secure payment…",
+    "js.checkout_stripe_config_title": "Stripe Configuration Required",
+    "js.checkout_stripe_config_desc": "To process real payments of $1,350 USD/year, enter your Stripe Payment Link (https://buy.stripe.com/...) or your publishable key and Price ID in assets/js/config.js.",
+    "js.checkout_stripe_not_loaded": "Stripe.js failed to load (check your internet connection).",
+    "js.checkout_failed_title": "Payment Could Not Be Started",
+    "js.checkout_failed_desc": "Please try again in a few minutes.",
+    "common.status_prior_lit": "(Lit. Prior)",
+    "common.status_active": "(Active)",
+    "common.status_calibrated": "(Calibrated)",
+    "meta.title_index": "PK-Bayes — Technical-Commercial Dossier & Clinical MAP Workstation",
+    "meta.desc_index": "Precision-medicine clinical CDSS platform with real-time Bayesian MAP dosing and adaptive institutional population learning for vancomycin and phenytoin.",
+    "meta.title_features": "Features — PK-Bayes Precision Dosing",
+    "meta.desc_features": "Discover PK-Bayes' capabilities: real-time Bayesian MAP estimation, multicompartment what-if simulation, dynamic renal clearance CL(t), institutional priors, and PopPK export.",
+    "meta.title_drugs": "Drugs & PK Models — PK-Bayes",
+    "meta.desc_drugs": "Validated pharmacokinetic models in PK-Bayes: Vancomycin (multicompartment linear kinetics, 2020 ASHP AUC/MIC guidelines) and Phenytoin (saturable Michaelis-Menten kinetics, Sheiner-Tozer correction).",
+    "meta.title_cases": "Clinical Cases & Examples — PK-Bayes",
+    "meta.desc_cases": "Three real-world workflows using synthetic data: ICU vancomycin adjustment, phenytoin correction for hypoalbuminemia, and institutional prior calibration.",
+    "meta.title_pricing": "Pricing & Plans — PK-Bayes",
+    "meta.desc_pricing": "PK-Bayes plans: 14-day free trial and Full institutional Plan ($1,350 USD/year) with unlimited access and PopPK database export. No hidden contracts.",
+    "meta.title_access": "Client Access — PK-Bayes",
+    "meta.desc_access": "Access the PK-Bayes clinical platform if you already have an active account, or start your free 14-day trial.",
+    "meta.title_thanks": "Registration & Payment Confirmed — PK-Bayes",
+    "meta.desc_thanks": "Your registration and payment have been processed successfully. Your institutional access is being activated.",
+    "meta.title_cancel": "Payment Cancelled — PK-Bayes",
+    "meta.desc_cancel": "The payment process was cancelled. No charge was made."
 },
     zh: {
     "nav.home": "首页",
@@ -1477,7 +1973,178 @@
     "func.std_lbl": "⚡ PK-Bayes 归一化引擎",
     "func.nonmem_csv_lbl": "📊 NONMEM / Monolix (.csv)",
     "func.rand_py_lbl": "🔬 R & Python 数据分析",
-    "func.prior_calibrated_lbl": "已校准 Prior"
+    "func.prior_calibrated_lbl": "已校准 Prior",
+    "nav.brand_title": "PK-Bayes",
+    "nav.brand_sub": "精准剂量系统",
+    "nav.brand_tag": "临床 MAP 工作站",
+    "func.slide3_t": "动态肾清除率 CL(t) 与透析",
+    "func.slide3_p": "针对脓毒症与急性肾损伤 (AKI)，采用连续常微分方程 (ODE) 求解，保持体内蓄积药量 A₁(t) 与 A₂(t) 的物理连续性。原生支持 CRRT (CVVH/D/F) 与间歇性血液透析。",
+    "func.slide3_see_models": "查看肾功能模型 ↓",
+    "func.slide3_cl_badge": "连续 CL(t)",
+    "func.slide3_lbl_cl": "肌酐波动下的质量守恒。",
+    "func.slide4_eyebrow": "科研与研发",
+    "func.slide4_title": "PopPK 自动化导出 (NONMEM & Monolix)",
+    "func.slide4_lead": "一键自动将患者数据库整理为标准化格式，可直接用于群体药动学研究及 R/Python 分析。",
+    "func.slide4_btn_format": "查看数据格式 ↓",
+    "func.slide4_badge_csv": "标准化 .csv 数据集生成。",
+    "func.m1_main_title": "实时贝叶斯 MAP 估计（最大后验概率）",
+    "func.m1_main_desc": "在群体先验分布与患者实测血药浓度之间求解最优数学平衡，瞬时给出 CL、V₁、Q、V₂、t½ 及 AUC₂₄。",
+    "func.flow_step1_badge": "阶段 01 • 参数输入",
+    "func.flow_step1_t": "📥 群体 / 医院 Prior",
+    "func.flow_step1_d": "载入经验证的药动学模型 (Goti 双室模型、Rodvold、Thomson、Yamamoto，或医院自行校准的本院 Prior)。",
+    "func.flow_step2_badge": "阶段 02 • 灵活血药浓度采样",
+    "func.flow_step2_t": "🧪 1 至 2 个实测血浆浓度",
+    "func.flow_step2_d": "无需固定于峰值或谷值时刻采血：算法可在给药间隔内的任意时点精确定位样本，数学严谨性不受影响。",
+    "func.flow_step3_badge": "阶段 03 • 拟合与预测",
+    "func.flow_step3_t": "⚙️ 后验输出 (< 100 毫秒)",
+    "func.flow_step3_d": "生成个体化连续药时曲线，并给出带置信区间和变异系数 (CV%) 的 CL、V₁、Q、V₂、t½ 及 AUC₂₄。",
+    "func.m2_header_badge": "模块 02 • 剂量模拟",
+    "func.m2_header_title": "给药方案预测器与 What-If 模拟",
+    "func.m2_header_desc": "模拟任意剂量方案 (mg)、给药间隔 (τ = 6、8、12、24、36、48 小时或 24 小时持续输注)，即时查看预测稳态浓度。",
+    "func.m2_sim_badge": "交互式临床模拟器",
+    "func.m2_sim_title": "What-If 方案探索 — 万古霉素",
+    "func.m2_sim_sub": "交互式教学示例模型",
+    "func.m2_sim_lbl_dose": "给药剂量",
+    "func.m2_sim_lbl_tau": "给药间隔",
+    "func.m2_sim_opt_q8": "每 8 小时一次 (q8h)",
+    "func.m2_sim_opt_q12": "每 12 小时一次 (q12h)",
+    "func.m2_sim_opt_q24": "每 24 小时一次 (q24h)",
+    "func.m2_sim_lbl_cl": "清除率 (CL)",
+    "func.m2_sim_lbl_cl_desc": "模拟肾功能状态",
+    "func.m2_sim_lbl_vd": "分布容积 (Vd)",
+    "func.m2_sim_res_cmax": "预测峰浓度",
+    "func.m2_sim_res_cmin": "预测谷浓度",
+    "func.m2_sim_res_conc": "预测浓度",
+    "func.m2_sim_res_target": "治疗靶目标 (AUC24/MIC 400–600 mg·h/L · 谷浓度 15–20 mg/L)",
+    "func.m3_header_badge": "模块 03 • 危重症与 ICU 患者",
+    "func.m3_header_title": "动态肾清除率 CL(t) 与全面透析支持",
+    "func.m3_header_desc": "针对脓毒症、脓毒性休克或肾功能波动 (AKI) 患者，PK-Bayes 采用数值方法求解药时曲线，并保持药物质量 (A₁(t)、A₂(t)) 的物理连续性。",
+    "func.m3_c_crrt_t": "持续性 CRRT (CVVH / CVVHD / CVVHDF)",
+    "func.m3_c_crrt_d": "动态计算综合考虑流出液速率、滤膜筛选系数及患者残余肾清除率。",
+    "func.m3_c_hd_t": "间歇性血液透析 (HD)",
+    "func.m3_c_hd_d": "通过血流量 (Qb)、透析时长、透析间清除系数及反跳效应进行精确建模。",
+    "func.m3_c_kdigo_t": "实时 AKIN / KDIGO 分级",
+    "func.m3_c_kdigo_d": "针对肌酐波动曲线求解常微分方程 (ODE)，保持药量 A₁(t) 与 A₂(t) 的物理连续性，避免人为断点。",
+    "func.m4_header_badge": "模块 04 • 医院智能分析",
+    "func.m4_header_title": "药动学指标看板与队列分析",
+    "func.m4_header_desc": "对科室或病房整体住院患者队列的临床智能视图，用于流行病学追踪与质量控制。",
+    "func.m4_c_paired_t": "配对纵向图表",
+    "func.m4_c_paired_d": "同步展示给药剂量 (mg/天) 与血浆浓度随时间的变化趋势，并与 15–20 mg/L 目标范围对照。",
+    "func.m4_c_multi_t": "多选与交叉追溯",
+    "func.m4_c_multi_d": "可选择 1 名、2 名或多名患者，鼠标悬停时其轨迹将在两个面板中以不同临床配色高亮显示。",
+    "common.open_platform": "打开 PK-Bayes 平台 ↗",
+    "common.contact_btn": "联系我们",
+    "common.request_demo_nav": "申请演示",
+    "common.developed_team": "专为临床药代动力学团队打造。",
+    "common.legal_full": "PK-Bayes 属于临床决策支持系统 (CDSS)。系统生成的所有剂量建议在应用于实际患者前，均须由具备资质的执业医护药专业人员审核与确认。本网站涉及的案例与数据均为合成模拟数据，仅供展示参考。",
+    "func.m1_list_b1": "<svg fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" viewbox=\"0 0 24 24\"><path d=\"M20 6 9 17l-5-5\"></path></svg> <strong>稳健双室模型：</strong> 采用 Goti 等 (2018) 模型，对 V₁ 个体间变异性 (BSV) 进行约束 (~30%)，避免单点谷浓度采样导致过拟合。",
+    "func.m1_list_b2": "<svg fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" viewbox=\"0 0 24 24\"><path d=\"M20 6 9 17l-5-5\"></path></svg> <strong>三层透明度：</strong> 在同一界面中同时呈现<em>个体</em>、<em>群体</em>与<em>本院</em>三个层级的参数值。",
+    "func.m1_list_b3": "<svg fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" viewbox=\"0 0 24 24\"><path d=\"M20 6 9 17l-5-5\"></path></svg> <strong>交互式图表：</strong> 浓度-时间曲线，同时展示治疗窗范围、实测浓度值与置信区间。",
+    "func.m2_sim_note": "<strong>方法学说明：</strong> 本组件仅用于演示 \"what-if\" 交互概念。生产环境平台运行完整引擎，求解含连续协变量及间歇性/持续性输注的耦合常微分方程组 (ODEs)。",
+    "common.dose_lbl": "剂量：",
+    "common.interval_lbl": "间隔：",
+    "common.crcl_lbl": "CrCl：",
+    "common.poppk_exp_lbl": "PopPK 导出器",
+    "common.csv_utf8_lbl": "CSV UTF-8 BOM",
+    "common.clin_gov_lbl": "临床治理",
+    "common.immutable_lbl": "不可篡改",
+    "common.frontend_lbl": "Frontend",
+    "common.backend_lbl": "Backend API",
+    "common.db_lbl": "数据库",
+    "common.request_demo_btn": "申请演示",
+    "common.tag_rk45": "Runge-Kutta 45 常微分方程",
+    "common.tag_vanco": "万古霉素",
+    "common.tag_cr11": "Cr 1.1 mg/dL · ClCr 72 mL/min",
+    "common.tag_lvl184": "浓度 18.4 mg/L",
+    "common.tag_aki16": "AKI：Cr 1.6 mg/dL（ClCr 48 mL/min）",
+    "common.tag_cl265": "个体 CL：2.65 L/h",
+    "common.tag_rk45_mass": "RK45 质量守恒",
+    "common.tag_target485": "达标：AUC24 485 mg·h/L",
+    "cases.c2_tag_overdose": "防止过量给药",
+    "cases.c3_head_badge": "案例 3 · 药物计量学与科研",
+    "cases.c3_head_title": "从院内患者队列到 PopPK 数据库的构建",
+    "cases.c3_head_desc": "临床药学科室 — 万古霉素队列纵向分析与群体建模自动化导出。",
+    "cases.c3_s1_head": "配对纵向看板监测",
+    "cases.c3_s1_desc": "团队实时查看每日剂量与血浆浓度同步趋势，对比普通病床与 ICU 病床数据，并动态计算均值与 95% 置信区间 (95% CI)。",
+    "cases.c3_tag_multi": "队列多选",
+    "cases.c3_tag_ic95": "动态 95% CI",
+    "cases.c3_s2_head": "偏倚检测与本院 Prior 校准",
+    "cases.c3_s2_desc": "在 GFR 30–45 mL/min 分层中，性能面板检测到外部模型 RMSE 为 5.4 mg/L。使用本中心数据校准本地 Prior 后，误差降至 RMSE 2.4 mg/L。",
+    "cases.c3_tag_prior_active": "本院 Prior 已启用",
+    "cases.c3_s3_head": "一键生成 PopPK 数据库",
+    "cases.c3_tag_ready": "PopPK 导出就绪",
+    "cases.bottom_title": "使用您自己的数据体验这些流程",
+    "cases.bottom_desc": "立即开始 14 天免费试用，或选择完整版方案，享受全部功能及 PopPK 数据库导出权限。",
+    "cases.cta_plan_btn": "查看方案与价格 →",
+    "cases.c3_s3_desc": "研究者一键导出全院结构化标准数据库，可直接用于 <strong>NONMEM</strong> 与 <strong>Monolix</strong>，省去数周的人工整理工作，助力科研论文发表。",
+    "common.consensus_ashp2020": "ASHP/IDSA/PIDS/SIDP 2020 共识指南",
+    "common.comp_2": "双室",
+    "farm.vanco_c1_t": "连续 ODE 与 CL(t)",
+    "farm.vanco_c1_d": "在急性肾损伤 (AKI) 及恢复期，引擎针对每次新的肌酐值以数值方法求解药时曲线，并保持 A1(t) 与 A2(t) 的质量守恒。",
+    "farm.vanco_c2_t": "初始经验性给药",
+    "farm.vanco_c2_d": "在获得血药浓度前，即时计算负荷剂量 (25–35 mg/kg) 与维持方案，可按实际体重、理想体重或校正体重及 Cockcroft-Gault / CKD-EPI 公式调整。",
+    "farm.vanco_c3_t": "透析与 CRRT 治疗",
+    "farm.vanco_c3_d": "动态模拟连续性 CRRT (流出液速率与滤器筛选系数)、间歇性血液透析 (Qb、时长与 E_HD) 及终末期肾病。",
+    "farm.pheny_pipe_badge": "即将上线 · 路线图",
+    "farm.pheny_dev_badge": "开发中",
+    "farm.pheny_scope_t": "苯妥英钠 — 临床应用范围与 Michaelis-Menten 饱和动力学",
+    "farm.pheny_scope_d": "该模块目前处于算法集成与验证阶段。了解平台即将为这一窄治疗窗抗惊厥药物的精准给药所整合的药动学功能范围。",
+    "farm.pheny_sc1_badge": "范围一：非线性肝脏动力学",
+    "farm.pheny_sc1_t": "Vmax 与 Km 估算",
+    "farm.pheny_sc1_d1": "在常规治疗剂量下，肝脏代谢酶 (CYP2C9 与 CYP2C19) 会发生饱和。该模块将纳入个体化的最大消除速率及亲和常数估算，用于预测稳态浓度，避免毒性骤升。",
+    "farm.pheny_sc1_d2": "可提前预警使患者处于双曲线陡峭神经毒性风险区段的处方方案。",
+    "farm.pheny_sc2_badge": "范围二：游离活性药物分数",
+    "farm.pheny_free_frac_t": "游离药物分数自动校正",
+    "farm.pheny_free_frac_p1": "由于苯妥英钠 90% 与血清白蛋白结合，在低白蛋白血症或终末期肾病患者中，总血浆浓度无法反映游离活性浓度。",
+    "farm.pheny_free_frac_p2": "根据患者白蛋白浓度与肾功能自动校正报告的血清浓度，避免对重症或营养不良患者的风险产生低估。",
+    "farm.adapt_badge": "自适应智能",
+    "farm.adapt_title": "贵院专属群体模型",
+    "farm.adapt_lead": "平台并非固化单一模型：而是随贵机构自身病例数据持续演进。",
+    "farm.adapt_c1_t": "肾功能分层 (GFR)",
+    "farm.adapt_c1_d": "系统自动将患者划分为 12 个肾小球滤过率分层，以捕捉不同肾功能等级下特有的药动学差异。",
+    "farm.adapt_c2_t": "本地校准阈值",
+    "farm.adapt_c2_d": "每个分层累计至少 10 例有效病例后，系统即启用本院 Prior 校准功能，并通过 RMSE 与 Bias 进行验证。",
+    "farm.adapt_c3_t": "置信度加权混合 Prior",
+    "farm.adapt_c3_d": "对国际医学文献与本中心积累的经验证据进行统计学加权，确保最大程度的数学稳健性。",
+    "farm.adapt_btn": "查看本院性能面板 →",
+    "farm.disclaimer_full": "<strong>负责任的临床使用：</strong> PK-Bayes 是一款临床决策支持系统 (CDSS)。本页所述的参数、房室模型及校正方法均为辅助工具；所有药物治疗建议在应用于患者前，均须由具备资质的医护专业人员验证。",
+    "gracias.msg_full": "我们已收到您对 <strong>PK-Bayes 完整版方案</strong>的订阅。确认邮件及交易凭证已发送至您的邮箱。",
+    "pricing.faq_block_1": "免费试用可让您在 14 天内免费使用平台的全部临床工具：实时贝叶斯 MAP 估计、What-If 模拟、动态肾清除率 CL(t) 调整、血液透析/CRRT 支持及纵向队列看板。主要限制是<strong>不包含 PopPK 数据库的下载/导出以及贵机构专属模型</strong>。无需绑定信用卡，14 天后自动到期。",
+    "pricing.faq_block_2": "完整版方案为贵医院或高校机构提供全面无限制的访问权限：无限用户与患者数量、基于本院指标 (RMSE/Bias) 的本地 Prior 校准、优先技术支持，以及<strong>面向 NONMEM 与 Monolix 的结构化 PopPK 数据库无限生成与下载</strong>。",
+    "pricing.faq_block_3": "PK-Bayes 提供基于双室模型的贝叶斯 MAP 估计，并采用保质量的 Runge-Kutta 45 连续常微分方程求解，同时新增两项关键创新：<strong>贵院专属的自适应 Prior 校准</strong>与<strong>直接面向 PopPK 药物计量学的导出功能</strong>。此外，我们是<strong>市场上性价比最高、无隐藏套路且提供个性化支持的软件</strong>，价格仅为国际同类方案（每年 1.5 万至 5 万美元以上）的一小部分。",
+    "pricing.faq_block_4": "不会。PK-Bayes 是一款临床决策支持系统 (CDSS)，提供数学计算与预测曲线以辅助治疗决策，但最终处方及验证始终由负责患者的医护团队承担责任。",
+    "pricing.faq_block_5": "可以。完整版订阅为按年计费，无强制续约合约。您可以在到期日前随时取消自动续订。",
+    "js.vfg_stratum_label": "分层：GFR {range} mL/min（{count} 例患者）",
+    "js.vfg_weight_active": "w_local = {pct}%（本地学习已启用）",
+    "js.vfg_weight_inactive": "w_local = 0%（需要 N ≥ 10）",
+    "js.vfg_formula_active": "θ_prior = {a} · θ_文献 + {b} · θ_本院本地",
+    "js.vfg_formula_inactive": "θ_prior = 1.00 · θ_文献（尚无本地 Prior）",
+    "js.checkout_redirect_stripe": "正在跳转至 Stripe…",
+    "js.checkout_redirect_secure": "正在跳转至安全支付页面…",
+    "js.checkout_stripe_config_title": "需要配置 Stripe",
+    "js.checkout_stripe_config_desc": "如需处理实际支付（每年 1,350 美元），请在 assets/js/config.js 中填写您的 Stripe Payment Link（https://buy.stripe.com/...）或公钥与 Price ID。",
+    "js.checkout_stripe_not_loaded": "Stripe.js 加载失败（请检查网络连接）。",
+    "js.checkout_failed_title": "无法启动支付",
+    "js.checkout_failed_desc": "请稍后几分钟再试。",
+    "common.status_prior_lit": "（文献 Prior）",
+    "common.status_active": "（学习中）",
+    "common.status_calibrated": "（已校准）",
+    "meta.title_index": "PK-Bayes — 技术商业资料与临床 MAP 工作站",
+    "meta.desc_index": "精准医学临床决策支持系统 (CDSS)，提供实时贝叶斯 MAP 给药与万古霉素、苯妥英钠的本院自适应群体学习。",
+    "meta.title_features": "功能特性 — PK-Bayes 精准剂量",
+    "meta.desc_features": "探索 PK-Bayes 的核心能力：实时贝叶斯 MAP 估计、多室 What-If 模拟、动态肾清除率 CL(t)、本院 Prior 及 PopPK 导出。",
+    "meta.title_drugs": "药物与药动学模型 — PK-Bayes",
+    "meta.desc_drugs": "PK-Bayes 已验证的药动学模型：万古霉素（多室线性动力学，2020 ASHP AUC/MIC 指南）与苯妥英钠（Michaelis-Menten 饱和动力学，Sheiner-Tozer 校正）。",
+    "meta.title_cases": "临床案例与示例 — PK-Bayes",
+    "meta.desc_cases": "三个真实工作流程（使用合成数据）：ICU 万古霉素调整、低白蛋白血症苯妥英钠校正及本院 Prior 校准。",
+    "meta.title_pricing": "价格与方案 — PK-Bayes",
+    "meta.desc_pricing": "PK-Bayes 方案：14 天免费试用与机构完整版方案（每年 1,350 美元），提供无限制访问权限及 PopPK 数据库导出。无隐藏合约。",
+    "meta.title_access": "客户登录 — PK-Bayes",
+    "meta.desc_access": "如已有有效账户，请登录 PK-Bayes 临床平台；或立即开始 14 天免费试用。",
+    "meta.title_thanks": "注册与支付已确认 — PK-Bayes",
+    "meta.desc_thanks": "您的注册与支付已成功处理，贵机构的访问权限正在开通中。",
+    "meta.title_cancel": "支付已取消 — PK-Bayes",
+    "meta.desc_cancel": "支付流程已取消，未产生任何扣款。"
 },
     ja: {
     "nav.home": "ホーム",
@@ -1962,26 +2629,183 @@
     "func.std_lbl": "⚡ PK-Bayes 標準化エンジン",
     "func.nonmem_csv_lbl": "📊 NONMEM / Monolix (.csv)",
     "func.rand_py_lbl": "🔬 R & Python データ解析",
-    "func.prior_calibrated_lbl": "校正済 Prior"
+    "func.prior_calibrated_lbl": "校正済 Prior",
+    "nav.brand_title": "PK-Bayes",
+    "nav.brand_sub": "精密投与量システム",
+    "nav.brand_tag": "臨床 MAP ワークステーション",
+    "func.slide3_t": "動的腎クリアランス CL(t) と透析",
+    "func.slide3_p": "敗血症および急性腎障害 (AKI) に対し常微分方程式 (ODE) を連続的に解き、体内蓄積量 A₁(t) と A₂(t) の物理的連続性を維持。CRRT (CVVH/D/F) および間欠的血液透析にネイティブ対応。",
+    "func.slide3_see_models": "腎モデルを見る ↓",
+    "func.slide3_cl_badge": "連続 CL(t)",
+    "func.slide3_lbl_cl": "クレアチニン変動下での質量保存。",
+    "func.slide4_eyebrow": "研究開発 (R&D)",
+    "func.slide4_title": "PopPK 自動エクスポート (NONMEM & Monolix)",
+    "func.slide4_lead": "患者データベースを標準フォーマットへワンクリックで自動構造化し、母集団研究や R/Python 解析にすぐ利用可能。",
+    "func.slide4_btn_format": "データ形式を見る ↓",
+    "func.slide4_badge_csv": "標準化された .csv データセット生成。",
+    "func.m1_main_title": "リアルタイム・ベイズ MAP 推定（最大事後確率）",
+    "func.m1_main_desc": "母集団事前分布と患者の実測血中濃度との間で最適な数学的トレードオフを解き、CL、V₁、Q、V₂、t½、AUC₂₄ を瞬時に算出。",
+    "func.flow_step1_badge": "フェーズ 01 • パラメータ入力",
+    "func.flow_step1_t": "📥 母集団 / 施設 Prior",
+    "func.flow_step1_d": "検証済み薬物動態モデル (Goti 2-Comp、Rodvold、Thomson、Yamamoto、または施設が校正した独自 Prior) を読み込み。",
+    "func.flow_step2_badge": "フェーズ 02 • 柔軟な採血タイミング",
+    "func.flow_step2_t": "🧪 実測血漿中濃度 1〜2 点",
+    "func.flow_step2_d": "谷値・ピーク値採血の厳格な制約なし：アルゴリズムは投与間隔内の任意の時点のサンプルを厳密な数学的手法で処理。",
+    "func.flow_step3_badge": "フェーズ 03 • フィッティング & 予測",
+    "func.flow_step3_t": "⚙️ 事後分布出力 (< 100 ms)",
+    "func.flow_step3_d": "個別化連続濃度曲線を生成し、信頼区間と変動係数 (CV%) を伴う CL、V₁、Q、V₂、t½、AUC₂₄ を出力。",
+    "func.m2_header_badge": "モジュール 02 • 投与シミュレーション",
+    "func.m2_header_title": "投与レジメン予測器 & What-If シミュレーション",
+    "func.m2_header_desc": "任意の投与量 (mg)、間隔 (τ = 6, 8, 12, 24, 36, 48時間、または24時間持続投与) をシミュレーションし、予測定常状態濃度を即座に表示。",
+    "func.m2_sim_badge": "インタラクティブ臨床シミュレーター",
+    "func.m2_sim_title": "What-If レジメン探索 — バンコマイシン",
+    "func.m2_sim_sub": "インタラクティブな教育用例示モデル",
+    "func.m2_sim_lbl_dose": "投与量",
+    "func.m2_sim_lbl_tau": "投与間隔",
+    "func.m2_sim_opt_q8": "8時間毎 (q8h)",
+    "func.m2_sim_opt_q12": "12時間毎 (q12h)",
+    "func.m2_sim_opt_q24": "24時間毎 (q24h)",
+    "func.m2_sim_lbl_cl": "クリアランス (CL)",
+    "func.m2_sim_lbl_cl_desc": "腎機能の状態をシミュレーション",
+    "func.m2_sim_lbl_vd": "分布容積 (Vd)",
+    "func.m2_sim_res_cmax": "予測ピーク濃度",
+    "func.m2_sim_res_cmin": "予測トラフ濃度",
+    "func.m2_sim_res_conc": "予測濃度",
+    "func.m2_sim_res_target": "治療域目標 (AUC24/MIC 400–600 mg·h/L・トラフ 15–20 mg/L)",
+    "func.m3_header_badge": "モジュール 03 • 重症患者 & ICU",
+    "func.m3_header_title": "動的腎クリアランス CL(t) & 総合透析対応",
+    "func.m3_header_desc": "敗血症、敗血症性ショック、変動する AKI を有する患者に対し、PK-Bayes は数値解法により濃度時間曲線を解き、薬物量 (A₁(t), A₂(t)) の物理的連続性を維持します。",
+    "func.m3_c_crrt_t": "持続的 CRRT (CVVH / CVVHD / CVVHDF)",
+    "func.m3_c_crrt_d": "廃液流量、膜篩過係数、患者の残存腎クリアランスを考慮した動的計算。",
+    "func.m3_c_hd_t": "間欠的血液透析 (HD)",
+    "func.m3_c_hd_d": "血流量 (Qb)、セッション時間、透析間抽出係数、リバウンド効果による精密モデル化。",
+    "func.m3_c_kdigo_t": "リアルタイム AKIN / KDIGO 評価",
+    "func.m3_c_kdigo_d": "変動するクレアチニン曲線に対し ODE を解き、質量 A₁(t) と A₂(t) の物理的連続性を人為的な不連続なく維持。",
+    "func.m4_header_badge": "モジュール 04 • 施設インテリジェンス",
+    "func.m4_header_title": "薬物動態指標ダッシュボード & コホート分析",
+    "func.m4_header_desc": "病棟・診療科全体の入院患者コホートを俯瞰する臨床インテリジェンスビュー。疫学的追跡と品質管理に活用。",
+    "func.m4_c_paired_t": "ペア縦断的グラフ",
+    "func.m4_c_paired_d": "投与量 (mg/日) の経時変化を血漿中濃度と並行同期表示し、目標範囲 15–20 mg/L と対比。",
+    "func.m4_c_multi_t": "複数選択 & クロストレーサビリティ",
+    "func.m4_c_multi_d": "1名、2名、または複数の患者を選択可能。ホバー時に両パネルで臨床色分けされた軌跡がハイライト表示。",
+    "common.open_platform": "PK-Bayes プラットフォームを開く ↗",
+    "common.contact_btn": "お問い合わせ",
+    "common.request_demo_nav": "デモを申し込む",
+    "common.developed_team": "臨床薬物動態チームのために開発。",
+    "common.legal_full": "PK-Bayes は臨床意思決定支援システム (CDSS) です。システムが提示するすべての推奨投与設計は、実際の患者へ適用する前に有資格の医療従事者によって確認・解釈される必要があります。本サイトの症例やシミュレーションは合成データを使用しており、情報提供および商業目的のみを意図しています。",
+    "func.m1_list_b1": "<svg fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" viewbox=\"0 0 24 24\"><path d=\"M20 6 9 17l-5-5\"></path></svg> <strong>堅牢な 2 コンパートメントモデル：</strong> Goti ら (2018) に基づき、V₁ の個体間変動 (BSV) を約 30% に制約し、単一トラフ値サンプリングによる過学習を防止。",
+    "func.m1_list_b2": "<svg fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" viewbox=\"0 0 24 24\"><path d=\"M20 6 9 17l-5-5\"></path></svg> <strong>3 段階の透明性：</strong> <em>個別</em>、<em>母集団</em>、<em>施設</em>の各値を同一画面で並列表示。",
+    "func.m1_list_b3": "<svg fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" viewbox=\"0 0 24 24\"><path d=\"M20 6 9 17l-5-5\"></path></svg> <strong>インタラクティブグラフ：</strong> 治療域、実測濃度、信頼区間を表示する濃度-時間曲線。",
+    "func.m2_sim_note": "<strong>方法論に関する注記：</strong> 本ウィジェットは \"what-if\" のリアクティブ概念を示すデモです。実運用プラットフォームは連続共変量および間欠・持続注入を伴う連立常微分方程式 (ODE) を解くフルエンジンを実行します。",
+    "common.dose_lbl": "投与量：",
+    "common.interval_lbl": "間隔：",
+    "common.crcl_lbl": "CrCl：",
+    "common.poppk_exp_lbl": "PopPK エクスポーター",
+    "common.csv_utf8_lbl": "CSV UTF-8 BOM",
+    "common.clin_gov_lbl": "臨床ガバナンス",
+    "common.immutable_lbl": "改ざん不可",
+    "common.frontend_lbl": "Frontend",
+    "common.backend_lbl": "Backend API",
+    "common.db_lbl": "データベース",
+    "common.request_demo_btn": "デモを申し込む",
+    "common.tag_rk45": "Runge-Kutta 45 法 ODE",
+    "common.tag_vanco": "バンコマイシン",
+    "common.tag_cr11": "Cr 1.1 mg/dL・ClCr 72 mL/min",
+    "common.tag_lvl184": "濃度 18.4 mg/L",
+    "common.tag_aki16": "AKI：Cr 1.6 mg/dL（ClCr 48 mL/min）",
+    "common.tag_cl265": "個別 CL：2.65 L/h",
+    "common.tag_rk45_mass": "RK45 質量保存",
+    "common.tag_target485": "目標達成：AUC24 485 mg·h/L",
+    "cases.c2_tag_overdose": "過量投与防止",
+    "cases.c3_head_badge": "症例 3 • ファーマコメトリクス & 研究",
+    "cases.c3_head_title": "院内コホートから PopPK データベース構築まで",
+    "cases.c3_head_desc": "臨床薬剤部門 — バンコマイシンコホートの縦断的解析と母集団モデリング向け自動エクスポート。",
+    "cases.c3_s1_head": "ペア縦断ダッシュボードでのモニタリング",
+    "cases.c3_s1_desc": "チームは日次投与量と血漿中濃度の同期軌跡をリアルタイムで確認し、一般病棟と ICU 病床を比較しながら平均値と 95% 信頼区間 (95% CI) を動的算出。",
+    "cases.c3_tag_multi": "コホート複数選択",
+    "cases.c3_tag_ic95": "動的 95% CI",
+    "cases.c3_s2_head": "バイアス検出 & 施設 Prior 校正",
+    "cases.c3_s2_desc": "GFR 30–45 mL/min 層において、性能パネルが外部モデルの RMSE 5.4 mg/L を検出。施設データでローカル Prior を校正した結果、誤差は RMSE 2.4 mg/L まで低減。",
+    "cases.c3_tag_prior_active": "施設 Prior 稼働中",
+    "cases.c3_s3_head": "ワンクリック PopPK データベース生成",
+    "cases.c3_tag_ready": "PopPK エクスポート準備完了",
+    "cases.bottom_title": "実際のデータでこれらのワークフローを体験",
+    "cases.bottom_desc": "本日から 14 日間無料トライアルを開始するか、フルアクセスと PopPK データベース出力機能を含む完全プランをご契約ください。",
+    "cases.cta_plan_btn": "プランと料金を見る →",
+    "cases.c3_s3_desc": "研究者は施設全体の構造化・標準化データベースを <strong>NONMEM</strong> と <strong>Monolix</strong> にそのまま利用できる形式でエクスポートし、数週間分の手作業を排除して論文発表を後押しします。",
+    "common.consensus_ashp2020": "ASHP/IDSA/PIDS/SIDP 2020 コンセンサス",
+    "common.comp_2": "2 コンパートメント",
+    "farm.vanco_c1_t": "連続 ODE と CL(t)",
+    "farm.vanco_c1_d": "急性腎障害 (AKI) およびその回復過程において、新たなクレアチニン値ごとにエンジンが数値的に濃度時間曲線を解き、A1(t) と A2(t) の質量を保存。",
+    "farm.vanco_c2_t": "初期経験的投与",
+    "farm.vanco_c2_d": "血中濃度測定前に、実体重・理想体重・補正体重および Cockcroft-Gault / CKD-EPI に基づき、負荷投与量 (25–35 mg/kg) と維持レジメンを即座に算出。",
+    "farm.vanco_c3_t": "透析 & CRRT 療法",
+    "farm.vanco_c3_d": "持続的 CRRT（廃液流量とフィルター篩過係数）、間欠的血液透析（Qb、時間、E_HD）、末期腎不全の動的モデル化。",
+    "farm.pheny_pipe_badge": "統合予定 • ロードマップ",
+    "farm.pheny_dev_badge": "開発中",
+    "farm.pheny_scope_t": "フェニトイン — 臨床適用範囲 & ミカエリス・メンテン飽和動態",
+    "farm.pheny_scope_d": "本モジュールは現在、アルゴリズムの統合・検証段階にあります。狭治療域を持つこの抗てんかん薬の精密投与のためにプラットフォームが搭載予定の薬物動態機能をご紹介します。",
+    "farm.pheny_sc1_badge": "対応範囲1：非線形肝代謝動態",
+    "farm.pheny_sc1_t": "Vmax・Km 推定",
+    "farm.pheny_sc1_d1": "通常の治療用量では、肝代謝酵素 (CYP2C9・CYP2C19) が飽和します。本モジュールでは最大消失速度と親和定数の個別推定を組み込み、定常状態濃度を予測して急激な中毒リスクの増大を回避します。",
+    "farm.pheny_sc1_d2": "患者を神経毒性リスクの双曲線急峻域に置く処方に対し、早期に警告を発することが可能になります。",
+    "farm.pheny_sc2_badge": "対応範囲2：遊離活性型分画",
+    "farm.pheny_free_frac_t": "遊離分画の自動補正",
+    "farm.pheny_free_frac_p1": "フェニトインは血清アルブミンに 90% 結合するため、低アルブミン血症や末期腎不全の患者では、総血漿中濃度が遊離活性型濃度を正確に反映しません。",
+    "farm.pheny_free_frac_p2": "患者のアルブミン濃度と腎機能に基づき報告血清濃度を自動補正し、重症患者や低栄養患者におけるリスクの過小評価を防止します。",
+    "farm.adapt_badge": "アダプティブ・インテリジェンス",
+    "farm.adapt_title": "貴院独自の母集団モデル",
+    "farm.adapt_lead": "本プラットフォームは単一の固定モデルを強制しません — 貴施設の症例データとともに進化します。",
+    "farm.adapt_c1_t": "腎機能層別化 (GFR)",
+    "farm.adapt_c1_d": "患者を糸球体濾過率に基づく 12 の層へ自動分類し、腎機能の程度ごとの薬物動態上の差異を捕捉します。",
+    "farm.adapt_c2_t": "ローカル校正閾値",
+    "farm.adapt_c2_d": "各層で有効症例が 10 件以上蓄積すると、システムは施設独自の Prior 校正機能を有効化し、RMSE と Bias で検証します。",
+    "farm.adapt_c3_t": "信頼度加重ハイブリッド Prior",
+    "farm.adapt_c3_d": "国際的な医学文献と貴施設で蓄積された実証データを統計的に重み付けし、最大限の数学的頑健性を確保します。",
+    "farm.adapt_btn": "施設パフォーマンスパネルを見る →",
+    "farm.disclaimer_full": "<strong>責任ある臨床利用について：</strong> PK-Bayes は臨床意思決定支援システム (CDSS) です。本ページに記載のパラメータ、コンパートメントモデル、補正方法はあくまで支援ツールであり、すべての薬物治療推奨は患者への投与前に有資格の医療従事者による検証が必要です。",
+    "gracias.msg_full": "<strong>PK-Bayes フルプラン</strong>へのお申し込みを受け付けました。取引確認の領収書を記載した確認メールをお送りしています。",
+    "pricing.faq_block_1": "無料トライアルでは、14 日間無料でプラットフォームの全臨床ツールをご利用いただけます：リアルタイム・ベイズ MAP 推定、What-If シミュレーション、動的腎クリアランス CL(t) 調整、血液透析/CRRT 対応、縦断的コホートダッシュボード。主な制限は<strong>PopPK データベースのダウンロード/エクスポートおよび施設独自モデルが含まれない</strong>点です。クレジットカード登録は不要で、14 日後に自動的に期限切れとなります。",
+    "pricing.faq_block_2": "フルプランでは、貴施設全体（病院または大学）に対し完全かつ無制限のアクセスを提供します：無制限のユーザー・患者数、貴施設の指標 (RMSE/Bias) によるローカル Prior 校正、優先サポート、そして<strong>NONMEM・Monolix 向け構造化 PopPK データベースの無制限生成・ダウンロード</strong>。",
+    "pricing.faq_block_3": "PK-Bayes は 2 コンパートメントモデルによるベイズ MAP 推定と、質量を保存する連続的 Runge-Kutta 45 法 ODE 求解を提供し、さらに 2 つの重要な革新機能を加えています：<strong>施設独自の適応型 Prior 校正</strong>と<strong>PopPK ファーマコメトリクス向け直接エクスポート</strong>です。さらに当社は、年間 15,000〜50,000 米ドル以上を請求する国際的なソリューションのごく一部のコストで、<strong>市場で最も手頃な価格ながら小細工なく個別サポートを提供するソフトウェア</strong>です。",
+    "pricing.faq_block_4": "いいえ。PK-Bayes は臨床意思決定支援システム (CDSS) です。治療判断の根拠となる数学的計算と予測曲線を提供しますが、最終的な処方および検証は常に患者を担当する医療チームの責任です。",
+    "pricing.faq_block_5": "はい。フルプランのご契約は年間契約で、強制的な継続契約はありません。有効期限前であればいつでも自動更新をキャンセルできます。",
+    "js.vfg_stratum_label": "層：GFR {range} mL/min（患者数 {count} 名）",
+    "js.vfg_weight_active": "w_local = {pct}%（ローカル学習有効）",
+    "js.vfg_weight_inactive": "w_local = 0%（N ≥ 10 が必要）",
+    "js.vfg_formula_active": "θ_prior = {a} · θ_文献 + {b} · θ_施設ローカル",
+    "js.vfg_formula_inactive": "θ_prior = 1.00 · θ_文献（ローカル Prior 未設定）",
+    "js.checkout_redirect_stripe": "Stripe へリダイレクト中…",
+    "js.checkout_redirect_secure": "安全な決済ページへリダイレクト中…",
+    "js.checkout_stripe_config_title": "Stripe の設定が必要です",
+    "js.checkout_stripe_config_desc": "実際の支払い（年間 1,350 米ドル）を処理するには、assets/js/config.js に Stripe Payment Link（https://buy.stripe.com/...）または公開可能キーと Price ID を入力してください。",
+    "js.checkout_stripe_not_loaded": "Stripe.js の読み込みに失敗しました（インターネット接続をご確認ください）。",
+    "js.checkout_failed_title": "決済を開始できませんでした",
+    "js.checkout_failed_desc": "数分後にもう一度お試しください。",
+    "common.status_prior_lit": "（文献 Prior）",
+    "common.status_active": "（学習中）",
+    "common.status_calibrated": "（校正済）",
+    "meta.title_index": "PK-Bayes — 技術商業資料 & 臨床 MAP ワークステーション",
+    "meta.desc_index": "精密医療臨床意思決定支援システム (CDSS)。バンコマイシンおよびフェニトインに対するリアルタイム・ベイズ MAP 投与と施設適応型母集団学習を提供。",
+    "meta.title_features": "機能一覧 — PK-Bayes 精密投与",
+    "meta.desc_features": "PK-Bayes の主要機能をご紹介：リアルタイム・ベイズ MAP 推定、多コンパートメント What-If シミュレーション、動的腎クリアランス CL(t)、施設 Prior、PopPK エクスポート。",
+    "meta.title_drugs": "薬剤 & PK モデル — PK-Bayes",
+    "meta.desc_drugs": "PK-Bayes の検証済み薬物動態モデル：バンコマイシン（多室線形動態、2020 年 ASHP AUC/MIC ガイドライン）およびフェニトイン（ミカエリス・メンテン飽和動態、Sheiner-Tozer 補正）。",
+    "meta.title_cases": "臨床症例 & 事例 — PK-Bayes",
+    "meta.desc_cases": "合成データを用いた 3 つの実践的ワークフロー：ICU でのバンコマイシン調整、低アルブミン血症におけるフェニトイン補正、施設 Prior の校正。",
+    "meta.title_pricing": "料金 & プラン — PK-Bayes",
+    "meta.desc_pricing": "PK-Bayes のプラン：14 日間無料トライアルと施設向けフルプラン（年間 1,350 米ドル）。無制限アクセスと PopPK データベース出力付き。不透明な契約は一切ありません。",
+    "meta.title_access": "顧客アクセス — PK-Bayes",
+    "meta.desc_access": "有効なアカウントをお持ちの場合は PK-Bayes 臨床プラットフォームへログイン、まだの方は 14 日間無料トライアルを今すぐ開始。",
+    "meta.title_thanks": "登録・お支払い完了 — PK-Bayes",
+    "meta.desc_thanks": "ご登録とお支払いが正常に処理されました。施設アクセスは現在有効化処理中です。",
+    "meta.title_cancel": "お支払いがキャンセルされました — PK-Bayes",
+    "meta.desc_cancel": "決済処理はキャンセルされました。料金は一切請求されていません。"
 }
   };
 
   function getCurrentLang() {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved && SUPPORTED_LANGS.includes(saved)) {
-      return saved;
-    }
-    // Detección automática del idioma del navegador del visitante
-    const navLangs = navigator.languages || [navigator.language || navigator.userLanguage || "es"];
-    for (let i = 0; i < navLangs.length; i++) {
-      const l = navLangs[i];
-      if (!l) continue;
-      const prefix = l.slice(0, 2).toLowerCase();
-      if (SUPPORTED_LANGS.includes(prefix)) {
-        return prefix;
-      }
-    }
-    return "es";
+    return detectGeoAndLocaleLanguage().language;
   }
 
   function applyLanguage(lang) {
@@ -2018,6 +2842,19 @@
       }
     });
 
+    // Actualizar <title> y <meta name="description"> según data-i18n-title / data-i18n-desc en <html>
+    const titleKey = document.documentElement.getAttribute("data-i18n-title");
+    if (titleKey) {
+      const titleTranslation = dict[titleKey] || fallbackDict[titleKey];
+      if (titleTranslation !== undefined) document.title = titleTranslation;
+    }
+    const descKey = document.documentElement.getAttribute("data-i18n-desc");
+    if (descKey) {
+      const descTranslation = dict[descKey] || fallbackDict[descKey];
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (descTranslation !== undefined && metaDesc) metaDesc.setAttribute("content", descTranslation);
+    }
+
     // Actualizar selector en header
     document.querySelectorAll(".lang-current-label").forEach((el) => {
       el.textContent = LANG_NAMES[lang];
@@ -2032,10 +2869,24 @@
     window.dispatchEvent(new CustomEvent("pkbayes_language_changed", { detail: { lang } }));
   }
 
-  function setLanguage(lang) {
+  function setLanguage(lang, isManual) {
     if (!SUPPORTED_LANGS.includes(lang)) return;
-    localStorage.setItem(STORAGE_KEY, lang);
+    if (isManual === undefined) isManual = true;
+    try {
+      localStorage.setItem(STORAGE_KEY, lang);
+      if (isManual) localStorage.setItem(MANUAL_FLAG_KEY, "true");
+    } catch (e) {
+      // Ignorar errores de almacenamiento local
+    }
     applyLanguage(lang);
+  }
+
+  // Traduce una clave puntual usando el idioma actual (con fallback a es).
+  // Útil para strings generados dinámicamente por otros scripts (main.js, checkout.js, etc.)
+  function t(key) {
+    const lang = getCurrentLang();
+    const dict = I18N[lang] || I18N.es;
+    return dict[key] || I18N.es[key] || key;
   }
 
   function initLanguageDropdowns() {
@@ -2066,23 +2917,45 @@
     });
   }
 
-  // Inicialización inmediata al cargar el DOM
-  const initialLang = getCurrentLang();
-  
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => {
-      applyLanguage(initialLang);
-      initLanguageDropdowns();
-    });
-  } else {
+  // Inicialización inmediata al cargar el DOM (0ms, sin red)
+  const initialDetection = detectGeoAndLocaleLanguage();
+  const initialLang = initialDetection.language;
+
+  function boot() {
     applyLanguage(initialLang);
     initLanguageDropdowns();
+    maybeRefineByIP();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else {
+    boot();
+  }
+
+  // Refinamiento complementario por GeoIP en segundo plano. No pisa el idioma ya mostrado si
+  // el usuario ya eligió manualmente, o si la detección síncrona inicial ya fue confiable
+  // (localStorage/zona horaria/navigator.languages). Solo actúa cuando ninguna señal síncrona
+  // dio resultado y se cayó al valor por defecto "es" a ciegas.
+  function maybeRefineByIP() {
+    try {
+      const isManual = localStorage.getItem(MANUAL_FLAG_KEY) === "true";
+      if (isManual || initialDetection.confident) return;
+      detectLanguageByIP((matchedLang) => {
+        if (matchedLang && matchedLang !== getCurrentLang()) {
+          setLanguage(matchedLang, false);
+        }
+      });
+    } catch (e) {
+      // No-op
+    }
   }
 
   // Exponer API global
   window.PKBAYES_I18N = {
     setLanguage,
     getCurrentLang,
+    t,
     SUPPORTED_LANGS,
     LANG_NAMES,
     LANG_FLAGS

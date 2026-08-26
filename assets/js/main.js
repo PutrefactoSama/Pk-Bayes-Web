@@ -423,12 +423,21 @@
         const isLocalActive = count >= 10;
         const weight = isLocalActive ? Math.min(0.85, (count / 40).toFixed(2)) : 0.0;
 
-        if (labelEl) labelEl.textContent = `Estrato: VFG ${range} mL/min (${count} pacientes)`;
-        if (weightEl) weightEl.textContent = isLocalActive ? `w_local = ${(weight * 100).toFixed(0)}% (Aprendizaje Activo)` : `w_local = 0% (Requiere N ≥ 10)`;
+        const t = (window.PKBAYES_I18N && window.PKBAYES_I18N.t) || ((k) => k);
+        if (labelEl) {
+          labelEl.textContent = t("js.vfg_stratum_label")
+            .replace("{range}", range)
+            .replace("{count}", count);
+        }
+        if (weightEl) {
+          weightEl.textContent = isLocalActive
+            ? t("js.vfg_weight_active").replace("{pct}", (weight * 100).toFixed(0))
+            : t("js.vfg_weight_inactive");
+        }
         if (formulaEl) {
           formulaEl.textContent = isLocalActive
-            ? `θ_prior = ${(1 - weight).toFixed(2)} · θ_literatura + ${weight} · θ_local_hospital`
-            : `θ_prior = 1.00 · θ_literatura (Sin prior local todavía)`;
+            ? t("js.vfg_formula_active").replace("{a}", (1 - weight).toFixed(2)).replace("{b}", weight)
+            : t("js.vfg_formula_inactive");
         }
       });
     });
