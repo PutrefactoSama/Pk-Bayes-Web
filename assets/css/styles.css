@@ -1284,7 +1284,7 @@ select.control-select {
   width: 32px;
   height: 32px;
   border-radius: 8px;
-  background: var(--sidebar-bg);
+  background: var(--primary);
   color: #fff;
   font-weight: 800;
   font-size: 0.85rem;
@@ -2057,8 +2057,9 @@ select.control-select {
   outline: none;
 }
 .calc-results-box {
-  background: var(--sidebar-bg);
-  color: #ffffff;
+  background: #f0f9ff;
+  color: var(--text-primary);
+  border: 1px solid rgba(14, 165, 233, 0.3);
   border-radius: var(--radius);
   padding: 20px;
   margin-top: 24px;
@@ -2072,12 +2073,13 @@ select.control-select {
 .calc-res-val {
   font-size: 1.5rem;
   font-weight: 800;
-  color: #38bdf8;
+  color: var(--primary);
   display: block;
 }
 .calc-res-lbl {
   font-size: 0.78rem;
-  color: var(--text-on-dark-muted);
+  color: var(--text-secondary);
+  font-weight: 600;
   margin-top: 4px;
   display: block;
 }
@@ -2209,7 +2211,7 @@ select.control-select {
   box-shadow: var(--shadow-md);
 }
 .sales-matrix-table th {
-  background: var(--sidebar-bg);
+  background: var(--primary);
   color: #ffffff;
   padding: 16px;
   text-align: left;
