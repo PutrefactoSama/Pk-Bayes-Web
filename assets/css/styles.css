@@ -798,28 +798,40 @@ select.control-select {
 .divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: var(--border); }
 
 /* =========================================================================
-   Footer (Vertical Compacto & Espaciado Homogéneo)
+   Footer (Super Compacto Verticial)
    ========================================================================= */
 .site-footer {
   background: var(--sidebar-bg);
   color: var(--text-on-dark-muted);
-  padding: 36px 0 20px;
+  padding: 24px 0 16px;
 }
 .footer-grid {
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr 1.1fr;
-  gap: 36px;
-  padding-bottom: 24px;
+  gap: 28px;
+  padding-bottom: 16px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 @media (max-width: 900px) {
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
 }
 @media (max-width: 520px) {
-  .footer-grid { grid-template-columns: 1fr; gap: 20px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 16px; }
 }
 .footer-brand .brand {
   color: #ffffff;
+}
+.footer-brand .brand-title,
+.site-footer .brand-title {
+  color: #ffffff !important;
+}
+.footer-brand .brand-sub,
+.site-footer .brand-sub {
+  color: #38bdf8;
+}
+.footer-brand .brand-tag,
+.site-footer .brand-tag {
+  color: #94a3b8;
 }
 .footer-brand .brand-mark {
   background: #ffffff;
@@ -828,27 +840,27 @@ select.control-select {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 }
 .footer-brand p {
-  font-size: 0.85rem;
-  line-height: 1.5;
+  font-size: 0.82rem;
+  line-height: 1.45;
   color: var(--text-on-dark-muted);
-  margin-top: 10px;
+  margin-top: 6px;
   max-width: 340px;
 }
 .footer-col h5 {
   color: #ffffff;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
 }
 .footer-col ul {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
 }
 .footer-col a {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--text-on-dark-muted);
   transition: color 0.2s ease;
 }
@@ -859,17 +871,17 @@ select.control-select {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 16px;
+  padding-top: 12px;
   flex-wrap: wrap;
-  gap: 10px;
-  font-size: 0.8rem;
+  gap: 8px;
+  font-size: 0.78rem;
   color: var(--text-on-dark-muted);
 }
 .footer-legal-note {
-  font-size: 0.74rem;
-  line-height: 1.5;
+  font-size: 0.72rem;
+  line-height: 1.4;
   max-width: 960px;
-  margin-top: 12px;
+  margin-top: 8px;
   opacity: 0.65;
 }
 
