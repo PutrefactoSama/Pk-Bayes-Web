@@ -92,9 +92,9 @@
   <section class="section-tight" style="background:#ffffff;border-bottom:1px solid var(--border)">
     <div class="container">
       <div class="breadcrumb"><a href="index.html">Inicio</a> <span>/</span> <span>Funcionalidades</span></div>
-      <span class="eyebrow mt-16" style="display:inline-flex">Arquitectura Clínica Completa</span>
-      <h1 class="mt-8">Tecnología farmacocinética de precisión, explicada en detalle</h1>
-      <p class="lead">Explore la suite modular de herramientas clínicas y analíticas de PK-Bayes mediante el selector interactivo de slides o revisando cada módulo en profundidad.</p>
+      <span class="eyebrow mt-16" style="display:inline-flex" data-i18n="features.hero_eyebrow">Arquitectura Clínica Completa</span>
+      <h1 class="mt-8" data-i18n="features.hero_title">Tecnología farmacocinética de precisión, explicada en detalle</h1>
+      <p class="lead" data-i18n="features.hero_lead">Explore la suite modular de herramientas clínicas y analíticas de PK-Bayes mediante el selector interactivo de slides o revisando cada módulo en profundidad.</p>
     </div>
   </section>
 
@@ -104,10 +104,10 @@
       <div class="feature-slider-card">
         <!-- Navegación de Píldoras/Tabs del Slider -->
         <div class="slider-tabs-header">
-          <button class="slider-tab-btn active" type="button" data-slide="0">⚡ 1. Motor MAP Bayesiano</button>
-          <button class="slider-tab-btn" type="button" data-slide="1">📈 2. Simulación What-If</button>
-          <button class="slider-tab-btn" type="button" data-slide="2">🧪 3. Falla Renal CL(t) & Diálisis</button>
-          <button class="slider-tab-btn" type="button" data-slide="3">🔬 4. Exportación PopPK NONMEM</button>
+          <button class="slider-tab-btn active" type="button" data-slide="0" data-i18n="features.tab1">⚡ 1. Motor MAP Bayesiano</button>
+          <button class="slider-tab-btn" type="button" data-slide="1" data-i18n="features.tab2">📈 2. Simulación What-If</button>
+          <button class="slider-tab-btn" type="button" data-slide="2" data-i18n="features.tab3">🧪 3. Falla Renal CL(t) & Diálisis</button>
+          <button class="slider-tab-btn" type="button" data-slide="3" data-i18n="features.tab4">🔬 4. Exportación PopPK NONMEM</button>
         </div>
 
         <!-- Contenedor de Paneles de Slides -->
@@ -115,9 +115,9 @@
           <!-- Slide 1 -->
           <div class="feature-slide-panel active">
             <div class="slide-content-side">
-              <span class="badge badge-primary">Motor Bayesiano &lt;100 ms</span>
-              <h3>Fitting Determinista MAP (Maximum A Posteriori)</h3>
-              <p>Resuelve el compromiso matemático entre el prior poblacional y los niveles plasmáticos séricos medidos. Genera parámetros individuales (CL, V₁, Q, V₂, t½) con acotamiento de variabilidad (BSV ~30%) sin requerir muestreos rígidos en el valle pre-dosis.</p>
+              <span class="badge badge-primary" data-i18n="features.slide1_badge">Motor Bayesiano &lt;100 ms</span>
+              <h3 data-i18n="features.slide1_title">Fitting Determinista MAP (Maximum A Posteriori)</h3>
+              <p data-i18n="features.slide1_desc">Resuelve el compromiso matemático entre el prior poblacional y los niveles plasmáticos séricos medidos. Genera parámetros individuales (CL, V₁, Q, V₂, t½) con acotamiento de variabilidad (BSV ~30%) sin requerir muestreos rígidos en el valle pre-dosis.</p>
               <a href="#map" class="btn btn-secondary btn-sm mt-16">Ver detalles del Módulo 01 ↓</a>
             </div>
             <div class="slide-graphic-side">
@@ -131,9 +131,9 @@
           <!-- Slide 2 -->
           <div class="feature-slide-panel">
             <div class="slide-content-side">
-              <span class="badge badge-teal">Predicción Posológica ASHP 2020</span>
-              <h3>Predictor Posológico y Simulación What-If</h3>
-              <p>Simule cualquier régimen de dosis (mg), intervalo de infusión (q8h, q12h, q24h o continua) observando de inmediato las concentraciones proyectadas en estado estacionario (Cmax,ss, Cmin,ss y AUC24/CIM 400–600 mg·h/L).</p>
+              <span class="badge badge-teal" data-i18n="features.slide2_badge">Predicción Posológica ASHP 2020</span>
+              <h3 data-i18n="features.slide2_title">Predictor Posológico y Simulación What-If</h3>
+              <p data-i18n="features.slide2_desc">Simule cualquier régimen de dosis (mg), intervalo de infusión (q8h, q12h, q24h o continua) observando de inmediato las concentraciones proyectadas en estado estacionario (Cmax,ss, Cmin,ss y AUC24/CIM 400–600 mg·h/L).</p>
               <a href="#simulador" class="btn btn-secondary btn-sm mt-16">Probar simulador interactivo ↓</a>
             </div>
             <div class="slide-graphic-side">
@@ -147,7 +147,7 @@
           <!-- Slide 3 -->
           <div class="feature-slide-panel">
             <div class="slide-content-side">
-              <span class="badge badge-green">Paciente Crítico & UCI</span>
+              <span class="badge badge-green" data-i18n="features.slide3_badge">Paciente Crítico & UCI</span>
               <h3>Cinética Renal Dinámica CL(t) y Diálisis</h3>
               <p>Resolución continua de ecuaciones diferenciales ordinarias (ODEs) ante sepsis y falla renal aguda (AKI), manteniendo la continuidad física de la masa acumulada A₁(t) y A₂(t). Soporte nativo para CRRT (CVVH/D/F) y hemodiálisis intermitente.</p>
               <a href="#dialisis" class="btn btn-secondary btn-sm mt-16">Ver modelos renales ↓</a>
@@ -531,7 +531,7 @@
         </ul>
       </div>
       <div class="footer-col">
-        <h5>Contacto</h5>
+        <h5 data-i18n="footer.contact">Contacto</h5>
         <ul>
           <li><a data-contact-email data-subject="Consulta general PK-Bayes" href="#"><span data-contact-email-text>contacto</span></a></li>
           <li><a data-contact-email data-subject="Solicitud de demo — PK-Bayes" href="#">Solicitar una demo</a></li>
