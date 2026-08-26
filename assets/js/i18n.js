@@ -151,7 +151,7 @@
 
       "pricing.eyebrow": "Precios Transparentes",
       "pricing.title": "Prueba PK-Bayes gratis, luego elige el plan para tu institución",
-      "pricing.lead": "Democratizamos la dosificación bayesiana de precisión: sin presupuestos opacos ni permanencias abusivas. Comienza con 14 días gratis con acceso completo.",
+      "pricing.lead": "Democratizamos la dosificación bayesiana de precisión: somos el software más económico del mercado, sin trucos y con soporte personalizado. Sin presupuestos opacos de cinco cifras ni cláusulas de permanencia abusivas. Comienza con 14 días gratis con acceso completo.",
       "pricing.plan_free_name": "Prueba Gratuita",
       "pricing.plan_free_price": "0 USD",
       "pricing.plan_free_period": "/ 14 días",
