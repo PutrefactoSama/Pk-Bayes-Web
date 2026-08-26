@@ -23,9 +23,9 @@
       <a href="index.html" class="brand">
         <img class="brand-mark" src="assets/img/logo-icon-256.png" alt="PK-Bayes Logo">
         <div class="brand-text">
-          <span class="brand-title">PK-Bayes</span>
-          <span class="brand-sub">Precision Dosing System</span>
-          <span class="brand-tag">Clinical MAP Workstation</span>
+          <span class="brand-title" data-i18n="nav.brand_title">PK-Bayes</span>
+          <span class="brand-sub" data-i18n="nav.brand_sub">Precision Dosing System</span>
+          <span class="brand-tag" data-i18n="nav.brand_tag">Clinical MAP Workstation</span>
         </div>
       </a>
       <nav class="nav-links" aria-label="Navegación principal">
@@ -392,9 +392,9 @@
             <h3 class="mt-4" style="color:var(--text-primary)" data-i18n="sim.card_title">Simulador de Curva Concentración-Tiempo (Vancomicina)</h3>
           </div>
           <div class="flex items-center gap-16">
-            <span style="font-size:0.85rem;color:var(--text-on-dark-muted)">Dosis: <strong id="simDoseVal" style="color:#38bdf8">1000 mg</strong></span>
-            <span style="font-size:0.85rem;color:var(--text-on-dark-muted)">Intervalo: <strong id="simIntervalVal" style="color:#38bdf8">q12h</strong></span>
-            <span style="font-size:0.85rem;color:var(--text-on-dark-muted)">CrCl: <strong id="simCrclVal" style="color:#38bdf8">70 mL/min</strong></span>
+            <span style="font-size:0.85rem;color:var(--text-on-dark-muted)"><span data-i18n="common.dose_lbl">Dosis:</span> <strong id="simDoseVal" style="color:#38bdf8">1000 mg</strong></span>
+            <span style="font-size:0.85rem;color:var(--text-on-dark-muted)"><span data-i18n="common.interval_lbl">Intervalo:</span> <strong id="simIntervalVal" style="color:#38bdf8">q12h</strong></span>
+            <span style="font-size:0.85rem;color:var(--text-on-dark-muted)"><span data-i18n="common.crcl_lbl">CrCl:</span> <strong id="simCrclVal" style="color:#38bdf8">70 mL/min</strong></span>
           </div>
         </div>
 
@@ -458,8 +458,8 @@
       <div class="grid grid-2 mt-32">
         <div class="card reveal">
           <div class="flex items-center justify-between">
-            <span class="badge badge-primary">PopPK Exporter</span>
-            <span class="badge badge-teal">CSV UTF-8 BOM</span>
+            <span class="badge badge-primary" data-i18n="common.poppk_exp_lbl">PopPK Exporter</span>
+            <span class="badge badge-teal" data-i18n="common.csv_utf8_lbl">CSV UTF-8 BOM</span>
           </div>
           <h3 class="mt-16" data-i18n="audit.poppk_title">Exportador R&D para NONMEM y Monolix</h3>
           <p class="text-secondary mt-8" data-i18n="audit.poppk_desc">Construye datasets estructurados cronológicamente con covariables dinámicas para investigación poblacional, listos para importación directa sin trabajo de limpieza manual.</p>
@@ -467,8 +467,8 @@
 
         <div class="card reveal">
           <div class="flex items-center justify-between">
-            <span class="badge badge-amber">Gobernanza Clínica</span>
-            <span class="badge badge-green">Inmutable</span>
+            <span class="badge badge-amber" data-i18n="common.clin_gov_lbl">Gobernanza Clínica</span>
+            <span class="badge badge-green" data-i18n="common.immutable_lbl">Inmutable</span>
           </div>
           <h3 class="mt-16" data-i18n="audit.patient_title">Auditoría Clínica por Paciente</h3>
           <p class="text-secondary mt-8" data-i18n="audit.patient_desc">Historial inmutable de cambios (<code>PatientChangeAuditModal</code>) que registra usuario, fecha, hora y modificación exacta realizada en la ficha del paciente.</p>
@@ -494,7 +494,7 @@
       <div class="grid grid-3 mt-32">
         <div class="card reveal">
           <div class="flex items-center gap-8">
-            <span class="badge badge-primary">Frontend</span>
+            <span class="badge badge-primary" data-i18n="common.frontend_lbl">Frontend</span>
           </div>
           <h3 class="mt-16" data-i18n="arch.fe_title">React 18 & TypeScript</h3>
           <p class="text-secondary mt-8" data-i18n="arch.fe_desc">Interfaz médica ultrarrápida orientada a cero latencia visual a pie de cama del paciente.</p>
@@ -502,7 +502,7 @@
 
         <div class="card reveal">
           <div class="flex items-center gap-8">
-            <span class="badge badge-teal">Backend API</span>
+            <span class="badge badge-teal" data-i18n="common.backend_lbl">Backend API</span>
           </div>
           <h3 class="mt-16" data-i18n="arch.be_title">Python 3.10 & FastAPI</h3>
           <p class="text-secondary mt-8" data-i18n="arch.be_desc">Ejecución paralela de alta velocidad alojada en contenedores Docker / Uvicorn con SciPy y NumPy.</p>
@@ -510,7 +510,7 @@
 
         <div class="card reveal">
           <div class="flex items-center gap-8">
-            <span class="badge badge-green">Base de Datos</span>
+            <span class="badge badge-green" data-i18n="common.db_lbl">Base de Datos</span>
           </div>
           <h3 class="mt-16" data-i18n="arch.db_title">PostgreSQL RLS Supabase</h3>
           <p class="text-secondary mt-8" data-i18n="arch.db_desc">Row Level Security (RLS). Los datos de un hospital son invisibles para otros clientes cumpliendo estándares de privacidad clínica.</p>
@@ -606,9 +606,9 @@
         <a href="index.html" class="brand">
           <img class="brand-mark" src="assets/img/logo-icon-256.png" alt="PK-Bayes Logo">
           <div class="brand-text">
-            <span class="brand-title">PK-Bayes</span>
-            <span class="brand-sub">Precision Dosing System</span>
-            <span class="brand-tag">Clinical MAP Workstation</span>
+            <span class="brand-title" data-i18n="nav.brand_title">PK-Bayes</span>
+            <span class="brand-sub" data-i18n="nav.brand_sub">Precision Dosing System</span>
+            <span class="brand-tag" data-i18n="nav.brand_tag">Clinical MAP Workstation</span>
           </div>
         </a>
         <p data-i18n="footer.desc">Plataforma clínica de dosificación farmacocinética de precisión y optimización bayesiana MAP en tiempo real.</p>
@@ -616,29 +616,29 @@
       <div class="footer-col">
         <h5 data-i18n="footer.product">Producto</h5>
         <ul>
-          <li><a href="funcionalidades.html">Funcionalidades</a></li>
-          <li><a href="farmacos.html">Fármacos y modelos</a></li>
-          <li><a href="ejemplos.html">Casos clínicos</a></li>
+          <li><a href="funcionalidades.html" data-i18n="nav.features">Funcionalidades</a></li>
+          <li><a href="farmacos.html" data-i18n="nav.drugs">Fármacos y modelos</a></li>
+          <li><a href="ejemplos.html" data-i18n="nav.cases">Casos clínicos</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h5 data-i18n="footer.access">Acceso</h5>
         <ul>
-          <li><a href="acceso.html">Acceso clientes</a></li>
-          <li><a data-app-link href="#" rel="noopener">Abrir plataforma PK-Bayes ↗</a></li>
-          <li><a href="precios.html">Solicitar Demo</a></li>
+          <li><a href="acceso.html" data-i18n="nav.login">Acceso clientes</a></li>
+          <li><a data-app-link href="#" rel="noopener" data-i18n="common.open_platform">Abrir plataforma PK-Bayes ↗</a></li>
+          <li><a href="precios.html" data-i18n="common.request_demo_btn">Solicitar Demo</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h5 data-i18n="footer.contact">Contacto</h5>
         <ul>
-          <li><a data-contact-email data-subject="Consulta general PK-Bayes" href="#"><span data-contact-email-text>contacto</span></a></li>
-          <li><a data-contact-email data-subject="Solicitud de demo — PK-Bayes" href="#">Solicitar una demo</a></li>
+          <li><a data-contact-email data-subject="Consulta general PK-Bayes" href="#"><span data-contact-email-text data-i18n="common.contact_btn">contacto</span></a></li>
+          <li><a data-contact-email data-subject="Solicitud de demo — PK-Bayes" href="#" data-i18n="common.request_demo_nav">Solicitar una demo</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© <span data-year></span> PK-Bayes. Todos los derechos reservados.</span>
+      <span>© <span data-year></span> PK-Bayes. <span data-i18n="footer.rights">Todos los derechos reservados.</span></span>
       <span data-i18n="footer.developed_for">Desarrollado para equipos de farmacocinética clínica.</span>
     </div>
     <p class="footer-legal-note" data-i18n="footer.legal_note">PK-Bayes es un software de apoyo a la decisión clínica (CDSS). Todas las recomendaciones generadas deben ser revisadas e interpretadas por un profesional sanitario cualificado antes de aplicarse a un paciente real.</p>
