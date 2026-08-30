@@ -1,12 +1,14 @@
 /**
- * PK-Bayes — Motor de Internacionalización (i18n)
+ * PK-Bayes — Motor de Internacionalización (i18n) con Geolocalización de Idioma
  * Soporta: Español (es), English (en), 中文 (zh), 日本語 (ja)
- * Con detección automática inteligente del idioma del navegador y terminología médica precisa.
+ * Detección automática por zona horaria, idioma del navegador y GeoIP (mismo criterio
+ * que la app clínica), con terminología médica precisa en las 4 traducciones.
  */
 (function () {
   "use strict";
 
   const STORAGE_KEY = "pkbayes_lang";
+  const MANUAL_FLAG_KEY = "pkbayes_lang_manual";
   const SUPPORTED_LANGS = ["es", "en", "zh", "ja"];
 
   const LANG_NAMES = {
@@ -22,6 +24,158 @@
     zh: "🇨🇳",
     ja: "🇯🇵"
   };
+
+  // ── Geolocalización de idioma (mismo criterio que la app clínica) ─────────
+  // 1) localStorage (elección manual previa) 2) Zona horaria del dispositivo
+  // (Intl, instantáneo y sin permisos) 3) navigator.languages 4) GeoIP en
+  // segundo plano (api.country.is) solo como último recurso, sin bloquear el
+  // primer render.
+
+  // Mapeo de Zonas Horarias IANA a idioma
+  const TIMEZONE_TO_LANG = {
+    // China / Taiwán / Hong Kong / Macau
+    "asia/shanghai": "zh",
+    "asia/chongqing": "zh",
+    "asia/harbin": "zh",
+    "asia/urumqi": "zh",
+    "asia/hong_kong": "zh",
+    "asia/macau": "zh",
+    "asia/taipei": "zh",
+    "asia/beijing": "zh", // alias no estándar que algunos runtimes viejos reportan
+
+    // Japón
+    "asia/tokyo": "ja",
+
+    // España y Latinoamérica (Español)
+    "europe/madrid": "es",
+    "atlantic/canary": "es",
+    "america/santiago": "es",
+    "america/punta_arenas": "es",
+    "pacific/easter": "es",
+    "america/buenos_aires": "es",
+    "america/argentina/buenos_aires": "es",
+    "america/cordoba": "es",
+    "america/rosario": "es",
+    "america/mendoza": "es",
+    "america/bogota": "es",
+    "america/lima": "es",
+    "america/mexico_city": "es",
+    "america/cancun": "es",
+    "america/monterrey": "es",
+    "america/tijuana": "es",
+    "america/hermosillo": "es",
+    "america/chihuahua": "es",
+    "america/mazatlan": "es",
+    "america/merida": "es",
+    "america/matamoros": "es",
+    "america/caracas": "es",
+    "america/montevideo": "es",
+    "america/la_paz": "es",
+    "america/guayaquil": "es",
+    "pacific/galapagos": "es",
+    "america/costa_rica": "es",
+    "america/guatemala": "es",
+    "america/panama": "es",
+    "america/santo_domingo": "es",
+    "america/asuncion": "es",
+    "america/havana": "es",
+    "america/tegucigalpa": "es",
+    "america/el_salvador": "es",
+    "america/managua": "es",
+    "america/puerto_rico": "es",
+
+    // Países de habla inglesa / internacional (Inglés)
+    "america/new_york": "en",
+    "america/chicago": "en",
+    "america/los_angeles": "en",
+    "america/denver": "en",
+    "america/phoenix": "en",
+    "america/anchorage": "en",
+    "pacific/honolulu": "en",
+    "europe/london": "en",
+    "australia/sydney": "en",
+    "australia/melbourne": "en",
+    "australia/brisbane": "en",
+    "australia/perth": "en",
+    "australia/adelaide": "en",
+    "pacific/auckland": "en"
+  };
+
+  // Mapeo de código de país ISO-3166 (GeoIP) a idioma
+  const COUNTRY_TO_LANG = {
+    // Chino
+    CN: "zh", TW: "zh", HK: "zh", MO: "zh",
+    // Japonés
+    JP: "ja",
+    // Español
+    ES: "es", CL: "es", AR: "es", CO: "es", PE: "es", MX: "es", UY: "es",
+    BO: "es", EC: "es", CR: "es", GT: "es", PA: "es", DO: "es", PY: "es",
+    VE: "es", HN: "es", SV: "es", NI: "es", CU: "es", PR: "es",
+    // Inglés
+    US: "en", GB: "en", CA: "en", AU: "en", NZ: "en", IE: "en", ZA: "en",
+    SG: "en", IN: "en"
+  };
+
+  // Detección instantánea (0ms, sin red): localStorage → zona horaria → navigator.languages.
+  // "confident" indica si alguna señal síncrona dio un resultado real (evita pisar el
+  // idioma ya mostrado con el resultado de GeoIP si ya hubo una señal confiable, previniendo
+  // el "flash" de que la página cargue en un idioma y cambie sola 1-2s después).
+  function detectGeoAndLocaleLanguage() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved && SUPPORTED_LANGS.includes(saved)) {
+        return { language: saved, confident: true };
+      }
+
+      const tz = (Intl.DateTimeFormat().resolvedOptions().timeZone || "").toLowerCase();
+      if (tz && TIMEZONE_TO_LANG[tz]) {
+        return { language: TIMEZONE_TO_LANG[tz], confident: true };
+      }
+      // Solo Europe/London y Australia/* son inequívocamente de habla inglesa dentro de
+      // los 4 idiomas soportados -- a propósito no hay catch-all "america/*" acá: la
+      // mayoría de América es hispanohablante.
+      if (tz.startsWith("europe/london") || tz.startsWith("australia/")) {
+        return { language: "en", confident: true };
+      }
+
+      const navLangs = navigator.languages || [navigator.language || navigator.userLanguage || ""];
+      for (let i = 0; i < navLangs.length; i++) {
+        const l = (navLangs[i] || "").toLowerCase();
+        if (l.startsWith("zh")) return { language: "zh", confident: true };
+        if (l.startsWith("ja")) return { language: "ja", confident: true };
+        if (l.startsWith("es")) return { language: "es", confident: true };
+        if (l.startsWith("en")) return { language: "en", confident: true };
+      }
+    } catch (e) {
+      // Fallback seguro
+    }
+    return { language: "es", confident: false };
+  }
+
+  // Consulta de país por IP en segundo plano (no bloqueante). Solo se llama cuando ninguna
+  // señal síncrona dio un resultado confiable y el usuario no eligió idioma manualmente.
+  // Nota de privacidad: esto envía la IP del visitante a un tercero (api.country.is) desde
+  // el navegador. Se deja client-side a propósito (sitio 100% estático, sin backend propio
+  // al que reenviar la IP) y con timeout corto para no demorar la experiencia.
+  function detectLanguageByIP(onDetected) {
+    try {
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 2000);
+      fetch("https://api.country.is/", { signal: controller.signal })
+        .then((res) => res.json())
+        .then((data) => {
+          clearTimeout(timeoutId);
+          const countryCode = data && data.country ? String(data.country).toUpperCase() : null;
+          const matchedLang = countryCode ? COUNTRY_TO_LANG[countryCode] : null;
+          if (matchedLang) onDetected(matchedLang, countryCode);
+        })
+        .catch(() => {
+          // Si falla o se bloquea la red externa, se mantiene la detección de zona horaria/navegador
+        });
+    } catch (e) {
+      // No-op
+    }
+  }
 
   const I18N = {
     es: {
@@ -61,18 +215,18 @@
     "hero.stat_target_label": "mg·h/L Target AUC₂₄/CIM",
     "hero.stat_export_num": "1 Clic",
     "hero.stat_export_label": "Exportación PopPK NONMEM",
-    "hero.stat_security_num": "PostgreSQL",
-    "hero.stat_security_label": "Aislamiento RLS Bank-Grade",
+    "hero.stat_security_num": "100%",
+    "hero.stat_security_label": "Aislamiento de Datos Grado Bancario",
     "hero.stat_tdm_status": "Estado TDM: <strong style=\"color:var(--green-dark)\">Optimizado en Tiempo Real</strong>",
     "hero.stat_vanco_current": "Vancomicina: <strong>1.000 mg q12h</strong>",
     "algo.eyebrow": "Sección 2 • Núcleo Algorítmico",
     "algo.title": "Motor Matemático de Optimización Bayesiana MAP & ODE RK45",
-    "algo.lead": "Rigor de ingeniería clínica combinando SciPy L-BFGS-B y resolución numérica de ecuaciones diferenciales ordinarias de orden adaptable.",
+    "algo.lead": "Rigor de ingeniería clínica combinando el algoritmo de optimización L-BFGS-B y resolución numérica de ecuaciones diferenciales ordinarias de orden adaptable.",
     "algo.step1_badge": "Paso 01 • Entrada Clínico-Poblacional",
     "algo.step1_title": "📥 Prior Poblacional + Datos del Paciente",
     "algo.step1_desc": "Integra modelos poblacionales validados de la literatura junto con la demografía, función renal inicial y niveles plasmáticos séricos observados.",
     "algo.step2_badge": "Paso 02 • Optimización Determinista",
-    "algo.step2_title": "⚙️ Motor MAP (SciPy L-BFGS-B + ODE RK45)",
+    "algo.step2_title": "⚙️ Motor MAP (L-BFGS-B + ODE RK45)",
     "algo.step2_desc": "Calcula en milisegundos la combinación exacta de parámetros individualizados (CL, V₁, Q, V₂, t₁/₂) resolviendo ODEs multicompartimentales con preservación de masa acumulada A₁(t), A₂(t).",
     "algo.step3_badge": "Paso 03 • Proyección de Prescripción",
     "algo.step3_title": "📈 Curva Individual + Predictor Dosis/AUC₂₄",
@@ -140,19 +294,19 @@
     "audit.poppk_title": "Exportador R&D para NONMEM y Monolix",
     "audit.poppk_desc": "Construye datasets estructurados cronológicamente con covariables dinámicas para investigación poblacional, listos para importación directa sin trabajo de limpieza manual.",
     "audit.patient_title": "Auditoría Clínica por Paciente",
-    "audit.patient_desc": "Historial inmutable de cambios (PatientChangeAuditModal) que registra usuario, fecha, hora y modificación exacta realizada en la ficha del paciente.",
+    "audit.patient_desc": "Historial inmutable de cambios que registra usuario, fecha, hora y modificación exacta realizada en la ficha del paciente.",
     "audit.patient_item1": "Trazabilidad total de ajustes de dosis y niveles.",
     "audit.patient_item2": "Registro de usuario clínico y perfil profesional.",
     "audit.patient_item3": "Garantía para comités de acreditación e inspección.",
     "arch.eyebrow": "Sección 8 • Arquitectura Cloud & Seguridad",
-    "arch.title": "Aislamiento por Hospital (RLS) & Panel de Administración Master",
+    "arch.title": "Aislamiento Total por Hospital & Panel de Administración Master",
     "arch.lead": "Infraestructura moderna de cero latencia con cifrado bancario y autonomía completa para la institución.",
-    "arch.fe_title": "React 18 & TypeScript",
+    "arch.fe_title": "Interfaz Clínica de Alta Velocidad",
     "arch.fe_desc": "Interfaz médica ultrarrápida orientada a cero latencia visual a pie de cama del paciente.",
-    "arch.be_title": "Python 3.10 & FastAPI",
-    "arch.be_desc": "Ejecución paralela de alta velocidad alojada en contenedores Docker / Uvicorn con SciPy y NumPy.",
-    "arch.db_title": "PostgreSQL RLS Supabase",
-    "arch.db_desc": "Row Level Security (RLS). Los datos de un hospital son invisibles para otros clientes cumpliendo estándares de privacidad clínica.",
+    "arch.be_title": "Motor de Cálculo de Alto Rendimiento",
+    "arch.be_desc": "Ejecución paralela de alta velocidad sobre infraestructura cloud escalable, con motores matemáticos de nivel científico.",
+    "arch.db_title": "Aislamiento Total de Datos por Hospital",
+    "arch.db_desc": "Cada hospital opera en un compartimento de datos completamente aislado e invisible para otras instituciones, cumpliendo los más altos estándares de privacidad clínica.",
     "sales.eyebrow": "Resumen Comercial",
     "sales.title": "Argumentos de Venta & Matriz de Ventaja Competitiva",
     "sales.lead": "Beneficios clínicos y ventajas estratégicas para la institución compradora.",
@@ -164,8 +318,8 @@
     "sales.card3_desc": "<strong>Ventaja Competitiva:</strong> El software se adapta de forma continua a la genética, nutrición y fisiología de la población específica de su hospital.",
     "sales.card4_title": "Formato R&D (NONMEM / Monolix)",
     "sales.card4_desc": "<strong>Ventaja Competitiva:</strong> Generación en 1 clic de datasets estandarizados, ideal para centros acreditados, hospitales universitarios e investigación clínica.",
-    "sales.card5_title": "Seguridad PostgreSQL RLS",
-    "sales.card5_desc": "<strong>Ventaja Competitiva:</strong> Privacidad de datos totalmente aislada por institución con políticas Row Level Security (RLS) de grado bancario.",
+    "sales.card5_title": "Seguridad y Aislamiento por Institución",
+    "sales.card5_desc": "<strong>Ventaja Competitiva:</strong> Privacidad de datos totalmente aislada por institución, con controles de acceso y cifrado de grado bancario.",
     "cta.title": "Lleva la dosificación de precisión a tu institución",
     "cta.desc": "Agenda una presentación ejecutiva para tu equipo médico, jefatura de farmacia o dirección de TI.",
     "cta.btn_demo": "Solicitar Demo Hospitalaria →",
@@ -180,10 +334,10 @@
     "pricing.plan_free_btn": "Iniciar prueba gratis (15 días)",
     "pricing.plan_comp_ribbon": "Plan Completo",
     "pricing.plan_comp_name": "Institucional Completo",
-    "pricing.plan_comp_price": "$1.350 USD",
-    "pricing.plan_comp_period": "/ año",
+    "pricing.plan_comp_price": "¡Próximamente!",
+    "pricing.plan_comp_period": "",
     "pricing.plan_comp_desc": "Licencia anual completa con acceso ilimitado para toda la institución, todos los módulos clínicos y exportación de datos.",
-    "pricing.plan_comp_btn": "Suscribir Plan Completo ($1.350 USD/año)",
+    "pricing.plan_comp_btn": "¡Próximamente, a un precio insuperable!",
     "pricing.faq_title": "Preguntas frecuentes sobre contratación",
     "pricing.faq_q1": "¿Cómo funciona la prueba gratuita de 15 días?",
     "pricing.faq_a1": "Te registras de forma inmediata y obtienes acceso completo a todas las funciones clínicas. No requiere tarjeta de crédito para iniciar.",
@@ -206,7 +360,7 @@
     "features.slide2_desc": "Simule cualquier régimen de dosis (mg), intervalo de infusión (q8h, q12h, q24h o continua) observando de inmediato las concentraciones proyectadas en estado estacionario (Cmax,ss, Cmin,ss y AUC24/CIM 400–600 mg·h/L).",
     "features.slide3_badge": "Paciente Crítico & UCI",
     "features.slide3_title": "Cinética Continua ODE ante Falla Renal Dinámica (AKI)",
-    "features.slide3_desc": "Integra numéricamente ecuaciones diferenciales ordinarias mediante SciPy RK45, modelando saltos abruptos de creatinina sérica y aclaramiento extracorpóreo en hemodiálisis o CRRT sin discontinuidades de masa.",
+    "features.slide3_desc": "Integra numéricamente ecuaciones diferenciales ordinarias mediante RK45, modelando saltos abruptos de creatinina sérica y aclaramiento extracorpóreo en hemodiálisis o CRRT sin discontinuidades de masa.",
     "features.slide4_badge": "Investigación & PopPK",
     "features.slide4_title": "Exportación Automatizada para NONMEM y Monolix",
     "features.slide4_desc": "Estructure cohortes institucionales completas en datasets estandarizados (CSV UTF-8 BOM) con covariables temporales para farmacometría avanzada y publicaciones científicas.",
@@ -306,13 +460,13 @@
     "func.btn_sim": "Probar simulador interactivo ↓",
     "func.btn_mod3": "Ver detalles del Módulo 03 ↓",
     "func.btn_mod4": "Ver detalles del Módulo 04 ↓",
-    "func.stat1_desc": "Tiempo de convergencia algorítmica en SciPy L-BFGS-B.",
+    "func.stat1_desc": "Tiempo de convergencia del algoritmo de optimización L-BFGS-B.",
     "func.stat2_desc": "mg·h/L Target terapéutico AUC₂₄/CIM en Vancomicina.",
     "func.stat3_desc": "Integración numérica ODE RK45 ante AKI sin pérdida de masa.",
     "func.stat4_desc": "Dataset estructurado PopPK para NONMEM en 1 clic.",
     "func.m1_eyebrow": "Módulo 01 • Núcleo Algorítmico",
     "func.m1_title": "Estimación Bayesiana MAP (Maximum A Posteriori) Determinista",
-    "func.m1_lead": "SciPy L-BFGS-B & Resolución Numérica de Ecuaciones Diferenciales Ordinarias",
+    "func.m1_lead": "Optimización L-BFGS-B & Resolución Numérica de Ecuaciones Diferenciales Ordinarias",
     "func.m1_c1_t": "Minimización de Función Objetivo (OFV)",
     "func.m1_c1_d": "El optimizador encuentra los parámetros individuales que minimizan simultáneamente la distancia ponderada al prior poblacional y a los niveles séricos medidos.",
     "func.m1_c2_t": "Bounds Fisiológicos Rigurosos",
@@ -338,7 +492,7 @@
     "func.m3_c1_t": "Línea de Tiempo Renal No Estacionaria",
     "func.m3_c1_d": "Ajuste dinámico del aclaramiento renal ante fluctuaciones agudas de Creatinina Sérica (AKI en UCI) sin asumir estado renal constante.",
     "func.m3_c2_t": "Preservación de Masa de Fármaco A₁(t), A₂(t)",
-    "func.m3_c2_d": "La resolución por tramos mediante scipy.integrate.solve_ivp garantiza que la masa acumulada en cada compartimento se conserve entre cambios de aclaramiento.",
+    "func.m3_c2_d": "La resolución numérica por tramos garantiza que la masa acumulada en cada compartimento se conserve entre cambios de aclaramiento.",
     "func.m3_c3_t": "Modelado Extracorpóreo de Diálisis",
     "func.m3_c3_d": "Cálculo de aclaramiento en TRRC (CVVH / CVVHD / CVVHDF) considerando flujo de efluente, dosis de diálisis y coeficiente de tamizaje.",
     "func.m3_c4_t": "Hemodiálisis Intermitente (IHD)",
@@ -379,9 +533,9 @@
     "func.m7_eyebrow": "Módulo 07 • Seguridad Bank-Grade",
     "func.m7_title": "Biometría Renal Dinámica, Auditoría y Control de Calidad QC",
     "func.m7_lead": "Construido bajo los estándares más exigentes de la industria médica hospitalaria para la protección de datos y el cumplimiento normativo.",
-    "func.m7_c1_t": "Aislamiento PostgreSQL RLS",
+    "func.m7_c1_t": "Aislamiento Total por Institución",
     "func.m7_c1_d": "Multi-Tenant nativo donde los datos de cada institución están completamente aislados a nivel de base de datos.",
-    "func.m7_c2_t": "PatientChangeAuditModal",
+    "func.m7_c2_t": "Registro de Auditoría del Paciente",
     "func.m7_c2_d": "Trazabilidad inmutable por usuario, registrando autor, fecha, hora y cambios exactos de cada dosis o nivel.",
     "func.m7_c3_t": "Biometría Renal Automática",
     "func.m7_c3_d": "Cálculo instantáneo de Cockcroft-Gault, CKD-EPI, IMC, Peso Ideal y Peso Ajustado por paciente.",
@@ -389,7 +543,7 @@
     "func.m7_c4_d": "Comunicaciones y almacenamiento en reposo con cifrado militar de 256 bits y control QC continuo.",
     "func.m7_guarantees": "Garantías de Cumplimiento",
     "func.m7_g1": "✓ Trazabilidad inmutable por usuario",
-    "func.m7_g2": "✓ RLS Multi-Tenant por Hospital",
+    "func.m7_g2": "✓ Aislamiento Multi-Institucional Total",
     "func.m7_g3": "✓ QC automático de niveles TDM",
     "func.m7_g4": "✓ Cifrado bancario TLS 1.3",
     "func.cta_t": "Observa el flujo en un paciente real",
@@ -711,18 +865,18 @@
     "hero.stat_target_label": "mg·h/L Target AUC₂₄/MIC",
     "hero.stat_export_num": "1 Click",
     "hero.stat_export_label": "PopPK NONMEM Export",
-    "hero.stat_security_num": "PostgreSQL",
-    "hero.stat_security_label": "Bank-Grade RLS Isolation",
+    "hero.stat_security_num": "100%",
+    "hero.stat_security_label": "Bank-Grade Data Isolation",
     "hero.stat_tdm_status": "TDM State: <strong style=\"color:var(--green-dark)\">Optimized in Real Time</strong>",
     "hero.stat_vanco_current": "Vancomycin: <strong>1,000 mg q12h</strong>",
     "algo.eyebrow": "Section 2 • Algorithmic Core",
     "algo.title": "Mathematical MAP Bayesian Optimization & ODE RK45 Engine",
-    "algo.lead": "Clinical engineering rigor pairing SciPy L-BFGS-B numerical optimization with adaptive-order ordinary differential equation (ODE) solvers.",
+    "algo.lead": "Clinical engineering rigor pairing L-BFGS-B numerical optimization with adaptive-order ordinary differential equation (ODE) solvers.",
     "algo.step1_badge": "Step 01 • Clinical Population Input",
     "algo.step1_title": "📥 Population Prior + Patient Metrics",
     "algo.step1_desc": "Integrates peer-reviewed validated population priors with patient demographics, dynamic renal function, and observed serum drug concentrations.",
     "algo.step2_badge": "Step 02 • Deterministic Optimization",
-    "algo.step2_title": "⚙️ MAP Engine (SciPy L-BFGS-B + ODE RK45)",
+    "algo.step2_title": "⚙️ MAP Engine (L-BFGS-B + ODE RK45)",
     "algo.step2_desc": "Computes exact individual pharmacokinetic parameters (CL, V₁, Q, V₂, t₁/₂) in milliseconds by integrating multicompartment ODEs with rigorous mass conservation A₁(t), A₂(t).",
     "algo.step3_badge": "Step 03 • Prescription Projections",
     "algo.step3_title": "📈 Individual Curve + Dose/AUC₂₄ Predictor",
@@ -790,19 +944,19 @@
     "audit.poppk_title": "R&D Dataset Exporter for NONMEM & Monolix",
     "audit.poppk_desc": "Generates chronologically structured datasets with time-varying covariates formatted for immediate import without manual data cleaning.",
     "audit.patient_title": "Immutable Clinical Patient Audit",
-    "audit.patient_desc": "Tamper-proof change record (PatientChangeAuditModal) logging user ID, timestamp, and exact dose adjustments.",
+    "audit.patient_desc": "Tamper-proof change record logging user ID, timestamp, and exact dose adjustments.",
     "audit.patient_item1": "Complete traceability of dosing and level revisions.",
     "audit.patient_item2": "Clinician user and institutional role attribution.",
     "audit.patient_item3": "Audit-ready compliance for hospital accreditation boards.",
     "arch.eyebrow": "Section 8 • Cloud Architecture & Security",
-    "arch.title": "Institutional Multi-Tenant Isolation (RLS) & Master Admin Panel",
+    "arch.title": "Institutional Multi-Tenant Isolation & Master Admin Panel",
     "arch.lead": "Modern zero-latency cloud infrastructure with bank-grade encryption and institutional autonomy.",
-    "arch.fe_title": "React 18 & TypeScript",
+    "arch.fe_title": "High-Speed Clinical Interface",
     "arch.fe_desc": "High-performance clinical interface designed for zero visual lag at the patient bedside.",
-    "arch.be_title": "Python 3.10 & FastAPI",
-    "arch.be_desc": "High-throughput parallel mathematical execution containerized via Docker / Uvicorn with SciPy and NumPy.",
-    "arch.db_title": "PostgreSQL RLS Supabase",
-    "arch.db_desc": "Row Level Security (RLS). Institutional data is cryptographically isolated between hospitals complying with HIPAA and GDPR.",
+    "arch.be_title": "High-Performance Computation Engine",
+    "arch.be_desc": "High-throughput parallel mathematical execution on scalable cloud infrastructure, powered by scientific-grade computation engines.",
+    "arch.db_title": "Complete Data Isolation per Hospital",
+    "arch.db_desc": "Institutional data is cryptographically isolated between hospitals, complying with HIPAA and GDPR privacy standards.",
     "sales.eyebrow": "Executive Summary",
     "sales.title": "Value Proposition & Competitive Advantage Matrix",
     "sales.lead": "Clinical advantages and strategic financial benefits for adopting institutions.",
@@ -814,8 +968,8 @@
     "sales.card3_desc": "<strong>Competitive Advantage:</strong> The engine continuously calibrates priors to match the genetics, body composition, and pathology of your hospital's specific population.",
     "sales.card4_title": "R&D Format (NONMEM / Monolix)",
     "sales.card4_desc": "<strong>Competitive Advantage:</strong> 1-click structured PopPK dataset generation, perfect for academic medical centers, teaching hospitals, and clinical trials.",
-    "sales.card5_title": "PostgreSQL RLS Security",
-    "sales.card5_desc": "<strong>Competitive Advantage:</strong> Bank-grade data privacy with multi-tenant cryptographic Row Level Security (RLS) isolation.",
+    "sales.card5_title": "Institutional Security & Isolation",
+    "sales.card5_desc": "<strong>Competitive Advantage:</strong> Bank-grade data privacy with fully isolated, encrypted multi-tenant architecture.",
     "cta.title": "Bring Precision Dosing to Your Institution",
     "cta.desc": "Schedule an executive presentation for your clinical pharmacy leadership, medical staff, or IT steering committee.",
     "cta.btn_demo": "Request Hospital Demo →",
@@ -830,10 +984,10 @@
     "pricing.plan_free_btn": "Start 14-Day Free Trial",
     "pricing.plan_comp_ribbon": "Complete Plan",
     "pricing.plan_comp_name": "Institutional All-Inclusive",
-    "pricing.plan_comp_price": "$1,350 USD",
-    "pricing.plan_comp_period": "/ year",
+    "pricing.plan_comp_price": "Coming Soon!",
+    "pricing.plan_comp_period": "",
     "pricing.plan_comp_desc": "Comprehensive annual license with unlimited hospital users, unlimited patients, all clinical models, and full PopPK export capabilities.",
-    "pricing.plan_comp_btn": "Subscribe Complete Plan ($1,350 USD/yr)",
+    "pricing.plan_comp_btn": "Coming soon, at an unbeatable price!",
     "pricing.faq_title": "Frequently Asked Procurement Questions",
     "pricing.faq_q1": "How does the 14-day free trial work?",
     "pricing.faq_a1": "Register immediately for unrestricted access to all clinical tools. No credit card required to start.",
@@ -856,7 +1010,7 @@
     "features.slide2_desc": "Simulate any dosage regimen (mg), dosing interval (q8h, q12h, q24h, or continuous infusion) while immediately viewing steady-state projections (Cmax,ss, Cmin,ss, and target AUC24/MIC 400–600 mg·h/L).",
     "features.slide3_badge": "Critical Care & ICU",
     "features.slide3_title": "Continuous ODE Kinetics during Dynamic Renal Failure (AKI)",
-    "features.slide3_desc": "Numerically solves differential equations via SciPy RK45, seamlessly modeling abrupt shifts in serum creatinine and extracorporeal dialytic clearance without mass loss.",
+    "features.slide3_desc": "Numerically solves differential equations via RK45, seamlessly modeling abrupt shifts in serum creatinine and extracorporeal dialytic clearance without mass loss.",
     "features.slide4_badge": "Research & PopPK",
     "features.slide4_title": "Automated Dataset Generation for NONMEM and Monolix",
     "features.slide4_desc": "Structure institutional cohorts into standardized datasets (CSV UTF-8 BOM) with time-varying covariates for advanced pharmacometric modeling and academic publishing.",
@@ -956,13 +1110,13 @@
     "func.btn_sim": "Try interactive simulator ↓",
     "func.btn_mod3": "View Module 03 details ↓",
     "func.btn_mod4": "View Module 04 details ↓",
-    "func.stat1_desc": "Algorithmic convergence runtime in SciPy L-BFGS-B.",
+    "func.stat1_desc": "Algorithmic convergence runtime of the L-BFGS-B optimizer.",
     "func.stat2_desc": "mg·h/L Therapeutic target AUC₂₄/MIC for Vancomycin.",
     "func.stat3_desc": "ODE RK45 numerical integration during AKI with zero mass loss.",
     "func.stat4_desc": "PopPK structured dataset for NONMEM in 1 click.",
     "func.m1_eyebrow": "Module 01 • Algorithmic Core",
     "func.m1_title": "Deterministic MAP (Maximum A Posteriori) Bayesian Estimation",
-    "func.m1_lead": "SciPy L-BFGS-B & Numerical Ordinary Differential Equation Solvers",
+    "func.m1_lead": "L-BFGS-B Optimization & Numerical Ordinary Differential Equation Solvers",
     "func.m1_c1_t": "Objective Function Value (OFV) Minimization",
     "func.m1_c1_d": "The numerical optimizer solves for individual parameters minimizing weighted deviations from both the population prior and observed serum levels.",
     "func.m1_c2_t": "Rigorous Physiological Bounds",
@@ -988,7 +1142,7 @@
     "func.m3_c1_t": "Non-Stationary Renal Timeline",
     "func.m3_c1_d": "Dynamic renal clearance adjustments matching abrupt serum creatinine shifts (AKI in ICU) without assuming constant renal kinetics.",
     "func.m3_c2_t": "Drug Mass Conservation A₁(t), A₂(t)",
-    "func.m3_c2_d": "Piecewise integration via scipy.integrate.solve_ivp ensures cumulative drug mass in each compartment is strictly preserved across clearance shifts.",
+    "func.m3_c2_d": "Piecewise numerical integration ensures cumulative drug mass in each compartment is strictly preserved across clearance shifts.",
     "func.m3_c3_t": "Extracorporeal Dialytic Modeling",
     "func.m3_c3_d": "Clearance calculations in CRRT (CVVH / CVVHD / CVVHDF) factoring effluent flow, dialysate rate, and membrane sieving coefficient.",
     "func.m3_c4_t": "Intermittent Hemodialysis (IHD)",
@@ -1029,9 +1183,9 @@
     "func.m7_eyebrow": "Module 07 • Bank-Grade Security",
     "func.m7_title": "Dynamic Renal Biometrics, Auditability & QC Quality Control",
     "func.m7_lead": "Engineered under the most rigorous hospital compliance standards for data protection and medical governance.",
-    "func.m7_c1_t": "PostgreSQL RLS Isolation",
+    "func.m7_c1_t": "Total Institutional Isolation",
     "func.m7_c1_d": "Native multi-tenancy where each institution's clinical records are cryptographically isolated at the database layer.",
-    "func.m7_c2_t": "PatientChangeAuditModal",
+    "func.m7_c2_t": "Patient Audit Trail",
     "func.m7_c2_d": "Immutable audit trail per clinician, logging user ID, timestamp, and exact adjustments made to every dose or blood level.",
     "func.m7_c3_t": "Automated Renal Biometrics",
     "func.m7_c3_d": "Instant computation of Cockcroft-Gault, CKD-EPI, BMI, Ideal Body Weight, and Adjusted Body Weight per patient.",
@@ -1039,7 +1193,7 @@
     "func.m7_c4_d": "In-transit and at-rest 256-bit encryption with continuous QC telemetry and compliance enforcement.",
     "func.m7_guarantees": "Compliance Guarantees",
     "func.m7_g1": "✓ Immutable user change audit logs",
-    "func.m7_g2": "✓ Multi-Tenant PostgreSQL RLS by Hospital",
+    "func.m7_g2": "✓ Total Multi-Tenant Isolation by Hospital",
     "func.m7_g3": "✓ Automated TDM level QC verification",
     "func.m7_g4": "✓ Bank-grade TLS 1.3 encryption",
     "func.cta_t": "See the Workflow on a Real Patient",
@@ -1361,18 +1515,18 @@
     "hero.stat_target_label": "mg·h/L 目标 AUC₂₄/MIC",
     "hero.stat_export_num": "1 键导出",
     "hero.stat_export_label": "PopPK NONMEM 数据集",
-    "hero.stat_security_num": "PostgreSQL",
-    "hero.stat_security_label": "金融级 RLS 数据隔离",
+    "hero.stat_security_num": "100%",
+    "hero.stat_security_label": "金融级数据隔离",
     "hero.stat_tdm_status": "TDM 状态：<strong style=\"color:var(--green-dark)\">实时精准优化中</strong>",
     "hero.stat_vanco_current": "万古霉素：<strong>1,000 mg q12h</strong>",
     "algo.eyebrow": "第 2 节 • 核心算法",
     "algo.title": "MAP 贝叶斯数学优化引擎与自适应 ODE RK45 求解器",
-    "algo.lead": "结合 SciPy L-BFGS-B 高性能优化算法与自适应步长常微分方程数值求解，展现临床药动学工程的极致严谨。",
+    "algo.lead": "结合 L-BFGS-B 高性能优化算法与自适应步长常微分方程数值求解，展现临床药动学工程的极致严谨。",
     "algo.step1_badge": "步骤 01 • 临床与群体参数输入",
     "algo.step1_title": "📥 群体先验分布 + 患者个体参数",
     "algo.step1_desc": "无缝整合国际公认的群体先验参数 (Priors) 与患者人口统计学指标、动态肾功能及实测血药浓度数据。",
     "algo.step2_badge": "步骤 02 • 确定性优化求解",
-    "algo.step2_title": "⚙️ MAP 核心计算 (SciPy L-BFGS-B + ODE RK45)",
+    "algo.step2_title": "⚙️ MAP 核心计算 (L-BFGS-B + ODE RK45)",
     "algo.step2_desc": "通过严格质量守恒定律求解多室常微分方程 A₁(t)、A₂(t)，在毫秒内精准拟合出个体化药动学参数 (CL, V₁, Q, V₂, t₁/₂)。",
     "algo.step3_badge": "步骤 03 • 处方预测与剂量推荐",
     "algo.step3_title": "📈 个体化药时曲线 + 剂量/AUC₂₄ 预测器",
@@ -1440,19 +1594,19 @@
     "audit.poppk_title": "NONMEM 与 Monolix 药物研发标准数据集导出器",
     "audit.poppk_desc": "自动按时间序列构建包含动态协变量的标准群体药动学数据集，支持一键直接导入科研软件，免除繁重的人工数据清洗工作。",
     "audit.patient_title": "患者专属不可篡改临床审计日志",
-    "audit.patient_desc": "内置防篡改变更记录系统 (PatientChangeAuditModal)，完整记录操作用户、精确时间戳及患者处方的每一次调整细节。",
+    "audit.patient_desc": "内置防篡改变更记录系统，完整记录操作用户、精确时间戳及患者处方的每一次调整细节。",
     "audit.patient_item1": "剂量调整与血药浓度修订的全程可追溯性。",
     "audit.patient_item2": "临床医师与专科药师操作身份精准记录。",
     "audit.patient_item3": "全面满足三甲评审与国际 JCI 认证合规要求。",
     "arch.eyebrow": "第 8 节 • 云架构与数据安全",
-    "arch.title": "医院多租户行级安全隔离 (RLS) 与主控管理面板",
+    "arch.title": "医院多租户安全隔离与主控管理面板",
     "arch.lead": "现代化零延迟云端基础设施，配备金融级加密传输，保障各医疗机构数据主权与独立性。",
-    "arch.fe_title": "React 18 与 TypeScript",
+    "arch.fe_title": "高速临床交互界面",
     "arch.fe_desc": "高性能临床前端交互界面，专为床旁零延迟即时决策而设计。",
-    "arch.be_title": "Python 3.10 与 FastAPI",
-    "arch.be_desc": "基于 Docker / Uvicorn 高并发容器化部署，集成 SciPy 与 NumPy 高性能数值计算库。",
-    "arch.db_title": "PostgreSQL RLS Supabase",
-    "arch.db_desc": "采用行级安全策略 (Row Level Security)，各医院数据逻辑与物理层面严格隔离，全面遵循医疗数据安全规范。",
+    "arch.be_title": "高性能计算引擎",
+    "arch.be_desc": "基于可扩展云端基础设施的高并发并行计算，搭载科研级数值计算引擎。",
+    "arch.db_title": "医院间数据完全隔离",
+    "arch.db_desc": "各医院数据在逻辑与物理层面严格隔离，全面遵循医疗数据安全规范。",
     "sales.eyebrow": "商业价值总结",
     "sales.title": "核心价值主张与综合竞争优势矩阵",
     "sales.lead": "为医疗机构带来卓越的临床疗效提升与显著的经济运营价值。",
@@ -1464,7 +1618,7 @@
     "sales.card3_desc": "<strong>竞争优势：</strong> 算法持续学习并契合本院人群的遗传学特征、营养状况及特有生理病理特征。",
     "sales.card4_title": "研发标准格式 (NONMEM / Monolix)",
     "sales.card4_desc": "<strong>竞争优势：</strong> 一键自动生成科研级标准化数据集，为高水平临床研究、教学医院科研与学术论文发表赋能。",
-    "sales.card5_title": "PostgreSQL RLS 安全保障",
+    "sales.card5_title": "机构级安全隔离保障",
     "sales.card5_desc": "<strong>竞争优势：</strong> 医院间数据完全物理与逻辑隔离，提供金融级数据隐私与安全保护。",
     "cta.title": "让精准药动学剂量优化赋能您的医疗机构",
     "cta.desc": "即刻为您的临床药学团队、重症感染科室或信息技术委员会预约专家演示。",
@@ -1480,10 +1634,10 @@
     "pricing.plan_free_btn": "开启 14 天免费体验",
     "pricing.plan_comp_ribbon": "全功能尊享",
     "pricing.plan_comp_name": "全院机构完整授权",
-    "pricing.plan_comp_price": "1,350 USD",
-    "pricing.plan_comp_period": "/ 年",
+    "pricing.plan_comp_price": "敬请期待！",
+    "pricing.plan_comp_period": "",
     "pricing.plan_comp_desc": "年度全包授权，全院无限制用户与患者数量，解锁全部临床模型与 PopPK 数据集导出能力。",
-    "pricing.plan_comp_btn": "订阅完整版 ($1,350 USD/年)",
+    "pricing.plan_comp_btn": "即将上线，价格无可匹敌！",
     "pricing.faq_title": "采购与授权常见问题",
     "pricing.faq_q1": "14 天免费试用如何开展？",
     "pricing.faq_a1": "即时注册即可全功能使用所有临床模块，无需绑定信用卡。",
@@ -1506,7 +1660,7 @@
     "features.slide2_desc": "即时模拟任意给药剂量 (mg)、给药间隔 (q8h, q12h, q24h 或持续滴注)，实时观察稳态峰谷浓度及目标 AUC24/MIC (400–600 mg·h/L) 达标情况。",
     "features.slide3_badge": "重症 ICU 深度适配",
     "features.slide3_title": "急性肾功能衰竭 (AKI) 下的连续 ODE 动力学",
-    "features.slide3_desc": "基于 SciPy RK45 常微分方程连续数值积分，精确模拟肌酐剧烈波动及血液透析/CRRT 期间的药物清除，保障质量严格守恒。",
+    "features.slide3_desc": "基于 RK45 常微分方程连续数值积分，精确模拟肌酐剧烈波动及血液透析/CRRT 期间的药物清除，保障质量严格守恒。",
     "features.slide4_badge": "科研赋能 & PopPK",
     "features.slide4_title": "NONMEM 与 Monolix 自动化科研数据集生成",
     "features.slide4_desc": "将全院患者治疗数据一键导出为包含时变协变量的标准群体药动学数据集 (CSV UTF-8 BOM)，直接用于学术论文与科研建模。",
@@ -1606,13 +1760,13 @@
     "func.btn_sim": "体验交互模拟器 ↓",
     "func.btn_mod3": "查看模块 03 详情 ↓",
     "func.btn_mod4": "查看模块 04 详情 ↓",
-    "func.stat1_desc": "SciPy L-BFGS-B 算法数值收敛耗时。",
+    "func.stat1_desc": "L-BFGS-B 算法数值收敛耗时。",
     "func.stat2_desc": "万古霉素目标 AUC₂₄/MIC 治疗靶值 (mg·h/L)。",
     "func.stat3_desc": "急性肾损伤下 ODE RK45 质量守恒数值积分。",
     "func.stat4_desc": "一键导出 NONMEM 标准群体药动学数据集。",
     "func.m1_eyebrow": "模块 01 • 核心算法",
     "func.m1_title": "确定性 MAP (最大后验概率) 贝叶斯估算",
-    "func.m1_lead": "SciPy L-BFGS-B 算法与常微分方程数值求解器",
+    "func.m1_lead": "L-BFGS-B 优化算法与常微分方程数值求解器",
     "func.m1_c1_t": "目标函数值 (OFV) 极小化",
     "func.m1_c1_d": "优化器精准求解个体动力学参数，使得群体先验分布与实测血药浓度之间的加权偏差达到全局极小。",
     "func.m1_c2_t": "严密的生理学参数边界约束",
@@ -1638,7 +1792,7 @@
     "func.m3_c1_t": "非稳态动态肾功能时间轴",
     "func.m3_c1_d": "根据多次血清肌酐剧烈波动实时动态调整肾清除率，杜绝假定肾功能恒定的传统错误。",
     "func.m3_c2_t": "体内蓄积药量严格质量守恒 A₁(t), A₂(t)",
-    "func.m3_c2_d": "基于 scipy.integrate.solve_ivp 的分段连续数值积分，确保各房室蓄积药量在肾功能突变时不发生非物理丢失。",
+    "func.m3_c2_d": "基于分段连续数值积分方法，确保各房室蓄积药量在肾功能突变时不发生非物理丢失。",
     "func.m3_c3_t": "透析体外清除动力学建模",
     "func.m3_c3_d": "精确计算 CRRT (CVVH / CVVHD / CVVHDF) 下的体外清除率，综合考量废液流速、透析剂量及超滤筛过系数。",
     "func.m3_c4_t": "间歇性血液透析 (IHD)",
@@ -1679,9 +1833,9 @@
     "func.m7_eyebrow": "模块 07 • 金融级安全架构",
     "func.m7_title": "动态肾脏生物计量、合规审计与 QC 质控体系",
     "func.m7_lead": "严格遵循国际医疗信息化最高标准构建，确保数据主权、隐私安全与合规审计。",
-    "func.m7_c1_t": "PostgreSQL RLS 行级安全隔离",
+    "func.m7_c1_t": "机构级完全数据隔离",
     "func.m7_c1_d": "原生多租户架构，各医院数据在数据库底层实现物理与密码学级别隔离。",
-    "func.m7_c2_t": "PatientChangeAuditModal 不可篡改审计",
+    "func.m7_c2_t": "患者变更不可篡改审计",
     "func.m7_c2_d": "全程记录操作人员、修改时间戳及对每一笔剂量或测定值的微调细节。",
     "func.m7_c3_t": "自动化肾脏生物计量解析",
     "func.m7_c3_d": "实时精准计算 Cockcroft-Gault、CKD-EPI、BMI、理想体重及校正体重指标。",
@@ -1689,7 +1843,7 @@
     "func.m7_c4_d": "数据传输与静态存储全程采用 256 位军事级加密，配合持续 QC 质控监控。",
     "func.m7_guarantees": "医疗合规认证保障",
     "func.m7_g1": "✓ 用户操作不可篡改审计追踪",
-    "func.m7_g2": "✓ 医院间 PostgreSQL RLS 多租户隔离",
+    "func.m7_g2": "✓ 医院间多租户完全隔离",
     "func.m7_g3": "✓ TDM 血药浓度自动化 QC 质控校验",
     "func.m7_g4": "✓ TLS 1.3 银行级金融安全加密",
     "func.cta_t": "在真实患者案例中体验完整工作流",
@@ -2011,18 +2165,18 @@
     "hero.stat_target_label": "mg·h/L 目標 AUC₂₄/MIC",
     "hero.stat_export_num": "1 クリック",
     "hero.stat_export_label": "PopPK NONMEM データ出力",
-    "hero.stat_security_num": "PostgreSQL",
-    "hero.stat_security_label": "金融機関レベル RLS データ分離",
+    "hero.stat_security_num": "100%",
+    "hero.stat_security_label": "金融機関レベルのデータ分離",
     "hero.stat_tdm_status": "TDM 状態：<strong style=\"color:var(--green-dark)\">リアルタイム最適化稼働中</strong>",
     "hero.stat_vanco_current": "バンコマイシン：<strong>1,000 mg q12h</strong>",
     "algo.eyebrow": "第 2 章 • アルゴリズム中核技術",
     "algo.title": "MAP ベイズ最適化計算エンジン & 適応型 ODE RK45 求解器",
-    "algo.lead": "SciPy L-BFGS-B 高速最適化法と適応型ルンゲ＝クッタ常微分方程式（ODE）数値積分を高度に融合した医療工学設計。",
+    "algo.lead": "L-BFGS-B 高速最適化法と適応型ルンゲ＝クッタ常微分方程式（ODE）数値積分を高度に融合した医療工学設計。",
     "algo.step1_badge": "ステップ 01 • 臨床・母集団パラメータ入力",
     "algo.step1_title": "📥 母集団事前分布 + 患者生体パラメータ",
     "algo.step1_desc": "査読論文で検証された母集団パラメータ (Prior) と、患者の身体計測値、動的腎機能指標、実測血中濃度データを統合。",
     "algo.step2_badge": "ステップ 02 • 確定論的最適化計算",
-    "algo.step2_title": "⚙️ MAP エンジン (SciPy L-BFGS-B + ODE RK45)",
+    "algo.step2_title": "⚙️ MAP エンジン (L-BFGS-B + ODE RK45)",
     "algo.step2_desc": "多コンパートメント常微分方程式を質量保存則 A₁(t), A₂(t) に基づき瞬時に解き、個別 PK パラメータ (CL, V₁, Q, V₂, t₁/₂) を算出。",
     "algo.step3_badge": "ステップ 03 • 処方予測と投与量推奨",
     "algo.step3_title": "📈 個別化血中濃度曲線 + 投与量/AUC₂₄ 予測器",
@@ -2090,19 +2244,19 @@
     "audit.poppk_title": "NONMEM & Monolix 向け研究開発用データセット出力機能",
     "audit.poppk_desc": "時系列共変量を含む標準化母集団 PK データセットを自動生成。手作業でのデータクリーニングなしで解析ソフトへ直接インポート可能。",
     "audit.patient_title": "患者別不可変臨床監査ログ",
-    "audit.patient_desc": "操作ユーザー、タイムスタンプ、処方変更内容を改ざん不能な形式で完全記録 (PatientChangeAuditModal)。",
+    "audit.patient_desc": "操作ユーザー、タイムスタンプ、処方変更内容を改ざん不能な形式で完全記録。",
     "audit.patient_item1": "投与量変更および測定値修正の完全な追跡可能性。",
     "audit.patient_item2": "操作した医師・薬剤師の厳密なユーザー識別記録。",
     "audit.patient_item3": "医療監査・病院機能評価基準への完全適合保証。",
     "arch.eyebrow": "第 8 章 • クラウド構造 & セキュリティ",
-    "arch.title": "施設別行レベルセキュリティ (RLS) & マスター管理パネル",
+    "arch.title": "施設別完全データ分離 & マスター管理パネル",
     "arch.lead": "金融機関レベルの暗号化と各医療機関のデータ主権を担保する最新のゼロレイテンシ・クラウドインフラ。",
-    "arch.fe_title": "React 18 & TypeScript",
+    "arch.fe_title": "高速臨床インターフェース",
     "arch.fe_desc": "ベッドサイドでの即時判断を支えるゼロ遅延・高応答性インターフェース。",
-    "arch.be_title": "Python 3.10 & FastAPI",
-    "arch.be_desc": "Docker / Uvicorn コンテナ環境で SciPy・NumPy を駆使した超高速並列計算。",
-    "arch.db_title": "PostgreSQL RLS Supabase",
-    "arch.db_desc": "Row Level Security (RLS) により他施設からのアクセスを論理的・物理的に完全遮断し、医療データプライバシーを厳格に保護。",
+    "arch.be_title": "高性能計算エンジン",
+    "arch.be_desc": "拡張性の高いクラウド基盤上での超高速並列計算。科学計算グレードの演算エンジンを搭載。",
+    "arch.db_title": "施設ごとの完全データ分離",
+    "arch.db_desc": "他施設からのアクセスを論理的・物理的に完全遮断し、医療データプライバシーを厳格に保護。",
     "sales.eyebrow": "導入メリットの総括",
     "sales.title": "コアバリューと包括的競争優位性マトリクス",
     "sales.lead": "導入施設にもたらされる臨床成績の向上と戦略的・経済的メリット。",
@@ -2114,7 +2268,7 @@
     "sales.card3_desc": "<strong>競争優位性：</strong> 貴院の患者集団の遺伝・栄養・病態特性に合わせてアルゴリズムが継続的に自己最適化。",
     "sales.card4_title": "研究開発標準フォーマット (NONMEM/Monolix)",
     "sales.card4_desc": "<strong>競争優位性：</strong> 1クリックで研究用標準データセットを自動生成し、大学病院や臨床試験での研究成果創出を支援。",
-    "sales.card5_title": "PostgreSQL RLS による最高峰セキュリティ",
+    "sales.card5_title": "施設単位の最高峰セキュリティ",
     "sales.card5_desc": "<strong>競争優位性：</strong> 施設間完全分離アーキテクチャにより、最高水準のデータガバナンスと安全性を確立。",
     "cta.title": "精密薬物動態投与設計を貴院の臨床現場へ",
     "cta.desc": "薬剤部・感染症科・集中治療部・医療情報部向けのエグゼクティブ・プレゼンテーションをご案内いたします。",
@@ -2130,10 +2284,10 @@
     "pricing.plan_free_btn": "14日間無料体験を開始",
     "pricing.plan_comp_ribbon": "包括プラン",
     "pricing.plan_comp_name": "施設完全プラン",
-    "pricing.plan_comp_price": "1,350 USD",
-    "pricing.plan_comp_period": "/ 年",
+    "pricing.plan_comp_price": "近日公開！",
+    "pricing.plan_comp_period": "",
     "pricing.plan_comp_desc": "全施設無制限ユーザー、全臨床モジュール、PopPK データセット出力を含む年間包括ライセンス。",
-    "pricing.plan_comp_btn": "完全プランに申し込む ($1,350 USD/年)",
+    "pricing.plan_comp_btn": "近日公開、破格の価格で登場！",
     "pricing.faq_title": "調達・導入に関するよくある質問",
     "pricing.faq_q1": "14日間の無料トライアルはどのように開始できますか？",
     "pricing.faq_a1": "即時登録で全臨床機能をご利用いただけます。開始にあたりクレジットカードの登録は不要です。",
@@ -2156,7 +2310,7 @@
     "features.slide2_desc": "任意の投与量 (mg) や投与間隔 (q8h, q12h, q24h, 持続静注) をシミュレートし、目標 AUC24/MIC (400–600 mg·h/L) への到達状況を即座に視覚化します。",
     "features.slide3_badge": "ICU 重症管理対応",
     "features.slide3_title": "急性腎障害 (AKI) 時の連続常微分方程式 (ODE) 動態",
-    "features.slide3_desc": "SciPy RK45 による数値積分で、急激なクレアチニン変動や血液透析/CRRT による体外クリアランスを質量保存則に基づき滑らかに解析します。",
+    "features.slide3_desc": "RK45 による数値積分で、急激なクレアチニン変動や血液透析/CRRT による体外クリアランスを質量保存則に基づき滑らかに解析します。",
     "features.slide4_badge": "研究・PopPK 連携",
     "features.slide4_title": "NONMEM & Monolix 向け標準データセット自動生成",
     "features.slide4_desc": "院内の治療データを時系列共変量を含む標準形式 (CSV UTF-8 BOM) でワンクリック出力し、学術研究や論文作成を支援します。",
@@ -2256,13 +2410,13 @@
     "func.btn_sim": "対話型シミュレーターを試す ↓",
     "func.btn_mod3": "モジュール 03 の詳細を見る ↓",
     "func.btn_mod4": "モジュール 04 の詳細を見る ↓",
-    "func.stat1_desc": "SciPy L-BFGS-B アルゴリズムの収束計算時間。",
+    "func.stat1_desc": "L-BFGS-B アルゴリズムの収束計算時間。",
     "func.stat2_desc": "バンコマイシン目標治療域 AUC₂₄/MIC (mg·h/L)。",
     "func.stat3_desc": "AKI 時の質量保存型 ODE RK45 数値積分。",
     "func.stat4_desc": "NONMEM 用 PopPK データセットを 1 クリック出力。",
     "func.m1_eyebrow": "モジュール 01 • アルゴリズム中核技術",
     "func.m1_title": "確定論的 MAP (最大事後確率) ベイズ推定",
-    "func.m1_lead": "SciPy L-BFGS-B & 常微分方程式数値解析エンジン",
+    "func.m1_lead": "L-BFGS-B 最適化 & 常微分方程式数値解析エンジン",
     "func.m1_c1_t": "目的関数値 (OFV) 最小化",
     "func.m1_c1_d": "最適化エンジンが母集団 Prior 分布と実測血中濃度の加重乖離度を同時に最小化する個別 PK パラメータを算出。",
     "func.m1_c2_t": "厳密な生理学的パラメータ境界設定",
@@ -2288,7 +2442,7 @@
     "func.m3_c1_t": "非定常な動的腎機能タイムライン",
     "func.m3_c1_d": "ICU での血清クレアチニン急変 (AKI) に応じて腎クリアランスを動的追従し、腎機能一定の仮定による過誤を排除。",
     "func.m3_c2_t": "体内薬物蓄積量の質量保存 A₁(t), A₂(t)",
-    "func.m3_c2_d": "scipy.integrate.solve_ivp による区分連続数値積分により、クリアランス変化時にも体内薬物量の不連続な消失を防止。",
+    "func.m3_c2_d": "区分連続数値積分により、クリアランス変化時にも体内薬物量の不連続な消失を防止。",
     "func.m3_c3_t": "体外透析クリアランスの速度論モデリング",
     "func.m3_c3_d": "CRRT (CVVH / CVVHD / CVVHDF) における廃液流速、透析液流量、膜透過係数から体外クリアランスを精密算出。",
     "func.m3_c4_t": "間欠的血液透析 (IHD)",
@@ -2329,9 +2483,9 @@
     "func.m7_eyebrow": "モジュール 07 • 金融機関レベルセキュリティ",
     "func.m7_title": "動的腎生体計測、臨床監査ログ & QC 品質管理",
     "func.m7_lead": "医療機関に求められる最高峰のデータ保護規格とコンプライアンス要件に準拠して設計。",
-    "func.m7_c1_t": "PostgreSQL RLS 行レベルセキュリティ分離",
+    "func.m7_c1_t": "施設単位の完全データ分離",
     "func.m7_c1_d": "各医療機関のデータがデータベース層で論理的・暗号学的に完全分離されたマルチテナント構成。",
-    "func.m7_c2_t": "PatientChangeAuditModal 不可変監査",
+    "func.m7_c2_t": "患者変更履歴の不可変監査",
     "func.m7_c2_d": "操作ユーザー、変更タイムスタンプ、投与量や採血値の微修正内容を改ざん不能な形式で完全記録。",
     "func.m7_c3_t": "腎生体計測値の自動計算",
     "func.m7_c3_d": "Cockcroft-Gault、CKD-EPI、BMI、理想体重、補正体重を患者ごとに瞬時に自動算出。",
@@ -2339,7 +2493,7 @@
     "func.m7_c4_d": "通信および保存データの 256 ビット軍用レベル暗号化と継続的な品質管理 (QC) 監視。",
     "func.m7_guarantees": "医療コンプライアンス保証",
     "func.m7_g1": "✓ 改ざん不能なユーザー変更履歴監査",
-    "func.m7_g2": "✓ 施設別 PostgreSQL RLS マルチテナント完全分離",
+    "func.m7_g2": "✓ 施設別マルチテナント完全分離",
     "func.m7_g3": "✓ TDM 血中濃度の自動 QC 妥当性チェック",
     "func.m7_g4": "✓ 金融機関水準の TLS 1.3 強固な暗号化",
     "func.cta_t": "実際の患者フローを体験する",
@@ -2627,21 +2781,7 @@
   };
 
   function getCurrentLang() {
-    const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved && SUPPORTED_LANGS.includes(saved)) {
-      return saved;
-    }
-    // Detección automática del idioma del navegador del visitante
-    const navLangs = navigator.languages || [navigator.language || navigator.userLanguage || "es"];
-    for (let i = 0; i < navLangs.length; i++) {
-      const l = navLangs[i];
-      if (!l) continue;
-      const prefix = l.slice(0, 2).toLowerCase();
-      if (SUPPORTED_LANGS.includes(prefix)) {
-        return prefix;
-      }
-    }
-    return "es";
+    return detectGeoAndLocaleLanguage().language;
   }
 
   function applyLanguage(lang) {
@@ -2678,6 +2818,19 @@
       }
     });
 
+    // Actualizar <title> y <meta name="description"> según data-i18n-title / data-i18n-desc en <html>
+    const titleKey = document.documentElement.getAttribute("data-i18n-title");
+    if (titleKey) {
+      const titleTranslation = dict[titleKey] || fallbackDict[titleKey];
+      if (titleTranslation !== undefined) document.title = titleTranslation;
+    }
+    const descKey = document.documentElement.getAttribute("data-i18n-desc");
+    if (descKey) {
+      const descTranslation = dict[descKey] || fallbackDict[descKey];
+      const metaDesc = document.querySelector('meta[name="description"]');
+      if (descTranslation !== undefined && metaDesc) metaDesc.setAttribute("content", descTranslation);
+    }
+
     // Actualizar selector en header
     document.querySelectorAll(".lang-current-label").forEach((el) => {
       el.textContent = LANG_NAMES[lang];
@@ -2692,10 +2845,24 @@
     window.dispatchEvent(new CustomEvent("pkbayes_language_changed", { detail: { lang } }));
   }
 
-  function setLanguage(lang) {
+  function setLanguage(lang, isManual) {
     if (!SUPPORTED_LANGS.includes(lang)) return;
-    localStorage.setItem(STORAGE_KEY, lang);
+    if (isManual === undefined) isManual = true;
+    try {
+      localStorage.setItem(STORAGE_KEY, lang);
+      if (isManual) localStorage.setItem(MANUAL_FLAG_KEY, "true");
+    } catch (e) {
+      // Ignorar errores de almacenamiento local
+    }
     applyLanguage(lang);
+  }
+
+  // Traduce una clave puntual usando el idioma actual (con fallback a es).
+  // Útil para strings generados dinámicamente por otros scripts (main.js, checkout.js, etc.)
+  function t(key) {
+    const lang = getCurrentLang();
+    const dict = I18N[lang] || I18N.es;
+    return dict[key] || I18N.es[key] || key;
   }
 
   function initLanguageDropdowns() {
@@ -2726,23 +2893,45 @@
     });
   }
 
-  // Inicialización inmediata al cargar el DOM
-  const initialLang = getCurrentLang();
-  
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", () => {
-      applyLanguage(initialLang);
-      initLanguageDropdowns();
-    });
-  } else {
+  // Inicialización inmediata al cargar el DOM (0ms, sin red)
+  const initialDetection = detectGeoAndLocaleLanguage();
+  const initialLang = initialDetection.language;
+
+  function boot() {
     applyLanguage(initialLang);
     initLanguageDropdowns();
+    maybeRefineByIP();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", boot);
+  } else {
+    boot();
+  }
+
+  // Refinamiento complementario por GeoIP en segundo plano. No pisa el idioma ya mostrado si
+  // el usuario ya eligió manualmente, o si la detección síncrona inicial ya fue confiable
+  // (localStorage/zona horaria/navigator.languages). Solo actúa cuando ninguna señal síncrona
+  // dio resultado y se cayó al valor por defecto "es" a ciegas.
+  function maybeRefineByIP() {
+    try {
+      const isManual = localStorage.getItem(MANUAL_FLAG_KEY) === "true";
+      if (isManual || initialDetection.confident) return;
+      detectLanguageByIP((matchedLang) => {
+        if (matchedLang && matchedLang !== getCurrentLang()) {
+          setLanguage(matchedLang, false);
+        }
+      });
+    } catch (e) {
+      // No-op
+    }
   }
 
   // Exponer API global
   window.PKBAYES_I18N = {
     setLanguage,
     getCurrentLang,
+    t,
     SUPPORTED_LANGS,
     LANG_NAMES,
     LANG_FLAGS

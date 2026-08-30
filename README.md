@@ -24,6 +24,7 @@ assets/js/config.js    → ⚠️ ÚNICO archivo que necesitas editar para activ
 assets/js/main.js      → Navegación, animaciones, acordeón FAQ, menú móvil
 assets/js/checkout.js  → Integración de Stripe Checkout (sin backend)
 assets/js/simulator.js → Simulador PK interactivo (matemática 1-compartimento, ilustrativo)
+assets/js/i18n.js      → Motor de traducción (ES/EN/ZH/JA) + geolocalización de idioma
 ```
 
 No hay build ni dependencias — puedes abrir `index.html` directamente en el navegador,
@@ -104,3 +105,26 @@ El simulador interactivo (`assets/js/simulator.js`) usa una ecuación simplifica
 de PK-Bayes ni debe usarse para decisiones clínicas. Los casos clínicos de
 `ejemplos.html` usan pacientes y valores **sintéticos**. Este aviso ya está incluido
 como texto visible en el propio sitio; consérvalo si añades más ejemplos.
+
+## 6. Idiomas y geolocalización
+
+El sitio está completamente traducido a **Español, English, 中文 y 日本語** mediante
+`assets/js/i18n.js`. Todo el texto visible (incluyendo `<title>`, meta descripción y
+strings generados dinámicamente por `main.js`/`checkout.js`) usa claves de traducción
+(`data-i18n`, `data-i18n-html`, `data-i18n-placeholder`, `data-i18n-title`, `data-i18n-desc`)
+resueltas contra un diccionario único con paridad de claves garantizada en los 4 idiomas.
+
+El idioma se detecta automáticamente con el mismo criterio que usa la app clínica
+(`pk-bayes` frontend), en cascada y sin bloquear el primer render:
+
+1. **Preferencia guardada** (`localStorage`, si el usuario ya eligió idioma manualmente).
+2. **Zona horaria del dispositivo** (`Intl.DateTimeFormat`, instantáneo y sin permisos).
+3. **Idioma del navegador** (`navigator.languages`).
+4. **Geolocalización por IP** (`api.country.is`, en segundo plano, con timeout de 2s) —
+   solo se consulta si ninguna señal anterior fue confiable, para evitar el "flash" de
+   que la página cambie de idioma sola tras cargar.
+
+Una vez que el usuario elige un idioma manualmente desde el selector del header, esa
+elección se recuerda y ya no es sobrescrita por la detección automática. Para traducir
+texto nuevo, agrega la clave a los 4 bloques (`es`/`en`/`zh`/`ja`) de `I18N` en `i18n.js`
+y usa `data-i18n="clave"` en el HTML, o `window.PKBAYES_I18N.t("clave")` desde JS.
