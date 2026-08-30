@@ -16,7 +16,7 @@ window.PKBAYES_CONFIG = {
   // URL de acceso a la aplicación clínica PK-Bayes
   APP_URL: "https://app.pk-bayes.com",
 
-  // URL directa de registro / prueba gratuita (14 días)
+  // URL directa de registro / prueba gratuita (15 días)
   REGISTER_URL: "https://app.pk-bayes.com",
 
   // Email de contacto comercial / soporte
