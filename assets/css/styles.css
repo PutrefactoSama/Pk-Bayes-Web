@@ -2578,23 +2578,28 @@ select.control-select {
 }
 
 /* Product architecture refresh */
-.product-hero { overflow:hidden; position:relative; padding:clamp(76px,10vw,132px) 0; }
+.product-hero { overflow:hidden; position:relative; padding:clamp(76px,9vw,116px) 0; }
 .product-hero::before { content:""; position:absolute; width:620px; height:620px; right:-180px; top:-260px; border-radius:50%; background:radial-gradient(circle,rgba(8,145,178,.22),transparent 66%); pointer-events:none; }
-.product-hero h1 { max-width:760px; font-size:clamp(2.75rem,5.8vw,5.25rem); line-height:.98; letter-spacing:-.055em; text-wrap:balance; }
-.product-hero .lead { max-width:690px; font-size:clamp(1.05rem,1.4vw,1.22rem); line-height:1.7; }
-.hero-assurance { margin-top:22px; max-width:560px; color:var(--text-on-dark-muted); font-size:.84rem; }
+.product-hero .hero-grid { grid-template-columns:minmax(0,1fr); gap:58px; max-width:1080px; }
+.product-hero h1 { max-width:940px; margin-left:auto; margin-right:auto; font-size:clamp(2.65rem,4.8vw,4.55rem); line-height:1.02; letter-spacing:-.05em; text-wrap:balance; }
+.product-hero .lead { max-width:760px; margin-left:auto; margin-right:auto; font-size:clamp(1.05rem,1.4vw,1.22rem); line-height:1.7; }
+.hero-copy-centered { text-align:center; }
+.hero-copy-centered .hero-actions { justify-content:center; }
+.hero-assurance { margin:22px auto 0; max-width:600px; color:var(--text-muted); font-size:.84rem; }
+.product-hero .mockup-window { width:100%; max-width:920px; margin:0 auto; box-shadow:0 35px 85px rgba(15,28,51,.22); }
 .clinical-preview { color:#fff; }
 .preview-topline,.preview-patient,.preview-metrics { display:flex; align-items:center; justify-content:space-between; gap:16px; }
-.preview-topline { color:#a8bedb; font-size:.78rem; }
+.preview-topline { color:#c7d4e5; font-size:.78rem; }
 .status-pulse { width:8px; height:8px; display:inline-block; margin-right:7px; border-radius:50%; background:#22d3ee; box-shadow:0 0 0 6px rgba(34,211,238,.1); }
 .preview-patient { margin-top:24px; padding-bottom:16px; border-bottom:1px solid rgba(255,255,255,.1); }
-.preview-patient div { display:grid; gap:5px; }.preview-patient small,.preview-patient>span { color:#8fa6c4; font-size:.76rem; }.preview-patient strong { font-size:1rem; }
+.preview-patient div { display:grid; gap:5px; }.preview-patient small,.preview-patient>span { color:#b7c7dc; font-size:.76rem; }.preview-patient strong { font-size:1rem; }
 .preview-chart { width:100%; height:auto; margin:8px 0 0; }
-.preview-metrics { padding-top:14px; border-top:1px solid rgba(255,255,255,.1); }.preview-metrics div { display:grid; gap:5px; }.preview-metrics small { color:#8fa6c4; font-size:.68rem; }.preview-metrics strong { font-size:.78rem; }
+.preview-metrics { padding-top:14px; border-top:1px solid rgba(255,255,255,.14); }.preview-metrics div { display:grid; gap:5px; }.preview-metrics small { color:#b7c7dc; font-size:.68rem; }.preview-metrics strong { color:#fff; font-size:.78rem; }
 .trust-strip { background:#fff; border-bottom:1px solid var(--border); }.trust-row { min-height:76px; display:flex; align-items:center; justify-content:center; gap:clamp(18px,4vw,54px); flex-wrap:wrap; color:var(--text-secondary); font-size:.88rem; }.trust-row span { color:var(--text-muted); text-transform:uppercase; letter-spacing:.12em; font-size:.7rem; font-weight:700; }.trust-row strong { font-weight:650; }
 .flow-step { padding:0 22px 0 0; }.flow-step h3 { margin:18px 0 8px; font-size:1.05rem; }.flow-step p { color:var(--text-secondary); font-size:.9rem; line-height:1.6; }
 .bento-cell { isolation:isolate; overflow:hidden; }.bento-cell::after { content:""; position:absolute; width:180px; height:180px; right:-90px; bottom:-100px; border-radius:50%; background:radial-gradient(circle,rgba(11,92,173,.12),transparent 70%); z-index:-1; }.bento-cell h3 { font-size:clamp(1.15rem,1.7vw,1.55rem); margin:16px 0 10px; letter-spacing:-.02em; }.bento-cell p { color:var(--text-secondary); line-height:1.65; }.bento-cell.dark p { color:var(--text-on-dark-muted); }.bento-cell .text-link { margin-top:auto; padding-top:22px; }
 .text-link { color:var(--primary); font-weight:700; font-size:.9rem; text-decoration:none; }.dark .text-link { color:#67e8f9; }
+.bento-cell.featured-light { background:linear-gradient(145deg,#fff,#eaf5ff); border-color:rgba(11,92,173,.2); box-shadow:0 22px 55px rgba(11,92,173,.1); }.bento-cell.featured-light .bento-icon { background:var(--primary); color:#fff; }.bento-cell.featured-light p { color:var(--text-secondary); }
 .drug-pair { display:grid; grid-template-columns:1.1fr .9fr; gap:20px; }.drug-panel { min-height:320px; position:relative; overflow:hidden; display:grid; grid-template-columns:auto 1fr; align-items:end; gap:24px; padding:clamp(28px,4vw,52px); border-radius:28px; background:#fff; border:1px solid var(--border); box-shadow:var(--shadow-sm); }.drug-panel.primary { background:linear-gradient(145deg,#fff,#edf6ff); }.drug-panel.amber { background:linear-gradient(145deg,#fff,#fff7e8); }.drug-panel h3 { font-size:2rem; margin-bottom:12px; }.drug-panel p { color:var(--text-secondary); line-height:1.7; max-width:560px; }.drug-panel .text-link { display:inline-block; margin-top:20px; }.drug-monogram { width:76px; height:76px; display:grid; place-items:center; border-radius:24px; background:var(--primary); color:#fff; font-weight:800; font-size:2rem; box-shadow:0 16px 35px rgba(11,92,173,.22); }.drug-panel.amber .drug-monogram { background:var(--amber); }.drug-status { position:absolute; right:24px; top:22px; color:var(--text-muted); font-size:.72rem; text-transform:uppercase; letter-spacing:.12em; font-weight:800; }
 .persona-col>span { display:block; color:var(--primary); text-transform:uppercase; letter-spacing:.1em; font-size:.68rem; font-weight:800; margin-bottom:18px; }.persona-col h3 { margin-bottom:10px; }.persona-col p { color:var(--text-secondary); line-height:1.65; }
 .cta-band-premium { border-radius:32px; padding:clamp(32px,5vw,64px); background:linear-gradient(125deg,var(--sidebar-bg),#123766); box-shadow:0 28px 70px rgba(15,28,51,.2); }.cta-band-premium .eyebrow { color:#67e8f9; }.cta-band-premium h2 { max-width:720px; font-size:clamp(2rem,4vw,3.5rem); letter-spacing:-.04em; }.cta-band-premium p { max-width:650px; }.cta-actions { display:flex; gap:12px; flex-wrap:wrap; }
