@@ -160,6 +160,7 @@
     function goToSlide(idx) {
       tourTabs.forEach((tab, i) => {
         tab.classList.toggle("active", i === idx);
+        tab.setAttribute("aria-selected", String(i === idx));
         // Reset progress bar animation
         const prog = tab.querySelector(".app-tour-progress");
         if (prog) {
@@ -194,7 +195,16 @@
     tourTabs.forEach((tab, i) => {
       tab.addEventListener("click", () => {
         goToSlide(i);
+        tab.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
         startAutoTour(); // Restart timer on click
+      });
+      tab.addEventListener("keydown", (event) => {
+        if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+        event.preventDefault();
+        const direction = event.key === "ArrowRight" ? 1 : -1;
+        const next = (i + direction + tourTabs.length) % tourTabs.length;
+        tourTabs[next].focus();
+        goToSlide(next);
       });
     });
 
@@ -205,7 +215,7 @@
     }
 
     goToSlide(0);
-    startAutoTour();
+    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) startAutoTour();
   }
 
   /* =========================================================================
@@ -483,5 +493,4 @@
   initVFGStrata();
   initFeatureSlider();
 })();
-
 
