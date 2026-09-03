@@ -156,6 +156,7 @@
     let currentIdx = 0;
     let tourTimer = null;
     const tourDuration = 6000;
+    const isGuidedTour = document.querySelector(".app-tour-wrapper")?.classList.contains("guided-tour");
 
     function goToSlide(idx) {
       tourTabs.forEach((tab, i) => {
@@ -196,7 +197,7 @@
       tab.addEventListener("click", () => {
         goToSlide(i);
         tab.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
-        startAutoTour(); // Restart timer on click
+        if (!isGuidedTour) startAutoTour();
       });
       tab.addEventListener("keydown", (event) => {
         if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
@@ -209,13 +210,13 @@
     });
 
     const wrapper = document.querySelector(".app-tour-wrapper");
-    if (wrapper) {
+    if (wrapper && !isGuidedTour) {
       wrapper.addEventListener("mouseenter", stopAutoTour);
       wrapper.addEventListener("mouseleave", startAutoTour);
     }
 
     goToSlide(0);
-    if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) startAutoTour();
+    if (!isGuidedTour && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) startAutoTour();
   }
 
   /* =========================================================================
@@ -493,4 +494,3 @@
   initVFGStrata();
   initFeatureSlider();
 })();
-
