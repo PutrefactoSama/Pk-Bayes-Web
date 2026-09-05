@@ -498,8 +498,14 @@
     lightbox.hidden = true;
     lightbox.setAttribute("role", "dialog");
     lightbox.setAttribute("aria-modal", "true");
-    lightbox.setAttribute("aria-label", "Vista ampliada de PK-Bayes");
-    lightbox.innerHTML = '<div class="screen-lightbox-dialog"><button class="screen-lightbox-close" type="button" aria-label="Cerrar vista ampliada">×</button><img alt=""></div>';
+    // El visor se crea desde JS, después de que el motor i18n ya recorrió el DOM: se le
+    // pone el texto del idioma vigente y además el marcador data-i18n-aria-label, para
+    // que se vuelva a traducir cuando el usuario cambie de idioma con el visor ya creado.
+    const t = (window.PKBAYES_I18N && window.PKBAYES_I18N.t) || ((k) => k);
+    lightbox.setAttribute("data-i18n-aria-label", "a11y.vista_ampliada_de_pk_bayes");
+    lightbox.setAttribute("aria-label", t("a11y.vista_ampliada_de_pk_bayes"));
+    lightbox.innerHTML = '<div class="screen-lightbox-dialog"><button class="screen-lightbox-close" type="button" data-i18n-aria-label="a11y.cerrar_vista_ampliada" aria-label="' +
+      t("a11y.cerrar_vista_ampliada") + '">×</button><img alt=""></div>';
     document.body.appendChild(lightbox);
 
     const lightboxImage = lightbox.querySelector("img");
