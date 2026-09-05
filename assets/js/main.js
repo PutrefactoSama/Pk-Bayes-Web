@@ -488,9 +488,68 @@
     if (nextBtn) nextBtn.addEventListener("click", () => goToSlide(currentIndex + 1));
   }
 
+  /* ---------- Visor de pantallas y navegación por secciones ---------- */
+  function initProductScreens() {
+    const screenLinks = document.querySelectorAll("[data-screen-lightbox]");
+    if (!screenLinks.length) return;
+
+    const lightbox = document.createElement("div");
+    lightbox.className = "screen-lightbox";
+    lightbox.hidden = true;
+    lightbox.setAttribute("role", "dialog");
+    lightbox.setAttribute("aria-modal", "true");
+    lightbox.setAttribute("aria-label", "Vista ampliada de PK-Bayes");
+    lightbox.innerHTML = '<div class="screen-lightbox-dialog"><button class="screen-lightbox-close" type="button" aria-label="Cerrar vista ampliada">×</button><img alt=""></div>';
+    document.body.appendChild(lightbox);
+
+    const lightboxImage = lightbox.querySelector("img");
+    const closeButton = lightbox.querySelector("button");
+    let returnFocus = null;
+
+    function closeLightbox() {
+      lightbox.hidden = true;
+      document.body.classList.remove("lightbox-open");
+      lightboxImage.removeAttribute("src");
+      if (returnFocus) returnFocus.focus();
+    }
+
+    screenLinks.forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        const sourceImage = link.querySelector("img");
+        if (!sourceImage) return;
+        returnFocus = link;
+        lightboxImage.src = link.getAttribute("href");
+        lightboxImage.alt = sourceImage.alt;
+        lightbox.hidden = false;
+        document.body.classList.add("lightbox-open");
+        closeButton.focus();
+      });
+    });
+
+    closeButton.addEventListener("click", closeLightbox);
+    lightbox.addEventListener("click", (event) => {
+      if (event.target === lightbox) closeLightbox();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !lightbox.hidden) closeLightbox();
+    });
+
+    const sectionLinks = Array.from(document.querySelectorAll(".function-subnav a"));
+    const sections = document.querySelectorAll("[data-function-section]");
+    if (!("IntersectionObserver" in window) || !sections.length) return;
+    const observer = new IntersectionObserver((entries) => {
+      const visible = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      sectionLinks.forEach((link) => link.classList.toggle("active", link.getAttribute("href") === `#${visible.target.id}`));
+    }, { rootMargin: "-28% 0px -58% 0px", threshold: [0, .1, .25] });
+    sections.forEach((section) => observer.observe(section));
+  }
+
   // Initialize Dossier Controllers
   initEmpiricalCalc();
   initPKSimulator();
   initVFGStrata();
   initFeatureSlider();
+  initProductScreens();
 })();
