@@ -25,6 +25,7 @@ assets/js/main.js      → Navegación, animaciones, acordeón FAQ, menú móvil
 assets/js/checkout.js  → Integración de Stripe Checkout (sin backend)
 assets/js/simulator.js → Simulador PK interactivo (matemática 1-compartimento, ilustrativo)
 assets/js/i18n.js      → Motor de traducción (ES/EN/ZH/JA) + geolocalización de idioma
+tools/                 → Auditorías para correr ANTES de publicar (ver sección 7)
 ```
 
 No hay build ni dependencias — puedes abrir `index.html` directamente en el navegador,
@@ -128,3 +129,45 @@ Una vez que el usuario elige un idioma manualmente desde el selector del header,
 elección se recuerda y ya no es sobrescrita por la detección automática. Para traducir
 texto nuevo, agrega la clave a los 4 bloques (`es`/`en`/`zh`/`ja`) de `I18N` en `i18n.js`
 y usa `data-i18n="clave"` en el HTML, o `window.PKBAYES_I18N.t("clave")` desde JS.
+
+## 7. Auditorías antes de publicar
+
+Dos comprobaciones que conviene correr después de tocar el HTML o el CSS. Las dos
+terminan con código de salida 1 si encuentran algo, así que sirven igual a mano o
+enganchadas a un hook.
+
+### Traducciones
+
+```bash
+python3 tools/auditar-i18n.py
+```
+
+Solo necesita Python 3, sin instalar nada. Revisa tres cosas:
+
+- **Texto visible sin marcar.** Es el fallo que más se repite: cada vez que se
+  rediseña una página, el contenido nuevo nace sin atributos `data-i18n` y esa
+  sección queda solo en español sin que nada avise.
+- **Claves rotas**, que dejan el texto en el idioma de reserva para siempre.
+- **Diccionarios descuadrados**: una clave que está en español pero falta en otro
+  idioma se queda sin traducir al cambiar.
+
+No marca como problema los nombres de los idiomas en el selector (cada uno va
+escrito en su propio idioma), la marca «PK-Bayes» ni las iniciales de los fármacos.
+
+### Contraste
+
+```bash
+npm i -g playwright && npx playwright install chromium   # solo la primera vez
+node tools/auditar-contraste.mjs
+```
+
+Abre cada página en Chromium y mide el contraste real de todo el texto visible
+contra el mínimo WCAG AA (4,5:1 normal, 3:1 para texto grande). Agrupa los fallos
+por par de colores, porque casi siempre son pocos tokens mal calibrados y no
+muchos casos sueltos.
+
+Se mide en el navegador y no leyendo el CSS porque el color que finalmente se ve
+depende de las variables resueltas, de la cascada y de las capas de fondo
+apiladas: el fallo que motivó esta herramienta era una banda que heredaba el color
+de texto de su variante clara sobre un fondo azul noche —el titular quedaba en
+1,00:1— y eso no se ve en ninguna regla aislada.
