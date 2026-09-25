@@ -179,6 +179,40 @@
 
   const I18N = {
     es: {
+    "a11y.pk_bayes_logo": "PK-Bayes ロゴ",
+    "a11y.navegacion_principal": "メインナビゲーション",
+    "a11y.cambiar_idioma": "言語を変更",
+    "a11y.abrir_menu": "メニューを開く",
+    "a11y.recorrido_por_las_funcionali": "機能ガイド",
+    "a11y.panel_de_pacientes_monitoriz": "病床区分別のモニタリング患者パネル",
+    "a11y.ingreso_de_informacion_clini": "識別情報を最小化した臨床情報の入力",
+    "a11y.registro_dinamico_de_funcion": "腎機能の動的記録",
+    "a11y.cronologia_de_dosis_niveles": "投与量・血中濃度・薬物動態曲線のタイムライン",
+    "a11y.resultado_de_estimacion_farm": "薬物動態推定の結果と検討した投与設計",
+    "a11y.informe_clinico_de_dosificac": "個別化投与設計の臨床レポート",
+    "a11y.evolucion_temporal_de_dosis": "投与量と血中濃度の経時変化",
+    "a11y.consola_de_administracion_de": "施設の管理コンソール",
+    "a11y.panel_de_desempeno_instituci": "施設単位のモデル性能パネル",
+    "a11y.exportacion_de_informacion_f": "研究用の薬物動態データ書き出し",
+    "a11y.resumen_de_pacientes_por_tip": "病床区分別の患者一覧",
+    "a11y.ficha_farmacocinetica_con_da": "識別情報を最小化した薬物動態記録",
+    "a11y.dosis_niveles_y_curva_farmac": "タイムライン上の投与量・濃度・薬物動態曲線",
+    "a11y.seleccion_y_seguimiento_de_f": "腎機能の選択と経過観察",
+    "a11y.estimacion_map_y_proyeccion": "MAP 推定と投与設計の予測",
+    "a11y.administracion_de_usuarios_d": "医療機関のユーザー管理",
+    "a11y.desempeno_institucional_por": "腎機能区分別の施設パフォーマンス",
+    "a11y.exportacion_de_datos_farmaco": "研究用の薬物動態データ書き出し",
+    "a11y.pk_bayes_inicio": "PK-Bayes ホーム",
+    "a11y.vista_ilustrativa_del_perfil": "薬物動態プロファイルの参考図",
+    "a11y.curva_ilustrativa_de_concen": "濃度―時間曲線の参考図",
+    "a11y.vista_ampliada_de_pk_bayes": "PK-Bayes の拡大表示",
+    "a11y.cerrar_vista_ampliada": "拡大表示を閉じる",
+    "a11y.mod_m1_alt": "Monitorización de Pacientes",
+    "a11y.mod_m2_alt": "Historial de Pacientes y Dosis",
+    "a11y.mod_m3_alt": "Simulación Posológica MAP",
+    "a11y.mod_m4_alt": "Curva PK Longitudinal",
+    "a11y.mod_m5_alt": "Consola Administrativa PK",
+    "a11y.mod_m6_alt": "Informe Clínico PDF",
     "mockup.audit_badge": "HLH Cohorte",
     "feat.b3_met_auc_title": "AUC<sub>24</sub>",
     "feat.b3_met_cmax_title": "C<sub>máx</sub> / C<sub>mín</sub>",
@@ -1400,6 +1434,40 @@
     "meta.desc_thanks": "Tu inscripción y pago se han procesado correctamente. Tu acceso institucional está en proceso de activación."
 },
     en: {
+    "a11y.pk_bayes_logo": "PK-Bayes ロゴ",
+    "a11y.navegacion_principal": "メインナビゲーション",
+    "a11y.cambiar_idioma": "言語を変更",
+    "a11y.abrir_menu": "メニューを開く",
+    "a11y.recorrido_por_las_funcionali": "機能ガイド",
+    "a11y.panel_de_pacientes_monitoriz": "病床区分別のモニタリング患者パネル",
+    "a11y.ingreso_de_informacion_clini": "識別情報を最小化した臨床情報の入力",
+    "a11y.registro_dinamico_de_funcion": "腎機能の動的記録",
+    "a11y.cronologia_de_dosis_niveles": "投与量・血中濃度・薬物動態曲線のタイムライン",
+    "a11y.resultado_de_estimacion_farm": "薬物動態推定の結果と検討した投与設計",
+    "a11y.informe_clinico_de_dosificac": "個別化投与設計の臨床レポート",
+    "a11y.evolucion_temporal_de_dosis": "投与量と血中濃度の経時変化",
+    "a11y.consola_de_administracion_de": "施設の管理コンソール",
+    "a11y.panel_de_desempeno_instituci": "施設単位のモデル性能パネル",
+    "a11y.exportacion_de_informacion_f": "研究用の薬物動態データ書き出し",
+    "a11y.resumen_de_pacientes_por_tip": "病床区分別の患者一覧",
+    "a11y.ficha_farmacocinetica_con_da": "識別情報を最小化した薬物動態記録",
+    "a11y.dosis_niveles_y_curva_farmac": "タイムライン上の投与量・濃度・薬物動態曲線",
+    "a11y.seleccion_y_seguimiento_de_f": "腎機能の選択と経過観察",
+    "a11y.estimacion_map_y_proyeccion": "MAP 推定と投与設計の予測",
+    "a11y.administracion_de_usuarios_d": "医療機関のユーザー管理",
+    "a11y.desempeno_institucional_por": "腎機能区分別の施設パフォーマンス",
+    "a11y.exportacion_de_datos_farmaco": "研究用の薬物動態データ書き出し",
+    "a11y.pk_bayes_inicio": "PK-Bayes ホーム",
+    "a11y.vista_ilustrativa_del_perfil": "薬物動態プロファイルの参考図",
+    "a11y.curva_ilustrativa_de_concen": "濃度―時間曲線の参考図",
+    "a11y.vista_ampliada_de_pk_bayes": "PK-Bayes の拡大表示",
+    "a11y.cerrar_vista_ampliada": "拡大表示を閉じる",
+    "a11y.mod_m1_alt": "Patient Monitoring",
+    "a11y.mod_m2_alt": "Patient & Dosing History",
+    "a11y.mod_m3_alt": "MAP Precision Dosing Simulation",
+    "a11y.mod_m4_alt": "Longitudinal PK Curve",
+    "a11y.mod_m5_alt": "Administrative PK Console",
+    "a11y.mod_m6_alt": "Clinical PDF Report",
     "mockup.audit_badge": "HLH Cohort",
     "feat.b3_met_auc_title": "AUC<sub>24</sub>",
     "feat.b3_met_cmax_title": "C<sub>max</sub> / C<sub>min</sub>",
@@ -2621,6 +2689,40 @@
     "meta.desc_thanks": "Your registration and payment were processed successfully. Your institutional access is being activated."
 },
     zh: {
+    "a11y.pk_bayes_logo": "PK-Bayes ロゴ",
+    "a11y.navegacion_principal": "メインナビゲーション",
+    "a11y.cambiar_idioma": "言語を変更",
+    "a11y.abrir_menu": "メニューを開く",
+    "a11y.recorrido_por_las_funcionali": "機能ガイド",
+    "a11y.panel_de_pacientes_monitoriz": "病床区分別のモニタリング患者パネル",
+    "a11y.ingreso_de_informacion_clini": "識別情報を最小化した臨床情報の入力",
+    "a11y.registro_dinamico_de_funcion": "腎機能の動的記録",
+    "a11y.cronologia_de_dosis_niveles": "投与量・血中濃度・薬物動態曲線のタイムライン",
+    "a11y.resultado_de_estimacion_farm": "薬物動態推定の結果と検討した投与設計",
+    "a11y.informe_clinico_de_dosificac": "個別化投与設計の臨床レポート",
+    "a11y.evolucion_temporal_de_dosis": "投与量と血中濃度の経時変化",
+    "a11y.consola_de_administracion_de": "施設の管理コンソール",
+    "a11y.panel_de_desempeno_instituci": "施設単位のモデル性能パネル",
+    "a11y.exportacion_de_informacion_f": "研究用の薬物動態データ書き出し",
+    "a11y.resumen_de_pacientes_por_tip": "病床区分別の患者一覧",
+    "a11y.ficha_farmacocinetica_con_da": "識別情報を最小化した薬物動態記録",
+    "a11y.dosis_niveles_y_curva_farmac": "タイムライン上の投与量・濃度・薬物動態曲線",
+    "a11y.seleccion_y_seguimiento_de_f": "腎機能の選択と経過観察",
+    "a11y.estimacion_map_y_proyeccion": "MAP 推定と投与設計の予測",
+    "a11y.administracion_de_usuarios_d": "医療機関のユーザー管理",
+    "a11y.desempeno_institucional_por": "腎機能区分別の施設パフォーマンス",
+    "a11y.exportacion_de_datos_farmaco": "研究用の薬物動態データ書き出し",
+    "a11y.pk_bayes_inicio": "PK-Bayes ホーム",
+    "a11y.vista_ilustrativa_del_perfil": "薬物動態プロファイルの参考図",
+    "a11y.curva_ilustrativa_de_concen": "濃度―時間曲線の参考図",
+    "a11y.vista_ampliada_de_pk_bayes": "PK-Bayes の拡大表示",
+    "a11y.cerrar_vista_ampliada": "拡大表示を閉じる",
+    "a11y.mod_m1_alt": "患者监护看板",
+    "a11y.mod_m2_alt": "患者与给药历史",
+    "a11y.mod_m3_alt": "MAP精确用药仿真",
+    "a11y.mod_m4_alt": "纵向PK曲线",
+    "a11y.mod_m5_alt": "机构管理控制台",
+    "a11y.mod_m6_alt": "临床PDF报告",
     "mockup.audit_badge": "HLH 队列",
     "feat.b3_met_auc_title": "AUC<sub>24</sub>",
     "feat.b3_met_cmax_title": "C<sub>max</sub> / C<sub>min</sub>",
@@ -3842,6 +3944,40 @@
     "meta.desc_thanks": "您的注册与支付已成功处理，机构访问权限正在开通中。"
 },
     ja: {
+    "a11y.pk_bayes_logo": "PK-Bayes ロゴ",
+    "a11y.navegacion_principal": "メインナビゲーション",
+    "a11y.cambiar_idioma": "言語を変更",
+    "a11y.abrir_menu": "メニューを開く",
+    "a11y.recorrido_por_las_funcionali": "機能ガイド",
+    "a11y.panel_de_pacientes_monitoriz": "病床区分別のモニタリング患者パネル",
+    "a11y.ingreso_de_informacion_clini": "識別情報を最小化した臨床情報の入力",
+    "a11y.registro_dinamico_de_funcion": "腎機能の動的記録",
+    "a11y.cronologia_de_dosis_niveles": "投与量・血中濃度・薬物動態曲線のタイムライン",
+    "a11y.resultado_de_estimacion_farm": "薬物動態推定の結果と検討した投与設計",
+    "a11y.informe_clinico_de_dosificac": "個別化投与設計の臨床レポート",
+    "a11y.evolucion_temporal_de_dosis": "投与量と血中濃度の経時変化",
+    "a11y.consola_de_administracion_de": "施設の管理コンソール",
+    "a11y.panel_de_desempeno_instituci": "施設単位のモデル性能パネル",
+    "a11y.exportacion_de_informacion_f": "研究用の薬物動態データ書き出し",
+    "a11y.resumen_de_pacientes_por_tip": "病床区分別の患者一覧",
+    "a11y.ficha_farmacocinetica_con_da": "識別情報を最小化した薬物動態記録",
+    "a11y.dosis_niveles_y_curva_farmac": "タイムライン上の投与量・濃度・薬物動態曲線",
+    "a11y.seleccion_y_seguimiento_de_f": "腎機能の選択と経過観察",
+    "a11y.estimacion_map_y_proyeccion": "MAP 推定と投与設計の予測",
+    "a11y.administracion_de_usuarios_d": "医療機関のユーザー管理",
+    "a11y.desempeno_institucional_por": "腎機能区分別の施設パフォーマンス",
+    "a11y.exportacion_de_datos_farmaco": "研究用の薬物動態データ書き出し",
+    "a11y.pk_bayes_inicio": "PK-Bayes ホーム",
+    "a11y.vista_ilustrativa_del_perfil": "薬物動態プロファイルの参考図",
+    "a11y.curva_ilustrativa_de_concen": "濃度―時間曲線の参考図",
+    "a11y.vista_ampliada_de_pk_bayes": "PK-Bayes の拡大表示",
+    "a11y.cerrar_vista_ampliada": "拡大表示を閉じる",
+    "a11y.mod_m1_alt": "患者モニタリング",
+    "a11y.mod_m2_alt": "患者および投与履歴",
+    "a11y.mod_m3_alt": "MAP精密投与シミュレーション",
+    "a11y.mod_m4_alt": "縦断的PK曲線",
+    "a11y.mod_m5_alt": "施設管理コンソール",
+    "a11y.mod_m6_alt": "臨床PDF報告書",
     "mockup.audit_badge": "HLH コホート",
     "feat.b3_met_auc_title": "AUC<sub>24</sub>",
     "feat.b3_met_cmax_title": "C<sub>max</sub> / C<sub>min</sub>",
@@ -5093,13 +5229,21 @@
       }
     });
 
-    // Actualizar placeholders
-    document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
-      const key = el.getAttribute("data-i18n-placeholder");
-      const translation = dict[key] || fallbackDict[key];
-      if (translation !== undefined) {
-        el.setAttribute("placeholder", translation);
-      }
+    // Actualizar atributos accesibles (alt, aria-label, placeholder)
+    const ATTR_KEYS = {
+      "data-i18n-placeholder": "placeholder",
+      "data-i18n-alt": "alt",
+      "data-i18n-aria-label": "aria-label"
+    };
+    Object.keys(ATTR_KEYS).forEach((marca) => {
+      const attr = ATTR_KEYS[marca];
+      document.querySelectorAll("[" + marca + "]").forEach((el) => {
+        const key = el.getAttribute(marca);
+        const translation = dict[key] || fallbackDict[key];
+        if (translation !== undefined) {
+          el.setAttribute(attr, translation);
+        }
+      });
     });
 
     // Actualizar <title> y <meta name="description"> según data-i18n-title / data-i18n-desc en <html>
