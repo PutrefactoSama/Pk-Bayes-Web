@@ -2,13 +2,18 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "pkbayes-app-preview",
-      "runtimeExecutable": "bash",
+      "name": "pkbayes-site",
+      "runtimeExecutable": "python3",
       "runtimeArgs": [
-        "-c",
-        "cd '/private/tmp/claude-501/-Users-pablosaezriquelme-Desktop-P-gina-web-1-0/4f066c5c-7436-4202-ac9c-f6d55644d9f2/scratchpad/pk-bayes/frontend' && npx vite --port 5183 --host 127.0.0.1"
+        "-m",
+        "http.server",
+        "5190",
+        "--bind",
+        "127.0.0.1",
+        "--directory",
+        "/Users/pablosaezriquelme/Desktop/PK-Bayes Web"
       ],
-      "port": 5183
+      "port": 5190
     }
   ]
 }
