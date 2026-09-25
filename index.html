@@ -149,191 +149,436 @@
           </div>
         </div>
 
-        <!-- HERO WORKSTATION SHOWCASE (MCP STITCH PREVIEW) -->
-        <div class="mockup-mac-window" style="max-width: 1140px; margin: 0 auto; background: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 25px 65px -12px rgba(15, 23, 42, 0.12);">
-          <!-- Top Window Bar -->
-          <div class="mockup-mac-bar">
-            <div style="display: flex; align-items: center; gap: 12px;">
+        <!-- CLINICAL PARADIGM MODE SWITCHER (STITCH 3.0) -->
+        <div class="mode-switcher-container">
+          <div class="mode-switcher-capsule" role="tablist" aria-label="Selector de Modo de Visualización Clínica" data-i18n-aria-label="a11y.mode_selector_label">
+            <button type="button" class="mode-switcher-btn active" data-mode="cockpit" role="tab" aria-selected="true" id="btn-mode-cockpit">
+              <span>⚡</span>
+              <span data-i18n="mode.cockpit_tab">Modo Telemetría UCI · Bicompartimental (Cockpit 3.0)</span>
+            </button>
+            <button type="button" class="mode-switcher-btn" data-mode="swiss" role="tab" aria-selected="false" id="btn-mode-swiss">
+              <span>🇨🇭</span>
+              <span data-i18n="mode.swiss_tab">Modo Gabinete Suizo · No Lineal (Swiss-Precision)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- WORKSTATION VIEW 1: AEROSPACE BIOTECH COCKPIT 3.0 -->
+        <div id="workstation-cockpit-view" class="cockpit-station" style="max-width: 1140px; margin: 0 auto;">
+          <!-- Top Telemetry Bar -->
+          <div class="cockpit-header-bar">
+            <div style="display: flex; align-items: center; gap: 14px;">
               <div class="mac-dots">
                 <span class="mac-dot red"></span>
                 <span class="mac-dot amber"></span>
                 <span class="mac-dot green"></span>
               </div>
-              <span class="mac-url">pk-bayes-workstation.hlh.hospital/simulacion/CX-504-3</span>
-            </div>
-            <div style="display: flex; align-items: center; gap: 12px;">
-              <span style="display: inline-flex; align-items: center; gap: 6px; font-size: 11px; color: #059669; padding: 4px 10px; border-radius: 9999px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3);">
-                <span class="ping-dot" style="width: 6px; height: 6px;"></span>
-                <span data-i18n="mockup.header_status">MCMC Stan Convergido (R̂ &lt; 1.01)</span>
+              <span style="font-family: var(--font-mono); font-size: 12px; font-weight: 800; letter-spacing: 0.08em; color: #60a5fa;" data-i18n="cockpit.brand">
+                PK-BAYES // PRECISION COCKPIT 3.0
               </span>
-              <span style="font-size: 11px; color: #64748b; font-family: var(--font-mono);" class="hide-mobile" data-i18n="mockup.case_title">Caso: Saavedra, M. (HLH-78401)</span>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+              <span class="cockpit-tag cockpit-tag-emerald">
+                <span class="ping-dot" style="width: 6px; height: 6px; background: #34d399;"></span>
+                <span data-i18n="cockpit.badge_status">Stan MCMC 14ms · R̂ = 1.002</span>
+              </span>
+              <span class="cockpit-tag cockpit-tag-sapphire hide-mobile" data-i18n="cockpit.patient">
+                Elena Morales · 63a, 62kg
+              </span>
+              <a href="assets/stitch/06-cockpit-telemetria.png" class="cockpit-tag" data-screen-lightbox aria-label="Ampliar captura 4K de cabina" data-i18n-aria-label="a11y.vista_ampliada_de_pk_bayes" data-alt="PK-Bayes Cockpit 3.0" style="color: #60a5fa; text-decoration: none; border: 1px dashed rgba(59,130,246,0.5); cursor: pointer;">
+                <span>🔍</span>
+                <span data-i18n="cockpit.view_hd">Ver Render 4K</span>
+              </a>
+            </div>
+          </div>
+
+          <div style="padding: 22px;">
+            <!-- Patient Digital Twin Telemetry Strip -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; background: #0a122a; border: 1px solid #1c2541; border-radius: 12px; padding: 14px 18px; margin-bottom: 20px;">
+              <div>
+                <span style="font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; color: #8c909f; letter-spacing: 0.06em;" data-i18n="mockup.patient_label">Paciente & Ubicación</span>
+                <div style="font-size: 13px; font-weight: 700; color: #ffffff; margin-top: 2px;" data-i18n="cockpit.patient">Elena Morales · 63a, 62kg</div>
+                <span style="font-size: 11px; color: #94a3b8;" data-i18n="cockpit.bed">Cama UCI-402 (Cuidados Críticos)</span>
+              </div>
+              <div>
+                <span style="font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; color: #8c909f; letter-spacing: 0.06em;" data-i18n="mockup.drug_label">Fármaco & Modelo</span>
+                <div style="font-size: 13px; font-weight: 700; color: #60a5fa; margin-top: 2px;" data-i18n="cockpit.drug">Vancomicina IV Bicompartimental</div>
+                <span style="font-size: 11px; color: #94a3b8;" data-i18n="cockpit.model_note">Rodvold/Thomson Calibrado</span>
+              </div>
+              <div>
+                <span style="font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; color: #8c909f; letter-spacing: 0.06em;" data-i18n="cockpit.egfr_label">eGFR (CKD-EPI 2021)</span>
+                <div style="font-size: 13px; font-weight: 700; color: #f59e0b; margin-top: 2px;" data-i18n="cockpit.egfr_val">26 mL/min</div>
+                <span style="font-size: 11px; color: #f87171; font-weight: 600;" data-i18n="cockpit.egfr_status">Alerta KDIGO AKI Estadío 2</span>
+              </div>
+              <div>
+                <span style="font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; color: #8c909f; letter-spacing: 0.06em;" data-i18n="cockpit.map_label">Certeza Bayesiana MAP</span>
+                <div style="font-size: 13px; font-weight: 700; color: #34d399; margin-top: 2px;" data-i18n="cockpit.map_val">98.4%</div>
+                <span style="font-size: 11px; color: #34d399;" data-i18n="cockpit.map_status">4 Cadenas Convergidas</span>
+              </div>
+            </div>
+
+            <!-- Central Split: Dual-Compartment Flow & Curve (Left) + Posology Copilot (Right) -->
+            <div style="display: grid; grid-template-columns: 1.65fr 1fr; gap: 20px;" class="feature-showcase">
+              
+              <!-- Left Column: Flow Topology + C(t) Curve -->
+              <div>
+                <!-- Dual-Compartment Kinetic Flow Topology Visualizer -->
+                <div class="kinetic-topology-grid">
+                  <div class="compartment-card active">
+                    <span style="font-size: 10px; font-family: var(--font-mono); color: #60a5fa; text-transform: uppercase; font-weight: 700;" data-i18n="cockpit.vc_label">Compartimento Central (Vc)</span>
+                    <div style="font-size: 15px; font-weight: 800; font-family: var(--font-mono); color: #ffffff; margin-top: 2px;">18.4 L</div>
+                    <span style="font-size: 10px; color: #94a3b8;" data-i18n="cockpit.vc_sub">Intravascular / Órganos nobles</span>
+                  </div>
+
+                  <div class="flow-connector">
+                    <div class="flow-arrow-dual"></div>
+                    <span style="font-size: 9px; font-family: var(--font-mono); color: #38bdf8; text-align: center;" data-i18n="cockpit.flow_rate">Q: 2.85 L/h</span>
+                  </div>
+
+                  <div class="compartment-card">
+                    <span style="font-size: 10px; font-family: var(--font-mono); color: #a78bfa; text-transform: uppercase; font-weight: 700;" data-i18n="cockpit.vp_label">Compartimento Periférico (Vp)</span>
+                    <div style="font-size: 15px; font-weight: 800; font-family: var(--font-mono); color: #ffffff; margin-top: 2px;">24.6 L</div>
+                    <span style="font-size: 10px; color: #94a3b8;" data-i18n="cockpit.vp_sub">Tejido muscular y adiposo</span>
+                  </div>
+
+                  <div class="flow-connector">
+                    <div style="width: 28px; height: 2px; background: #10b981;"></div>
+                    <span style="font-size: 9px; font-family: var(--font-mono); color: #34d399; text-align: center;" data-i18n="cockpit.cl_rate">CL: 1.22 L/h</span>
+                  </div>
+
+                  <div class="compartment-card" style="border-color: #10b981; background: rgba(16, 185, 129, 0.08);">
+                    <span style="font-size: 10px; font-family: var(--font-mono); color: #34d399; text-transform: uppercase; font-weight: 700;" data-i18n="cockpit.renal_elim">Eliminación Renal</span>
+                    <div style="font-size: 15px; font-weight: 800; font-family: var(--font-mono); color: #34d399; margin-top: 2px;" data-i18n="cockpit.ke_val">ke: 0.067 h⁻¹</div>
+                    <span style="font-size: 10px; color: #94a3b8;" data-i18n="cockpit.glomerular_sub">Filtración glomerular</span>
+                  </div>
+                </div>
+
+                <!-- 48-Hour Concentration-Time Dynamic Curve SVG -->
+                <div style="background: #0a122a; border: 1px solid #1c2541; border-radius: 12px; padding: 18px; position: relative;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                      <span style="width: 8px; height: 8px; border-radius: 50%; background: #3b82f6; box-shadow: 0 0 8px #3b82f6;"></span>
+                      <span style="font-size: 11px; font-weight: 700; font-family: var(--font-mono); text-transform: uppercase; color: #f8fafc;" data-i18n="cockpit.curve_title">Curva Dinámica C(t) con Envolvente Bayesiana 95%</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 12px; font-size: 10px; font-family: var(--font-mono);">
+                      <span style="color: #34d399; display: flex; align-items: center; gap: 4px;">
+                        <span style="width: 10px; height: 6px; background: rgba(16, 185, 129, 0.25); border: 1px solid #10b981;"></span>
+                        <span data-i18n="cockpit.legend_band">Ventana AUC24 (400-600)</span>
+                      </span>
+                      <span style="color: #60a5fa; display: flex; align-items: center; gap: 4px;">
+                        <span style="width: 10px; height: 2px; background: #3b82f6;"></span>
+                        <span data-i18n="cockpit.legend_fit">Ajuste MAP Paciente</span>
+                      </span>
+                      <span style="color: #f87171; display: flex; align-items: center; gap: 4px;">
+                        <span style="width: 6px; height: 6px; border-radius: 50%; background: #ef4444;"></span>
+                        <span data-i18n="cockpit.legend_tdm">Muestra TDM (t=23.5h)</span>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div style="width: 100%; height: 210px;">
+                    <svg style="width: 100%; height: 100%;" viewBox="0 0 650 200" preserveAspectRatio="none">
+                      <defs>
+                        <linearGradient id="cockpitTargetWindow" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stop-color="#10b981" stop-opacity="0.22" />
+                          <stop offset="100%" stop-color="#10b981" stop-opacity="0.04" />
+                        </linearGradient>
+                        <linearGradient id="cockpitBayesEnvelope" x1="0" y1="0" x2="0" y2="1">
+                          <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.25" />
+                          <stop offset="100%" stop-color="#3b82f6" stop-opacity="0.02" />
+                        </linearGradient>
+                      </defs>
+
+                      <!-- Grid Lines -->
+                      <line x1="45" y1="20" x2="630" y2="20" stroke="#1c2541" stroke-dasharray="3,3" />
+                      <line x1="45" y1="60" x2="630" y2="60" stroke="#1c2541" stroke-dasharray="3,3" />
+                      <line x1="45" y1="100" x2="630" y2="100" stroke="#1c2541" stroke-dasharray="3,3" />
+                      <line x1="45" y1="140" x2="630" y2="140" stroke="#1c2541" stroke-dasharray="3,3" />
+                      <line x1="45" y1="180" x2="630" y2="180" stroke="#273559" />
+
+                      <!-- Y Labels -->
+                      <text x="38" y="24" fill="#64748b" font-size="9" font-family="monospace" text-anchor="end">40</text>
+                      <text x="38" y="64" fill="#64748b" font-size="9" font-family="monospace" text-anchor="end">30</text>
+                      <text x="38" y="104" fill="#64748b" font-size="9" font-family="monospace" text-anchor="end">20</text>
+                      <text x="38" y="144" fill="#64748b" font-size="9" font-family="monospace" text-anchor="end">10</text>
+                      <text x="38" y="184" fill="#64748b" font-size="9" font-family="monospace" text-anchor="end">0</text>
+
+                      <!-- Target Therapeutic Window (15 to 20 mg/L -> y: 100 to 125) -->
+                      <rect x="45" y="100" width="585" height="28" fill="url(#cockpitTargetWindow)" />
+                      <line x1="45" y1="100" x2="630" y2="100" stroke="#10b981" stroke-width="1.2" stroke-dasharray="3,3" />
+                      <line x1="45" y1="128" x2="630" y2="128" stroke="#10b981" stroke-width="1.2" stroke-dasharray="3,3" />
+
+                      <!-- Toxicity Hazard Line (>25 mg/L -> y: 80) -->
+                      <line x1="45" y1="80" x2="630" y2="80" stroke="#ef4444" stroke-opacity="0.7" stroke-width="1" stroke-dasharray="4,4" />
+                      <text x="625" y="76" fill="#f87171" font-size="8" font-family="monospace" text-anchor="end" data-i18n="cockpit.target_high">Límite Toxicidad: >25 µg/mL</text>
+
+                      <!-- 95% Bayesian Credible Envelope -->
+                      <polygon points="45,175 90,30 180,122 225,32 315,124 360,34 450,126 495,35 585,128 630,132 630,178 45,178" fill="url(#cockpitBayesEnvelope)" />
+
+                      <!-- MAP Fitted Individual Curve -->
+                      <path d="M 45,175 C 60,35 80,28 90,32 C 120,80 160,118 180,122 C 195,38 215,30 225,34 C 255,82 295,120 315,124 C 330,40 350,32 360,36 C 390,84 430,122 450,126 C 465,42 485,34 495,38 C 525,86 565,124 585,128 L 630,132" fill="none" stroke="#3b82f6" stroke-width="2.5" stroke-linecap="round" />
+
+                      <!-- Measured TDM Sample Point with Residual Discrepancy -->
+                      <circle cx="315" cy="120" r="4.5" fill="#ef4444" stroke="#ffffff" stroke-width="2" />
+                      <line x1="315" y1="110" x2="315" y2="130" stroke="#ef4444" stroke-width="1.5" />
+                      <text x="315" y="146" fill="#fca5a5" font-size="9" font-family="monospace" text-anchor="middle" font-weight="700">TDM: 15.2 µg/mL</text>
+
+                      <!-- Axis Timeline -->
+                      <text x="90" y="194" fill="#64748b" font-size="8" font-family="monospace" text-anchor="middle">Dosis 1 (0h)</text>
+                      <text x="225" y="194" fill="#64748b" font-size="8" font-family="monospace" text-anchor="middle">Dosis 2 (12h)</text>
+                      <text x="360" y="194" fill="#64748b" font-size="8" font-family="monospace" text-anchor="middle">Dosis 3 (24h)</text>
+                      <text x="495" y="194" fill="#64748b" font-size="8" font-family="monospace" text-anchor="middle">Dosis 4 (36h)</text>
+                      <text x="600" y="194" fill="#34d399" font-size="8" font-family="monospace" text-anchor="middle">Steady-State</text>
+                    </svg>
+                  </div>
+                </div>
+
+                <!-- Instant Compartmental Parameters Matrix -->
+                <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-top: 12px; font-family: var(--font-mono); text-align: center; font-size: 11px;">
+                  <div style="background: #0a122a; border: 1px solid #1c2541; padding: 6px; border-radius: 6px;">
+                    <span style="color: #64748b; font-size: 9px; display: block;" data-i18n="cockpit.vc_abbr">Vc</span>
+                    <strong style="color: #60a5fa;">18.4 L</strong>
+                  </div>
+                  <div style="background: #0a122a; border: 1px solid #1c2541; padding: 6px; border-radius: 6px;">
+                    <span style="color: #64748b; font-size: 9px; display: block;" data-i18n="cockpit.vp_abbr">Vp</span>
+                    <strong style="color: #a78bfa;">24.6 L</strong>
+                  </div>
+                  <div style="background: #0a122a; border: 1px solid #1c2541; padding: 6px; border-radius: 6px;">
+                    <span style="color: #64748b; font-size: 9px; display: block;" data-i18n="cockpit.vss_abbr">Vss</span>
+                    <strong style="color: #f8fafc;">43.0 L</strong>
+                  </div>
+                  <div style="background: #0a122a; border: 1px solid #1c2541; padding: 6px; border-radius: 6px;">
+                    <span style="color: #64748b; font-size: 9px; display: block;" data-i18n="cockpit.cl_abbr">CL</span>
+                    <strong style="color: #34d399;">1.22 L/h</strong>
+                  </div>
+                  <div style="background: #0a122a; border: 1px solid #1c2541; padding: 6px; border-radius: 6px;">
+                    <span style="color: #64748b; font-size: 9px; display: block;" data-i18n="cockpit.thalf_abbr">t½β</span>
+                    <strong style="color: #f8fafc;">24.4 h</strong>
+                  </div>
+                  <div style="background: #0a122a; border: 1px solid #1c2541; padding: 6px; border-radius: 6px;">
+                    <span style="color: #64748b; font-size: 9px; display: block;" data-i18n="cockpit.auc_abbr">AUC₂₄</span>
+                    <strong style="color: #34d399;">485.2</strong>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column: Posology Decision Copilot (Comparative Regimens) -->
+              <div style="display: flex; flex-direction: column; gap: 12px;">
+                <div style="border-bottom: 1px solid #1c2541; padding-bottom: 8px;">
+                  <span style="font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; color: #60a5fa; font-weight: 700; letter-spacing: 0.05em;" data-i18n="cockpit.copilot_title">Copiloto Posológico Multiescenario</span>
+                  <div style="font-size: 12px; color: #94a3b8;" data-i18n="cockpit.copilot_sub">Simulación comparativa de 3 pautas candidatas</div>
+                </div>
+
+                <!-- Candidate Regimen A -->
+                <div class="regimen-card" style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+                  <div>
+                    <span style="font-size: 11px; font-weight: 700; color: #e2e8f0;" data-i18n="cockpit.reg_a_name">Régimen A · Estándar Empírico</span>
+                    <div style="font-size: 14px; font-weight: 800; font-family: var(--font-mono); color: #ffffff; margin-top: 2px;" data-i18n="cockpit.reg_a_dose">1000 mg IV c/ 12h</div>
+                    <span style="font-size: 10px; color: #f87171;" data-i18n="cockpit.reg_a_risk">Riesgo Nefrotóxico: 14.8%</span>
+                  </div>
+                  <div class="pta-circle-gauge" style="background: rgba(239, 68, 68, 0.15); border: 2px solid #ef4444; color: #fca5a5;">
+                    62%
+                  </div>
+                </div>
+
+                <!-- Candidate Regimen B (Recommended) -->
+                <div class="regimen-card recommended" style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+                  <div>
+                    <div style="display: flex; align-items: center; gap: 6px;">
+                      <span style="font-size: 11px; font-weight: 700; color: #34d399;" data-i18n="cockpit.reg_b_name">Régimen B · Optimizado Bayesiano</span>
+                      <span style="background: #10b981; color: #0a1128; font-size: 8px; font-weight: 800; padding: 1px 5px; border-radius: 3px;" data-i18n="cockpit.reg_b_badge">SELECCIÓN ÓPTIMA</span>
+                    </div>
+                    <div style="font-size: 14px; font-weight: 800; font-family: var(--font-mono); color: #ffffff; margin-top: 2px;" data-i18n="cockpit.reg_b_dose">750 mg IV c/ 12h (perf. 2h)</div>
+                    <span style="font-size: 10px; color: #34d399;" data-i18n="cockpit.reg_b_risk">Riesgo Nefrotóxico: 3.2%</span>
+                  </div>
+                  <div class="pta-circle-gauge" style="background: rgba(16, 185, 129, 0.2); border: 2px solid #10b981; color: #34d399;">
+                    95%
+                  </div>
+                </div>
+
+                <!-- Candidate Regimen C -->
+                <div class="regimen-card" style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+                  <div>
+                    <span style="font-size: 11px; font-weight: 700; color: #e2e8f0;" data-i18n="cockpit.reg_c_name">Régimen C · Infusión Continua</span>
+                    <div style="font-size: 14px; font-weight: 800; font-family: var(--font-mono); color: #ffffff; margin-top: 2px;" data-i18n="cockpit.reg_c_dose">1500 mg / 24h (62.5 mg/h)</div>
+                    <span style="font-size: 10px; color: #34d399;" data-i18n="cockpit.reg_c_risk">Riesgo Nefrotóxico: 1.4%</span>
+                  </div>
+                  <div class="pta-circle-gauge" style="background: rgba(59, 130, 246, 0.2); border: 2px solid #3b82f6; color: #60a5fa;">
+                    98%
+                  </div>
+                </div>
+
+                <!-- Action Anchor -->
+                <button type="button" class="btn-stitch-primary" style="margin-top: 6px; padding: 12px; font-size: 12px; justify-content: center; background: linear-gradient(135deg, #2563eb, #10b981);" data-i18n="cockpit.btn_authorize">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  <span>Autorizar Régimen y Transmitir a EHR (FHIR)</span>
+                </button>
+              </div>
+
+            </div>
+
+            <!-- Bottom Telemetry Rail -->
+            <div style="margin-top: 20px; padding-top: 14px; border-top: 1px solid #1c2541; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; font-size: 11px; font-family: var(--font-mono); color: #94a3b8;">
+              <div data-i18n="cockpit.telemetry_res">Diagnóstico Residual: WRES = -0.41 (Sin sesgo)</div>
+              <div data-i18n="cockpit.telemetry_drift" style="color: #f59e0b;">Deriva de Aclaramiento: -38% en 48h (Disfunción Renal)</div>
+              <div data-i18n="cockpit.telemetry_hash" style="color: #60a5fa;">Firma Criptográfica: SHA-256 · Certificado FIPS-140-3</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WORKSTATION VIEW 2: SWISS-PRECISION PHENYTOIN CLINICAL STATION -->
+        <div id="workstation-swiss-view" class="swiss-station" style="max-width: 1140px; margin: 0 auto; display: none;">
+          <!-- Swiss Header Bar -->
+          <div class="swiss-header-bar">
+            <div style="display: flex; align-items: center; gap: 14px;">
+              <div class="mac-dots">
+                <span class="mac-dot red"></span>
+                <span class="mac-dot amber"></span>
+                <span class="mac-dot green"></span>
+              </div>
+              <span style="font-family: var(--font-mono); font-size: 12px; font-weight: 800; letter-spacing: 0.08em; color: #1e3a8a;" data-i18n="swiss.brand">
+                PK-BAYES // SWISS-PRECISION CLINICAL STATION
+              </span>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+              <span class="swiss-badge-emerald" data-i18n="swiss.seal">
+                GAMP 5 Cat 4 · FDA SaMD Class II
+              </span>
+              <span class="swiss-badge-cobalt hide-mobile" data-i18n="swiss.doctor">
+                Dr. Pablo Sáez R. · Farmacocinética Clínica
+              </span>
+              <a href="assets/stitch/07-estacion-suiza-fenitoina.png" class="swiss-badge-cobalt" data-screen-lightbox aria-label="Ampliar captura 4K de estación suiza" data-i18n-aria-label="a11y.vista_ampliada_de_pk_bayes" data-alt="PK-Bayes Swiss Station" style="text-decoration: none; cursor: pointer; border: 1px dashed #1e3a8a;">
+                <span>🔍</span>
+                <span data-i18n="swiss.view_hd">Ver Render 4K</span>
+              </a>
             </div>
           </div>
 
           <div style="padding: 24px;">
-            <!-- Patient Subheader Bar -->
-            <div class="glass-card" style="padding: 16px; margin-bottom: 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; background: #f8fafc; border: 1px solid #e2e8f0;">
+            <!-- Sheiner-Tozer Albumin Transformation Banner -->
+            <div class="sheiner-tozer-banner">
               <div>
-                <span style="font-size: 10px; font-weight: 700; text-transform: uppercase; color: #64748b; letter-spacing: 0.05em;" data-i18n="mockup.patient_label">Paciente & Ubicación</span>
-                <div style="font-size: 13px; font-weight: 700; color: #091e42; margin-top: 2px;" data-i18n="mockup.patient_val">María Saavedra · 62a, 58kg</div>
-                <span style="font-size: 11px; color: #64748b;" data-i18n="mockup.patient_bed">Cama CX 504-3 (UCI Quirúrgica)</span>
+                <span style="font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; color: #64748b;" data-i18n="mockup.patient_label">Paciente & Fármaco</span>
+                <div style="font-size: 13px; font-weight: 700; color: #0f172a; margin-top: 2px;" data-i18n="swiss.patient">Elena Morales Vargas (63a, 62 kg)</div>
+                <span style="font-size: 11px; color: #64748b;" data-i18n="swiss.drug">Fenitoína Sódica IV (Cinética de Saturación)</span>
               </div>
+
               <div>
-                <span style="font-size: 10px; font-weight: 700; text-transform: uppercase; color: #64748b; letter-spacing: 0.05em;" data-i18n="mockup.drug_label">Fármaco & Modelo</span>
-                <div style="font-size: 13px; font-weight: 700; color: #0284c7; margin-top: 2px;" data-i18n="mockup.drug_val">Vancomicina IV (2-Comp)</div>
-                <span style="font-size: 11px; color: #64748b;" data-i18n="mockup.drug_prior">Prior Institucional HLH + Rodvold</span>
+                <span style="font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; color: #b45309;" data-i18n="swiss.alb_label">Albúmina Sérica</span>
+                <div style="font-size: 13px; font-weight: 800; color: #b45309; margin-top: 2px;" data-i18n="swiss.alb_val">1.9 g/dL (Hipoalbuminemia)</div>
+                <span style="font-size: 11px; color: #64748b;" data-i18n="swiss.alb_ref">Albúmina de referencia: 4.4 g/dL</span>
               </div>
+
               <div>
-                <span style="font-size: 10px; font-weight: 700; text-transform: uppercase; color: #64748b; letter-spacing: 0.05em;" data-i18n="mockup.renal_label">Función Renal (CrCl)</span>
-                <div style="font-size: 13px; font-weight: 700; color: #d97706; margin-top: 2px;" data-i18n="mockup.renal_val">16.5 mL/min (KDIGO 4)</div>
-                <span style="font-size: 11px; color: #e11d48;" data-i18n="mockup.renal_status">Depuración Severamente Reducida</span>
+                <span style="font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; color: #64748b;" data-i18n="swiss.c_obs_label">Fenitoína Medida (Total)</span>
+                <div style="font-size: 13px; font-weight: 800; color: #475569; margin-top: 2px;" data-i18n="swiss.c_obs_val">8.5 µg/mL (Engañosamente baja)</div>
+                <span style="font-size: 11px; color: #d97706;" data-i18n="swiss.c_obs_sub">Parece subterapéutica en escala 10-20</span>
               </div>
-              <div>
-                <span style="font-size: 10px; font-weight: 700; text-transform: uppercase; color: #64748b; letter-spacing: 0.05em;" data-i18n="mockup.tdm_label">Último Valle Medido</span>
-                <div style="font-size: 13px; font-weight: 700; color: #059669; margin-top: 2px;"><span data-i18n="mockup.tdm_val">8.17 µg/mL</span> <small style="font-size: 10px; color: #64748b;" data-i18n="mockup.tdm_tag">(TDM Pre-Dosis #12)</small></div>
-                <span style="font-size: 11px; color: #e11d48; font-weight: 600;" data-i18n="mockup.tdm_alert">Subterapéutico (Meta: 15–20)</span>
+
+              <div style="background: #ecfdf5; border: 1.5px solid #10b981; border-radius: 8px; padding: 10px;">
+                <span style="font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; color: #047857; font-weight: 800;" data-i18n="swiss.c_adj_label">Fenitoína Corregida (Sheiner-Tozer)</span>
+                <div style="font-size: 16px; font-weight: 900; color: #047857; margin-top: 2px;" data-i18n="swiss.c_adj_val">17.8 µg/mL (En Meta Terapéutica)</div>
+                <span style="font-size: 10px; color: #047857; font-weight: 700;" data-i18n="swiss.fu_alert">Fracción Libre fu = 0.22 (2.2x fármaco activo en SNC)</span>
               </div>
             </div>
 
-            <!-- Curve + Decision Split -->
-            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 20px;" class="feature-showcase">
-              <!-- Left: High-Precision Vector SVG C(t) Curve -->
-              <div class="glass-card" style="padding: 18px; position: relative; overflow: hidden; background: #ffffff; border: 1px solid #e2e8f0;">
-                <!-- Curve Title & Legend -->
-                <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px;">
-                  <div style="display: flex; align-items: center; gap: 8px;">
-                    <span style="width: 8px; height: 8px; border-radius: 9999px; background: #0284c7;"></span>
-                    <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #091e42; letter-spacing: 0.05em;" data-i18n="mockup.curve_title">Curva de Concentración Sérica Dinámica C(t)</span>
+            <!-- Central Split: Michaelis-Menten Phase-Plane (Left) + Micrometric Optimizer (Right) -->
+            <div style="display: grid; grid-template-columns: 1.6fr 1fr; gap: 20px;" class="feature-showcase">
+              
+              <!-- Left Column: Michaelis-Menten Phase-Plane Curve -->
+              <div class="swiss-glass-panel">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 8px;">
+                  <div>
+                    <h4 style="font-size: 13px; font-weight: 800; color: #0f172a; margin: 0;" data-i18n="swiss.mm_title">Espacio de Fase Michaelis-Menten & Órbita de Saturación</h4>
+                    <span style="font-size: 11px; font-family: var(--font-mono); color: #1e3a8a;" data-i18n="swiss.mm_eq">Velocidad de Eliminación V = (Vmax · C) / (Km + C)</span>
                   </div>
-                  <div style="display: flex; align-items: center; gap: 14px; font-size: 11px;">
-                    <span style="color: #64748b; display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 2px; background: #94a3b8;"></span> <span data-i18n="mockup.legend_pop">Prior Poblacional</span></span>
-                    <span style="color: #0284c7; display: flex; align-items: center; gap: 4px;"><span style="width: 10px; height: 2px; background: #0284c7;"></span> <span data-i18n="mockup.legend_map">Ajuste Bayesiano MAP</span></span>
-                    <span style="color: #059669; display: flex; align-items: center; gap: 4px;"><span style="width: 6px; height: 6px; border-radius: 50%; background: #059669;"></span> <span data-i18n="mockup.legend_point">Punto TDM Real</span></span>
+                  <div style="display: flex; gap: 8px; font-family: var(--font-mono); font-size: 11px;">
+                    <span class="swiss-badge-cobalt" data-i18n="swiss.mm_vmax">Vmax: 7.2 mg/kg/día</span>
+                    <span class="swiss-badge-cobalt" data-i18n="swiss.mm_km">Km: 4.8 µg/mL</span>
                   </div>
                 </div>
 
-                <!-- Floating Badges on Curve -->
-                <div class="floating-badge" style="top: 48px; left: 24px; background: rgba(255, 255, 255, 0.96); border: 1px solid #bae6fd; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08); color: #0f172a;">
-                  <span class="ping-dot" style="width: 6px; height: 6px;"></span>
-                  <span data-i18n="mockup.badge_auc">AUC₂₄/MIC Estimada:</span>
-                  <strong style="color: #0284c7;" data-i18n="mockup.badge_auc_val">592 mg·h/L</strong>
-                  <span style="background: rgba(16, 185, 129, 0.15); color: #059669; font-size: 9px; padding: 1px 6px; border-radius: 4px; font-weight: 700;" data-i18n="mockup.badge_auc_opt">ÓPTIMO</span>
-                </div>
-
-                <div class="floating-badge" style="top: 48px; right: 24px; background: rgba(255, 255, 255, 0.96); border: 1px solid #bae6fd; box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08); color: #0f172a;">
-                  <span data-i18n="mockup.badge_cl">CL Individual:</span>
-                  <strong style="color: #059669;" data-i18n="mockup.badge_cl_val">1.22 L/h (+27% vs Pobl)</strong>
-                </div>
-
-                <!-- Vector SVG Curve -->
-                <div style="width: 100%; height: 260px; margin-top: 10px;">
-                  <svg style="width: 100%; height: 100%;" viewBox="0 0 700 280" preserveAspectRatio="none">
+                <div style="width: 100%; height: 220px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px; position: relative;">
+                  <svg style="width: 100%; height: 100%;" viewBox="0 0 600 200" preserveAspectRatio="none">
                     <defs>
-                      <linearGradient id="heroTargetWindow" x1="0" y1="0" x2="0" y2="1">
+                      <linearGradient id="mmSafeBand" x1="0" y1="0" x2="1" y2="0">
                         <stop offset="0%" stop-color="#10b981" stop-opacity="0.15" />
-                        <stop offset="100%" stop-color="#0284c7" stop-opacity="0.05" />
-                      </linearGradient>
-                      <linearGradient id="heroMapArea" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stop-color="#0284c7" stop-opacity="0.18" />
-                        <stop offset="100%" stop-color="#0284c7" stop-opacity="0.01" />
+                        <stop offset="100%" stop-color="#10b981" stop-opacity="0.05" />
                       </linearGradient>
                     </defs>
 
-                    <!-- Horizontal Grid Lines -->
-                    <line x1="50" y1="40" x2="680" y2="40" stroke="#f1f5f9" stroke-dasharray="4,4" />
-                    <line x1="50" y1="90" x2="680" y2="90" stroke="#f1f5f9" stroke-dasharray="4,4" />
-                    <line x1="50" y1="140" x2="680" y2="140" stroke="#f1f5f9" stroke-dasharray="4,4" />
-                    <line x1="50" y1="190" x2="680" y2="190" stroke="#f1f5f9" stroke-dasharray="4,4" />
-                    <line x1="50" y1="240" x2="680" y2="240" stroke="#e2e8f0" />
+                    <!-- Axis -->
+                    <line x1="45" y1="175" x2="580" y2="175" stroke="#cbd5e1" stroke-width="1.5" />
+                    <line x1="45" y1="20" x2="45" y2="175" stroke="#cbd5e1" stroke-width="1.5" />
 
-                    <!-- Y-Axis labels -->
-                    <text x="40" y="44" fill="#64748b" font-size="10" font-family="monospace" text-anchor="end">40</text>
-                    <text x="40" y="94" fill="#64748b" font-size="10" font-family="monospace" text-anchor="end">30</text>
-                    <text x="40" y="144" fill="#64748b" font-size="10" font-family="monospace" text-anchor="end">20</text>
-                    <text x="40" y="194" fill="#64748b" font-size="10" font-family="monospace" text-anchor="end">10</text>
-                    <text x="40" y="244" fill="#64748b" font-size="10" font-family="monospace" text-anchor="end">0</text>
+                    <!-- Therapeutic Window vertical band (10 to 20 ug/mL -> x: 180 to 340) -->
+                    <rect x="180" y="20" width="160" height="155" fill="url(#mmSafeBand)" />
+                    <line x1="180" y1="20" x2="180" y2="175" stroke="#047857" stroke-width="1" stroke-dasharray="3,3" />
+                    <line x1="340" y1="20" x2="340" y2="175" stroke="#047857" stroke-width="1" stroke-dasharray="3,3" />
+                    <text x="260" y="32" fill="#047857" font-size="9" font-family="monospace" text-anchor="middle" font-weight="700">Rango Seguro (10 - 20 µg/mL)</text>
 
-                    <!-- Therapeutic Window Band (15 - 20 ug/mL) -->
-                    <rect x="50" y="140" width="630" height="50" fill="url(#heroTargetWindow)" />
-                    <line x1="50" y1="140" x2="680" y2="140" stroke="#059669" stroke-opacity="0.45" stroke-width="1.2" stroke-dasharray="3,3" />
-                    <line x1="50" y1="190" x2="680" y2="190" stroke="#059669" stroke-opacity="0.45" stroke-width="1.2" stroke-dasharray="3,3" />
-                    <text x="670" y="152" fill="#059669" font-size="9" font-family="monospace" text-anchor="end" data-i18n="mockup.target_high">Diana Superior: 20 mg/L</text>
-                    <text x="670" y="184" fill="#059669" font-size="9" font-family="monospace" text-anchor="end" data-i18n="mockup.target_low">Diana Inferior: 15 mg/L</text>
+                    <!-- Neurotoxicity danger zone (>25 ug/mL -> x > 420) -->
+                    <rect x="420" y="20" width="160" height="155" fill="#fef2f2" fill-opacity="0.6" />
+                    <line x1="420" y1="20" x2="420" y2="175" stroke="#dc2626" stroke-width="1.2" stroke-dasharray="3,3" />
+                    <text x="500" y="32" fill="#dc2626" font-size="9" font-family="monospace" text-anchor="middle" font-weight="700">Zona Tóxica (>25)</text>
 
-                    <!-- Population Prior Curve -->
-                    <path d="M 50,230 C 65,70 85,55 90,65 C 110,130 180,185 240,195 C 245,95 265,85 270,92 C 300,145 360,190 420,200 C 425,100 445,90 450,96 C 480,150 540,192 600,202 L 680,208" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="5,4" />
+                    <!-- Hyperbolic Saturation Curve -->
+                    <path d="M 45,175 Q 120,70 260,52 T 580,42" fill="none" stroke="#1e3a8a" stroke-width="3" />
 
-                    <!-- MAP Shaded Area -->
-                    <path d="M 50,240 L 50,225 C 65,55 85,45 90,52 C 115,115 180,165 240,175 C 245,65 265,58 270,64 C 300,120 370,168 420,176 C 425,70 445,65 450,72 C 480,122 540,170 600,176 L 680,180 L 680,240 Z" fill="url(#heroMapArea)" />
+                    <!-- Linear Asymptote guide -->
+                    <line x1="45" y1="175" x2="180" y2="60" stroke="#94a3b8" stroke-dasharray="3,3" stroke-width="1" />
 
-                    <!-- MAP Fitted Curve -->
-                    <path d="M 50,225 C 65,55 85,45 90,52 C 115,115 180,165 240,175 C 245,65 265,58 270,64 C 300,120 370,168 420,176 C 425,70 445,65 450,72 C 480,122 540,170 600,176 L 680,180" fill="none" stroke="#0284c7" stroke-width="3" stroke-linecap="round" />
+                    <!-- Current Patient Operating Point (at x=305, y=50) -->
+                    <circle cx="305" cy="50" r="6" fill="#10b981" stroke="#ffffff" stroke-width="2" />
+                    <line x1="305" y1="50" x2="305" y2="175" stroke="#10b981" stroke-width="1.5" stroke-dasharray="2,2" />
+                    <text x="305" y="165" fill="#047857" font-size="10" font-family="monospace" text-anchor="middle" font-weight="800">Css: 17.8 µg/mL</text>
 
-                    <!-- Actual Blood Sample Point -->
-                    <line x1="240" y1="50" x2="240" y2="240" stroke="#e11d48" stroke-width="1.2" stroke-dasharray="2,2" />
-                    <circle cx="240" cy="198" r="5" fill="#e11d48" stroke="#ffffff" stroke-width="2" />
-                    <rect x="185" y="208" width="110" height="24" rx="4" fill="#fff1f2" stroke="#fecdd3" stroke-width="1" />
-                    <text x="240" y="224" fill="#9f1239" font-size="10" font-family="monospace" text-anchor="middle" font-weight="700" data-i18n="mockup.tdm_point_tag">TDM: 8.17 µg/mL</text>
-
-                    <!-- Time Points -->
-                    <text x="90" y="258" fill="#64748b" font-size="10" font-family="monospace" text-anchor="middle" data-i18n="mockup.x_dose1">Dosis 1 (0h)</text>
-                    <text x="240" y="258" fill="#e11d48" font-size="10" font-family="monospace" text-anchor="middle" font-weight="700" data-i18n="mockup.x_sample">Muestra (12h)</text>
-                    <text x="420" y="258" fill="#64748b" font-size="10" font-family="monospace" text-anchor="middle" data-i18n="mockup.x_dose3">Dosis 3 (24h)</text>
-                    <text x="600" y="258" fill="#0284c7" font-size="10" font-family="monospace" text-anchor="middle" font-weight="700" data-i18n="mockup.x_ss">Estado Estacionario (36h)</text>
+                    <!-- Axis Ticks & Labels -->
+                    <text x="45" y="190" fill="#64748b" font-size="9" font-family="monospace" text-anchor="middle">0</text>
+                    <text x="180" y="190" fill="#64748b" font-size="9" font-family="monospace" text-anchor="middle">10</text>
+                    <text x="340" y="190" fill="#64748b" font-size="9" font-family="monospace" text-anchor="middle">20</text>
+                    <text x="500" y="190" fill="#64748b" font-size="9" font-family="monospace" text-anchor="middle">30 µg/mL</text>
                   </svg>
                 </div>
 
-                <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; margin-top: 10px; font-size: 11px; color: #64748b; font-family: var(--font-mono); border-top: 1px solid #f1f5f9; padding-top: 10px;">
-                  <span data-i18n="mockup.putzer_note">Solución analítica matricial Putzer (cero drift numérico vs RK45)</span>
-                  <span style="color: #0284c7; font-weight: 700;" data-i18n="mockup.putzer_rec">Ajuste de dosis recomendado: +25% intervalo optimizado</span>
+                <div style="margin-top: 12px; padding: 10px 14px; background: #fffbeb; border: 1px solid #fde68a; border-radius: 8px; font-size: 11px; color: #b45309;" data-i18n="swiss.mm_alert">
+                  ALERTA CINÉTICA ORDEN CERO: En esta zona de pendiente vertical, un aumento del 10% en dosis provoca un salto del 140% en concentración sérica.
                 </div>
               </div>
 
-              <!-- Right: CDSS Recommendation Card -->
-              <div style="display: flex; flex-direction: column; gap: 16px;">
-                <div class="glass-card" style="padding: 20px; border-color: #bae6fd; background: linear-gradient(145deg, #f0fdfa, #f0f9ff); box-shadow: 0 10px 25px -4px rgba(2, 132, 199, 0.08);">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                    <span style="font-size: 10px; font-weight: 700; text-transform: uppercase; color: #0369a1;" data-i18n="mockup.rec_title">Recomendación CDSS</span>
-                    <span style="font-size: 10px; font-weight: 700; background: rgba(2, 132, 199, 0.12); color: #0284c7; padding: 2px 8px; border-radius: 4px;">L-BFGS-B MAP</span>
-                  </div>
+              <!-- Right Column: Micrometric Dose Optimizer -->
+              <div class="swiss-glass-panel" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <h4 style="font-size: 13px; font-weight: 800; color: #0f172a; margin-bottom: 4px;" data-i18n="swiss.opt_title">Optimizador de Dosis Micrométrico</h4>
+                  <p style="font-size: 11px; color: #64748b; margin-bottom: 14px;" data-i18n="swiss.opt_desc">Evaluación de saturación en incrementos de 25 mg/día</p>
 
-                  <h3 style="font-size: 1.15rem; font-weight: 800; color: #091e42; margin-bottom: 8px;" data-i18n="mockup.rec_heading">Escalar a 500 mg c/ 12h</h3>
-                  <p style="font-size: 12px; color: #475569; line-height: 1.5; margin-bottom: 16px;" data-i18n="mockup.rec_body">
-                    El aclaramiento individual (1.22 L/h) supera el poblacional en un +27%. El esquema propuesto alcanza la meta de AUC₂₄ (592 mg·h/L) en rango seguro sin nefrotoxicidad.
-                  </p>
-
-                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px;">
-                    <div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 8px; border-radius: 8px; text-align: center; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);">
-                      <span style="font-size: 10px; color: #64748b; display: block;" data-i18n="mockup.cmin_label">Cmin (Valle)</span>
-                      <strong style="color: #059669; font-size: 14px; font-family: var(--font-mono);">15.2 µg/mL</strong>
+                  <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px; font-size: 11px; font-family: var(--font-mono);" data-i18n="swiss.scen1">
+                      300 mg/día → Css: 12.4 µg/mL (Zona lineal, PTA 88%)
                     </div>
-                    <div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 8px; border-radius: 8px; text-align: center; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);">
-                      <span style="font-size: 10px; color: #64748b; display: block;" data-i18n="mockup.cmax_label">Cmax (Pico)</span>
-                      <strong style="color: #0284c7; font-size: 14px; font-family: var(--font-mono);">38.4 µg/mL</strong>
+                    
+                    <div style="background: #ecfdf5; border: 1.5px solid #10b981; border-radius: 8px; padding: 12px; font-size: 11px; font-family: var(--font-mono); color: #047857; font-weight: 700;" data-i18n="swiss.scen2">
+                      325 mg/día → Css: 17.8 µg/mL (Meta diana óptima, PTA 96.4%)
+                    </div>
+
+                    <div style="background: #fef2f2; border: 1px solid #fecdd3; border-radius: 8px; padding: 12px; font-size: 11px; font-family: var(--font-mono); color: #b91c1c;" data-i18n="swiss.scen3">
+                      350 mg/día → Css: 28.6 µg/mL (¡RIESGO DE TOXICIDAD NEUROLÓGICA >25!)
                     </div>
                   </div>
+                </div>
 
-                  <button type="button" class="btn-stitch-primary" style="width: 100%; padding: 10px; font-size: 12px;" data-i18n="mockup.btn_approve">
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                    <span>Aprobar Régimen y Sincronizar HIS</span>
+                <div style="margin-top: 16px; display: flex; flex-direction: column; gap: 8px;">
+                  <button type="button" class="btn-stitch-primary" style="padding: 11px; font-size: 12px; justify-content: center; background: #1e3a8a;" data-i18n="swiss.btn_pump">
+                    <span>Confirmar Régimen en Bomba Inteligente</span>
+                  </button>
+                  <button type="button" class="btn-stitch-glass" style="padding: 10px; font-size: 11px; justify-content: center;" data-i18n="swiss.btn_bolus">
+                    <span>Simular Bolo de Carga</span>
                   </button>
                 </div>
-
-                <!-- Local Audit Card -->
-                <div class="glass-card" style="padding: 16px; font-size: 11px; background: #ffffff; border: 1px solid #e2e8f0;">
-                  <div style="display: flex; justify-content: space-between; margin-bottom: 6px;">
-                    <strong style="color: #091e42;" data-i18n="mockup.audit_title">Aprendizaje Institucional</strong>
-                    <span style="color: #0284c7; font-family: var(--font-mono); font-weight: 700;" data-i18n="mockup.audit_badge">HLH Cohorte</span>
-                  </div>
-                  <p style="color: #64748b; line-height: 1.4; margin-bottom: 10px;" data-i18n="mockup.audit_body">
-                    Modelo adaptado con datos de 86 pacientes locales de idéntico rango renal (VFG 16-25 mL/min).
-                  </p>
-                  <div style="display: flex; justify-content: space-between; border-top: 1px solid #f1f5f9; padding-top: 8px; color: #475569;">
-                    <span data-i18n="mockup.local_ev">Evidencia Local: 50%</span>
-                    <span data-i18n="mockup.ext_ev">Literatura Externa: 50%</span>
-                  </div>
-                </div>
               </div>
+
             </div>
           </div>
         </div>

@@ -523,10 +523,10 @@
       link.addEventListener("click", (event) => {
         event.preventDefault();
         const sourceImage = link.querySelector("img");
-        if (!sourceImage) return;
+        const altText = sourceImage ? sourceImage.alt : (link.getAttribute("data-alt") || link.getAttribute("aria-label") || "PK-Bayes");
         returnFocus = link;
         lightboxImage.src = link.getAttribute("href");
-        lightboxImage.alt = sourceImage.alt;
+        lightboxImage.alt = altText;
         lightbox.hidden = false;
         document.body.classList.add("lightbox-open");
         closeButton.focus();
@@ -552,10 +552,39 @@
     sections.forEach((section) => observer.observe(section));
   }
 
+  /* ---------- Selector de Paradigma Clínico (Cockpit 3.0 vs Gabinete Suizo) ---------- */
+  function initModeSwitcher() {
+    const btnCockpit = document.getElementById("btn-mode-cockpit");
+    const btnSwiss = document.getElementById("btn-mode-swiss");
+    const viewCockpit = document.getElementById("workstation-cockpit-view");
+    const viewSwiss = document.getElementById("workstation-swiss-view");
+
+    if (!btnCockpit || !btnSwiss || !viewCockpit || !viewSwiss) return;
+
+    btnCockpit.addEventListener("click", () => {
+      btnCockpit.classList.add("active");
+      btnCockpit.setAttribute("aria-selected", "true");
+      btnSwiss.classList.remove("active");
+      btnSwiss.setAttribute("aria-selected", "false");
+      viewCockpit.style.display = "block";
+      viewSwiss.style.display = "none";
+    });
+
+    btnSwiss.addEventListener("click", () => {
+      btnSwiss.classList.add("active");
+      btnSwiss.setAttribute("aria-selected", "true");
+      btnCockpit.classList.remove("active");
+      btnCockpit.setAttribute("aria-selected", "false");
+      viewCockpit.style.display = "none";
+      viewSwiss.style.display = "block";
+    });
+  }
+
   // Initialize Dossier Controllers
   initEmpiricalCalc();
   initPKSimulator();
   initVFGStrata();
   initFeatureSlider();
   initProductScreens();
+  initModeSwitcher();
 })();
