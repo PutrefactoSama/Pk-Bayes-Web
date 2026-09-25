@@ -580,6 +580,107 @@
     });
   }
 
+  /* ---------- Zenith Dashboard Interactivo (Apple Health + Linear Style) ---------- */
+  function initZenithDashboard() {
+    const btnA = document.getElementById("posology-btn-a");
+    const btnB = document.getElementById("posology-btn-b");
+    const btnC = document.getElementById("posology-btn-c");
+    if (!btnA || !btnB || !btnC) return;
+
+    const kpiPta = document.getElementById("zenith-kpi-pta");
+    const ringPath = document.getElementById("zenith-ring-path");
+    const kpiAuc = document.getElementById("zenith-kpi-auc");
+    const corridorDot = document.getElementById("zenith-corridor-dot");
+    const kpiCmin = document.getElementById("zenith-kpi-cmin");
+    const curveLine = document.getElementById("zenith-curve-line");
+    const curveGlow = document.getElementById("zenith-curve-glow");
+
+    const scenarios = {
+      a: {
+        pta: "96%",
+        ptaColor: "#059669",
+        ringDash: "96, 100",
+        ringStroke: "#059669",
+        auc: "485",
+        dotLeft: "52%",
+        dotBg: "#059669",
+        cmin: "16.2",
+        cminColor: "#0f172a",
+        curveStroke: "#2563eb",
+        curveD: "M 50,210 C 70,45 100,38 150,90 C 200,140 240,172 260,175 C 280,48 310,40 360,92 C 410,142 450,174 470,176 C 490,50 520,42 570,94 C 620,144 660,175 680,178 C 700,52 730,45 780,96 C 830,146 850,176 870,178",
+        glowD: "M 50,210 C 70,45 100,38 150,90 C 200,140 240,172 260,175 C 280,48 310,40 360,92 C 410,142 450,174 470,176 C 490,50 520,42 570,94 C 620,144 660,175 680,178 C 700,52 730,45 780,96 C 830,146 850,176 870,178 L 870,215 L 50,215 Z"
+      },
+      b: {
+        pta: "62%",
+        ptaColor: "#dc2626",
+        ringDash: "62, 100",
+        ringStroke: "#dc2626",
+        auc: "642",
+        dotLeft: "85%",
+        dotBg: "#dc2626",
+        cmin: "24.1",
+        cminColor: "#dc2626",
+        curveStroke: "#dc2626",
+        curveD: "M 50,205 C 70,20 100,15 150,65 C 200,110 240,135 260,138 C 280,22 310,18 360,68 C 410,112 450,137 470,140 C 490,25 520,20 570,70 C 620,115 660,139 680,142 C 700,28 730,22 780,72 C 830,118 850,140 870,142",
+        glowD: "M 50,205 C 70,20 100,15 150,65 C 200,110 240,135 260,138 C 280,22 310,18 360,68 C 410,112 450,137 470,140 C 490,25 520,20 570,70 C 620,115 660,139 680,142 C 700,28 730,22 780,72 C 830,118 850,140 870,142 L 870,215 L 50,215 Z"
+      },
+      c: {
+        pta: "98%",
+        ptaColor: "#2563eb",
+        ringDash: "98, 100",
+        ringStroke: "#2563eb",
+        auc: "492",
+        dotLeft: "54%",
+        dotBg: "#2563eb",
+        cmin: "18.2",
+        cminColor: "#0f172a",
+        curveStroke: "#059669",
+        curveD: "M 50,210 C 80,145 120,132 180,132 C 280,132 400,132 500,132 C 600,132 750,132 870,132",
+        glowD: "M 50,210 C 80,145 120,132 180,132 C 280,132 400,132 500,132 C 600,132 750,132 870,132 L 870,215 L 50,215 Z"
+      }
+    };
+
+    function applyScenario(key) {
+      const s = scenarios[key];
+      if (!s) return;
+
+      [btnA, btnB, btnC].forEach((b) => b.classList.remove("active"));
+      const activeBtn = key === "a" ? btnA : key === "b" ? btnB : btnC;
+      activeBtn.classList.add("active");
+
+      if (kpiPta) {
+        kpiPta.textContent = s.pta;
+        kpiPta.style.color = s.ptaColor;
+      }
+      if (ringPath) {
+        ringPath.setAttribute("stroke-dasharray", s.ringDash);
+        ringPath.setAttribute("stroke", s.ringStroke);
+      }
+      if (kpiAuc) {
+        kpiAuc.textContent = s.auc;
+      }
+      if (corridorDot) {
+        corridorDot.style.left = s.dotLeft;
+        corridorDot.style.background = s.dotBg;
+      }
+      if (kpiCmin) {
+        kpiCmin.textContent = s.cmin;
+        kpiCmin.style.color = s.cminColor;
+      }
+      if (curveLine) {
+        curveLine.setAttribute("d", s.curveD);
+        curveLine.setAttribute("stroke", s.curveStroke);
+      }
+      if (curveGlow) {
+        curveGlow.setAttribute("d", s.glowD);
+      }
+    }
+
+    btnA.addEventListener("click", () => applyScenario("a"));
+    btnB.addEventListener("click", () => applyScenario("b"));
+    btnC.addEventListener("click", () => applyScenario("c"));
+  }
+
   // Initialize Dossier Controllers
   initEmpiricalCalc();
   initPKSimulator();
@@ -587,4 +688,5 @@
   initFeatureSlider();
   initProductScreens();
   initModeSwitcher();
+  initZenithDashboard();
 })();
