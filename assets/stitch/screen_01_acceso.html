@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+
+<html lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="web_blank" name="shell-type"/>
+<title>ClinPK Bayes · Acceso Clínico &amp; Farmacometría de Precisión</title>
+<style>
+    @layer base {
+      html, body { margin: 0; padding: 0; }
+      body { overscroll-behavior: none; }
+      main > :first-child { margin-top: 0 !important; }
+      main > :last-child { margin-bottom: 0 !important; }
+    }
+    ::-webkit-scrollbar { display: none; }
+  </style>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface": "#faf8ff",
+            "surface-dim": "#d2d9f4",
+            "surface-bright": "#faf8ff",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f2f3ff",
+            "surface-container": "#eaedff",
+            "surface-container-high": "#e2e7ff",
+            "surface-container-highest": "#dae2fd",
+            "surface-variant": "#dae2fd",
+            "on-surface": "#131b2e",
+            "on-surface-variant": "#3f4850",
+            "outline": "#707881",
+            "outline-variant": "#bfc7d2",
+            "primary": "#006194",
+            "primary-container": "#007bb9",
+            "on-primary": "#ffffff",
+            "on-primary-container": "#fdfcff",
+            "primary-fixed": "#cce5ff",
+            "primary-fixed-dim": "#93ccff",
+            "on-primary-fixed": "#001d31",
+            "on-primary-fixed-variant": "#004b73",
+            "secondary": "#006c4a",
+            "secondary-container": "#82f5c1",
+            "on-secondary": "#ffffff",
+            "on-secondary-container": "#00714e",
+            "secondary-fixed": "#85f8c4",
+            "secondary-fixed-dim": "#68dba9",
+            "on-secondary-fixed": "#002114",
+            "on-secondary-fixed-variant": "#005137",
+            "tertiary": "#712ae2",
+            "tertiary-container": "#8a4cfc",
+            "on-tertiary": "#ffffff",
+            "on-tertiary-container": "#fffbff",
+            "background": "#faf8ff",
+            "on-background": "#131b2e"
+          },
+          fontFamily: {
+            "sans": ["Plus Jakarta Sans", "Inter", "sans-serif"],
+            "headline": ["Plus Jakarta Sans", "sans-serif"],
+            "body": ["Inter", "sans-serif"],
+            "mono": ["JetBrains Mono", "monospace"]
+          }
+        }
+      }
+    }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+</head>
+<body class="bg-gradient-to-br from-[#f0f6ff] via-[#f7faff] to-[#f8f6ff] text-on-surface font-body antialiased min-h-screen flex flex-col justify-between selection:bg-primary/15 selection:text-primary relative overflow-x-hidden">
+<!-- Subtle Ambient Glows (Enterprise Backdrop) -->
+<div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+<div class="absolute -top-40 -left-40 w-[650px] h-[650px] rounded-full bg-sky-200/35 blur-[120px]"></div>
+<div class="absolute top-1/3 -right-48 w-[580px] h-[580px] rounded-full bg-emerald-100/30 blur-[130px]"></div>
+<div class="absolute -bottom-32 left-1/4 w-[500px] h-[500px] rounded-full bg-indigo-100/25 blur-[120px]"></div>
+</div>
+<!-- Micro-Institutional Header -->
+<header class="w-full border-b border-slate-200/60 bg-white/65 backdrop-blur-md sticky top-0 z-30">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-12 flex items-center justify-between text-xs text-on-surface-variant">
+<!-- Left: Node Status Indicator -->
+<div class="flex items-center space-x-2.5">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
+</span>
+<span class="font-mono text-[11px] tracking-tight font-medium text-slate-700">
+          HLH-CLINICAL-CLOUD <span class="text-slate-400">·</span> v4.2.9 <span class="hidden sm:inline text-slate-400">·</span> <span class="hidden sm:inline text-emerald-700 font-semibold">Bayes Kernel Online</span>
+</span>
+</div>
+<!-- Right: Certifications & Regulatory Flags -->
+<div class="flex items-center space-x-3 sm:space-x-5 font-mono text-[11px] text-slate-500">
+<span class="hidden md:flex items-center space-x-1">
+<span class="material-symbols-outlined text-[14px] text-slate-400">lock</span>
+<span>TLS 1.3 FIPS-140-3</span>
+</span>
+<span class="hidden sm:inline text-slate-300">|</span>
+<span class="flex items-center space-x-1">
+<span class="material-symbols-outlined text-[14px] text-emerald-600">verified</span>
+<span class="text-slate-700 font-medium">GAMP 5 &amp; HIPAA</span>
+</span>
+<span class="hidden lg:inline text-slate-300">|</span>
+<span class="hidden lg:flex items-center space-x-1 text-primary font-medium">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+<span>Inferencia MAP &lt;38ms</span>
+</span>
+</div>
+</div>
+</header>
+<!-- Main Canvas -->
+<main class="w-full flex-grow flex items-center justify-center py-6 sm:py-10 px-4 sm:px-6 lg:px-8">
+<div class="w-full max-w-7xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+<!-- LEFT COLUMN: Identity, Scientific Visualizer & System Pillars (7 Cols) -->
+<div class="lg:col-span-7 flex flex-col justify-center space-y-7 pr-0 lg:pr-4">
+<!-- Identity & Headings -->
+<div class="space-y-4">
+<!-- Brand Badge -->
+<div class="inline-flex items-center space-x-2.5 px-3 py-1.5 rounded-full bg-white/80 border border-slate-200/80 shadow-xs backdrop-blur-sm">
+<div class="w-5 h-5 rounded-full bg-gradient-to-tr from-primary to-sky-400 flex items-center justify-center text-white">
+<span class="material-symbols-outlined text-[13px]">tune</span>
+</div>
+<span class="font-mono text-[11px] font-semibold text-primary uppercase tracking-wider">ClinPK Bayes Enterprise</span>
+<span class="text-slate-300">|</span>
+<span class="font-sans text-[11px] text-slate-500 font-medium">Precision Pharmacometrics</span>
+</div>
+<div class="space-y-2">
+<h1 class="font-headline text-3xl sm:text-4xl lg:text-[42px] font-extrabold text-slate-900 tracking-tight leading-[1.12]">
+                Medicina de Precisión &amp; <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-sky-600 to-emerald-600">Modelado Bayesiano MAP</span>
+</h1>
+<p class="font-body text-base text-slate-600 max-w-xl leading-relaxed pt-1">
+                Plataforma clínica hospitalaria de cálculo farmacocinético en tiempo real para optimización de ventanas terapéuticas críticas en pacientes de alta complejidad.
+              </p>
+</div>
+</div>
+<!-- Infographic Visualizer Card: Pharmacokinetic Infusion Simulation (Clean, Glassmorphism) -->
+<div class="rounded-2xl bg-white/85 border border-slate-200/70 p-5 shadow-[0_12px_35px_-12px_rgba(15,23,42,0.08)] backdrop-blur-md space-y-4 relative">
+<!-- Visualizer Header Strip -->
+<div class="flex items-center justify-between border-b border-slate-100 pb-3">
+<div class="flex items-center space-x-2.5">
+<div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+<h3 class="font-sans text-xs font-semibold uppercase tracking-wider text-slate-700">
+                  Monitor PK en Tiempo Real · Perfil vancomicina / meropenem
+                </h3>
+</div>
+<div class="flex items-center space-x-2">
+<span class="font-mono text-[10px] px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 font-medium">ODE RK45 + MCMC</span>
+<span class="font-mono text-[10px] px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200/60 font-semibold">98.2% en Rango</span>
+</div>
+</div>
+<!-- Key Target Metrics Strip (Monospace Editorial) -->
+<div class="grid grid-cols-3 gap-3">
+<div class="bg-slate-50/70 rounded-xl p-2.5 border border-slate-100/90">
+<div class="text-[10px] font-mono uppercase tracking-wider text-slate-500 flex items-center justify-between">
+<span>AUC₂₄ / MIC</span>
+<span class="material-symbols-outlined text-[13px] text-emerald-600">check_circle</span>
+</div>
+<div class="mt-0.5 flex items-baseline space-x-1">
+<span class="font-mono text-xl font-bold text-slate-900">462.4</span>
+<span class="font-mono text-[10px] text-slate-500">mg·h/L</span>
+</div>
+<span class="text-[10px] text-slate-500">Meta: 400 - 600</span>
+</div>
+<div class="bg-slate-50/70 rounded-xl p-2.5 border border-slate-100/90">
+<div class="text-[10px] font-mono uppercase tracking-wider text-slate-500 flex items-center justify-between">
+<span>C_min (Valle)</span>
+<span class="w-1.5 h-1.5 rounded-full bg-sky-500"></span>
+</div>
+<div class="mt-0.5 flex items-baseline space-x-1">
+<span class="font-mono text-xl font-bold text-slate-900">14.8</span>
+<span class="font-mono text-[10px] text-slate-500">mg/L</span>
+</div>
+<span class="text-[10px] text-slate-500">Seguridad &lt; 20.0</span>
+</div>
+<div class="bg-slate-50/70 rounded-xl p-2.5 border border-slate-100/90">
+<div class="text-[10px] font-mono uppercase tracking-wider text-slate-500 flex items-center justify-between">
+<span>Aclaramiento CL</span>
+<span class="font-mono text-[9px] text-slate-400">VFG 68</span>
+</div>
+<div class="mt-0.5 flex items-baseline space-x-1">
+<span class="font-mono text-xl font-bold text-primary">3.72</span>
+<span class="font-mono text-[10px] text-slate-500">L/h</span>
+</div>
+<span class="text-[10px] text-emerald-600 font-medium">Ajustado Bayes</span>
+</div>
+</div>
+<!-- Stylized Pharmacokinetic Graph Canvas (SVG) -->
+<div class="relative w-full h-32 rounded-xl bg-gradient-to-b from-slate-900/[0.02] to-slate-900/[0.04] border border-slate-200/50 p-2 overflow-hidden">
+<svg class="w-full h-full" fill="none" preserveaspectratio="none" viewbox="0 0 540 100">
+<defs>
+<!-- Target Therapeutic Window Band Gradient -->
+<lineargradient id="therapeuticBand" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#10b981" stop-opacity="0.16"></stop>
+<stop offset="100%" stop-color="#0284c7" stop-opacity="0.06"></stop>
+</lineargradient>
+<!-- PK Curve Line Gradient -->
+<lineargradient id="pkCurveStroke" x1="0" x2="1" y1="0" y2="0">
+<stop offset="0%" stop-color="#0284c7"></stop>
+<stop offset="55%" stop-color="#0369a1"></stop>
+<stop offset="100%" stop-color="#059669"></stop>
+</lineargradient>
+<!-- Fill Area Gradient -->
+<lineargradient id="pkAreaGrad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#0284c7" stop-opacity="0.22"></stop>
+<stop offset="100%" stop-color="#0284c7" stop-opacity="0.0"></stop>
+</lineargradient>
+</defs>
+<!-- Grid Guide Lines -->
+<line stroke="#e2e8f0" stroke-dasharray="2,3" stroke-width="0.7" x1="0" x2="540" y1="20" y2="20"></line>
+<line stroke="#e2e8f0" stroke-dasharray="2,3" stroke-width="0.7" x1="0" x2="540" y1="50" y2="50"></line>
+<line stroke="#e2e8f0" stroke-dasharray="2,3" stroke-width="0.7" x1="0" x2="540" y1="80" y2="80"></line>
+<!-- Therapeutic Target Range Zone [C_min valle - C_max óptimo] -->
+<rect fill="url(#therapeuticBand)" height="38" rx="4" width="540" x="0" y="32"></rect>
+<line opacity="0.6" stroke="#059669" stroke-dasharray="3,3" stroke-width="1" x1="0" x2="540" y1="32" y2="32"></line>
+<line opacity="0.6" stroke="#059669" stroke-dasharray="3,3" stroke-width="1" x1="0" x2="540" y1="70" y2="70"></line>
+<!-- CI 95% Confidence Shadow Band -->
+<path d="M 0,82 Q 40,16 90,38 T 180,82 Q 220,18 270,39 T 360,82 Q 400,20 450,40 T 540,83 L 540,92 Q 450,56 400,34 T 360,92 Q 270,54 220,32 T 180,92 Q 90,52 40,30 T 0,92 Z" fill="#0284c7" fill-opacity="0.07"></path>
+<!-- Fill Under Curve -->
+<path d="M 0,85 C 25,20 45,15 90,38 C 130,60 150,78 180,83 C 205,22 225,16 270,39 C 310,61 330,79 360,83 C 385,24 405,18 450,41 C 490,63 515,80 540,84 L 540,100 L 0,100 Z" fill="url(#pkAreaGrad)"></path>
+<!-- Pharmacokinetic Multi-Dose Infusion Curve -->
+<path d="M 0,85 C 25,20 45,15 90,38 C 130,60 150,78 180,83 C 205,22 225,16 270,39 C 310,61 330,79 360,83 C 385,24 405,18 450,41 C 490,63 515,80 540,84" fill="none" stroke="url(#pkCurveStroke)" stroke-linecap="round" stroke-width="2.2"></path>
+<!-- TDM Observation Points & Callouts -->
+<g filter="drop-shadow(0 1px 2px rgba(0,0,0,0.1))">
+<circle cx="90" cy="38" fill="#ffffff" r="4.5" stroke="#0284c7" stroke-width="2.5"></circle>
+<circle cx="180" cy="83" fill="#ffffff" r="4.5" stroke="#059669" stroke-width="2.5"></circle>
+<circle cx="360" cy="83" fill="#ffffff" r="4.5" stroke="#059669" stroke-width="2.5"></circle>
+<circle cx="450" cy="41" fill="#ffffff" r="4.5" stroke="#0284c7" stroke-width="2.5"></circle>
+</g>
+<!-- Monospace Graph Labels -->
+<text fill="#059669" font-family="JetBrains Mono" font-size="9" font-weight="600" x="12" y="44">Ventana Terapéutica Óptima [400–600]</text>
+<text fill="#0284c7" font-family="JetBrains Mono" font-size="9" font-weight="500" x="420" y="26">Ajuste MAP a posteriori</text>
+</svg>
+</div>
+</div>
+<!-- 3 Enterprise Healthcare Pillars -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-1">
+<div class="flex items-start space-x-3 p-3 rounded-xl bg-white/60 border border-slate-200/50 hover:bg-white/80 transition shadow-2xs">
+<div class="w-8 h-8 rounded-lg bg-sky-50 border border-sky-100 flex items-center justify-center text-primary shrink-0">
+<span class="material-symbols-outlined text-lg">schema</span>
+</div>
+<div class="space-y-0.5">
+<h4 class="font-sans text-xs font-semibold text-slate-900">Stan MCMC &amp; ODE</h4>
+<p class="font-body text-[11px] text-slate-500 leading-snug">Calibración bayesiana con algoritmos No-U-Turn Sampler.</p>
+</div>
+</div>
+<div class="flex items-start space-x-3 p-3 rounded-xl bg-white/60 border border-slate-200/50 hover:bg-white/80 transition shadow-2xs">
+<div class="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-700 shrink-0">
+<span class="material-symbols-outlined text-lg">water_drop</span>
+</div>
+<div class="space-y-0.5">
+<h4 class="font-sans text-xs font-semibold text-slate-900">Adaptación Renal</h4>
+<p class="font-body text-[11px] text-slate-500 leading-snug">Corrección dinámica según 12 estratos de VFG e hidratación.</p>
+</div>
+</div>
+<div class="flex items-start space-x-3 p-3 rounded-xl bg-white/60 border border-slate-200/50 hover:bg-white/80 transition shadow-2xs">
+<div class="w-8 h-8 rounded-lg bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-700 shrink-0">
+<span class="material-symbols-outlined text-lg">hub</span>
+</div>
+<div class="space-y-0.5">
+<h4 class="font-sans text-xs font-semibold text-slate-900">HL7 / FHIR R4</h4>
+<p class="font-body text-[11px] text-slate-500 leading-snug">Interoperabilidad nativa con HIS, LIS y bombas de infusión.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- RIGHT COLUMN: Clinical Enterprise Access Card (5 Cols) -->
+<div class="lg:col-span-5 w-full max-w-md mx-auto lg:max-w-none">
+<div class="bg-white/95 rounded-2xl p-7 sm:p-8 shadow-[0_20px_50px_-15px_rgba(15,23,42,0.12),0_0_0_1px_rgba(226,232,240,0.8)] backdrop-blur-xl relative overflow-hidden">
+<!-- Sleek Top Accent Highlight -->
+<div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-sky-600 via-primary to-emerald-500"></div>
+<!-- Header & Workspace Lockup -->
+<div class="space-y-3 mb-6">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-3">
+<!-- Custom Clinical Pharmacokinetics Icon -->
+<div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-sky-700 flex items-center justify-center text-white shadow-md shadow-primary/25">
+<span class="material-symbols-outlined text-[22px]">health_metrics</span>
+</div>
+<div>
+<div class="flex items-center space-x-1.5">
+<span class="font-headline text-lg font-bold text-slate-900 tracking-tight">ClinPK</span>
+<span class="font-mono text-[9px] px-1.5 py-0.5 rounded bg-sky-100 text-sky-800 font-semibold tracking-wider">ENTERPRISE</span>
+</div>
+<p class="font-mono text-[10px] text-slate-500">Estación Clínica Hospitalaria</p>
+</div>
+</div>
+<div class="flex items-center space-x-1 bg-slate-100/90 px-2 py-1 rounded-md text-[10px] font-mono text-slate-600">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+<span>Nodo Activo</span>
+</div>
+</div>
+<div>
+<h2 class="font-headline text-base font-semibold text-slate-800">Acceso Seguro de Profesionales</h2>
+<p class="font-body text-xs text-slate-500">Autenticación clínica para farmacocinética individualizada.</p>
+</div>
+</div>
+<!-- Segmented Tab Switch (Pill Style) -->
+<div class="grid grid-cols-2 p-1 bg-slate-100/90 rounded-xl mb-6 text-center text-xs font-medium" role="tablist">
+<button class="py-2 rounded-lg transition-all font-semibold bg-white text-primary shadow-xs" id="tab-login" onclick="switchAuthTab('login')" type="button">
+                Iniciar Sesión
+              </button>
+<button class="py-2 rounded-lg transition-all text-slate-600 hover:text-slate-900" id="tab-register" onclick="switchAuthTab('register')" type="button">
+                Solicitar Acceso
+              </button>
+</div>
+<!-- Authentication Form -->
+<form class="space-y-4" id="auth-form" onsubmit="event.preventDefault();">
+<!-- Hospital Facility Selector -->
+<div class="space-y-1.5">
+<label class="block font-mono text-[11px] font-semibold text-slate-600 uppercase tracking-wider" for="facility-select">
+                  Centro Asistencial / Servicio
+                </label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-lg pointer-events-none">local_hospital</span>
+<select class="w-full pl-10 pr-9 py-2.5 bg-slate-50/80 text-slate-900 font-body text-xs rounded-xl border border-slate-200/90 hover:border-slate-300 focus:bg-white focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 transition appearance-none" id="facility-select">
+<option selected="" value="HLH">Hospital Las Higueras [HLH] · UCI &amp; Farmacia Clínica</option>
+<option value="HGGB">Hospital Guillermo Grant Benavente [HGGB]</option>
+<option value="HCSBA">Hospital Clínico San Borja Arriarán [HCSBA]</option>
+<option value="HCUCH">Hospital Clínico Universidad de Chile [HCUCH]</option>
+<option value="RESEARCH">Consorcio Biofarmacéutico de Investigación PK</option>
+</select>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 text-base pointer-events-none">unfold_more</span>
+</div>
+</div>
+<!-- Institutional Email Input -->
+<div class="space-y-1.5">
+<label class="block font-mono text-[11px] font-semibold text-slate-600 uppercase tracking-wider" for="institutional-email">
+                  Correo Institucional
+                </label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-lg pointer-events-none">badge</span>
+<input class="w-full pl-10 pr-3.5 py-2.5 bg-slate-50/80 text-slate-900 font-body text-xs rounded-xl border border-slate-200/90 hover:border-slate-300 focus:bg-white focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 transition placeholder:text-slate-400" id="institutional-email" placeholder="usuario@hospital.cl" required="" type="email" value="clinico@hospital.cl"/>
+</div>
+</div>
+<!-- Password Input with Toggle -->
+<div class="space-y-1.5">
+<div class="flex items-center justify-between">
+<label class="block font-mono text-[11px] font-semibold text-slate-600 uppercase tracking-wider" for="account-password">
+                    Contraseña Segura
+                  </label>
+<span class="font-mono text-[10px] text-slate-400">Min. 12 carac. + MFA</span>
+</div>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-lg pointer-events-none">lock</span>
+<input class="w-full pl-10 pr-10 py-2.5 bg-slate-50/80 text-slate-900 font-body text-xs rounded-xl border border-slate-200/90 hover:border-slate-300 focus:bg-white focus:outline-none focus:border-sky-500 focus:ring-2 focus:ring-sky-500/20 transition font-mono tracking-tight" id="account-password" placeholder="••••••••••••" required="" type="password" value="DemoSecurePass2025#"/>
+<button aria-label="Alternar visibilidad de contraseña" class="absolute right-2.5 top-1/2 -translate-y-1/2 p-1.5 text-slate-400 hover:text-slate-700 transition" id="pwd-toggle-btn" onclick="togglePasswordVisibility()" type="button">
+<span class="material-symbols-outlined text-base" id="pwd-toggle-icon">visibility</span>
+</button>
+</div>
+</div>
+<!-- Auxiliary Options -->
+<div class="flex items-center justify-between text-xs pt-0.5">
+<label class="flex items-center space-x-2 cursor-pointer select-none">
+<input checked="" class="w-3.5 h-3.5 rounded border-slate-300 text-sky-600 focus:ring-0 focus:ring-offset-0" type="checkbox"/>
+<span class="text-slate-600 text-[11px]">Recordar sesión</span>
+</label>
+<a class="text-sky-700 hover:text-sky-800 text-[11px] font-medium hover:underline transition" href="javascript:void(0)">
+                  ¿Olvidaste tu clave?
+                </a>
+</div>
+<!-- Primary Action Button: Gradient Surgical / Oceanic Blue -->
+<button class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-sky-600 via-primary to-sky-700 hover:from-sky-700 hover:to-primary text-white font-sans text-xs font-semibold tracking-wide transition shadow-md shadow-sky-600/25 flex items-center justify-center space-x-2 group focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2" type="submit">
+<span>Ingresar a ClinPK Workstation</span>
+<span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-0.5">arrow_forward</span>
+</button>
+</form>
+<!-- Divider -->
+<div class="relative my-5">
+<div class="absolute inset-0 flex items-center">
+<div class="w-full border-t border-slate-200/80"></div>
+</div>
+<div class="relative flex justify-center text-[10px]">
+<span class="px-2.5 bg-white text-slate-400 font-mono uppercase tracking-wider">O Autenticación Federada</span>
+</div>
+</div>
+<!-- Federated Hospital Single-Sign-On -->
+<button class="w-full py-2.5 px-3 rounded-xl bg-slate-50 hover:bg-slate-100/80 text-slate-700 font-sans text-xs font-medium transition flex items-center justify-center space-x-2 border border-slate-200/90 hover:border-slate-300 shadow-2xs" type="button">
+<span class="material-symbols-outlined text-base text-primary">passkey</span>
+<span>Acceso Institucional SSO / Token HSM Clínico</span>
+</button>
+<!-- Card Trust Badge Footer -->
+<div class="mt-5 pt-3.5 border-t border-slate-100 flex items-center justify-center space-x-1.5 text-slate-500 font-mono text-[10px]">
+<span class="material-symbols-outlined text-emerald-600 text-sm">verified_user</span>
+<span>Validación Computacional GAMP 5 &amp; FDA 21 CFR Part 11</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Global Subtle Footer -->
+<footer class="w-full border-t border-slate-200/60 bg-white/50 backdrop-blur-xs py-3">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] font-mono text-slate-500">
+<div class="flex items-center space-x-2">
+<span class="material-symbols-outlined text-[13px] text-slate-400">shield</span>
+<span>Red Hospitalaria Nacional · Protocolo RLS Postgres con Cifrado AES-256</span>
+</div>
+<div class="flex items-center space-x-4">
+<span>Soporte Clínico 24/7 (Anexo 4820)</span>
+<span class="text-slate-300">·</span>
+<span class="text-slate-600">Servicio de Farmacia Clínica HLH</span>
+</div>
+</div>
+</footer>
+<!-- Interactive State Logic -->
+<script>
+    function togglePasswordVisibility() {
+      const pwdInput = document.getElementById('account-password');
+      const toggleIcon = document.getElementById('pwd-toggle-icon');
+      if (pwdInput.type === 'password') {
+        pwdInput.type = 'text';
+        toggleIcon.textContent = 'visibility_off';
+      } else {
+        pwdInput.type = 'password';
+        toggleIcon.textContent = 'visibility';
+      }
+    }
+
+    function switchAuthTab(tab) {
+      const loginTab = document.getElementById('tab-login');
+      const registerTab = document.getElementById('tab-register');
+      if (tab === 'login') {
+        loginTab.className = 'py-2 rounded-lg transition-all font-semibold bg-white text-primary shadow-xs';
+        registerTab.className = 'py-2 rounded-lg transition-all text-slate-600 hover:text-slate-900';
+      } else {
+        registerTab.className = 'py-2 rounded-lg transition-all font-semibold bg-white text-primary shadow-xs';
+        loginTab.className = 'py-2 rounded-lg transition-all text-slate-600 hover:text-slate-900';
+      }
+    }
+  </script>
+</body></html>

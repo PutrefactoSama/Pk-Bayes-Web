@@ -35,13 +35,23 @@ ATRIBUTOS = {
     "placeholder": "data-i18n-placeholder",
 }
 # Texto que se deja igual en los cuatro idiomas a propósito.
-LITERAL = {"Español", "English", "中文", "日本語", "PK-Bayes", "PK-Bayes.", "✓", "V", "F"}
+LITERAL = {
+    "Español", "English", "中文", "日本語", "PK-Bayes", "PK-Bayes.", "✓", "V", "F",
+    "PK", "Stan", "L-BFGS-B MAP", "HL7 FHIR", "21 CFR Part 11", "HIPAA / GDPR", "GAMP 5",
+    "pk-bayes-workstation.hlh.hospital/simulacion/CX-504-3"
+}
 
 
 def es_texto(valor):
     """¿Es una frase que un lector vería y esperaría traducida?"""
     v = valor.strip()
     if not v or v in LITERAL:
+        return False
+    # Valores numéricos y unidades técnicas internacionales
+    if re.match(r"^[\-\+]?\d+(\.\d+)?\s*(µg/mL|mg/L|mg|h|mL/min|%|mg·h/L|L/h|L)?$", v):
+        return False
+    # Fórmulas y métricas estadísticas
+    if re.match(r"^R²\s*=\s*\d+(\.\d+)?$", v):
         return False
     return bool(re.search(r"[A-Za-zÁÉÍÓÚÜÑáéíóúüñ]", v))
 
