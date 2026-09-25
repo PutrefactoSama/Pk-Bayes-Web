@@ -3250,8 +3250,8 @@ body.lightbox-open { overflow: hidden; }
 @media (max-width:980px) { .pricing-grid-modern,.pricing-grid-modern.pricing-grid-two { grid-template-columns:1fr; max-width:680px; margin-left:auto; margin-right:auto; }.plan-card.featured { transform:none; }.plan-head p { min-height:0; }.faq-compact { grid-template-columns:1fr; } }
 
 /* =========================================================================
-   STITCH CLINICAL DESIGN SYSTEM UPGRADE (UI/UX 2.0)
-   Inspirado en los prototipos generados con MCP Stitch
+   STITCH CLINICAL DESIGN SYSTEM 2.0 (LUMINOUS, FRIENDLY & ULTRA-PREMIUM)
+   Palette: Porcelain White, Glacier Slate, Vibrant Cyan/Azure, Fresh Emerald
    ========================================================================= */
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
@@ -3261,25 +3261,43 @@ body.lightbox-open { overflow: hidden; }
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 
-  --navy-950: #030712;
-  --navy-900: #070f1e;
-  --navy-850: #0b162c;
-  --navy-800: #0e1c38;
-  --navy-700: #16284f;
+  /* Luminous Neutrals */
+  --slate-50: #f8fafc;
+  --slate-100: #f1f5f9;
+  --slate-200: #e2e8f0;
+  --slate-300: #cbd5e1;
+  --slate-400: #94a3b8;
+  --slate-500: #64748b;
+  --slate-600: #475569;
+  --slate-700: #334155;
+  --slate-800: #1e293b;
+  --slate-900: #0f172a;
+  --slate-950: #091e42;
 
-  --cyan-400: #22d3ee;
+  /* Primary Brand Medical Accents */
+  --cyan-50: #f0fdfa;
+  --cyan-100: #ccfbf1;
   --cyan-500: #06b6d4;
   --cyan-600: #0891b2;
-  --cyan-glow: rgba(6, 182, 212, 0.35);
+  --cyan-700: #0e7490;
 
-  --emerald-400: #34d399;
+  --sky-50: #f0f9ff;
+  --sky-100: #e0f2fe;
+  --sky-500: #0ea5e9;
+  --sky-600: #0284c7;
+  --sky-700: #0369a1;
+
+  --emerald-50: #ecfdf5;
+  --emerald-100: #d1fae5;
   --emerald-500: #10b981;
   --emerald-600: #059669;
-  --emerald-glow: rgba(16, 185, 129, 0.35);
+  --emerald-700: #047857;
 
-  --sky-400: #38bdf8;
-  --sky-500: #0284c7;
-  --sky-glow: rgba(2, 132, 199, 0.35);
+  /* Shadows */
+  --shadow-luminous-sm: 0 2px 8px -1px rgba(15, 23, 42, 0.04), 0 1px 3px -1px rgba(15, 23, 42, 0.02);
+  --shadow-luminous-md: 0 8px 24px -4px rgba(15, 23, 42, 0.06), 0 4px 12px -2px rgba(15, 23, 42, 0.03);
+  --shadow-luminous-lg: 0 20px 45px -8px rgba(15, 23, 42, 0.08), 0 8px 20px -4px rgba(15, 23, 42, 0.04);
+  --shadow-luminous-glow: 0 0 35px -5px rgba(2, 132, 199, 0.18), 0 15px 35px -5px rgba(15, 23, 42, 0.08);
 }
 
 h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
@@ -3293,82 +3311,89 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   font-variant-numeric: tabular-nums;
 }
 
-/* Ambient Radial Mesh Gradients */
+/* Ambient Radial Mesh Gradients (Luminous & Welcoming) */
 .mesh-gradient {
-  background: radial-gradient(circle at 20% 15%, rgba(6, 182, 212, 0.16) 0%, transparent 45%),
-              radial-gradient(circle at 80% 25%, rgba(16, 185, 129, 0.14) 0%, transparent 40%),
-              radial-gradient(circle at 50% 70%, rgba(2, 132, 199, 0.12) 0%, transparent 50%),
-              #070f1e;
+  background: radial-gradient(circle at 12% 15%, rgba(14, 165, 233, 0.09) 0%, transparent 45%),
+              radial-gradient(circle at 88% 20%, rgba(16, 185, 129, 0.08) 0%, transparent 40%),
+              radial-gradient(circle at 50% 70%, rgba(2, 132, 199, 0.05) 0%, transparent 50%),
+              #ffffff;
   position: relative;
 }
 
 .mesh-gradient-darker {
-  background: radial-gradient(circle at 15% 20%, rgba(6, 182, 212, 0.12) 0%, transparent 40%),
-              radial-gradient(circle at 85% 30%, rgba(16, 185, 129, 0.10) 0%, transparent 35%),
-              radial-gradient(circle at 50% 80%, rgba(2, 132, 199, 0.08) 0%, transparent 50%),
-              #030712;
+  background: radial-gradient(circle at 15% 20%, rgba(14, 165, 233, 0.07) 0%, transparent 45%),
+              radial-gradient(circle at 85% 25%, rgba(16, 185, 129, 0.06) 0%, transparent 40%),
+              radial-gradient(circle at 50% 80%, rgba(2, 132, 199, 0.04) 0%, transparent 50%),
+              #f8fafc;
 }
 
-/* Background Glowing Orbs */
+.mesh-gradient-soft {
+  background: radial-gradient(circle at 20% 20%, rgba(6, 182, 212, 0.06) 0%, transparent 50%),
+              radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%),
+              #f0f9ff;
+}
+
+/* Background Glowing Orbs (Soft Medical Halos) */
 .glow-orb {
   position: absolute;
   border-radius: 9999px;
   pointer-events: none;
   z-index: 0;
-  filter: blur(130px);
+  filter: blur(140px);
 }
 
 .glow-orb-cyan {
-  background: rgba(6, 182, 212, 0.14);
+  background: rgba(14, 165, 233, 0.12);
 }
 
 .glow-orb-emerald {
-  background: rgba(16, 185, 129, 0.12);
+  background: rgba(16, 185, 129, 0.10);
 }
 
 .pulse-glow {
-  animation: pulseGlowAnim 4s ease-in-out infinite alternate;
+  animation: pulseGlowAnim 5s ease-in-out infinite alternate;
 }
 
 @keyframes pulseGlowAnim {
-  0% { opacity: 0.35; transform: scale(0.96); }
-  100% { opacity: 0.75; transform: scale(1.04); }
+  0% { opacity: 0.45; transform: scale(0.96); }
+  100% { opacity: 0.85; transform: scale(1.04); }
 }
 
-/* Glassmorphism Cards */
+/* Glassmorphism Cards (Crisp Porcelain White with Soft Elevation) */
 .glass-card {
-  background: rgba(14, 28, 56, 0.65);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(226, 232, 240, 0.9);
   border-radius: 18px;
   position: relative;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.02);
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .glass-card-hover:hover {
-  background: rgba(22, 40, 79, 0.78);
-  border-color: rgba(34, 211, 238, 0.35);
+  background: #ffffff;
+  border-color: #bae6fd;
   transform: translateY(-3px);
-  box-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.5), 0 0 25px -5px rgba(6, 182, 212, 0.2);
+  box-shadow: 0 16px 36px -6px rgba(2, 132, 199, 0.12), 0 4px 16px -2px rgba(15, 23, 42, 0.04);
 }
 
 /* Text Gradients */
 .text-gradient-cyan {
-  background: linear-gradient(135deg, #22d3ee 0%, #38bdf8 50%, #34d399 100%);
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 45%, #059669 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .text-gradient-emerald {
-  background: linear-gradient(135deg, #34d399 0%, #10b981 50%, #06b6d4 100%);
+  background: linear-gradient(135deg, #059669 0%, #0284c7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-/* Glowing Buttons */
+/* Glowing & High-Contrast Buttons */
 .btn-stitch-primary {
   display: inline-flex;
   align-items: center;
@@ -3376,23 +3401,23 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   gap: 8px;
   padding: 12px 24px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #06b6d4 0%, #0284c7 50%, #10b981 100%);
-  color: #030712 !important;
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #059669 100%);
+  color: #ffffff !important;
   font-family: var(--font-heading);
   font-size: 0.875rem;
   font-weight: 700;
   text-decoration: none;
-  box-shadow: 0 0 25px rgba(6, 182, 212, 0.4);
-  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.32);
+  transition: all 0.22s ease;
   border: none;
   cursor: pointer;
 }
 
 .btn-stitch-primary:hover {
-  filter: brightness(1.12);
-  transform: translateY(-1px);
-  box-shadow: 0 0 35px rgba(6, 182, 212, 0.6);
-  color: #030712 !important;
+  filter: brightness(1.08);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(2, 132, 199, 0.42);
+  color: #ffffff !important;
 }
 
 .btn-stitch-glass {
@@ -3402,33 +3427,32 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   gap: 8px;
   padding: 12px 24px;
   border-radius: 12px;
-  background: rgba(14, 28, 56, 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  color: #ffffff !important;
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #0f172a !important;
   font-family: var(--font-heading);
   font-size: 0.875rem;
   font-weight: 600;
   text-decoration: none;
-  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  transition: all 0.22s ease;
   cursor: pointer;
 }
 
 .btn-stitch-glass:hover {
-  background: rgba(22, 40, 79, 0.85);
-  border-color: rgba(34, 211, 238, 0.4);
+  background: #f8fafc;
+  border-color: #0284c7;
+  color: #0284c7 !important;
   transform: translateY(-1px);
-  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.12);
 }
 
-/* High-tech macOS Mockup Window */
+/* macOS Workstation Mockup Window (Luminous Porcelain) */
 .mockup-mac-window {
   border-radius: 20px;
-  background: rgba(7, 15, 30, 0.85);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 40px -10px rgba(6, 182, 212, 0.25);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 25px 65px -12px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(15, 23, 42, 0.03);
   overflow: hidden;
   position: relative;
 }
@@ -3437,9 +3461,13 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 14px 20px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(3, 7, 18, 0.5);
+  padding: 12px 18px;
+  border-bottom: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.mockup-mac-bar.mini-bar {
+  padding: 8px 14px;
 }
 
 .mac-dots {
@@ -3455,18 +3483,33 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   display: inline-block;
 }
 
-.mac-dot.red { background: #ef4444; }
+.mac-dot.red { background: #f43f5e; }
 .mac-dot.amber { background: #f59e0b; }
 .mac-dot.green { background: #10b981; }
 
 .mac-url {
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  color: #94a3b8;
+  color: #64748b;
   padding: 4px 12px;
   border-radius: 6px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+}
+
+.mac-url-pill {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: #64748b;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+}
+
+.mockup-zoom-tag {
+  font-size: 0.75rem;
+  opacity: 0.7;
 }
 
 /* Floating Metric Badges */
@@ -3474,16 +3517,16 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   position: absolute;
   padding: 6px 12px;
   border-radius: 8px;
-  background: rgba(7, 15, 30, 0.92);
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(34, 211, 238, 0.35);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  border: 1px solid #bae6fd;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
   display: flex;
   align-items: center;
   gap: 8px;
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  color: #e2e8f0;
+  color: #0f172a;
   z-index: 10;
 }
 
@@ -3494,7 +3537,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   width: 8px;
   height: 8px;
   border-radius: 9999px;
-  background-color: #10b981;
+  background-color: #059669;
 }
 
 .ping-dot::after {
@@ -3528,9 +3571,9 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 .sim-dose-btn {
   padding: 8px 6px;
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #e2e8f0;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #334155;
   font-family: var(--font-mono);
   font-size: 0.78rem;
   font-weight: 600;
@@ -3539,69 +3582,119 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 }
 
 .sim-dose-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(34, 211, 238, 0.3);
+  background: #f1f5f9;
+  border-color: #0284c7;
+  color: #0284c7;
 }
 
 .sim-dose-btn.active {
-  background: rgba(6, 182, 212, 0.22);
-  border-color: #22d3ee;
-  color: #22d3ee;
-  box-shadow: 0 0 15px rgba(6, 182, 212, 0.25);
+  background: linear-gradient(135deg, #0284c7, #0369a1);
+  border-color: #0284c7;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
 }
 
 .sim-select {
   width: 100%;
-  background: #030712;
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
   border-radius: 10px;
   padding: 10px 14px;
-  color: #ffffff;
+  color: #0f172a;
   font-family: var(--font-mono);
   font-size: 0.78rem;
   outline: none;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
 }
 
 .sim-select:focus {
-  border-color: #22d3ee;
-  box-shadow: 0 0 10px rgba(6, 182, 212, 0.2);
+  border-color: #0284c7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
 }
 
 .sim-slider-track {
   width: 100%;
   height: 6px;
-  background: #030712;
+  background: #e2e8f0;
   border-radius: 8px;
   outline: none;
   cursor: pointer;
-  accent-color: #22d3ee;
+  accent-color: #0284c7;
 }
 
-/* Feature Mockup Card in Funcionalidades */
-.feature-mockup-wrap {
-  position: relative;
-  border-radius: 16px;
+/* Feature Mockup Window & Viewport (Stitch 2560px Crisp Presentation) */
+.feature-mockup-window {
+  display: block;
+  text-decoration: none;
+  border-radius: 14px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: #030712;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
-  transition: transform 0.3s ease, border-color 0.3s ease;
+  border: 1px solid #e2e8f0;
+  background: #ffffff;
+  box-shadow: 0 8px 24px -4px rgba(15, 23, 42, 0.08);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  margin-bottom: 16px;
 }
 
-.feature-mockup-wrap:hover {
+.feature-mockup-window:hover {
   transform: translateY(-4px);
-  border-color: rgba(6, 182, 212, 0.4);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(6, 182, 212, 0.2);
+  border-color: #0284c7;
+  box-shadow: 0 16px 36px -6px rgba(2, 132, 199, 0.18), 0 4px 16px -2px rgba(15, 23, 42, 0.06);
+}
+
+.feature-mockup-viewport {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background: #f8fafc;
 }
 
 .feature-mockup-img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
   display: block;
-  transition: transform 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Compliance Badges */
+.feature-mockup-window:hover .feature-mockup-img {
+  transform: scale(1.03);
+}
+
+.mockup-hover-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.35);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease;
+}
+
+.feature-mockup-window:hover .mockup-hover-overlay {
+  opacity: 1;
+}
+
+.mockup-hover-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  background: #ffffff;
+  color: #0284c7;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 750;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Compliance Cards */
 .compliance-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -3621,100 +3714,113 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 }
 
 .compliance-card {
-  padding: 18px;
+  padding: 20px;
   border-radius: 14px;
-  background: rgba(7, 15, 30, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.04);
   text-align: center;
-  transition: border-color 0.2s ease;
+  transition: all 0.22s ease;
 }
 
 .compliance-card:hover {
-  border-color: rgba(16, 185, 129, 0.3);
+  border-color: #059669;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -4px rgba(5, 150, 105, 0.12);
 }
 
 .compliance-title {
-  color: #ffffff;
+  color: #091e42;
   font-family: var(--font-heading);
-  font-weight: 700;
+  font-weight: 800;
   font-size: 0.95rem;
 }
 
 .compliance-sub {
-  color: #94a3b8;
-  font-size: 0.75rem;
-  margin-top: 4px;
-  line-height: 1.4;
+  color: #64748b;
+  font-size: 0.78rem;
+  margin-top: 5px;
+  line-height: 1.45;
 }
 
-/* Enhance .product-screen and .screen-toolbar with dark clinical workstation styling */
+/* Clean up .product-screen and .screen-toolbar so they look ultra-crisp in light mode */
 .product-screen {
-  border: 1px solid rgba(255, 255, 255, 0.12) !important;
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45), 0 0 25px rgba(6, 182, 212, 0.12) !important;
-  background: #030712 !important;
-  border-radius: 18px !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 12px 36px -6px rgba(15, 23, 42, 0.08), 0 4px 12px rgba(15, 23, 42, 0.04) !important;
+  background: #ffffff !important;
+  border-radius: 16px !important;
 }
 
 .product-screen:hover {
-  transform: translateY(-5px) !important;
-  border-color: rgba(34, 211, 238, 0.45) !important;
-  box-shadow: 0 30px 75px rgba(0, 0, 0, 0.65), 0 0 35px rgba(6, 182, 212, 0.3) !important;
+  transform: translateY(-4px) !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 20px 45px -8px rgba(2, 132, 199, 0.15), 0 6px 18px rgba(15, 23, 42, 0.06) !important;
 }
 
 .screen-toolbar {
-  background: #070f1e !important;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: #f8fafc !important;
+  border-bottom: 1px solid #e2e8f0 !important;
 }
 
 .screen-toolbar b {
-  color: #cbd5e1 !important;
+  color: #334155 !important;
   font-family: var(--font-mono) !important;
+  font-size: 0.78rem !important;
 }
 
 .screen-toolbar em {
-  color: #22d3ee !important;
+  color: #0284c7 !important;
   font-family: var(--font-mono) !important;
   font-weight: 700 !important;
+  font-size: 0.78rem !important;
 }
 
-/* Modern Global Button & Card Polish */
+.screen-toolbar i:nth-child(1) { background: #f43f5e !important; }
+.screen-toolbar i:nth-child(2) { background: #f59e0b !important; }
+.screen-toolbar i:nth-child(3) { background: #10b981 !important; }
+
+/* Global buttons and accents */
 .btn-primary {
-  background: linear-gradient(135deg, #06b6d4 0%, #0284c7 50%, #10b981 100%) !important;
-  color: #030712 !important;
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+  color: #ffffff !important;
   font-weight: 750 !important;
-  box-shadow: 0 0 22px rgba(6, 182, 212, 0.35) !important;
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.32) !important;
   border: none !important;
   transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 .btn-primary:hover {
-  filter: brightness(1.14) !important;
+  filter: brightness(1.08) !important;
   transform: translateY(-2px) !important;
-  box-shadow: 0 0 32px rgba(6, 182, 212, 0.55) !important;
+  box-shadow: 0 8px 24px rgba(2, 132, 199, 0.45) !important;
+  color: #ffffff !important;
 }
 
 .btn-secondary {
-  border: 1px solid rgba(2, 132, 199, 0.3) !important;
-  background: rgba(255, 255, 255, 0.8) !important;
+  border: 1px solid #cbd5e1 !important;
+  background: #ffffff !important;
+  color: #0f172a !important;
   transition: all 0.25s ease !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04) !important;
 }
 
 .btn-secondary:hover {
-  background: #ffffff !important;
+  background: #f8fafc !important;
   border-color: #0284c7 !important;
+  color: #0284c7 !important;
   transform: translateY(-1px) !important;
-  box-shadow: 0 4px 15px rgba(2, 132, 199, 0.15) !important;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.12) !important;
 }
 
 /* Plan card featured glow */
 .plan-card.featured {
-  border-color: rgba(6, 182, 212, 0.4) !important;
-  box-shadow: 0 25px 60px rgba(6, 182, 212, 0.16), 0 0 30px rgba(6, 182, 212, 0.1) !important;
+  border-color: #0284c7 !important;
+  box-shadow: 0 20px 50px rgba(2, 132, 199, 0.16), 0 0 25px rgba(2, 132, 199, 0.1) !important;
 }
 
 /* Drug panels */
 .drug-panel.primary {
-  border-color: rgba(6, 182, 212, 0.3) !important;
+  border-color: rgba(2, 132, 199, 0.3) !important;
 }
 
 /* Badges */
