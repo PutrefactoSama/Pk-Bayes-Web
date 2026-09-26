@@ -6,6 +6,26 @@
 (function () {
   "use strict";
 
+  const i18nT = (key) =>
+    (window.PKBAYES_I18N && window.PKBAYES_I18N.t ? window.PKBAYES_I18N.t(key) : key);
+
+  // Los datasets interactivos guardan claves i18n ("wb.regimen_p1") en los campos con
+  // texto y valores literales ("16.2 µg/mL") en los numéricos. setVal distingue por la
+  // forma de la cadena: si es clave, traduce y deja el marcador data-i18n puesto para
+  // que el motor la reaplique cuando el usuario cambie de idioma sin volver a pulsar.
+  const I18N_KEY_RE = /^[a-z][a-z0-9]*\.[a-z0-9_]+$/;
+
+  function setVal(el, value) {
+    if (!el) return;
+    if (I18N_KEY_RE.test(value)) {
+      el.setAttribute("data-i18n", value);
+      el.textContent = i18nT(value);
+    } else {
+      el.removeAttribute("data-i18n");
+      el.textContent = value;
+    }
+  }
+
   /* ---------- Menú móvil ---------- */
   const navToggle = document.querySelector(".nav-toggle");
   if (navToggle) {
@@ -111,7 +131,8 @@
       toast.innerHTML =
         '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z"/></svg>' +
         '<div><div class="t-title"></div><div class="t-body"></div></div>' +
-        '<button class="t-close" aria-label="Cerrar aviso">×</button>';
+        '<button class="t-close" data-i18n-aria-label="ui.toast_close" aria-label="' +
+        i18nT("ui.toast_close") + '">×</button>';
       document.body.appendChild(toast);
       toast.querySelector(".t-close").addEventListener("click", () => toast.classList.remove("show"));
     }
@@ -692,10 +713,11 @@
     const detailBadge = document.getElementById("wb-detail-badge");
 
     const patientData = {
-      p1: { name: "Elena Morales · UCI-04", drug: "Vancomicina IV · 750mg q12h", trough: "16.2 µg/mL", auc: "485 mg·h/L", badge: "En Meta (96%)", cls: "wb-badge-green" },
-      p2: { name: "Carlos Vega · UCI-09", drug: "Vancomicina IV · 1250mg q12h", trough: "24.5 µg/mL", auc: "680 mg·h/L", badge: "Alerta Toxicidad", cls: "wb-badge-red" },
-      p3: { name: "Mateo Silva · INF-12", drug: "Fenitoína Sódica · 300mg/d", trough: "18.4 µg/mL", auc: "390 mg·h/L", badge: "En Meta", cls: "wb-badge-green" },
-      p4: { name: "Sofía Lara · PED-02", drug: "Amikacina IV · 15mg/kg", trough: "0.8 µg/mL", auc: "410 mg·h/L", badge: "En Meta", cls: "wb-badge-blue" }
+      // name/drug/badge viajan como clave i18n; trough/auc son valores que no se traducen.
+      p1: { name: "wb.triage_patient_1", drug: "wb.regimen_p1", trough: "16.2 µg/mL", auc: "485 mg·h/L", badge: "wb.badge_target_96", cls: "wb-badge-green" },
+      p2: { name: "wb.triage_patient_2", drug: "wb.regimen_p2", trough: "24.5 µg/mL", auc: "680 mg·h/L", badge: "wb.triage_status_warn", cls: "wb-badge-red" },
+      p3: { name: "wb.triage_patient_3", drug: "wb.regimen_p3", trough: "18.4 µg/mL", auc: "390 mg·h/L", badge: "wb.triage_status_target", cls: "wb-badge-green" },
+      p4: { name: "wb.triage_patient_4", drug: "wb.regimen_p4", trough: "0.8 µg/mL", auc: "410 mg·h/L", badge: "wb.triage_status_target", cls: "wb-badge-blue" }
     };
 
     patientItems.forEach((btn) => {
@@ -705,12 +727,12 @@
         const id = btn.getAttribute("data-wb-patient");
         const p = patientData[id];
         if (!p) return;
-        if (detailName) detailName.textContent = p.name;
-        if (detailDrug) detailDrug.textContent = p.drug;
-        if (detailTrough) detailTrough.textContent = p.trough;
-        if (detailAuc) detailAuc.textContent = p.auc;
+        setVal(detailName, p.name);
+        setVal(detailDrug, p.drug);
+        setVal(detailTrough, p.trough);
+        setVal(detailAuc, p.auc);
         if (detailBadge) {
-          detailBadge.textContent = p.badge;
+          setVal(detailBadge, p.badge);
           detailBadge.className = "wb-badge-pill " + p.cls;
         }
       });
@@ -813,45 +835,45 @@
 
     const drugProfiles = {
       vanco: {
-        title: "Vancomicina IV (Bicompartimental)",
-        model: "Lineal 2-Compartimentos (Goti / Rodvold)",
+        title: "atlas.title_vanco",
+        model: "atlas.model_vanco_val",
         vd: "0.72 L/kg",
         cl: "2.1 L/h",
         thalf: "14.2 h",
-        target: "AUC24 / CIM 400 - 600",
+        target: "atlas.target_vanco",
         d: "M 50,210 C 70,45 100,38 150,90 C 200,140 240,172 260,175 C 280,48 310,40 360,92 C 410,142 450,174 470,176 C 490,50 520,42 570,94 C 620,144 660,175 680,178 C 700,52 730,45 780,96 C 830,146 850,176 870,178",
         glow: "M 50,210 C 70,45 100,38 150,90 C 200,140 240,172 260,175 C 280,48 310,40 360,92 C 410,142 450,174 470,176 C 490,50 520,42 570,94 C 620,144 660,175 680,178 C 700,52 730,45 780,96 C 830,146 850,176 870,178 L 870,215 L 50,215 Z",
         stroke: "#0284c7"
       },
       feni: {
-        title: "Fenitoína Sódica (Michaelis-Menten)",
-        model: "Cinética No Lineal Saturable (Vmax, Km)",
+        title: "atlas.title_feni",
+        model: "atlas.model_feni_val",
         vd: "0.65 L/kg",
-        cl: "Saturable (Km: 4.4 mg/L)",
-        thalf: "22 - 36 h (Dosis-dependiente)",
-        target: "10 - 20 µg/mL (Total corregido)",
+        cl: "atlas.cl_feni",
+        thalf: "atlas.thalf_feni",
+        target: "atlas.target_feni",
         d: "M 50,210 C 90,80 140,65 240,68 C 340,70 440,70 540,70 C 640,70 740,70 870,70",
         glow: "M 50,210 C 90,80 140,65 240,68 C 340,70 440,70 540,70 C 640,70 740,70 870,70 L 870,215 L 50,215 Z",
         stroke: "#d97706"
       },
       ami: {
-        title: "Gentamicina / Amikacina (Hartford)",
-        model: "1-Compartimento Dosis Extendida",
+        title: "atlas.title_ami",
+        model: "atlas.model_ami_val",
         vd: "0.26 L/kg",
-        cl: "6.2 L/h (Depuración Rápida)",
+        cl: "atlas.cl_ami",
         thalf: "2.4 h",
-        target: "Pico > 10x CIM · Valle < 1 µg/mL",
+        target: "atlas.target_ami",
         d: "M 50,210 C 60,20 80,15 110,60 C 140,140 180,210 260,212 C 270,20 290,15 320,60 C 350,140 390,210 470,212 C 480,20 500,15 530,60 C 560,140 600,210 680,212 C 690,20 710,15 740,60 C 770,140 810,210 870,212",
         glow: "M 50,210 C 60,20 80,15 110,60 C 140,140 180,210 260,212 C 270,20 290,15 320,60 C 350,140 390,210 470,212 C 480,20 500,15 530,60 C 560,140 600,210 680,212 C 690,20 710,15 740,60 C 770,140 810,210 870,212 L 870,215 L 50,215 Z",
         stroke: "#2563eb"
       },
       tacro: {
-        title: "Tacrolimus (Sangre Total Trasplante)",
-        model: "2-Compartimentos con Unión Eritrocitaria",
+        title: "atlas.title_tacro",
+        model: "atlas.model_tacro_val",
         vd: "1.10 L/kg",
-        cl: "4.8 L/h (Metabolismo CYP3A5)",
+        cl: "atlas.cl_tacro",
         thalf: "12.0 h",
-        target: "Valle 5 - 12 ng/mL (Estrecho Margen)",
+        target: "atlas.target_tacro",
         d: "M 50,210 C 70,130 110,140 160,155 C 210,165 240,170 260,172 C 280,130 310,140 360,155 C 410,165 440,170 470,172 C 490,130 520,140 570,155 C 620,165 650,170 680,172 C 700,130 730,140 780,155 C 830,165 850,170 870,172",
         glow: "M 50,210 C 70,130 110,140 160,155 C 210,165 240,170 260,172 C 280,130 310,140 360,155 C 410,165 440,170 470,172 C 490,130 520,140 570,155 C 620,165 650,170 680,172 C 700,130 730,140 780,155 C 830,165 850,170 870,172 L 870,215 L 50,215 Z",
         stroke: "#7c3aed"
@@ -865,12 +887,15 @@
         const key = btn.getAttribute("data-atlas-drug");
         const p = drugProfiles[key];
         if (!p) return;
-        if (drugTitle) drugTitle.textContent = p.title;
-        if (modelTag) modelTag.textContent = p.model;
-        if (paramVd) paramVd.textContent = p.vd;
-        if (paramCl) paramCl.textContent = p.cl;
-        if (paramThalf) paramThalf.textContent = p.thalf;
-        if (paramTarget) paramTarget.textContent = p.target;
+        // Los textos con palabras viajan como clave i18n: se traducen ahora y se deja
+        // el marcador data-i18n puesto, para que el motor los vuelva a traducir si el
+        // usuario cambia de idioma con otro fármaco ya seleccionado.
+        setVal(drugTitle, p.title);
+        setVal(modelTag, p.model);
+        setVal(paramVd, p.vd);
+        setVal(paramCl, p.cl);
+        setVal(paramThalf, p.thalf);
+        setVal(paramTarget, p.target);
         if (curveLine) {
           curveLine.setAttribute("d", p.d);
           curveLine.setAttribute("stroke", p.stroke);
@@ -925,11 +950,11 @@
             caseGlow.setAttribute("d", "M 50,205 C 70,20 100,15 150,65 C 200,110 240,135 260,138 C 280,22 310,18 360,68 C 410,112 450,137 470,140 C 490,25 520,20 570,70 C 620,115 660,139 680,142 C 700,28 730,22 780,72 C 830,118 850,140 870,142 L 870,215 L 50,215 Z");
           }
           if (caseBadge) {
-            caseBadge.textContent = "Alerta Nefrotoxicidad";
+            setVal(caseBadge, "case.badge_nephro");
             caseBadge.className = "wb-badge-pill wb-badge-red";
           }
           if (caseStat) {
-            caseStat.textContent = "C_mín: 27.8 µg/mL (Pauta Empírica 1000mg q12h)";
+            setVal(caseStat, "case.stat_empiric");
             caseStat.style.color = "#dc2626";
           }
         } else {
@@ -942,11 +967,11 @@
             caseGlow.setAttribute("d", "M 50,210 C 70,45 100,38 150,90 C 200,140 240,172 260,175 C 280,48 310,40 360,92 C 410,142 450,174 470,176 C 490,50 520,42 570,94 C 620,144 660,175 680,178 C 700,52 730,45 780,96 C 830,146 850,176 870,178 L 870,215 L 50,215 Z");
           }
           if (caseBadge) {
-            caseBadge.textContent = "En Meta 96%";
+            setVal(caseBadge, "case.badge_target_96");
             caseBadge.className = "wb-badge-pill wb-badge-green";
           }
           if (caseStat) {
-            caseStat.textContent = "C_mín: 16.4 µg/mL · AUC 482 (Ajuste MAP 750mg q18h)";
+            setVal(caseStat, "case.stat_map");
             caseStat.style.color = "#059669";
           }
         }
@@ -966,7 +991,7 @@
 
     function update() {
       const beds = parseInt(slider.value, 10);
-      if (bedsDisplay) bedsDisplay.textContent = beds + " camas críticas";
+      if (bedsDisplay) bedsDisplay.textContent = beds + " " + i18nT("roi.beds_unit");
       const aki = Math.round(beds * 1.4);
       const days = Math.round(beds * 4.2);
       const savings = Math.round(aki * 14500);
@@ -977,6 +1002,9 @@
     }
 
     slider.addEventListener("input", update);
+    // bedsDisplay se arma concatenando número + unidad, así que no lo puede reaplicar el
+    // motor por data-i18n: se recalcula cuando cambia el idioma.
+    window.addEventListener("pkbayes_language_changed", update);
     update();
   }
 
