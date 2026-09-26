@@ -1,5 +1,5 @@
 /**
- * PK-Bayes — Checkout con Stripe
+ * PK-Bayes - Checkout con Stripe
  * ---------------------------------------------------------------
  * Soporta dos métodos:
  * 1. Stripe Payment Link directo (URL de Checkout alojada por Stripe)

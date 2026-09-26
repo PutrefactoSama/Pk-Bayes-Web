@@ -1,5 +1,5 @@
 /**
- * PK-Bayes — Configuración central del sitio
+ * PK-Bayes - Configuración central del sitio
  * ---------------------------------------------------------------
  * Edita este archivo para conectar los pagos de Stripe y la app clínica.
  *

@@ -1,5 +1,5 @@
 /**
- * PK-Bayes — Interacciones generales del sitio
+ * PK-Bayes - Interacciones generales del sitio
  * Menú móvil, resaltado de enlace activo, animaciones al hacer scroll,
  * acordeón de preguntas frecuentes y toast de aviso.
  */
@@ -371,7 +371,7 @@
       // Target band text
       ctx.fillStyle = "#10b981";
       ctx.font = "11px sans-serif";
-      ctx.fillText("Rango Objetivo Trough (15–20 mg/L)", padding + 8, y20 + 14);
+      ctx.fillText("Rango Objetivo Trough (15-20 mg/L)", padding + 8, y20 + 14);
 
       // Grid lines
       ctx.strokeStyle = "rgba(15, 23, 42, 0.08)";

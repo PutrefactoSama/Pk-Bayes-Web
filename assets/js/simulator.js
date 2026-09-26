@@ -1,12 +1,12 @@
 /**
- * PK-Bayes — Simulador ilustrativo de dosificación (Vancomicina)
+ * PK-Bayes - Simulador ilustrativo de dosificación (Vancomicina)
  * ---------------------------------------------------------------
  * Modelo simplificado de 1 compartimento con infusión intermitente,
  * evaluado en estado estacionario (ecuaciones tipo Sawchuk-Zaske).
  * Objetivo: mostrar el CONCEPTO del simulador real de PK-Bayes
  * (que internamente usa estimación bayesiana MAP y modelos de
- * 1–2 compartimentos de la literatura). Este widget es SOLO
- * educativo/comercial — no debe usarse para decisiones clínicas.
+ * 1-2 compartimentos de la literatura). Este widget es SOLO
+ * educativo/comercial - no debe usarse para decisiones clínicas.
  *
  *   Cmax,ss = [Dosis / (Tinf · CL)] · (1 − e^(−k·Tinf)) / (1 − e^(−k·τ))
  *   Cmin,ss = Cmax,ss · e^(−k·(τ − Tinf))
@@ -79,7 +79,7 @@
     svg.appendChild(el("line", { x1: padL, x2: W - padR, y1: H - padB, y2: H - padB, stroke: "var(--border-strong)", "stroke-width": 1 }));
     svg.appendChild(el("line", { x1: padL, x2: padL, y1: padT, y2: H - padB, stroke: "var(--border-strong)", "stroke-width": 1 }));
 
-    // Marcas eje X (horas) — 3 ciclos
+    // Marcas eje X (horas) - 3 ciclos
     for (let i = 0; i <= cycles; i++) {
       const t = i * tau;
       const tx = x(t);

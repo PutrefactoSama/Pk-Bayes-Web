@@ -1,5 +1,5 @@
 /* =========================================================================
-   PK-Bayes — Design System
+   PK-Bayes - Design System
    Paleta oficial unificada con app.pk-bayes.com
    ========================================================================= */
 
@@ -975,7 +975,7 @@ select.control-select {
 .toast .t-close { background: none; border: none; color: var(--text-on-dark-muted); font-size: 1.1rem; line-height: 1; padding: 0 0 0 8px; }
 
 /* =========================================================================
-   Ventana de producto — mockups que se leen como app real, no ilustración
+   Ventana de producto - mockups que se leen como app real, no ilustración
    ========================================================================= */
 .mockup-window {
   background: var(--bg-card);
@@ -1020,14 +1020,14 @@ select.control-select {
 .param-legend .dot { width: 8px; height: 8px; border-radius: 50%; }
 
 /* =========================================================================
-   Divisor de curva PK — el motivo de marca, usado entre secciones
+   Divisor de curva PK - el motivo de marca, usado entre secciones
    ========================================================================= */
 .curve-divider { display: block; width: 100%; height: 64px; margin: -1px 0; }
 .curve-divider.on-light { color: var(--border-strong); }
 .curve-divider.on-navy { color: rgba(255,255,255,0.08); }
 
 /* =========================================================================
-   Cifra gigante — momento tipográfico de impacto
+   Cifra gigante - momento tipográfico de impacto
    ========================================================================= */
 .big-stat-band { display: flex; align-items: center; gap: 48px; flex-wrap: wrap; }
 .big-stat-band .big-number { font-size: clamp(3.5rem, 3rem + 3vw, 5.5rem); font-weight: 800; line-height: 0.95; letter-spacing: -0.03em; color: var(--primary); }
@@ -1036,7 +1036,7 @@ select.control-select {
 .big-stat-band .big-caption strong { color: var(--text-primary); }
 
 /* =========================================================================
-   Flujo conectado ("cómo funciona") — pasos unidos por una línea, no cajas sueltas
+   Flujo conectado ("cómo funciona") - pasos unidos por una línea, no cajas sueltas
    ========================================================================= */
 .flow-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
 .flow-steps::before {
@@ -1060,7 +1060,7 @@ select.control-select {
 }
 
 /* =========================================================================
-   Personas — una sola tarjeta con columnas, en vez de 3 tarjetas sueltas
+   Personas - una sola tarjeta con columnas, en vez de 3 tarjetas sueltas
    ========================================================================= */
 .persona-row { display: grid; grid-template-columns: repeat(3, 1fr); }
 .persona-col { padding: 32px; border-right: 1px solid var(--border); }
@@ -1068,7 +1068,7 @@ select.control-select {
 @media (max-width: 860px) { .persona-row { grid-template-columns: 1fr; } .persona-col { border-right: none; border-bottom: 1px solid var(--border); } .persona-col:last-child { border-bottom: none; } }
 
 /* =========================================================================
-   Bento Grid — celdas de distinto tamaño para resumir funcionalidades
+   Bento Grid - celdas de distinto tamaño para resumir funcionalidades
    ========================================================================= */
 .bento-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: minmax(160px, auto); gap: 18px; }
 .bento-cell {
@@ -1101,7 +1101,7 @@ select.control-select {
 }
 
 /* =========================================================================
-   Declaración a gran escala — tipografía masiva, poco alrededor
+   Declaración a gran escala - tipografía masiva, poco alrededor
    ========================================================================= */
 .statement-block { max-width: 880px; }
 .statement-block h2 { font-size: clamp(2.2rem, 1.6rem + 3vw, 4rem); line-height: 1.08; letter-spacing: -0.025em; }
@@ -1110,7 +1110,7 @@ select.control-select {
 .statement-block.center .statement-sub { margin-left: auto; margin-right: auto; }
 
 /* =========================================================================
-   Animación de "dibujo" — el trazo de la curva PK se completa solo
+   Animación de "dibujo" - el trazo de la curva PK se completa solo
    ========================================================================= */
 .draw-path { stroke-dasharray: 900; stroke-dashoffset: 900; animation: draw-curve 2.4s .4s cubic-bezier(.4,0,.2,1) forwards; }
 @keyframes draw-curve { to { stroke-dashoffset: 0; } }
@@ -2362,7 +2362,7 @@ select.control-select {
   color: var(--text-primary);
 }
 /* =========================================================================
-   Funcionalidades Page — Graphic UI Resources & Architectural Components
+   Funcionalidades Page - Graphic UI Resources & Architectural Components
    ========================================================================= */
 
 /* Quick Nav Bar */
@@ -3122,7 +3122,7 @@ select.control-select {
   .story-footnote { align-items: flex-start; margin-top: 60px; text-align: left; }
 }
 
-/* Functional page v3 — clear clinical product presentation */
+/* Functional page v3 - clear clinical product presentation */
 .product-story-section[hidden] { display: none !important; }
 .function-hero {
   padding: clamp(58px, 7vw, 88px) 0 clamp(52px, 6vw, 76px);
@@ -4620,3 +4620,28 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 
 .function-hero-actions,
 .function-hero .trust-row { justify-content: flex-start; }
+
+/* ── Directivas de Interacción Táctil y Físicas Suaves (design-taste-frontend) ── */
+.btn-stitch-primary:active,
+.btn-stitch-glass:active,
+.zenith-posology-card:active,
+.atlas-nav-btn:active,
+.wb-patient-item:active,
+.btn:active,
+.pricing-btn:active {
+  transform: translateY(1px) scale(0.99) !important;
+  transition-duration: 0.08s !important;
+}
+
+.btn-stitch-primary,
+.btn-stitch-glass,
+.zenith-posology-card,
+.atlas-nav-btn,
+.wb-patient-item,
+.glass-card-hover {
+  transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.24s cubic-bezier(0.16, 1, 0.3, 1),
+              color 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+}
