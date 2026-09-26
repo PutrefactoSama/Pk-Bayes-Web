@@ -4268,7 +4268,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   border-radius: 14px;
   padding: 16px 18px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -4277,14 +4277,15 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 }
 
 .zenith-posology-card:hover {
-  border-color: #94a3b8;
-  background: #f8fafc;
+  border-color: #0284c7;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px -2px rgba(2, 132, 199, 0.12);
 }
 
 .zenith-posology-card.active {
-  border-color: #2563eb;
-  background: #eff6ff;
-  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.12);
+  border-color: #0284c7;
+  background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 100%);
+  box-shadow: 0 4px 18px rgba(2, 132, 199, 0.16);
 }
 
 .zenith-posology-badge {
@@ -4323,22 +4324,35 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 
 /* ==========================================================================
    INTERACTIVE CLINICAL WORKBENCH & GRAPHICAL SUITE (NO STATIC SCREENSHOTS)
-   Modern Medical-Tech: Apple Health Pro + Linear + Vercel
+   Modern Medical-Tech: Apple Health Pro + Linear + Vercel (/ui-ux-pro-max)
    ========================================================================== */
+
+.page-hero,
+.product-page-hero,
+.zenith-hero {
+  position: relative;
+  background-image: radial-gradient(ellipse 75% 45% at 50% -10%, rgba(2, 132, 199, 0.08), transparent 70%);
+}
 
 .wb-console {
   background: #ffffff;
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  box-shadow: 0 4px 24px -2px rgba(15, 23, 42, 0.05);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 18px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03), 0 20px 44px -6px rgba(2, 132, 199, 0.07);
   overflow: hidden;
   margin-top: 24px;
+  transition: box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+
+.wb-console:hover {
+  border-color: rgba(2, 132, 199, 0.35);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04), 0 28px 56px -6px rgba(2, 132, 199, 0.12);
 }
 
 .wb-console-header {
-  background: #f8fafc;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
   border-bottom: 1px solid #e2e8f0;
-  padding: 12px 20px;
+  padding: 14px 22px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -4364,9 +4378,9 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 .wb-patient-item {
   padding: 12px 16px;
   border: 1px solid #e2e8f0;
-  border-radius: 10px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -4375,22 +4389,24 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 }
 
 .wb-patient-item:hover {
-  border-color: #94a3b8;
+  border-color: #0284c7;
   background: #f8fafc;
+  transform: translateX(3px);
 }
 
 .wb-patient-item.active {
-  border-color: #2563eb;
+  border-color: #0284c7;
   background: #eff6ff;
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+  box-shadow: 0 2px 10px rgba(2, 132, 199, 0.12);
 }
 
 .wb-badge-pill {
   font-size: 10px;
   font-family: var(--font-mono);
   font-weight: 700;
-  padding: 2px 8px;
+  padding: 3px 9px;
   border-radius: 9999px;
+  letter-spacing: 0.02em;
 }
 
 .wb-badge-green {
@@ -4407,8 +4423,8 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 
 .wb-badge-blue {
   background: #eff6ff;
-  color: #2563eb;
-  border: 1px solid #bfdbfe;
+  color: #0284c7;
+  border: 1px solid #bae6fd;
 }
 
 .wb-badge-amber {
@@ -4452,36 +4468,43 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 /* Drug Atlas & Case Flow */
 .atlas-nav-btn {
   padding: 10px 18px;
-  border-radius: 10px;
+  border-radius: 12px;
   border: 1px solid #e2e8f0;
   background: #ffffff;
   color: #475569;
   font-weight: 700;
   font-size: 13px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
 .atlas-nav-btn:hover {
-  border-color: #94a3b8;
+  border-color: #0284c7;
   color: #0f172a;
+  transform: translateY(-1px);
 }
 
 .atlas-nav-btn.active {
   background: #0284c7;
   color: #ffffff;
   border-color: #0284c7;
-  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.28);
 }
 
 .atlas-param-card {
-  padding: 14px 16px;
-  background: #f8fafc;
+  padding: 16px 18px;
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
   border: 1px solid #e2e8f0;
-  border-radius: 10px;
+  border-radius: 12px;
+  transition: all 0.2s ease;
+}
+
+.atlas-param-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
 }
 
 .atlas-param-val {
@@ -4496,10 +4519,16 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 .roi-slider {
   width: 100%;
   accent-color: #0284c7;
-  height: 6px;
+  height: 8px;
   border-radius: 9999px;
   background: #e2e8f0;
   cursor: pointer;
+  outline: none;
+  transition: background 0.2s ease;
+}
+
+.roi-slider:hover {
+  background: #cbd5e1;
 }
 
 .roi-stat-num {
@@ -4508,6 +4537,34 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   font-weight: 800;
   color: #0284c7;
   line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+/* Pulsing live indicator for real-time telemetry */
+.live-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #10b981;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  display: inline-block;
+  animation: livePulseRing 2s infinite cubic-bezier(0.66, 0, 0, 1);
+}
+
+@keyframes livePulseRing {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+  70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* Reduced motion accessibility (pro-rules.md canonical compliance) */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 
