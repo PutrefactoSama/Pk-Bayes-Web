@@ -4523,3 +4523,43 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   .site-header .brand-badge { display: none; }
   .site-header .nav-actions .btn-stitch-primary { display: none; }
 }
+
+/* ── Heroes de páginas internas ────────────────────────────────────────────
+   Los encabezados de sección iban centrados y a tamaño de portada: títulos de
+   tres líneas con mucho aire alrededor. Se alinean a la izquierda, comparten
+   medida con el resto del contenido y bajan de escala para leerse en dos
+   líneas. El ancho del titular (820px) y el de la entradilla (660px) fijan la
+   medida de lectura; el contenedor sigue siendo el común, así que el borde
+   izquierdo coincide con las secciones de abajo. */
+
+.product-page-hero,
+.function-hero {
+  padding: clamp(44px, 5.5vw, 72px) 0 clamp(34px, 4vw, 50px);
+  text-align: left;
+}
+
+.product-page-hero h1,
+.function-hero h1 {
+  max-width: 820px;
+  margin: 16px 0 0;
+  font-size: clamp(2.05rem, 3.4vw, 3.3rem);
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  text-wrap: balance;
+}
+
+.page-hero .lead,
+.function-hero p {
+  max-width: 660px;
+  margin: 16px 0 0;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  color: var(--text-secondary);
+}
+
+/* El contenedor del hero de funcionalidades era más estrecho que el resto de
+   la página, lo que desalineaba su borde izquierdo con las secciones siguientes. */
+.function-hero-inner { max-width: var(--container); }
+
+.function-hero-actions,
+.function-hero .trust-row { justify-content: flex-start; }
