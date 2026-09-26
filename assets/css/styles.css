@@ -268,7 +268,7 @@ h4, .h4 { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); }
   font-weight: 600;
   color: var(--text-secondary);
   white-space: nowrap;
-  transition: all 0.15s ease;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease, transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .nav-links a:hover {
   color: var(--primary);
@@ -418,7 +418,7 @@ body.menu-open .mobile-menu {
   border: 1px solid var(--border);
   padding: 7px 14px;
   border-radius: 999px;
-  transition: all 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 .hero-chip:hover {
   background: var(--primary-light);
@@ -456,7 +456,7 @@ body.menu-open .mobile-menu {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  transition: all 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 .stat-box:hover {
   border-color: var(--primary);
@@ -627,7 +627,7 @@ body.menu-open .mobile-menu {
   font-weight: 600;
   color: var(--text-primary);
   box-shadow: var(--shadow-sm);
-  transition: all 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 .qc-pill:hover {
   border-color: var(--teal);
@@ -1226,7 +1226,7 @@ select.control-select {
   border-radius: var(--radius);
   padding: 26px;
   position: relative;
-  transition: all 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
   display: flex;
   flex-direction: column;
 }
@@ -1483,7 +1483,7 @@ select.control-select {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid transparent;
   cursor: default;
-  transition: all 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 .patient-pill.p1 { border-color: #38bdf8; color: #38bdf8; background: rgba(14, 165, 233, 0.15); }
 .patient-pill.p2 { border-color: #10b981; color: #10b981; background: rgba(16, 185, 129, 0.15); }
@@ -1584,7 +1584,7 @@ select.control-select {
   padding: 12px 14px;
   cursor: pointer;
   text-align: left;
-  transition: all 0.25s ease;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
   position: relative;
   overflow: hidden;
   color: #fff;
@@ -1871,7 +1871,7 @@ select.control-select {
   color: var(--text-primary);
   cursor: pointer;
   white-space: nowrap;
-  transition: all 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 .lang-btn:hover {
   background: #f8fafc;
@@ -1940,7 +1940,7 @@ select.control-select {
   width: 100%;
   text-align: left;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease, transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .lang-item:hover {
   background: var(--primary-light);
@@ -2052,7 +2052,7 @@ select.control-select {
   border-radius: var(--radius);
   padding: 22px;
   position: relative;
-  transition: all 0.25s ease;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
   box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
@@ -2178,7 +2178,7 @@ select.control-select {
   border-radius: 10px;
   padding: 12px;
   text-align: center;
-  transition: all 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
   cursor: pointer;
 }
 .vfg-stratum-chip:hover, .vfg-stratum-chip.active {
@@ -2324,7 +2324,7 @@ select.control-select {
   border-radius: var(--radius-lg);
   padding: 24px;
   box-shadow: var(--shadow-sm);
-  transition: all 0.25s ease;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -2388,7 +2388,7 @@ select.control-select {
   font-size: 0.84rem;
   font-weight: 600;
   color: var(--text-secondary);
-  transition: all 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
   text-decoration: none;
 }
 .features-quick-nav a:hover {
@@ -2419,7 +2419,7 @@ select.control-select {
   border-radius: 12px;
   padding: 18px;
   position: relative;
-  transition: all 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 .map-phase-card:hover {
   border-color: var(--primary);
@@ -2454,7 +2454,7 @@ select.control-select {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 20px;
-  transition: all 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 .dialysis-card:hover {
   border-color: var(--teal);
@@ -2551,7 +2551,7 @@ select.control-select {
   background: var(--bg-page);
   border: 1px solid var(--border-soft);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
   white-space: nowrap;
 }
 .slider-tab-btn:hover {
@@ -2632,7 +2632,7 @@ select.control-select {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 .slider-arrow-btn:hover {
   background: var(--primary-light);
@@ -2650,7 +2650,7 @@ select.control-select {
   border-radius: 50%;
   background: var(--border-strong);
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 .slider-dot.active {
   width: 24px;
@@ -3426,7 +3426,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   font-weight: 700;
   text-decoration: none;
   box-shadow: 0 4px 16px rgba(2, 132, 199, 0.32);
-  transition: all 0.22s ease;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, filter 0.22s ease, border-color 0.22s ease, background 0.22s ease;
   border: none;
   cursor: pointer;
 }
@@ -3453,7 +3453,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   font-weight: 600;
   text-decoration: none;
   box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
-  transition: all 0.22s ease;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, filter 0.22s ease, border-color 0.22s ease, background 0.22s ease;
   cursor: pointer;
 }
 
@@ -3596,7 +3596,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   font-size: 0.78rem;
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 
 .sim-dose-btn:hover {
@@ -3738,7 +3738,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   border: 1px solid #e2e8f0;
   box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.04);
   text-align: center;
-  transition: all 0.22s ease;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, filter 0.22s ease, border-color 0.22s ease, background 0.22s ease;
 }
 
 .compliance-card:hover {
@@ -3880,7 +3880,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   font-weight: 700;
   border: none;
   cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
   color: #475569;
   background: transparent;
   font-family: var(--font-heading);
@@ -4020,7 +4020,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   border: 1px solid #1c2541;
   border-radius: 12px;
   padding: 16px;
-  transition: all 0.22s ease;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.22s ease, filter 0.22s ease, border-color 0.22s ease, background 0.22s ease;
   position: relative;
 }
 
@@ -4213,7 +4213,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  transition: all 0.25s ease;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
 }
 
 .zenith-kpi-card:hover {
@@ -4268,7 +4268,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   border-radius: 14px;
   padding: 16px 18px;
   cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -4499,7 +4499,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
   border: 1px solid #e2e8f0;
   border-radius: 12px;
-  transition: all 0.2s ease;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 
 .atlas-param-card:hover {
@@ -4645,3 +4645,63 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
               background 0.24s cubic-bezier(0.16, 1, 0.3, 1),
               color 0.24s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* ── Cumplimiento de Web Interface Guidelines (Vercel) ── */
+
+/* 1. Skip link accesible para navegación por teclado */
+.skip-link {
+  position: absolute;
+  top: -120px;
+  left: 20px;
+  background: var(--primary);
+  color: #ffffff !important;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 13px;
+  z-index: 99999;
+  box-shadow: 0 4px 16px rgba(3, 105, 161, 0.35);
+  transition: top 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  text-decoration: none;
+}
+.skip-link:focus-visible {
+  top: 16px;
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+}
+
+/* 2. Scroll margin top universal para evitar solapamiento con header pegajoso */
+[id] {
+  scroll-margin-top: 88px;
+}
+
+/* 3. Balance tipográfico y prevención de viudas */
+h1, h2, h3, .h1, .h2, .h3 {
+  text-wrap: balance;
+}
+p, .lead, .compliance-sub {
+  text-wrap: pretty;
+}
+
+/* 4. Estados de foco visibles y accesibles (:focus-visible) sin outline: none ciego */
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--primary) !important;
+  outline-offset: 1px !important;
+  box-shadow: 0 0 0 3px rgba(3, 105, 161, 0.15) !important;
+}
+
+input[type="range"]:focus-visible,
+.roi-slider:focus-visible,
+.sim-slider-track:focus-visible {
+  outline: 2px solid var(--primary) !important;
+  outline-offset: 4px !important;
+}
+
+input[type="range"]:focus-visible::-webkit-slider-thumb,
+.roi-slider:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px var(--primary-light), 0 0 0 5px var(--primary) !important;
+}
+
