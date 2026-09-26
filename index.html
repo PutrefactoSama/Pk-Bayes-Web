@@ -117,7 +117,7 @@
             <span data-i18n="hero.title_p1">Dosificación de Precisión guiada por</span><br>
             <span class="text-gradient-cyan" data-i18n="hero.title_highlight">Optimización Bayesiana MAP</span>
           </h1>
-          <p style="font-size: clamp(1rem, 2vw, 1.25rem); color: #475569; line-height: 1.6; max-width: 780px; margin: 0 auto;" data-i18n="hero.lead">
+          <p style="font-size: clamp(1rem, 2vw, 1.25rem); color: #475569; line-height: 1.6; max-width: 780px; margin: 0 auto;" data-i18n-html="hero.lead">
             Plataforma clínica hospitalaria (CDSS) para el ajuste dinámico e individualizado de vancomicina, aminoglucósidos y fármacos de estrecho margen terapéutico. Maximiza la eficacia clínica y previene la nefrotoxicidad en pacientes críticos.
           </p>
 
@@ -625,8 +625,8 @@
                 Panel ejecutivo de pacientes hospitalizados en camas críticas y básicas. Alertas inmediatas por concentraciones subterapéuticas o riesgo de toxicidad.
               </p>
               
-              <!-- Mockup preview window with Lightbox -->
-              <a href="assets/stitch/02-resumen-monitorizacion.png" class="feature-mockup-window" data-screen-lightbox aria-label="Ampliar captura de pantalla" data-i18n-aria-label="a11y.vista_ampliada_de_pk_bayes">
+              <!-- Micro-Triage Console -->
+              <div class="feature-mockup-window" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; margin-bottom: 16px;">
                 <div class="mockup-mac-bar mini-bar">
                   <div class="mac-dots">
                     <span class="mac-dot red"></span>
@@ -634,15 +634,23 @@
                     <span class="mac-dot green"></span>
                   </div>
                   <span class="mac-url-pill" data-i18n="mod.m1_url">pk-bayes · censo-tdm</span>
-                  <span class="mockup-zoom-tag">🔍</span>
+                  <span style="font-size: 10px; color: #059669; font-weight: 700;" data-i18n="common.live">EN VIVO</span>
                 </div>
-                <div class="feature-mockup-viewport">
-                  <img src="assets/stitch/02-resumen-monitorizacion.png" alt="Monitorización de Pacientes" data-i18n-alt="a11y.mod_m1_alt" class="feature-mockup-img" loading="lazy">
-                  <div class="mockup-hover-overlay">
-                    <span class="mockup-hover-badge" data-i18n="feat.b1_tb_expand">Ampliar</span>
+                <div style="padding: 12px; background: #f8fafc; display: flex; flex-direction: column; gap: 8px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 10px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 11px;">
+                    <span style="font-weight: 600; color: #0f172a;" data-i18n="wb.triage_patient_1">Elena Morales · UCI-04</span>
+                    <span class="wb-badge-pill wb-badge-green" data-i18n="wb.triage_status_target">En Meta</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 10px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 11px;">
+                    <span style="font-weight: 600; color: #0f172a;" data-i18n="wb.triage_patient_2">Carlos Vega · UCI-09</span>
+                    <span class="wb-badge-pill wb-badge-red" data-i18n="wb.triage_status_warn">Alerta Toxicidad</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 10px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 11px;">
+                    <span style="font-weight: 600; color: #0f172a;" data-i18n="wb.triage_patient_3">Mateo Silva · INF-12</span>
+                    <span class="wb-badge-pill wb-badge-amber" data-i18n="common.in_dev">En desarrollo</span>
                   </div>
                 </div>
-              </a>
+              </div>
             </div>
             
             <div style="padding: 10px; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; font-size: 11px; font-family: var(--font-mono); display: flex; justify-content: space-between; color: #475569;">
@@ -663,8 +671,8 @@
                 Registro cronológico exacto de dosis administradas, tiempos de perfusión y concentraciones séricas medidas con validación cruzada de laboratorio.
               </p>
 
-              <!-- Mockup preview window with Lightbox -->
-              <a href="assets/stitch/01-acceso-ecosistema.png" class="feature-mockup-window" data-screen-lightbox aria-label="Ampliar captura de pantalla" data-i18n-aria-label="a11y.vista_ampliada_de_pk_bayes">
+              <!-- Micro-Timeline Console -->
+              <div class="feature-mockup-window" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; margin-bottom: 16px;">
                 <div class="mockup-mac-bar mini-bar">
                   <div class="mac-dots">
                     <span class="mac-dot red"></span>
@@ -672,15 +680,23 @@
                     <span class="mac-dot green"></span>
                   </div>
                   <span class="mac-url-pill" data-i18n="mod.m2_url">pk-bayes · ficha-paciente</span>
-                  <span class="mockup-zoom-tag">🔍</span>
+                  <span style="font-size: 10px; color: #059669; font-weight: 700;" data-i18n="wb.trust_fhir">0 Desfase LIS / HIS (HL7 FHIR)</span>
                 </div>
-                <div class="feature-mockup-viewport">
-                  <img src="assets/stitch/01-acceso-ecosistema.png" alt="Historial de Pacientes y Dosis" data-i18n-alt="a11y.mod_m2_alt" class="feature-mockup-img" loading="lazy">
-                  <div class="mockup-hover-overlay">
-                    <span class="mockup-hover-badge" data-i18n="feat.b1_tb_expand">Ampliar</span>
+                <div style="padding: 12px; background: #f8fafc; display: flex; flex-direction: column; gap: 8px;">
+                  <div style="display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 11px;">
+                    <span style="font-family: var(--font-mono); font-weight: 700; color: #0284c7;" data-i18n="wb.step1_tag">01 / REGISTRAR</span>
+                    <span style="color: #475569;" data-i18n="wb.regimen_p1">Vancomicina IV · 750mg q12h</span>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 11px;">
+                    <span style="font-family: var(--font-mono); font-weight: 700; color: #059669;" data-i18n="wb.step2_tag">02 / RELACIONAR</span>
+                    <span style="color: #475569;" data-i18n="wb.val_cl_init">2.1 L/h</span>
+                  </div>
+                  <div style="display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 11px;">
+                    <span style="font-family: var(--font-mono); font-weight: 700; color: #7c3aed;" data-i18n="wb.step3_tag">03 / ACTUALIZAR</span>
+                    <span style="color: #475569;" data-i18n="wb.val_auc_post">485 mg·h/L (En Meta)</span>
                   </div>
                 </div>
-              </a>
+              </div>
             </div>
 
             <div style="padding: 10px; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; font-size: 11px; font-family: var(--font-mono); display: flex; justify-content: space-between; color: #475569;">
@@ -701,8 +717,8 @@
                 Ajuste prospectivo e interactivo de dosis (mg) e intervalo (τ) para predecir concentraciones séricas en estado estacionario y AUC₂₄.
               </p>
 
-              <!-- Mockup preview window with Lightbox -->
-              <a href="assets/stitch/04-simulacion-parametros.png" class="feature-mockup-window" data-screen-lightbox aria-label="Ampliar captura de pantalla" data-i18n-aria-label="a11y.vista_ampliada_de_pk_bayes">
+              <!-- Micro-MAP Optimization Curve -->
+              <div class="feature-mockup-window" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; margin-bottom: 16px;">
                 <div class="mockup-mac-bar mini-bar">
                   <div class="mac-dots">
                     <span class="mac-dot red"></span>
@@ -710,15 +726,19 @@
                     <span class="mac-dot green"></span>
                   </div>
                   <span class="mac-url-pill" data-i18n="mod.m3_url">pk-bayes · simulacion-map</span>
-                  <span class="mockup-zoom-tag">🔍</span>
+                  <span style="font-size: 10px; color: #0284c7; font-weight: 700;" data-i18n="wb.trust_stan">Motor MAP Bayesiano (Stan)</span>
                 </div>
-                <div class="feature-mockup-viewport">
-                  <img src="assets/stitch/04-simulacion-parametros.png" alt="Simulación Posológica MAP" data-i18n-alt="a11y.mod_m3_alt" class="feature-mockup-img" loading="lazy">
-                  <div class="mockup-hover-overlay">
-                    <span class="mockup-hover-badge" data-i18n="feat.b1_tb_expand">Ampliar</span>
-                  </div>
+                <div style="padding: 10px 12px; background: #f8fafc;">
+                  <svg viewBox="0 0 300 110" style="width: 100%; height: auto; display: block;">
+                    <rect x="20" y="35" width="260" height="35" fill="#0284c7" fill-opacity="0.08" rx="3"/>
+                    <line x1="20" y1="35" x2="280" y2="35" stroke="#0284c7" stroke-dasharray="3 3" stroke-opacity="0.5"/>
+                    <line x1="20" y1="70" x2="280" y2="70" stroke="#0284c7" stroke-dasharray="3 3" stroke-opacity="0.5"/>
+                    <line x1="20" y1="100" x2="280" y2="100" stroke="#cbd5e1" stroke-width="1"/>
+                    <path d="M 20,95 C 40,15 60,10 90,40 C 120,65 140,80 150,82 C 170,18 190,12 220,42 C 250,68 270,82 280,84" fill="none" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="2 2"/>
+                    <path d="M 20,98 C 40,40 60,35 90,52 C 120,70 140,82 150,84 C 170,42 190,38 220,54 C 250,72 270,84 280,86" fill="none" stroke="#0284c7" stroke-width="2.5" stroke-linecap="round"/>
+                  </svg>
                 </div>
-              </a>
+              </div>
             </div>
 
             <div style="padding: 10px; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; font-size: 11px; font-family: var(--font-mono); display: flex; justify-content: space-between; color: #475569;">
@@ -739,8 +759,8 @@
                 Correlación temporal entre dosis acumuladas y respuesta de niveles plasmáticos a lo largo de días de tratamiento con análisis de dispersión global.
               </p>
 
-              <!-- Mockup preview window with Lightbox -->
-              <a href="assets/stitch/03-ficha-curva-pk.png" class="feature-mockup-window" data-screen-lightbox aria-label="Ampliar captura de pantalla" data-i18n-aria-label="a11y.vista_ampliada_de_pk_bayes">
+              <!-- Micro-Steady State Curve -->
+              <div class="feature-mockup-window" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; margin-bottom: 16px;">
                 <div class="mockup-mac-bar mini-bar">
                   <div class="mac-dots">
                     <span class="mac-dot red"></span>
@@ -748,15 +768,23 @@
                     <span class="mac-dot green"></span>
                   </div>
                   <span class="mac-url-pill" data-i18n="mod.m4_url">pk-bayes · curva-longitudinal</span>
-                  <span class="mockup-zoom-tag">🔍</span>
+                  <span style="font-size: 10px; color: #4f46e5; font-weight: 700;" data-i18n="wb.steady_state_badge">Estado Estacionario (Steady State)</span>
                 </div>
-                <div class="feature-mockup-viewport">
-                  <img src="assets/stitch/03-ficha-curva-pk.png" alt="Curva PK Longitudinal" data-i18n-alt="a11y.mod_m4_alt" class="feature-mockup-img" loading="lazy">
-                  <div class="mockup-hover-overlay">
-                    <span class="mockup-hover-badge" data-i18n="feat.b1_tb_expand">Ampliar</span>
-                  </div>
+                <div style="padding: 10px 12px; background: #f8fafc;">
+                  <svg viewBox="0 0 300 110" style="width: 100%; height: auto; display: block;">
+                    <defs>
+                      <linearGradient id="idxLongGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" stop-color="#4f46e5" stop-opacity="0.25"/>
+                        <stop offset="100%" stop-color="#4f46e5" stop-opacity="0.0"/>
+                      </linearGradient>
+                    </defs>
+                    <rect x="20" y="30" width="260" height="40" fill="#4f46e5" fill-opacity="0.08" rx="3"/>
+                    <line x1="20" y1="100" x2="280" y2="100" stroke="#cbd5e1" stroke-width="1"/>
+                    <path d="M 20,98 C 35,55 50,45 70,60 C 90,80 100,90 105,92 C 120,40 135,32 155,48 C 175,70 185,82 190,85 C 205,32 220,28 240,42 C 260,65 270,78 280,80 L 280,100 L 20,100 Z" fill="url(#idxLongGrad)"/>
+                    <path d="M 20,98 C 35,55 50,45 70,60 C 90,80 100,90 105,92 C 120,40 135,32 155,48 C 175,70 185,82 190,85 C 205,32 220,28 240,42 C 260,65 270,78 280,80" fill="none" stroke="#4f46e5" stroke-width="2.5" stroke-linecap="round"/>
+                  </svg>
                 </div>
-              </a>
+              </div>
             </div>
 
             <div style="padding: 10px; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; font-size: 11px; font-family: var(--font-mono); display: flex; justify-content: space-between; color: #475569;">
@@ -777,8 +805,8 @@
                 Auditoría de sesgo medio (Bias/MPE), MAE y RMSE por estratos de función renal para garantizar que el modelo local supera consistentemente a la literatura.
               </p>
 
-              <!-- Mockup preview window with Lightbox -->
-              <a href="assets/stitch/05-consola-desempeno.png" class="feature-mockup-window" data-screen-lightbox aria-label="Ampliar captura de pantalla" data-i18n-aria-label="a11y.vista_ampliada_de_pk_bayes">
+              <!-- Micro-Bias Dashboard -->
+              <div class="feature-mockup-window" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; margin-bottom: 16px;">
                 <div class="mockup-mac-bar mini-bar">
                   <div class="mac-dots">
                     <span class="mac-dot red"></span>
@@ -786,15 +814,25 @@
                     <span class="mac-dot green"></span>
                   </div>
                   <span class="mac-url-pill" data-i18n="mod.m5_url">pk-bayes · consola-centros</span>
-                  <span class="mockup-zoom-tag">🔍</span>
+                  <span style="font-size: 10px; color: #0d9488; font-weight: 700;" data-i18n="wb.mpe_status">Calibración Óptima</span>
                 </div>
-                <div class="feature-mockup-viewport">
-                  <img src="assets/stitch/05-consola-desempeno.png" alt="Consola Administrativa PK" data-i18n-alt="a11y.mod_m5_alt" class="feature-mockup-img" loading="lazy">
-                  <div class="mockup-hover-overlay">
-                    <span class="mockup-hover-badge" data-i18n="feat.b1_tb_expand">Ampliar</span>
+                <div style="padding: 12px; background: #0b192c; border-radius: 0 0 10px 10px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-family: var(--font-mono); font-size: 10px;">
+                    <span style="color: #94a3b8;" data-i18n="wb.mpe_label">Sesgo Medio (MPE):</span>
+                    <span style="color: #2dd4bf; font-weight: 700;">-3.60%</span>
+                  </div>
+                  <div style="height: 6px; border-radius: 9999px; background: #1e293b; overflow: hidden; margin-bottom: 10px;">
+                    <div style="width: 88%; height: 100%; background: #2dd4bf;"></div>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-family: var(--font-mono); font-size: 10px;">
+                    <span style="color: #94a3b8;" data-i18n="wb.rmse_label">Precisión (RMSE):</span>
+                    <span style="color: #38bdf8; font-weight: 700;">2.14 mg/L</span>
+                  </div>
+                  <div style="height: 6px; border-radius: 9999px; background: #1e293b; overflow: hidden;">
+                    <div style="width: 92%; height: 100%; background: #38bdf8;"></div>
                   </div>
                 </div>
-              </a>
+              </div>
             </div>
 
             <div style="padding: 10px; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; font-size: 11px; font-family: var(--font-mono); display: flex; justify-content: space-between; color: #475569;">
@@ -815,8 +853,8 @@
                 Generación instantánea de reporte PDF de grado hospitalario con firma digital, parámetros farmacocinéticos, gráfico de curva C(t) y justificación del ajuste.
               </p>
 
-              <!-- Mockup preview window with Lightbox -->
-              <a href="assets/img/product/06-informe.png" class="feature-mockup-window" data-screen-lightbox aria-label="Ampliar captura de pantalla" data-i18n-aria-label="a11y.vista_ampliada_de_pk_bayes">
+              <!-- Micro-Report Card -->
+              <div class="feature-mockup-window" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; margin-bottom: 16px;">
                 <div class="mockup-mac-bar mini-bar">
                   <div class="mac-dots">
                     <span class="mac-dot red"></span>
@@ -824,15 +862,23 @@
                     <span class="mac-dot green"></span>
                   </div>
                   <span class="mac-url-pill" data-i18n="mod.m6_url">pk-bayes · informe-clinico</span>
-                  <span class="mockup-zoom-tag">🔍</span>
+                  <span style="font-size: 10px; color: #d97706; font-weight: 700;" data-i18n="wb.trust_samd">SaMD Class II Validado</span>
                 </div>
-                <div class="feature-mockup-viewport">
-                  <img src="assets/img/product/06-informe.png" alt="Informe Clínico PDF" data-i18n-alt="a11y.mod_m6_alt" class="feature-mockup-img" loading="lazy">
-                  <div class="mockup-hover-overlay">
-                    <span class="mockup-hover-badge" data-i18n="feat.b1_tb_expand">Ampliar</span>
+                <div style="padding: 12px; background: #f8fafc; display: flex; flex-direction: column; gap: 8px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 11px;">
+                    <span style="color: #64748b;" data-i18n="wb.triage_auc_label">AUC24 Proyectada:</span>
+                    <strong style="color: #0284c7; font-family: var(--font-mono);">485 mg·h/L</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 11px;">
+                    <span style="color: #64748b;" data-i18n="wb.triage_cmin_label">Nivel Valle (C_mín):</span>
+                    <strong style="color: #059669; font-family: var(--font-mono);">16.2 µg/mL</strong>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 11px;">
+                    <span style="color: #64748b;" data-i18n="common.dose_lbl">Dosis:</span>
+                    <strong style="color: #0f172a; font-family: var(--font-mono);" data-i18n="zenith.opt_a_name">750 mg IV c/ 12h</strong>
                   </div>
                 </div>
-              </a>
+              </div>
             </div>
 
             <div style="padding: 10px; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; font-size: 11px; font-family: var(--font-mono); display: flex; justify-content: space-between; color: #475569;">

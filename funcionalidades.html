@@ -1,50 +1,510 @@
-<!DOCTYPE html><html lang="es" data-i18n-title="meta.title_features" data-i18n-desc="meta.desc_features"><head><meta charset="UTF-8"><title data-i18n="meta.title_features">Funcionalidades — PK-Bayes</title><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Conoce cómo PK-Bayes apoya la estimación individual, la comparación de pautas, el seguimiento renal y el análisis farmacocinético."><meta name="theme-color" content="#0f1c33"><link rel="icon" href="assets/img/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/styles.css"></head><body>
-<header class="site-header"><div class="container"><div class="nav-row"><a href="index.html" class="brand"><img class="brand-mark" src="assets/img/logo-icon-256.png" alt=""><div class="brand-text"><span class="brand-title" data-i18n="nav.brand_title">PK-Bayes</span><span class="brand-sub" data-i18n="nav.brand_sub">Precision Dosing System</span></div></a><nav class="nav-links"><a href="index.html" data-i18n="cases.bc_home">Inicio</a><a href="funcionalidades.html" class="active" data-i18n="func.bc_func">Funcionalidades</a><a href="farmacos.html" data-i18n="farm.bc_drugs">Fármacos y modelos</a><a href="ejemplos.html" data-i18n="cases.bc_cases">Casos clínicos</a></nav><div class="nav-actions"><a href="precios.html" class="btn btn-primary btn-sm" data-i18n="nav.cta">Empezar ahora</a><a href="acceso.html" class="btn btn-secondary btn-sm hide-mobile" data-i18n="ui.entrar_a_pk_bayes">Entrar a PK-Bayes</a><div class="lang-selector"><button class="lang-btn" type="button" aria-label="Cambiar idioma" data-i18n-aria-label="a11y.cambiar_idioma"><svg class="lang-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span class="lang-current-label">Español</span><svg class="lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><div class="lang-dropdown"><button type="button" class="lang-item active" data-lang="es"><span class="lang-flag">🇪🇸</span> <span>Español</span><span class="lang-check">✓</span></button><button type="button" class="lang-item" data-lang="en"><span class="lang-flag">🇺🇸</span> <span>English</span><span class="lang-check">✓</span></button><button type="button" class="lang-item" data-lang="zh"><span class="lang-flag">🇨🇳</span> <span>中文</span><span class="lang-check">✓</span></button><button type="button" class="lang-item" data-lang="ja"><span class="lang-flag">🇯🇵</span> <span>日本語</span><span class="lang-check">✓</span></button></div></div><button class="nav-toggle" aria-label="Abrir menú" data-i18n-aria-label="a11y.abrir_menu" aria-expanded="false"><span></span><span></span><span></span></button></div></div><div class="mobile-menu"><a href="index.html" data-i18n="cases.bc_home">Inicio</a><a href="funcionalidades.html" class="active" data-i18n="func.bc_func">Funcionalidades</a><a href="farmacos.html" data-i18n="farm.bc_drugs">Fármacos y modelos</a><a href="ejemplos.html" data-i18n="cases.bc_cases">Casos clínicos</a><a href="acceso.html" data-i18n="ui.entrar_a_pk_bayes">Entrar a PK-Bayes</a><a href="precios.html" class="btn btn-primary btn-block" data-i18n="nav.cta">Empezar ahora</a><div class="lang-selector"><button class="lang-btn" type="button" aria-label="Cambiar idioma" data-i18n-aria-label="a11y.cambiar_idioma"><svg class="lang-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span class="lang-current-label">Español</span><svg class="lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><div class="lang-dropdown"><button type="button" class="lang-item active" data-lang="es"><span class="lang-flag">🇪🇸</span> <span>Español</span><span class="lang-check">✓</span></button><button type="button" class="lang-item" data-lang="en"><span class="lang-flag">🇺🇸</span> <span>English</span><span class="lang-check">✓</span></button><button type="button" class="lang-item" data-lang="zh"><span class="lang-flag">🇨🇳</span> <span>中文</span><span class="lang-check">✓</span></button><button type="button" class="lang-item" data-lang="ja"><span class="lang-flag">🇯🇵</span> <span>日本語</span><span class="lang-check">✓</span></button></div></div></div></div></header>
-<main>
-  <section class="function-hero"><div class="container function-hero-inner"><span class="eyebrow" data-i18n="feat.hdr_kicker">Conoce PK-Bayes</span><h1 data-i18n="feat.hdr_title">Farmacocinética clínica, organizada alrededor del paciente.</h1><p data-i18n="feat.hdr_desc">Una plataforma para reunir información clínica, estimar parámetros individuales, explorar pautas y acompañar la evolución del tratamiento.</p><div class="function-hero-actions"><a href="#panorama" class="btn btn-primary btn-lg" data-i18n="feat.hdr_explore">Explorar la plataforma</a><a data-app-link href="#" class="btn btn-secondary btn-lg" data-i18n="feat.hdr_enter">Entrar a PK-Bayes</a></div></div></section>
-
-  <nav class="function-subnav" aria-label="Recorrido por las funcionalidades" data-i18n-aria-label="a11y.recorrido_por_las_funcionali"><div class="container"><a href="#panorama" class="active" data-i18n="feat.nav_overview">Panorama</a><a href="#evaluacion" data-i18n="feat.nav_eval">Evaluación</a><a href="#estimacion" data-i18n="feat.nav_estimate">Estimación</a><a href="#seguimiento" data-i18n="feat.nav_follow">Seguimiento</a><a href="#institucion" data-i18n="feat.nav_inst">Institución</a></div></nav>
-
-  <section class="function-block" id="panorama" data-function-section><div class="container"><header class="function-heading reveal"><span data-i18n="feat.b1_kicker">01 · Panorama clínico</span><h2 data-i18n="feat.b1_title">La actividad del centro, visible desde el primer momento.</h2><p data-i18n="feat.b1_desc">El equipo puede revisar cuántos pacientes están en seguimiento y distinguir el contexto asistencial antes de abrir una evaluación.</p></header><a class="product-screen screen-wide reveal" href="assets/stitch/02-resumen-monitorizacion.png" data-screen-lightbox><span class="screen-toolbar"><i></i><i></i><i></i><b data-i18n="feat.b1_tb_summary">Resumen de pacientes</b><em data-i18n="feat.b1_tb_expand">Ampliar</em></span><img src="assets/stitch/02-resumen-monitorizacion.png" alt="Panel de pacientes monitorizados según tipo de cama" data-i18n-alt="a11y.panel_de_pacientes_monitoriz" fetchpriority="high"></a><div class="function-split"><div class="function-copy reveal"><span class="mini-label" data-i18n="feat.b1_priv_label">Privacidad</span><h3 data-i18n="feat.b1_priv_title">La evaluación puede realizarse sin datos identificatorios directos.</h3><p data-i18n="feat.b1_priv_desc">PK-Bayes no exige registrar nombre ni RUN. El seguimiento puede mantenerse mediante una referencia interna del expediente farmacocinético.</p><ul class="simple-checks"><li data-i18n="feat.b1_chk1">Nombre y apellidos opcionales.</li><li data-i18n="feat.b1_chk2">Referencia interna para continuidad clínica.</li><li data-i18n="feat.b1_chk3">Solo se recopilan los datos necesarios para la evaluación.</li></ul></div><a class="product-screen screen-card reveal" href="assets/stitch/01-acceso-ecosistema.png" data-screen-lightbox><span class="screen-toolbar"><i></i><i></i><i></i><b data-i18n="feat.b1_tb_indiv">Individualización</b><em data-i18n="feat.b1_tb_expand">Ampliar</em></span><img src="assets/stitch/01-acceso-ecosistema.png" alt="Ingreso de información clínica con datos identificatorios minimizados" data-i18n-alt="a11y.ingreso_de_informacion_clini" loading="lazy"></a></div></div></section>
-
-  <section class="function-block function-block-alt" id="evaluacion" data-function-section><div class="container"><header class="function-heading reveal"><span data-i18n="feat.b2_kicker">02 · Evaluación longitudinal</span><h2 data-i18n="feat.b2_title">El contexto clínico cambia. La evaluación también.</h2><p data-i18n="feat.b2_desc">Las dosis, muestras y mediciones renales se ordenan cronológicamente para representar lo que ocurre durante el tratamiento.</p></header><div class="function-split split-reverse"><div class="function-copy reveal"><span class="mini-label" data-i18n="feat.b2_rf_label">Función renal dinámica</span><h3 data-i18n="feat.b2_rf_title">Desde función nativa hasta terapias de reemplazo renal.</h3><p data-i18n="feat.b2_rf_desc">La plataforma registra mediciones sucesivas y permite contextualizar hemodiálisis intermitente o terapia de reemplazo renal continua cuando forman parte del escenario.</p><div class="mode-pills"><span data-i18n="feat.b2_pill_native">Función nativa</span><span data-i18n="feat.b2_pill_hd">Hemodiálisis</span><span data-i18n="feat.b2_pill_crrt">TRRC</span></div></div><a class="product-screen screen-portrait reveal" href="assets/img/product/03-funcion-renal.png" data-screen-lightbox><span class="screen-toolbar"><i></i><i></i><i></i><b data-i18n="feat.b2_tb_renal">Función renal</b><em data-i18n="feat.b1_tb_expand">Ampliar</em></span><img src="assets/img/product/03-funcion-renal.png" alt="Registro dinámico de función renal" data-i18n-alt="a11y.registro_dinamico_de_funcion" loading="lazy"></a></div><a class="product-screen screen-wide screen-monitor reveal" href="assets/stitch/04-simulacion-parametros.png" data-screen-lightbox><span class="screen-toolbar"><i></i><i></i><i></i><b data-i18n="feat.b2_tb_sim">Dosis, niveles y simulación</b><em data-i18n="feat.b1_tb_expand">Ampliar</em></span><img src="assets/stitch/04-simulacion-parametros.png" alt="Cronología de dosis, niveles plasmáticos y curva farmacocinética" data-i18n-alt="a11y.cronologia_de_dosis_niveles" loading="lazy"></a><div class="explanation-row reveal"><article><strong>1</strong><h3 data-i18n="feat.b2_step1_t">Registrar</h3><p data-i18n="feat.b2_step1_d">Incorpora dosis administradas, horarios y niveles plasmáticos.</p></article><article><strong>2</strong><h3 data-i18n="feat.b2_step2_t">Relacionar</h3><p data-i18n="feat.b2_step2_d">Vincula cada observación con el momento del tratamiento.</p></article><article><strong>3</strong><h3 data-i18n="feat.b2_step3_t">Actualizar</h3><p data-i18n="feat.b2_step3_d">Recalcula la representación cuando aparecen nuevos datos.</p></article></div></div></section>
-
-  <section class="function-block" id="estimacion" data-function-section><div class="container"><header class="function-heading reveal"><span data-i18n="feat.b3_kicker">03 · Estimación individual</span><h2 data-i18n="feat.b3_title">Del modelo poblacional a una lectura propia del paciente.</h2><p data-i18n="feat.b3_desc">La estimación bayesiana contrasta el referente elegido con los datos observados y presenta los resultados necesarios para interpretar exposición y eliminación.</p></header><a class="product-screen screen-feature reveal" href="assets/stitch/04-simulacion-parametros.png" data-screen-lightbox><span class="screen-toolbar"><i></i><i></i><i></i><b data-i18n="feat.b3_tb_map">Estimación MAP y exploración de pauta</b><em data-i18n="feat.b1_tb_expand">Ampliar</em></span><img src="assets/stitch/04-simulacion-parametros.png" alt="Resultado de estimación farmacocinética y pauta explorada" data-i18n-alt="a11y.resultado_de_estimacion_farm" loading="lazy"></a><div class="metric-explainer reveal"><div><span data-i18n-html="feat.b3_met_auc_title">AUC<sub>24</sub></span><p data-i18n="feat.b3_met_auc_desc">Exposición estimada durante 24 horas.</p></div><div><span data-i18n-html="feat.b3_met_cmax_title">C<sub>máx</sub> / C<sub>mín</sub></span><p data-i18n="feat.b3_met_cmax_desc">Concentraciones máxima y mínima proyectadas.</p></div><div><span data-i18n-html="feat.b3_met_mic_title">AUC<sub>24</sub>/CIM</span><p data-i18n="feat.b3_met_mic_desc">Relación farmacocinética y farmacodinámica cuando corresponde.</p></div><div><span data-i18n="feat.b3_met_cl_title">CL y Vd</span><p data-i18n="feat.b3_met_cl_desc">Parámetros individuales de eliminación y distribución.</p></div></div><div class="function-split report-split"><div class="function-copy reveal"><span class="mini-label" data-i18n="feat.b3_rep_label">Informe clínico</span><h3 data-i18n="feat.b3_rep_title">La evaluación también puede documentarse.</h3><p data-i18n="feat.b3_rep_desc">El informe reúne resultados, tratamiento recibido, información utilizada, modelo seleccionado, profesional responsable y curva simulada.</p><p class="support-note" data-i18n="feat.b3_rep_note">Es un documento de apoyo: la interpretación y decisión final corresponden al profesional sanitario.</p></div><a class="product-screen screen-document reveal" href="assets/img/product/06-informe.png" data-screen-lightbox><span class="screen-toolbar"><i></i><i></i><i></i><b data-i18n="feat.b3_tb_report">Informe individualizado</b><em data-i18n="feat.b1_tb_expand">Ampliar</em></span><img src="assets/img/product/06-informe.png" alt="Informe clínico de dosificación individualizada" data-i18n-alt="a11y.informe_clinico_de_dosificac" loading="lazy"></a></div></div></section>
-
-  <section class="function-block function-block-alt" id="seguimiento" data-function-section><div class="container"><header class="function-heading reveal"><span data-i18n="feat.b4_kicker">04 · Seguimiento</span><h2 data-i18n="feat.b4_title">La evolución se comprende mejor cuando puede verse.</h2><p data-i18n="feat.b4_desc">Los paneles longitudinales muestran cómo cambian las dosis administradas y las concentraciones medidas a lo largo del tratamiento.</p></header><a class="product-screen screen-wide reveal" href="assets/stitch/03-ficha-curva-pk.png" data-screen-lightbox><span class="screen-toolbar"><i></i><i></i><i></i><b data-i18n="feat.b4_tb_long">Monitorización longitudinal</b><em data-i18n="feat.b1_tb_expand">Ampliar</em></span><img src="assets/stitch/03-ficha-curva-pk.png" alt="Evolución temporal de dosis y niveles plasmáticos" data-i18n-alt="a11y.evolucion_temporal_de_dosis" loading="lazy"></a><div class="value-band reveal"><strong data-i18n="feat.b4_band_strong">Una misma línea temporal.</strong><span data-i18n="feat.b4_band_span">Dosis, niveles plasmáticos y contexto clínico permanecen disponibles para revisar tendencias.</span></div></div></section>
-
-  <section class="function-block" id="institucion" data-function-section><div class="container"><header class="function-heading reveal"><span data-i18n="feat.b5_kicker">05 · Gestión y conocimiento institucional</span><h2 data-i18n="feat.b5_title">Herramientas para administrar, evaluar y continuar investigando.</h2><p data-i18n="feat.b5_desc">PK-Bayes incorpora funciones para gestionar los accesos del centro, revisar el desempeño de los modelos y preparar información longitudinal para análisis posteriores.</p></header><div class="institution-grid"><article class="institution-card reveal"><div class="institution-copy"><span class="mini-label" data-i18n="feat.b5_admin_label">Administración</span><h3 data-i18n="feat.b5_admin_title">Control de usuarios y funciones.</h3><p data-i18n="feat.b5_admin_desc">Los responsables del centro pueden gestionar quién accede y qué función desempeña dentro de la plataforma.</p></div><a class="product-screen screen-compact" href="assets/img/product/08-administracion.png" data-screen-lightbox><span class="screen-toolbar"><i></i><i></i><i></i><b data-i18n="feat.b5_tb_admin">Accesos del centro</b><em data-i18n="feat.b1_tb_expand">Ampliar</em></span><img src="assets/img/product/08-administracion.png" alt="Consola de administración del centro" data-i18n-alt="a11y.consola_de_administracion_de" loading="lazy"></a></article><article class="institution-card reveal"><div class="institution-copy"><span class="mini-label" data-i18n="feat.b5_perf_label">Desempeño</span><h3 data-i18n="feat.b5_perf_title">Comportamiento del modelo en la población local.</h3><p data-i18n="feat.b5_perf_desc">Resume sesgo y precisión de las predicciones, con revisión por rangos de función renal.</p></div><a class="product-screen screen-compact tall" href="assets/stitch/05-consola-desempeno.png" data-screen-lightbox><span class="screen-toolbar"><i></i><i></i><i></i><b data-i18n="feat.b5_tb_inst">Modelo institucional</b><em data-i18n="feat.b1_tb_expand">Ampliar</em></span><img src="assets/stitch/05-consola-desempeno.png" alt="Panel de desempeño institucional" data-i18n-alt="a11y.panel_de_desempeno_instituci" loading="lazy"></a></article></div><div class="research-card reveal"><div><span class="mini-label" data-i18n="feat.b5_res_label">Investigación</span><h3 data-i18n="feat.b5_res_title">Información longitudinal preparada para continuar el análisis.</h3><p data-i18n="feat.b5_res_desc">La exportación en CSV facilita el trabajo posterior con herramientas especializadas como NONMEM, Monolix o Python.</p><div class="mode-pills"><span data-i18n="feat.csv">CSV</span><span data-i18n="feat.nonmem">NONMEM</span><span data-i18n="feat.monolix">Monolix</span><span data-i18n="feat.python">Python</span></div></div><a class="product-screen screen-export" href="assets/img/product/10-exportacion.png" data-screen-lightbox><span class="screen-toolbar"><i></i><i></i><i></i><b data-i18n="feat.b5_tb_export">Exportar dataset</b><em data-i18n="feat.b1_tb_expand">Ampliar</em></span><img src="assets/img/product/10-exportacion.png" alt="Exportación de información farmacocinética para investigación" data-i18n-alt="a11y.exportacion_de_informacion_f" loading="lazy"></a></div></div></section>
-
-  <section class="product-story-section" aria-labelledby="tour-title" hidden aria-hidden="true"><div class="container"><div class="section-head center product-story-intro reveal"><span class="eyebrow" data-i18n="feat.tour_eyebrow">Recorrido visual</span><h2 id="tour-title" data-i18n="feat.tour_title">De la primera revisión al aprendizaje institucional.</h2><p class="lead" data-i18n="feat.tour_desc">Cinco momentos conectados explican cómo PK-Bayes organiza la evaluación farmacocinética. Las pantallas se presentan enfocadas en la tarea relevante; cada una puede abrirse completa.</p></div>
-    <div class="product-story">
-      <article class="story-chapter reveal" id="organizar">
-        <div class="story-copy"><span class="story-index">01</span><span class="story-kicker" data-i18n="feat.organizar">Organizar</span><h3 data-i18n="feat.empieza_por_saber_que_pacien">Empieza por saber qué pacientes requieren seguimiento.</h3><p data-i18n="feat.el_panel_entrega_una_lectura">El panel entrega una lectura inmediata de la actividad del centro y permite iniciar evaluaciones sin registrar nombre ni RUN.</p><dl><div><dt data-i18n="feat.vista_de_cartera">Vista de cartera</dt><dd data-i18n="feat.resume_pacientes_monitorizad">Resume pacientes monitorizados y los distingue por tipo de cama.</dd></div><div><dt data-i18n="feat.datos_minimizados">Datos minimizados</dt><dd data-i18n="feat.utiliza_una_referencia_inter">Utiliza una referencia interna para mantener continuidad sin exponer identificadores directos.</dd></div></dl><p class="story-result" data-i18n-html="feat.que_obtiene_el_equipouna_pob"><span>Qué obtiene el equipo</span>Una población organizada y preparada para priorizar.</p></div>
-        <div class="story-canvas canvas-organize"><a class="story-window window-dashboard" href="assets/stitch/02-resumen-monitorizacion.png" target="_blank" rel="noopener"><span class="window-label" data-i18n="feat.resumen_operativo">Resumen operativo</span><div class="crop crop-dashboard"><img src="assets/stitch/02-resumen-monitorizacion.png" alt="Resumen de pacientes por tipo de cama" data-i18n-alt="a11y.resumen_de_pacientes_por_tip" fetchpriority="high"></div></a><a class="story-window window-privacy" href="assets/stitch/01-acceso-ecosistema.png" target="_blank" rel="noopener"><span class="window-label" data-i18n="feat.evaluacion_sin_nombre_ni_run">Evaluación sin nombre ni RUN</span><div class="crop crop-privacy"><img src="assets/stitch/01-acceso-ecosistema.png" alt="Ficha farmacocinética con datos identificatorios minimizados" data-i18n-alt="a11y.ficha_farmacocinetica_con_da" loading="lazy"></div></a><span class="story-annotation annotation-one" data-i18n-html="feat.vista_agregada_del_centro"><i></i>Vista agregada del centro</span><span class="story-annotation annotation-two" data-i18n-html="feat.referencia_farmacocinetica_i"><i></i>Referencia farmacocinética interna</span></div>
-      </article>
-
-      <article class="story-chapter reverse reveal" id="contextualizar">
-        <div class="story-copy"><span class="story-index">02</span><span class="story-kicker" data-i18n="feat.contextualizar">Contextualizar</span><h3 data-i18n="feat.la_funcion_renal_las_dosis_y">La función renal, las dosis y los niveles comparten una cronología.</h3><p data-i18n="feat.la_evaluacion_se_actualiza_c">La evaluación se actualiza con los cambios que modifican la eliminación del fármaco, evitando depender de un valor renal aislado.</p><dl><div><dt data-i18n="feat.funcion_renal_dinamica">Función renal dinámica</dt><dd data-i18n="feat.registra_mediciones_sucesiva">Registra mediciones sucesivas, hemodiálisis y terapia de reemplazo renal continua.</dd></div><div><dt data-i18n="feat.historia_del_tratamiento">Historia del tratamiento</dt><dd data-i18n="feat.conecta_dosis_administradas_">Conecta dosis administradas, niveles plasmáticos y momento de cada observación.</dd></div></dl><p class="story-result" data-i18n-html="feat.que_obtiene_el_equipoun_cont"><span>Qué obtiene el equipo</span>Un contexto temporal coherente antes de estimar.</p></div>
-        <div class="story-canvas canvas-context"><a class="story-window window-monitor" href="assets/stitch/04-simulacion-parametros.png" target="_blank" rel="noopener"><span class="window-label" data-i18n="feat.cronologia_del_tratamiento">Cronología del tratamiento</span><div class="crop crop-monitor"><img src="assets/stitch/04-simulacion-parametros.png" alt="Dosis, niveles y curva farmacocinética sobre una cronología" data-i18n-alt="a11y.dosis_niveles_y_curva_farmac" loading="lazy"></div></a><a class="story-window window-renal" href="assets/img/product/03-funcion-renal.png" target="_blank" rel="noopener"><span class="window-label" data-i18n="feat.funcion_renal_dinamica">Función renal dinámica</span><div class="crop crop-renal"><img src="assets/img/product/03-funcion-renal.png" alt="Selección y seguimiento de función renal" data-i18n-alt="a11y.seleccion_y_seguimiento_de_f" loading="lazy"></div></a><span class="story-annotation annotation-three" data-i18n-html="feat.funcion_nativa_hd_o_trrc"><i></i>Función nativa, HD o TRRC</span></div>
-      </article>
-
-      <article class="story-chapter reveal" id="individualizar">
-        <div class="story-copy"><span class="story-index">03</span><span class="story-kicker" data-i18n="feat.individualizar">Individualizar</span><h3 data-i18n="feat.la_estimacion_se_convierte_e">La estimación se convierte en una lectura clínica comprensible.</h3><p data-i18n="feat.pk_bayes_compara_el_referent">PK-Bayes compara el referente poblacional con el perfil individual y permite explorar una pauta sin transformarla en una prescripción automática.</p><dl><div><dt data-i18n="feat.estimacion_map">Estimación MAP</dt><dd data-i18n="feat.presenta_parametros_poblacio">Presenta parámetros poblacionales e individuales en una misma lectura.</dd></div><div><dt data-i18n="feat.exposicion_proyectada">Exposición proyectada</dt><dd data-i18n="feat.calcula_auc24_concentracione">Calcula AUC24, concentraciones máxima y mínima y AUC24/CIM cuando corresponde.</dd></div><div><dt data-i18n="feat.informe_trazable">Informe trazable</dt><dd data-i18n="feat.documenta_los_resultados_dat">Documenta los resultados, datos utilizados y profesional responsable.</dd></div></dl><p class="story-result" data-i18n-html="feat.que_obtiene_el_equipoinforma"><span>Qué obtiene el equipo</span>Información estructurada para apoyar el juicio profesional.</p></div>
-        <div class="story-canvas canvas-estimate"><a class="story-window window-estimate" href="assets/stitch/04-simulacion-parametros.png" target="_blank" rel="noopener"><span class="window-label" data-i18n="feat.estimacion_y_pauta">Estimación y pauta</span><div class="crop crop-estimate"><img src="assets/stitch/04-simulacion-parametros.png" alt="Estimación MAP y proyección de una pauta" data-i18n-alt="a11y.estimacion_map_y_proyeccion" loading="lazy"></div></a><a class="story-window window-report" href="assets/img/product/06-informe.png" target="_blank" rel="noopener"><span class="window-label" data-i18n="feat.informe_clinico">Informe clínico</span><div class="crop crop-report"><img src="assets/img/product/06-informe.png" alt="Informe clínico de dosificación individualizada" data-i18n-alt="a11y.informe_clinico_de_dosificac" loading="lazy"></div></a><div class="metric-float"><small data-i18n="feat.lectura_individual">Lectura individual</small><strong data-i18n-html="feat.auc24">AUC<sub>24</sub></strong><span data-i18n="feat.exposicion_proyectada">Exposición proyectada</span></div></div>
-      </article>
-
-      <article class="story-chapter reverse reveal" id="acompanar">
-        <div class="story-copy"><span class="story-index">04</span><span class="story-kicker" data-i18n="feat.acompanar">Acompañar</span><h3 data-i18n="feat.el_seguimiento_continua_desp">El seguimiento continúa después de la primera estimación.</h3><p data-i18n="feat.las_tendencias_longitudinale">Las tendencias longitudinales mantienen visible la evolución mientras el centro define quién puede ingresar y qué funciones puede desempeñar.</p><dl><div><dt data-i18n="feat.evolucion_temporal">Evolución temporal</dt><dd data-i18n="feat.representa_dosis_y_niveles_p">Representa dosis y niveles plasmáticos a través del tratamiento.</dd></div><div><dt data-i18n="feat.accesos_controlados">Accesos controlados</dt><dd data-i18n="feat.permite_administrar_usuarios">Permite administrar usuarios y responsabilidades dentro de la institución.</dd></div></dl><p class="story-result" data-i18n-html="feat.que_obtiene_el_equipocontinu"><span>Qué obtiene el equipo</span>Continuidad clínica con gobernanza institucional.</p></div>
-        <div class="story-canvas canvas-follow"><a class="story-window window-longitudinal" href="assets/stitch/03-ficha-curva-pk.png" target="_blank" rel="noopener"><span class="window-label" data-i18n="feat.monitorizacion_longitudinal">Monitorización longitudinal</span><div class="crop crop-longitudinal"><img src="assets/stitch/03-ficha-curva-pk.png" alt="Evolución temporal de dosis y niveles plasmáticos" data-i18n-alt="a11y.evolucion_temporal_de_dosis" loading="lazy"></div></a><a class="story-window window-admin" href="assets/img/product/08-administracion.png" target="_blank" rel="noopener"><span class="window-label" data-i18n="feat.accesos_del_centro">Accesos del centro</span><div class="crop crop-admin"><img src="assets/img/product/08-administracion.png" alt="Administración de usuarios del centro asistencial" data-i18n-alt="a11y.administracion_de_usuarios_d" loading="lazy"></div></a></div>
-      </article>
-
-      <article class="story-chapter reveal" id="aprender">
-        <div class="story-copy"><span class="story-index">05</span><span class="story-kicker" data-i18n="feat.aprender">Aprender</span><h3 data-i18n="feat.la_experiencia_acumulada_se_">La experiencia acumulada se transforma en conocimiento local.</h3><p data-i18n="feat.con_informacion_suficiente_y">Con información suficiente y revisada, la plataforma ayuda a evaluar el comportamiento de los modelos y preparar una base para investigación.</p><dl><div><dt data-i18n="ui.desempeno_institucional">Desempeño institucional</dt><dd data-i18n="feat.resume_sesgo_y_precision_por">Resume sesgo y precisión por rangos de función renal.</dd></div><div><dt data-i18n="ui.investigacion">Investigación</dt><dd data-i18n="feat.exporta_informacion_longitud">Exporta información longitudinal estructurada para NONMEM, Monolix o Python.</dd></div></dl><p class="story-result" data-i18n-html="feat.que_obtiene_el_equipoevidenc"><span>Qué obtiene el equipo</span>Evidencia local para control de calidad y mejora continua.</p></div>
-        <div class="story-canvas canvas-learn"><a class="story-window window-performance" href="assets/stitch/05-consola-desempeno.png" target="_blank" rel="noopener"><span class="window-label" data-i18n="feat.comportamiento_del_modelo">Comportamiento del modelo</span><div class="crop crop-performance"><img src="assets/stitch/05-consola-desempeno.png" alt="Desempeño institucional por rango de función renal" data-i18n-alt="a11y.desempeno_institucional_por" loading="lazy"></div></a><a class="story-window window-export" href="assets/img/product/10-exportacion.png" target="_blank" rel="noopener"><span class="window-label" data-i18n="feat.exportacion_estructurada">Exportación estructurada</span><div class="crop crop-export"><img src="assets/img/product/10-exportacion.png" alt="Exportación de datos farmacocinéticos para investigación" data-i18n-alt="a11y.exportacion_de_datos_farmaco" loading="lazy"></div></a><div class="format-float"><span data-i18n="feat.csv">CSV</span><span data-i18n="feat.nonmem">NONMEM</span><span data-i18n="feat.monolix">Monolix</span><span data-i18n="feat.python">Python</span></div></div>
-      </article>
+<!DOCTYPE html>
+<html lang="es" data-i18n-title="meta.title_features" data-i18n-desc="meta.desc_features">
+<head>
+  <meta charset="UTF-8">
+  <title data-i18n="meta.title_features">Funcionalidades — PK-Bayes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Conoce cómo PK-Bayes apoya la estimación individual, la comparación de pautas, el seguimiento renal y el análisis farmacocinético.">
+  <meta name="theme-color" content="#0f1c33">
+  <link rel="icon" href="assets/img/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="site-header">
+    <div class="container">
+      <div class="nav-row">
+        <a href="index.html" class="brand">
+          <img class="brand-mark" src="assets/img/logo-icon-256.png" alt="">
+          <div class="brand-text">
+            <span class="brand-title" data-i18n="nav.brand_title">PK-Bayes</span>
+            <span class="brand-sub" data-i18n="nav.brand_sub">Precision Dosing System</span>
+          </div>
+        </a>
+        <nav class="nav-links">
+          <a href="index.html" data-i18n="cases.bc_home">Inicio</a>
+          <a href="funcionalidades.html" class="active" data-i18n="func.bc_func">Funcionalidades</a>
+          <a href="farmacos.html" data-i18n="farm.bc_drugs">Fármacos y modelos</a>
+          <a href="ejemplos.html" data-i18n="cases.bc_cases">Casos clínicos</a>
+        </nav>
+        <div class="nav-actions">
+          <a href="precios.html" class="btn btn-primary btn-sm" data-i18n="nav.cta">Empezar ahora</a>
+          <a href="acceso.html" class="btn btn-secondary btn-sm hide-mobile" data-i18n="ui.entrar_a_pk_bayes">Entrar a PK-Bayes</a>
+          <div class="lang-selector">
+            <button class="lang-btn" type="button" aria-label="Cambiar idioma" data-i18n-aria-label="a11y.cambiar_idioma">
+              <svg class="lang-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="2" y1="12" x2="22" y2="12"/>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+              </svg>
+              <span class="lang-current-label">Español</span>
+              <svg class="lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </button>
+            <div class="lang-dropdown">
+              <button type="button" class="lang-item active" data-lang="es"><span class="lang-flag">🇪🇸</span> <span>Español</span><span class="lang-check">✓</span></button>
+              <button type="button" class="lang-item" data-lang="en"><span class="lang-flag">🇺🇸</span> <span>English</span><span class="lang-check">✓</span></button>
+              <button type="button" class="lang-item" data-lang="zh"><span class="lang-flag">🇨🇳</span> <span>中文</span><span class="lang-check">✓</span></button>
+              <button type="button" class="lang-item" data-lang="ja"><span class="lang-flag">🇯🇵</span> <span>日本語</span><span class="lang-check">✓</span></button>
+            </div>
+          </div>
+          <button class="nav-toggle" aria-label="Abrir menú" data-i18n-aria-label="a11y.abrir_menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+          </button>
+        </div>
+      </div>
+      <div class="mobile-menu">
+        <a href="index.html" data-i18n="cases.bc_home">Inicio</a>
+        <a href="funcionalidades.html" class="active" data-i18n="func.bc_func">Funcionalidades</a>
+        <a href="farmacos.html" data-i18n="farm.bc_drugs">Fármacos y modelos</a>
+        <a href="ejemplos.html" data-i18n="cases.bc_cases">Casos clínicos</a>
+        <a href="acceso.html" data-i18n="ui.entrar_a_pk_bayes">Entrar a PK-Bayes</a>
+        <a href="precios.html" class="btn btn-primary btn-block" data-i18n="nav.cta">Empezar ahora</a>
+      </div>
     </div>
-    <p class="story-footnote" data-i18n-html="feat.pantallas_reales_de_pk_bayes"><i class="live-pulse-dot"></i> Pantallas reales de PK-Bayes · Selecciona cualquier recorte para abrir la captura completa.</p>
-  </div></section>
+  </header>
 
-  <section class="section"><div class="container"><div class="cta-band cta-band-premium reveal"><div><span class="eyebrow" data-i18n="feat.verlo_en_contexto">Verlo en contexto</span><h2 data-i18n="feat.descubre_como_estas_capacida">Descubre cómo estas capacidades se conectan en un caso clínico.</h2></div><a href="ejemplos.html" class="btn btn-primary btn-lg" data-i18n="feat.explorar_casos_clinicos">Explorar casos clínicos</a></div></div></section>
-</main>
-<footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="index.html" class="brand"><img class="brand-mark" src="assets/img/logo-icon-256.png" alt=""><div class="brand-text"><span class="brand-title" data-i18n="nav.brand_title">PK-Bayes</span><span class="brand-sub" data-i18n="nav.brand_sub">Precision Dosing System</span></div></a><p data-i18n="ui.plataforma_de_apoyo_a_la_dec">Plataforma de apoyo a la decisión clínica para dosificación farmacocinética de precisión.</p></div><div class="footer-col"><h5 data-i18n="footer.product">Producto</h5><ul><li><a href="funcionalidades.html" data-i18n="func.bc_func">Funcionalidades</a></li><li><a href="farmacos.html" data-i18n="farm.bc_drugs">Fármacos y modelos</a></li><li><a href="ejemplos.html" data-i18n="cases.bc_cases">Casos clínicos</a></li></ul></div><div class="footer-col"><h5 data-i18n="footer.access">Acceso</h5><ul><li><a href="precios.html" data-i18n="nav.cta">Empezar ahora</a></li><li><a href="acceso.html" data-i18n="nav.login">Acceso clientes</a></li><li><a data-app-link href="#" data-i18n="ui.abrir_plataforma">Abrir plataforma ↗</a></li></ul></div><div class="footer-col"><h5 data-i18n="footer.contact">Contacto</h5><ul><li><a data-contact-email data-subject="Consulta general PK-Bayes" href="#" data-i18n="footer.contact">Contacto</a></li><li><a data-contact-email data-subject="Solicitud de demo — PK-Bayes" href="#" data-i18n="common.request_demo_nav">Solicitar una demo</a></li></ul></div></div><div class="footer-bottom"><span data-i18n-html="footer.rights_copy">© <span data-year></span> PK-Bayes. Todos los derechos reservados.</span><span data-i18n="footer.developed_for">Desarrollado para equipos de farmacocinética clínica.</span></div><p class="footer-legal-note" data-i18n="ui.pk_bayes_es_un_software_de_a">PK-Bayes es un software de apoyo a la decisión clínica. Sus resultados deben ser revisados por un profesional sanitario cualificado.</p></div></footer><script src="assets/js/config.js"></script><script src="assets/js/i18n.js"></script><script src="assets/js/main.js"></script></body></html>
+  <main>
+    <!-- HERO: Clean, punchy medical-tech introduction -->
+    <section class="function-hero">
+      <div class="container function-hero-inner">
+        <span class="eyebrow" data-i18n="feat.hdr_kicker">Conoce PK-Bayes</span>
+        <h1 data-i18n="feat.hdr_title">Farmacocinética clínica, organizada alrededor del paciente.</h1>
+        <p data-i18n="feat.hdr_desc">Una plataforma para reunir información clínica, estimar parámetros individuales, explorar pautas y acompañar la evolución del tratamiento.</p>
+        
+        <!-- Trust Indicators Bar -->
+        <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 24px;">
+          <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #0284c7; background: #eff6ff; border: 1px solid #bfdbfe; padding: 4px 12px; border-radius: 9999px;" data-i18n="wb.trust_samd">
+            SaMD Class II Validado
+          </span>
+          <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #059669; background: #ecfdf5; border: 1px solid #a7f3d0; padding: 4px 12px; border-radius: 9999px;" data-i18n="wb.trust_stan">
+            Motor MAP Bayesiano (Stan)
+          </span>
+          <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #475569; background: #f8fafc; border: 1px solid #e2e8f0; padding: 4px 12px; border-radius: 9999px;" data-i18n="wb.trust_fhir">
+            0 Desfase LIS / HIS (HL7 FHIR)
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Subnav Tabs -->
+    <nav class="function-subnav" aria-label="Recorrido por las funcionalidades" data-i18n-aria-label="a11y.recorrido_por_las_funcionali">
+      <div class="container">
+        <a href="#panorama" class="active" data-i18n="feat.nav_overview">Panorama</a>
+        <a href="#evaluacion" data-i18n="feat.nav_eval">Evaluación</a>
+        <a href="#estimacion" data-i18n="feat.nav_estimate">Estimación</a>
+        <a href="#seguimiento" data-i18n="feat.nav_follow">Seguimiento</a>
+        <a href="#institucion" data-i18n="feat.nav_inst">Institución</a>
+      </div>
+    </nav>
+
+    <!-- SECTION 01: PANORAMA // CENSO & TRIAGE CLÍNICO -->
+    <section class="function-block" id="panorama" data-function-section>
+      <div class="container">
+        <header class="function-heading reveal">
+          <span data-i18n="feat.b1_kicker">01 · Panorama clínico</span>
+          <h2 data-i18n="feat.b1_title">La actividad del centro, visible desde el primer momento.</h2>
+          <p data-i18n="feat.b1_desc">El equipo puede revisar cuántos pacientes están en seguimiento y distinguir el contexto asistencial antes de abrir una evaluación.</p>
+        </header>
+
+        <!-- Native Interactive Triage Console (No blurry images) -->
+        <div class="wb-console reveal">
+          <div class="wb-console-header">
+            <span style="color: #0284c7; font-weight: 700;" data-i18n="wb.censo_title">LIVE CENSO TDM // UCI &amp; SALAS</span>
+            <span style="color: #64748b;" data-i18n="wb.triage_filter_all">Todas las camas (18)</span>
+          </div>
+          <div class="wb-console-body">
+            <!-- Left: Interactive Patient Roster -->
+            <div>
+              <div style="font-size: 11px; font-family: var(--font-mono); font-weight: 700; color: #64748b; text-transform: uppercase; margin-bottom: 12px;" data-i18n="feat.resumen_operativo">
+                Resumen Operativo
+              </div>
+              <button type="button" class="wb-patient-item active" data-wb-patient="p1" style="width: 100%; text-align: left;">
+                <div>
+                  <strong style="display: block; font-size: 13px; color: #0f172a;" data-i18n="wb.triage_patient_1">Elena Morales · UCI-04</strong>
+                  <span style="font-size: 11px; color: #64748b;" data-i18n="wb.regimen_p1">Vancomicina IV · 750mg q12h</span>
+                </div>
+                <span class="wb-badge-pill wb-badge-green" data-i18n="wb.triage_status_target">En Meta</span>
+              </button>
+
+              <button type="button" class="wb-patient-item" data-wb-patient="p2" style="width: 100%; text-align: left;">
+                <div>
+                  <strong style="display: block; font-size: 13px; color: #0f172a;" data-i18n="wb.triage_patient_2">Carlos Vega · UCI-09</strong>
+                  <span style="font-size: 11px; color: #64748b;" data-i18n="wb.regimen_p2">Vancomicina IV · 1250mg q12h</span>
+                </div>
+                <span class="wb-badge-pill wb-badge-red" data-i18n="wb.triage_status_warn">Alerta Toxicidad</span>
+              </button>
+
+              <button type="button" class="wb-patient-item" data-wb-patient="p3" style="width: 100%; text-align: left;">
+                <div>
+                  <strong style="display: block; font-size: 13px; color: #0f172a;" data-i18n="wb.triage_patient_3">Mateo Silva · INF-12</strong>
+                  <span style="font-size: 11px; color: #64748b;" data-i18n="wb.regimen_p3">Fenitoína Sódica · 300mg/d</span>
+                </div>
+                <span class="wb-badge-pill wb-badge-green" data-i18n="wb.triage_status_target">En Meta</span>
+              </button>
+
+              <button type="button" class="wb-patient-item" data-wb-patient="p4" style="width: 100%; text-align: left;">
+                <div>
+                  <strong style="display: block; font-size: 13px; color: #0f172a;" data-i18n="wb.triage_patient_4">Sofía Lara · PED-02</strong>
+                  <span style="font-size: 11px; color: #64748b;" data-i18n="wb.regimen_p4">Amikacina IV · 15mg/kg</span>
+                </div>
+                <span class="wb-badge-pill wb-badge-blue" data-i18n="wb.triage_status_target">En Meta</span>
+              </button>
+            </div>
+
+            <!-- Right: Dynamic Inspection Capsule -->
+            <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px;">
+                  <div>
+                    <span style="font-size: 10px; font-family: var(--font-mono); color: #64748b; text-transform: uppercase;" data-i18n="wb.triage_detail_title">Ficha de Inspección Rápida</span>
+                    <h3 id="wb-detail-name" style="font-size: 16px; font-weight: 800; color: #0f172a; margin: 4px 0 0;" data-i18n="wb.triage_patient_1">Elena Morales · UCI-04</h3>
+                    <span id="wb-detail-drug" style="font-size: 12px; color: #0284c7; font-weight: 600;" data-i18n="wb.regimen_p1">Vancomicina IV · 750mg q12h</span>
+                  </div>
+                  <span id="wb-detail-badge" class="wb-badge-pill wb-badge-green" data-i18n="wb.triage_status_target">En Meta (96%)</span>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0;">
+                  <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px;">
+                    <span style="font-size: 11px; color: #64748b;" data-i18n="wb.triage_auc_label">AUC24 Proyectada:</span>
+                    <div id="wb-detail-auc" style="font-size: 18px; font-weight: 800; color: #0f172a; font-family: var(--font-mono); margin-top: 4px;" translate="no">485 mg·h/L</div>
+                  </div>
+                  <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px;">
+                    <span style="font-size: 11px; color: #64748b;" data-i18n="wb.triage_cmin_label">Nivel Valle (C_mín):</span>
+                    <div id="wb-detail-trough" style="font-size: 18px; font-weight: 800; color: #059669; font-family: var(--font-mono); margin-top: 4px;" translate="no">16.2 µg/mL</div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Privacy Architecture Guarantee -->
+              <div style="border-top: 1px solid #e2e8f0; padding-top: 14px; font-size: 11px; color: #64748b; line-height: 1.5;">
+                <strong style="color: #0f172a;" data-i18n="feat.b1_priv_label">Privacidad:</strong>
+                <span data-i18n="feat.b1_priv_desc">PK-Bayes no exige registrar nombre ni RUN. El seguimiento se mantiene mediante una referencia interna.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 02: EVALUACIÓN // FUNCIÓN RENAL DINÁMICA & DIÁLISIS -->
+    <section class="function-block function-block-alt" id="evaluacion" data-function-section>
+      <div class="container">
+        <header class="function-heading reveal">
+          <span data-i18n="feat.b2_kicker">02 · Evaluación longitudinal</span>
+          <h2 data-i18n="feat.b2_title">El contexto clínico cambia. La evaluación también.</h2>
+          <p data-i18n="feat.b2_desc">Las dosis, muestras y mediciones renales se ordenan cronológicamente para representar lo que ocurre durante el tratamiento.</p>
+        </header>
+
+        <!-- Native Clearance Vector Console -->
+        <div class="wb-console reveal">
+          <div class="wb-console-header">
+            <span style="color: #7c3aed; font-weight: 700;" data-i18n="wb.renal_engine_title">MOTOR DE ACLARAMIENTO RENAL &amp; EXTRACORPÓREO</span>
+            <div style="display: flex; gap: 6px;">
+              <button type="button" class="atlas-nav-btn active" data-wb-rf="native" style="padding: 4px 10px; font-size: 11px;" data-i18n="wb.rf_btn_native">Función Nativa (eGFR)</button>
+              <button type="button" class="atlas-nav-btn" data-wb-rf="hd" style="padding: 4px 10px; font-size: 11px;" data-i18n="wb.rf_btn_hd">Hemodiálisis (HD)</button>
+              <button type="button" class="atlas-nav-btn" data-wb-rf="crrt" style="padding: 4px 10px; font-size: 11px;" data-i18n="wb.rf_btn_crrt">Terapia Continua (TRRC)</button>
+            </div>
+          </div>
+          <div class="wb-console-body">
+            <!-- Clearance Vector Graphical Gauge -->
+            <div>
+              <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 700; color: #64748b;" data-i18n="wb.rf_vector_label">Vector de Aclaramiento Total (CL_total)</span>
+              <div class="wb-clearance-bar">
+                <div id="wb-clearance-native" class="wb-clearance-native" style="width: 45%;"></div>
+                <div id="wb-clearance-dialysis" class="wb-clearance-dialysis" style="width: 0%;"></div>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 11px; font-family: var(--font-mono); color: #64748b;">
+                <span style="color: #0284c7;">■ <span data-i18n="wb.rf_nat_label">Renal Nativo</span>: <strong id="wb-cl-native" translate="no">2.1 L/h</strong></span>
+                <span style="color: #7c3aed;">■ <span data-i18n="wb.rf_dial_label">Filtro Extracorpóreo</span>: <strong id="wb-cl-dial" translate="no">0.0 L/h</strong></span>
+              </div>
+
+              <div style="margin-top: 24px; padding: 14px; background: #f8fafc; border-radius: 8px; border: 1px solid #e2e8f0;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                  <span style="font-size: 12px; color: #475569;" data-i18n="drug.modelos_compartimentales">Aclaramiento Depurado Total:</span>
+                  <span id="wb-cl-total" style="font-family: var(--font-mono); font-weight: 800; font-size: 16px; color: #0f172a;" translate="no">2.1 L/h</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
+                  <span style="font-size: 12px; color: #475569;" data-i18n="atlas.param_thalf">Vida Media de Eliminación (t1/2):</span>
+                  <span id="wb-thalf-val" style="font-family: var(--font-mono); font-weight: 800; font-size: 16px; color: #0284c7;" translate="no">18.2 h</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Workflow 3-Step Flowchart -->
+            <div style="display: flex; flex-direction: column; justify-content: space-between; gap: 12px;">
+              <div style="padding: 12px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px;">
+                <div style="font-size: 11px; font-family: var(--font-mono); font-weight: 800; color: #0284c7;" data-i18n="wb.step1_tag">01 / REGISTRAR</div>
+                <p style="font-size: 12px; color: #475569; margin: 4px 0 0;" data-i18n="feat.b2_step1_d">Incorpora dosis administradas, horarios y niveles plasmáticos.</p>
+              </div>
+              <div style="padding: 12px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px;">
+                <div style="font-size: 11px; font-family: var(--font-mono); font-weight: 800; color: #7c3aed;" data-i18n="wb.step2_tag">02 / RELACIONAR</div>
+                <p style="font-size: 12px; color: #475569; margin: 4px 0 0;" data-i18n="feat.b2_step2_d">Vincula cada observación con el momento del tratamiento.</p>
+              </div>
+              <div style="padding: 12px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px;">
+                <div style="font-size: 11px; font-family: var(--font-mono); font-weight: 800; color: #059669;" data-i18n="wb.step3_tag">03 / ACTUALIZAR</div>
+                <p style="font-size: 12px; color: #475569; margin: 4px 0 0;" data-i18n="feat.b2_step3_d">Recalcula la representación cuando aparecen nuevos datos.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 03: ESTIMACIÓN // INFERENCIA BAYESIANA MAP (STAN) -->
+    <section class="function-block" id="estimacion" data-function-section>
+      <div class="container">
+        <header class="function-heading reveal">
+          <span data-i18n="feat.b3_kicker">03 · Estimación individual</span>
+          <h2 data-i18n="feat.b3_title">Del modelo poblacional a una lectura propia del paciente.</h2>
+          <p data-i18n="feat.b3_desc">La estimación bayesiana contrasta el referente elegido con los datos observados y presenta los resultados necesarios para interpretar exposición y eliminación.</p>
+        </header>
+
+        <!-- Native Bayesian Fitting Visualizer -->
+        <div class="wb-console reveal">
+          <div class="wb-console-header">
+            <span style="color: #059669; font-weight: 700;" data-i18n="wb.bayes_engine_title">MOTOR BAYESIANO // PRIOR + LIKELIHOOD = POSTERIOR MAP</span>
+            <div style="display: flex; gap: 6px;">
+              <button type="button" class="atlas-nav-btn active" data-wb-bayes="all" style="padding: 4px 10px; font-size: 11px;" data-i18n="wb.bayes_btn_map">3. Ajuste MAP (Stan)</button>
+              <button type="button" class="atlas-nav-btn" data-wb-bayes="sample" style="padding: 4px 10px; font-size: 11px;" data-i18n="wb.bayes_btn_sample">2. Muestra TDM Sangre</button>
+              <button type="button" class="atlas-nav-btn" data-wb-bayes="prior" style="padding: 4px 10px; font-size: 11px;" data-i18n="wb.bayes_btn_prior">1. Prior Poblacional</button>
+            </div>
+          </div>
+          <div class="wb-console-body">
+            <!-- Fluid SVG Curve Showing Bayes Convergence -->
+            <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 16px; height: 230px;">
+              <svg style="width: 100%; height: 100%;" viewBox="0 0 500 200" preserveAspectRatio="none">
+                <!-- Target Window Ribbon -->
+                <rect x="30" y="80" width="450" height="40" fill="rgba(5, 150, 105, 0.1)" />
+                <line x1="30" y1="80" x2="480" y2="80" stroke="#059669" stroke-dasharray="3 3" stroke-width="1" />
+                <line x1="30" y1="120" x2="480" y2="120" stroke="#059669" stroke-dasharray="3 3" stroke-width="1" />
+                
+                <!-- Baseline -->
+                <line x1="30" y1="180" x2="480" y2="180" stroke="#cbd5e1" stroke-width="1" />
+
+                <!-- Prior Population Curve (Blue dashed) -->
+                <path id="wb-bayes-prior" d="M 30,175 C 60,30 110,40 180,95 C 240,150 300,165 480,170" fill="none" stroke="#2563eb" stroke-dasharray="4 4" stroke-width="2" style="transition: opacity 0.3s;" />
+
+                <!-- Measured TDM Sample Node (Red) -->
+                <g id="wb-bayes-sample" style="transition: opacity 0.3s;">
+                  <circle cx="210" cy="115" r="5" fill="#dc2626" stroke="#ffffff" stroke-width="2" />
+                  <text x="210" y="140" fill="#dc2626" font-size="9" font-family="monospace" text-anchor="middle" translate="no">TDM 15.2</text>
+                </g>
+
+                <!-- Posterior MAP Fitted Curve (Emerald Solid) -->
+                <path id="wb-bayes-post" d="M 30,175 C 60,45 110,50 180,85 C 240,120 300,140 480,150" fill="none" stroke="#059669" stroke-width="3" style="transition: opacity 0.3s;" />
+              </svg>
+            </div>
+
+            <!-- Parameters Shift Table -->
+            <div style="display: flex; flex-direction: column; justify-content: space-between;">
+              <table style="width: 100%; font-size: 12px; border-collapse: collapse;">
+                <thead>
+                  <tr style="border-bottom: 1px solid #e2e8f0; font-family: var(--font-mono); color: #64748b;">
+                    <th style="text-align: left; padding: 6px 0;" data-i18n="atlas.model_type">Parámetro</th>
+                    <th style="text-align: right; padding: 6px 0;" data-i18n="drug.referencia">Prior Poblacional</th>
+                    <th style="text-align: right; padding: 6px 0; color: #059669;" data-i18n="ui.evaluacion">Posterior MAP</th>
+                  </tr>
+                </thead>
+                <tbody style="font-family: var(--font-mono);">
+                  <tr style="border-bottom: 1px solid #f1f5f9;">
+                    <td style="padding: 8px 0; font-weight: 700;" data-i18n="atlas.param_cl">Aclaramiento (CL)</td>
+                    <td style="text-align: right; color: #64748b;" translate="no">3.4 L/h</td>
+                    <td style="text-align: right; font-weight: 800; color: #059669;" data-i18n="wb.val_cl_post">2.1 L/h (-38%)</td>
+                  </tr>
+                  <tr style="border-bottom: 1px solid #f1f5f9;">
+                    <td style="padding: 8px 0; font-weight: 700;" data-i18n="atlas.param_vd">Volumen Distribución (Vd)</td>
+                    <td style="text-align: right; color: #64748b;" translate="no">52.0 L</td>
+                    <td style="text-align: right; font-weight: 800; color: #059669;" data-i18n="wb.val_vd_post">58.4 L (+12%)</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 8px 0; font-weight: 700;" data-i18n="wb.triage_auc_label">AUC24 Proyectada:</td>
+                    <td style="text-align: right; color: #dc2626;" translate="no">320 mg·h/L</td>
+                    <td style="text-align: right; font-weight: 800; color: #059669;" data-i18n="wb.val_auc_post">485 mg·h/L (En Meta)</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              <div style="margin-top: 14px; font-size: 11px; color: #64748b; border-top: 1px solid #f1f5f9; padding-top: 10px;" data-i18n="feat.b3_desc">
+                La estimación bayesiana contrasta el referente elegido con los datos observados para optimizar el régimen sin recurrir a tanteo a ciegas.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 04: SEGUIMIENTO // MONITORIZACIÓN LONGITUDINAL -->
+    <section class="function-block function-block-alt" id="seguimiento" data-function-section>
+      <div class="container">
+        <header class="function-heading reveal">
+          <span data-i18n="feat.b4_kicker">04 · Seguimiento</span>
+          <h2 data-i18n="feat.b4_title">La evolución se comprende mejor cuando puede verse.</h2>
+          <p data-i18n="feat.b4_desc">Los paneles longitudinales muestran cómo cambian las dosis administradas y las concentraciones medidas a lo largo del tratamiento.</p>
+        </header>
+
+        <!-- Longitudinal Multi-Dose Canvas -->
+        <div class="wb-console reveal">
+          <div class="wb-console-header">
+            <span style="color: #2563eb; font-weight: 700;" data-i18n="wb.timeline_title">LÍNEA TEMPORAL DE DOSIFICACIÓN // DÍA 1 AL DÍA 5</span>
+            <span style="font-family: var(--font-mono); color: #059669; font-weight: 700;" data-i18n="zenith.t_ss">Estado Estacionario Alcanzado</span>
+          </div>
+          <div style="padding: 24px;">
+            <div style="width: 100%; height: 200px;">
+              <svg style="width: 100%; height: 100%;" viewBox="0 0 800 180" preserveAspectRatio="none">
+                <!-- Target Corridor -->
+                <rect x="40" y="70" width="730" height="35" fill="rgba(5, 150, 105, 0.12)" />
+                <line x1="40" y1="70" x2="770" y2="70" stroke="#059669" stroke-dasharray="4 4" />
+                <line x1="40" y1="105" x2="770" y2="105" stroke="#059669" stroke-dasharray="4 4" />
+                <line x1="40" y1="160" x2="770" y2="160" stroke="#cbd5e1" stroke-width="1.5" />
+
+                <!-- Multi-dose waveform with accumulation -->
+                <path d="M 40,160 C 55,50 75,40 120,90 C 160,135 180,145 200,148 C 215,40 235,35 280,85 C 320,125 340,135 360,138 C 375,35 395,30 440,80 C 480,118 500,126 520,128 C 535,32 555,28 600,78 C 640,115 660,122 680,124 C 695,30 715,26 750,76" fill="none" stroke="#2563eb" stroke-width="2.5" />
+
+                <!-- Measured TDM Points -->
+                <circle cx="360" cy="138" r="4.5" fill="#dc2626" stroke="#ffffff" stroke-width="2" />
+                <circle cx="680" cy="124" r="4.5" fill="#059669" stroke="#ffffff" stroke-width="2" />
+
+                <!-- Timestamps -->
+                <text x="40" y="174" fill="#94a3b8" font-size="9" font-family="monospace">0h</text>
+                <text x="200" y="174" fill="#94a3b8" font-size="9" font-family="monospace">24h</text>
+                <text x="360" y="174" fill="#94a3b8" font-size="9" font-family="monospace">48h (TDM 1)</text>
+                <text x="520" y="174" fill="#94a3b8" font-size="9" font-family="monospace">72h</text>
+                <text x="680" y="174" fill="#059669" font-size="9" font-family="monospace" font-weight="700">96h (Control Meta)</text>
+              </svg>
+            </div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 14px; flex-wrap: wrap; gap: 10px; font-size: 12px; color: #475569;">
+              <span data-i18n="feat.b4_band_span">Dosis, niveles plasmáticos y contexto clínico permanecen disponibles para revisar tendencias sin pérdida de continuidad.</span>
+              <strong style="color: #059669; font-family: var(--font-mono);" data-i18n="feat.b4_band_strong">Una misma línea temporal.</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 05: INSTITUCIÓN // GOBERNANZA & POPPK READY -->
+    <section class="function-block" id="institucion" data-function-section>
+      <div class="container">
+        <header class="function-heading reveal">
+          <span data-i18n="feat.b5_kicker">05 · Gestión y conocimiento institucional</span>
+          <h2 data-i18n="feat.b5_title">Herramientas para administrar, evaluar y continuar investigando.</h2>
+          <p data-i18n="feat.b5_desc">PK-Bayes incorpora funciones para gestionar los accesos del centro, revisar el desempeño de los modelos y preparar información longitudinal para análisis posteriores.</p>
+        </header>
+
+        <!-- PopPK Export Console -->
+        <div class="wb-console reveal">
+          <div class="wb-console-header">
+            <span style="color: #0284c7; font-weight: 700;" data-i18n="wb.poppk_code_title">Dataset Estructurado Listo para Análisis</span>
+            <div style="display: flex; gap: 6px;">
+              <button type="button" class="atlas-nav-btn active" data-wb-format="csv" style="padding: 4px 10px; font-size: 11px;" data-i18n="feat.csv">CSV</button>
+              <button type="button" class="atlas-nav-btn" data-wb-format="nonmem" style="padding: 4px 10px; font-size: 11px;" data-i18n="feat.nonmem">NONMEM</button>
+              <button type="button" class="atlas-nav-btn" data-wb-format="monolix" style="padding: 4px 10px; font-size: 11px;" data-i18n="feat.monolix">Monolix</button>
+              <button type="button" class="atlas-nav-btn" data-wb-format="python" style="padding: 4px 10px; font-size: 11px;" data-i18n="feat.python">Python</button>
+            </div>
+          </div>
+          <div class="wb-console-body">
+            <!-- Code View Container -->
+            <div>
+              <pre class="wb-code-preview" id="wb-code-text" data-i18n="wb.poppk_code_sample">ID,TIME,DV,AMT,RATE,ECOL,AGE,WT,SCR,CLCR
+101,0.0,.,1000,1000,0,63,72.5,1.8,26.4
+101,12.0,15.2,.,.,0,63,72.5,1.8,26.4
+101,12.0,.,750,750,0,63,72.5,1.7,28.1
+101,24.0,16.2,.,.,0,63,72.5,1.7,28.1</pre>
+            </div>
+
+            <!-- Bias & Governance Radar -->
+            <div style="display: flex; flex-direction: column; justify-content: space-between;">
+              <div>
+                <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 700; color: #64748b;" data-i18n="wb.poppk_bias_title">Validación de Sesgo Poblacional</span>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px;">
+                  <div style="padding: 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <span style="font-size: 11px; color: #64748b;" data-i18n="wb.mpe_label">Sesgo Medio (MPE):</span>
+                    <div style="font-size: 18px; font-weight: 800; color: #059669; font-family: var(--font-mono);" translate="no">-1.1%</div>
+                    <span style="font-size: 10px; color: #64748b;" data-i18n="wb.mpe_status">Calibración Óptima</span>
+                  </div>
+                  <div style="padding: 12px; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px;">
+                    <span style="font-size: 11px; color: #64748b;" data-i18n="wb.rmse_label">Precisión (RMSE):</span>
+                    <div style="font-size: 18px; font-weight: 800; color: #0284c7; font-family: var(--font-mono);" translate="no">8.2%</div>
+                    <span style="font-size: 10px; color: #64748b;" data-i18n="wb.rmse_status">Excelente Ajuste</span>
+                  </div>
+                </div>
+              </div>
+
+              <div style="font-size: 11px; color: #64748b; border-top: 1px solid #f1f5f9; padding-top: 12px;" data-i18n="feat.b5_res_desc">
+                La exportación en CSV facilita el trabajo posterior con herramientas especializadas como NONMEM, Monolix o Python.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-band cta-band-premium reveal">
+          <div>
+            <span class="eyebrow" data-i18n="feat.verlo_en_contexto">Verlo en contexto</span>
+            <h2 data-i18n="feat.descubre_como_estas_capacida">Descubre cómo estas capacidades se conectan en un caso clínico.</h2>
+          </div>
+          <a href="ejemplos.html" class="btn btn-primary btn-lg" data-i18n="feat.explorar_casos_clinicos">Explorar casos clínicos</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="brand">
+            <img class="brand-mark" src="assets/img/logo-icon-256.png" alt="">
+            <div class="brand-text">
+              <span class="brand-title" data-i18n="nav.brand_title">PK-Bayes</span>
+              <span class="brand-sub" data-i18n="nav.brand_sub">Precision Dosing System</span>
+            </div>
+          </a>
+          <p data-i18n="ui.plataforma_de_apoyo_a_la_dec">Plataforma de apoyo a la decisión clínica para dosificación farmacocinética de precisión.</p>
+        </div>
+        <div class="footer-col">
+          <h5 data-i18n="footer.product">Producto</h5>
+          <ul>
+            <li><a href="funcionalidades.html" data-i18n="func.bc_func">Funcionalidades</a></li>
+            <li><a href="farmacos.html" data-i18n="farm.bc_drugs">Fármacos y modelos</a></li>
+            <li><a href="ejemplos.html" data-i18n="cases.bc_cases">Casos clínicos</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5 data-i18n="footer.access">Acceso</h5>
+          <ul>
+            <li><a href="precios.html" data-i18n="nav.cta">Empezar ahora</a></li>
+            <li><a href="acceso.html" data-i18n="nav.login">Acceso clientes</a></li>
+            <li><a data-app-link href="#" data-i18n="ui.abrir_plataforma">Abrir plataforma ↗</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h5 data-i18n="footer.contact">Contacto</h5>
+          <ul>
+            <li><a data-contact-email data-subject="Consulta general PK-Bayes" href="#" data-i18n="footer.contact">Contacto</a></li>
+            <li><a data-contact-email data-subject="Solicitud de demo — PK-Bayes" href="#" data-i18n="common.request_demo_nav">Solicitar una demo</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span data-i18n-html="footer.rights_copy">© <span data-year></span> PK-Bayes. Todos los derechos reservados.</span>
+        <span data-i18n="footer.developed_for">Desarrollado para equipos de farmacocinética clínica.</span>
+      </div>
+      <p class="footer-legal-note" data-i18n="ui.pk_bayes_es_un_software_de_a">PK-Bayes es un software de apoyo a la decisión clínica. Sus resultados deben ser revisados por un profesional sanitario cualificado.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>

@@ -1,15 +1,211 @@
 <!DOCTYPE html><html lang="es" data-i18n-title="meta.title_drugs" data-i18n-desc="meta.desc_drugs"><head><meta charset="UTF-8"><title data-i18n="meta.title_drugs">Fármacos y modelos — PK-Bayes</title><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Alcance farmacocinético de PK-Bayes para vancomicina y fenitoína."><meta name="theme-color" content="#0f1c33"><link rel="icon" href="assets/img/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/styles.css"></head><body>
-<header class="site-header"><div class="container"><div class="nav-row"><a href="index.html" class="brand"><img class="brand-mark" src="assets/img/logo-icon-256.png" alt=""><div class="brand-text"><span class="brand-title" data-i18n="nav.brand_title">PK-Bayes</span><span class="brand-sub" data-i18n="nav.brand_sub">Precision Dosing System</span></div></a><nav class="nav-links"><a href="index.html" data-i18n="cases.bc_home">Inicio</a><a href="funcionalidades.html" data-i18n="func.bc_func">Funcionalidades</a><a href="farmacos.html" class="active" data-i18n="farm.bc_drugs">Fármacos y modelos</a><a href="ejemplos.html" data-i18n="cases.bc_cases">Casos clínicos</a></nav><div class="nav-actions"><a href="precios.html" class="btn btn-primary btn-sm" data-i18n="nav.cta">Empezar ahora</a><a href="acceso.html" class="btn btn-secondary btn-sm hide-mobile" data-i18n="ui.entrar_a_pk_bayes">Entrar a PK-Bayes</a><div class="lang-selector"><button class="lang-btn" type="button" aria-label="Cambiar idioma" data-i18n-aria-label="a11y.cambiar_idioma"><svg class="lang-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span class="lang-current-label">Español</span><svg class="lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><div class="lang-dropdown"><button type="button" class="lang-item active" data-lang="es"><span class="lang-flag">🇪🇸</span> <span>Español</span><span class="lang-check">✓</span></button><button type="button" class="lang-item" data-lang="en"><span class="lang-flag">🇺🇸</span> <span>English</span><span class="lang-check">✓</span></button><button type="button" class="lang-item" data-lang="zh"><span class="lang-flag">🇨🇳</span> <span>中文</span><span class="lang-check">✓</span></button><button type="button" class="lang-item" data-lang="ja"><span class="lang-flag">🇯🇵</span> <span>日本語</span><span class="lang-check">✓</span></button></div></div><button class="nav-toggle" aria-label="Abrir menú" data-i18n-aria-label="a11y.abrir_menu" aria-expanded="false"><span></span><span></span><span></span></button></div></div><div class="mobile-menu"><a href="index.html" data-i18n="cases.bc_home">Inicio</a><a href="funcionalidades.html" data-i18n="func.bc_func">Funcionalidades</a><a href="farmacos.html" class="active" data-i18n="farm.bc_drugs">Fármacos y modelos</a><a href="ejemplos.html" data-i18n="cases.bc_cases">Casos clínicos</a><a href="acceso.html" data-i18n="ui.entrar_a_pk_bayes">Entrar a PK-Bayes</a><a href="precios.html" class="btn btn-primary btn-block" data-i18n="nav.cta">Empezar ahora</a><div class="lang-selector"><button class="lang-btn" type="button" aria-label="Cambiar idioma" data-i18n-aria-label="a11y.cambiar_idioma"><svg class="lang-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span class="lang-current-label">Español</span><svg class="lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><div class="lang-dropdown"><button type="button" class="lang-item active" data-lang="es"><span class="lang-flag">🇪🇸</span> <span>Español</span><span class="lang-check">✓</span></button><button type="button" class="lang-item" data-lang="en"><span class="lang-flag">🇺🇸</span> <span>English</span><span class="lang-check">✓</span></button><button type="button" class="lang-item" data-lang="zh"><span class="lang-flag">🇨🇳</span> <span>中文</span><span class="lang-check">✓</span></button><button type="button" class="lang-item" data-lang="ja"><span class="lang-flag">🇯🇵</span> <span>日本語</span><span class="lang-check">✓</span></button></div></div></div></div></header>
+<header class="site-header"><div class="container"><div class="nav-row"><a href="index.html" class="brand"><img class="brand-mark" src="assets/img/logo-icon-256.png" alt=""><div class="brand-text"><span class="brand-title" data-i18n="nav.brand_title">PK-Bayes</span><span class="brand-sub" data-i18n="nav.brand_sub">Precision Dosing System</span></div></a><nav class="nav-links"><a href="index.html" data-i18n="cases.bc_home">Inicio</a><a href="funcionalidades.html" data-i18n="func.bc_func">Funcionalidades</a><a href="farmacos.html" class="active" data-i18n="farm.bc_drugs">Fármacos y modelos</a><a href="ejemplos.html" data-i18n="cases.bc_cases">Casos clínicos</a></nav><div class="nav-actions"><a href="precios.html" class="btn btn-primary btn-sm" data-i18n="nav.cta">Empezar ahora</a><a href="acceso.html" class="btn btn-secondary btn-sm hide-mobile" data-i18n="ui.entrar_a_pk_bayes">Entrar a PK-Bayes</a><div class="lang-selector"><button class="lang-btn" type="button" aria-label="Cambiar idioma" data-i18n-aria-label="a11y.cambiar_idioma"><svg class="lang-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span class="lang-current-label">Español</span><svg class="lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><div class="lang-dropdown"><button type="button" class="lang-item active" data-lang="es"><span class="lang-flag">🇪🇸</span> <span>Español</span><span class="lang-check">✓</span></button><button type="button" class="lang-item" data-lang="en"><span class="lang-flag">🇺🇸</span> <span>English</span><span class="lang-check">✓</span></button><button type="button" class="lang-item" data-lang="zh"><span class="lang-flag">🇨🇳</span> <span>中文</span><span class="lang-check">✓</span></button><button type="button" class="lang-item" data-lang="ja"><span class="lang-flag">🇯🇵</span> <span>日本語</span><span class="lang-check">✓</span></button></div></div><button class="nav-toggle" aria-label="Abrir menú" data-i18n-aria-label="a11y.abrir_menu" aria-expanded="false"><span></span><span></span><span></span></button></div></div><div class="mobile-menu"><a href="index.html" data-i18n="cases.bc_home">Inicio</a><a href="funcionalidades.html" data-i18n="func.bc_func">Funcionalidades</a><a href="farmacos.html" class="active" data-i18n="farm.bc_drugs">Fármacos y modelos</a><a href="ejemplos.html" data-i18n="cases.bc_cases">Casos clínicos</a><a href="acceso.html" data-i18n="ui.entrar_a_pk_bayes">Entrar a PK-Bayes</a><a href="precios.html" class="btn btn-primary btn-block" data-i18n="nav.cta">Empezar ahora</a><div class="lang-selector"><button class="lang-btn" type="button" aria-label="Cambiar idioma" data-i18n-aria-label="a11y.cambiar_idioma"><svg class="lang-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span class="lang-currentlabel">Español</span><svg class="lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><div class="lang-dropdown"><button type="button" class="lang-item active" data-lang="es"><span class="lang-flag">🇪🇸</span> <span>Español</span><span class="lang-check">✓</span></button><button type="button" class="lang-item" data-lang="en"><span class="lang-flag">🇺🇸</span> <span>English</span><span class="lang-check">✓</span></button><button type="button" class="lang-item" data-lang="zh"><span class="lang-flag">🇨🇳</span> <span>中文</span><span class="lang-check">✓</span></button><button type="button" class="lang-item" data-lang="ja"><span class="lang-flag">🇯🇵</span> <span>日本語</span><span class="lang-check">✓</span></button></div></div></div></div></header>
+
 <main>
-  <section class="page-hero product-page-hero"><div class="container"><div class="breadcrumb"><a href="index.html" data-i18n="cases.bc_home">Inicio</a><span>/</span><span data-i18n="farm.bc_drugs">Fármacos y modelos</span></div><span class="eyebrow" data-i18n="drug.alcance_farmacocinetico">Alcance farmacocinético</span><h1 data-i18n="drug.modelos_elegidos_por_la_form">Modelos elegidos por la forma en que se comporta cada fármaco.</h1><p class="lead" data-i18n="drug.pk_bayes_no_aplica_una_formu">PK-Bayes no aplica una fórmula única. La plataforma considera las particularidades de la vancomicina y la fenitoína para interpretar niveles y apoyar decisiones de dosificación.</p><nav class="anchor-nav"><a href="#vancomicina" data-i18n="common.tag_vanco">Vancomicina</a><a href="#fenitoina" data-i18n="ui.fenitoina">Fenitoína</a><a href="#modelos-locales" data-i18n="drug.modelos_institucionales">Modelos institucionales</a></nav></div></section>
+  <!-- Hero Section -->
+  <section class="page-hero product-page-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html" data-i18n="cases.bc_home">Inicio</a>
+        <span>/</span>
+        <span data-i18n="farm.bc_drugs">Fármacos y modelos</span>
+      </div>
+      <span class="eyebrow" data-i18n="drug.alcance_farmacocinetico">Alcance farmacocinético</span>
+      <h1 data-i18n="drug.modelos_elegidos_por_la_form">Modelos elegidos por la forma en que se comporta cada fármaco.</h1>
+      <p class="lead" data-i18n="drug.pk_bayes_no_aplica_una_formu">PK-Bayes no aplica una fórmula única. La plataforma considera las particularidades de la vancomicina y la fenitoína para interpretar niveles y apoyar decisiones de dosificación.</p>
+    </div>
+  </section>
 
-  <section class="section" id="vancomicina"><div class="container drug-detail-grid"><div class="drug-intro reveal"><span class="drug-pill blue" data-i18n="ui.disponible">Disponible</span><div class="drug-symbol blue">V</div><h2 data-i18n="common.tag_vanco">Vancomicina</h2><p class="lead" data-i18n="drug.seguimiento_individual_para_">Seguimiento individual para un antibiótico cuya exposición depende de la distribución corporal, la función renal y los cambios clínicos durante el tratamiento.</p></div><div class="drug-capabilities reveal"><article><span>01</span><div><h3 data-i18n="drug.modelos_compartimentales">Modelos compartimentales</h3><p data-i18n="drug.permite_seleccionar_modelos_">Permite seleccionar modelos de uno o dos compartimentos provenientes de la literatura, según el contexto y la información disponible.</p></div></article><article><span>02</span><div><h3 data-i18n="drug.objetivos_de_exposicion">Objetivos de exposición</h3><p data-i18n="drug.representa_la_evolucion_conc">Representa la evolución concentración-tiempo y facilita la evaluación de objetivos farmacocinéticos definidos por el equipo clínico.</p></div></article><article><span>03</span><div><h3 data-i18n="ui.funcion_renal_cambiante">Función renal cambiante</h3><p data-i18n="drug.relaciona_mediciones_sucesiv">Relaciona mediciones sucesivas de creatinina con la cronología del tratamiento para reflejar una evolución no estática.</p></div></article><article><span>04</span><div><h3 data-i18n="drug.terapias_de_reemplazo_renal">Terapias de reemplazo renal</h3><p data-i18n="drug.permite_incorporar_informaci">Permite incorporar información de hemodiálisis y terapias continuas cuando forman parte del escenario clínico.</p></div></article></div></div></section>
+  <!-- Interactive Drug Atlas Console -->
+  <section class="section" style="padding-top: 10px;">
+    <div class="container">
+      <!-- Drug Selector Tabs -->
+      <div style="display: flex; gap: 12px; margin-bottom: 24px; flex-wrap: wrap;">
+        <button class="atlas-nav-btn active" data-atlas-drug="vanco" type="button">
+          <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#0284c7;"></span>
+          <span data-i18n="atlas.drug_vanco">Vancomicina IV</span>
+        </button>
+        <button class="atlas-nav-btn" data-atlas-drug="feni" type="button">
+          <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#d97706;"></span>
+          <span data-i18n="atlas.drug_feni">Fenitoína Sódica</span>
+        </button>
+        <button class="atlas-nav-btn" data-atlas-drug="ami" type="button">
+          <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#2563eb;"></span>
+          <span data-i18n="atlas.drug_ami">Gentamicina / Amikacina</span>
+        </button>
+        <button class="atlas-nav-btn" data-atlas-drug="tacro" type="button">
+          <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#7c3aed;"></span>
+          <span data-i18n="atlas.drug_tacro">Tacrolimus</span>
+        </button>
+      </div>
 
-  <section class="section section-alt"><div class="container"><div class="section-head reveal"><span class="eyebrow" data-i18n="drug.modelos_de_referencia">Modelos de referencia</span><h2 data-i18n="drug.una_base_poblacional_adecuad">Una base poblacional adecuada para iniciar la evaluación.</h2><p class="lead" data-i18n="drug.la_plataforma_incluye_modelo">La plataforma incluye modelos publicados para población adulta hospitalizada —entre ellos Goti, Rodvold, Thomson y Yamamoto— además de una alternativa simplificada de un compartimento. El profesional selecciona el enfoque pertinente y PK-Bayes lo individualiza con los datos observados.</p></div><div class="model-chips reveal"><span data-i18n="drug.goti_et_al">Goti et al.</span><span data-i18n="drug.rodvold_et_al">Rodvold et al.</span><span data-i18n="drug.thomson_et_al">Thomson et al.</span><span data-i18n="drug.yamamoto_et_al">Yamamoto et al.</span><span data-i18n="drug.1_compartimento">1 compartimento</span></div></div></section>
+      <!-- Main Atlas Workbench Console -->
+      <div class="wb-console">
+        <div class="wb-console-header">
+          <div class="wb-console-title">
+            <span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:#059669;"></span>
+            <span id="atlas-drug-title" style="font-weight: 700; color: #0f172a;" data-i18n="atlas.drug_vanco">Vancomicina IV</span>
+          </div>
+          <span id="atlas-model-tag" class="wb-badge-pill wb-badge-blue" data-i18n="atlas.model_vanco_val">Bicompartimental Lineal (Goti / Rodvold)</span>
+        </div>
 
-  <section class="section" id="fenitoina"><div class="container drug-detail-grid reverse"><div class="drug-intro reveal"><span class="drug-pill amber" data-i18n="ui.fase_1">Fase 1</span><div class="drug-symbol amber">F</div><h2 data-i18n="ui.fenitoina">Fenitoína</h2><p class="lead" data-i18n="drug.interpretacion_farmacocineti">Interpretación farmacocinética para un anticonvulsivante cuya eliminación puede saturarse y cuya concentración total puede ser engañosa en determinados pacientes.</p></div><div class="drug-capabilities reveal"><article><span>01</span><div><h3 data-i18n="drug.cinetica_no_lineal">Cinética no lineal</h3><p data-i18n="drug.considera_que_pequenos_cambi">Considera que pequeños cambios de dosis pueden producir variaciones desproporcionadas en la concentración.</p></div></article><article><span>02</span><div><h3 data-i18n="drug.correccion_por_albumina">Corrección por albúmina</h3><p data-i18n="drug.ayuda_a_interpretar_niveles_">Ayuda a interpretar niveles totales cuando la unión a proteínas se encuentra alterada.</p></div></article><article><span>03</span><div><h3 data-i18n="drug.contexto_renal">Contexto renal</h3><p data-i18n="drug.incorpora_el_escenario_de_in">Incorpora el escenario de insuficiencia renal avanzada cuando modifica la lectura del nivel plasmático.</p></div></article><article><span>04</span><div><h3 data-i18n="drug.comparacion_de_dosis">Comparación de dosis</h3><p data-i18n="drug.permite_explorar_el_comporta">Permite explorar el comportamiento esperado de cambios prudentes de pauta dentro de una respuesta saturable.</p></div></article></div></div></section>
+        <div class="wb-console-body">
+          <!-- 4 Core PK Parameter Cards -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 24px;">
+            <div class="atlas-param-card">
+              <span style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase;" data-i18n="atlas.param_vd">Volumen Distribución (Vd)</span>
+              <div id="atlas-param-vd" class="atlas-param-val" data-i18n="wb.val_vd_init">0.72 L/kg</div>
+            </div>
+            <div class="atlas-param-card">
+              <span style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase;" data-i18n="atlas.param_cl">Aclaramiento (CL)</span>
+              <div id="atlas-param-cl" class="atlas-param-val" data-i18n="wb.val_cl_init">2.1 L/h</div>
+            </div>
+            <div class="atlas-param-card">
+              <span style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase;" data-i18n="atlas.param_thalf">Vida Media (t1/2)</span>
+              <div id="atlas-param-thalf" class="atlas-param-val" data-i18n="wb.val_thalf_init">14.2 h</div>
+            </div>
+            <div class="atlas-param-card">
+              <span style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase;" data-i18n="atlas.param_target">Diana Terapéutica</span>
+              <div id="atlas-param-target" class="atlas-param-val" style="font-size: 14px; color: #0284c7;" data-i18n="wb.val_target_init">AUC24 / CIM 400 - 600</div>
+            </div>
+          </div>
 
-  <section class="section section-alt" id="modelos-locales"><div class="container feature-showcase"><div class="feature-copy reveal"><span class="feature-kicker" data-i18n="drug.aprendizaje_institucional">Aprendizaje institucional</span><h2 data-i18n="drug.la_literatura_como_punto_de_">La literatura como punto de partida; la población local como fuente de aprendizaje.</h2><p class="lead" data-i18n="drug.con_datos_suficientes_y_revi">Con datos suficientes y revisados, PK-Bayes permite evaluar el desempeño de los modelos de referencia en la población del centro y desarrollar estimaciones institucionales que complementen la evidencia publicada.</p><p class="text-secondary mt-20" data-i18n="drug.esta_funcion_esta_orientada_">Esta función está orientada al análisis retrospectivo y requiere supervisión profesional antes de utilizar sus resultados en el trabajo clínico.</p></div><div class="capability-visual reveal"><div class="local-model-visual"><div><small data-i18n="drug.referencia">Referencia</small><strong data-i18n="drug.modelo_publicado">Modelo publicado</strong></div><span>+</span><div><small data-i18n="drug.experiencia_local">Experiencia local</small><strong data-i18n="drug.datos_revisados">Datos revisados</strong></div><span>=</span><div class="result"><small data-i18n="ui.evaluacion">Evaluación</small><strong data-i18n="drug.modelo_institucional">Modelo institucional</strong></div></div></div></div></section>
-  <section class="section"><div class="container"><div class="cta-band cta-band-premium reveal"><div><span class="eyebrow" data-i18n="drug.aplicacion_clinica">Aplicación clínica</span><h2 data-i18n="drug.observa_como_se_utiliza_la_i">Observa cómo se utiliza la información en situaciones de seguimiento.</h2></div><a href="ejemplos.html" class="btn btn-primary btn-lg" data-i18n="drug.ver_casos_ilustrativos">Ver casos ilustrativos</a></div></div></section>
+          <!-- Dynamic SVG Concentration Profile Graphic -->
+          <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; margin-bottom: 20px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
+              <span style="font-size: 12px; font-weight: 700; color: #334155; text-transform: uppercase; letter-spacing: 0.5px;" data-i18n="wb.curve_title">Perfil de Concentración Plasmática y Dinámica de Exposición</span>
+              <span style="font-family: var(--font-mono); font-size: 11px; color: #64748b;" data-i18n="wb.steady_state_badge">Estado Estacionario (Steady State)</span>
+            </div>
+            <svg viewBox="0 0 900 240" style="width: 100%; height: auto; display: block; overflow: visible;">
+              <defs>
+                <linearGradient id="atlasGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stop-color="#0284c7" stop-opacity="0.25"/>
+                  <stop offset="100%" stop-color="#0284c7" stop-opacity="0.0"/>
+                </linearGradient>
+              </defs>
+              <!-- Target Corridor Band -->
+              <rect x="50" y="80" width="820" height="70" fill="#0284c7" fill-opacity="0.06" rx="4"/>
+              <line x1="50" y1="80" x2="870" y2="80" stroke="#0284c7" stroke-dasharray="4 4" stroke-opacity="0.4"/>
+              <line x1="50" y1="150" x2="870" y2="150" stroke="#0284c7" stroke-dasharray="4 4" stroke-opacity="0.4"/>
+              
+              <!-- Grid Lines -->
+              <line x1="50" y1="215" x2="870" y2="215" stroke="#cbd5e1" stroke-width="1"/>
+              <line x1="50" y1="30" x2="50" y2="215" stroke="#cbd5e1" stroke-width="1"/>
+              
+              <!-- Glow Area & Main Curve -->
+              <path id="atlas-curve-glow" d="M 50,210 C 70,45 100,38 150,90 C 200,140 240,172 260,175 C 280,48 310,40 360,92 C 410,142 450,174 470,176 C 490,50 520,42 570,94 C 620,144 660,175 680,178 C 700,52 730,45 780,96 C 830,146 850,176 870,178 L 870,215 L 50,215 Z" fill="url(#atlasGrad)"/>
+              <path id="atlas-curve-line" d="M 50,210 C 70,45 100,38 150,90 C 200,140 240,172 260,175 C 280,48 310,40 360,92 C 410,142 450,174 470,176 C 490,50 520,42 570,94 C 620,144 660,175 680,178 C 700,52 730,45 780,96 C 830,146 850,176 870,178" fill="none" stroke="#0284c7" stroke-width="3" stroke-linecap="round"/>
+              
+              <!-- Markers & Labels -->
+              <text x="50" y="232" fill="#64748b" font-size="11" font-family="monospace">0h</text>
+              <text x="260" y="232" fill="#64748b" font-size="11" font-family="monospace">12h</text>
+              <text x="470" y="232" fill="#64748b" font-size="11" font-family="monospace">24h</text>
+              <text x="680" y="232" fill="#64748b" font-size="11" font-family="monospace">36h</text>
+              <text x="860" y="232" fill="#64748b" font-size="11" font-family="monospace">48h</text>
+            </svg>
+          </div>
+
+          <!-- Interactive Albumin Correction Slider (Sheiner-Tozer) -->
+          <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span style="font-weight: 700; font-size: 13px; color: #0f172a;" data-i18n="atlas.feni_slider_label">Ajustar Albúmina Sérica (g/dL) — Sheiner-Tozer:</span>
+              <span id="atlas-alb-val" style="font-family: var(--font-mono); font-weight: 800; font-size: 14px; color: #0284c7;" data-i18n="wb.alb_default_val">2.5 g/dL</span>
+            </div>
+            <input type="range" id="atlas-alb-slider" min="1.0" max="4.5" step="0.1" value="2.5" class="roi-slider">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px; padding-top: 10px; border-top: 1px dashed #cbd5e1;">
+              <span style="font-size: 12px; color: #64748b;" data-i18n="atlas.feni_calc_note">Nivel medido aparente: 10 µg/mL → Nivel real corregido:</span>
+              <span id="atlas-feni-corr" style="font-family: var(--font-mono); font-weight: 800; font-size: 16px; color: #059669;" data-i18n="wb.corr_default_val">16.7 µg/mL</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Validated Population Models Reference Grid -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow" data-i18n="drug.modelos_de_referencia">Modelos de referencia</span>
+        <h2 data-i18n="drug.una_base_poblacional_adecuad">Una base poblacional adecuada para iniciar la evaluación.</h2>
+        <p class="lead" data-i18n="drug.la_plataforma_incluye_modelo">La plataforma incluye modelos publicados para población adulta hospitalizada —entre ellos Goti, Rodvold, Thomson y Yamamoto— además de una alternativa simplificada de un compartimento. El profesional selecciona el enfoque pertinente y PK-Bayes lo individualiza con los datos observados.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 32px;">
+        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+            <h3 style="font-size: 16px; font-weight: 700; color: #0f172a; margin: 0;" data-i18n="farm.goti_title">Goti et al. (2018)</h3>
+            <span class="wb-badge-pill wb-badge-blue" data-i18n="farm.goti_comp">2 Comp.</span>
+          </div>
+          <span style="font-size: 11px; color: #0284c7; font-weight: 600; display: block; margin-bottom: 8px;" data-i18n="farm.goti_ref">Goti CM et al., Ther Drug Monit 2018</span>
+          <p style="font-size: 13px; color: #475569; line-height: 1.5; margin: 0;" data-i18n="farm.goti_desc">Variabilidad interindividual de V1 optimizada a límites fisiológicos (~30% BSV) para evitar sobreajustes ante muestreos de 1 nivel valle en adultos y UCI.</p>
+        </div>
+
+        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+            <h3 style="font-size: 16px; font-weight: 700; color: #0f172a; margin: 0;" data-i18n="farm.rodvold_title">Rodvold et al. (1988)</h3>
+            <span class="wb-badge-pill wb-badge-blue" data-i18n="farm.rodvold_comp">2 Comp.</span>
+          </div>
+          <span style="font-size: 11px; color: #0284c7; font-weight: 600; display: block; margin-bottom: 8px;" data-i18n="farm.rodvold_ref">Rodvold KA et al., Antimicrob Agents Chemother 1988</span>
+          <p style="font-size: 13px; color: #475569; line-height: 1.5; margin: 0;" data-i18n="farm.rodvold_desc">Modelo clásico de referencia para pacientes hospitalizados adultos con amplia validación histórica.</p>
+        </div>
+
+        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+            <h3 style="font-size: 16px; font-weight: 700; color: #0f172a; margin: 0;" data-i18n="farm.thomson_title">Thomson et al. (2009)</h3>
+            <span class="wb-badge-pill wb-badge-blue" data-i18n="farm.thomson_comp">2 Comp.</span>
+          </div>
+          <span style="font-size: 11px; color: #0284c7; font-weight: 600; display: block; margin-bottom: 8px;" data-i18n="farm.thomson_ref">Thomson AH et al., J Antimicrob Chemother 2009</span>
+          <p style="font-size: 13px; color: #475569; line-height: 1.5; margin: 0;" data-i18n="farm.thomson_desc">Modelo bicompartimental con covariables completas de peso corporal y función renal en pacientes hospitalarios.</p>
+        </div>
+
+        <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; box-shadow: 0 2px 8px rgba(0,0,0,0.02);">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px;">
+            <h3 style="font-size: 16px; font-weight: 700; color: #0f172a; margin: 0;" data-i18n="farm.prior_title">Prior Institucional VFG</h3>
+            <span class="wb-badge-pill wb-badge-green" data-i18n="farm.prior_comp">Híbrido Local</span>
+          </div>
+          <span style="font-size: 11px; color: #059669; font-weight: 600; display: block; margin-bottom: 8px;" data-i18n="farm.prior_ref">Calibración Local por Hospital</span>
+          <p style="font-size: 13px; color: #475569; line-height: 1.5; margin: 0;" data-i18n="farm.prior_desc">Modelo adaptativo entrenado con los casos clínicos y patrones de prescripción del propio centro de salud.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Institutional PopPK Adaptive Learning -->
+  <section class="section" id="modelos-locales">
+    <div class="container feature-showcase">
+      <div class="feature-copy reveal">
+        <span class="feature-kicker" data-i18n="drug.aprendizaje_institucional">Aprendizaje institucional</span>
+        <h2 data-i18n="drug.la_literatura_como_punto_de_">La literatura como punto de partida; la población local como fuente de aprendizaje.</h2>
+        <p class="lead" data-i18n="drug.con_datos_suficientes_y_revi">Con datos suficientes y revisados, PK-Bayes permite evaluar el desempeño de los modelos de referencia en la población del centro y desarrollar estimaciones institucionales que complementen la evidencia publicada.</p>
+        <p class="text-secondary mt-20" data-i18n="drug.esta_funcion_esta_orientada_">Esta función está orientada al análisis retrospectivo y requiere supervisión profesional antes de utilizar sus resultados en el trabajo clínico.</p>
+      </div>
+      <div class="capability-visual reveal">
+        <div class="local-model-visual">
+          <div><small data-i18n="drug.referencia">Referencia</small><strong data-i18n="drug.modelo_publicado">Modelo publicado</strong></div>
+          <span>+</span>
+          <div><small data-i18n="drug.experiencia_local">Experiencia local</small><strong data-i18n="drug.datos_revisados">Datos revisados</strong></div>
+          <span>=</span>
+          <div class="result"><small data-i18n="ui.evaluacion">Evaluación</small><strong data-i18n="drug.modelo_institucional">Modelo institucional</strong></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Band -->
+  <section class="section">
+    <div class="container">
+      <div class="cta-band cta-band-premium reveal">
+        <div>
+          <span class="eyebrow" data-i18n="drug.aplicacion_clinica">Aplicación clínica</span>
+          <h2 data-i18n="drug.observa_como_se_utiliza_la_i">Observa cómo se utiliza la información en situaciones de seguimiento.</h2>
+        </div>
+        <a href="ejemplos.html" class="btn btn-primary btn-lg" data-i18n="drug.ver_casos_ilustrativos">Ver casos ilustrativos</a>
+      </div>
+    </div>
+  </section>
 </main>
-<footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="index.html" class="brand"><img class="brand-mark" src="assets/img/logo-icon-256.png" alt=""><div class="brand-text"><span class="brand-title" data-i18n="nav.brand_title">PK-Bayes</span><span class="brand-sub" data-i18n="nav.brand_sub">Precision Dosing System</span></div></a><p data-i18n="ui.plataforma_de_apoyo_a_la_dec">Plataforma de apoyo a la decisión clínica para dosificación farmacocinética de precisión.</p></div><div class="footer-col"><h5 data-i18n="footer.product">Producto</h5><ul><li><a href="funcionalidades.html" data-i18n="func.bc_func">Funcionalidades</a></li><li><a href="farmacos.html" data-i18n="farm.bc_drugs">Fármacos y modelos</a></li><li><a href="ejemplos.html" data-i18n="cases.bc_cases">Casos clínicos</a></li></ul></div><div class="footer-col"><h5 data-i18n="footer.access">Acceso</h5><ul><li><a href="precios.html" data-i18n="nav.cta">Empezar ahora</a></li><li><a href="acceso.html" data-i18n="nav.login">Acceso clientes</a></li><li><a data-app-link href="#" data-i18n="ui.abrir_plataforma">Abrir plataforma ↗</a></li></ul></div><div class="footer-col"><h5 data-i18n="footer.contact">Contacto</h5><ul><li><a data-contact-email data-subject="Consulta general PK-Bayes" href="#" data-i18n="footer.contact">Contacto</a></li><li><a data-contact-email data-subject="Solicitud de demo — PK-Bayes" href="#" data-i18n="common.request_demo_nav">Solicitar una demo</a></li></ul></div></div><div class="footer-bottom"><span data-i18n-html="footer.rights_copy">© <span data-year></span> PK-Bayes. Todos los derechos reservados.</span><span data-i18n="footer.developed_for">Desarrollado para equipos de farmacocinética clínica.</span></div><p class="footer-legal-note" data-i18n="ui.pk_bayes_es_un_software_de_a">PK-Bayes es un software de apoyo a la decisión clínica. Sus resultados deben ser revisados por un profesional sanitario cualificado.</p></div></footer><script src="assets/js/config.js"></script><script src="assets/js/i18n.js"></script><script src="assets/js/main.js"></script></body></html>
+
+<footer class="site-footer"><div class="container"><div class="footer-grid"><div class="footer-brand"><a href="index.html" class="brand"><img class="brand-mark" src="assets/img/logo-icon-256.png" alt=""><div class="brand-text"><span class="brand-title" data-i18n="nav.brand_title">PK-Bayes</span><span class="brand-sub" data-i18n="nav.brand_sub">Precision Dosing System</span></div></a><p data-i18n="ui.plataforma_de_apoyo_a_la_dec">Plataforma de apoyo a la decisión clínica para dosificación farmacocinética de precisión.</p></div><div class="footer-col"><h5 data-i18n="footer.product">Producto</h5><ul><li><a href="funcionalidades.html" data-i18n="func.bc_func">Funcionalidades</a></li><li><a href="farmacos.html" data-i18n="farm.bc_drugs">Fármacos y modelos</a></li><li><a href="ejemplos.html" data-i18n="cases.bc_cases">Casos clínicos</a></li></ul></div><div class="footer-col"><h5 data-i18n="footer.access">Acceso</h5><ul><li><a href="precios.html" data-i18n="nav.cta">Empezar ahora</a></li><li><a href="acceso.html" data-i18n="nav.login">Acceso clientes</a></li><li><a data-app-link href="#" data-i18n="ui.abrir_plataforma">Abrir plataforma ↗</a></li></ul></div><div class="footer-col"><h5 data-i18n="footer.contact">Contacto</h5><ul><li><a data-contact-email data-subject="Consulta general PK-Bayes" href="#" data-i18n="footer.contact">Contacto</a></li><li><a data-contact-email data-subject="Solicitud de demo — PK-Bayes" href="#" data-i18n="common.request_demo_nav">Solicitar una demo</a></li></ul></div></div><div class="footer-bottom"><span data-i18n-html="footer.rights_copy">© <span data-year></span> PK-Bayes. Todos los derechos reservados.</span><span data-i18n="footer.developed_for">Desarrollado para equipos de farmacocinética clínica.</span></div><p class="footer-legal-note" data-i18n="ui.pk_bayes_es_un_software_de_a">PK-Bayes es un software de apoyo a la decisión clínica. Sus resultados deben ser revisados por un profesional sanitario cualificado.</p></div></footer>
+<script src="assets/js/config.js"></script><script src="assets/js/i18n.js"></script><script src="assets/js/main.js"></script>
+</body></html>

@@ -681,6 +681,305 @@
     btnC.addEventListener("click", () => applyScenario("c"));
   }
 
+  /* ---------- Interactive Clinical Workbench (funcionalidades.html) ---------- */
+  function initWorkbenchConsoles() {
+    // 1. Patient Triage
+    const patientItems = document.querySelectorAll("[data-wb-patient]");
+    const detailName = document.getElementById("wb-detail-name");
+    const detailDrug = document.getElementById("wb-detail-drug");
+    const detailTrough = document.getElementById("wb-detail-trough");
+    const detailAuc = document.getElementById("wb-detail-auc");
+    const detailBadge = document.getElementById("wb-detail-badge");
+
+    const patientData = {
+      p1: { name: "Elena Morales · UCI-04", drug: "Vancomicina IV · 750mg q12h", trough: "16.2 µg/mL", auc: "485 mg·h/L", badge: "En Meta (96%)", cls: "wb-badge-green" },
+      p2: { name: "Carlos Vega · UCI-09", drug: "Vancomicina IV · 1250mg q12h", trough: "24.5 µg/mL", auc: "680 mg·h/L", badge: "Alerta Toxicidad", cls: "wb-badge-red" },
+      p3: { name: "Mateo Silva · INF-12", drug: "Fenitoína Sódica · 300mg/d", trough: "18.4 µg/mL", auc: "390 mg·h/L", badge: "En Meta", cls: "wb-badge-green" },
+      p4: { name: "Sofía Lara · PED-02", drug: "Amikacina IV · 15mg/kg", trough: "0.8 µg/mL", auc: "410 mg·h/L", badge: "En Meta", cls: "wb-badge-blue" }
+    };
+
+    patientItems.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        patientItems.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        const id = btn.getAttribute("data-wb-patient");
+        const p = patientData[id];
+        if (!p) return;
+        if (detailName) detailName.textContent = p.name;
+        if (detailDrug) detailDrug.textContent = p.drug;
+        if (detailTrough) detailTrough.textContent = p.trough;
+        if (detailAuc) detailAuc.textContent = p.auc;
+        if (detailBadge) {
+          detailBadge.textContent = p.badge;
+          detailBadge.className = "wb-badge-pill " + p.cls;
+        }
+      });
+    });
+
+    // 2. Renal Clearance Simulator
+    const rfBtns = document.querySelectorAll("[data-wb-rf]");
+    const nativeBar = document.getElementById("wb-clearance-native");
+    const dialBar = document.getElementById("wb-clearance-dialysis");
+    const clNatVal = document.getElementById("wb-cl-native");
+    const clDialVal = document.getElementById("wb-cl-dial");
+    const clTotVal = document.getElementById("wb-cl-total");
+    const thalfVal = document.getElementById("wb-thalf-val");
+
+    const rfData = {
+      native: { natW: "45%", dialW: "0%", natCl: "2.1 L/h", dialCl: "0.0 L/h", totCl: "2.1 L/h", thalf: "18.2 h" },
+      hd: { natW: "15%", dialW: "55%", natCl: "0.6 L/h", dialCl: "2.8 L/h (Intermitente)", totCl: "3.4 L/h", thalf: "6.5 h (En Filtro)" },
+      crrt: { natW: "10%", dialW: "50%", natCl: "0.4 L/h", dialCl: "2.2 L/h (CVVHDF 2000 mL/h)", totCl: "2.6 L/h", thalf: "14.8 h" }
+    };
+
+    rfBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        rfBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        const mode = btn.getAttribute("data-wb-rf");
+        const d = rfData[mode];
+        if (!d) return;
+        if (nativeBar) nativeBar.style.width = d.natW;
+        if (dialBar) dialBar.style.width = d.dialW;
+        if (clNatVal) clNatVal.textContent = d.natCl;
+        if (clDialVal) clDialVal.textContent = d.dialCl;
+        if (clTotVal) clTotVal.textContent = d.totCl;
+        if (thalfVal) thalfVal.textContent = d.thalf;
+      });
+    });
+
+    // 3. Bayesian MAP Step Simulator
+    const bayesBtns = document.querySelectorAll("[data-wb-bayes]");
+    const bayesPrior = document.getElementById("wb-bayes-prior");
+    const bayesSample = document.getElementById("wb-bayes-sample");
+    const bayesPost = document.getElementById("wb-bayes-post");
+
+    bayesBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        bayesBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        const step = btn.getAttribute("data-wb-bayes");
+        if (step === "prior") {
+          if (bayesPrior) bayesPrior.style.opacity = "1";
+          if (bayesSample) bayesSample.style.opacity = "0.2";
+          if (bayesPost) bayesPost.style.opacity = "0.2";
+        } else if (step === "sample") {
+          if (bayesPrior) bayesPrior.style.opacity = "0.6";
+          if (bayesSample) bayesSample.style.opacity = "1";
+          if (bayesPost) bayesPost.style.opacity = "0.3";
+        } else {
+          if (bayesPrior) bayesPrior.style.opacity = "0.4";
+          if (bayesSample) bayesSample.style.opacity = "1";
+          if (bayesPost) bayesPost.style.opacity = "1";
+        }
+      });
+    });
+
+    // 4. PopPK Export Preview Selector
+    const formatBtns = document.querySelectorAll("[data-wb-format]");
+    const codeBlock = document.getElementById("wb-code-text");
+
+    const datasets = {
+      csv: "ID,TIME,DV,AMT,RATE,ECOL,AGE,WT,SCR,CLCR\n101,0.0,.,1000,1000,0,63,72.5,1.8,26.4\n101,12.0,15.2,.,.,0,63,72.5,1.8,26.4\n101,12.0,.,750,750,0,63,72.5,1.7,28.1\n101,24.0,16.2,.,.,0,63,72.5,1.7,28.1",
+      nonmem: "$INPUT ID TIME DV AMT RATE ECOL AGE WT SCR CLCR\n$DATA dataset_pk_bayes.csv IGNORE=@\n$SUBROUTINES ADVAN3 TRANS4\n$PK\n CL = THETA(1)*(CLCR/70)**THETA(2)*EXP(ETA(1))\n V1 = THETA(3)*(WT/70)**THETA(4)*EXP(ETA(2))\n$ESTIMATION METHOD=COND INTERACTION MAXEVAL=9999",
+      monolix: "<DATAFILE>\n[FILEINFO]\nfile='dataset_pk_bayes.csv'\ndelimiter=comma\nheader={ID,TIME,DV,AMT,RATE,ECOL,AGE,WT,SCR,CLCR}\n[CONTENT]\nID = {use=identifier}\nTIME = {use=time}\nDV = {use=observation, name=y, type=continuous}\nAMT = {use=amount}",
+      python: "import pandas as pd\nimport nlmixr2\n\ndf = pd.read_csv('dataset_pk_bayes.csv')\nprint(f'Cohort size: {df[\"ID\"].nunique()} patients, Total TDM obs: {len(df[df[\"DV\"].notna()])}')"
+    };
+
+    formatBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        formatBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        const fmt = btn.getAttribute("data-wb-format");
+        if (codeBlock && datasets[fmt]) {
+          codeBlock.textContent = datasets[fmt];
+        }
+      });
+    });
+  }
+
+  /* ---------- Pharmacokinetic Drug Atlas (farmacos.html) ---------- */
+  function initDrugAtlas() {
+    const drugBtns = document.querySelectorAll("[data-atlas-drug]");
+    if (!drugBtns.length) return;
+
+    const drugTitle = document.getElementById("atlas-drug-title");
+    const modelTag = document.getElementById("atlas-model-tag");
+    const paramVd = document.getElementById("atlas-param-vd");
+    const paramCl = document.getElementById("atlas-param-cl");
+    const paramThalf = document.getElementById("atlas-param-thalf");
+    const paramTarget = document.getElementById("atlas-param-target");
+    const curveLine = document.getElementById("atlas-curve-line");
+    const curveGlow = document.getElementById("atlas-curve-glow");
+
+    const drugProfiles = {
+      vanco: {
+        title: "Vancomicina IV (Bicompartimental)",
+        model: "Lineal 2-Compartimentos (Goti / Rodvold)",
+        vd: "0.72 L/kg",
+        cl: "2.1 L/h",
+        thalf: "14.2 h",
+        target: "AUC24 / CIM 400 - 600",
+        d: "M 50,210 C 70,45 100,38 150,90 C 200,140 240,172 260,175 C 280,48 310,40 360,92 C 410,142 450,174 470,176 C 490,50 520,42 570,94 C 620,144 660,175 680,178 C 700,52 730,45 780,96 C 830,146 850,176 870,178",
+        glow: "M 50,210 C 70,45 100,38 150,90 C 200,140 240,172 260,175 C 280,48 310,40 360,92 C 410,142 450,174 470,176 C 490,50 520,42 570,94 C 620,144 660,175 680,178 C 700,52 730,45 780,96 C 830,146 850,176 870,178 L 870,215 L 50,215 Z",
+        stroke: "#0284c7"
+      },
+      feni: {
+        title: "Fenitoína Sódica (Michaelis-Menten)",
+        model: "Cinética No Lineal Saturable (Vmax, Km)",
+        vd: "0.65 L/kg",
+        cl: "Saturable (Km: 4.4 mg/L)",
+        thalf: "22 - 36 h (Dosis-dependiente)",
+        target: "10 - 20 µg/mL (Total corregido)",
+        d: "M 50,210 C 90,80 140,65 240,68 C 340,70 440,70 540,70 C 640,70 740,70 870,70",
+        glow: "M 50,210 C 90,80 140,65 240,68 C 340,70 440,70 540,70 C 640,70 740,70 870,70 L 870,215 L 50,215 Z",
+        stroke: "#d97706"
+      },
+      ami: {
+        title: "Gentamicina / Amikacina (Hartford)",
+        model: "1-Compartimento Dosis Extendida",
+        vd: "0.26 L/kg",
+        cl: "6.2 L/h (Depuración Rápida)",
+        thalf: "2.4 h",
+        target: "Pico > 10x CIM · Valle < 1 µg/mL",
+        d: "M 50,210 C 60,20 80,15 110,60 C 140,140 180,210 260,212 C 270,20 290,15 320,60 C 350,140 390,210 470,212 C 480,20 500,15 530,60 C 560,140 600,210 680,212 C 690,20 710,15 740,60 C 770,140 810,210 870,212",
+        glow: "M 50,210 C 60,20 80,15 110,60 C 140,140 180,210 260,212 C 270,20 290,15 320,60 C 350,140 390,210 470,212 C 480,20 500,15 530,60 C 560,140 600,210 680,212 C 690,20 710,15 740,60 C 770,140 810,210 870,212 L 870,215 L 50,215 Z",
+        stroke: "#2563eb"
+      },
+      tacro: {
+        title: "Tacrolimus (Sangre Total Trasplante)",
+        model: "2-Compartimentos con Unión Eritrocitaria",
+        vd: "1.10 L/kg",
+        cl: "4.8 L/h (Metabolismo CYP3A5)",
+        thalf: "12.0 h",
+        target: "Valle 5 - 12 ng/mL (Estrecho Margen)",
+        d: "M 50,210 C 70,130 110,140 160,155 C 210,165 240,170 260,172 C 280,130 310,140 360,155 C 410,165 440,170 470,172 C 490,130 520,140 570,155 C 620,165 650,170 680,172 C 700,130 730,140 780,155 C 830,165 850,170 870,172",
+        glow: "M 50,210 C 70,130 110,140 160,155 C 210,165 240,170 260,172 C 280,130 310,140 360,155 C 410,165 440,170 470,172 C 490,130 520,140 570,155 C 620,165 650,170 680,172 C 700,130 730,140 780,155 C 830,165 850,170 870,172 L 870,215 L 50,215 Z",
+        stroke: "#7c3aed"
+      }
+    };
+
+    drugBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        drugBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        const key = btn.getAttribute("data-atlas-drug");
+        const p = drugProfiles[key];
+        if (!p) return;
+        if (drugTitle) drugTitle.textContent = p.title;
+        if (modelTag) modelTag.textContent = p.model;
+        if (paramVd) paramVd.textContent = p.vd;
+        if (paramCl) paramCl.textContent = p.cl;
+        if (paramThalf) paramThalf.textContent = p.thalf;
+        if (paramTarget) paramTarget.textContent = p.target;
+        if (curveLine) {
+          curveLine.setAttribute("d", p.d);
+          curveLine.setAttribute("stroke", p.stroke);
+        }
+        if (curveGlow) curveGlow.setAttribute("d", p.glow);
+      });
+    });
+
+    // Sheiner-Tozer Albumin Slider for Phenytoin
+    const albSlider = document.getElementById("atlas-alb-slider");
+    const albVal = document.getElementById("atlas-alb-val");
+    const feniCorr = document.getElementById("atlas-feni-corr");
+
+    if (albSlider && albVal && feniCorr) {
+      albSlider.addEventListener("input", (e) => {
+        const alb = parseFloat(e.target.value);
+        albVal.textContent = alb.toFixed(1) + " g/dL";
+        // Sheiner-Tozer: C_corr = 10 / (0.2 * alb + 0.1)
+        const corr = (10 / (0.2 * alb + 0.1)).toFixed(1);
+        feniCorr.textContent = corr + " µg/mL";
+        if (corr > 20) {
+          feniCorr.style.color = "#dc2626";
+        } else {
+          feniCorr.style.color = "#059669";
+        }
+      });
+    }
+  }
+
+  /* ---------- Clinical Cases Simulator (ejemplos.html) ---------- */
+  function initClinicalCases() {
+    const stageBtns = document.querySelectorAll("[data-case-stage]");
+    const caseCurve = document.getElementById("case-curve-line");
+    const caseGlow = document.getElementById("case-curve-glow");
+    const caseBadge = document.getElementById("case-status-badge");
+    const caseStat = document.getElementById("case-kpi-stat");
+
+    if (!stageBtns.length) return;
+
+    stageBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        stageBtns.forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        const stage = btn.getAttribute("data-case-stage");
+        if (stage === "before") {
+          // Toxic elevated accumulation curve
+          if (caseCurve) {
+            caseCurve.setAttribute("d", "M 50,205 C 70,20 100,15 150,65 C 200,110 240,135 260,138 C 280,22 310,18 360,68 C 410,112 450,137 470,140 C 490,25 520,20 570,70 C 620,115 660,139 680,142 C 700,28 730,22 780,72 C 830,118 850,140 870,142");
+            caseCurve.setAttribute("stroke", "#dc2626");
+          }
+          if (caseGlow) {
+            caseGlow.setAttribute("d", "M 50,205 C 70,20 100,15 150,65 C 200,110 240,135 260,138 C 280,22 310,18 360,68 C 410,112 450,137 470,140 C 490,25 520,20 570,70 C 620,115 660,139 680,142 C 700,28 730,22 780,72 C 830,118 850,140 870,142 L 870,215 L 50,215 Z");
+          }
+          if (caseBadge) {
+            caseBadge.textContent = "Alerta Nefrotoxicidad";
+            caseBadge.className = "wb-badge-pill wb-badge-red";
+          }
+          if (caseStat) {
+            caseStat.textContent = "C_mín: 27.8 µg/mL (Pauta Empírica 1000mg q12h)";
+            caseStat.style.color = "#dc2626";
+          }
+        } else {
+          // Bayesian adjusted optimal curve
+          if (caseCurve) {
+            caseCurve.setAttribute("d", "M 50,210 C 70,45 100,38 150,90 C 200,140 240,172 260,175 C 280,48 310,40 360,92 C 410,142 450,174 470,176 C 490,50 520,42 570,94 C 620,144 660,175 680,178 C 700,52 730,45 780,96 C 830,146 850,176 870,178");
+            caseCurve.setAttribute("stroke", "#059669");
+          }
+          if (caseGlow) {
+            caseGlow.setAttribute("d", "M 50,210 C 70,45 100,38 150,90 C 200,140 240,172 260,175 C 280,48 310,40 360,92 C 410,142 450,174 470,176 C 490,50 520,42 570,94 C 620,144 660,175 680,178 C 700,52 730,45 780,96 C 830,146 850,176 870,178 L 870,215 L 50,215 Z");
+          }
+          if (caseBadge) {
+            caseBadge.textContent = "En Meta 96%";
+            caseBadge.className = "wb-badge-pill wb-badge-green";
+          }
+          if (caseStat) {
+            caseStat.textContent = "C_mín: 16.4 µg/mL · AUC 482 (Ajuste MAP 750mg q18h)";
+            caseStat.style.color = "#059669";
+          }
+        }
+      });
+    });
+  }
+
+  /* ---------- Hospital ROI & Clinical Impact Calculator (precios.html) ---------- */
+  function initRoiCalculator() {
+    const slider = document.getElementById("roi-beds-slider");
+    const bedsDisplay = document.getElementById("roi-beds-display");
+    const akiDisplay = document.getElementById("roi-aki-display");
+    const daysDisplay = document.getElementById("roi-days-display");
+    const savingsDisplay = document.getElementById("roi-savings-display");
+
+    if (!slider) return;
+
+    function update() {
+      const beds = parseInt(slider.value, 10);
+      if (bedsDisplay) bedsDisplay.textContent = beds + " camas críticas";
+      const aki = Math.round(beds * 1.4);
+      const days = Math.round(beds * 4.2);
+      const savings = Math.round(aki * 14500);
+
+      if (akiDisplay) akiDisplay.textContent = aki;
+      if (daysDisplay) daysDisplay.textContent = days;
+      if (savingsDisplay) savingsDisplay.textContent = "$" + savings.toLocaleString("en-US");
+    }
+
+    slider.addEventListener("input", update);
+    update();
+  }
+
   // Initialize Dossier Controllers
   initEmpiricalCalc();
   initPKSimulator();
@@ -689,4 +988,8 @@
   initProductScreens();
   initModeSwitcher();
   initZenithDashboard();
+  initWorkbenchConsoles();
+  initDrugAtlas();
+  initClinicalCases();
+  initRoiCalculator();
 })();
