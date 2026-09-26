@@ -19,43 +19,15 @@
 <body>
 
 <header class="site-header">
-  <div class="container">
-    <div class="nav-row">
-      <a href="index.html" class="brand">
-        <img class="brand-mark" src="assets/img/logo-icon-256.png" alt="PK-Bayes Logo" data-i18n-alt="a11y.pk_bayes_logo">
-        <div class="brand-text">
-          <span class="brand-title" data-i18n="nav.brand_title">PK-Bayes</span>
-          <span class="brand-sub" data-i18n="nav.brand_sub">Sistema de Dosificación de Precisión</span>
-          <span class="brand-tag" data-i18n="nav.brand_tag">Estación Clínica MAP</span>
-        </div>
-      </a>
-      <nav class="nav-links" aria-label="Navegación principal" data-i18n-aria-label="a11y.navegacion_principal">
-        <a href="index.html" data-i18n="nav.home">Inicio</a>
-        <a href="funcionalidades.html" data-i18n="nav.features">Funcionalidades</a>
-        <a href="farmacos.html" data-i18n="nav.drugs">Fármacos y modelos</a>
-        <a href="ejemplos.html" data-i18n="nav.cases">Casos clínicos</a>
-      </nav>
-      <div class="nav-actions">
-        <!-- Selector de Idioma -->
-        <div class="lang-selector">
-          <button class="lang-btn" type="button" aria-label="Cambiar idioma" data-i18n-aria-label="a11y.cambiar_idioma">
-            <svg class="lang-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-            <span class="lang-current-label">Español</span>
-            <svg class="lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-          </button>
-          <div class="lang-dropdown">
-            <button type="button" class="lang-item active" data-lang="es"><span class="lang-flag">🇪🇸</span> <span>Español</span><span class="lang-check">✓</span></button>
-            <button type="button" class="lang-item" data-lang="en"><span class="lang-flag">🇺🇸</span> <span>English</span><span class="lang-check">✓</span></button>
-            <button type="button" class="lang-item" data-lang="zh"><span class="lang-flag">🇨🇳</span> <span>中文</span><span class="lang-check">✓</span></button>
-            <button type="button" class="lang-item" data-lang="ja"><span class="lang-flag">🇯🇵</span> <span>日本語</span><span class="lang-check">✓</span></button>
-          </div>
-        </div>
-
-        <a href="acceso.html" class="btn btn-secondary btn-sm hide-mobile" data-i18n="nav.login">Acceso clientes</a>
+    <div class="container">
+      <div class="nav-row">
+        <a href="index.html" class="brand" aria-label="PK-Bayes, inicio" data-i18n-aria-label="a11y.pk_bayes_inicio"><img class="brand-mark" src="assets/img/logo-icon-256.png" alt="PK-Bayes" data-i18n-alt="a11y.pk_bayes_logo"><div class="brand-text"><div class="brand-row"><span class="brand-title" data-i18n="nav.brand_title">PK-Bayes</span><span class="brand-badge" data-i18n="nav.cdss_badge">CDSS v3.2</span></div><span class="brand-sub" data-i18n="nav.precision_sub">Precision Dosing &amp; Pharmacometrics</span></div></a>
+        <nav class="nav-links" aria-label="Navegación principal" data-i18n-aria-label="a11y.navegacion_principal"><a href="index.html" data-i18n="cases.bc_home">Inicio</a><a href="funcionalidades.html" data-i18n="func.bc_func">Funcionalidades</a><a href="farmacos.html" data-i18n="farm.bc_drugs">Fármacos y modelos</a><a href="ejemplos.html" data-i18n="cases.bc_cases">¡Ejecuta ya!</a><a href="precios.html" data-i18n="nav.cta">Empezar ahora</a></nav>
+        <div class="nav-actions"><a href="acceso.html" class="btn-stitch-glass hide-mobile" data-i18n="nav.portal_clinico">Portal Clínico</a><a href="index.html#simulador" class="btn-stitch-primary" data-i18n="nav.solicitar_piloto">Solicitar Piloto</a><div class="lang-selector"><button class="lang-btn" type="button" aria-label="Cambiar idioma" data-i18n-aria-label="a11y.cambiar_idioma"><svg class="lang-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span class="lang-current-label">Español</span><svg class="lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><div class="lang-dropdown"><button type="button" class="lang-item active" data-lang="es"><span class="lang-flag">🇪🇸</span> <span>Español</span><span class="lang-check">✓</span></button><button type="button" class="lang-item" data-lang="en"><span class="lang-flag">🇺🇸</span> <span>English</span><span class="lang-check">✓</span></button><button type="button" class="lang-item" data-lang="zh"><span class="lang-flag">🇨🇳</span> <span>中文</span><span class="lang-check">✓</span></button><button type="button" class="lang-item" data-lang="ja"><span class="lang-flag">🇯🇵</span> <span>日本語</span><span class="lang-check">✓</span></button></div></div><button class="nav-toggle" aria-label="Abrir menú" data-i18n-aria-label="a11y.abrir_menu" aria-expanded="false"><span></span><span></span><span></span></button></div>
       </div>
+      <div class="mobile-menu"><a href="index.html" data-i18n="cases.bc_home">Inicio</a><a href="funcionalidades.html" data-i18n="func.bc_func">Funcionalidades</a><a href="farmacos.html" data-i18n="farm.bc_drugs">Fármacos y modelos</a><a href="ejemplos.html" data-i18n="cases.bc_cases">¡Ejecuta ya!</a><a href="precios.html" data-i18n="nav.cta">Empezar ahora</a><a href="acceso.html" data-i18n="nav.portal_clinico">Portal Clínico</a><a href="index.html#simulador" class="btn-stitch-primary btn-block" data-i18n="nav.solicitar_piloto">Solicitar Piloto</a></div>
     </div>
-  </div>
-</header>
+  </header>
 
 <main>
   <section class="section">

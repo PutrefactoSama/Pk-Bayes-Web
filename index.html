@@ -24,77 +24,14 @@
   <div class="glow-orb glow-orb-cyan" style="bottom:10%; left:25%; width:500px; height:500px;"></div>
 
   <!-- NAVIGATION HEADER -->
-  <header class="site-header" style="background: rgba(255, 255, 255, 0.94); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(226, 232, 240, 0.85); box-shadow: 0 2px 12px rgba(15, 23, 42, 0.03);">
+  <header class="site-header">
     <div class="container">
-      <div class="nav-row" style="height: 72px;">
-        <!-- Brand Logo & Badge -->
-        <a href="index.html" class="brand" aria-label="PK-Bayes, inicio" data-i18n-aria-label="a11y.pk_bayes_inicio">
-          <div style="width: 38px; height: 38px; border-radius: 10px; background: linear-gradient(135deg, #0284c7, #0ea5e9, #10b981); padding: 1.5px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px rgba(2, 132, 199, 0.25);">
-            <div style="width: 100%; height: 100%; background: #ffffff; border-radius: 9px; display: flex; align-items: center; justify-content: center;">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 13.5l4-7 5 11 4-6 5 4" />
-              </svg>
-            </div>
-          </div>
-          <div class="brand-text">
-            <div style="display: flex; align-items: center; gap: 8px;">
-              <span class="brand-title" style="color: #091e42; font-weight: 800; font-size: 1.15rem;" data-i18n="nav.brand_title">PK-Bayes</span>
-              <span style="font-family: var(--font-mono); font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 9999px; background: rgba(2, 132, 199, 0.1); color: #0284c7; border: 1px solid rgba(2, 132, 199, 0.25);" data-i18n="nav.cdss_badge">CDSS v3.2</span>
-            </div>
-            <span class="brand-sub" style="color: #64748b; font-size: 11px;" data-i18n="nav.precision_sub">Precision Dosing & Pharmacometrics</span>
-          </div>
-        </a>
-
-        <!-- Main Navigation Links -->
-        <nav class="nav-links" aria-label="Navegación principal" data-i18n-aria-label="a11y.navegacion_principal">
-          <a href="index.html" class="active" style="color: #0284c7; font-weight: 700;" data-i18n="cases.bc_home">Inicio</a>
-          <a href="funcionalidades.html" style="color: #475569;" data-i18n="func.bc_func">Funcionalidades</a>
-          <a href="farmacos.html" style="color: #475569;" data-i18n="farm.bc_drugs">Fármacos y modelos</a>
-          <a href="ejemplos.html" style="color: #475569;" data-i18n="cases.bc_cases">Casos clínicos</a>
-          <a href="precios.html" style="color: #475569;" data-i18n="nav.cta">Precios</a>
-        </nav>
-
-        <!-- Nav Actions & Language Selector -->
-        <div class="nav-actions">
-          <a href="acceso.html" class="btn-stitch-glass hide-mobile" style="padding: 8px 16px; font-size: 12px;" data-i18n="nav.portal_clinico">Portal Clínico</a>
-          <a href="#simulador" class="btn-stitch-primary" style="padding: 9px 18px; font-size: 12px;" data-i18n="nav.solicitar_piloto">Solicitar Piloto</a>
-
-          <div class="lang-selector">
-            <button class="lang-btn" type="button" aria-label="Cambiar idioma" data-i18n-aria-label="a11y.cambiar_idioma" style="background: #ffffff; border: 1px solid #cbd5e1; color: #334155; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);">
-              <svg class="lang-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="12" r="10"/>
-                <line x1="2" y1="12" x2="22" y2="12"/>
-                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1 4-10z"/>
-              </svg>
-              <span class="lang-current-label">Español</span>
-              <svg class="lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="m6 9 6 6 6-6"/>
-              </svg>
-            </button>
-            <div class="lang-dropdown" style="background: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 15px 35px rgba(15, 23, 42, 0.12); color: #0f172a;">
-              <button type="button" class="lang-item active" data-lang="es"><span class="lang-flag">🇪🇸</span> <span>Español</span><span class="lang-check">✓</span></button>
-              <button type="button" class="lang-item" data-lang="en"><span class="lang-flag">🇺🇸</span> <span>English</span><span class="lang-check">✓</span></button>
-              <button type="button" class="lang-item" data-lang="zh"><span class="lang-flag">🇨🇳</span> <span>中文</span><span class="lang-check">✓</span></button>
-              <button type="button" class="lang-item" data-lang="ja"><span class="lang-flag">🇯🇵</span> <span>日本語</span><span class="lang-check">✓</span></button>
-            </div>
-          </div>
-
-          <button class="nav-toggle" aria-label="Abrir menú" data-i18n-aria-label="a11y.abrir_menu" aria-expanded="false">
-            <span></span><span></span><span></span>
-          </button>
-        </div>
+      <div class="nav-row">
+        <a href="index.html" class="brand" aria-label="PK-Bayes, inicio" data-i18n-aria-label="a11y.pk_bayes_inicio"><img class="brand-mark" src="assets/img/logo-icon-256.png" alt="PK-Bayes" data-i18n-alt="a11y.pk_bayes_logo"><div class="brand-text"><div class="brand-row"><span class="brand-title" data-i18n="nav.brand_title">PK-Bayes</span><span class="brand-badge" data-i18n="nav.cdss_badge">CDSS v3.2</span></div><span class="brand-sub" data-i18n="nav.precision_sub">Precision Dosing &amp; Pharmacometrics</span></div></a>
+        <nav class="nav-links" aria-label="Navegación principal" data-i18n-aria-label="a11y.navegacion_principal"><a href="index.html" class="active" data-i18n="cases.bc_home">Inicio</a><a href="funcionalidades.html" data-i18n="func.bc_func">Funcionalidades</a><a href="farmacos.html" data-i18n="farm.bc_drugs">Fármacos y modelos</a><a href="ejemplos.html" data-i18n="cases.bc_cases">¡Ejecuta ya!</a><a href="precios.html" data-i18n="nav.cta">Empezar ahora</a></nav>
+        <div class="nav-actions"><a href="acceso.html" class="btn-stitch-glass hide-mobile" data-i18n="nav.portal_clinico">Portal Clínico</a><a href="#simulador" class="btn-stitch-primary" data-i18n="nav.solicitar_piloto">Solicitar Piloto</a><div class="lang-selector"><button class="lang-btn" type="button" aria-label="Cambiar idioma" data-i18n-aria-label="a11y.cambiar_idioma"><svg class="lang-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span class="lang-current-label">Español</span><svg class="lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg></button><div class="lang-dropdown"><button type="button" class="lang-item active" data-lang="es"><span class="lang-flag">🇪🇸</span> <span>Español</span><span class="lang-check">✓</span></button><button type="button" class="lang-item" data-lang="en"><span class="lang-flag">🇺🇸</span> <span>English</span><span class="lang-check">✓</span></button><button type="button" class="lang-item" data-lang="zh"><span class="lang-flag">🇨🇳</span> <span>中文</span><span class="lang-check">✓</span></button><button type="button" class="lang-item" data-lang="ja"><span class="lang-flag">🇯🇵</span> <span>日本語</span><span class="lang-check">✓</span></button></div></div><button class="nav-toggle" aria-label="Abrir menú" data-i18n-aria-label="a11y.abrir_menu" aria-expanded="false"><span></span><span></span><span></span></button></div>
       </div>
-
-      <!-- Mobile Menu -->
-      <div class="mobile-menu" style="background: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 15px 35px rgba(15, 23, 42, 0.1);">
-        <a href="index.html" class="active" data-i18n="cases.bc_home">Inicio</a>
-        <a href="funcionalidades.html" data-i18n="func.bc_func">Funcionalidades</a>
-        <a href="farmacos.html" data-i18n="farm.bc_drugs">Fármacos y modelos</a>
-        <a href="ejemplos.html" data-i18n="cases.bc_cases">Casos clínicos</a>
-        <a href="precios.html" data-i18n="nav.cta">Precios</a>
-        <a href="acceso.html" data-i18n="nav.portal_clinico">Portal Clínico</a>
-        <a href="#simulador" class="btn-stitch-primary" style="margin-top: 12px; width: 100%; justify-content: center;" data-i18n="nav.solicitar_piloto">Solicitar Piloto</a>
-      </div>
+      <div class="mobile-menu"><a href="index.html" class="active" data-i18n="cases.bc_home">Inicio</a><a href="funcionalidades.html" data-i18n="func.bc_func">Funcionalidades</a><a href="farmacos.html" data-i18n="farm.bc_drugs">Fármacos y modelos</a><a href="ejemplos.html" data-i18n="cases.bc_cases">¡Ejecuta ya!</a><a href="precios.html" data-i18n="nav.cta">Empezar ahora</a><a href="acceso.html" data-i18n="nav.portal_clinico">Portal Clínico</a><a href="#simulador" class="btn-stitch-primary btn-block" data-i18n="nav.solicitar_piloto">Solicitar Piloto</a></div>
     </div>
   </header>
 
@@ -112,13 +49,13 @@
         </div>
 
         <!-- Headline & Value Proposition -->
-        <div style="text-align: center; max-width: 920px; margin: 0 auto 36px;">
-          <h1 style="font-size: clamp(2.2rem, 5vw, 4.2rem); font-weight: 800; line-height: 1.1; margin-bottom: 20px; color: #091e42;">
+        <div style="text-align: center; max-width: 980px; margin: 0 auto 36px;">
+          <h1 style="font-size: clamp(2.2rem, 4.4vw, 3.6rem); font-weight: 800; line-height: 1.12; margin-bottom: 20px; color: #091e42;">
             <span data-i18n="hero.title_p1">Dosificación de Precisión guiada por</span><br>
             <span class="text-gradient-cyan" data-i18n="hero.title_highlight">Optimización Bayesiana MAP</span>
           </h1>
-          <p style="font-size: clamp(1rem, 2vw, 1.25rem); color: #475569; line-height: 1.6; max-width: 780px; margin: 0 auto;" data-i18n-html="hero.lead">
-            Plataforma clínica hospitalaria (CDSS) para el ajuste dinámico e individualizado de vancomicina, aminoglucósidos y fármacos de estrecho margen terapéutico. Maximiza la eficacia clínica y previene la nefrotoxicidad en pacientes críticos.
+          <p style="font-size: clamp(1rem, 2vw, 1.25rem); color: #475569; line-height: 1.65; max-width: 680px; margin: 0 auto; text-wrap: pretty;" data-i18n-html="hero.lead">
+            Plataforma clínica para individualizar la dosis de fármacos de estrecho margen terapéutico (<strong>vancomicina</strong> y <strong>fenitoína</strong>) mediante estimación bayesiana MAP sobre los datos reales de cada paciente.
           </p>
 
           <!-- CTAs -->

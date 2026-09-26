@@ -194,7 +194,7 @@ h4, .h4 { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 78px;
+  height: 72px;
   width: 100%;
   gap: 24px;
 }
@@ -206,8 +206,8 @@ h4, .h4 { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); }
   flex-shrink: 0;
 }
 .brand-mark {
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   flex-shrink: 0;
   object-fit: contain;
 }
@@ -223,12 +223,30 @@ h4, .h4 { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); }
   letter-spacing: -0.02em;
 }
 .brand-sub {
-  font-size: 0.68rem;
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.05em;
-  color: var(--primary);
+  color: #64748b;
   text-transform: uppercase;
   margin-top: 2px;
+}
+
+/* Título + distintivo de versión en una misma línea */
+.brand-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.brand-badge {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  background: rgba(2, 132, 199, 0.1);
+  color: #0284c7;
+  border: 1px solid rgba(2, 132, 199, 0.25);
+  white-space: nowrap;
 }
 .brand-tag {
   font-size: 0.58rem;
@@ -319,7 +337,7 @@ body.menu-open .mobile-menu {
 }
 @media (max-width: 980px) {
   .nav-links { display: none; }
-  .nav-actions .btn-secondary.hide-mobile { display: none; }
+  .nav-actions .hide-mobile { display: none; }
   .nav-toggle { display: flex; }
 }
 @media (max-width: 540px) {
@@ -4493,3 +4511,15 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 }
 
 
+
+/* ── Acciones de la cabecera compartida ───────────────────────────────── */
+.nav-actions .btn-stitch-glass,
+.nav-actions .btn-stitch-primary {
+  padding: 9px 18px;
+  font-size: 12px;
+}
+
+@media (max-width: 600px) {
+  .site-header .brand-badge { display: none; }
+  .site-header .nav-actions .btn-stitch-primary { display: none; }
+}
