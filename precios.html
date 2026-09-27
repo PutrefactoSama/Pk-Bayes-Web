@@ -20,6 +20,105 @@
     </div>
   </section>
 
+  <!-- Video Promocional & Recorrido Clínico Section -->
+  <section id="video-promocional" class="section promo-video-section" style="padding-top: 10px; padding-bottom: 30px;">
+    <div class="container">
+      <div class="wb-console video-console-card">
+        <!-- Console Header with Badges -->
+        <div class="wb-console-header">
+          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+            <span class="wb-badge-pill" style="background: rgba(3, 105, 161, 0.1); color: #0369a1; font-weight: 800;" data-i18n="video.badge_official">DEMOSTRACIÓN OFICIAL</span>
+            <span style="font-size: 11px; font-weight: 700; color: #64748b;" data-i18n="video.audio_track">Banda Sonora: Ruta del Fármaco (108 BPM)</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+            <span class="wb-badge-pill wb-badge-green" style="display: flex; align-items: center; gap: 6px;">
+              <span class="clinical-status-dot status-emerald" style="width: 6px; height: 6px;"></span>
+              <span data-i18n="video.badge_hd">1080p Full HD · Fondo Blanco</span>
+            </span>
+            <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 700; color: #0369a1; background: #e0f2fe; padding: 3px 8px; border-radius: 6px;" data-i18n="video.badge_duration">3:24 MIN</span>
+          </div>
+        </div>
+
+        <!-- Video Console Content -->
+        <div class="video-console-content">
+          <div class="video-text-intro">
+            <h2 class="video-heading" data-i18n="video.title">Recorrido de la Plataforma: De la Fisiología a la Dosis Óptima</h2>
+            <p class="video-subheading" data-i18n="video.description">Conoce en detalle el flujo de trabajo de PK-Bayes: modelado de función renal dinámica en UCI, estimación bayesiana MAP con priors poblacionales e individualización posológica en tiempo real.</p>
+            
+            <!-- Chapter Quick Jump Bar -->
+            <div class="video-chapters-row" role="toolbar" aria-label="Capítulos del video" data-i18n-aria-label="video.chapters_label">
+              <span class="video-chapters-title" data-i18n="video.jump_to">Ir a capítulo:</span>
+              <button type="button" class="video-chapter-btn active" data-seek="0">
+                <span class="chapter-time">0:00</span>
+                <span data-i18n="video.ch_intro">01 · Acceso Seguro</span>
+              </button>
+              <button type="button" class="video-chapter-btn" data-seek="35">
+                <span class="chapter-time">0:35</span>
+                <span data-i18n="video.ch_renal">02 · Fisiología Renal</span>
+              </button>
+              <button type="button" class="video-chapter-btn" data-seek="85">
+                <span class="chapter-time">1:25</span>
+                <span data-i18n="video.ch_pk">03 · Curva PK Individual</span>
+              </button>
+              <button type="button" class="video-chapter-btn" data-seek="130">
+                <span class="chapter-time">2:10</span>
+                <span data-i18n="video.ch_bayes">04 · Inferencia MAP</span>
+              </button>
+              <button type="button" class="video-chapter-btn" data-seek="170">
+                <span class="chapter-time">2:50</span>
+                <span data-i18n="video.ch_regimen">05 · Dosis Optimizada</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Video Player Frame -->
+          <div class="video-player-frame">
+            <div class="video-player-wrapper">
+              <video id="pkbayes-promo-video" 
+                     controls 
+                     playsinline 
+                     preload="metadata"
+                     poster="assets/video/pk-bayes-promocional-poster.jpg" 
+                     title="Video Demostración PK-Bayes - Flujo Clínico y Ruta del Fármaco"
+                     data-i18n-aria-label="video.video_player_label"
+                     aria-label="Video Demostración PK-Bayes">
+                <source src="assets/video/pk-bayes-promocional.mp4" type="video/mp4">
+                Tu navegador no soporta la reproducción de video HTML5. Puedes descargar o ver el video en <a href="assets/video/pk-bayes-promocional.mp4">este enlace</a>.
+              </video>
+            </div>
+          </div>
+
+          <!-- 3 Clinical Telemetry Cards -->
+          <div class="video-features-grid">
+            <div class="video-feature-card">
+              <div class="video-feature-icon" style="background: rgba(3, 105, 161, 0.08); color: #0369a1;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <h3 data-i18n="video.f1_title">Ajuste Bayesiano en &lt; 25 ms</h3>
+              <p data-i18n="video.f1_desc">Optimización MAP con regularización robusta. Combina la farmacocinética poblacional con los niveles medidos del paciente sin sesgos de sobreajuste.</p>
+            </div>
+
+            <div class="video-feature-card">
+              <div class="video-feature-icon" style="background: rgba(16, 185, 129, 0.08); color: #047857;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <h3 data-i18n="video.f2_title">Función Renal Dinámica</h3>
+              <p data-i18n="video.f2_desc">Aclaramiento segmentado por tramos de creatinina, filtrado glomerular cambiante, diálisis intermitente y terapias de reemplazo continuo (CRRT).</p>
+            </div>
+
+            <div class="video-feature-card">
+              <div class="video-feature-icon" style="background: rgba(14, 165, 233, 0.08); color: #0284c7;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <h3 data-i18n="video.f3_title">Seguridad y Prevención de LRA</h3>
+              <p data-i18n="video.f3_desc">Maximiza la probabilidad en diana (PTA &gt; 90%) en ventana terapéutica mientras reduce el riesgo de nefrotoxicidad y estancia hospitalaria.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Interactive Hospital ROI & AKI Prevention Calculator -->
   <section class="section" style="padding-top: 10px; padding-bottom: 40px;">
     <div class="container">

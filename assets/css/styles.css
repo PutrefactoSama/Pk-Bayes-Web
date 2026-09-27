@@ -5285,3 +5285,209 @@ input[type="range"]:focus-visible::-webkit-slider-thumb,
   box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.18);
 }
 
+/* =========================================================================
+   Showcase Video Promocional Clínico (Apple / Framer Light Aesthetic)
+   ========================================================================= */
+
+.promo-video-section {
+  position: relative;
+}
+
+.video-console-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.03), 0 20px 48px -8px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-console-card:hover {
+  border-color: rgba(3, 105, 161, 0.35);
+  box-shadow: 0 6px 12px -2px rgba(15, 23, 42, 0.04), 0 28px 56px -8px rgba(15, 23, 42, 0.11);
+}
+
+.video-console-content {
+  padding: 32px 36px 40px;
+}
+
+.video-text-intro {
+  margin-bottom: 24px;
+}
+
+.video-heading {
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.video-subheading {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  max-width: 860px;
+  margin-bottom: 20px;
+}
+
+/* Chapter scrubber row */
+.video-chapters-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+}
+
+.video-chapters-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-right: 4px;
+}
+
+.video-chapter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 9999px;
+  padding: 6px 14px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #334155;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.video-chapter-btn:hover {
+  background: #f0f9ff;
+  border-color: #bae6fd;
+  color: #0369a1;
+  transform: translateY(-1px);
+}
+
+.video-chapter-btn:active {
+  transform: scale(0.97);
+}
+
+.video-chapter-btn.active {
+  background: #0369a1;
+  color: #ffffff;
+  border-color: #0369a1;
+  box-shadow: 0 2px 8px rgba(3, 105, 161, 0.28);
+}
+
+.video-chapter-btn .chapter-time {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  opacity: 0.85;
+}
+
+.video-chapter-btn.active .chapter-time {
+  opacity: 1;
+  color: #e0f2fe;
+}
+
+/* Player Frame with Double Bezel */
+.video-player-frame {
+  position: relative;
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 10px;
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.9), 0 8px 24px -4px rgba(15, 23, 42, 0.06);
+  margin-bottom: 32px;
+}
+
+.video-player-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+}
+
+.video-player-wrapper video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  background: #ffffff;
+}
+
+/* Value Props Grid */
+.video-features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.video-feature-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 22px;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.video-feature-card:hover {
+  background: #ffffff;
+  border-color: #bae6fd;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px -6px rgba(15, 23, 42, 0.06);
+}
+
+.video-feature-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.video-feature-card h3 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 8px;
+}
+
+.video-feature-card p {
+  font-size: 13.5px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .video-console-content {
+    padding: 20px 18px 24px;
+  }
+  .video-chapters-row {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 14px;
+  }
+  .video-player-frame {
+    padding: 6px;
+    border-radius: 14px;
+    margin-bottom: 24px;
+  }
+}
+
+

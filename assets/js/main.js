@@ -1203,6 +1203,52 @@
     });
   }
 
+  /* ---------- Video Promocional & Recorrido Clínico ---------- */
+  function initPromoVideo() {
+    const video = document.getElementById("pkbayes-promo-video");
+    if (!video) return;
+
+    const chapterBtns = Array.from(document.querySelectorAll(".video-chapter-btn"));
+
+    chapterBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const time = parseFloat(btn.getAttribute("data-seek"));
+        if (!isNaN(time)) {
+          video.currentTime = time;
+          const playPromise = video.play();
+          if (playPromise !== undefined) {
+            playPromise.catch(() => {});
+          }
+          chapterBtns.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+        }
+      });
+    });
+
+    const seekPoints = [0, 35, 85, 130, 170];
+    video.addEventListener("timeupdate", () => {
+      const ct = video.currentTime;
+      let currentIdx = 0;
+      for (let i = 0; i < seekPoints.length; i++) {
+        if (ct >= seekPoints[i]) currentIdx = i;
+      }
+      chapterBtns.forEach((b, idx) => {
+        if (idx === currentIdx) b.classList.add("active");
+        else b.classList.remove("active");
+      });
+    });
+
+    // Si la URL viene con hash #video-promocional, asegurar scroll suave
+    if (window.location.hash === "#video-promocional") {
+      setTimeout(() => {
+        const promoSec = document.getElementById("video-promocional");
+        if (promoSec) {
+          promoSec.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      }, 250);
+    }
+  }
+
   // Initialize Dossier Controllers
   initEmpiricalCalc();
   initPKSimulator();
@@ -1216,4 +1262,6 @@
   initClinicalCases();
   initRoiCalculator();
   initFramerShowcase();
+  initPromoVideo();
 })();
+
