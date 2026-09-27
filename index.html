@@ -355,6 +355,312 @@
       </div>
     </section>
 
+    <!-- FRAMER-STYLE LIVE CLINICAL SHOWCASE CAROUSEL -->
+    <section class="framer-showcase-section" aria-roledescription="carousel" data-i18n-aria-label="showcase.aria_label" aria-label="Showcase interactivo de escenarios clínicos de PK-Bayes">
+      <div class="container">
+        
+        <!-- Header & Carousel Controls -->
+        <div class="framer-showcase-header">
+          <div style="max-width: 680px;">
+            <div class="section-tag" style="margin-bottom: 12px;" data-i18n="showcase.category">SHOWCASE CLÍNICO EN VIVO</div>
+            <h2 style="font-size: clamp(1.8rem, 3.2vw, 2.6rem); font-weight: 800; color: #091e42; line-height: 1.2; letter-spacing: -0.02em;" data-i18n="showcase.title">
+              Diseñado para la toma de decisiones críticas al lado del paciente
+            </h2>
+            <p style="color: #475569; font-size: 15px; margin-top: 10px; line-height: 1.6;" data-i18n="showcase.desc">
+              Explora cómo PK-Bayes adapta modelos matemáticos de alta resolución a los escenarios más complejos de la medicina intensiva.
+            </p>
+          </div>
+
+          <!-- Controls cluster (Framer & Apple style) -->
+          <div class="framer-controls-cluster">
+            <span id="framer-counter" class="framer-counter" translate="no">01 / 05</span>
+            <button type="button" id="framer-prev-btn" class="framer-nav-btn" data-i18n-aria-label="showcase.prev" aria-label="Escenario anterior">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <button type="button" id="framer-next-btn" class="framer-nav-btn" data-i18n-aria-label="showcase.next" aria-label="Escenario siguiente">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Horizontal Scroll-Snap Track (Touch & Drag enabled) -->
+        <div id="framer-track" class="framer-track" tabindex="0">
+          
+          <!-- Card 1: Vancomicina en Shock Séptico (UCI) -->
+          <article class="framer-card active" data-framer-card="0">
+            <div>
+              <div class="framer-card-header">
+                <span class="framer-tag-pill" data-i18n="showcase.tag_1">UCI CRÍTICA</span>
+                <span class="framer-live-badge live-emerald">
+                  <span class="live-pulse-dot" style="background: #059669; width: 6px; height: 6px;"></span>
+                  <span data-i18n="showcase.badge_1">● LIVE · PACIENTE 101</span>
+                </span>
+              </div>
+              <h3 style="font-size: 17px; font-weight: 700; color: #091e42; margin: 8px 0 4px;" data-i18n="showcase.title_1">Vancomicina IV en Shock Séptico</h3>
+            </div>
+
+            <!-- Vector Micro-Canvas -->
+            <div class="framer-card-canvas">
+              <svg viewBox="0 0 320 110" style="width: 100%; height: 100%;" fill="none" aria-hidden="true">
+                <!-- Target corridor (15-20 ug/mL) -->
+                <rect x="20" y="35" width="280" height="32" fill="rgba(16, 185, 129, 0.12)" rx="3" />
+                <line x1="20" y1="35" x2="300" y2="35" stroke="#059669" stroke-width="1" stroke-dasharray="2 2" />
+                <line x1="20" y1="67" x2="300" y2="67" stroke="#059669" stroke-width="1" stroke-dasharray="2 2" />
+                <text x="295" y="44" fill="#059669" font-size="8" font-family="monospace" text-anchor="end">Diana 15-20 µg/mL</text>
+
+                <!-- Kinetic wave -->
+                <path d="M 20 95 C 30 20 45 15 65 42 C 85 70 100 80 115 82 C 125 22 140 16 160 44 C 180 72 195 82 210 83 C 220 24 235 18 255 45 C 275 60 290 62 300 63" stroke="#0284c7" stroke-width="2.4" stroke-linecap="round" />
+                <circle cx="210" cy="52" r="4" fill="#059669" stroke="#ffffff" stroke-width="1.5" />
+                <text x="218" y="50" fill="#059669" font-size="8" font-family="monospace" font-weight="700">TDM 16.2</text>
+              </svg>
+            </div>
+
+            <!-- Telemetry metrics -->
+            <div class="framer-metrics-deck">
+              <div class="framer-metric-item">
+                <span class="framer-metric-label" data-i18n="showcase.m1_label_1">PTA Objetivo</span>
+                <strong class="framer-metric-val" style="color: #059669;">96.4%</strong>
+              </div>
+              <div class="framer-metric-item">
+                <span class="framer-metric-label" data-i18n="showcase.m2_label_1">AUC24</span>
+                <strong class="framer-metric-val" style="color: #0284c7;">485</strong>
+              </div>
+              <div class="framer-metric-item">
+                <span class="framer-metric-label" data-i18n="showcase.m3_label_1">Nivel Valle</span>
+                <strong class="framer-metric-val" style="color: #0f172a;">16.2 µg/mL</strong>
+              </div>
+            </div>
+
+            <p style="font-size: 12px; color: #64748b; line-height: 1.45; margin: 0; border-top: 1px solid #f1f5f9; padding-top: 12px;" data-i18n="showcase.footer_1">
+              Modelo bicompartimental con aclaramiento dinámico diario. Nefrotoxicidad prevenida.
+            </p>
+          </article>
+
+          <!-- Card 2: Fenitoína en Neurología -->
+          <article class="framer-card" data-framer-card="1">
+            <div>
+              <div class="framer-card-header">
+                <span class="framer-tag-pill" data-i18n="showcase.tag_2">NEUROLOGÍA</span>
+                <span class="framer-live-badge live-amber">
+                  <span class="live-pulse-dot" style="background: #d97706; width: 6px; height: 6px;"></span>
+                  <span data-i18n="showcase.badge_2">● CINÉTICA NO LINEAL</span>
+                </span>
+              </div>
+              <h3 style="font-size: 17px; font-weight: 700; color: #091e42; margin: 8px 0 4px;" data-i18n="showcase.title_2">Fenitoína y Saturación Hepática</h3>
+            </div>
+
+            <!-- Vector Micro-Canvas -->
+            <div class="framer-card-canvas">
+              <svg viewBox="0 0 320 110" style="width: 100%; height: 100%;" fill="none" aria-hidden="true">
+                <line x1="20" y1="95" x2="300" y2="95" stroke="#cbd5e1" stroke-width="1" />
+                <line x1="20" y1="15" x2="20" y2="95" stroke="#cbd5e1" stroke-width="1" />
+                <!-- Michaelis-Menten knee curve -->
+                <path d="M 20 95 C 60 95 100 88 140 60 C 180 32 230 18 300 16" stroke="#d97706" stroke-width="2.4" stroke-linecap="round" />
+                <circle cx="140" cy="60" r="4.5" fill="#dc2626" stroke="#ffffff" stroke-width="1.5" />
+                <text x="150" y="58" fill="#dc2626" font-size="8" font-family="monospace" font-weight="700">Km Sat.</text>
+                <!-- Protein binding bar indicator -->
+                <rect x="20" y="100" width="220" height="4" fill="#0284c7" rx="2" />
+                <rect x="240" y="100" width="60" height="4" fill="#d97706" rx="2" />
+              </svg>
+            </div>
+
+            <!-- Telemetry metrics -->
+            <div class="framer-metrics-deck">
+              <div class="framer-metric-item">
+                <span class="framer-metric-label" data-i18n="showcase.m1_label_2">Cinética</span>
+                <strong class="framer-metric-val" style="color: #d97706;" data-i18n="showcase.m1_val_2">Michaelis</strong>
+              </div>
+              <div class="framer-metric-item">
+                <span class="framer-metric-label" data-i18n="showcase.m2_label_2">Nivel Total</span>
+                <strong class="framer-metric-val" style="color: #0f172a;">12.0 µg/mL</strong>
+              </div>
+              <div class="framer-metric-item">
+                <span class="framer-metric-label" data-i18n="showcase.m3_label_2">Fracc. Libre</span>
+                <strong class="framer-metric-val" style="color: #d97706;">18.5%</strong>
+              </div>
+            </div>
+
+            <p style="font-size: 12px; color: #64748b; line-height: 1.45; margin: 0; border-top: 1px solid #f1f5f9; padding-top: 12px;" data-i18n="showcase.footer_2">
+              Detección precoz del punto Km antes de que pequeños incrementos de dosis desencadenen neurotoxicidad.
+            </p>
+          </article>
+
+          <!-- Card 3: Hemodiafiltración en Paciente Crítico -->
+          <article class="framer-card" data-framer-card="2">
+            <div>
+              <div class="framer-card-header">
+                <span class="framer-tag-pill" data-i18n="showcase.tag_3">NEFROLOGÍA CRÍTICA</span>
+                <span class="framer-live-badge live-purple">
+                  <span class="live-pulse-dot" style="background: #7c3aed; width: 6px; height: 6px;"></span>
+                  <span data-i18n="showcase.badge_3">● CIRCUITO CRRT ACTIVO</span>
+                </span>
+              </div>
+              <h3 style="font-size: 17px; font-weight: 700; color: #091e42; margin: 8px 0 4px;" data-i18n="showcase.title_3">Doble Depuración en Hemodiafiltración</h3>
+            </div>
+
+            <!-- Vector Micro-Canvas -->
+            <div class="framer-card-canvas">
+              <svg viewBox="0 0 320 110" style="width: 100%; height: 100%;" fill="none" aria-hidden="true">
+                <!-- Residual Native Kidney Box -->
+                <rect x="20" y="15" width="110" height="38" rx="6" fill="#eff6ff" stroke="#0284c7" stroke-width="1.4" />
+                <text x="75" y="32" fill="#0284c7" font-size="9" font-family="monospace" text-anchor="middle" font-weight="700">CL Nativo</text>
+                <text x="75" y="45" fill="#64748b" font-size="8" font-family="monospace" text-anchor="middle">0.4 L/h</text>
+
+                <!-- Plus sign -->
+                <circle cx="160" cy="34" r="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" />
+                <text x="160" y="38" fill="#0f172a" font-size="11" font-family="monospace" text-anchor="middle" font-weight="800">+</text>
+
+                <!-- Extracorporeal Filter Box -->
+                <rect x="190" y="15" width="110" height="38" rx="6" fill="#faf5ff" stroke="#7c3aed" stroke-width="1.4" />
+                <text x="245" y="32" fill="#7c3aed" font-size="9" font-family="monospace" text-anchor="middle" font-weight="700">CL Hemofiltro</text>
+                <text x="245" y="45" fill="#64748b" font-size="8" font-family="monospace" text-anchor="middle">2.2 L/h</text>
+
+                <!-- Summation Arrow & Total -->
+                <path d="M 160 50 L 160 70" stroke="#059669" stroke-width="1.5" stroke-dasharray="2 2" />
+                <rect x="75" y="74" width="170" height="26" rx="6" fill="#ecfdf5" stroke="#059669" stroke-width="1.2" />
+                <text x="160" y="91" fill="#059669" font-size="10" font-family="monospace" text-anchor="middle" font-weight="800">CL Total = 2.6 L/h</text>
+              </svg>
+            </div>
+
+            <!-- Telemetry metrics -->
+            <div class="framer-metrics-deck">
+              <div class="framer-metric-item">
+                <span class="framer-metric-label" data-i18n="showcase.m1_label_3">CL Nativo</span>
+                <strong class="framer-metric-val" style="color: #0284c7;">0.4 L/h</strong>
+              </div>
+              <div class="framer-metric-item">
+                <span class="framer-metric-label" data-i18n="showcase.m2_label_3">CL Filtro</span>
+                <strong class="framer-metric-val" style="color: #7c3aed;">2.2 L/h</strong>
+              </div>
+              <div class="framer-metric-item">
+                <span class="framer-metric-label" data-i18n="showcase.m3_label_3">CL Total</span>
+                <strong class="framer-metric-val" style="color: #059669;">2.6 L/h</strong>
+              </div>
+            </div>
+
+            <p style="font-size: 12px; color: #64748b; line-height: 1.45; margin: 0; border-top: 1px solid #f1f5f9; padding-top: 12px;" data-i18n="showcase.footer_3">
+              Suma analítica del aclaramiento renal residual y la tasa de efluente del filtro extracorpóreo.
+            </p>
+          </article>
+
+          <!-- Card 4: Trasplante Renal & Tacrolimus -->
+          <article class="framer-card" data-framer-card="3">
+            <div>
+              <div class="framer-card-header">
+                <span class="framer-tag-pill" data-i18n="showcase.tag_4">TRASPLANTE</span>
+                <span class="framer-live-badge live-blue">
+                  <span class="live-pulse-dot" style="background: #2563eb; width: 6px; height: 6px;"></span>
+                  <span data-i18n="showcase.badge_4">● ESTRECHO MARGEN</span>
+                </span>
+              </div>
+              <h3 style="font-size: 17px; font-weight: 700; color: #091e42; margin: 8px 0 4px;" data-i18n="showcase.title_4">Tacrolimus en Trasplante Renal</h3>
+            </div>
+
+            <!-- Vector Micro-Canvas -->
+            <div class="framer-card-canvas">
+              <svg viewBox="0 0 320 110" style="width: 100%; height: 100%;" fill="none" aria-hidden="true">
+                <!-- Target band (6-8 ng/mL) -->
+                <rect x="120" y="10" width="80" height="90" fill="rgba(37, 99, 235, 0.08)" rx="4" />
+                <line x1="120" y1="10" x2="120" y2="100" stroke="#2563eb" stroke-width="1" stroke-dasharray="2 2" />
+                <line x1="200" y1="10" x2="200" y2="100" stroke="#2563eb" stroke-width="1" stroke-dasharray="2 2" />
+                <text x="160" y="24" fill="#2563eb" font-size="8" font-family="monospace" text-anchor="middle">Diana 6-8 ng/mL</text>
+
+                <!-- Prior wide bell curve (dashed gray) -->
+                <path d="M 20 95 C 80 95 100 45 160 45 C 220 45 240 95 300 95" stroke="#94a3b8" stroke-width="1.6" stroke-dasharray="3 3" />
+                <text x="60" y="70" fill="#94a3b8" font-size="7" font-family="monospace">Prior Poblacional</text>
+
+                <!-- Posterior MAP narrow bell curve (solid emerald) -->
+                <path d="M 80 95 C 130 95 145 15 160 15 C 175 15 190 95 240 95" stroke="#059669" stroke-width="2.4" />
+                <text x="160" y="102" fill="#059669" font-size="8" font-family="monospace" text-anchor="middle" font-weight="700">Posterior MAP</text>
+              </svg>
+            </div>
+
+            <!-- Telemetry metrics -->
+            <div class="framer-metrics-deck">
+              <div class="framer-metric-item">
+                <span class="framer-metric-label" data-i18n="showcase.m1_label_4">Rango Meta</span>
+                <strong class="framer-metric-val" style="color: #2563eb;" data-i18n="showcase.m1_val_4">6 - 8 ng/mL</strong>
+              </div>
+              <div class="framer-metric-item">
+                <span class="framer-metric-label" data-i18n="showcase.m2_label_4">Variabilidad</span>
+                <strong class="framer-metric-val" style="color: #059669;">-42%</strong>
+              </div>
+              <div class="framer-metric-item">
+                <span class="framer-metric-label" data-i18n="showcase.m3_label_4">Riesgo Rechazo</span>
+                <strong class="framer-metric-val" style="color: #059669;">&lt; 1.0%</strong>
+              </div>
+            </div>
+
+            <p style="font-size: 12px; color: #64748b; line-height: 1.45; margin: 0; border-top: 1px solid #f1f5f9; padding-top: 12px;" data-i18n="showcase.footer_4">
+              Contracción bayesiana MAP que reduce la incertidumbre en pacientes con hematocrito fluctuante.
+            </p>
+          </article>
+
+          <!-- Card 5: Interoperabilidad HIS / LIS -->
+          <article class="framer-card" data-framer-card="4">
+            <div>
+              <div class="framer-card-header">
+                <span class="framer-tag-pill" data-i18n="showcase.tag_5">INTEROPERABILIDAD</span>
+                <span class="framer-live-badge live-teal">
+                  <span class="live-pulse-dot" style="background: #0d9488; width: 6px; height: 6px;"></span>
+                  <span data-i18n="showcase.badge_5">● HL7 FHIR R4</span>
+                </span>
+              </div>
+              <h3 style="font-size: 17px; font-weight: 700; color: #091e42; margin: 8px 0 4px;" data-i18n="showcase.title_5">Integración con Epic, Cerner e IANUS</h3>
+            </div>
+
+            <!-- Vector Micro-Canvas -->
+            <div class="framer-card-canvas">
+              <svg viewBox="0 0 320 110" style="width: 100%; height: 100%;" fill="none" aria-hidden="true">
+                <!-- Terminal block -->
+                <rect x="15" y="10" width="290" height="90" rx="8" fill="#0f172a" />
+                <circle cx="28" cy="22" r="3" fill="#ef4444" />
+                <circle cx="38" cy="22" r="3" fill="#f59e0b" />
+                <circle cx="48" cy="22" r="3" fill="#10b981" />
+                <text x="60" y="25" fill="#64748b" font-size="8" font-family="monospace">fhir-stream.hl7.org/r4</text>
+                
+                <text x="25" y="44" fill="#38bdf8" font-size="8" font-family="monospace">POST /Observation (Creatinina: 1.8 mg/dL)</text>
+                <text x="25" y="58" fill="#4ade80" font-size="8" font-family="monospace">✓ 200 OK · Ingesta en 0.04s</text>
+                <text x="25" y="72" fill="#a78bfa" font-size="8" font-family="monospace">PUT /MedicationRequest (Pauta: 750mg q12h)</text>
+                <text x="25" y="86" fill="#94a3b8" font-size="8" font-family="monospace">Audit Trail: FDA 21 CFR Part 11 Valid</text>
+              </svg>
+            </div>
+
+            <!-- Telemetry metrics -->
+            <div class="framer-metrics-deck">
+              <div class="framer-metric-item">
+                <span class="framer-metric-label" data-i18n="showcase.m1_label_5">Latencia</span>
+                <strong class="framer-metric-val" style="color: #0d9488;" data-i18n="showcase.m1_val_5">0 ms</strong>
+              </div>
+              <div class="framer-metric-item">
+                <span class="framer-metric-label" data-i18n="showcase.m2_label_5">Estándar</span>
+                <strong class="framer-metric-val" style="color: #0f172a;" data-i18n="showcase.m2_val_5">FHIR JSON</strong>
+              </div>
+              <div class="framer-metric-item">
+                <span class="framer-metric-label" data-i18n="showcase.m3_label_5">Normativa</span>
+                <strong class="framer-metric-val" style="color: #0284c7;" data-i18n="showcase.m3_val_5">CFR 21-11</strong>
+              </div>
+            </div>
+
+            <p style="font-size: 12px; color: #64748b; line-height: 1.45; margin: 0; border-top: 1px solid #f1f5f9; padding-top: 12px;" data-i18n="showcase.footer_5">
+              Lectura automatizada de creatinina sérica y registro del informe en el expediente clínico sin errores.
+            </p>
+          </article>
+
+        </div>
+
+        <!-- Pill Nav Indicators (Framer / Apple style) -->
+        <div class="framer-pills-nav" role="tablist" data-i18n-aria-label="showcase.pills_label" aria-label="Indicadores de diapositiva">
+          <button type="button" class="framer-nav-pill active" data-framer-pill="0" data-i18n-aria-label="showcase.pill_1" aria-label="Escenario 1: Vancomicina en Shock Séptico"></button>
+          <button type="button" class="framer-nav-pill" data-framer-pill="1" data-i18n-aria-label="showcase.pill_2" aria-label="Escenario 2: Fenitoína en Neurología"></button>
+          <button type="button" class="framer-nav-pill" data-framer-pill="2" data-i18n-aria-label="showcase.pill_3" aria-label="Escenario 3: Hemodiafiltración en Paciente Crítico"></button>
+          <button type="button" class="framer-nav-pill" data-framer-pill="3" data-i18n-aria-label="showcase.pill_4" aria-label="Escenario 4: Tacrolimus en Trasplante"></button>
+          <button type="button" class="framer-nav-pill" data-framer-pill="4" data-i18n-aria-label="showcase.pill_5" aria-label="Escenario 5: Interoperabilidad HIS y LIS"></button>
+        </div>
+
+      </div>
+    </section>
+
     <!-- CLINICAL VALUE PILLARS / WHY PK-BAYES -->
     <section class="section" style="padding: 80px 0; border-top: 1px solid #e2e8f0; background: #ffffff;">
       <div class="container">

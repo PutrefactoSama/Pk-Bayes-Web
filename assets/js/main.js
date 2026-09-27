@@ -1077,6 +1077,132 @@
     update();
   }
 
+  /* ---------- Framer-Style Interactive Clinical Showcase Carousel ---------- */
+  function initFramerShowcase() {
+    const track = document.getElementById("framer-track");
+    const prevBtn = document.getElementById("framer-prev-btn");
+    const nextBtn = document.getElementById("framer-next-btn");
+    const counter = document.getElementById("framer-counter");
+    const pills = document.querySelectorAll("[data-framer-pill]");
+    const cards = document.querySelectorAll(".framer-card");
+
+    if (!track || !cards.length) return;
+
+    let currentIndex = 0;
+    const totalCards = cards.length;
+
+    function getCardWidth() {
+      const card = cards[0];
+      if (!card) return 360;
+      const style = window.getComputedStyle(track);
+      const gap = parseFloat(style.columnGap || style.gap || 20) || 20;
+      return card.offsetWidth + gap;
+    }
+
+    function updateActiveState(index) {
+      if (index < 0) index = 0;
+      if (index >= totalCards) index = totalCards - 1;
+      currentIndex = index;
+
+      if (counter) {
+        counter.textContent = `0${currentIndex + 1} / 0${totalCards}`;
+      }
+
+      cards.forEach((c, i) => c.classList.toggle("active", i === currentIndex));
+      pills.forEach((p, i) => p.classList.toggle("active", i === currentIndex));
+    }
+
+    function scrollToIndex(index) {
+      if (index < 0) index = totalCards - 1;
+      if (index >= totalCards) index = 0;
+      const targetCard = cards[index];
+      if (targetCard) {
+        track.scrollTo({
+          left: targetCard.offsetLeft - track.offsetLeft,
+          behavior: "smooth"
+        });
+      }
+      updateActiveState(index);
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener("click", () => {
+        scrollToIndex(currentIndex - 1);
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        scrollToIndex(currentIndex + 1);
+      });
+    }
+
+    pills.forEach((pill) => {
+      pill.addEventListener("click", () => {
+        const idx = parseInt(pill.getAttribute("data-framer-pill"), 10) || 0;
+        scrollToIndex(idx);
+      });
+    });
+
+    // Sync active state on scroll (debounce for smooth 60fps)
+    let scrollTimer = null;
+    track.addEventListener("scroll", () => {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(() => {
+        const scrollLeft = track.scrollLeft;
+        const cardWidth = getCardWidth();
+        const estimatedIndex = Math.round(scrollLeft / cardWidth);
+        updateActiveState(Math.min(totalCards - 1, Math.max(0, estimatedIndex)));
+      }, 60);
+    }, { passive: true });
+
+    // Keyboard navigation (Left / Right arrows)
+    track.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        scrollToIndex(currentIndex - 1);
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        scrollToIndex(currentIndex + 1);
+      }
+    });
+
+    // Touch & Mouse Drag to Scroll (Apple & Framer fluid gestures)
+    let isDown = false;
+    let startX = 0;
+    let scrollStart = 0;
+    let hasMoved = false;
+
+    track.addEventListener("mousedown", (e) => {
+      isDown = true;
+      hasMoved = false;
+      track.classList.add("is-dragging");
+      startX = e.pageX - track.offsetLeft;
+      scrollStart = track.scrollLeft;
+    });
+
+    window.addEventListener("mousemove", (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - track.offsetLeft;
+      const walk = (x - startX) * 1.2;
+      if (Math.abs(walk) > 4) hasMoved = true;
+      track.scrollLeft = scrollStart - walk;
+    });
+
+    window.addEventListener("mouseup", () => {
+      if (!isDown) return;
+      isDown = false;
+      track.classList.remove("is-dragging");
+      if (hasMoved) {
+        const scrollLeft = track.scrollLeft;
+        const cardWidth = getCardWidth();
+        const nearestIndex = Math.round(scrollLeft / cardWidth);
+        scrollToIndex(nearestIndex);
+      }
+    });
+  }
+
   // Initialize Dossier Controllers
   initEmpiricalCalc();
   initPKSimulator();
@@ -1089,4 +1215,5 @@
   initDrugAtlas();
   initClinicalCases();
   initRoiCalculator();
+  initFramerShowcase();
 })();
