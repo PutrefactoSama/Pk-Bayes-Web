@@ -310,130 +310,137 @@
     recalculate();
   }
 
-  /* ---------- 2. Simulador Interactivo de Curva PK (Canvas) & Dose Predictor ---------- */
+  /* ---------- 2. Simulador Interactivo de Curva PK & Dose Predictor ---------- */
   function initPKSimulator() {
-    const canvas = document.getElementById("pkCanvas");
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
+    const doseContainer = document.getElementById("sim-dose-container");
+    const intervalSelect = document.getElementById("sim-interval-select");
+    const crclSlider = document.getElementById("sim-crcl-slider");
+    const crclText = document.getElementById("sim-crcl-text");
 
-    const doseSlider = document.getElementById("simDoseSlider");
-    const intervalSlider = document.getElementById("simIntervalSlider");
-    const crclSlider = document.getElementById("simCrclSlider");
+    const liveCurve = document.getElementById("live-sim-curve");
+    const liveGlow = document.getElementById("live-sim-glow");
+    const liveAuc = document.getElementById("live-sim-auc");
+    const liveAucStatus = document.getElementById("live-sim-auc-status");
+    const liveCmin = document.getElementById("live-sim-cmin");
+    const liveCminStatus = document.getElementById("live-sim-cmin-status");
+    const liveProb = document.getElementById("live-sim-prob");
+    const curveBadge = document.getElementById("sim-curve-badge");
+    const badgeDot = document.getElementById("sim-badge-dot");
+    const badgeText = document.getElementById("sim-badge-text");
 
-    const doseValEl = document.getElementById("simDoseVal");
-    const intervalValEl = document.getElementById("simIntervalVal");
-    const crclValEl = document.getElementById("simCrclVal");
+    if (!doseContainer && !crclSlider) return;
 
-    const cmaxEl = document.getElementById("simCmaxRes");
-    const cminEl = document.getElementById("simCminRes");
-    const auc24El = document.getElementById("simAuc24Res");
+    let selectedDose = 750;
 
-    function draw() {
-      const width = canvas.width = canvas.parentElement.clientWidth || 600;
-      const height = canvas.height = canvas.parentElement.clientHeight || 280;
+    function recalculate() {
+      const dose = selectedDose;
+      const interval = parseFloat(intervalSelect ? intervalSelect.value : 12) || 12;
+      const crcl = parseFloat(crclSlider ? crclSlider.value : 25) || 25;
 
-      const dose = parseFloat(doseSlider ? doseSlider.value : 1000);
-      const interval = parseFloat(intervalSlider ? intervalSlider.value : 12);
-      const crcl = parseFloat(crclSlider ? crclSlider.value : 70);
+      if (crclText) crclText.textContent = `${Math.round(crcl)} mL/min`;
 
-      if (doseValEl) doseValEl.textContent = dose + " mg";
-      if (intervalValEl) intervalValEl.textContent = `q${interval}h`;
-      if (crclValEl) crclValEl.textContent = crcl + " mL/min";
-
-      // PK calculations
+      // 1-Cpt / 2-Cpt Superposition Kinetics
       const ke = 0.00083 * crcl + 0.0044;
-      const vd = 0.7 * 70; // 70 kg std
-      const cmax = (dose / vd) / (1 - Math.exp(-ke * interval));
-      const cmin = cmax * Math.exp(-ke * interval);
+      const vd = 50.4; // 72 kg adult * 0.7 L/kg
       const dailyDose = (dose * 24) / interval;
       const auc24 = dailyDose / (ke * vd);
+      const cmax = (dose / vd) / (1 - Math.exp(-ke * interval));
+      const cmin = cmax * Math.exp(-ke * interval);
 
-      if (cmaxEl) cmaxEl.textContent = cmax.toFixed(1) + " mg/L";
-      if (cminEl) cminEl.textContent = cmin.toFixed(1) + " mg/L";
-      if (auc24El) auc24El.textContent = Math.round(auc24) + " mg·h/L";
+      // DOM Value updates
+      if (liveAuc) liveAuc.textContent = Math.round(auc24);
+      if (liveCmin) liveCmin.textContent = `${cmin.toFixed(1)} µg/mL`;
 
-      // Drawing setup
-      ctx.clearRect(0, 0, width, height);
+      // Clinical Zone & Target Determination
+      let statusKey, cminKey, badgeKey, themeColor, badgeClass, probVal;
 
-      // Target band background (15 to 20 mg/L trough equivalent / 400-600 AUC)
-      const padding = 35;
-      const graphW = width - padding * 2;
-      const graphH = height - padding * 2;
-      const maxY = 45;
-
-      const y15 = height - padding - (15 / maxY) * graphH;
-      const y20 = height - padding - (20 / maxY) * graphH;
-
-      // Target band fill
-      ctx.fillStyle = "rgba(16, 185, 129, 0.12)";
-      ctx.fillRect(padding, y20, graphW, y15 - y20);
-
-      // Target band text
-      ctx.fillStyle = "#10b981";
-      ctx.font = "11px sans-serif";
-      ctx.fillText("Rango Objetivo Trough (15-20 mg/L)", padding + 8, y20 + 14);
-
-      // Grid lines
-      ctx.strokeStyle = "rgba(15, 23, 42, 0.08)";
-      ctx.lineWidth = 1;
-      for (let yVal = 0; yVal <= maxY; yVal += 15) {
-        const y = height - padding - (yVal / maxY) * graphH;
-        ctx.beginPath();
-        ctx.moveTo(padding, y);
-        ctx.lineTo(width - padding, y);
-        ctx.stroke();
-        ctx.fillStyle = "#64748b";
-        ctx.fillText(yVal, 10, y + 4);
+      if (auc24 >= 400 && auc24 <= 600 && cmin <= 20) {
+        themeColor = "#059669";
+        statusKey = "sim.status_target";
+        cminKey = "sim.cmin_target";
+        badgeKey = "sim.badge_in_target";
+        badgeClass = "sim-curve-badge target";
+        probVal = Math.min(98, Math.round(92 + (1 - Math.abs(500 - auc24) / 100) * 6)) + "%";
+      } else if (auc24 > 600 || cmin > 20) {
+        themeColor = "#dc2626";
+        statusKey = "sim.status_toxic";
+        cminKey = "sim.cmin_high";
+        badgeKey = "sim.badge_toxic";
+        badgeClass = "sim-curve-badge toxic";
+        probVal = Math.max(18, Math.round(100 - (auc24 - 600) * 0.22)) + "%";
+      } else {
+        themeColor = "#d97706";
+        statusKey = "sim.status_sub";
+        cminKey = "sim.cmin_low";
+        badgeKey = "sim.badge_sub";
+        badgeClass = "sim-curve-badge sub";
+        probVal = Math.max(22, Math.round((auc24 / 400) * 75)) + "%";
       }
 
-      // Draw Population Prior curve (Dashed Blue)
-      ctx.beginPath();
-      ctx.strokeStyle = "rgba(14, 165, 233, 0.5)";
-      ctx.setLineDash([4, 4]);
-      ctx.lineWidth = 2;
-      for (let x = 0; x <= graphW; x += 2) {
-        const t = (x / graphW) * 48; // 48h timeline
-        const tInInterval = t % interval;
-        const cPrior = ((1000 / vd) / (1 - Math.exp(-0.04 * interval))) * Math.exp(-0.04 * tInInterval);
-        const y = height - padding - (Math.min(cPrior, maxY) / maxY) * graphH;
-        if (x === 0) ctx.moveTo(padding + x, y);
-        else ctx.lineTo(padding + x, y);
-      }
-      ctx.stroke();
-      ctx.setLineDash([]);
+      setVal(liveAucStatus, statusKey);
+      if (liveAucStatus) liveAucStatus.style.color = themeColor;
+      setVal(liveCminStatus, cminKey);
+      if (liveCminStatus) liveCminStatus.style.color = themeColor;
+      if (liveProb) liveProb.textContent = probVal;
 
-      // Draw Individual MAP Adjusted Curve (Solid Cyan)
-      ctx.beginPath();
-      ctx.strokeStyle = "#0284c7";
-      ctx.lineWidth = 3;
-      for (let x = 0; x <= graphW; x += 2) {
-        const t = (x / graphW) * 48;
-        const tInInterval = t % interval;
-        const cInd = cmax * Math.exp(-ke * tInInterval);
-        const y = height - padding - (Math.min(cInd, maxY) / maxY) * graphH;
-        if (x === 0) ctx.moveTo(padding + x, y);
-        else ctx.lineTo(padding + x, y);
+      if (curveBadge) {
+        curveBadge.className = badgeClass;
+        if (badgeDot) badgeDot.style.background = themeColor;
+        setVal(badgeText, badgeKey);
       }
-      ctx.stroke();
 
-      // Lab marker dot (🧪 Cr: 1.8 mg/dL)
-      const labX = padding + graphW * 0.45;
-      const labY = height - padding - (cmin * 1.1 / maxY) * graphH;
-      ctx.fillStyle = "#f59e0b";
-      ctx.beginPath();
-      ctx.arc(labX, labY, 6, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.fillStyle = "#1e293b";
-      ctx.font = "bold 11px sans-serif";
-      ctx.fillText("🧪 Lab Cr: 1.8 mg/dL", labX + 10, labY - 4);
+      // Dynamic SVG Curve Generation (48h timeline, 0 to 48 hours)
+      // X: 40 to 590 (width 550)
+      // Y: 200 (baseline) to 30 (peak C=42 ug/mL)
+      const graphW = 550;
+      const startX = 40;
+      const baseY = 200;
+      const maxC = 42;
+      const points = [];
+
+      for (let t = 0; t <= 48; t += 1) {
+        let conc = 0;
+        for (let tau = 0; tau <= t; tau += interval) {
+          conc += (dose / vd) * Math.exp(-ke * (t - tau));
+        }
+        const x = startX + (t / 48) * graphW;
+        const clampedC = Math.min(conc, maxC);
+        const y = baseY - (clampedC / maxC) * 165;
+        points.push({ x, y });
+      }
+
+      const pathD = "M " + points.map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" L ");
+      if (liveCurve) {
+        liveCurve.setAttribute("d", pathD);
+        liveCurve.setAttribute("stroke", themeColor);
+      }
+      if (liveGlow) {
+        const glowD = pathD + ` L ${startX + graphW},${baseY} L ${startX},${baseY} Z`;
+        liveGlow.setAttribute("d", glowD);
+      }
     }
 
-    [doseSlider, intervalSlider, crclSlider].forEach((s) => {
-      if (s) s.addEventListener("input", draw);
-    });
+    if (doseContainer) {
+      doseContainer.querySelectorAll(".sim-dose-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          doseContainer.querySelectorAll(".sim-dose-btn").forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          selectedDose = parseFloat(btn.getAttribute("data-dose")) || 750;
+          recalculate();
+        });
+      });
+    }
 
-    window.addEventListener("resize", draw);
-    draw();
+    if (intervalSelect) {
+      intervalSelect.addEventListener("change", recalculate);
+    }
+
+    if (crclSlider) {
+      crclSlider.addEventListener("input", recalculate);
+    }
+
+    window.addEventListener("pkbayes_language_changed", recalculate);
+    recalculate();
   }
 
   /* ---------- 3. Selector de Estratos VFG y Prior Mixto ---------- */
@@ -615,6 +622,9 @@
     const kpiCmin = document.getElementById("zenith-kpi-cmin");
     const curveLine = document.getElementById("zenith-curve-line");
     const curveGlow = document.getElementById("zenith-curve-glow");
+    const bannerEl = document.getElementById("zenith-curve-banner");
+    const bannerTitleEl = document.getElementById("zenith-banner-title");
+    const bannerDescEl = document.getElementById("zenith-banner-desc");
 
     const scenarios = {
       a: {
@@ -629,7 +639,10 @@
         cminColor: "#0f172a",
         curveStroke: "#2563eb",
         curveD: "M 50,210 C 70,45 100,38 150,90 C 200,140 240,172 260,175 C 280,48 310,40 360,92 C 410,142 450,174 470,176 C 490,50 520,42 570,94 C 620,144 660,175 680,178 C 700,52 730,45 780,96 C 830,146 850,176 870,178",
-        glowD: "M 50,210 C 70,45 100,38 150,90 C 200,140 240,172 260,175 C 280,48 310,40 360,92 C 410,142 450,174 470,176 C 490,50 520,42 570,94 C 620,144 660,175 680,178 C 700,52 730,45 780,96 C 830,146 850,176 870,178 L 870,215 L 50,215 Z"
+        glowD: "M 50,210 C 70,45 100,38 150,90 C 200,140 240,172 260,175 C 280,48 310,40 360,92 C 410,142 450,174 470,176 C 490,50 520,42 570,94 C 620,144 660,175 680,178 C 700,52 730,45 780,96 C 830,146 850,176 870,178 L 870,215 L 50,215 Z",
+        bannerClass: "zenith-curve-banner status-target",
+        bannerTitle: "zenith.banner_a_title",
+        bannerDesc: "zenith.banner_a_desc"
       },
       b: {
         pta: "62%",
@@ -643,7 +656,10 @@
         cminColor: "#dc2626",
         curveStroke: "#dc2626",
         curveD: "M 50,205 C 70,20 100,15 150,65 C 200,110 240,135 260,138 C 280,22 310,18 360,68 C 410,112 450,137 470,140 C 490,25 520,20 570,70 C 620,115 660,139 680,142 C 700,28 730,22 780,72 C 830,118 850,140 870,142",
-        glowD: "M 50,205 C 70,20 100,15 150,65 C 200,110 240,135 260,138 C 280,22 310,18 360,68 C 410,112 450,137 470,140 C 490,25 520,20 570,70 C 620,115 660,139 680,142 C 700,28 730,22 780,72 C 830,118 850,140 870,142 L 870,215 L 50,215 Z"
+        glowD: "M 50,205 C 70,20 100,15 150,65 C 200,110 240,135 260,138 C 280,22 310,18 360,68 C 410,112 450,137 470,140 C 490,25 520,20 570,70 C 620,115 660,139 680,142 C 700,28 730,22 780,72 C 830,118 850,140 870,142 L 870,215 L 50,215 Z",
+        bannerClass: "zenith-curve-banner status-warning",
+        bannerTitle: "zenith.banner_b_title",
+        bannerDesc: "zenith.banner_b_desc"
       },
       c: {
         pta: "98%",
@@ -657,7 +673,10 @@
         cminColor: "#0f172a",
         curveStroke: "#059669",
         curveD: "M 50,210 C 80,145 120,132 180,132 C 280,132 400,132 500,132 C 600,132 750,132 870,132",
-        glowD: "M 50,210 C 80,145 120,132 180,132 C 280,132 400,132 500,132 C 600,132 750,132 870,132 L 870,215 L 50,215 Z"
+        glowD: "M 50,210 C 80,145 120,132 180,132 C 280,132 400,132 500,132 C 600,132 750,132 870,132 L 870,215 L 50,215 Z",
+        bannerClass: "zenith-curve-banner status-continuous",
+        bannerTitle: "zenith.banner_c_title",
+        bannerDesc: "zenith.banner_c_desc"
       }
     };
 
@@ -695,6 +714,11 @@
       if (curveGlow) {
         curveGlow.setAttribute("d", s.glowD);
       }
+      if (bannerEl) {
+        bannerEl.className = s.bannerClass;
+      }
+      setVal(bannerTitleEl, s.bannerTitle);
+      setVal(bannerDescEl, s.bannerDesc);
     }
 
     btnA.addEventListener("click", () => applyScenario("a"));
@@ -711,13 +735,14 @@
     const detailTrough = document.getElementById("wb-detail-trough");
     const detailAuc = document.getElementById("wb-detail-auc");
     const detailBadge = document.getElementById("wb-detail-badge");
+    const corridorPin = document.getElementById("wb-corridor-pin");
 
     const patientData = {
       // name/drug/badge viajan como clave i18n; trough/auc son valores que no se traducen.
-      p1: { name: "wb.triage_patient_1", drug: "wb.regimen_p1", trough: "16.2 µg/mL", auc: "485 mg·h/L", badge: "wb.badge_target_96", cls: "wb-badge-green" },
-      p2: { name: "wb.triage_patient_2", drug: "wb.regimen_p2", trough: "24.5 µg/mL", auc: "680 mg·h/L", badge: "wb.triage_status_warn", cls: "wb-badge-red" },
-      p3: { name: "wb.triage_patient_3", drug: "wb.regimen_p3", trough: "18.4 µg/mL", auc: "390 mg·h/L", badge: "wb.triage_status_target", cls: "wb-badge-green" },
-      p4: { name: "wb.triage_patient_4", drug: "wb.regimen_p4", trough: "0.8 µg/mL", auc: "410 mg·h/L", badge: "wb.triage_status_target", cls: "wb-badge-blue" }
+      p1: { name: "wb.triage_patient_1", drug: "wb.regimen_p1", trough: "16.2 µg/mL", auc: "485 mg·h/L", badge: "wb.badge_target_96", cls: "wb-badge-green", pinLeft: "52%", pinBg: "#059669" },
+      p2: { name: "wb.triage_patient_2", drug: "wb.regimen_p2", trough: "24.5 µg/mL", auc: "680 mg·h/L", badge: "wb.triage_status_warn", cls: "wb-badge-red", pinLeft: "88%", pinBg: "#dc2626" },
+      p3: { name: "wb.triage_patient_3", drug: "wb.regimen_p3", trough: "18.4 µg/mL", auc: "390 mg·h/L", badge: "wb.triage_status_target", cls: "wb-badge-green", pinLeft: "58%", pinBg: "#059669" },
+      p4: { name: "wb.triage_patient_4", drug: "wb.regimen_p4", trough: "0.8 µg/mL", auc: "410 mg·h/L", badge: "wb.triage_status_target", cls: "wb-badge-blue", pinLeft: "42%", pinBg: "#2563eb" }
     };
 
     patientItems.forEach((btn) => {
@@ -735,6 +760,10 @@
           setVal(detailBadge, p.badge);
           detailBadge.className = "wb-badge-pill " + p.cls;
         }
+        if (corridorPin) {
+          corridorPin.style.left = p.pinLeft;
+          corridorPin.style.background = p.pinBg;
+        }
       });
     });
 
@@ -746,11 +775,13 @@
     const clDialVal = document.getElementById("wb-cl-dial");
     const clTotVal = document.getElementById("wb-cl-total");
     const thalfVal = document.getElementById("wb-thalf-val");
+    const circuitNatVal = document.getElementById("wb-circuit-nat-val");
+    const circuitDialVal = document.getElementById("wb-circuit-dial-val");
 
     const rfData = {
-      native: { natW: "45%", dialW: "0%", natCl: "2.1 L/h", dialCl: "0.0 L/h", totCl: "2.1 L/h", thalf: "18.2 h" },
-      hd: { natW: "15%", dialW: "55%", natCl: "0.6 L/h", dialCl: "2.8 L/h (Intermitente)", totCl: "3.4 L/h", thalf: "6.5 h (En Filtro)" },
-      crrt: { natW: "10%", dialW: "50%", natCl: "0.4 L/h", dialCl: "2.2 L/h (CVVHDF 2000 mL/h)", totCl: "2.6 L/h", thalf: "14.8 h" }
+      native: { natW: "45%", dialW: "0%", natCl: "2.1 L/h", dialCl: "0.0 L/h", totCl: "2.1 L/h", thalf: "18.2 h", natCirc: "2.1 L/h", dialCirc: "0.0 L/h" },
+      hd: { natW: "15%", dialW: "55%", natCl: "0.6 L/h", dialCl: "2.8 L/h (Intermitente)", totCl: "3.4 L/h", thalf: "6.5 h (En Filtro)", natCirc: "0.6 L/h", dialCirc: "2.8 L/h" },
+      crrt: { natW: "10%", dialW: "50%", natCl: "0.4 L/h", dialCl: "2.2 L/h (CVVHDF 2000 mL/h)", totCl: "2.6 L/h", thalf: "14.8 h", natCirc: "0.4 L/h", dialCirc: "2.2 L/h" }
     };
 
     rfBtns.forEach((btn) => {
@@ -766,6 +797,8 @@
         if (clDialVal) clDialVal.textContent = d.dialCl;
         if (clTotVal) clTotVal.textContent = d.totCl;
         if (thalfVal) thalfVal.textContent = d.thalf;
+        if (circuitNatVal) circuitNatVal.textContent = d.natCirc;
+        if (circuitDialVal) circuitDialVal.textContent = d.dialCirc;
       });
     });
 
@@ -799,6 +832,8 @@
     // 4. PopPK Export Preview Selector
     const formatBtns = document.querySelectorAll("[data-wb-format]");
     const codeBlock = document.getElementById("wb-code-text");
+    const copyBtn = document.getElementById("wb-copy-btn");
+    const copyBtnText = document.getElementById("wb-copy-btn-text");
 
     const datasets = {
       csv: "ID,TIME,DV,AMT,RATE,ECOL,AGE,WT,SCR,CLCR\n101,0.0,.,1000,1000,0,63,72.5,1.8,26.4\n101,12.0,15.2,.,.,0,63,72.5,1.8,26.4\n101,12.0,.,750,750,0,63,72.5,1.7,28.1\n101,24.0,16.2,.,.,0,63,72.5,1.7,28.1",
@@ -817,6 +852,27 @@
         }
       });
     });
+
+    if (copyBtn && codeBlock) {
+      copyBtn.addEventListener("click", () => {
+        const textToCopy = codeBlock.textContent || "";
+        const onSuccess = () => {
+          if (copyBtnText) setVal(copyBtnText, "wb.copied");
+          copyBtn.style.borderColor = "#059669";
+          copyBtn.style.color = "#059669";
+          setTimeout(() => {
+            if (copyBtnText) setVal(copyBtnText, "wb.copy_dataset");
+            copyBtn.style.borderColor = "";
+            copyBtn.style.color = "";
+          }, 2000);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(textToCopy).then(onSuccess).catch(onSuccess);
+        } else {
+          onSuccess();
+        }
+      });
+    }
   }
 
   /* ---------- Pharmacokinetic Drug Atlas (farmacos.html) ---------- */
@@ -908,19 +964,32 @@
     const albSlider = document.getElementById("atlas-alb-slider");
     const albVal = document.getElementById("atlas-alb-val");
     const feniCorr = document.getElementById("atlas-feni-corr");
+    const boundBar = document.getElementById("atlas-bound-bar");
+    const freeBar = document.getElementById("atlas-free-bar");
+    const boundPct = document.getElementById("atlas-bound-pct");
+    const freePct = document.getElementById("atlas-free-pct");
 
     if (albSlider && albVal && feniCorr) {
       albSlider.addEventListener("input", (e) => {
         const alb = parseFloat(e.target.value);
         albVal.textContent = alb.toFixed(1) + " g/dL";
         // Sheiner-Tozer: C_corr = 10 / (0.2 * alb + 0.1)
-        const corr = (10 / (0.2 * alb + 0.1)).toFixed(1);
+        const denominator = 0.2 * alb + 0.1;
+        const corr = (10 / denominator).toFixed(1);
         feniCorr.textContent = corr + " µg/mL";
         if (corr > 20) {
           feniCorr.style.color = "#dc2626";
         } else {
           feniCorr.style.color = "#059669";
         }
+
+        // Active free fraction vs Bound fraction
+        const freePercentage = Math.min(60, Math.max(8, Math.round(10 / denominator)));
+        const boundPercentage = 100 - freePercentage;
+        if (boundBar) boundBar.style.width = boundPercentage + "%";
+        if (freeBar) freeBar.style.width = freePercentage + "%";
+        if (boundPct) boundPct.textContent = boundPercentage + "%";
+        if (freePct) freePct.textContent = freePercentage + "%";
       });
     }
   }

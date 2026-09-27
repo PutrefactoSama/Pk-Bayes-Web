@@ -127,6 +127,40 @@
               <span id="atlas-feni-corr" style="font-family: var(--font-mono); font-weight: 800; font-size: 16px; color: #059669;" data-i18n="wb.corr_default_val">16.7 µg/mL</span>
             </div>
           </div>
+
+          <!-- Michaelis-Menten & Protein Binding Visual Deck -->
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 20px;">
+            <!-- Panel A: Non-linear Saturation Velocity Plot -->
+            <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px;">
+              <span style="font-size: 11px; font-weight: 700; color: #d97706; text-transform: uppercase; font-family: var(--font-mono); display: block; margin-bottom: 6px;" data-i18n="atlas.mm_title">Cinética No Lineal de Capacidad Saturable (Michaelis-Menten)</span>
+              <p style="font-size: 12px; color: #64748b; line-height: 1.4; margin-bottom: 12px;" data-i18n="atlas.mm_desc">Al saturar las enzimas hepáticas (CYP2C9/2C19), un pequeño incremento de dosis produce un salto exponencial en la concentración sérica.</p>
+              <svg viewBox="0 0 300 110" style="width: 100%; height: 90px;" fill="none" aria-hidden="true">
+                <line x1="30" y1="95" x2="280" y2="95" stroke="#cbd5e1" stroke-width="1" />
+                <line x1="30" y1="10" x2="30" y2="95" stroke="#cbd5e1" stroke-width="1" />
+                <!-- MM Knee Curve -->
+                <path d="M 30 95 C 70 95 100 85 130 55 C 160 25 200 12 280 10" stroke="#d97706" stroke-width="2.5" />
+                <circle cx="130" cy="55" r="4" fill="#dc2626" />
+                <text x="140" y="52" fill="#dc2626" font-size="8" font-family="monospace">Punto de Saturación (Km)</text>
+                <!-- Labels -->
+                <text x="25" y="15" fill="#94a3b8" font-size="8" font-family="monospace" text-anchor="end">Vmax</text>
+                <text x="280" y="105" fill="#94a3b8" font-size="8" font-family="monospace" text-anchor="end">Dosis (mg/día)</text>
+              </svg>
+            </div>
+
+            <!-- Panel B: Albumin Binding Fraction Graphic -->
+            <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px;">
+              <span style="font-size: 11px; font-weight: 700; color: #0284c7; text-transform: uppercase; font-family: var(--font-mono); display: block; margin-bottom: 6px;" data-i18n="atlas.alb_binding_title">Fracción Libre No Unida (Sheiner-Tozer)</span>
+              <p style="font-size: 12px; color: #64748b; line-height: 1.4; margin-bottom: 12px;" data-i18n="atlas.alb_binding_desc">La hipoalbuminemia incrementa la fracción libre activa. El nivel total aparente subestima el efecto biológico real.</p>
+              <div style="height: 14px; border-radius: 9999px; background: #e2e8f0; display: flex; overflow: hidden; margin-top: 14px;">
+                <div id="atlas-bound-bar" style="width: 82%; background: #0284c7; transition: width 0.3s ease;"></div>
+                <div id="atlas-free-bar" style="width: 18%; background: #059669; transition: width 0.3s ease;"></div>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 11px; font-family: var(--font-mono); color: #64748b; margin-top: 8px;">
+                <span style="color: #0284c7;"><span data-i18n="atlas.bound_label">■ Fracción Ligada:</span> <strong id="atlas-bound-pct">82%</strong></span>
+                <span style="color: #059669;"><span data-i18n="atlas.free_label">■ Fracción Libre:</span> <strong id="atlas-free-pct">18%</strong></span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

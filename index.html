@@ -184,7 +184,7 @@
 
           <!-- Central Canvas: Large Expansive Fluid Concentration-Time Curve (0 - 48h) -->
           <div class="zenith-curve-panel">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; flex-wrap: wrap; gap: 10px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
               <div>
                 <h3 style="font-size: 14px; font-weight: 800; color: #0f172a; margin: 0;" data-i18n="zenith.curve_title">Perfil Concentración-Tiempo (0-48h)</h3>
               </div>
@@ -202,6 +202,15 @@
                   <span data-i18n="zenith.legend_tdm">Muestra TDM (15.2 µg/mL a 23.5h)</span>
                 </span>
               </div>
+            </div>
+
+            <!-- Dynamic In-Canvas Telemetry Status Banner -->
+            <div id="zenith-curve-banner" class="zenith-curve-banner status-target">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="live-pulse-dot" id="zenith-banner-dot"></span>
+                <strong id="zenith-banner-title" data-i18n="zenith.banner_a_title">Pauta Óptima en Diana</strong>
+              </div>
+              <span id="zenith-banner-desc" data-i18n="zenith.banner_a_desc">Exposición AUC 485 mg·h/L dentro del rango seguro (400-600) / Riesgo de nefrotoxicidad mínimo (&lt;1.8%)</span>
             </div>
 
             <!-- Fluid Responsive SVG Curve -->
@@ -226,9 +235,13 @@
                 <line x1="50" y1="180" x2="870" y2="180" stroke="#f1f5f9" stroke-dasharray="4 4" />
                 <line x1="50" y1="215" x2="870" y2="215" stroke="#cbd5e1" stroke-width="1.5" />
 
+                <!-- Toxic Danger Ceiling (> 20 ug/mL: Y=30 to Y=115) -->
+                <rect x="50" y="30" width="820" height="85" fill="rgba(220, 38, 38, 0.03)" />
+                <line x1="50" y1="115" x2="870" y2="115" stroke="#dc2626" stroke-opacity="0.35" stroke-dasharray="3 3" stroke-width="1.2" />
+                <text x="860" y="44" fill="#dc2626" font-size="9" font-family="monospace" text-anchor="end" font-weight="700">Zona de Riesgo Nefrotóxico (&gt; 20 µg/mL)</text>
+
                 <!-- Therapeutic Target Corridor Band (15-20 ug/mL: Y=115 to Y=145) -->
                 <rect x="50" y="115" width="820" height="30" fill="url(#zenithTargetBand)" />
-                <line x1="50" y1="115" x2="870" y2="115" stroke="#059669" stroke-opacity="0.5" stroke-dasharray="4 4" stroke-width="1.2" />
                 <line x1="50" y1="145" x2="870" y2="145" stroke="#059669" stroke-opacity="0.5" stroke-dasharray="4 4" stroke-width="1.2" />
 
                 <!-- Y-Axis Ticks -->
@@ -248,6 +261,18 @@
                 <circle cx="460" cy="140" r="5" fill="#dc2626" stroke="#ffffff" stroke-width="2" />
                 <line x1="460" y1="130" x2="460" y2="150" stroke="#dc2626" stroke-width="1.5" />
                 <text x="460" y="165" fill="#dc2626" font-size="10" font-family="monospace" text-anchor="middle" font-weight="700" data-i18n="zenith.tdm_label">TDM: 15.2 µg/mL</text>
+
+                <!-- Infusion Administration Pulse Markers -->
+                <g opacity="0.65">
+                  <line x1="50" y1="215" x2="50" y2="192" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="2 2" />
+                  <text x="54" y="200" fill="#0284c7" font-size="8" font-family="monospace">↓ IV 1h</text>
+                  <line x1="260" y1="215" x2="260" y2="192" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="2 2" />
+                  <text x="264" y="200" fill="#0284c7" font-size="8" font-family="monospace">↓ IV 1h</text>
+                  <line x1="470" y1="215" x2="470" y2="192" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="2 2" />
+                  <text x="474" y="200" fill="#0284c7" font-size="8" font-family="monospace">↓ IV 1h</text>
+                  <line x1="680" y1="215" x2="680" y2="192" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="2 2" />
+                  <text x="684" y="200" fill="#0284c7" font-size="8" font-family="monospace">↓ IV 1h</text>
+                </g>
 
                 <!-- X-Axis Timestamps -->
                 <text x="50" y="232" fill="#64748b" font-size="10" font-family="monospace" text-anchor="middle" data-i18n="zenith.t_dose1">Dosis 1 (0h)</text>
@@ -274,6 +299,9 @@
               <div style="margin-top: 8px; font-size: 12px; color: #059669; font-weight: 600;" data-i18n="zenith.opt_a_sub">
                 PTA 96% · AUC 485 · C_mín 16.2
               </div>
+              <div class="zenith-posology-progress">
+                <div class="zenith-posology-progress-fill" style="width: 96%; background: #059669;"></div>
+              </div>
             </button>
 
             <!-- Option B: STANDARD -->
@@ -285,6 +313,9 @@
               <div style="margin-top: 8px; font-size: 12px; color: #dc2626; font-weight: 600;" data-i18n="zenith.opt_b_sub">
                 PTA 62% · AUC 642 · Riesgo Alto
               </div>
+              <div class="zenith-posology-progress">
+                <div class="zenith-posology-progress-fill" style="width: 62%; background: #dc2626;"></div>
+              </div>
             </button>
 
             <!-- Option C: CONTINUOUS -->
@@ -295,6 +326,9 @@
               </div>
               <div style="margin-top: 8px; font-size: 12px; color: #2563eb; font-weight: 600;" data-i18n="zenith.opt_c_sub">
                 PTA 98% · AUC 492 · Css 18.2
+              </div>
+              <div class="zenith-posology-progress">
+                <div class="zenith-posology-progress-fill" style="width: 98%; background: #2563eb;"></div>
               </div>
             </button>
           </div>
@@ -474,25 +508,53 @@
             <div style="display: flex; flex-direction: column; justify-content: space-between;">
               <div class="glass-card" style="padding: 20px; background: #ffffff; border: 1px solid #e2e8f0; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
                 
-                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; flex-wrap: wrap; gap: 8px;">
                   <div style="display: flex; align-items: center; gap: 8px;">
-                    <span style="width: 8px; height: 8px; border-radius: 50%; background: #0284c7;"></span>
+                    <span class="live-pulse-dot" id="sim-live-dot"></span>
                     <strong style="font-size: 12px; color: #091e42;" data-i18n="sim.graph_title">Proyección Multidosis a 48 Horas</strong>
                   </div>
-                  <span style="font-size: 11px; font-family: var(--font-mono); color: #64748b;" data-i18n="sim.graph_infusion">Infusión IV: 1.0 h · Vd: 19.7 L</span>
+                  <div id="sim-curve-badge" class="sim-curve-badge target">
+                    <span id="sim-badge-dot" style="width: 6px; height: 6px; border-radius: 50%; background: #059669;"></span>
+                    <span id="sim-badge-text" data-i18n="sim.badge_in_target">En Meta (PTA 94.2%)</span>
+                  </div>
                 </div>
 
                 <!-- Dynamic SVG Canvas -->
                 <div style="width: 100%; height: 210px; margin: 16px 0;">
                   <svg id="live-sim-svg" style="width: 100%; height: 100%;" viewBox="0 0 600 220" preserveAspectRatio="none">
-                    <!-- Shaded safe area (15-20 ug/mL) -->
-                    <rect x="40" y="90" width="550" height="45" fill="rgba(16, 185, 129, 0.12)" />
-                    <line x1="40" y1="90" x2="590" y2="90" stroke="#059669" stroke-opacity="0.35" stroke-dasharray="2,2" />
-                    <line x1="40" y1="135" x2="590" y2="135" stroke="#059669" stroke-opacity="0.35" stroke-dasharray="2,2" />
+                    <defs>
+                      <linearGradient id="liveSimGlow" x1="0" y1="0" x2="0" y2="1">
+                        <stop offset="0%" stop-color="#0284c7" stop-opacity="0.20" />
+                        <stop offset="100%" stop-color="#0284c7" stop-opacity="0.0" />
+                      </linearGradient>
+                    </defs>
 
-                    <!-- Dynamic Polyline Path -->
+                    <!-- Toxic Warning Zone (> 20 ug/mL: Y=25 to Y=90) -->
+                    <rect x="40" y="25" width="550" height="65" fill="rgba(239, 68, 68, 0.04)" />
+                    <line x1="40" y1="90" x2="590" y2="90" stroke="#ef4444" stroke-opacity="0.4" stroke-dasharray="3 3" />
+                    <text x="585" y="38" fill="#ef4444" font-size="8" font-family="monospace" text-anchor="end">Zona de Riesgo Nefrotóxico (&gt; 20 µg/mL)</text>
+
+                    <!-- Shaded safe area (15-20 ug/mL: Y=90 to Y=135) -->
+                    <rect x="40" y="90" width="550" height="45" fill="rgba(16, 185, 129, 0.12)" />
+                    <line x1="40" y1="135" x2="590" y2="135" stroke="#059669" stroke-opacity="0.35" stroke-dasharray="3 3" />
+                    <text x="585" y="102" fill="#059669" font-size="8" font-family="monospace" text-anchor="end">Ventana Diana (15-20 µg/mL)</text>
+
+                    <!-- Dynamic Glow and Polyline Path -->
+                    <path id="live-sim-glow" d="M 40,200 C 50,45 65,40 70,48 C 90,110 140,150 180,158 C 190,45 205,40 210,48 C 230,105 280,145 320,150 C 330,45 345,40 350,48 C 370,105 420,140 460,145 C 470,45 485,40 490,48 C 510,105 550,138 590,142 L 590,200 L 40,200 Z" fill="url(#liveSimGlow)" />
                     <path id="live-sim-curve" d="M 40,200 C 50,45 65,40 70,48 C 90,110 140,150 180,158 C 190,45 205,40 210,48 C 230,105 280,145 320,150 C 330,45 345,40 350,48 C 370,105 420,140 460,145 C 470,45 485,40 490,48 C 510,105 550,138 590,142" 
                           fill="none" stroke="#0284c7" stroke-width="2.8" stroke-linecap="round" />
+
+                    <!-- Infusion Dosing markers -->
+                    <g opacity="0.6">
+                      <line x1="40" y1="200" x2="40" y2="180" stroke="#0284c7" stroke-width="1.2" stroke-dasharray="2 2" />
+                      <text x="44" y="188" fill="#0284c7" font-size="7" font-family="monospace">↓ IV</text>
+                      <line x1="180" y1="200" x2="180" y2="180" stroke="#0284c7" stroke-width="1.2" stroke-dasharray="2 2" />
+                      <text x="184" y="188" fill="#0284c7" font-size="7" font-family="monospace">↓ IV</text>
+                      <line x1="320" y1="200" x2="320" y2="180" stroke="#0284c7" stroke-width="1.2" stroke-dasharray="2 2" />
+                      <text x="324" y="188" fill="#0284c7" font-size="7" font-family="monospace">↓ IV</text>
+                      <line x1="460" y1="200" x2="460" y2="180" stroke="#0284c7" stroke-width="1.2" stroke-dasharray="2 2" />
+                      <text x="464" y="188" fill="#0284c7" font-size="7" font-family="monospace">↓ IV</text>
+                    </g>
 
                     <!-- Grid markings -->
                     <line x1="40" y1="200" x2="590" y2="200" stroke="#e2e8f0" />
