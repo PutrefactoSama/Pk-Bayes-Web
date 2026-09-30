@@ -210,8 +210,6 @@ h4, .h4 { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); }
   height: 40px;
   flex-shrink: 0;
   object-fit: contain;
-  border-radius: 9px;
-  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.22);
 }
 .brand-text {
   display: flex;
@@ -877,12 +875,13 @@ select.control-select {
   color: #94a3b8;
 }
 .footer-brand .brand-mark {
-  width: 44px;
-  height: 44px;
-  background: transparent;
+  width: 40px;
+  height: 40px;
+  background: #ffffff;
   border-radius: 10px;
-  padding: 0;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+  padding: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  object-fit: contain;
 }
 .footer-brand p {
   font-size: 0.88rem;
