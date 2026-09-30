@@ -210,6 +210,8 @@ h4, .h4 { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); }
   height: 40px;
   flex-shrink: 0;
   object-fit: contain;
+  border-radius: 9px;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.22);
 }
 .brand-text {
   display: flex;
@@ -849,32 +851,45 @@ select.control-select {
   .footer-grid { grid-template-columns: 1fr; gap: 16px; }
 }
 .footer-brand .brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
   color: #ffffff;
+  margin-bottom: 10px;
 }
 .footer-brand .brand-title,
 .site-footer .brand-title {
   color: #ffffff !important;
+  font-size: 1.38rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
 }
 .footer-brand .brand-sub,
 .site-footer .brand-sub {
-  color: #38bdf8;
+  color: #94a3b8;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 .footer-brand .brand-tag,
 .site-footer .brand-tag {
   color: #94a3b8;
 }
 .footer-brand .brand-mark {
-  background: #ffffff;
+  width: 44px;
+  height: 44px;
+  background: transparent;
   border-radius: 10px;
-  padding: 3px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  padding: 0;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
 }
 .footer-brand p {
-  font-size: 0.82rem;
-  line-height: 1.45;
-  color: var(--text-on-dark-muted);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  color: #94a3b8;
   margin-top: 6px;
-  max-width: 340px;
+  max-width: 380px;
 }
 .footer-col h5 {
   color: #ffffff;
