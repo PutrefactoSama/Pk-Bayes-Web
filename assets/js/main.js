@@ -300,7 +300,12 @@
 
       if (resCrcl) resCrcl.textContent = Math.round(crcl) + " mL/min";
       if (resLoad) resLoad.textContent = loadingDose + " mg";
-      if (resMaint) resMaint.textContent = `${maintDose} mg q${interval}h`;
+      if (resMaint) {
+        // La notación de la pauta cambia por idioma (q12h / c/ 12h / 每12小时 / 12時間毎).
+        resMaint.textContent = i18nT("calc.regimen_fmt")
+          .replace("{dose}", maintDose)
+          .replace("{tau}", interval);
+      }
       if (resAuc) resAuc.textContent = `${aucMicRatio} h`;
     }
 
