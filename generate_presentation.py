@@ -90,13 +90,27 @@ def create_presentation():
         p.font.size = Pt(8.5)
         p.font.color.rgb = RGBColor(148, 163, 184) if not is_dark else RGBColor(100, 116, 139)
 
-    def add_card(slide, left, top, width, height, bg_color=C_CARD_BG, border_color=C_CARD_BORDER):
+    def add_card(slide, left, top, width, height, bg_color=C_CARD_BG, border_color=C_CARD_BORDER, accent_strip_color=None):
         shape = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, left, top, width, height)
         shape.fill.solid()
         shape.fill.fore_color.rgb = bg_color
         shape.line.color.rgb = border_color
         shape.line.width = Pt(1)
+        if accent_strip_color:
+            strip = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, left, top + Inches(0.12), Inches(0.08), height - Inches(0.24))
+            strip.fill.solid()
+            strip.fill.fore_color.rgb = accent_strip_color
+            strip.line.fill.background()
         return shape
+
+    def add_image_framed(slide, img_path, left, top, width, height):
+        if os.path.exists(img_path):
+            outer = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, left - Inches(0.06), top - Inches(0.06), width + Inches(0.12), height + Inches(0.12))
+            outer.fill.solid()
+            outer.fill.fore_color.rgb = RGBColor(241, 245, 249)
+            outer.line.color.rgb = RGBColor(226, 232, 240)
+            outer.line.width = Pt(1)
+            slide.shapes.add_picture(img_path, left, top, width, height)
 
     # =========================================================================
     # SLIDE 1: PORTADA EJECUTIVA INSTITUCIONAL (Dark Canvas)
@@ -314,7 +328,7 @@ def create_presentation():
     # Right Column (Visual Mockup of Curve)
     mockup_path = os.path.join(PROD_DIR, "04-simulacion.png")
     if os.path.exists(mockup_path):
-        s3.shapes.add_picture(mockup_path, Inches(6.7), Inches(1.95), Inches(5.8), Inches(3.4))
+        add_image_framed(s3, mockup_path, Inches(6.7), Inches(1.95), Inches(5.8), Inches(3.4))
 
     # Benefit Card under mockup
     c_ben = add_card(s3, Inches(6.7), Inches(5.5), Inches(5.8), Inches(1.25))
@@ -345,7 +359,7 @@ def create_presentation():
     # Left: Screenshot of Renal Function
     renal_img = os.path.join(PROD_DIR, "03-funcion-renal.png")
     if os.path.exists(renal_img):
-        s4.shapes.add_picture(renal_img, Inches(0.8), Inches(1.95), Inches(6.0), Inches(4.8))
+        add_image_framed(s4, renal_img, Inches(0.8), Inches(1.95), Inches(6.0), Inches(4.8))
 
     # Right: 3 Key Clinical Capabilities
     right_x = Inches(7.1)
@@ -505,7 +519,7 @@ def create_presentation():
     # Left: Big Screenshot
     dash_img = os.path.join(PROD_DIR, "01-dashboard.png")
     if os.path.exists(dash_img):
-        s7.shapes.add_picture(dash_img, Inches(0.8), Inches(1.95), Inches(6.8), Inches(4.8))
+        add_image_framed(s7, dash_img, Inches(0.8), Inches(1.95), Inches(6.8), Inches(4.8))
 
     # Right: Telemetry Explanations
     c_right = add_card(s7, Inches(7.8), Inches(1.95), Inches(4.7), Inches(4.8))
@@ -585,7 +599,7 @@ def create_presentation():
     # Right: Screenshot of Simulation
     sim_img = os.path.join(PROD_DIR, "05-estimacion.png")
     if os.path.exists(sim_img):
-        s8.shapes.add_picture(sim_img, Inches(6.3), Inches(1.95), Inches(6.2), Inches(4.8))
+        add_image_framed(s8, sim_img, Inches(6.3), Inches(1.95), Inches(6.2), Inches(4.8))
 
     add_footer(s8, 8, 14)
 
@@ -777,7 +791,7 @@ def create_presentation():
     # Right: Screenshot of Institutional Model
     inst_img = os.path.join(PROD_DIR, "09-modelo-institucional.png")
     if os.path.exists(inst_img):
-        s12.shapes.add_picture(inst_img, Inches(6.8), Inches(1.95), Inches(5.7), Inches(4.8))
+        add_image_framed(s12, inst_img, Inches(6.8), Inches(1.95), Inches(5.7), Inches(4.8))
 
     add_footer(s12, 12, 14)
 
