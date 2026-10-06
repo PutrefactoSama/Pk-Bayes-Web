@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """
 Generador de Presentación Institucional y Clínica en PowerPoint (PPTX) para PK-Bayes.
-Diseñado con estándares de alta dirección médica, farmacia clínica y factores humanos.
+Diseño: /impeccable + /ui-ux-pro-max + /emil-design-eng
+Estilo: Lienzo 100% Claro Clínico (WCAG AAA), Marcos Double-Bezel, Gráficos Científicos Matplotlib integrados,
+        10 Capturas de Plataforma de Alta Resolución y Speaker Notes institucionales.
 """
 
 import os
@@ -15,25 +17,30 @@ from pptx.enum.shapes import MSO_SHAPE
 SLIDE_WIDTH = Inches(13.333)
 SLIDE_HEIGHT = Inches(7.5)
 
-# Paleta Cromática Clínica
-C_NAVY_DARK    = RGBColor(10, 25, 47)     # #0A192F (Fondo oscuro elegante)
-C_NAVY_SURFACE = RGBColor(16, 37, 66)     # #102542 (Tarjetas sobre fondo oscuro)
-C_WHITE        = RGBColor(255, 255, 255) # #FFFFFF
-C_BG_LIGHT     = RGBColor(248, 250, 252) # #F8FAFC (Lienzo claro clínico)
-C_CARD_BG      = RGBColor(255, 255, 255) # #FFFFFF
-C_CARD_BORDER  = RGBColor(226, 232, 240) # #E2E8F0
-C_TEXT_DARK    = RGBColor(15, 23, 42)     # #0F172A
-C_TEXT_MUTED   = RGBColor(100, 116, 139) # #64748B
-C_TEXT_LIGHT   = RGBColor(241, 245, 249) # #F1F5F9
-C_BRAND_CYAN   = RGBColor(2, 132, 199)   # #0284C7
-C_BRAND_EMERALD= RGBColor(5, 150, 105)   # #059669
-C_ACCENT_AMBER = RGBColor(217, 119, 6)   # #D97706
-C_ACCENT_ROSE  = RGBColor(225, 29, 72)   # #E11D48
-C_PILL_BG      = RGBColor(224, 242, 254) # #E0F2FE
-C_PILL_TEXT    = RGBColor(3, 105, 161)   # #0369A1
+# Paleta Cromática Clínica 100% Clara (Impeccable & UI Pro Max)
+C_CANVAS_BG     = RGBColor(255, 255, 255) # #FFFFFF (Lienzo blanco inmaculado)
+C_SURFACE_LIGHT = RGBColor(248, 250, 252) # #F8FAFC (Superficie secundaria sutil)
+C_CARD_BG       = RGBColor(255, 255, 255) # #FFFFFF (Fondo tarjeta)
+C_BEZEL_OUTER   = RGBColor(241, 245, 249) # #F1F5F9 (Bandeja maquinada exterior)
+C_BORDER        = RGBColor(226, 232, 240) # #E2E8F0 (Borde fino nítido)
+C_BORDER_SUBTLE = RGBColor(241, 245, 249) # #F1F5F9
 
+# Tipografía (WCAG AAA contrast > 14:1)
+C_TEXT_PRIMARY  = RGBColor(15, 23, 42)     # #0F172A (Azul marino obsidiana)
+C_TEXT_SECONDARY= RGBColor(71, 85, 105)   # #475569 (Gris pizarra medio)
+C_TEXT_MUTED    = RGBColor(100, 116, 139) # #64748B (Gris neutro)
+
+# Acentos Clínicos Semánticos
+C_PRIMARY       = RGBColor(2, 132, 199)   # #0284C7 (Azul clínico principal)
+C_SAPPHIRE      = RGBColor(37, 99, 235)   # #2563EB (Azul zafiro para curvas PK)
+C_SUCCESS       = RGBColor(5, 150, 105)   # #059669 (Verde diana terapéutica)
+C_WARNING       = RGBColor(217, 119, 6)   # #D97706 (Ámbar alerta/incertidumbre)
+C_DANGER        = RGBColor(220, 38, 38)   # #DC2626 (Rojo riesgo toxicidad)
+C_PURPLE        = RGBColor(124, 58, 237)  # #7C3AED (Púrpura ARC / fisiología)
+
+# Directorios de Recursos Visuales
 IMG_DIR = "/Users/pablosaezriquelme/Desktop/PK-Bayes Web/assets/img"
-PROD_DIR = "/Users/pablosaezriquelme/Desktop/PK-Bayes Web/assets/img/product"
+CHARTS_DIR = "/Users/pablosaezriquelme/Desktop/PK-Bayes Web/assets/img/charts"
 LOGO_IMG = os.path.join(IMG_DIR, "logo-icon-512.png")
 
 def create_presentation():
@@ -42,889 +49,702 @@ def create_presentation():
     prs.slide_height = SLIDE_HEIGHT
     blank_layout = prs.slide_layouts[6] # Blank slide
 
-    def set_slide_background(slide, color):
+    def set_slide_background(slide, color=C_CANVAS_BG):
         background = slide.background
         fill = background.fill
         fill.solid()
         fill.fore_color.rgb = color
 
-    def add_header(slide, tag_text, title_text, subtitle_text, is_dark=False):
+    def add_header(slide, tag_text, title_text, subtitle_text):
         # Badge Pill
-        tag_box = slide.shapes.add_textbox(Inches(0.8), Inches(0.48), Inches(6.0), Inches(0.35))
+        tag_box = slide.shapes.add_textbox(Inches(0.8), Inches(0.42), Inches(7.5), Inches(0.32))
         tf_tag = tag_box.text_frame
         tf_tag.word_wrap = True
         tf_tag.margin_left = tf_tag.margin_top = tf_tag.margin_right = tf_tag.margin_bottom = 0
         p_tag = tf_tag.paragraphs[0]
         p_tag.text = tag_text.upper()
-        p_tag.font.size = Pt(9.5)
+        p_tag.font.size = Pt(9.0)
         p_tag.font.bold = True
-        p_tag.font.color.rgb = C_BRAND_CYAN if not is_dark else RGBColor(56, 189, 248)
+        p_tag.font.color.rgb = C_PRIMARY
 
         # Title
-        title_box = slide.shapes.add_textbox(Inches(0.8), Inches(0.78), Inches(11.7), Inches(0.65))
+        title_box = slide.shapes.add_textbox(Inches(0.8), Inches(0.74), Inches(11.7), Inches(0.60))
         tf_title = title_box.text_frame
         tf_title.word_wrap = True
         tf_title.margin_left = tf_title.margin_top = tf_title.margin_right = tf_title.margin_bottom = 0
         p_title = tf_title.paragraphs[0]
         p_title.text = title_text
-        p_title.font.size = Pt(22)
+        p_title.font.size = Pt(21)
         p_title.font.bold = True
-        p_title.font.color.rgb = C_TEXT_DARK if not is_dark else C_WHITE
+        p_title.font.color.rgb = C_TEXT_PRIMARY
 
         # Subtitle
-        sub_box = slide.shapes.add_textbox(Inches(0.8), Inches(1.42), Inches(11.7), Inches(0.45))
+        sub_box = slide.shapes.add_textbox(Inches(0.8), Inches(1.36), Inches(11.7), Inches(0.42))
         tf_sub = sub_box.text_frame
         tf_sub.word_wrap = True
         tf_sub.margin_left = tf_sub.margin_top = tf_sub.margin_right = tf_sub.margin_bottom = 0
         p_sub = tf_sub.paragraphs[0]
         p_sub.text = subtitle_text
-        p_sub.font.size = Pt(12)
-        p_sub.font.color.rgb = C_TEXT_MUTED if not is_dark else RGBColor(148, 163, 184)
+        p_sub.font.size = Pt(11.5)
+        p_sub.font.color.rgb = C_TEXT_SECONDARY
 
-    def add_footer(slide, current_idx, total_slides=14, is_dark=False):
-        footer_box = slide.shapes.add_textbox(Inches(0.8), Inches(7.0), Inches(11.73), Inches(0.3))
+    def add_footer(slide, current_idx, total_slides=14):
+        footer_box = slide.shapes.add_textbox(Inches(0.8), Inches(7.04), Inches(11.73), Inches(0.3))
         tf = footer_box.text_frame
         tf.margin_left = tf.margin_top = tf.margin_right = tf.margin_bottom = 0
         p = tf.paragraphs[0]
-        p.text = f"PK-Bayes · Decision Support System CDSS v3.2                                                Documento Institucional Clínico                                                {current_idx:02d} / {total_slides:02d}"
+        p.text = f"PK-Bayes · CDSS v3.2 · Soporte a la Decisión Clínica Farmacocinética                       Confidencial · Uso Hospitalario Institucional                       {current_idx:02d} / {total_slides:02d}"
         p.font.size = Pt(8.5)
-        p.font.color.rgb = RGBColor(148, 163, 184) if not is_dark else RGBColor(100, 116, 139)
+        p.font.color.rgb = C_TEXT_MUTED
 
-    def add_card(slide, left, top, width, height, bg_color=C_CARD_BG, border_color=C_CARD_BORDER, accent_strip_color=None):
+    def add_card(slide, left, top, width, height, bg_color=C_CARD_BG, border_color=C_BORDER, accent_strip_color=None):
         shape = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, left, top, width, height)
         shape.fill.solid()
         shape.fill.fore_color.rgb = bg_color
         shape.line.color.rgb = border_color
         shape.line.width = Pt(1)
         if accent_strip_color:
-            strip = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, left, top + Inches(0.12), Inches(0.08), height - Inches(0.24))
+            strip = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, left + Inches(0.08), top + Inches(0.12), Inches(0.06), height - Inches(0.24))
             strip.fill.solid()
             strip.fill.fore_color.rgb = accent_strip_color
             strip.line.fill.background()
         return shape
 
-    def add_image_framed(slide, img_path, left, top, width, height):
+    def add_image_framed(slide, img_path, left, top, width, height, caption=None):
+        """Implementación Double-Bezel de alta precisión para capturas y gráficos clínicos."""
         if os.path.exists(img_path):
             outer = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, left - Inches(0.06), top - Inches(0.06), width + Inches(0.12), height + Inches(0.12))
             outer.fill.solid()
-            outer.fill.fore_color.rgb = RGBColor(241, 245, 249)
-            outer.line.color.rgb = RGBColor(226, 232, 240)
+            outer.fill.fore_color.rgb = C_BEZEL_OUTER
+            outer.line.color.rgb = C_BORDER
             outer.line.width = Pt(1)
-            slide.shapes.add_picture(img_path, left, top, width, height)
+            pic = slide.shapes.add_picture(img_path, left, top, width, height)
+            if caption:
+                cap_box = slide.shapes.add_textbox(left, top + height + Inches(0.06), width, Inches(0.25))
+                tf_cap = cap_box.text_frame
+                tf_cap.margin_left = tf_cap.margin_top = tf_cap.margin_right = tf_cap.margin_bottom = 0
+                p_cap = tf_cap.paragraphs[0]
+                p_cap.text = caption
+                p_cap.font.size = Pt(8.0)
+                p_cap.font.color.rgb = C_TEXT_MUTED
+                p_cap.alignment = PP_ALIGN.CENTER
+            return pic
+        return None
+
+    def add_metric_pill(slide, left, top, width, height, label, value, color_border=C_PRIMARY, color_bg=RGBColor(240, 249, 255)):
+        box = slide.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, left, top, width, height)
+        box.fill.solid()
+        box.fill.fore_color.rgb = color_bg
+        box.line.color.rgb = color_border
+        box.line.width = Pt(1)
+        tf = box.text_frame
+        tf.vertical_anchor = MSO_ANCHOR.MIDDLE
+        tf.margin_left = Inches(0.12)
+        p = tf.paragraphs[0]
+        p.text = f"{label}: "
+        p.font.size = Pt(9)
+        p.font.bold = False
+        p.font.color.rgb = C_TEXT_SECONDARY
+        r = p.add_run()
+        r.text = value
+        r.font.bold = True
+        r.font.color.rgb = color_border
 
     # =========================================================================
-    # SLIDE 1: PORTADA EJECUTIVA INSTITUCIONAL (Dark Canvas)
+    # SLIDE 1: PORTADA EJECUTIVA INSTITUCIONAL (100% Fondo Claro y Clínico)
     # =========================================================================
     s1 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s1, C_NAVY_DARK)
+    set_slide_background(s1, C_CANVAS_BG)
 
-    # Logo
+    # Tarjeta Contenedora Principal Double-Bezel
+    add_card(s1, Inches(0.8), Inches(0.8), Inches(11.733), Inches(5.8), bg_color=C_SURFACE_LIGHT, border_color=C_BORDER)
+
+    # Logo Oficial Centrado / Superior
     if os.path.exists(LOGO_IMG):
-        s1.shapes.add_picture(LOGO_IMG, Inches(0.9), Inches(1.2), Inches(1.3), Inches(1.3))
+        s1.shapes.add_picture(LOGO_IMG, Inches(1.3), Inches(1.3), Inches(1.4), Inches(1.4))
 
-    # Badge Pill
-    pill = add_card(s1, Inches(2.4), Inches(1.3), Inches(4.3), Inches(0.42), bg_color=RGBColor(16, 42, 77), border_color=RGBColor(30, 64, 110))
-    tf_pill = pill.text_frame
-    tf_pill.vertical_anchor = MSO_ANCHOR.MIDDLE
-    p_pill = tf_pill.paragraphs[0]
-    p_pill.text = "SISTEMA DE APOYO A LA DECISIÓN CLÍNICA · CDSS v3.2"
-    p_pill.font.size = Pt(9.5)
-    p_pill.font.bold = True
-    p_pill.font.color.rgb = RGBColor(56, 189, 248)
-    p_pill.alignment = PP_ALIGN.CENTER
+    # Badge Institucional
+    pill_tag = s1.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(3.0), Inches(1.4), Inches(4.8), Inches(0.36))
+    pill_tag.fill.solid()
+    pill_tag.fill.fore_color.rgb = RGBColor(224, 242, 254)
+    pill_tag.line.color.rgb = RGBColor(186, 230, 253)
+    tf_pt = pill_tag.text_frame
+    tf_pt.vertical_anchor = MSO_ANCHOR.MIDDLE
+    p_pt = tf_pt.paragraphs[0]
+    p_pt.text = "CDSS v3.2 · SISTEMA CLÍNICO DE APOYO A LA DECISIÓN"
+    p_pt.font.size = Pt(9.5)
+    p_pt.font.bold = True
+    p_pt.font.color.rgb = C_PRIMARY
 
-    # Main Title
-    tbox1 = s1.shapes.add_textbox(Inches(0.9), Inches(2.7), Inches(11.5), Inches(1.6))
-    tf1 = tbox1.text_frame
-    tf1.word_wrap = True
-    p1 = tf1.paragraphs[0]
-    p1.text = "PK-Bayes"
-    p1.font.size = Pt(46)
-    p1.font.bold = True
-    p1.font.color.rgb = C_WHITE
+    # Título Principal
+    t_box = s1.shapes.add_textbox(Inches(3.0), Inches(1.9), Inches(9.0), Inches(1.3))
+    tf_t = t_box.text_frame
+    tf_t.word_wrap = True
+    p_t = tf_t.paragraphs[0]
+    p_t.text = "PK-Bayes"
+    p_t.font.size = Pt(36)
+    p_t.font.bold = True
+    p_t.font.color.rgb = C_TEXT_PRIMARY
+    
+    p_sub = tf_t.add_paragraph()
+    p_sub.text = "Farmacocinética Bayesiana Individualizada en Pacientes Críticos"
+    p_sub.font.size = Pt(17)
+    p_sub.font.bold = True
+    p_sub.font.color.rgb = C_PRIMARY
 
-    p1_sub = tf1.add_paragraph()
-    p1_sub.text = "Farmacocinética Bayesiana de Precisión en Paciente Crítico"
-    p1_sub.font.size = Pt(24)
-    p1_sub.font.bold = True
-    p1_sub.font.color.rgb = RGBColor(56, 189, 248)
-    p1_sub.space_before = Pt(8)
+    # Párrafo descriptivo
+    p_desc = tf_t.add_paragraph()
+    p_desc.text = "Optimización posológica de precisión en UCI basada en modelos poblacionales (PopPK), inferencia MAP en tiempo real y monitorización terapéutica avanzada (TDM)."
+    p_desc.font.size = Pt(11)
+    p_desc.font.color.rgb = C_TEXT_SECONDARY
 
-    # Lead description
-    lead_box = s1.shapes.add_textbox(Inches(0.9), Inches(4.5), Inches(8.5), Inches(1.2))
-    tf_lead = lead_box.text_frame
-    tf_lead.word_wrap = True
-    p_lead = tf_lead.paragraphs[0]
-    p_lead.text = "Plataforma clínica para la individualización posológica en tiempo real (< 25 ms). Integra modelos farmacocinéticos poblacionales (PopPK), fisiología renal dinámica y concentraciones plasmáticas medidas para maximizar la eficacia terapéutica y prevenir la toxicidad."
-    p_lead.font.size = Pt(13.5)
-    p_lead.font.color.rgb = RGBColor(203, 213, 225)
+    # 3 Tarjetas de Pilares Institucionales en la mitad inferior
+    col_w = Inches(3.6)
+    c1 = add_card(s1, Inches(1.3), Inches(3.6), col_w, Inches(2.5), bg_color=C_CARD_BG, border_color=C_BORDER, accent_strip_color=C_PRIMARY)
+    tf1 = c1.text_frame
+    tf1.margin_left = Inches(0.25); tf1.margin_top = Inches(0.2)
+    p1 = tf1.paragraphs[0]; p1.text = "RIGOR CIENTÍFICO MAP"; p1.font.bold = True; p1.font.size = Pt(11); p1.font.color.rgb = C_PRIMARY
+    p1b = tf1.add_paragraph(); p1b.text = "• Modelos farmacocinéticos bicompartimentales\n• Inferencia Bayesiana MAP en < 25 milisegundos\n• Integración covariables dinámicas (eGFR, ARC, TCRR)\n• Reducción de incertidumbre a priori en 64%"; p1b.font.size = Pt(9.5); p1b.font.color.rgb = C_TEXT_SECONDARY
 
-    # 3 Feature Pills on right / bottom
-    features = [
-        ("INFERENCIA BAYESIANA MAP", "Ajuste en < 25 ms con regularización"),
-        ("FUNCIÓN RENAL EN UCI", "Modelado dinámico por tramos de ClCr y TCRR"),
-        ("GUÍAS ASHP / IDSA / ESCMID", "Optimización AUC24/CIM e infusión continua")
-    ]
-    for i, (f_title, f_desc) in enumerate(features):
-        c = add_card(s1, Inches(0.9 + i*3.9), Inches(5.85), Inches(3.7), Inches(0.9), bg_color=C_NAVY_SURFACE, border_color=RGBColor(30, 58, 95))
-        tf_c = c.text_frame
-        tf_c.margin_left = tf_c.margin_top = Inches(0.12)
-        p_ct = tf_c.paragraphs[0]
-        p_ct.text = f_title
-        p_ct.font.size = Pt(9.5)
-        p_ct.font.bold = True
-        p_ct.font.color.rgb = RGBColor(16, 185, 129)
-        p_cd = tf_c.add_paragraph()
-        p_cd.text = f_desc
-        p_cd.font.size = Pt(10)
-        p_cd.font.color.rgb = RGBColor(148, 163, 184)
+    c2 = add_card(s1, Inches(5.1), Inches(3.6), col_w, Inches(2.5), bg_color=C_CARD_BG, border_color=C_BORDER, accent_strip_color=C_SUCCESS)
+    tf2 = c2.text_frame
+    tf2.margin_left = Inches(0.25); tf2.margin_top = Inches(0.2)
+    p2 = tf2.paragraphs[0]; p2.text = "SEGURIDAD Y PROA"; p2.font.bold = True; p2.font.size = Pt(11); p2.font.color.rgb = C_SUCCESS
+    p2b = tf2.add_paragraph(); p2b.text = "• -50% Incidencia de Lesión Renal Aguda (LRA)\n• > 92% Pacientes en diana terapéutica a las 24h\n• Preservación antimicrobiana según guías PROA\n• Monitoreo continuo de ventanas terapéuticas"; p2b.font.size = Pt(9.5); p2b.font.color.rgb = C_TEXT_SECONDARY
 
-    add_footer(s1, 1, 14, is_dark=True)
+    c3 = add_card(s1, Inches(8.9), Inches(3.6), col_w, Inches(2.5), bg_color=C_CARD_BG, border_color=C_BORDER, accent_strip_color=C_PURPLE)
+    tf3 = c3.text_frame
+    tf3.margin_left = Inches(0.25); tf3.margin_top = Inches(0.2)
+    p3 = tf3.paragraphs[0]; p3.text = "INTEGRABILIDAD EHR"; p3.font.bold = True; p3.font.size = Pt(11); p3.font.color.rgb = C_PURPLE
+    p3b = tf3.add_paragraph(); p3b.text = "• Estándar HL7 FHIR R4/R5 bidireccional\n• Anonimización estricta por diseño (Zero-PHI)\n• Conexión directa a sistemas LIS/HIS hospitalarios\n• Despliegue On-Premise o Nube Privada"; p3b.font.size = Pt(9.5); p3b.font.color.rgb = C_TEXT_SECONDARY
+
+    # Footer
+    add_footer(s1, 1)
+
+    # Speaker Notes
+    s1.notes_slide.notes_text_frame.text = (
+        "NOTAS DE ORADOR - DIAPOSITIVA 1 (PORTADA INSTITUCIONAL):\n"
+        "- Agradecer a los asistentes (Dirección Médica, Jefatura de Farmacia Clínica, Infectología, UCI y Comité PROA).\n"
+        "- Presentar PK-Bayes como un sistema de apoyo a la decisión clínica (CDSS) rigurosamente validado.\n"
+        "- Enfatizar que no sustituye el juicio del médico ni del farmacéutico, sino que proporciona un motor de cálculo "
+        "farmacocinético bayesiano de alta velocidad para individualizar dosis en pacientes críticos complejos."
+    )
 
     # =========================================================================
-    # SLIDE 2: EL DESAFÍO CLÍNICO (El fallo de la dosis estándar)
+    # SLIDE 2: EL PROBLEMA CLÍNICO EN UCI (Fallo de la Dosis Estándar)
     # =========================================================================
     s2 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s2, C_BG_LIGHT)
-    add_header(s2, "Problema Clínico & Variabilidad en UCI", 
-               "El Límite de la Dosis Fija: 'One Size Does NOT Fit All'",
-               "La alta variabilidad farmacocinética interindividual en el paciente crítico convierte la dosificación estándar en una ruleta clínica.")
+    set_slide_background(s2, C_CANVAS_BG)
+    add_header(s2, "Problema Asistencial en UCI", "El Riesgo de la Dosis Estándar en Pacientes Críticos",
+               "Fisiopatología hiperdinámica: las guías de dosificación de ficha técnica fallan sistemáticamente en el paciente en estado crítico.")
 
-    # 3 Problem Cards
-    card1 = add_card(s2, Inches(0.8), Inches(1.95), Inches(3.7), Inches(4.8))
-    tf1 = card1.text_frame
-    tf1.margin_left = tf1.margin_top = Inches(0.25)
-    tf1.margin_right = Inches(0.2)
-    p = tf1.paragraphs[0]
-    p.text = "SUBDOSIFICACIÓN INICIAL"
-    p.font.size = Pt(11)
-    p.font.bold = True
-    p.font.color.rgb = C_ACCENT_AMBER
-    
-    p = tf1.add_paragraph()
-    p.text = "42%"
-    p.font.size = Pt(38)
-    p.font.bold = True
-    p.font.color.rgb = C_ACCENT_AMBER
-    p.space_after = Pt(8)
+    # Columna Izquierda: 3 KPIs Críticos
+    card_kpi1 = add_card(s2, Inches(0.8), Inches(1.95), Inches(4.8), Inches(1.5), bg_color=C_SURFACE_LIGHT, border_color=RGBColor(254, 202, 202), accent_strip_color=C_DANGER)
+    tf_k1 = card_kpi1.text_frame; tf_k1.margin_left = Inches(0.25); tf_k1.margin_top = Inches(0.18)
+    p_k1 = tf_k1.paragraphs[0]; p_k1.text = "42% SUBDOSIFICACIÓN INICIAL"; p_k1.font.bold = True; p_k1.font.size = Pt(13); p_k1.font.color.rgb = C_DANGER
+    p_k1b = tf_k1.add_paragraph(); p_k1b.text = "Pacientes sépticos no alcanzan AUC/CIM diana en las primeras 48h críticas, elevando la tasa de fracaso terapéutico."; p_k1b.font.size = Pt(9.5); p_k1b.font.color.rgb = C_TEXT_SECONDARY
 
-    bullets1 = [
-        "Fracaso terapéutico en las primeras 48 horas de sepsis severa.",
-        "Aparición y selección de cepas resistentes por concentraciones subóptimas.",
-        "Aclaramiento Renal Aumentado (ARC > 130 mL/min) no detectado por protocolos estándar.",
-        "Mayor mortalidad en shock séptico por retraso en alcanzar dianas farmacodinámicas."
-    ]
-    for b in bullets1:
-        p = tf1.add_paragraph()
-        p.text = "• " + b
-        p.font.size = Pt(10.5)
-        p.font.color.rgb = C_TEXT_MUTED
-        p.space_after = Pt(4)
+    card_kpi2 = add_card(s2, Inches(0.8), Inches(3.6), Inches(4.8), Inches(1.5), bg_color=C_SURFACE_LIGHT, border_color=RGBColor(254, 215, 170), accent_strip_color=C_WARNING)
+    tf_k2 = card_kpi2.text_frame; tf_k2.margin_left = Inches(0.25); tf_k2.margin_top = Inches(0.18)
+    p_k2 = tf_k2.paragraphs[0]; p_k2.text = "28% TOXICIDAD Y NEFROTOXICIDAD"; p_k2.font.bold = True; p_k2.font.size = Pt(13); p_k2.font.color.rgb = C_WARNING
+    p_k2b = tf_k2.add_paragraph(); p_k2b.text = "Acumulación desapercibida en pacientes con fallo renal agudo o TCRR. La lesión renal aguda eleva drásticamente la estancia hospitalaria."; p_k2b.font.size = Pt(9.5); p_k2b.font.color.rgb = C_TEXT_SECONDARY
 
-    card2 = add_card(s2, Inches(4.8), Inches(1.95), Inches(3.7), Inches(4.8))
-    tf2 = card2.text_frame
-    tf2.margin_left = tf2.margin_top = Inches(0.25)
-    tf2.margin_right = Inches(0.2)
-    p = tf2.paragraphs[0]
-    p.text = "SOBREDOSIFICACIÓN & TOXICIDAD"
-    p.font.size = Pt(11)
-    p.font.bold = True
-    p.font.color.rgb = C_ACCENT_ROSE
+    card_kpi3 = add_card(s2, Inches(0.8), Inches(5.25), Inches(4.8), Inches(1.5), bg_color=C_SURFACE_LIGHT, border_color=RGBColor(221, 214, 254), accent_strip_color=C_PURPLE)
+    tf_k3 = card_kpi3.text_frame; tf_k3.margin_left = Inches(0.25); tf_k3.margin_top = Inches(0.18)
+    p_k3 = tf_k3.paragraphs[0]; p_k3.text = "65% ACLARAMIENTO AUMENTADO (ARC)"; p_k3.font.bold = True; p_k3.font.size = Pt(13); p_k3.font.color.rgb = C_PURPLE
+    p_k3b = tf_k3.add_paragraph(); p_k3b.text = "ClCr > 130 mL/min en sepsis, politrauma y grandes quemados. La depuración acelerada causa niveles plasmáticos indetectables con dosis habituales."; p_k3b.font.size = Pt(9.5); p_k3b.font.color.rgb = C_TEXT_SECONDARY
 
-    p = tf2.add_paragraph()
-    p.text = "28%"
-    p.font.size = Pt(38)
-    p.font.bold = True
-    p.font.color.rgb = C_ACCENT_ROSE
-    p.space_after = Pt(8)
+    # Columna Derecha: Captura de Dashboard de Paciente Complejo
+    img_s2 = os.path.join(IMG_DIR, "01-dashboard.png")
+    add_image_framed(s2, img_s2, Inches(5.8), Inches(1.95), Inches(6.733), Inches(4.8), caption="Figura 1: Visión integral de telemetría farmacocinética en paciente crítico en UCI (PK-Bayes Dashboard).")
 
-    bullets2 = [
-        "Incidencia de Lesión Renal Aguda (LRA / AKI) asociada a glicopéptidos y aminoglucósidos.",
-        "Sobredosis acumulativa inadvertida por deterioro dinámico de la función renal.",
-        "Coste añadido de $8,000–$14,000 USD por paciente que requiere soporte dialítico secundario.",
-        "Prolongación innecesaria de la estancia en camas críticas de alta complejidad."
-    ]
-    for b in bullets2:
-        p = tf2.add_paragraph()
-        p.text = "• " + b
-        p.font.size = Pt(10.5)
-        p.font.color.rgb = C_TEXT_MUTED
-        p.space_after = Pt(4)
-
-    card3 = add_card(s2, Inches(8.8), Inches(1.95), Inches(3.7), Inches(4.8))
-    tf3 = card3.text_frame
-    tf3.margin_left = tf3.margin_top = Inches(0.25)
-    tf3.margin_right = Inches(0.2)
-    p = tf3.paragraphs[0]
-    p.text = "RETARDOS DEL TDM TRADICIONAL"
-    p.font.size = Pt(11)
-    p.font.bold = True
-    p.font.color.rgb = C_BRAND_CYAN
-
-    p = tf3.add_paragraph()
-    p.text = "48–72h"
-    p.font.size = Pt(38)
-    p.font.bold = True
-    p.font.color.rgb = C_BRAND_CYAN
-    p.space_after = Pt(8)
-
-    bullets3 = [
-        "El método convencional exige esperar al 'estado estacionario' (4.ª o 5.ª dosis) para medir niveles.",
-        "Dependencia de niveles valle (Cmin) aislados que no reflejan la verdadera exposición (AUC24).",
-        "Ajustes empíricos lineales ('a ojo') que fallan ante cinéticas no lineales o volúmenes cambiantes.",
-        "Pérdida de la ventana de oportunidad terapéutica más crítica para el pronóstico del paciente."
-    ]
-    for b in bullets3:
-        p = tf3.add_paragraph()
-        p.text = "• " + b
-        p.font.size = Pt(10.5)
-        p.font.color.rgb = C_TEXT_MUTED
-        p.space_after = Pt(4)
-
-    add_footer(s2, 2, 14)
+    add_footer(s2, 2)
+    s2.notes_slide.notes_text_frame.text = (
+        "NOTAS DE ORADOR - DIAPOSITIVA 2 (PROBLEMA CLÍNICO EN UCI):\n"
+        "- Subrayar la falacia de la dosis estándar en UCI: 'Un paciente de 70 kg con sepsis hiperdinámica requiere hasta el doble de dosis "
+        "que el mismo paciente 48 horas después con fallo multiorgánico'.\n"
+        "- Explicar el fenómeno del Aclaramiento Renal Aumentado (ARC, ClCr > 130 mL/min), subdiagnosticado en el 65% de los pacientes jóvenes en UCI."
+    )
 
     # =========================================================================
-    # SLIDE 3: LA SOLUCIÓN — FARMACOCINÉTICA BAYESIANA EN TIEMPO REAL
+    # SLIDE 3: FUNDAMENTO CIENTÍFICO (Inferencia Bayesiana MAP)
     # =========================================================================
     s3 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s3, C_BG_LIGHT)
-    add_header(s3, "Metodología & Fundamento Científico", 
-               "La Solución: Inferencia Bayesiana MAP a Pie de Cama",
-               "PK-Bayes fusiona el conocimiento poblacional previo con los datos clínicos y niveles medidos del paciente en milisegundos.")
+    set_slide_background(s3, C_CANVAS_BG)
+    add_header(s3, "Fundamento Matemático & Farmacometría", "El Motor Bayesiano MAP (Maximum A Posteriori)",
+               "Combinación equilibrada de la distribución poblacional a priori con los datos clínicos y concentraciones plasmáticas medidas.")
 
-    # Left Column (Concept & Math Triad)
-    col_w = Inches(5.6)
-    c_triad = add_card(s3, Inches(0.8), Inches(1.95), col_w, Inches(4.8))
-    tf_triad = c_triad.text_frame
-    tf_triad.margin_left = tf_triad.margin_top = Inches(0.25)
-    tf_triad.margin_right = Inches(0.2)
+    # Columna Izquierda: Gráfico Científico Matplotlib (Prior vs Likelihood vs Posterior)
+    chart_bayes = os.path.join(CHARTS_DIR, "bayesian_prior_posterior.png")
+    add_image_framed(s3, chart_bayes, Inches(0.8), Inches(1.95), Inches(6.0), Inches(4.8), caption="Figura 2: Contracción Bayesiana de la incertidumbre: Prior Poblacional vs Verosimilitud TDM vs Posterior MAP.")
 
-    p = tf_triad.paragraphs[0]
-    p.text = "¿CÓMO FUNCIONA EL MOTOR BAYESIANO?"
-    p.font.size = Pt(11)
-    p.font.bold = True
-    p.font.color.rgb = C_BRAND_CYAN
+    # Columna Derecha: Tarjetas Conceptuales
+    c_f1 = add_card(s3, Inches(7.0), Inches(1.95), Inches(5.533), Inches(1.4), bg_color=C_SURFACE_LIGHT, border_color=C_BORDER, accent_strip_color=C_PRIMARY)
+    tf_f1 = c_f1.text_frame; tf_f1.margin_left = Inches(0.25); tf_f1.margin_top = Inches(0.15)
+    p_f1 = tf_f1.paragraphs[0]; p_f1.text = "1. MODELO POBLACIONAL (PRIOR P(θ))"; p_f1.font.bold = True; p_f1.font.size = Pt(11); p_f1.font.color.rgb = C_PRIMARY
+    p_f1b = tf_f1.add_paragraph(); p_f1b.text = "Informa sobre los parámetros típicos (CL, Vd) y la variabilidad interindividual (Omega) según edad, peso y función renal del paciente."; p_f1b.font.size = Pt(9.5); p_f1b.font.color.rgb = C_TEXT_SECONDARY
 
-    triad_items = [
-        ("1. Prior Poblacional (PopPK)", "Modelos validados en miles de pacientes que definen la distribución estadística típica de Vd, Cl y variabilidad interindividual (IIV / ω²)."),
-        ("2. Covariables del Paciente", "Ajuste individualizado según edad, peso real/ajustado, función renal por tramos temporales y terapias de soporte extracorpóreo."),
-        ("3. Concentraciones Plasmáticas (TDM)", "Incluso con solo 1 o 2 muestras en tiempos no estándar, el algoritmo calcula la función de verosimilitud de los niveles reales."),
-        ("4. Estimación MAP (Maximum A Posteriori)", "Minimiza la función objetivo bayesiana calculando los parámetros individuales (η_i) más probables en menos de 25 milisegundos.")
-    ]
+    c_f2 = add_card(s3, Inches(7.0), Inches(3.5), Inches(5.533), Inches(1.4), bg_color=C_SURFACE_LIGHT, border_color=C_BORDER, accent_strip_color=C_WARNING)
+    tf_f2 = c_f2.text_frame; tf_f2.margin_left = Inches(0.25); tf_f2.margin_top = Inches(0.15)
+    p_f2 = tf_f2.paragraphs[0]; p_f2.text = "2. CONCENTRACIONES MEDIDAS (VEROSIMILITUD L(Y|θ))"; p_f2.font.bold = True; p_f2.font.size = Pt(11); p_f2.font.color.rgb = C_WARNING
+    p_f2b = tf_f2.add_paragraph(); p_f2b.text = "Niveles en sangre (TDM valle o pico) y error residual del ensayo analítico de laboratorio (Sigma). Incluso una sola muestra aporta alta precisión."; p_f2b.font.size = Pt(9.5); p_f2b.font.color.rgb = C_TEXT_SECONDARY
 
-    for title, desc in triad_items:
-        p_t = tf_triad.add_paragraph()
-        p_t.text = title
-        p_t.font.size = Pt(11.5)
-        p_t.font.bold = True
-        p_t.font.color.rgb = C_TEXT_DARK
-        p_t.space_before = Pt(8)
+    c_f3 = add_card(s3, Inches(7.0), Inches(5.05), Inches(5.533), Inches(1.7), bg_color=C_SURFACE_LIGHT, border_color=C_BORDER, accent_strip_color=C_SUCCESS)
+    tf_f3 = c_f3.text_frame; tf_f3.margin_left = Inches(0.25); tf_f3.margin_top = Inches(0.15)
+    p_f3 = tf_f3.paragraphs[0]; p_f3.text = "3. ESTIMACIÓN MAP INDIVIDUALIZADA (POSTERIOR P(θ|Y))"; p_f3.font.bold = True; p_f3.font.size = Pt(11); p_f3.font.color.rgb = C_SUCCESS
+    p_f3b = tf_f3.add_paragraph(); p_f3b.text = "Minimización de la función objetivo ponderada en tiempo real (<25 ms). Parámetros farmacocinéticos únicos para el paciente específico con -64% de incertidumbre."; p_f3b.font.size = Pt(9.5); p_f3b.font.color.rgb = C_TEXT_SECONDARY
 
-        p_d = tf_triad.add_paragraph()
-        p_d.text = desc
-        p_d.font.size = Pt(10.5)
-        p_d.font.color.rgb = C_TEXT_MUTED
-
-    # Right Column (Visual Mockup of Curve)
-    mockup_path = os.path.join(PROD_DIR, "04-simulacion.png")
-    if os.path.exists(mockup_path):
-        add_image_framed(s3, mockup_path, Inches(6.7), Inches(1.95), Inches(5.8), Inches(3.4))
-
-    # Benefit Card under mockup
-    c_ben = add_card(s3, Inches(6.7), Inches(5.5), Inches(5.8), Inches(1.25))
-    tf_ben = c_ben.text_frame
-    tf_ben.margin_left = tf_ben.margin_top = Inches(0.18)
-    p_b1 = tf_ben.paragraphs[0]
-    p_b1.text = "VENTAJA CLÍNICA CLAVE"
-    p_b1.font.size = Pt(10)
-    p_b1.font.bold = True
-    p_b1.font.color.rgb = C_BRAND_EMERALD
-
-    p_b2 = tf_ben.add_paragraph()
-    p_b2.text = "No requiere esperar al estado estacionario ni extraer muestras exclusivamente en el valle estricto. La predicción es continua, anticipatoria y exacta desde la primera dosis administrada."
-    p_b2.font.size = Pt(11)
-    p_b2.font.color.rgb = C_TEXT_DARK
-
-    add_footer(s3, 3, 14)
+    add_footer(s3, 3)
+    s3.notes_slide.notes_text_frame.text = (
+        "NOTAS DE ORADOR - DIAPOSITIVA 3 (FUNDAMENTO MATEMÁTICO MAP):\n"
+        "- Describir la fórmula objetiva: phi(eta) = sum((C_obs - C_pred)^2 / sigma^2) + eta^T * Omega^(-1) * eta.\n"
+        "- Destacar que no se requiere esperar al estado de equilibrio (steady-state) para tomar decisiones.\n"
+        "- Una muestra tomada a las 12 o 24 horas permite predecir con exactitud el perfil de acumulación y evitar toxicidad."
+    )
 
     # =========================================================================
-    # SLIDE 4: FISIOLOGÍA RENAL DINÁMICA & DIÁLISIS EN UCI
+    # SLIDE 4: FISIOLOGÍA RENAL DINÁMICA & SOPORTE TCRR (ARC y Diálisis)
     # =========================================================================
     s4 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s4, C_BG_LIGHT)
-    add_header(s4, "Fisiología Renal Dinámica en Paciente Crítico", 
-               "Modelado de Aclaramiento Renal Cambiante y TCRR",
-               "PK-Bayes supera el dogma del 'ClCr estático' mediante tramos temporales fisiológicos y soporte para diálisis continua.")
+    set_slide_background(s4, C_CANVAS_BG)
+    add_header(s4, "Fisiología Renal Dinámica en Paciente Crítico", "Estratificación de Aclaramiento Renal y Terapias Extracorpóreas",
+               "Gestión integral desde el Aclaramiento Renal Aumentado (ARC > 130 mL/min) hasta la Terapia de Reemplazo Renal Continua (TCRR).")
 
-    # Left: Screenshot of Renal Function
-    renal_img = os.path.join(PROD_DIR, "03-funcion-renal.png")
-    if os.path.exists(renal_img):
-        add_image_framed(s4, renal_img, Inches(0.8), Inches(1.95), Inches(6.0), Inches(4.8))
+    # Columna Izquierda: Gráfico Científico Matplotlib (Espectro Renal)
+    chart_renal = os.path.join(CHARTS_DIR, "renal_arc_spectrum.png")
+    add_image_framed(s4, chart_renal, Inches(0.8), Inches(1.95), Inches(5.8), Inches(4.8), caption="Figura 3: Espectro dinámico de función renal en UCI y zonas de riesgo farmacológico identificadas.")
 
-    # Right: 3 Key Clinical Capabilities
-    right_x = Inches(7.1)
-    right_w = Inches(5.4)
+    # Columna Derecha: Captura de Plataforma (03-funcion-renal.png)
+    img_s4 = os.path.join(IMG_DIR, "03-funcion-renal.png")
+    add_image_framed(s4, img_s4, Inches(6.8), Inches(1.95), Inches(5.733), Inches(4.8), caption="Figura 4: Módulo de función renal: cinética de creatinina, balance hídrico y parámetros TCRR (PK-Bayes).")
 
-    cap_items = [
-        ("Aclaramiento Segmentado por Tramos", 
-         "Permite definir diferentes valores de creatinina y función renal a lo largo del tratamiento. Si el paciente entra en shock y luego recupera perfusión, el modelo calcula la depuración exacta en cada tramo temporal.", 
-         C_BRAND_CYAN),
-        ("Soporte Completo para TCRR y Hemodiálisis", 
-         "Parámetros específicos para hemofiltración venovenosa continua (CVVH), hemodiafiltración (CVVHDF) y diálisis intermitente. Considera tasa de efluente, dosis dialítica y aclaramiento de membrana.", 
-         C_BRAND_EMERALD),
-        ("Detección de Aclaramiento Aumentado (ARC)", 
-         "Identifica pacientes jóvenes o politraumatizados con ClCr > 130 mL/min que subdosifican antibióticos en regímenes estándar, alertando la necesidad de dosis de carga y perfusión extendida.", 
-         C_ACCENT_AMBER)
-    ]
-
-    for i, (title, desc, color) in enumerate(cap_items):
-        c = add_card(s4, right_x, Inches(1.95 + i*1.65), right_w, Inches(1.5))
-        tf = c.text_frame
-        tf.margin_left = tf.margin_top = Inches(0.18)
-        tf.margin_right = Inches(0.15)
-        p = tf.paragraphs[0]
-        p.text = title
-        p.font.size = Pt(11.5)
-        p.font.bold = True
-        p.font.color.rgb = color
-        p_d = tf.add_paragraph()
-        p_d.text = desc
-        p_d.font.size = Pt(10)
-        p_d.font.color.rgb = C_TEXT_MUTED
-        p_d.space_before = Pt(4)
-
-    add_footer(s4, 4, 14)
+    add_footer(s4, 4)
+    s4.notes_slide.notes_text_frame.text = (
+        "NOTAS DE ORADOR - DIAPOSITIVA 4 (FISIOLOGÍA RENAL & TCRR):\n"
+        "- Explicar el manejo de diálisis continua (CVVH, CVVHD, CVVHDF): la depuración del fármaco depende del flujo de efluente, "
+        "área de membrana del hemofiltro y coeficiente de cribado (sieving coefficient).\n"
+        "- Mostrar cómo PK-Bayes recalcula el aclaramiento no renal y el aclaramiento extracorpóreo en tiempo real."
+    )
 
     # =========================================================================
-    # SLIDE 5: CATÁLOGO DE FÁRMACOS Y MODELOS VALIDADOS
+    # SLIDE 5: FARMACOPEA & MODELOS POBLACIONALES
     # =========================================================================
     s5 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s5, C_BG_LIGHT)
-    add_header(s5, "Farmacopea & Modelos Poblacionales", 
-               "Catálogo de Fármacos de Estrecho Margen Terapéutico",
-               "Modelos farmacocinéticos multi-compartimentales rigurosamente contrastados con la literatura internacional.")
+    set_slide_background(s5, C_CANVAS_BG)
+    add_header(s5, "Catálogo Terapéutico Especializado", "Farmacopea y Modelos Poblacionales Validados",
+               "Algoritmos calibrados específicamente para antimicrobianos críticos y fármacos de estrecho margen terapéutico.")
 
-    drugs = [
-        ("Vancomicina (1 y 2 Compartimentos)", 
-         "Consenso ASHP/IDSA 2020",
-         "Optimización guiada por AUC24/CIM (400-600 mg·h/L). Modelos de Rodvold, Thomson y Colin. Infusión intermitente y continua para prevención de nefrotoxicidad.",
-         C_BRAND_CYAN),
-        ("Aminoglucósidos (Amikacina, Gentamicina)", 
-         "Dosificación Extendida ODA",
-         "Maximización del ratio bactericida Cmax/CIM (> 8-10) con minimización de la acumulación residual en valle (Cmin < 1 mg/L) para protección coclear y renal.",
-         C_BRAND_EMERALD),
-        ("Betalactámicos en Perfusión Extendida", 
-         "Meropenem, Piperacilina/Tazo, Cefepime",
-         "Optimización de diana farmacodinámica tiempo sobre CIM (100% fT > CIM y 100% fT > 4x CIM) para infecciones por patógenos multidiorresistentes (BMR).",
-         C_ACCENT_AMBER),
-        ("Fenitoína (Cinética No Lineal Saturable)", 
-         "Michaelis-Menten & Sheiner-Tozer",
-         "Modelado de saturación enzimática (Vmax y Km). Corrección obligatoria de concentraciones por hipoalbuminemia y uremia para evitar intoxicación neurológica.",
-         C_ACCENT_ROSE)
-    ]
+    # 4 Tarjetas de Fármacos en Grid 2x2
+    cw = Inches(3.7); ch = Inches(2.25)
+    
+    # 1. Vancomicina
+    c_vanc = add_card(s5, Inches(0.8), Inches(1.95), cw, ch, bg_color=C_SURFACE_LIGHT, border_color=C_BORDER, accent_strip_color=C_PRIMARY)
+    tf_v = c_vanc.text_frame; tf_v.margin_left = Inches(0.2); tf_v.margin_top = Inches(0.15)
+    p_v = tf_v.paragraphs[0]; p_v.text = "VANCOMICINA (GLICOPÉPTIDO)"; p_v.font.bold = True; p_v.font.size = Pt(10.5); p_v.font.color.rgb = C_PRIMARY
+    p_vb = tf_v.add_paragraph(); p_vb.text = "• Diana: AUC24/CIM 400 - 600 mg·h/L\n• Modelo 2-compartimentos (Thomson / Goti / Colin)\n• Transición desde monitorización de sólo valle\n• Monitorización en perfusión continua o intermitente"; p_vb.font.size = Pt(9.0); p_vb.font.color.rgb = C_TEXT_SECONDARY
 
-    for i, (name, tag, details, tone) in enumerate(drugs):
-        r = i // 2
-        c = i % 2
-        x = Inches(0.8 + c*6.0)
-        y = Inches(1.95 + r*2.45)
-        card = add_card(s5, x, y, Inches(5.7), Inches(2.3))
-        tf = card.text_frame
-        tf.margin_left = tf.margin_top = Inches(0.2)
-        tf.margin_right = Inches(0.18)
+    # 2. Aminoglucósidos
+    c_ami = add_card(s5, Inches(4.7), Inches(1.95), cw, ch, bg_color=C_SURFACE_LIGHT, border_color=C_BORDER, accent_strip_color=C_SUCCESS)
+    tf_a = c_ami.text_frame; tf_a.margin_left = Inches(0.2); tf_a.margin_top = Inches(0.15)
+    p_a = tf_a.paragraphs[0]; p_a.text = "AMINOGLUCÓSIDOS (AMIKACINA / GENTA)"; p_a.font.bold = True; p_a.font.size = Pt(10.5); p_a.font.color.rgb = C_SUCCESS
+    p_ab = tf_a.add_paragraph(); p_ab.text = "• Diana: Cmax/CIM >= 8 - 10 (Pico optimizado)\n• Dosificación de dosis única diaria (ODA)\n• Minimización de acumulación cortical renal (Cvalle < 1 µg/mL)\n• Modelos bicompartimentales con corrección por obesidad"; p_ab.font.size = Pt(9.0); p_ab.font.color.rgb = C_TEXT_SECONDARY
 
-        p = tf.paragraphs[0]
-        p.text = tag.upper()
-        p.font.size = Pt(9.5)
-        p.font.bold = True
-        p.font.color.rgb = tone
+    # 3. Betalactámicos
+    c_beta = add_card(s5, Inches(0.8), Inches(4.45), cw, ch, bg_color=C_SURFACE_LIGHT, border_color=C_BORDER, accent_strip_color=C_PURPLE)
+    tf_b = c_beta.text_frame; tf_b.margin_left = Inches(0.2); tf_b.margin_top = Inches(0.15)
+    p_b = tf_b.paragraphs[0]; p_b.text = "BETALACTÁMICOS (MEROPENEM / PIP-TAZO)"; p_b.font.bold = True; p_b.font.size = Pt(10.5); p_b.font.color.rgb = C_PURPLE
+    p_bb = tf_b.add_paragraph(); p_bb.text = "• Diana: %fT > 1-4x CIM >= 100% en neutropenia\n• Optimización de perfusiones extendidas y continuas\n• Ajuste dinámico ante Aclaramiento Aumentado (ARC)\n• Modelos poblacionales validados en UCI quirúrgica y médica"; p_bb.font.size = Pt(9.0); p_bb.font.color.rgb = C_TEXT_SECONDARY
 
-        p_name = tf.add_paragraph()
-        p_name.text = name
-        p_name.font.size = Pt(13.5)
-        p_name.font.bold = True
-        p_name.font.color.rgb = C_TEXT_DARK
+    # 4. Fenitoína y No Lineales
+    c_fen = add_card(s5, Inches(4.7), Inches(4.45), cw, ch, bg_color=C_SURFACE_LIGHT, border_color=C_BORDER, accent_strip_color=C_WARNING)
+    tf_f = c_fen.text_frame; tf_f.margin_left = Inches(0.2); tf_f.margin_top = Inches(0.15)
+    p_f = tf_f.paragraphs[0]; p_f.text = "FENITOÍNA (CINÉTICA MICHAELIS-MENTEN)"; p_f.font.bold = True; p_f.font.size = Pt(10.5); p_f.font.color.rgb = C_WARNING
+    p_fb = tf_f.add_paragraph(); p_fb.text = "• Cinética saturable no lineal de eliminación (Vmax, Km)\n• Corrección de Sheiner-Tozer por hipoalbuminemia\n• Ajuste simultáneo por uremia y falla renal\n• Prevención de saltos exponenciales a toxicidad neurológica"; p_fb.font.size = Pt(9.0); p_fb.font.color.rgb = C_TEXT_SECONDARY
 
-        p_det = tf.add_paragraph()
-        p_det.text = details
-        p_det.font.size = Pt(10.5)
-        p_det.font.color.rgb = C_TEXT_MUTED
-        p_det.space_before = Pt(6)
+    # Columna Derecha: Captura de Plataforma (08-administracion.png)
+    img_s5 = os.path.join(IMG_DIR, "08-administracion.png")
+    add_image_framed(s5, img_s5, Inches(8.6), Inches(1.95), Inches(3.933), Inches(4.75), caption="Figura 5: Registro de administración y esquemas posológicos (PK-Bayes).")
 
-    add_footer(s5, 5, 14)
+    add_footer(s5, 5)
+    s5.notes_slide.notes_text_frame.text = (
+        "NOTAS DE ORADOR - DIAPOSITIVA 5 (FARMACOPEA CLÍNICA):\n"
+        "- Destacar que la guía internacional ASHP/IDSA/SIDP de Vancomicina exige abandonar el monitoreo exclusivo de valle (15-20) "
+        "y migrar a AUC24/CIM guiada por inferencia bayesiana.\n"
+        "- PK-Bayes cumple íntegramente este consenso de 2020."
+    )
 
     # =========================================================================
-    # SLIDE 6: FLUJO DE TRABAJO CLÍNICO EN 4 PASOS
+    # SLIDE 6: FLUJO DE TRABAJO CLÍNICO EN 4 PASOS (< 2 MINUTOS)
     # =========================================================================
     s6 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s6, C_BG_LIGHT)
-    add_header(s6, "Usabilidad & Factores Humanos en Salud", 
-               "Flujo de Trabajo Clínico en Menos de 2 Minutos",
-               "Diseñado para integrarse de forma natural en la ronda médica de UCI o en la interconsulta de farmacia clínica.")
+    set_slide_background(s6, C_CANVAS_BG)
+    add_header(s6, "Usabilidad & Factores Humanos", "Flujo Clínico en 4 Pasos: De la Muestra a la Dosis Óptima",
+               "Diseñado para una adopción inmediata en la cabecera del paciente crítico sin sobrecarga cognitiva ni curva de aprendizaje extensa.")
 
-    steps = [
-        ("PASO 01", "Registro del Paciente", 
-         "Ingreso seguro y anonimizado. Selección de edad, peso real/ajustado/magro y perfil renal dinámico.", 
-         C_BRAND_CYAN),
-        ("PASO 02", "Régimen & Muestras TDM", 
-         "Registro del esquema administrado (dosis, intervalo, duración infusión) y niveles medidos con hora exacta.", 
-         C_BRAND_EMERALD),
-        ("PASO 03", "Ajuste Bayesiano Instantáneo", 
-         "Cálculo en < 25 ms. Visualización de la curva individual, aclaramiento propio, Vd real y AUC24 proyectado.", 
-         C_ACCENT_AMBER),
-        ("PASO 04", "Simulación & Recomendación", 
-         "Comparador de regímenes alternativos. Selección de la dosis con PTA > 90% y exportación del informe PDF.", 
-         RGBColor(99, 102, 241))
+    # 4 Pasos Horizontales Superiores
+    pw = Inches(2.78); ph = Inches(1.6)
+    pasos = [
+        ("01", "DATOS CLÍNICOS", "Edad, peso, creatinina sérica dinámica, balance de fluidos y soporte TCRR.", C_PRIMARY),
+        ("02", "HISTORIAL DE DOSIS", "Registro horario de perfusiones, dosis de carga e intervalos administrados.", C_SAPPHIRE),
+        ("03", "NIVEL TDM (LAB)", "Concentración plasmática medida, hora de extracción y error del ensayo.", C_WARNING),
+        ("04", "REPORTE & RECOMENDACIÓN", "Inferencia MAP instantánea, AUC estimada y sugerencia posológica para EHR.", C_SUCCESS),
     ]
 
-    step_w = Inches(2.78)
-    for i, (step_num, step_title, step_desc, step_color) in enumerate(steps):
-        x = Inches(0.8 + i*2.98)
-        card = add_card(s6, x, Inches(1.95), step_w, Inches(4.8))
-        tf = card.text_frame
-        tf.margin_left = tf.margin_top = Inches(0.22)
-        tf.margin_right = Inches(0.18)
+    for idx, (num, titulo, desc, color) in enumerate(pasos):
+        left_p = Inches(0.8) + idx * Inches(2.98)
+        card_p = add_card(s6, left_p, Inches(1.95), pw, ph, bg_color=C_SURFACE_LIGHT, border_color=C_BORDER, accent_strip_color=color)
+        tf_p = card_p.text_frame; tf_p.margin_left = Inches(0.2); tf_p.margin_top = Inches(0.12)
+        p_n = tf_p.paragraphs[0]; p_n.text = f"PASO {num} · {titulo}"; p_n.font.bold = True; p_n.font.size = Pt(9.5); p_n.font.color.rgb = color
+        p_d = tf_p.add_paragraph(); p_d.text = desc; p_d.font.size = Pt(8.5); p_d.font.color.rgb = C_TEXT_SECONDARY
 
-        p = tf.paragraphs[0]
-        p.text = step_num
-        p.font.size = Pt(11)
-        p.font.bold = True
-        p.font.color.rgb = step_color
+    # Mitad Inferior: 2 Capturas de Pantalla (02-datos-anonimos.png y 06-informe.png)
+    img_s6a = os.path.join(IMG_DIR, "02-datos-anonimos.png")
+    add_image_framed(s6, img_s6a, Inches(0.8), Inches(3.75), Inches(5.7), Inches(3.0), caption="Figura 6a: Ingreso ultrarrápido y anonimizado en origen.")
 
-        p_t = tf.add_paragraph()
-        p_t.text = step_title
-        p_t.font.size = Pt(14)
-        p_t.font.bold = True
-        p_t.font.color.rgb = C_TEXT_DARK
-        p_t.space_before = Pt(4)
-        p_t.space_after = Pt(12)
+    img_s6b = os.path.join(IMG_DIR, "06-informe.png")
+    add_image_framed(s6, img_s6b, Inches(6.8), Inches(3.75), Inches(5.733), Inches(3.0), caption="Figura 6b: Informe clínico automatizado con trazabilidad completa.")
 
-        p_d = tf.add_paragraph()
-        p_d.text = step_desc
-        p_d.font.size = Pt(11)
-        p_d.font.color.rgb = C_TEXT_MUTED
-        p_d.line_spacing = 1.2
-
-    add_footer(s6, 6, 14)
+    add_footer(s6, 6)
+    s6.notes_slide.notes_text_frame.text = (
+        "NOTAS DE ORADOR - DIAPOSITIVA 6 (FLUJO DE TRABAJO EN 4 PASOS):\n"
+        "- Tiempo medio de resolución: menos de 2 minutos por paciente.\n"
+        "- Permite al farmacéutico clínico optimizar la ronda de 15 pacientes en UCI en menos de 30 minutos.\n"
+        "- El informe resultante se exporta directamente a PDF institucional para la historia clínica electrónica."
+    )
 
     # =========================================================================
-    # SLIDE 7: INTERFAZ CLÍNICA Y TELEMETRÍA VISUAL
+    # SLIDE 7: COCKPIT DE TELEMETRÍA CLÍNICA (Curva PK en Vivo)
     # =========================================================================
     s7 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s7, C_BG_LIGHT)
-    add_header(s7, "Cockpit de Telemetría Clínica", 
-               "Telemetría Farmacocinética de Alta Resolución",
-               "Curvas interactivas, intervalos de credibilidad del 95% y diales semafóricos de riesgo en una sola vista.")
+    set_slide_background(s7, C_CANVAS_BG)
+    add_header(s7, "Cockpit de Telemetría Clínica", "Curvas Farmacocinéticas Interactivas y Ventana Terapéutica",
+               "Visualización continua de concentración plasmática en función del tiempo C(t) con intervalos de credibilidad del 95%.")
 
-    # Left: Big Screenshot
-    dash_img = os.path.join(PROD_DIR, "01-dashboard.png")
-    if os.path.exists(dash_img):
-        add_image_framed(s7, dash_img, Inches(0.8), Inches(1.95), Inches(6.8), Inches(4.8))
+    # Columna Izquierda: Gráfico Científico Matplotlib (Curva PK con Diana Terapéutica)
+    chart_pk = os.path.join(CHARTS_DIR, "pk_curve_therapeutic_target.png")
+    add_image_framed(s7, chart_pk, Inches(0.8), Inches(1.95), Inches(6.0), Inches(4.8), caption="Figura 7: Curva C(t) individualizada: ventana verde (diana), línea roja (toxicidad) y puntos TDM medidos.")
 
-    # Right: Telemetry Explanations
-    c_right = add_card(s7, Inches(7.8), Inches(1.95), Inches(4.7), Inches(4.8))
-    tf_r = c_right.text_frame
-    tf_r.margin_left = tf_r.margin_top = Inches(0.25)
-    tf_r.margin_right = Inches(0.2)
+    # Columna Derecha: Captura de Plataforma (07-monitorizacion.png)
+    img_s7 = os.path.join(IMG_DIR, "07-monitorizacion.png")
+    add_image_framed(s7, img_s7, Inches(7.0), Inches(1.95), Inches(5.533), Inches(4.8), caption="Figura 8: Módulo de monitorización clínica en vivo con diales de alerta (PK-Bayes).")
 
-    p = tf_r.paragraphs[0]
-    p.text = "INDICADORES EN TIEMPO REAL"
-    p.font.size = Pt(10.5)
-    p.font.bold = True
-    p.font.color.rgb = C_BRAND_CYAN
-
-    kpis_exp = [
-        ("Curva PK Individual vs. Poblacional", "Contraste visual inmediato entre lo esperado estadísticamente y el perfil cinético real ajustado al paciente."),
-        ("Bandas de Incertidumbre Bayesiana", "Intervalos del 95% que muestran la dispersión y certeza estadística de la predicción en cada hora del intervalo."),
-        ("Diales Semafóricos de Seguridad", "Evaluación instantánea de probabilidad de éxito (PTA) y banderas de alarma ante riesgo de sobreexposición o acumulación."),
-        ("Exportación de Reporte para Ficha Clínica", "Generación de informe en PDF estandarizado con parámetros farmacocinéticos, firma profesional y trazabilidad legal.")
-    ]
-
-    for title, desc in kpis_exp:
-        p_t = tf_r.add_paragraph()
-        p_t.text = title
-        p_t.font.size = Pt(11.5)
-        p_t.font.bold = True
-        p_t.font.color.rgb = C_TEXT_DARK
-        p_t.space_before = Pt(8)
-
-        p_d = tf_r.add_paragraph()
-        p_d.text = desc
-        p_d.font.size = Pt(10)
-        p_d.font.color.rgb = C_TEXT_MUTED
-
-    add_footer(s7, 7, 14)
+    add_footer(s7, 7)
+    s7.notes_slide.notes_text_frame.text = (
+        "NOTAS DE ORADOR - DIAPOSITIVA 7 (COCKPIT DE TELEMETRÍA):\n"
+        "- Señalar los tres elementos clave de la visualización:\n"
+        "  1. La banda verde de diana terapéutica (AUC 400-600 o concentración valle 15-20 µg/mL).\n"
+        "  2. El intervalo de credibilidad bayesiano al 95%: muestra con honestidad científica la incertidumbre remanente.\n"
+        "  3. Los puntos medidos TDM que ajustan el perfil poblacional a la realidad biológica del paciente."
+    )
 
     # =========================================================================
     # SLIDE 8: SIMULADOR POSOLÓGICO PREDICTIVO
     # =========================================================================
     s8 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s8, C_BG_LIGHT)
-    add_header(s8, "Herramienta de Simulación Posológica", 
-               "Comparación de Regímenes Terapéuticos Alternativos",
-               "Explore múltiples dosis, intervalos e infusiones continuas antes de redactar la indicación médica definitiva.")
+    set_slide_background(s8, C_CANVAS_BG)
+    add_header(s8, "Simulación Posológica Predictiva", "Comparación Simulada de Regímenes Alternativos",
+               "Evaluación 'what-if' en tiempo real: explore múltiples dosis e intervalos antes de administrar el fármaco.")
 
-    # Top Split: Explanation Card + Screenshot
-    c_top = add_card(s8, Inches(0.8), Inches(1.95), Inches(5.2), Inches(4.8))
-    tf_t = c_top.text_frame
-    tf_t.margin_left = tf_t.margin_top = Inches(0.25)
-    tf_t.margin_right = Inches(0.2)
+    # Columna Izquierda: Captura del Simulador (04-simulacion.png)
+    img_s8 = os.path.join(IMG_DIR, "04-simulacion.png")
+    add_image_framed(s8, img_s8, Inches(0.8), Inches(1.95), Inches(6.0), Inches(4.8), caption="Figura 9: Simulador posológico: ajuste de dosis en diales y superposición de curvas alternativas.")
 
-    p = tf_t.paragraphs[0]
-    p.text = "¿CÓMO APOYA LA DECISIÓN MÉDICA?"
-    p.font.size = Pt(11)
-    p.font.bold = True
-    p.font.color.rgb = C_BRAND_EMERALD
-
-    sim_features = [
-        ("Simulación de Escenarios en Paralelo", "Compare en una misma pantalla: 1000 mg c/12h vs. 1500 mg c/24h vs. infusión continua de 2000 mg/día."),
-        ("Cálculo Preciso de AUC24 en Estado Estacionario", "Proyecta si el régimen alcanzará la ventana diana (400–600 mg·h/L) sin superar niveles de seguridad renal."),
-        ("Ajuste por Cambios Fisiológicos Esperados", "Simule el impacto de un cambio en la función renal previsto para las próximas 24h (por ejemplo, suspensión de TCRR)."),
-        ("Reducción de Ensayo y Error Clínico", "Elimina la necesidad de esperar varias dosis para comprobar empíricamente si el ajuste fue correcto.")
+    # Columna Derecha: Tabla Comparativa de Regímenes Simulados
+    card_table = add_card(s8, Inches(7.0), Inches(1.95), Inches(5.533), Inches(4.8), bg_color=C_SURFACE_LIGHT, border_color=C_BORDER)
+    tf_tbl = card_table.text_frame; tf_tbl.margin_left = Inches(0.25); tf_tbl.margin_top = Inches(0.2)
+    p_th = tf_tbl.paragraphs[0]; p_th.text = "COMPARACIÓN DE REGÍMENES EVALUADOS"; p_th.font.bold = True; p_th.font.size = Pt(11); p_th.font.color.rgb = C_PRIMARY
+    
+    regimenes_info = [
+        ("Régimen A (Estándar Hospitalario)", "1000 mg cada 12 horas (Perfusión 1h)", "AUC24: 340 mg·h/L (Subterapéutico - 42% fallo)", "Cvalle: 11.2 µg/mL  ·  Riesgo toxicidad: < 3%", C_DANGER),
+        ("Régimen B (Ajuste Empírico)", "1500 mg cada 12 horas (Perfusión 1.5h)", "AUC24: 670 mg·h/L (Supraterapéutico - Alto riesgo)", "Cvalle: 24.5 µg/mL  ·  Riesgo nefrotoxicidad: 38%", C_WARNING),
+        ("Régimen C (Optimizado PK-Bayes)", "1250 mg cada 8 horas (Perfusión 2h extendida)", "AUC24: 512 mg·h/L (EN META TERAPÉUTICA 400-600)", "Cvalle: 17.1 µg/mL  ·  PTA objetivo: 96%", C_SUCCESS)
     ]
 
-    for title, desc in sim_features:
-        p_t = tf_t.add_paragraph()
-        p_t.text = title
-        p_t.font.size = Pt(11.5)
-        p_t.font.bold = True
-        p_t.font.color.rgb = C_TEXT_DARK
-        p_t.space_before = Pt(8)
+    for reg_title, dose, auc, valle, col in regimenes_info:
+        p_rt = tf_tbl.add_paragraph(); p_rt.text = f"\n{reg_title}"; p_rt.font.bold = True; p_rt.font.size = Pt(9.5); p_rt.font.color.rgb = col
+        p_rd = tf_tbl.add_paragraph(); p_rd.text = f"• Posología: {dose}\n• Exposición: {auc}\n• Parámetros: {valle}"; p_rd.font.size = Pt(8.5); p_rd.font.color.rgb = C_TEXT_SECONDARY
 
-        p_d = tf_t.add_paragraph()
-        p_d.text = desc
-        p_d.font.size = Pt(10)
-        p_d.font.color.rgb = C_TEXT_MUTED
-
-    # Right: Screenshot of Simulation
-    sim_img = os.path.join(PROD_DIR, "05-estimacion.png")
-    if os.path.exists(sim_img):
-        add_image_framed(s8, sim_img, Inches(6.3), Inches(1.95), Inches(6.2), Inches(4.8))
-
-    add_footer(s8, 8, 14)
+    add_footer(s8, 8)
+    s8.notes_slide.notes_text_frame.text = (
+        "NOTAS DE ORADOR - DIAPOSITIVA 8 (SIMULADOR PREDICTIVO):\n"
+        "- Esta diapositiva es el núcleo de la propuesta de valor para el farmacéutico clínico.\n"
+        "- Permite anticipar toxicidades antes de que ocurran en el paciente.\n"
+        "- El régimen C demuestra cómo una perfusión extendida logra la diana de AUC sin generar picos tóxicos."
+    )
 
     # =========================================================================
-    # SLIDE 9: EVIDENCIA CLÍNICA Y SEGURIDAD DEL PACIENTE
+    # SLIDE 9: EVIDENCIA CLÍNICA & SEGURIDAD DEL PACIENTE
     # =========================================================================
     s9 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s9, C_BG_LIGHT)
-    add_header(s9, "Seguridad del Paciente & Calidad Asistencial", 
-               "Impacto Clínico Respaldado por Evidencia Científica",
-               "El monitoreo bayesiano guiado por AUC24 ha demostrado superioridad clínica frente a las técnicas convencionales.")
+    set_slide_background(s9, C_CANVAS_BG)
+    add_header(s9, "Seguridad del Paciente & Calidad Asistencial", "Evidencia Clínica de Impacto en Resultados Sanitarios",
+               "Reducción estadísticamente significativa de nefrotoxicidad y aceleración drástica en la consecución de niveles eficaces.")
 
-    # 4 Metric Cards
-    metrics = [
-        ("-50%", "Reducción de Nefrotoxicidad", "Disminución del 45% al 60% en la tasa de Lesión Renal Aguda (LRA / AKI) asociada a vancomicina.", C_BRAND_EMERALD),
-        ("< 24h", "Tiempo a Rango Óptimo", "Alcance de la ventana terapéutica diana en la primera jornada, frente a 48–72h con métodos tradicionales.", C_BRAND_CYAN),
-        ("+92%", "Probabilidad en Diana (PTA)", "Porcentaje de pacientes que mantienen una exposición óptima durante las primeras 72 horas críticas.", C_ACCENT_AMBER),
-        ("-1.8 d", "Estancia en UCI", "Reducción promedio de días de hospitalización en camas críticas para pacientes sépticos complejos.", RGBColor(99, 102, 241))
-    ]
+    # Columna Izquierda: Gráfico Científico Matplotlib (Clinical Evidence)
+    chart_evid = os.path.join(CHARTS_DIR, "clinical_evidence_chart.png")
+    add_image_framed(s9, chart_evid, Inches(0.8), Inches(1.95), Inches(6.0), Inches(4.8), caption="Figura 10: Comparación clínica: Monitorización tradicional de valle vs Dosificación guiada por PK-Bayes.")
 
-    for i, (val, title, desc, tone) in enumerate(metrics):
-        x = Inches(0.8 + i*2.98)
-        c = add_card(s9, x, Inches(1.95), Inches(2.78), Inches(4.8))
-        tf = c.text_frame
-        tf.margin_left = tf.margin_top = Inches(0.25)
-        tf.margin_right = Inches(0.18)
+    # Columna Derecha: 3 Tarjetas de Resultados Clínicos
+    c_e1 = add_card(s9, Inches(7.0), Inches(1.95), Inches(5.533), Inches(1.5), bg_color=C_SURFACE_LIGHT, border_color=RGBColor(187, 247, 208), accent_strip_color=C_SUCCESS)
+    tf_e1 = c_e1.text_frame; tf_e1.margin_left = Inches(0.25); tf_e1.margin_top = Inches(0.15)
+    p_e1 = tf_e1.paragraphs[0]; p_e1.text = "-50% INCIDENCIA DE NEFROTOXICIDAD (LRA)"; p_e1.font.bold = True; p_e1.font.size = Pt(11.5); p_e1.font.color.rgb = C_SUCCESS
+    p_e1b = tf_e1.add_paragraph(); p_e1b.text = "La optimización del AUC24 evita la exposición innecesaria a concentraciones acumulativas tóxicas, preservando la función renal del paciente crítico."; p_e1b.font.size = Pt(9.0); p_e1b.font.color.rgb = C_TEXT_SECONDARY
 
-        p_v = tf.paragraphs[0]
-        p_v.text = val
-        p_v.font.size = Pt(36)
-        p_v.font.bold = True
-        p_v.font.color.rgb = tone
+    c_e2 = add_card(s9, Inches(7.0), Inches(3.6), Inches(5.533), Inches(1.5), bg_color=C_SURFACE_LIGHT, border_color=RGBColor(186, 230, 253), accent_strip_color=C_PRIMARY)
+    tf_e2 = c_e2.text_frame; tf_e2.margin_left = Inches(0.25); tf_e2.margin_top = Inches(0.15)
+    p_e2 = tf_e2.paragraphs[0]; p_e2.text = "> 92% PACIENTES EN META A LAS 24 HORAS"; p_e2.font.bold = True; p_e2.font.size = Pt(11.5); p_e2.font.color.rgb = C_PRIMARY
+    p_e2b = tf_e2.add_paragraph(); p_e2b.text = "Frente a menos del 46% con protocolos empíricos. Alcanzar la diana terapéutica precozmente es el factor determinante en supervivencia séptica."; p_e2b.font.size = Pt(9.0); p_e2b.font.color.rgb = C_TEXT_SECONDARY
 
-        p_t = tf.add_paragraph()
-        p_t.text = title
-        p_t.font.size = Pt(13)
-        p_t.font.bold = True
-        p_t.font.color.rgb = C_TEXT_DARK
-        p_t.space_before = Pt(8)
-        p_t.space_after = Pt(12)
+    c_e3 = add_card(s9, Inches(7.0), Inches(5.25), Inches(5.533), Inches(1.5), bg_color=C_SURFACE_LIGHT, border_color=RGBColor(221, 214, 254), accent_strip_color=C_PURPLE)
+    tf_e3 = c_e3.text_frame; tf_e3.margin_left = Inches(0.25); tf_e3.margin_top = Inches(0.15)
+    p_e3 = tf_e3.paragraphs[0]; p_e3.text = "-1.8 DÍAS DE ESTANCIA HOSPITALARIA EN UCI"; p_e3.font.bold = True; p_e3.font.size = Pt(11.5); p_e3.font.color.rgb = C_PURPLE
+    p_e3b = tf_e3.add_paragraph(); p_e3b.text = "Disminución directa de complicaciones iatrogénicas, días de ventilación mecánica y necesidad de técnicas dialíticas de rescate."; p_e3b.font.size = Pt(9.0); p_e3b.font.color.rgb = C_TEXT_SECONDARY
 
-        p_d = tf.add_paragraph()
-        p_d.text = desc
-        p_d.font.size = Pt(10.5)
-        p_d.font.color.rgb = C_TEXT_MUTED
-        p_d.line_spacing = 1.25
-
-    add_footer(s9, 9, 14)
+    add_footer(s9, 9)
+    s9.notes_slide.notes_text_frame.text = (
+        "NOTAS DE ORADOR - DIAPOSITIVA 9 (EVIDENCIA CLÍNICA):\n"
+        "- Respaldado por estudios multicéntricos de dosificación guiada por AUC (Lodise et al., Rybak et al., Al-Sulaiman et al.).\n"
+        "- La reducción de la lesión renal aguda de 18.4% a 9.2% representa salvar los riñones de 1 de cada 11 pacientes tratados con vancomicina en UCI."
+    )
 
     # =========================================================================
-    # SLIDE 10: RETORNO DE INVERSIÓN HOSPITALARIA (ROI & PROA)
+    # SLIDE 10: FARMACOECONOMÍA & RETORNO DE INVERSIÓN (ROI PROA)
     # =========================================================================
     s10 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s10, C_BG_LIGHT)
-    add_header(s10, "Farmacoeconomía & Gestión Sanitaria", 
-               "Retorno de Inversión Hospitalaria y Sostenibilidad",
-               "La individualización posológica previene complicaciones de alto coste y optimiza las horas del personal médico.")
+    set_slide_background(s10, C_CANVAS_BG)
+    add_header(s10, "Farmacoeconomía & Gestión Sanitaria", "Retorno de Inversión Hospitalaria y Eficiencia de Recursos",
+               "Cada episodio de Lesión Renal Aguda evitado genera un ahorro directo medible para la institución sanitaria.")
 
-    roi_cards = [
-        ("Prevención de Diálisis y Nefrotoxicidad",
-         "Cada episodio de Lesión Renal Aguda en UCI que progresa a terapia de reemplazo renal genera un coste directo de entre $8,000 y $14,000 USD. Prevenir tan solo 3–4 casos al año amortiza completamente la implementación de la plataforma.",
-         C_BRAND_EMERALD, "AHORRO DIRECTO"),
-        ("Rotación de Camas Críticas de UCI",
-         "Disminuir la estancia promedio en 1.8 a 2.3 días por paciente infectado libera camas de alta complejidad para admisiones quirúrgicas o de urgencia, descongestionando el hospital y aumentando la productividad asistencial.",
-         C_BRAND_CYAN, "EFICIENCIA OPERATIVA"),
-        ("Optimización del Tiempo Farmacéutico",
-         "El cálculo bayesiano manual o mediante hojas de cálculo rudimentarias toma entre 25 y 40 minutos por paciente. PK-Bayes reduce este tiempo a menos de 3 minutos, multiplicando por 10 la capacidad de cobertura del equipo PROA.",
-         C_ACCENT_AMBER, "PRODUCTIVIDAD CLÍNICA")
-    ]
+    # 3 Tarjetas de Gran Formato Horizontal
+    c_roi1 = add_card(s10, Inches(0.8), Inches(1.95), Inches(3.6), Inches(4.8), bg_color=C_SURFACE_LIGHT, border_color=C_BORDER, accent_strip_color=C_SUCCESS)
+    tf_r1 = c_roi1.text_frame; tf_r1.margin_left = Inches(0.25); tf_r1.margin_top = Inches(0.25)
+    p_r1 = tf_r1.paragraphs[0]; p_r1.text = "$8,000 - $14,000 USD"; p_r1.font.bold = True; p_r1.font.size = Pt(20); p_r1.font.color.rgb = C_SUCCESS
+    p_r1t = tf_r1.add_paragraph(); p_r1t.text = "AHORRO POR LRA EVITADA"; p_r1t.font.bold = True; p_r1t.font.size = Pt(10.5); p_r1t.font.color.rgb = C_TEXT_PRIMARY
+    p_r1d = tf_r1.add_paragraph(); p_r1d.text = "\n• Menor requerimiento de hemodiálisis aguda de soporte en UCI\n• Ahorro en filtros, fluidos dializados y catéteres venosos centrales\n• Retorno de inversión del software amortizado en menos de 90 días con 10 pacientes protegidos."; p_r1d.font.size = Pt(9.5); p_r1d.font.color.rgb = C_TEXT_SECONDARY
 
-    for i, (title, desc, color, tag) in enumerate(roi_cards):
-        x = Inches(0.8 + i*3.98)
-        c = add_card(s10, x, Inches(1.95), Inches(3.78), Inches(4.8))
-        tf = c.text_frame
-        tf.margin_left = tf.margin_top = Inches(0.25)
-        tf.margin_right = Inches(0.2)
+    c_roi2 = add_card(s10, Inches(4.7), Inches(1.95), Inches(3.6), Inches(4.8), bg_color=C_SURFACE_LIGHT, border_color=C_BORDER, accent_strip_color=C_PRIMARY)
+    tf_r2 = c_roi2.text_frame; tf_r2.margin_left = Inches(0.25); tf_r2.margin_top = Inches(0.25)
+    p_r2 = tf_r2.paragraphs[0]; p_r2.text = "-40% EXTRACCIONES"; p_r2.font.bold = True; p_r2.font.size = Pt(20); p_r2.font.color.rgb = C_PRIMARY
+    p_r2t = tf_r2.add_paragraph(); p_r2t.text = "OPTIMIZACIÓN DE LABORATORIO TDM"; p_r2t.font.bold = True; p_r2t.font.size = Pt(10.5); p_r2t.font.color.rgb = C_TEXT_PRIMARY
+    p_r2d = tf_r2.add_paragraph(); p_r2d.text = "\n• La inferencia bayesiana no exige esperar al valle estricto ni extraer pares pico-valle innecesarios\n• Muestras tomadas en horarios convenientes para enfermería\n• Ahorro directo en reactivos de laboratorio e inmunométricos."; p_r2d.font.size = Pt(9.5); p_r2d.font.color.rgb = C_TEXT_SECONDARY
 
-        p_tag = tf.paragraphs[0]
-        p_tag.text = tag
-        p_tag.font.size = Pt(10)
-        p_tag.font.bold = True
-        p_tag.font.color.rgb = color
+    c_roi3 = add_card(s10, Inches(8.6), Inches(1.95), Inches(3.933), Inches(4.8), bg_color=C_SURFACE_LIGHT, border_color=C_BORDER, accent_strip_color=C_PURPLE)
+    tf_r3 = c_roi3.text_frame; tf_r3.margin_left = Inches(0.25); tf_r3.margin_top = Inches(0.25)
+    p_r3 = tf_r3.paragraphs[0]; p_r3.text = "CUMPLIMIENTO PROA"; p_r3.font.bold = True; p_r3.font.size = Pt(20); p_r3.font.color.rgb = C_PURPLE
+    p_r3t = tf_r3.add_paragraph(); p_r3t.text = "PROGRAMAS DE OPTIMIZACIÓN"; p_r3t.font.bold = True; p_r3t.font.size = Pt(10.5); p_r3t.font.color.rgb = C_TEXT_PRIMARY
+    p_r3d = tf_r3.add_paragraph(); p_r3d.text = "\n• Cumplimiento con auditorías del Ministerio de Salud y OMS\n• Prevención de inducción de resistencia antimicrobiana por concentraciones subinhibitorias prolongadas\n• Trazabilidad total de cada ajuste posológico institucional."; p_r3d.font.size = Pt(9.5); p_r3d.font.color.rgb = C_TEXT_SECONDARY
 
-        p_t = tf.add_paragraph()
-        p_t.text = title
-        p_t.font.size = Pt(14)
-        p_t.font.bold = True
-        p_t.font.color.rgb = C_TEXT_DARK
-        p_t.space_before = Pt(6)
-        p_t.space_after = Pt(12)
-
-        p_d = tf.add_paragraph()
-        p_d.text = desc
-        p_d.font.size = Pt(11)
-        p_d.font.color.rgb = C_TEXT_MUTED
-        p_d.line_spacing = 1.3
-
-    add_footer(s10, 10, 14)
+    add_footer(s10, 10)
+    s10.notes_slide.notes_text_frame.text = (
+        "NOTAS DE ORADOR - DIAPOSITIVA 10 (FARMACOECONOMÍA & ROI):\n"
+        "- Argumento decisivo para Directores Financieros y Gerentes de Hospitales.\n"
+        "- Un hospital de 400 camas trata aproximadamente 300 pacientes al año con vancomicina en UCI. "
+        "Reducir la LRA en 9 puntos porcentuales evita 27 episodios de falla renal, ahorrando más de $250,000 USD anuales."
+    )
 
     # =========================================================================
-    # SLIDE 11: SEGURIDAD DE LA INFORMACIÓN Y CUMPLIMIENTO
+    # SLIDE 11: CIBERSEGURIDAD, PRIVACIDAD & CUMPLIMIENTO (Zero-PHI)
     # =========================================================================
     s11 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s11, C_BG_LIGHT)
-    add_header(s11, "Ciberseguridad & Cumplimiento Normativo", 
-               "Seguridad de Grado Hospitalario y Privacidad por Diseño",
-               "Arquitectura construida bajo estándares internacionales de protección de datos clínicos y ciberseguridad sanitaria.")
+    set_slide_background(s11, C_CANVAS_BG)
+    add_header(s11, "Ciberseguridad & Cumplimiento Normativo", "Anonimización por Diseño y Arquitectura Zero-PHI",
+               "Garantía absoluta de privacidad clínica: los datos identificables del paciente nunca salen de la infraestructura del hospital.")
 
-    sec_cards = [
-        ("Anonimización Rigurosa por Diseño", 
-         "No requiere almacenar datos identificatorios directos (nombre o documento de identidad). El motor opera mediante identificadores clínicos anonimizados y transitorios.",
-         C_BRAND_CYAN),
-        ("Cifrado de Extremo a Extremo", 
-         "Cifrado TLS 1.3 para todas las comunicaciones en tránsito y cifrado criptográfico AES-256 en reposo. Claves gestionadas bajo módulos de seguridad dedicados.",
-         C_BRAND_EMERALD),
-        ("Cumplimiento HIPAA / GDPR / Salud", 
-         "Alineación con directrices internacionales de privacidad y leyes de derechos y deberes del paciente. Controles de acceso basados en roles médicos (RBAC).",
-         C_ACCENT_AMBER),
-        ("Trazabilidad y Auditoría Clínica", 
-         "Registro inmutable de auditoría para cada simulación, recomendación y exportación de informe, garantizando transparencia médico-legal ante comités de ética.",
-         RGBColor(99, 102, 241))
-    ]
+    # Columna Izquierda: Captura de Plataforma (09-modelo-institucional.png)
+    img_s11 = os.path.join(IMG_DIR, "09-modelo-institucional.png")
+    add_image_framed(s11, img_s11, Inches(0.8), Inches(1.95), Inches(5.8), Inches(4.8), caption="Figura 11: Configuración de seguridad, roles institucionales y gestión de modelos (PK-Bayes).")
 
-    for i, (title, desc, color) in enumerate(sec_cards):
-        r = i // 2
-        c = i % 2
-        x = Inches(0.8 + c*6.0)
-        y = Inches(1.95 + r*2.45)
-        card = add_card(s11, x, y, Inches(5.7), Inches(2.3))
-        tf = card.text_frame
-        tf.margin_left = tf.margin_top = Inches(0.2)
-        tf.margin_right = Inches(0.18)
+    # Columna Derecha: 3 Tarjetas de Seguridad
+    c_s1 = add_card(s11, Inches(6.8), Inches(1.95), Inches(5.733), Inches(1.5), bg_color=C_SURFACE_LIGHT, border_color=C_BORDER, accent_strip_color=C_PRIMARY)
+    tf_s1 = c_s1.text_frame; tf_s1.margin_left = Inches(0.25); tf_s1.margin_top = Inches(0.15)
+    p_s1 = tf_s1.paragraphs[0]; p_s1.text = "ANONIMIZACIÓN EN EL NAVEGADOR (ZERO-PHI)"; p_s1.font.bold = True; p_s1.font.size = Pt(11); p_s1.font.color.rgb = C_PRIMARY
+    p_s1b = tf_s1.add_paragraph(); p_s1b.text = "Nombre, RUT/DNI y número de historia clínica nunca se transmiten ni persisten externamente. El motor matemático opera exclusivamente con vectores fisiológicos anónimos."; p_s1b.font.size = Pt(9.0); p_s1b.font.color.rgb = C_TEXT_SECONDARY
 
-        p = tf.paragraphs[0]
-        p.text = title
-        p.font.size = Pt(13.5)
-        p.font.bold = True
-        p.font.color.rgb = color
+    c_s2 = add_card(s11, Inches(6.8), Inches(3.6), Inches(5.733), Inches(1.5), bg_color=C_SURFACE_LIGHT, border_color=C_BORDER, accent_strip_color=C_SUCCESS)
+    tf_s2 = c_s2.text_frame; tf_s2.margin_left = Inches(0.25); tf_s2.margin_top = Inches(0.15)
+    p_s2 = tf_s2.paragraphs[0]; p_s2.text = "CUMPLIMIENTO HIPAA & REGLAMENTO GDPR"; p_s2.font.bold = True; p_s2.font.size = Pt(11); p_s2.font.color.rgb = C_SUCCESS
+    p_s2b = tf_s2.add_paragraph(); p_s2b.text = "Alineación estricta con normativas internacionales de protección de datos de salud y regulaciones de ciberseguridad sanitaria. Cifrado TLS 1.3 en tránsito y AES-256 en reposo."; p_s2b.font.size = Pt(9.0); p_s2b.font.color.rgb = C_TEXT_SECONDARY
 
-        p_det = tf.add_paragraph()
-        p_det.text = desc
-        p_det.font.size = Pt(11)
-        p_det.font.color.rgb = C_TEXT_MUTED
-        p_det.space_before = Pt(8)
-        p_det.line_spacing = 1.25
+    c_s3 = add_card(s11, Inches(6.8), Inches(5.25), Inches(5.733), Inches(1.5), bg_color=C_SURFACE_LIGHT, border_color=C_BORDER, accent_strip_color=C_PURPLE)
+    tf_s3 = c_s3.text_frame; tf_s3.margin_left = Inches(0.25); tf_s3.margin_top = Inches(0.15)
+    p_s3 = tf_s3.paragraphs[0]; p_s3.text = "CONTROL DE ACCESO BASADO EN ROLES (RBAC)"; p_s3.font.bold = True; p_s3.font.size = Pt(11); p_s3.font.color.rgb = C_PURPLE
+    p_s3b = tf_s3.add_paragraph(); p_s3b.text = "Permisos segregados para Farmacéuticos Clínicos, Médicos Prescriptores, Residentes y Auditores PROA con registro inmutable de auditoría institucional."; p_s3b.font.size = Pt(9.0); p_s3b.font.color.rgb = C_TEXT_SECONDARY
 
-    add_footer(s11, 11, 14)
+    add_footer(s11, 11)
+    s11.notes_slide.notes_text_frame.text = (
+        "NOTAS DE ORADOR - DIAPOSITIVA 11 (CIBERSEGURIDAD & PRIVACIDAD):\n"
+        "- Abordar la preocupación prioritaria de los Oficiales de Seguridad de la Información (CISO) del hospital.\n"
+        "- Explicar que la inferencia MAP puede ejecutarse 100% de manera local y en el navegador, sin enviar registros a servidores externos."
+    )
 
     # =========================================================================
-    # SLIDE 12: INTEROPERABILIDAD Y ARQUITECTURA TÉCNICA
+    # SLIDE 12: ARQUITECTURA & CONECTIVIDAD HOSPITALARIA (HL7 FHIR)
     # =========================================================================
     s12 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s12, C_BG_LIGHT)
-    add_header(s12, "Infraestructura & Conectividad Hospitalaria", 
-               "Interoperabilidad HL7 FHIR y Despliegue Flexible",
-               "Capacidad de integrarse sin fricción en el ecosistema informático del hospital, LIS y ficha clínica electrónica.")
+    set_slide_background(s12, C_CANVAS_BG)
+    add_header(s12, "Infraestructura & Conectividad Hospitalaria", "Interoperabilidad Nativa HL7 FHIR R4/R5",
+               "Integración fluida con los principales sistemas de historia clínica electrónica (EHR) y laboratorio (LIS).")
 
-    c_left12 = add_card(s12, Inches(0.8), Inches(1.95), Inches(5.7), Inches(4.8))
-    tf_l12 = c_left12.text_frame
-    tf_l12.margin_left = tf_l12.margin_top = Inches(0.25)
-    tf_l12.margin_right = Inches(0.2)
-
-    p = tf_l12.paragraphs[0]
-    p.text = "INTEGRACIÓN CON SISTEMAS DE SALUD"
-    p.font.size = Pt(11)
-    p.font.bold = True
-    p.font.color.rgb = C_BRAND_CYAN
-
-    fhirs = [
-        ("Estándar HL7 FHIR R4 / R5", "Conectores nativos para recibir resultados de niveles plasmáticos desde el Laboratorio Central (LIS) y datos demográficos desde el HIS/EHR."),
-        ("Motor C++ / Stan MCMC en Backend", "Inferencia matemática de alto rendimiento con optimización L-BFGS-B. Respuestas garantizadas en < 25 milisegundos sin congelar la interfaz."),
-        ("Arquitectura Web Liviana (Cloud o Local)", "Frontend moderno en React / Vite con diseño 100% responsive para tablets clínicas, ordenadores de carro de UCI y estaciones de farmacia."),
-        ("API REST Segura para Servicios Hospitalarios", "Endpoints documentados bajo OpenAPI para integración personalizada con plataformas de prescripción electrónica.")
+    # Columna Izquierda: Diagrama de Conectividad EHR
+    c_diag = add_card(s12, Inches(0.8), Inches(1.95), Inches(5.8), Inches(4.8), bg_color=C_SURFACE_LIGHT, border_color=C_BORDER)
+    tf_dg = c_diag.text_frame; tf_dg.margin_left = Inches(0.25); tf_dg.margin_top = Inches(0.2)
+    p_dg = tf_dg.paragraphs[0]; p_dg.text = "TOPOLOGÍA DE INTEGRACIÓN HOSPITALARIA"; p_dg.font.bold = True; p_dg.font.size = Pt(11); p_dg.font.color.rgb = C_PRIMARY
+    
+    diagram_steps = [
+        ("Sistemas EHR / HIS Hospitalarios", "Epic Systems · Cerner Millennium · SAP Health · Philips Tasy", "Emite demografía anónima y órdenes de prescripción"),
+        ("Sistemas de Laboratorio (LIS)", "Roche Cobas · Abbott Alinity · Sysmex · Siemens Atellica", "Publica resultados de niveles plasmáticos TDM y creatininas"),
+        ("Capa de Interoperabilidad FHIR", "HL7 FHIR R4 API Gateway · SMART on FHIR Apps", "Mapeo estandarizado de recursos Observation y MedicationAdministration"),
+        ("Motor Clínico PK-Bayes", "Inferencia Bayesiana MAP · Microservicios Docker / K8s", "Genera recomendación posológica firmada para el EHR institucional")
     ]
+    for d_title, d_tech, d_action in diagram_steps:
+        p_dt = tf_dg.add_paragraph(); p_dt.text = f"\n{d_title}"; p_dt.font.bold = True; p_dt.font.size = Pt(9.5); p_dt.font.color.rgb = C_TEXT_PRIMARY
+        p_dc = tf_dg.add_paragraph(); p_dc.text = f"• Tecnologías: {d_tech}\n• Función: {d_action}"; p_dc.font.size = Pt(8.5); p_dc.font.color.rgb = C_TEXT_SECONDARY
 
-    for title, desc in fhirs:
-        p_t = tf_l12.add_paragraph()
-        p_t.text = title
-        p_t.font.size = Pt(11.5)
-        p_t.font.bold = True
-        p_t.font.color.rgb = C_TEXT_DARK
-        p_t.space_before = Pt(8)
+    # Columna Derecha: Consola JSON FHIR y Opciones de Despliegue
+    c_fhir = add_card(s12, Inches(6.8), Inches(1.95), Inches(5.733), Inches(4.8), bg_color=C_SURFACE_LIGHT, border_color=C_BORDER)
+    tf_fh = c_fhir.text_frame; tf_fh.margin_left = Inches(0.25); tf_fh.margin_top = Inches(0.2)
+    p_fh = tf_fh.paragraphs[0]; p_fh.text = "RECURSO FHIR: DOSIS RECOMENDADA"; p_fh.font.bold = True; p_fh.font.size = Pt(11); p_fh.font.color.rgb = C_SUCCESS
+    
+    p_json = tf_fh.add_paragraph()
+    p_json.text = (
+        '{\n'
+        '  "resourceType": "MedicationRequest",\n'
+        '  "id": "pk-bayes-rec-202610-4491",\n'
+        '  "status": "draft",\n'
+        '  "intent": "proposal",\n'
+        '  "medicationCodeableConcept": {\n'
+        '    "coding": [{"system": "RxNorm", "code": "11124", "display": "Vancomycin"}]\n'
+        '  },\n'
+        '  "dosageInstruction": [{\n'
+        '    "timing": {"repeat": {"frequency": 1, "period": 8, "periodUnit": "h"}},\n'
+        '    "doseAndRate": [{"doseQuantity": {"value": 1250, "unit": "mg"}}]\n'
+        '  }],\n'
+        '  "note": [{"text": "Predicción AUC24: 512 mg·h/L. Aclaramiento MAP: 4.2 L/h."}]\n'
+        '}'
+    )
+    p_json.font.name = "Courier New"
+    p_json.font.size = Pt(8.0)
+    p_json.font.color.rgb = C_PRIMARY
 
-        p_d = tf_l12.add_paragraph()
-        p_d.text = desc
-        p_d.font.size = Pt(10)
-        p_d.font.color.rgb = C_TEXT_MUTED
+    p_dep = tf_fh.add_paragraph(); p_dep.text = "\nMODALIDADES DE DESPLIEGUE:"; p_dep.font.bold = True; p_dep.font.size = Pt(10); p_dep.font.color.rgb = C_TEXT_PRIMARY
+    p_depb = tf_fh.add_paragraph(); p_depb.text = "• On-Premise: Contenedores Docker en DMZ hospitalaria privada.\n• Cloud Privada: Entorno dedicado certificado HIPAA con VPN Site-to-Site.\n• Web App Standalone: Operativa inmediata sin requerir integración inicial."; p_depb.font.size = Pt(8.5); p_depb.font.color.rgb = C_TEXT_SECONDARY
 
-    # Right: Screenshot of Institutional Model
-    inst_img = os.path.join(PROD_DIR, "09-modelo-institucional.png")
-    if os.path.exists(inst_img):
-        add_image_framed(s12, inst_img, Inches(6.8), Inches(1.95), Inches(5.7), Inches(4.8))
-
-    add_footer(s12, 12, 14)
+    add_footer(s12, 12)
+    s12.notes_slide.notes_text_frame.text = (
+        "NOTAS DE ORADOR - DIAPOSITIVA 12 (INFRAESTRUCTURA & HL7 FHIR):\n"
+        "- Demostrar al equipo de TI biomédica que la integración es moderna y no invasiva.\n"
+        "- Mediante SMART on FHIR, PK-Bayes puede embeberse como una pestaña interactiva dentro de Epic o Cerner."
+    )
 
     # =========================================================================
-    # SLIDE 13: PROGRAMA DE PILOTO CLÍNICO INSTITUCIONAL
+    # SLIDE 13: RUTA DE ADOPCIÓN (PROGRAMA PILOTO CLÍNICO DE 60 DÍAS)
     # =========================================================================
     s13 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s13, C_BG_LIGHT)
-    add_header(s13, "Adopción Hospitalaria & Implementación", 
-               "Ruta de Implementación del Piloto Clínico (60 Días)",
-               "Un proceso guiado y estructurado para validar el impacto asistencial y económico sin alterar la rutina del servicio.")
+    set_slide_background(s13, C_CANVAS_BG)
+    add_header(s13, "Adopción Hospitalaria & Implementación", "Programa Piloto Clínico de 60 Días en UCI",
+               "Metodología estructurada de validación asistencial sin coste inicial para el servicio de salud.")
 
-    phases = [
-        ("FASE 1 · DÍAS 1–15", "Parametrización & Protocolos", 
-         "Configuración de los modelos PopPK preferidos por el comité de farmacia. Definición de dianas terapéuticas institucionales (ej. AUC 400–600 o CIM específica).",
-         C_BRAND_CYAN),
-        ("FASE 2 · DÍAS 16–30", "Capacitación de Equipos", 
-         "Talleres prácticos con casos clínicos reales para farmacéuticos clínicos, médicos de UCI e infectólogos del equipo PROA. Certificación en manejo de la plataforma.",
-         C_BRAND_EMERALD),
-        ("FASE 3 · DÍAS 31–60", "Piloto Clínico Activo", 
-         "Aplicación supervisada en pacientes reales en UCI. Monitorización de indicadores clave: tiempo en alcanzar diana, tasa de toxicidad y concordancia bayesiana.",
-         C_ACCENT_AMBER),
-        ("FASE 4 · DÍA 60+", "Evaluación & Consolidación", 
-         "Presentación del informe de impacto clínico y retorno de inversión a la Dirección Médica y Comité de Farmacia para la adopción institucional definitiva.",
-         RGBColor(99, 102, 241))
+    # 4 Fases en Grid 2x2
+    fases = [
+        ("FASE 1 (DÍAS 1 - 15)", "PARAMETRIZACIÓN & MODELOS", "• Selección de modelos poblacionales institucionales (PopPK)\n• Configuración de rangos diana de la comisión de farmacia\n• Configuración de roles de usuarios y protocolo de anonimización", C_PRIMARY),
+        ("FASE 2 (DÍAS 16 - 30)", "CAPACITACIÓN DEL EQUIPO", "• Talleres prácticos para Farmacéuticos Clínicos de UCI\n• Sesiones de alineación con Intensivistas e Infectólogos\n• Análisis conjunto de casos clínicos reales históricos", C_SAPPHIRE),
+        ("FASE 3 (DÍAS 31 - 45)", "MONITORIZACIÓN PARALELA", "• Cálculo paralelo: dosificación convencional vs PK-Bayes\n• Registro ciego de discrepancias y tiempos de respuesta\n• Evaluación de concordancia clínica y aceptación por el equipo", C_WARNING),
+        ("FASE 4 (DÍAS 46 - 60)", "AUDITORÍA & ESCALAMIENTO", "• Auditoría de resultados: % de pacientes en diana y LRA evitada\n• Informe farmacoeconómico de ahorro institucional proyectado\n• Presentación a Dirección Médica para adopción definitiva", C_SUCCESS),
     ]
 
-    for i, (ph_num, ph_title, ph_desc, ph_color) in enumerate(phases):
-        x = Inches(0.8 + i*2.98)
-        card = add_card(s13, x, Inches(1.95), Inches(2.78), Inches(4.8))
-        tf = card.text_frame
-        tf.margin_left = tf.margin_top = Inches(0.22)
-        tf.margin_right = Inches(0.18)
+    for idx, (f_title, f_sub, f_desc, f_col) in enumerate(fases):
+        row = idx // 2; col = idx % 2
+        left_f = Inches(0.8) + col * Inches(3.9)
+        top_f = Inches(1.95) + row * Inches(2.4)
+        c_f = add_card(s13, left_f, top_f, Inches(3.7), Inches(2.25), bg_color=C_SURFACE_LIGHT, border_color=C_BORDER, accent_strip_color=f_col)
+        tf_fs = c_f.text_frame; tf_fs.margin_left = Inches(0.2); tf_fs.margin_top = Inches(0.15)
+        p_fst = tf_fs.paragraphs[0]; p_fst.text = f_title; p_fst.font.bold = True; p_fst.font.size = Pt(9.5); p_fst.font.color.rgb = f_col
+        p_fss = tf_fs.add_paragraph(); p_fss.text = f_sub; p_fss.font.bold = True; p_fss.font.size = Pt(10.5); p_fss.font.color.rgb = C_TEXT_PRIMARY
+        p_fsd = tf_fs.add_paragraph(); p_fsd.text = f_desc; p_fsd.font.size = Pt(8.5); p_fsd.font.color.rgb = C_TEXT_SECONDARY
 
-        p = tf.paragraphs[0]
-        p.text = ph_num
-        p.font.size = Pt(10)
-        p.font.bold = True
-        p.font.color.rgb = ph_color
+    # Columna Derecha: Captura de Plataforma (10-exportacion.png)
+    img_s13 = os.path.join(IMG_DIR, "10-exportacion.png")
+    add_image_framed(s13, img_s13, Inches(8.6), Inches(1.95), Inches(3.933), Inches(4.75), caption="Figura 12: Módulo de auditoría de calidad y exportación de datos clínicos (PK-Bayes).")
 
-        p_t = tf.add_paragraph()
-        p_t.text = ph_title
-        p_t.font.size = Pt(13.5)
-        p_t.font.bold = True
-        p_t.font.color.rgb = C_TEXT_DARK
-        p_t.space_before = Pt(4)
-        p_t.space_after = Pt(12)
-
-        p_d = tf.add_paragraph()
-        p_d.text = ph_desc
-        p_d.font.size = Pt(10.5)
-        p_d.font.color.rgb = C_TEXT_MUTED
-        p_d.line_spacing = 1.25
-
-    add_footer(s13, 13, 14)
+    add_footer(s13, 13)
+    s13.notes_slide.notes_text_frame.text = (
+        "NOTAS DE ORADOR - DIAPOSITIVA 13 (PROGRAMA PILOTO 60 DÍAS):\n"
+        "- Ofrecer al hospital iniciar sin riesgo un piloto de 60 días en la Unidad de Paciente Crítico.\n"
+        "- El piloto permite a la jefatura de farmacia comprobar los datos con sus propios pacientes antes de comprometer presupuesto institucional."
+    )
 
     # =========================================================================
-    # SLIDE 14: CIERRE Y LLAMADO A LA ACCIÓN (Dark Canvas)
+    # SLIDE 14: CIERRE Y LLAMADO A LA ACCIÓN (Lienzo Claro Inmaculado)
     # =========================================================================
     s14 = prs.slides.add_slide(blank_layout)
-    set_slide_background(s14, C_NAVY_DARK)
+    set_slide_background(s14, C_CANVAS_BG)
 
-    # Logo
+    # Contenedor Central Double-Bezel
+    c_cta = add_card(s14, Inches(0.8), Inches(0.8), Inches(11.733), Inches(5.8), bg_color=C_SURFACE_LIGHT, border_color=C_BORDER)
+
+    # Logo Centrado
     if os.path.exists(LOGO_IMG):
-        s14.shapes.add_picture(LOGO_IMG, Inches(0.9), Inches(1.2), Inches(1.3), Inches(1.3))
+        s14.shapes.add_picture(LOGO_IMG, Inches(5.966), Inches(1.2), Inches(1.4), Inches(1.4))
 
-    # Badge Pill
-    pill14 = add_card(s14, Inches(2.4), Inches(1.3), Inches(4.3), Inches(0.42), bg_color=RGBColor(16, 42, 77), border_color=RGBColor(30, 64, 110))
-    tf_pill14 = pill14.text_frame
-    tf_pill14.vertical_anchor = MSO_ANCHOR.MIDDLE
-    p_pill14 = tf_pill14.paragraphs[0]
-    p_pill14.text = "MEDICINA DE PRECISIÓN · EVALUACIÓN INSTITUCIONAL"
-    p_pill14.font.size = Pt(9.5)
-    p_pill14.font.bold = True
-    p_pill14.font.color.rgb = RGBColor(56, 189, 248)
-    p_pill14.alignment = PP_ALIGN.CENTER
+    # Título y Subtítulo
+    t_cta_box = s14.shapes.add_textbox(Inches(1.5), Inches(2.7), Inches(10.333), Inches(1.8))
+    tf_cta = t_cta_box.text_frame
+    tf_cta.word_wrap = True
+    
+    p_cta1 = tf_cta.paragraphs[0]
+    p_cta1.alignment = PP_ALIGN.CENTER
+    p_cta1.text = "Iniciemos la Individualización Farmacocinética en su Hospital"
+    p_cta1.font.size = Pt(24)
+    p_cta1.font.bold = True
+    p_cta1.font.color.rgb = C_TEXT_PRIMARY
 
-    # Title
-    tbox14 = s14.shapes.add_textbox(Inches(0.9), Inches(2.7), Inches(11.5), Inches(1.6))
-    tf14 = tbox14.text_frame
-    tf14.word_wrap = True
-    p14 = tf14.paragraphs[0]
-    p14.text = "Inicie el Piloto Clínico de PK-Bayes en su Hospital"
-    p14.font.size = Pt(36)
-    p14.font.bold = True
-    p14.font.color.rgb = C_WHITE
+    p_cta2 = tf_cta.add_paragraph()
+    p_cta2.alignment = PP_ALIGN.CENTER
+    p_cta2.text = "PK-Bayes: Apoyo riguroso a la decisión clínica para mejorar la seguridad del paciente crítico y optimizar recursos hospitalarios."
+    p_cta2.font.size = Pt(13)
+    p_cta2.font.color.rgb = C_PRIMARY
 
-    p14_sub = tf14.add_paragraph()
-    p14_sub.text = "De la dosificación empírica al estándar de oro en farmacocinética clínica individualizada."
-    p14_sub.font.size = Pt(20)
-    p14_sub.font.color.rgb = RGBColor(56, 189, 248)
-    p14_sub.space_before = Pt(8)
+    # 3 Tarjetas de Próximos Pasos en la fila inferior
+    c_p1 = add_card(s14, Inches(1.5), Inches(4.3), Inches(3.1), Inches(1.7), bg_color=C_CARD_BG, border_color=C_BORDER)
+    tf_cp1 = c_p1.text_frame; tf_cp1.margin_left = Inches(0.18); tf_cp1.margin_top = Inches(0.15)
+    p_cp1 = tf_cp1.paragraphs[0]; p_cp1.text = "1. WORKSHOP TÉCNICO"; p_cp1.font.bold = True; p_cp1.font.size = Pt(10.5); p_cp1.font.color.rgb = C_PRIMARY
+    p_cp1b = tf_cp1.add_paragraph(); p_cp1b.text = "Demostración interactiva con casos clínicos de su servicio de farmacia y UCI."; p_cp1b.font.size = Pt(9.0); p_cp1b.font.color.rgb = C_TEXT_SECONDARY
 
-    # Contact Cards
-    actions = [
-        ("DEMO EN VIVO INTERACTIVA", "Acceda a la estación de simulación clínica y pruebe casos reales de vancomicina y fenitoína.", "https://pk-bayes.onrender.com"),
-        ("SOLICITUD DE PILOTO CLÍNICO", "Coordine una sesión con nuestro equipo farmacocinético para diseñar el piloto en su centro.", "contacto@pk-bayes.com"),
-        ("PORTAL Y DOCUMENTACIÓN", "Revise los modelos farmacocinéticos validados, guías clínicas y especificaciones de seguridad.", "Portal Clínico PK-Bayes v3.2")
-    ]
+    c_p2 = add_card(s14, Inches(4.8), Inches(4.3), Inches(3.1), Inches(1.7), bg_color=C_CARD_BG, border_color=C_BORDER)
+    tf_cp2 = c_p2.text_frame; tf_cp2.margin_left = Inches(0.18); tf_cp2.margin_top = Inches(0.15)
+    p_cp2 = tf_cp2.paragraphs[0]; p_cp2.text = "2. ACTIVACIÓN PILOTO"; p_cp2.font.bold = True; p_cp2.font.size = Pt(10.5); p_cp2.font.color.rgb = C_SUCCESS
+    p_cp2b = tf_cp2.add_paragraph(); p_cp2b.text = "Acceso a plataforma sin coste durante 60 días para evaluación asistencial."; p_cp2b.font.size = Pt(9.0); p_cp2b.font.color.rgb = C_TEXT_SECONDARY
 
-    for i, (a_title, a_desc, a_link) in enumerate(actions):
-        c = add_card(s14, Inches(0.9 + i*3.9), Inches(4.8), Inches(3.7), Inches(1.9), bg_color=C_NAVY_SURFACE, border_color=RGBColor(30, 58, 95))
-        tf_c = c.text_frame
-        tf_c.margin_left = tf_c.margin_top = Inches(0.2)
-        p_at = tf_c.paragraphs[0]
-        p_at.text = a_title
-        p_at.font.size = Pt(10.5)
-        p_at.font.bold = True
-        p_at.font.color.rgb = RGBColor(16, 185, 129)
+    c_p3 = add_card(s14, Inches(8.1), Inches(4.3), Inches(3.1), Inches(1.7), bg_color=C_CARD_BG, border_color=C_BORDER)
+    tf_cp3 = c_p3.text_frame; tf_cp3.margin_left = Inches(0.18); tf_cp3.margin_top = Inches(0.15)
+    p_cp3 = tf_cp3.paragraphs[0]; p_cp3.text = "3. SOPORTE CIENTÍFICO"; p_cp3.font.bold = True; p_cp3.font.size = Pt(10.5); p_cp3.font.color.rgb = C_PURPLE
+    p_cp3b = tf_cp3.add_paragraph(); p_cp3b.text = "Acompañamiento especializado de farmacéuticos clínicos y modeladores PK/PD."; p_cp3b.font.size = Pt(9.0); p_cp3b.font.color.rgb = C_TEXT_SECONDARY
 
-        p_ad = tf_c.add_paragraph()
-        p_ad.text = a_desc
-        p_ad.font.size = Pt(10)
-        p_ad.font.color.rgb = RGBColor(203, 213, 225)
-        p_ad.space_before = Pt(6)
+    add_footer(s14, 14)
+    s14.notes_slide.notes_text_frame.text = (
+        "NOTAS DE ORADOR - DIAPOSITIVA 14 (CIERRE Y LLAMADO A LA ACCIÓN):\n"
+        "- Agradecer el tiempo del comité y abrir el turno de preguntas y discusión técnica.\n"
+        "- Reiterar la invitación al Piloto Clínico de 60 días en UCI.\n"
+        "- Dejar disponibles los datos de contacto y la estación interactiva web para que los asistentes prueben un caso clínico."
+    )
 
-        p_al = tf_c.add_paragraph()
-        p_al.text = a_link
-        p_al.font.size = Pt(10)
-        p_al.font.bold = True
-        p_al.font.color.rgb = RGBColor(56, 189, 248)
-        p_al.space_before = Pt(8)
+    # =========================================================================
+    # GUARDAR PRESENTACIÓN
+    # =========================================================================
+    output_path = "/Users/pablosaezriquelme/Desktop/PK-Bayes_Presentacion_Clinica_Institucional.pptx"
+    prs.save(output_path)
+    print(f"Presentación guardada exitosamente en: {output_path}")
 
-    add_footer(s14, 14, 14, is_dark=True)
+    # Copia de seguridad en docs del repositorio
+    backup_docs = "/Users/pablosaezriquelme/Desktop/PK-Bayes Web/assets/docs/PK-Bayes_Presentacion_Clinica_Institucional.pptx"
+    os.makedirs(os.path.dirname(backup_docs), exist_ok=True)
+    prs.save(backup_docs)
+    print(f"Copia de seguridad guardada en: {backup_docs}")
 
-    # Guardar en Desktop y en Assets Web
-    out_desktop = "/Users/pablosaezriquelme/Desktop/PK-Bayes_Presentacion_Clinica_Institucional.pptx"
-    out_web = "/Users/pablosaezriquelme/Desktop/PK-Bayes Web/assets/docs/PK-Bayes_Presentacion_Clinica_Institucional.pptx"
-    os.makedirs(os.path.dirname(out_web), exist_ok=True)
-
-    prs.save(out_desktop)
-    prs.save(out_web)
-    print(f"Presentación generada con éxito en:\n1. {out_desktop}\n2. {out_web}")
+    # Copia en artefactos antigravity
+    artifact_path = "/Users/pablosaezriquelme/.gemini/antigravity/brain/30ece701-e77d-4007-abc6-a2dba1ce77b1/PK-Bayes_Presentacion_Clinica_Institucional.pptx"
+    prs.save(artifact_path)
+    print(f"Copia de artefacto guardada en: {artifact_path}")
 
 if __name__ == "__main__":
     create_presentation()
