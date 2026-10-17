@@ -11,7 +11,7 @@ music: cinematic-ambient
 ## Frame 1: La Ilusión de la Dosis Fija
 
 - scene: Tres pacientes en UCI reciben la misma dosis fija de 1000mg q12h y divergen en pantalla hacia zonas terapéuticas opuestas
-- duration: 8.213s
+- duration: 6.816s
 - poster: 4s
 - transition_in: cut
 - status: animated
@@ -24,7 +24,7 @@ La apertura establece el conflicto clínico central: la dosificación fija basad
 ## Frame 2: Triage Crítico: Elena Morales UCI-04
 
 - scene: Ficha clínica longitudinal de Elena Morales con sepsis y función renal en rápido descenso (eGFR 26 mL/min)
-- duration: 12.907s
+- duration: 10.608s
 - poster: 5s
 - transition_in: crossfade
 - status: animated
@@ -37,7 +37,7 @@ Presentación del caso real en UCI. Mostramos la ficha de inspección rápida, e
 ## Frame 3: Motor Bayesiano MAP e Inferencia
 
 - scene: Densidad de probabilidad bayesiana donde el prior poblacional ancho se contrae hacia el posterior individual tras una muestra TDM
-- duration: 14.891s
+- duration: 10.032s
 - poster: 6s
 - transition_in: crossfade
 - status: animated
@@ -50,7 +50,7 @@ Demostración del motor Stan / MAP. Visualización de la contracción bayesiana 
 ## Frame 4: Estación Zenith: Diana Posológica
 
 - scene: Consola Zenith activa con la curva de 48 horas en meta, indicador circular PTA 96% y recomendación de 750mg cada 12 horas
-- duration: 14.165s
+- duration: 10.848s
 - poster: 6s
 - transition_in: crossfade
 - status: animated
@@ -63,7 +63,7 @@ El núcleo operativo de la plataforma: tarjeta de pauta posológica recomendada,
 ## Frame 5: Catálogo Farmacocinético de Precisión
 
 - scene: Bento visual mostrando Vancomicina, Fenitoína con saturación Michaelis-Menten y corrección Sheiner-Tozer, Aminoglucósidos y Tacrolimus
-- duration: 10.816s
+- duration: 8.856s
 - poster: 5s
 - transition_in: crossfade
 - status: animated
@@ -76,7 +76,7 @@ Amplitud terapéutica: visualización interactiva de cinética saturable hepáti
 ## Frame 6: Impacto Asistencial, Trazabilidad y Cierre
 
 - scene: Pista de auditoría FDA 21 CFR Part 11, interoperabilidad FHIR R4 y llamada a la acción para piloto institucional
-- duration: 11.669s
+- duration: 8.928s
 - poster: 4s
 - transition_in: crossfade
 - status: animated

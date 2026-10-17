@@ -1,8 +1,8 @@
 # SCRIPT: pkbayes-promo
 
-**Voice:** Kokoro (am_michael)
-**Voice settings:** speed 1.05 · clarity high
-**Voice direction:** Clínico, riguroso, seguro, con cadencia médica pausada y énfasis en datos numéricos.
+**Voice:** Microsoft Edge TTS (es-CL-LorenzoNeural)
+**Voice settings:** speed 1.0 · clarity high · accent Chilean Spanish
+**Voice direction:** Clínico, riguroso, seguro, con acento chileno natural y cadencia médica pausada.
 
 ---
 
