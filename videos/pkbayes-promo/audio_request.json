@@ -1,0 +1,36 @@
+{
+  "provider": "auto",
+  "speed": "1.0",
+  "lines": [
+    {
+      "id": "01",
+      "text": "La dosis estándar trata al promedio. Pero en cuidados intensivos, ningún paciente es el promedio."
+    },
+    {
+      "id": "02",
+      "text": "Elena Morales, 63 años, UCI. Sepsis y función renal en rápido descenso. Un ajuste a ciegas arriesga toxicidad o fallo terapéutico."
+    },
+    {
+      "id": "03",
+      "text": "Con una sola muestra en sangre, el motor bayesiano MAP de PK-Bayes contrasta el referente poblacional y recalcula los parámetros individuales en menos de 25 milisegundos."
+    },
+    {
+      "id": "04",
+      "text": "La estación Zenith proyecta la dosis óptima: 750 miligramos cada 12 horas. Probabilidad en diana del 96 por ciento, protegiendo la función renal."
+    },
+    {
+      "id": "05",
+      "text": "No solo vancomicina. Cinética no lineal de Michaelis-Menten y corrección de albúmina para fenitoína, aminoglucósidos y tacrolimus."
+    },
+    {
+      "id": "06",
+      "text": "Trazabilidad normativa, interoperabilidad FHIR y menor estancia en UCI. Solicita tu piloto clínico institucional en pk-bayes.com."
+    }
+  ],
+  "bgm": {
+    "mode": "retrieve",
+    "query": "cinematic-ambient",
+    "blob": "La dosis estándar trata al promedio. En la UCI, PK-Bayes individualiza la farmacocinética en tiempo real con inferencia bayesiana MAP.",
+    "arc": "Hook -> Context -> Solution -> Zenith Workstation -> Multi-Drug Atlas -> Institutional ROI"
+  }
+}

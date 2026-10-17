@@ -21,9 +21,8 @@ gracias.html           → Página de éxito tras el pago (success_url de Stripe
 cancelado.html         → Página si el usuario cancela el pago (cancel_url de Stripe)
 assets/css/styles.css  → Todo el sistema de diseño (paleta clínica oficial)
 assets/js/config.js    → ⚠️ ÚNICO archivo que necesitas editar para activar pagos reales
-assets/js/main.js      → Navegación, animaciones, acordeón FAQ, menú móvil
+assets/js/main.js      → Navegación, simulador PK interactivo unificado, estaciones interactivas y menú móvil
 assets/js/checkout.js  → Integración de Stripe Checkout (sin backend)
-assets/js/simulator.js → Simulador PK interactivo (matemática 1-compartimento, ilustrativo)
 assets/js/i18n.js      → Motor de traducción (ES/EN/ZH/JA) + geolocalización de idioma
 tools/                 → Auditorías para correr ANTES de publicar (ver sección 7)
 ```

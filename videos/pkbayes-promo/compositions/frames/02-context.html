@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Frame 02: Triage Crítico Elena Morales</title>
+</head>
+<body>
+<template>
+<style>
+  @font-face {
+    font-family: "Plus Jakarta Sans";
+    src: local("Plus Jakarta Sans");
+  }
+
+  #root {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #ffffff;
+    font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #0f172a;
+    box-sizing: border-box;
+  }
+
+  .grid-ground {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(to right, rgba(37, 99, 235, 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(37, 99, 235, 0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .hairline-top {
+    position: absolute;
+    top: 36px;
+    left: 64px;
+    right: 64px;
+    height: 1px;
+    background: #0369a1;
+    opacity: 0.35;
+  }
+
+  .hairline-bottom {
+    position: absolute;
+    bottom: 36px;
+    left: 64px;
+    right: 64px;
+    height: 1px;
+    background: #0369a1;
+    opacity: 0.35;
+  }
+
+  .frame-header {
+    position: absolute;
+    top: 54px;
+    left: 64px;
+    right: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .brand-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .brand-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+  }
+
+  .tagline-mono {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #0369a1;
+    font-weight: 700;
+  }
+
+  .header-tag {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    background: rgba(185, 28, 28, 0.1);
+    color: #b91c1c;
+    border: 1px solid rgba(185, 28, 28, 0.2);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+
+  .hero-headline {
+    position: absolute;
+    top: 90px;
+    left: 64px;
+    max-width: 1100px;
+  }
+
+  .hero-title {
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    margin: 0 0 6px 0;
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    line-height: 1.35;
+    color: #475569;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .stage-layout {
+    position: absolute;
+    top: 220px;
+    left: 64px;
+    right: 64px;
+    height: 655px;
+    display: grid;
+    grid-template-columns: 580px 1fr;
+    gap: 36px;
+  }
+
+  /* Left Column: Clinical Record */
+  .clinical-dossier {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .patient-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .dossier-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .dossier-value {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 2px;
+  }
+
+  .dossier-value.mono {
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  /* Longitudinal Renal Kinetics Table */
+  .trajectory-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .trajectory-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .table-kinetic {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+
+  .table-kinetic th {
+    text-align: left;
+    padding: 6px 8px;
+    color: #64748b;
+    font-size: 11px;
+    border-bottom: 1px solid #e2e8f0;
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  .table-kinetic td {
+    padding: 8px 8px;
+    border-bottom: 1px solid #f1f5f9;
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 600;
+  }
+
+  .badge-danger {
+    color: #b91c1c;
+    background: rgba(185, 28, 28, 0.1);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+  }
+
+  .badge-warn {
+    color: #78350f;
+    background: rgba(120, 53, 15, 0.12);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+  }
+
+  .alert-box {
+    background: rgba(185, 28, 28, 0.06);
+    border: 1px solid rgba(185, 28, 28, 0.3);
+    border-radius: 8px;
+    padding: 14px 16px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+  }
+
+  .alert-icon {
+    width: 32px;
+    height: 32px;
+    background: #b91c1c;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 800;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+
+  .alert-text {
+    font-size: 13px;
+    color: #7f1d1d;
+    line-height: 1.4;
+    font-weight: 600;
+  }
+
+  /* Right Column: Workstation preview */
+  .workstation-preview {
+    background: #0f172a;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #334155;
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.18);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .window-topbar {
+    height: 38px;
+    background: #1e293b;
+    border-bottom: 1px solid #334155;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    gap: 12px;
+  }
+
+  .traffic-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .traffic-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .window-title {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    color: #94a3b8;
+  }
+
+  .preview-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+    border-bottom: 1px solid #334155;
+  }
+
+  .hud-overlay {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    right: 24px;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(8px);
+    border: 1px solid #38bdf8;
+    border-radius: 8px;
+    padding: 16px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  .hud-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .hud-title {
+    font-size: 11px;
+    color: #e2e8f0;
+    text-transform: uppercase;
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  .hud-val {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 22px;
+    font-weight: 700;
+    color: #38bdf8;
+  }
+
+  .hud-val.danger { color: #f87171; }
+  .hud-val.good { color: #4ade80; }
+</style>
+
+<div id="root" data-composition-id="02-context" data-width="1920" data-height="1080" data-duration="13.407">
+  <div class="grid-ground"></div>
+  <div class="hairline-top"></div>
+  <div class="hairline-bottom"></div>
+
+  <div class="frame-header" data-layout-allow-overlap>
+    <div class="brand-badge">
+      <img src="assets/logo-icon-256.png" class="brand-logo" alt="PK-Bayes">
+      <span class="tagline-mono">PK-Bayes · Caso Clínico UCI Longitudinal</span>
+    </div>
+    <div class="header-tag">ALERTA TOXICIDAD INMINENTE · KDIGO 2</div>
+  </div>
+
+  <div class="hero-headline" data-layout-allow-overlap>
+    <h1 class="hero-title" id="h1-title-2">Elena Morales, 63 años · Cama UCI-04</h1>
+    <p class="hero-sub" id="p-sub-2">Choque séptico severo con disfunción orgánica múltiple. Un ajuste empírico a ciegas duplica el riesgo de fallo renal permanente.</p>
+  </div>
+
+  <div class="stage-layout" data-layout-allow-overlap>
+    <!-- Left Dossier -->
+    <div class="clinical-dossier" id="dossier-panel">
+      <div class="patient-summary">
+        <div>
+          <div class="dossier-label">Edad / Sexo</div>
+          <div class="dossier-value">63 a · Femenino</div>
+        </div>
+        <div>
+          <div class="dossier-label">Peso / Altura</div>
+          <div class="dossier-value mono">68 kg · 162 cm</div>
+        </div>
+        <div>
+          <div class="dossier-label">Diagnóstico</div>
+          <div class="dossier-value" style="color: #b91c1c;">Sepsis Abdominal</div>
+        </div>
+      </div>
+
+      <!-- Renal Kinetics Table -->
+      <div class="trajectory-card" id="traj-card">
+        <div class="trajectory-header">
+          <span>Evolución Renal Últimas 24 Horas</span>
+          <span class="badge-danger">eGFR -64%</span>
+        </div>
+        <table class="table-kinetic">
+          <thead>
+            <tr>
+              <th>Hito Temporal</th>
+              <th>Creatinina</th>
+              <th>eGFR / CrCl</th>
+              <th>KDIGO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ingreso (0h)</td>
+              <td>1.10 mg/dL</td>
+              <td style="color: #047857;">72 mL/min</td>
+              <td>Basal</td>
+            </tr>
+            <tr id="row-step1">
+              <td>12 horas</td>
+              <td>1.75 mg/dL</td>
+              <td style="color: #b45309;">45 mL/min</td>
+              <td><span class="badge-warn">KDIGO 1</span></td>
+            </tr>
+            <tr id="row-step2">
+              <td>24 horas</td>
+              <td style="color: #b91c1c;">2.40 mg/dL</td>
+              <td style="color: #b91c1c;">26 mL/min</td>
+              <td><span class="badge-danger">KDIGO 2</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Warning Box -->
+      <div class="alert-box" id="alert-card">
+        <div class="alert-icon">!</div>
+        <div class="alert-text">
+          Con 26 mL/min de aclaramiento, la pauta estándar (1000 mg cada 12h) provocará una acumulación de Vancomicina por encima de 38 µg/mL. La diálisis es inminente sin ajuste de precisión.
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Workstation Screenshot & Telemetry HUD -->
+    <div class="workstation-preview" id="workstation-card" data-layout-allow-overflow>
+      <div class="window-topbar">
+        <div class="traffic-dots">
+          <div class="traffic-dot" style="background: #ef4444;"></div>
+          <div class="traffic-dot" style="background: #eab308;"></div>
+          <div class="traffic-dot" style="background: #22c55e;"></div>
+        </div>
+        <div class="window-title">PK-Bayes Medical Suite · Censo de Pacientes UCI · Estación Activa</div>
+      </div>
+      <img src="assets/01-dashboard.png" class="preview-img" alt="PK-Bayes Dashboard" data-layout-allow-overflow>
+
+      <div class="hud-overlay" id="hud-box">
+        <div class="hud-stat">
+          <div class="hud-title">Semivida Fármaco (t½)</div>
+          <div class="hud-val danger" id="val-thalf">24.5 h</div>
+        </div>
+        <div class="hud-stat">
+          <div class="hud-title">Aclaramiento Nativo</div>
+          <div class="hud-val danger" id="val-cl">1.62 L/h</div>
+        </div>
+        <div class="hud-stat">
+          <div class="hud-title">Probabilidad Toxicidad Dosis Fija</div>
+          <div class="hud-val danger" id="val-risk">87.4%</div>
+        </div>
+        <div class="hud-stat">
+          <div class="hud-title">Acción Clínica Requerida</div>
+          <div class="hud-val" style="color: #38bdf8;">TDM Bayesiano</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const tl = gsap.timeline({ paused: true });
+
+  // Pacing to voiceover (total 12.907s)
+  tl.from("#h1-title-2", { opacity: 0, y: -20, duration: 0.8, ease: "power2.out" }, 0.2)
+    .from("#p-sub-2", { opacity: 0, y: -10, duration: 0.8, ease: "power2.out" }, 0.5)
+    .from("#dossier-panel", { opacity: 0, x: -30, duration: 0.9, ease: "power2.out" }, 0.8)
+    .from("#workstation-card", { opacity: 0, x: 30, duration: 0.9, ease: "power2.out" }, 1.1)
+
+    // Highlight renal deterioration step by step
+    .from("#row-step1", { backgroundColor: "rgba(180, 83, 9, 0.15)", duration: 1.2, ease: "power1.out" }, 2.5)
+    .from("#row-step2", { backgroundColor: "rgba(185, 28, 28, 0.25)", duration: 1.2, ease: "power1.out" }, 4.2)
+    .from("#alert-card", { opacity: 0, scale: 0.95, duration: 0.8, ease: "back.out(1.5)" }, 6.0)
+
+    // HUD numbers pulse
+    .from("#hud-box", { opacity: 0, y: 20, duration: 0.8, ease: "power2.out" }, 7.5)
+    .to("#val-risk", { scale: 1.1, repeat: 2, yoyo: true, duration: 0.6, ease: "sine.inOut" }, 8.5);
+
+  window.__timelines["02-context"] = tl;
+</script>
+</template>
+</body>
+</html>

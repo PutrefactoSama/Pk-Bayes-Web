@@ -16,7 +16,7 @@
   --sidebar-bg-3: #061224;
 
   /* --- Acentos y Brand Tokens --- */
-  /* --primary bajó de #0284c7 (sky-600) a sky-700: como texto no pasaba de 3,40:1
+  /* --primary bajó de #0369a1 (sky-600) a sky-700: como texto no pasaba de 3,40:1
      sobre las superficies claras del sitio y con texto blanco encima se quedaba en
      4,10:1, siempre justo por debajo del 4,5:1 de AA. Con sky-700 queda en 4,92:1
      como texto y 5,93:1 como fondo. --primary-dark baja un paso (sky-800) para que
@@ -28,15 +28,17 @@
   --accent-vibrant: #0ea5e9;
 
   --teal: #0ea5e9;
+  --teal-dark: #0369a1;
   --teal-strong: #0e82a0;
   --teal-light: #e0f2fe;
   --teal-soft: #f0f9ff;
 
   --green: #10b981;
-  /* Un paso más oscuro (emerald-700): #059669 daba 3,77:1 como texto sobre blanco
+  /* Un paso más oscuro (emerald-700): #047857 daba 3,77:1 como texto sobre blanco
      y 3,77:1 con texto blanco encima; ahora 5,48:1 en ambos papeles. */
   --green-dark: #047857;
   --green-light: #ecfdf5;
+  --green-soft: #f0fdf4;
   --green-border: rgba(16, 185, 129, 0.28);
 
   --red: #ef4444;
@@ -45,10 +47,11 @@
   --red-border: rgba(239, 68, 68, 0.3);
 
   --amber: #f59e0b;
-  /* Un paso más oscuro (amber-700): #d97706 daba 3,19:1 como texto y 3,19:1 con
+  /* Un paso más oscuro (amber-700): #b45309 daba 3,19:1 como texto y 3,19:1 con
      texto blanco encima; ahora 5,02:1 en ambos papeles. */
   --amber-dark: #b45309;
   --amber-light: #fffbeb;
+  --amber-soft: #fefce8;
   --amber-border: rgba(245, 158, 11, 0.28);
 
   /* --- Neutrales y Tipografía --- */
@@ -70,8 +73,10 @@
 
   /* --- Radios y Sombras de app.pk-bayes.com --- */
   --radius-sm: 8px;
+  --radius-panel: 12px;
   --radius: 14px;
   --radius-lg: 16px;
+  --radius-xl: 20px;
   --radius-pill: 9999px;
 
   --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.05);
@@ -83,6 +88,8 @@
 
   --container: 1180px;
   --font: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace;
 }
 
 /* --- Reset --- */
@@ -226,7 +233,7 @@ h4, .h4 { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); }
   font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.05em;
-  color: #64748b;
+  color: #475569;
   text-transform: uppercase;
   margin-top: 2px;
 }
@@ -244,7 +251,7 @@ h4, .h4 { font-size: 1.05rem; font-weight: 700; color: var(--text-primary); }
   padding: 2px 7px;
   border-radius: 9999px;
   background: rgba(2, 132, 199, 0.1);
-  color: #0284c7;
+  color: #0369a1;
   border: 1px solid rgba(2, 132, 199, 0.25);
   white-space: nowrap;
 }
@@ -979,7 +986,7 @@ select.control-select {
   position: fixed; bottom: 24px; right: 24px; max-width: 360px; z-index: 999;
   background: var(--sidebar-bg); color: #fff; padding: 16px 18px; border-radius: 12px; box-shadow: var(--shadow-lg);
   display: flex; gap: 12px; align-items: flex-start; transform: translateY(20px); opacity: 0; pointer-events: none;
-  transition: all .25s ease;
+  transition: transform .25s ease, opacity .25s ease;
 }
 .toast.show { transform: translateY(0); opacity: 1; pointer-events: auto; }
 .toast svg { width: 20px; height: 20px; color: var(--amber); flex-shrink: 0; }
@@ -3277,7 +3284,7 @@ body.lightbox-open { overflow: hidden; }
   --slate-200: #e2e8f0;
   --slate-300: #cbd5e1;
   --slate-400: #94a3b8;
-  --slate-500: #64748b;
+  --slate-500: #475569;
   --slate-600: #475569;
   --slate-700: #334155;
   --slate-800: #1e293b;
@@ -3294,13 +3301,13 @@ body.lightbox-open { overflow: hidden; }
   --sky-50: #f0f9ff;
   --sky-100: #e0f2fe;
   --sky-500: #0ea5e9;
-  --sky-600: #0284c7;
+  --sky-600: #0369a1;
   --sky-700: #0369a1;
 
   --emerald-50: #ecfdf5;
   --emerald-100: #d1fae5;
   --emerald-500: #10b981;
-  --emerald-600: #059669;
+  --emerald-600: #047857;
   --emerald-700: #047857;
 
   /* Shadows */
@@ -3378,7 +3385,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   border-radius: 18px;
   position: relative;
   box-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.05), 0 1px 3px rgba(15, 23, 42, 0.02);
-  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.28s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.28s ease, background-color 0.28s ease;
 }
 
 .glass-card-hover:hover {
@@ -3390,11 +3397,11 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 
 /* Solid High-Contrast Editorial Headings */
 .text-gradient-cyan {
-  color: #0284c7;
+  color: #0369a1;
 }
 
 .text-gradient-emerald {
-  color: #059669;
+  color: #047857;
 }
 
 /* Glowing & High-Contrast Buttons */
@@ -3405,7 +3412,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   gap: 8px;
   padding: 12px 24px;
   border-radius: 12px;
-  background: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #059669 100%);
+  background: linear-gradient(135deg, #0369a1 0%, #0369a1 50%, #047857 100%);
   color: #ffffff !important;
   font-family: var(--font-heading);
   font-size: 0.875rem;
@@ -3445,8 +3452,8 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 
 .btn-stitch-glass:hover {
   background: #f8fafc;
-  border-color: #0284c7;
-  color: #0284c7 !important;
+  border-color: #0369a1;
+  color: #0369a1 !important;
   transform: translateY(-1px);
   box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08);
 }
@@ -3494,7 +3501,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 .mac-url {
   font-family: var(--font-mono);
   font-size: 0.72rem;
-  color: #64748b;
+  color: #475569;
   padding: 4px 12px;
   border-radius: 6px;
   background: #ffffff;
@@ -3504,7 +3511,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 .mac-url-pill {
   font-family: var(--font-mono);
   font-size: 0.68rem;
-  color: #64748b;
+  color: #475569;
   padding: 2px 8px;
   border-radius: 4px;
   background: #ffffff;
@@ -3541,7 +3548,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   width: 8px;
   height: 8px;
   border-radius: 9999px;
-  background-color: #059669;
+  background-color: #047857;
 }
 
 .ping-dot::after {
@@ -3587,13 +3594,13 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 
 .sim-dose-btn:hover {
   background: #f1f5f9;
-  border-color: #0284c7;
-  color: #0284c7;
+  border-color: #0369a1;
+  color: #0369a1;
 }
 
 .sim-dose-btn.active {
-  background: linear-gradient(135deg, #0284c7, #0369a1);
-  border-color: #0284c7;
+  background: linear-gradient(135deg, #0369a1, #0369a1);
+  border-color: #0369a1;
   color: #ffffff;
   box-shadow: 0 2px 6px rgba(15, 23, 42, 0.12);
 }
@@ -3612,7 +3619,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 }
 
 .sim-select:focus {
-  border-color: #0284c7;
+  border-color: #0369a1;
   box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
 }
 
@@ -3623,7 +3630,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   border-radius: 8px;
   outline: none;
   cursor: pointer;
-  accent-color: #0284c7;
+  accent-color: #0369a1;
 }
 
 /* Feature Mockup Window & Viewport (Stitch 2560px Crisp Presentation) */
@@ -3642,7 +3649,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 
 .feature-mockup-window:hover {
   transform: translateY(-4px);
-  border-color: #0284c7;
+  border-color: #0369a1;
   box-shadow: 0 16px 36px -6px rgba(15, 23, 42, 0.12), 0 4px 16px -2px rgba(15, 23, 42, 0.06);
 }
 
@@ -3691,7 +3698,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   padding: 8px 16px;
   border-radius: 9999px;
   background: #ffffff;
-  color: #0284c7;
+  color: #0369a1;
   font-family: var(--font-heading);
   font-size: 0.8rem;
   font-weight: 750;
@@ -3728,7 +3735,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 }
 
 .compliance-card:hover {
-  border-color: #059669;
+  border-color: #047857;
   transform: translateY(-2px);
   box-shadow: 0 10px 25px -4px rgba(15, 23, 42, 0.08);
 }
@@ -3741,7 +3748,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 }
 
 .compliance-sub {
-  color: #64748b;
+  color: #475569;
   font-size: 0.78rem;
   margin-top: 5px;
   line-height: 1.45;
@@ -3757,7 +3764,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 
 .product-screen:hover {
   transform: translateY(-4px) !important;
-  border-color: #0284c7 !important;
+  border-color: #0369a1 !important;
   box-shadow: 0 20px 45px -8px rgba(15, 23, 42, 0.12), 0 6px 18px rgba(15, 23, 42, 0.06) !important;
 }
 
@@ -3773,7 +3780,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 }
 
 .screen-toolbar em {
-  color: #0284c7 !important;
+  color: #0369a1 !important;
   font-family: var(--font-mono) !important;
   font-weight: 700 !important;
   font-size: 0.78rem !important;
@@ -3785,12 +3792,12 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 
 /* Global buttons and accents */
 .btn-primary {
-  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%) !important;
+  background: linear-gradient(135deg, #0369a1 0%, #0369a1 100%) !important;
   color: #ffffff !important;
   font-weight: 750 !important;
   box-shadow: 0 2px 8px rgba(15, 23, 42, 0.12) !important;
   border: none !important;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, filter 0.25s ease !important;
 }
 
 .btn-primary:hover {
@@ -3804,21 +3811,21 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   border: 1px solid #cbd5e1 !important;
   background: #ffffff !important;
   color: #0f172a !important;
-  transition: all 0.25s ease !important;
+  transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease !important;
   box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04) !important;
 }
 
 .btn-secondary:hover {
   background: #f8fafc !important;
-  border-color: #0284c7 !important;
-  color: #0284c7 !important;
+  border-color: #0369a1 !important;
+  color: #0369a1 !important;
   transform: translateY(-1px) !important;
   box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08) !important;
 }
 
 /* Plan card featured elevation */
 .plan-card.featured {
-  border-color: #0284c7 !important;
+  border-color: #0369a1 !important;
   box-shadow: 0 20px 48px -12px rgba(15, 23, 42, 0.12), 0 4px 16px -2px rgba(15, 23, 42, 0.06) !important;
 }
 
@@ -4169,7 +4176,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   gap: 8px;
   background: #ecfdf5;
   border: 1px solid #a7f3d0;
-  color: #059669;
+  color: #047857;
   padding: 6px 14px;
   border-radius: 9999px;
   font-size: 12px;
@@ -4212,7 +4219,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   font-size: 11px;
   font-family: var(--font-mono);
   font-weight: 700;
-  color: #64748b;
+  color: #475569;
   text-transform: uppercase;
   letter-spacing: 0.06em;
 }
@@ -4263,13 +4270,13 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 }
 
 .zenith-posology-card:hover {
-  border-color: #0284c7;
+  border-color: #0369a1;
   transform: translateY(-2px);
   box-shadow: 0 8px 24px -2px rgba(15, 23, 42, 0.08);
 }
 
 .zenith-posology-card.active {
-  border-color: #0284c7;
+  border-color: #0369a1;
   background: linear-gradient(180deg, #f0f9ff 0%, #ffffff 100%);
   box-shadow: 0 4px 18px rgba(15, 23, 42, 0.08);
 }
@@ -4284,7 +4291,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 }
 
 .zenith-posology-badge.recommended {
-  background: #059669;
+  background: #047857;
   color: #ffffff;
 }
 
@@ -4309,7 +4316,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   border-radius: 10px;
   font-size: 11px;
   margin-bottom: 14px;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .zenith-curve-banner.status-target {
@@ -4357,7 +4364,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   font-size: 11px;
   font-family: var(--font-mono);
   font-weight: 700;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 .sim-curve-badge.target {
@@ -4431,7 +4438,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   font-family: var(--font-mono);
   font-weight: 600;
   cursor: pointer;
-  transition: all 0.2s ease;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 .wb-copy-btn:hover {
@@ -4512,7 +4519,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   border: 1px solid #e2e8f0;
   border-radius: 12px;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -4521,13 +4528,13 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 }
 
 .wb-patient-item:hover {
-  border-color: #0284c7;
+  border-color: #0369a1;
   background: #f8fafc;
   transform: translateX(3px);
 }
 
 .wb-patient-item.active {
-  border-color: #0284c7;
+  border-color: #0369a1;
   background: #eff6ff;
   box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
 }
@@ -4543,25 +4550,25 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 
 .wb-badge-green {
   background: #ecfdf5;
-  color: #059669;
+  color: #047857;
   border: 1px solid #a7f3d0;
 }
 
 .wb-badge-red {
   background: #fef2f2;
-  color: #dc2626;
+  color: #b91c1c;
   border: 1px solid #fecaca;
 }
 
 .wb-badge-blue {
   background: #eff6ff;
-  color: #0284c7;
+  color: #0369a1;
   border: 1px solid #bae6fd;
 }
 
 .wb-badge-amber {
   background: #fffbeb;
-  color: #d97706;
+  color: #b45309;
   border: 1px solid #fde68a;
 }
 
@@ -4576,7 +4583,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 }
 
 .wb-clearance-native {
-  background: #0284c7;
+  background: #0369a1;
   transform-origin: left;
   transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
@@ -4609,22 +4616,22 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   font-weight: 700;
   font-size: 13px;
   cursor: pointer;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   align-items: center;
   gap: 8px;
 }
 
 .atlas-nav-btn:hover {
-  border-color: #0284c7;
+  border-color: #0369a1;
   color: #0f172a;
   transform: translateY(-1px);
 }
 
 .atlas-nav-btn.active {
-  background: #0284c7;
+  background: #0369a1;
   color: #ffffff;
-  border-color: #0284c7;
+  border-color: #0369a1;
   box-shadow: 0 2px 6px rgba(15, 23, 42, 0.12);
 }
 
@@ -4652,7 +4659,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 /* Interactive ROI Calculator */
 .roi-slider {
   width: 100%;
-  accent-color: #0284c7;
+  accent-color: #0369a1;
   height: 8px;
   border-radius: 9999px;
   background: #e2e8f0;
@@ -4669,7 +4676,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   font-family: var(--font-mono);
   font-size: clamp(2rem, 3.5vw, 2.75rem);
   font-weight: 800;
-  color: #0284c7;
+  color: #0369a1;
   line-height: 1;
   letter-spacing: -0.03em;
 }
@@ -4679,7 +4686,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: #059669;
+  background: #047857;
   box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.2);
   display: inline-block;
 }
@@ -4876,14 +4883,14 @@ input[type="range"]:focus-visible::-webkit-slider-thumb,
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, box-shadow 0.18s ease;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
 .framer-nav-btn:hover {
   background: #f8fafc;
-  border-color: #0284c7;
-  color: #0284c7;
+  border-color: #0369a1;
+  color: #0369a1;
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
 }
@@ -4893,7 +4900,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb,
 }
 
 .framer-nav-btn:focus-visible {
-  outline: 2px solid #0284c7;
+  outline: 2px solid #0369a1;
   outline-offset: 2px;
 }
 
@@ -4943,7 +4950,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb,
 }
 
 .framer-card.active {
-  border-color: #0284c7;
+  border-color: #0369a1;
   box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
 }
 
@@ -4979,13 +4986,13 @@ input[type="range"]:focus-visible::-webkit-slider-thumb,
 
 .framer-live-badge.live-emerald {
   background: #ecfdf5;
-  color: #059669;
+  color: #047857;
   border: 1px solid rgba(5, 150, 105, 0.25);
 }
 
 .framer-live-badge.live-amber {
   background: #fffbeb;
-  color: #d97706;
+  color: #b45309;
   border: 1px solid rgba(217, 119, 6, 0.25);
 }
 
@@ -5003,7 +5010,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb,
 
 .framer-live-badge.live-teal {
   background: #f0fdfa;
-  color: #0d9488;
+  color: #0f766e;
   border: 1px solid rgba(13, 148, 136, 0.25);
 }
 
@@ -5036,7 +5043,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb,
 
 .framer-metric-label {
   font-size: 11px;
-  color: #64748b;
+  color: #475569;
   font-family: var(--font-mono);
   display: block;
 }
@@ -5065,12 +5072,12 @@ input[type="range"]:focus-visible::-webkit-slider-thumb,
   border: none;
   padding: 0;
   cursor: pointer;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease;
 }
 
 .framer-nav-pill.active {
-  width: 52px;
-  background: #0284c7;
+  transform: scaleX(1.8);
+  background: #0369a1;
 }
 
 /* ---------- High-Density Drug Cards Telemetry (Optimization of Space) ---------- */
@@ -5127,7 +5134,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb,
 .drug-telemetry-label {
   font-size: 11px;
   font-family: var(--font-mono);
-  color: #64748b;
+  color: #475569;
   text-transform: uppercase;
   letter-spacing: 0.04em;
 }
@@ -5177,7 +5184,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb,
   height: 22px;
   border-radius: 50%;
   background: #dcfce7;
-  color: #059669;
+  color: #047857;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -5279,15 +5286,15 @@ input[type="range"]:focus-visible::-webkit-slider-thumb,
   position: relative;
 }
 .clinical-status-dot.status-emerald {
-  background: #059669;
+  background: #047857;
   box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.18);
 }
 .clinical-status-dot.status-blue {
-  background: #0284c7;
+  background: #0369a1;
   box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.18);
 }
 .clinical-status-dot.status-amber {
-  background: #d97706;
+  background: #b45309;
   box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.18);
 }
 .clinical-status-dot.status-purple {
@@ -5295,7 +5302,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb,
   box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.18);
 }
 .clinical-status-dot.status-teal {
-  background: #0d9488;
+  background: #0f766e;
   box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.18);
 }
 
@@ -5361,7 +5368,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb,
 .video-chapters-title {
   font-size: 12px;
   font-weight: 700;
-  color: #64748b;
+  color: #475569;
   text-transform: uppercase;
   letter-spacing: 0.04em;
   margin-right: 4px;
@@ -5378,7 +5385,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb,
   font-size: 12.5px;
   font-weight: 600;
   color: #334155;
-  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
   cursor: pointer;
   white-space: nowrap;
 }
@@ -5454,7 +5461,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb,
   border: 1px solid #e2e8f0;
   border-radius: 14px;
   padding: 22px;
-  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 .video-feature-card:hover {

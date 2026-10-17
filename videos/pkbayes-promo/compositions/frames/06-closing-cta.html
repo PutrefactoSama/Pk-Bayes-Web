@@ -1,0 +1,352 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Frame 06: Impacto Asistencial y Cierre</title>
+</head>
+<body>
+<template>
+<style>
+  @font-face {
+    font-family: "Plus Jakarta Sans";
+    src: local("Plus Jakarta Sans");
+  }
+
+  #root {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #ffffff;
+    font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #0f172a;
+    box-sizing: border-box;
+  }
+
+  .grid-ground {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(to right, rgba(37, 99, 235, 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(37, 99, 235, 0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .hairline-top {
+    position: absolute;
+    top: 36px;
+    left: 64px;
+    right: 64px;
+    height: 1px;
+    background: #0369a1;
+    opacity: 0.35;
+  }
+
+  .hairline-bottom {
+    position: absolute;
+    bottom: 36px;
+    left: 64px;
+    right: 64px;
+    height: 1px;
+    background: #0369a1;
+    opacity: 0.35;
+  }
+
+  .frame-header {
+    position: absolute;
+    top: 54px;
+    left: 64px;
+    right: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .brand-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .brand-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+  }
+
+  .tagline-mono {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #0369a1;
+    font-weight: 700;
+  }
+
+  .closing-tag {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    background: rgba(3, 105, 161, 0.1);
+    color: #0369a1;
+    border: 1px solid rgba(3, 105, 161, 0.25);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+
+  .hero-headline {
+    position: absolute;
+    top: 90px;
+    left: 64px;
+    max-width: 1100px;
+  }
+
+  .hero-title {
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    margin: 0 0 6px 0;
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    line-height: 1.35;
+    color: #475569;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  /* Two Column Stage */
+  .stage-layout {
+    position: absolute;
+    top: 220px;
+    left: 64px;
+    right: 64px;
+    height: 655px;
+    display: grid;
+    grid-template-columns: 1fr 520px;
+    gap: 36px;
+    align-items: center;
+  }
+
+  /* Left: 4 Enterprise & ROI Badges */
+  .enterprise-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .enterprise-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .card-title {
+    font-size: 15px;
+    font-weight: 800;
+    color: #0f172a;
+  }
+
+  .card-metric {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 24px;
+    font-weight: 800;
+    color: #0369a1;
+    margin-top: 12px;
+  }
+
+  .card-metric.good { color: #047857; }
+
+  .card-desc {
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 6px;
+    line-height: 1.4;
+  }
+
+  /* Right: High-impact CTA Box */
+  .cta-hero-card {
+    background: #ffffff;
+    border: 2px solid #0369a1;
+    border-radius: 16px;
+    padding: 36px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 16px 48px rgba(3, 105, 161, 0.12);
+    position: relative;
+  }
+
+  .cta-logo {
+    width: 72px;
+    height: 72px;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(3, 105, 161, 0.25);
+    margin-bottom: 16px;
+    background: url('assets/logo-icon-256.png') center/cover no-repeat;
+  }
+
+  .cta-title {
+    font-size: 28px;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.01em;
+    margin-bottom: 6px;
+  }
+
+  .cta-url {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 22px;
+    font-weight: 700;
+    color: #0369a1;
+    margin-bottom: 24px;
+    background: rgba(3, 105, 161, 0.08);
+    padding: 6px 18px;
+    border-radius: 6px;
+  }
+
+  .btn-action {
+    background: #0369a1;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 16px 32px;
+    border-radius: 8px;
+    letter-spacing: 0.02em;
+    box-shadow: 0 4px 16px rgba(3, 105, 161, 0.3);
+    margin-bottom: 20px;
+    display: inline-block;
+  }
+
+  .cta-footer-badges {
+    display: flex;
+    gap: 12px;
+    font-size: 11px;
+    color: #0f172a;
+    font-weight: 700;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .footer-chip {
+    background: #e2e8f0;
+    color: #0f172a;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 4px;
+  }
+</style>
+
+<div id="root" data-composition-id="06-closing-cta" data-width="1920" data-height="1080">
+  <div class="grid-ground"></div>
+  <div class="hairline-top"></div>
+  <div class="hairline-bottom"></div>
+
+  <div class="frame-header" data-layout-allow-overlap>
+    <div class="brand-badge">
+      <img src="assets/logo-icon-256.png" class="brand-logo" alt="PK-Bayes">
+      <span class="tagline-mono">PK-Bayes · Suite Farmacocinética Institucional</span>
+    </div>
+    <div class="closing-tag">PILOTO INSTITUCIONAL DISPONIBLE</div>
+  </div>
+
+  <div class="hero-headline" data-layout-allow-overlap>
+    <h1 class="hero-title" id="h1-title-6">Seguridad Clínica, Trazabilidad y Retorno en UCI</h1>
+    <p class="hero-sub" id="p-sub-6">Integra el estándar bayesiano de dosificación en la historia clínica electrónica de tu hospital.</p>
+  </div>
+
+  <div class="stage-layout" data-layout-allow-overlap>
+    <!-- Left: 4 enterprise cards -->
+    <div class="enterprise-grid">
+      <div class="enterprise-card" id="card-e1">
+        <div class="card-top">
+          <span class="card-title">FDA 21 CFR Part 11</span>
+          <span style="font-size:16px;">🛡️</span>
+        </div>
+        <div class="card-metric good">100% Audit Trail</div>
+        <div class="card-desc">Pistas de auditoría inmutables, firma electrónica de farmacéutico y trazabilidad regulatoria completa.</div>
+      </div>
+
+      <div class="enterprise-card" id="card-e2">
+        <div class="card-top">
+          <span class="card-title">Interoperabilidad FHIR</span>
+          <span style="font-size:16px;">⚡</span>
+        </div>
+        <div class="card-metric">HL7 FHIR R4</div>
+        <div class="card-desc">Conexión bidireccional nativa con sistemas EHR hospitalarios (Epic, Cerner, Meditech). Cero reingreso de datos.</div>
+      </div>
+
+      <div class="enterprise-card" id="card-e3">
+        <div class="card-top">
+          <span class="card-title">Estancia en UCI</span>
+          <span style="font-size:16px;">📉</span>
+        </div>
+        <div class="card-metric good">-2.4 Días</div>
+        <div class="card-desc">Reducción comprobada en días de ventilación y estancia crítica mediante resolución bacteriana acelerada.</div>
+      </div>
+
+      <div class="enterprise-card" id="card-e4">
+        <div class="card-top">
+          <span class="card-title">Nefrotoxicidad Evitada</span>
+          <span style="font-size:16px;">🩺</span>
+        </div>
+        <div class="card-metric good">-74% Injuria Renal</div>
+        <div class="card-desc">Eliminación de sobreexposiciones tóxicas inadvertidas en pacientes con aclaramiento inestable.</div>
+      </div>
+    </div>
+
+    <!-- Right: Big CTA Hero Card -->
+    <div class="cta-hero-card" id="cta-card" data-layout-allow-overlap>
+      <div class="cta-logo"></div>
+      <div class="cta-title">PK-Bayes Medical Suite</div>
+      <div class="cta-url" id="cta-url">pk-bayes.com</div>
+      <div class="btn-action" id="btn-cta">Solicita tu Piloto Clínico Institucional</div>
+      <div class="cta-footer-badges">
+        <span class="footer-chip">Guías IDSA / ASHP / SIDP</span>
+        <span class="footer-chip">SaMD Clase IIa</span>
+        <span class="footer-chip">Inferencia Stan C++</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const tl = gsap.timeline({ paused: true });
+
+  // Pacing to voiceover (total 11.669s)
+  tl.from("#h1-title-6", { opacity: 0, y: -20, duration: 0.8, ease: "power2.out" }, 0.2)
+    .from("#p-sub-6", { opacity: 0, y: -10, duration: 0.8, ease: "power2.out" }, 0.5)
+
+    // Enterprise cards stagger in
+    .from("#card-e1", { opacity: 0, y: 20, duration: 0.6, ease: "power2.out" }, 1.0)
+    .from("#card-e2", { opacity: 0, y: 20, duration: 0.6, ease: "power2.out" }, 1.8)
+    .from("#card-e3", { opacity: 0, y: 20, duration: 0.6, ease: "power2.out" }, 2.6)
+    .from("#card-e4", { opacity: 0, y: 20, duration: 0.6, ease: "power2.out" }, 3.4)
+
+    // CTA Hero Card drops in
+    .from("#cta-card", { opacity: 0, scale: 0.9, duration: 0.9, ease: "back.out(1.5)" }, 4.2)
+    .to("#btn-cta", { scale: 1.05, repeat: 2, yoyo: true, duration: 0.6, ease: "sine.inOut" }, 6.0)
+    .to("#cta-url", { backgroundColor: "rgba(3, 105, 161, 0.16)", repeat: 2, yoyo: true, duration: 0.6 }, 7.5);
+
+  window.__timelines["06-closing-cta"] = tl;
+</script>
+</template>
+</body>
+</html>

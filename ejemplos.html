@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="es" data-i18n-title="meta.title_cases" data-i18n-desc="meta.desc_cases"><head><meta charset="UTF-8"><title data-i18n="meta.title_cases">Casos clínicos - PK-Bayes</title><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Casos ilustrativos que muestran cómo PK-Bayes apoya el seguimiento farmacocinético."><meta name="theme-color" content="#0f1c33"><link rel="icon" href="assets/img/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/styles.css"></head><body>
+<!DOCTYPE html><html lang="es" data-i18n-title="meta.title_cases" data-i18n-desc="meta.desc_cases"><head><meta charset="UTF-8"><title data-i18n="meta.title_cases">Casos clínicos - PK-Bayes</title><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Casos ilustrativos que muestran cómo PK-Bayes apoya el seguimiento farmacocinético."><meta name="theme-color" content="#0369a1"><link rel="icon" href="assets/img/favicon.svg"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/styles.css"></head><body>
   <a href="#main-content" class="skip-link" data-i18n="a11y.saltar_al_contenido">Saltar al contenido principal</a>
 <header class="site-header">
     <div class="container">
@@ -50,7 +50,7 @@
               <span id="case-status-badge" class="wb-badge-pill wb-badge-red" data-i18n="caseflow.badge_warn">Alerta Nefrotoxicidad</span>
               <span id="case-kpi-stat" style="font-family: var(--font-mono); font-size: 13px; font-weight: 700; color: #dc2626;" data-i18n="caseflow.c1_before_status">C_mín: 27.8 µg/mL (Pauta Empírica 1000mg q12h)</span>
             </div>
-            <span style="font-size: 12px; color: #64748b;" data-i18n="case.la_pauta_vigente_sigue_siend">¿La pauta vigente sigue siendo coherente con la nueva capacidad de eliminación?</span>
+            <span style="font-size: 12px; color: #475569;" data-i18n="case.la_pauta_vigente_sigue_siend">¿La pauta vigente sigue siendo coherente con la nueva capacidad de eliminación?</span>
           </div>
 
           <!-- Dynamic Before/After SVG Curve -->
@@ -58,8 +58,8 @@
             <svg viewBox="0 0 900 230" style="width: 100%; height: auto; display: block; overflow: visible;">
               <defs>
                 <linearGradient id="caseGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stop-color="#0284c7" stop-opacity="0.25"/>
-                  <stop offset="100%" stop-color="#0284c7" stop-opacity="0.0"/>
+                  <stop offset="0%" stop-color="#0369a1" stop-opacity="0.25"/>
+                  <stop offset="100%" stop-color="#0369a1" stop-opacity="0.0"/>
                 </linearGradient>
               </defs>
               <!-- Toxic Danger Zone (> 20 ug/mL: Y=20 to Y=80) -->
@@ -69,19 +69,19 @@
 
               <!-- Target Band (10-20 ug/mL: Y=80 to Y=150) -->
               <rect x="50" y="80" width="820" height="70" fill="rgba(16, 185, 129, 0.08)" rx="4"/>
-              <line x1="50" y1="150" x2="870" y2="150" stroke="#059669" stroke-dasharray="4 4" stroke-opacity="0.45"/>
-              <text x="860" y="96" fill="#059669" font-size="10" font-family="monospace" text-anchor="end" data-i18n="chart.target_window_10_20">Ventana Diana Terapéutica (10-20 µg/mL)</text>
+              <line x1="50" y1="150" x2="870" y2="150" stroke="#047857" stroke-dasharray="4 4" stroke-opacity="0.45"/>
+              <text x="860" y="96" fill="#047857" font-size="10" font-family="monospace" text-anchor="end" data-i18n="chart.target_window_10_20">Ventana Diana Terapéutica (10-20 µg/mL)</text>
 
               <!-- Infusion Pulse Markers -->
               <g opacity="0.65">
-                <line x1="50" y1="210" x2="50" y2="188" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="2 2" />
-                <text x="54" y="196" fill="#0284c7" font-size="9" font-family="monospace">↓ IV 1h</text>
-                <line x1="260" y1="210" x2="260" y2="188" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="2 2" />
-                <text x="264" y="196" fill="#0284c7" font-size="9" font-family="monospace">↓ IV 1h</text>
-                <line x1="470" y1="210" x2="470" y2="188" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="2 2" />
-                <text x="474" y="196" fill="#0284c7" font-size="9" font-family="monospace">↓ IV 1h</text>
-                <line x1="680" y1="210" x2="680" y2="188" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="2 2" />
-                <text x="684" y="196" fill="#0284c7" font-size="9" font-family="monospace">↓ IV 1h</text>
+                <line x1="50" y1="210" x2="50" y2="188" stroke="#0369a1" stroke-width="1.5" stroke-dasharray="2 2" />
+                <text x="54" y="196" fill="#0369a1" font-size="9" font-family="monospace">↓ IV 1h</text>
+                <line x1="260" y1="210" x2="260" y2="188" stroke="#0369a1" stroke-width="1.5" stroke-dasharray="2 2" />
+                <text x="264" y="196" fill="#0369a1" font-size="9" font-family="monospace">↓ IV 1h</text>
+                <line x1="470" y1="210" x2="470" y2="188" stroke="#0369a1" stroke-width="1.5" stroke-dasharray="2 2" />
+                <text x="474" y="196" fill="#0369a1" font-size="9" font-family="monospace">↓ IV 1h</text>
+                <line x1="680" y1="210" x2="680" y2="188" stroke="#0369a1" stroke-width="1.5" stroke-dasharray="2 2" />
+                <text x="684" y="196" fill="#0369a1" font-size="9" font-family="monospace">↓ IV 1h</text>
               </g>
               
               <!-- Axes -->
@@ -92,35 +92,35 @@
               <path id="case-curve-glow" d="M 50,205 C 70,20 100,15 150,65 C 200,110 240,135 260,138 C 280,22 310,18 360,68 C 410,112 450,137 470,140 C 490,25 520,20 570,70 C 620,115 660,139 680,142 C 700,28 730,22 780,72 C 830,118 850,140 870,142 L 870,215 L 50,215 Z" fill="url(#caseGrad)"/>
               <path id="case-curve-line" d="M 50,205 C 70,20 100,15 150,65 C 200,110 240,135 260,138 C 280,22 310,18 360,68 C 410,112 450,137 470,140 C 490,25 520,20 570,70 C 620,115 660,139 680,142 C 700,28 730,22 780,72 C 830,118 850,140 870,142" fill="none" stroke="#dc2626" stroke-width="3" stroke-linecap="round"/>
               
-              <text x="50" y="225" fill="#64748b" font-size="11" font-family="monospace">0h</text>
-              <text x="260" y="225" fill="#64748b" font-size="11" font-family="monospace">12h</text>
-              <text x="470" y="225" fill="#64748b" font-size="11" font-family="monospace">24h</text>
-              <text x="680" y="225" fill="#64748b" font-size="11" font-family="monospace">36h</text>
-              <text x="860" y="225" fill="#64748b" font-size="11" font-family="monospace">48h</text>
+              <text x="50" y="225" fill="#475569" font-size="11" font-family="monospace">0h</text>
+              <text x="260" y="225" fill="#475569" font-size="11" font-family="monospace">12h</text>
+              <text x="470" y="225" fill="#475569" font-size="11" font-family="monospace">24h</text>
+              <text x="680" y="225" fill="#475569" font-size="11" font-family="monospace">36h</text>
+              <text x="860" y="225" fill="#475569" font-size="11" font-family="monospace">48h</text>
             </svg>
           </div>
 
           <!-- Structured 4-Step Clinical Decision Flow -->
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;">
             <div style="padding: 14px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-              <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: #0284c7; display: block; margin-bottom: 4px;">01</span>
+              <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: #0369a1; display: block; margin-bottom: 4px;">01</span>
               <strong style="font-size: 13px; color: #0f172a; display: block; margin-bottom: 4px;" data-i18n="case.reconstruir_la_historia">Reconstruir la historia</strong>
-              <p style="font-size: 12px; color: #64748b; line-height: 1.4; margin: 0;" data-i18n="case.el_equipo_registra_dosis_adm">El equipo registra dosis administradas, horarios, niveles plasmáticos y evolución de la función renal en una misma línea temporal.</p>
+              <p style="font-size: 12px; color: #475569; line-height: 1.4; margin: 0;" data-i18n="case.el_equipo_registra_dosis_adm">El equipo registra dosis administradas, horarios, niveles plasmáticos y evolución de la función renal en una misma línea temporal.</p>
             </div>
             <div style="padding: 14px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-              <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: #0284c7; display: block; margin-bottom: 4px;">02</span>
+              <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: #0369a1; display: block; margin-bottom: 4px;">02</span>
               <strong style="font-size: 13px; color: #0f172a; display: block; margin-bottom: 4px;" data-i18n="case.actualizar_el_perfil">Actualizar el perfil</strong>
-              <p style="font-size: 12px; color: #64748b; line-height: 1.4; margin: 0;" data-i18n="case.pk_bayes_incorpora_el_nuevo_">PK-Bayes incorpora el nuevo nivel y adapta la estimación individual sin tratar la función renal como un dato fijo.</p>
+              <p style="font-size: 12px; color: #475569; line-height: 1.4; margin: 0;" data-i18n="case.pk_bayes_incorpora_el_nuevo_">PK-Bayes incorpora el nuevo nivel y adapta la estimación individual sin tratar la función renal como un dato fijo.</p>
             </div>
             <div style="padding: 14px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-              <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: #0284c7; display: block; margin-bottom: 4px;">03</span>
+              <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: #0369a1; display: block; margin-bottom: 4px;">03</span>
               <strong style="font-size: 13px; color: #0f172a; display: block; margin-bottom: 4px;" data-i18n="case.comparar_alternativas">Comparar alternativas</strong>
-              <p style="font-size: 12px; color: #64748b; line-height: 1.4; margin: 0;" data-i18n="case.el_profesional_explora_posib">El profesional explora posibles cambios de dosis o intervalo y revisa su comportamiento esperado.</p>
+              <p style="font-size: 12px; color: #475569; line-height: 1.4; margin: 0;" data-i18n="case.el_profesional_explora_posib">El profesional explora posibles cambios de dosis o intervalo y revisa su comportamiento esperado.</p>
             </div>
             <div style="padding: 14px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px;">
-              <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: #059669; display: block; margin-bottom: 4px;">04</span>
+              <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; color: #047857; display: block; margin-bottom: 4px;">04</span>
               <strong style="font-size: 13px; color: #0f172a; display: block; margin-bottom: 4px;" data-i18n="case.apoyar_la_decision">Apoyar la decisión</strong>
-              <p style="font-size: 12px; color: #64748b; line-height: 1.4; margin: 0;" data-i18n="case.la_pauta_seleccionada_queda_">La pauta seleccionada queda sustentada por una visualización individual y el contexto clínico disponible.</p>
+              <p style="font-size: 12px; color: #475569; line-height: 1.4; margin: 0;" data-i18n="case.la_pauta_seleccionada_queda_">La pauta seleccionada queda sustentada por una visualización individual y el contexto clínico disponible.</p>
             </div>
           </div>
         </div>
@@ -144,9 +144,9 @@
           
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
             <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 18px;">
-              <span style="font-size: 11px; font-weight: 700; color: #64748b; text-transform: uppercase;" data-i18n="case.el_nivel_total_parece_adecua">El nivel total parece adecuado, pero la albúmina es baja.</span>
+              <span style="font-size: 11px; font-weight: 700; color: #475569; text-transform: uppercase;" data-i18n="case.el_nivel_total_parece_adecua">El nivel total parece adecuado, pero la albúmina es baja.</span>
               <div style="margin: 12px 0; font-family: var(--font-mono); font-size: 22px; font-weight: 800; color: #0f172a;">10.0 µg/mL</div>
-              <p style="font-size: 12px; color: #64748b; margin: 0;" data-i18n="case.la_concentracion_total_puede">La concentración total puede subestimar la fracción farmacológicamente activa.</p>
+              <p style="font-size: 12px; color: #475569; margin: 0;" data-i18n="case.la_concentracion_total_puede">La concentración total puede subestimar la fracción farmacológicamente activa.</p>
             </div>
 
             <div style="background: #fffbeb; border: 1px solid #fde68a; border-radius: 10px; padding: 18px;">
@@ -177,13 +177,13 @@
           <div style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px;">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
               <span style="font-weight: 700; font-size: 13px; color: #0f172a;" data-i18n="caseflow.c3_crrt_flow">Flujo de Efluente TRRC: 2000 mL/h</span>
-              <span style="font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: #0284c7;" data-i18n="caseflow.c3_cl_filter">CL_hemofiltro: 1.8 L/h</span>
+              <span style="font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: #0369a1;" data-i18n="caseflow.c3_cl_filter">CL_hemofiltro: 1.8 L/h</span>
             </div>
             <div class="wb-clearance-bar">
               <div class="wb-clearance-native" style="width: 25%;"></div>
               <div class="wb-clearance-dialysis" style="width: 75%;"></div>
             </div>
-            <div style="display: flex; justify-content: space-between; font-size: 11px; font-family: var(--font-mono); color: #64748b; margin-top: 6px;">
+            <div style="display: flex; justify-content: space-between; font-size: 11px; font-family: var(--font-mono); color: #475569; margin-top: 6px;">
               <span data-i18n="wb.rf_nat_label">Renal Nativo (25%)</span>
               <span data-i18n="wb.rf_dial_label">Filtro Extracorpóreo (75%)</span>
             </div>

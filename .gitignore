@@ -3,6 +3,12 @@ Thumbs.db
 .claude/
 
 # Dependencias locales de las auditorías (ver tools/)
-node_modules/
-package-lock.json
-package.json
+/node_modules/
+/package-lock.json
+/package.json
+
+# HyperFrames artifacts y renders temporales
+videos/**/.hyperframes/artifacts/
+videos/**/.hyperframes/*-lock/
+videos/**/renders/
+

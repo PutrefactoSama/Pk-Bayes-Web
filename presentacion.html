@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-i18n-title="deck.meta_title" data-i18n-desc="deck.meta_desc">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Presentación Institucional · PK-Bayes CDSS v3.2</title>
+  <title data-i18n="deck.meta_title">Presentación Institucional · PK-Bayes CDSS v3.2</title>
   <meta name="description" content="Presentación interactiva y clínica sobre PK-Bayes: Sistema de Apoyo a la Decisión Clínica en Farmacocinética Bayesiana de Precisión.">
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <meta name="theme-color" content="#0369a1">
+  <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
   <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/styles.css">
   <style>
     :root {
@@ -16,11 +20,11 @@
       --border-color: #e2e8f0;
       --text-primary: #0f172a;
       --text-secondary: #475569;
-      --text-muted: #64748b;
-      --brand-cyan: #0284c7;
+      --text-muted: #475569;
+      --brand-cyan: #0369a1;
       --brand-sapphire: #2563eb;
-      --brand-emerald: #059669;
-      --accent-amber: #d97706;
+      --brand-emerald: #047857;
+      --accent-amber: #b45309;
       --accent-rose: #dc2626;
       --brand-purple: #7c3aed;
       --spring-easing: cubic-bezier(0.16, 1, 0.3, 1);
@@ -127,10 +131,10 @@
       }
     }
     .deck-btn-primary {
-      background: #0284c7;
+      background: #0369a1;
       color: #ffffff;
       box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
-      border-color: #0284c7;
+      border-color: #0369a1;
     }
     @media (hover: hover) and (pointer: fine) {
       .deck-btn-primary:hover {
@@ -338,7 +342,7 @@
       transform: translateY(0);
     }
     .notes-tag {
-      background: #0284c7;
+      background: #0369a1;
       color: #fff;
       font-size: 10px;
       font-weight: 800;
@@ -370,9 +374,9 @@
     }
     @media (hover: hover) and (pointer: fine) {
       .nav-arrow:hover {
-        background: #0284c7;
+        background: #0369a1;
         color: #ffffff;
-        border-color: #0284c7;
+        border-color: #0369a1;
         transform: translateY(-50%) scale(1.08);
       }
     }
@@ -424,7 +428,7 @@
     }
     .thumb-btn.active {
       border-color: var(--brand-cyan);
-      background: #0284c7;
+      background: #0369a1;
       color: #ffffff;
       transform: scale(1.04);
     }
@@ -518,31 +522,31 @@
   <header class="deck-topbar">
     <div class="deck-brand">
       <a href="index.html" style="display: flex; align-items: center; gap: 8px; text-decoration: none; color: inherit;">
-        <img src="assets/img/logo-icon-256.png" alt="PK-Bayes">
-        <span class="deck-title">PK-Bayes</span>
+        <img src="assets/img/logo-icon-256.png" alt="PK-Bayes" data-i18n-alt="a11y.pk_bayes_logo">
+        <span class="deck-title" data-i18n="nav.brand_title">PK-Bayes</span>
       </a>
-      <span class="deck-badge">CDSS v3.2 · Pitch Institucional</span>
+      <span class="deck-badge" data-i18n="deck.badge_pitch">CDSS v3.2 · Pitch Institucional</span>
     </div>
 
     <div class="deck-actions">
-      <span class="slide-counter" id="slide-indicator">01 / 14</span>
-      <button type="button" class="deck-btn deck-btn-secondary" id="btn-notes" title="Alternar Notas de Orador (N)">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
-        <span>Notas</span>
+      <span class="slide-counter" id="slide-indicator" translate="no">01 / 14</span>
+      <button type="button" class="deck-btn deck-btn-secondary" id="btn-notes" title="Alternar Notas de Orador (N)" data-i18n-attr-title="deck.shortcut_notes">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <span data-i18n="deck.btn_notes">Notas</span>
       </button>
-      <button type="button" class="deck-btn deck-btn-secondary" id="btn-help" title="Atajos de teclado (?)">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-        <span>Atajos</span>
+      <button type="button" class="deck-btn deck-btn-secondary" id="btn-help" title="Atajos de teclado (?)" data-i18n-attr-title="deck.shortcuts_title">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span data-i18n="deck.btn_shortcuts">Atajos</span>
       </button>
-      <button type="button" class="deck-btn deck-btn-secondary" id="btn-fullscreen" title="Pantalla Completa (F)">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-        <span>Fullscreen</span>
+      <button type="button" class="deck-btn deck-btn-secondary" id="btn-fullscreen" title="Pantalla Completa (F)" data-i18n-attr-title="deck.shortcut_fullscreen">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+        <span data-i18n="deck.btn_fullscreen">Fullscreen</span>
       </button>
-      <a href="assets/docs/PK-Bayes_Presentacion_Clinica_Institucional.pptx" download class="deck-btn deck-btn-primary" title="Descargar presentación editable en PowerPoint (.pptx)">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        <span>Descargar PPTX (1.1 MB)</span>
+      <a href="assets/docs/PK-Bayes_Presentacion_Clinica_Institucional.pptx" download class="deck-btn deck-btn-primary" title="Descargar presentación editable en PowerPoint (.pptx)" data-i18n-attr-title="deck.btn_download_pptx">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span data-i18n="deck.btn_download_pptx">Descargar PPTX (1.1 MB)</span>
       </a>
-      <a href="index.html" class="deck-btn deck-btn-secondary">Volver al Sitio</a>
+      <a href="index.html" class="deck-btn deck-btn-secondary" data-i18n="deck.btn_back">Volver al Sitio</a>
     </div>
 
     <!-- Live Reading Progress Bar -->
@@ -551,24 +555,24 @@
 
   <!-- STAGE -->
   <main class="deck-stage">
-    <button class="nav-arrow nav-prev" id="btn-prev" aria-label="Anterior diapositiva">❮</button>
+    <button class="nav-arrow nav-prev" id="btn-prev" aria-label="Anterior diapositiva" data-i18n-aria-label="deck.prev_slide">❮</button>
 
     <!-- SLIDE CONTAINER -->
     <div class="slide-frame" id="current-slide">
       <!-- Inyectado por JS -->
     </div>
 
-    <button class="nav-arrow nav-next" id="btn-next" aria-label="Siguiente diapositiva">❯</button>
+    <button class="nav-arrow nav-next" id="btn-next" aria-label="Siguiente diapositiva" data-i18n-aria-label="deck.next_slide">❯</button>
 
     <!-- SPEAKER NOTES DRAWER -->
     <div class="notes-drawer" id="notes-drawer">
-      <span class="notes-tag">NOTAS DE ORADOR</span>
-      <div id="notes-content">Cargando notas de la diapositiva...</div>
+      <span class="notes-tag" data-i18n="deck.speaker_notes">NOTAS DE ORADOR</span>
+      <div id="notes-content" data-i18n="deck.loading_notes">Cargando notas de la diapositiva...</div>
     </div>
   </main>
 
   <!-- FILMSTRIP -->
-  <nav class="filmstrip" id="filmstrip" aria-label="Navegación de diapositivas">
+  <nav class="filmstrip" id="filmstrip" aria-label="Navegación de diapositivas" data-i18n-aria-label="deck.slide_nav">
     <!-- Miniaturas dinámicas -->
   </nav>
 
@@ -576,15 +580,15 @@
   <div class="modal-backdrop" id="help-modal">
     <div class="modal-card">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
-        <h3 style="margin: 0; font-size: 18px; font-weight: 800;">Atajos de Teclado</h3>
-        <button type="button" id="btn-close-modal" style="background: none; border: none; color: #94a3b8; font-size: 20px; cursor: pointer;">✕</button>
+        <h3 style="margin: 0; font-size: 18px; font-weight: 800;" data-i18n="deck.shortcuts_title">Atajos de Teclado</h3>
+        <button type="button" id="btn-close-modal" aria-label="Cerrar" data-i18n-aria-label="ui.toast_close" style="background: none; border: none; color: #475569; font-size: 20px; cursor: pointer;">✕</button>
       </div>
-      <div class="shortcut-row"><span>Siguiente Diapositiva</span> <kbd>→</kbd> o <kbd>Espacio</kbd></div>
-      <div class="shortcut-row"><span>Diapositiva Anterior</span> <kbd>←</kbd></div>
-      <div class="shortcut-row"><span>Alternar Pantalla Completa</span> <kbd>F</kbd></div>
-      <div class="shortcut-row"><span>Alternar Notas de Orador</span> <kbd>N</kbd></div>
-      <div class="shortcut-row"><span>Cerrar Ventana / Salir</span> <kbd>Esc</kbd></div>
-      <div class="shortcut-row"><span>Ver esta Ayuda</span> <kbd>?</kbd></div>
+      <div class="shortcut-row"><span data-i18n="deck.shortcut_next">Siguiente Diapositiva</span> <span><kbd translate="no">→</kbd> <span data-i18n="deck.or_key">o</span> <kbd data-i18n="deck.key_space">Espacio</kbd></span></div>
+      <div class="shortcut-row"><span data-i18n="deck.shortcut_prev">Diapositiva Anterior</span> <kbd translate="no">←</kbd></div>
+      <div class="shortcut-row"><span data-i18n="deck.shortcut_fullscreen">Alternar Pantalla Completa</span> <kbd translate="no">F</kbd></div>
+      <div class="shortcut-row"><span data-i18n="deck.shortcut_notes">Alternar Notas de Orador</span> <kbd data-i18n="deck.key_n">N</kbd></div>
+      <div class="shortcut-row"><span data-i18n="deck.shortcut_close">Cerrar Ventana / Salir</span> <kbd data-i18n="deck.key_esc">Esc</kbd></div>
+      <div class="shortcut-row"><span data-i18n="deck.shortcut_help">Ver esta Ayuda</span> <kbd translate="no">?</kbd></div>
     </div>
   </div>
 
@@ -1070,28 +1074,28 @@
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
               <div class="scard-shell">
                 <div class="scard-core" style="padding: 12px 14px;">
-                  <span class="scard-tag" style="color: var(--brand-cyan);">DÍAS 1–15</span>
+                  <span class="scard-tag" style="color: var(--brand-cyan);">DÍAS 1-15</span>
                   <div class="scard-title">Parametrización</div>
                   <p class="scard-desc">Definición de modelos PopPK prioritarios y rangos diana institucionales acordados con Farmacia.</p>
                 </div>
               </div>
               <div class="scard-shell">
                 <div class="scard-core" style="padding: 12px 14px;">
-                  <span class="scard-tag" style="color: var(--brand-sapphire);">DÍAS 16–30</span>
+                  <span class="scard-tag" style="color: var(--brand-sapphire);">DÍAS 16-30</span>
                   <div class="scard-title">Capacitación</div>
                   <p class="scard-desc">Talleres con casos reales para farmacéuticos de UCI, infectólogos de PROA y médicos intensivistas.</p>
                 </div>
               </div>
               <div class="scard-shell">
                 <div class="scard-core" style="padding: 12px 14px;">
-                  <span class="scard-tag" style="color: var(--accent-amber);">DÍAS 31–45</span>
+                  <span class="scard-tag" style="color: var(--accent-amber);">DÍAS 31-45</span>
                   <div class="scard-title">Cálculo Paralelo</div>
                   <p class="scard-desc">Uso clínico guiado y comparación ciega entre dosificación convencional y PK-Bayes.</p>
                 </div>
               </div>
               <div class="scard-shell">
                 <div class="scard-core" style="padding: 12px 14px;">
-                  <span class="scard-tag" style="color: var(--brand-emerald);">DÍAS 46–60</span>
+                  <span class="scard-tag" style="color: var(--brand-emerald);">DÍAS 46-60</span>
                   <div class="scard-title">Auditoría & ROI</div>
                   <p class="scard-desc">Informe de impacto clínico, LRA evitada y ahorro económico proyectado para el hospital.</p>
                 </div>
@@ -1307,5 +1311,6 @@
     renderFilmstrip();
     renderSlide(0);
   </script>
+  <script src="assets/js/i18n.js"></script>
 </body>
 </html>

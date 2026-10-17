@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Frame 01: La Ilusión de la Dosis Fija</title>
+</head>
+<body>
+<template>
+<style>
+  @font-face {
+    font-family: "Plus Jakarta Sans";
+    src: local("Plus Jakarta Sans");
+  }
+
+  #root {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #ffffff;
+    font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #0f172a;
+    box-sizing: border-box;
+  }
+
+  .grid-ground {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(to right, rgba(37, 99, 235, 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(37, 99, 235, 0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .hairline-top {
+    position: absolute;
+    top: 36px;
+    left: 64px;
+    right: 64px;
+    height: 1px;
+    background: #0369a1;
+    opacity: 0.35;
+  }
+
+  .hairline-bottom {
+    position: absolute;
+    bottom: 36px;
+    left: 64px;
+    right: 64px;
+    height: 1px;
+    background: #0369a1;
+    opacity: 0.35;
+  }
+
+  .frame-header {
+    position: absolute;
+    top: 54px;
+    left: 64px;
+    right: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .brand-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .brand-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+  }
+
+  .tagline-mono {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #0369a1;
+    font-weight: 700;
+  }
+
+  .case-meta {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    color: #64748b;
+    letter-spacing: 0.08em;
+  }
+
+  .hero-headline {
+    position: absolute;
+    top: 90px;
+    left: 64px;
+    max-width: 1000px;
+  }
+
+  .hero-title {
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    margin: 0 0 6px 0;
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    line-height: 1.35;
+    color: #475569;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .hero-sub span.fixed-dose {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 700;
+    color: #2563eb;
+    background: rgba(37, 99, 235, 0.08);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  /* Main Visualization Stage */
+  .stage-layout {
+    position: absolute;
+    top: 220px;
+    left: 64px;
+    right: 64px;
+    height: 655px;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 36px;
+  }
+
+  .plot-container {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    position: relative;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .plot-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .plot-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .plot-legend {
+    display: flex;
+    gap: 16px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .svg-canvas {
+    width: 100%;
+    flex: 1;
+    overflow: visible;
+  }
+
+  /* Telemetry side cards */
+  .cards-column {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    justify-content: center;
+  }
+
+  .patient-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 16px 20px;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .patient-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+  }
+
+  .patient-card.toxic::before { background: #b91c1c; }
+  .patient-card.optimal::before { background: #047857; }
+  .patient-card.sub::before { background: #b45309; }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .patient-name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .patient-tag {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+
+  .tag-toxic { background: rgba(185, 28, 28, 0.1); color: #b91c1c; }
+  .tag-optimal { background: rgba(4, 120, 87, 0.1); color: #047857; }
+  .tag-sub { background: rgba(180, 83, 9, 0.1); color: #b45309; }
+
+  .patient-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    font-size: 12px;
+  }
+
+  .stat-label {
+    color: #64748b;
+  }
+
+  .stat-val {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .stat-val.alert-toxic { color: #b91c1c; }
+  .stat-val.alert-sub { color: #b45309; }
+  .stat-val.alert-good { color: #047857; }
+
+  .footer-caption {
+    font-size: 12px;
+    color: #64748b;
+    margin-top: 6px;
+    display: flex;
+    justify-content: space-between;
+  }
+</style>
+
+<div id="root" data-composition-id="01-hook" data-width="1920" data-height="1080" data-duration="8.713">
+  <div class="grid-ground"></div>
+  <div class="hairline-top"></div>
+  <div class="hairline-bottom"></div>
+
+  <div class="frame-header" data-layout-allow-overlap>
+    <div class="brand-badge">
+      <img src="assets/logo-icon-256.png" class="brand-logo" alt="PK-Bayes">
+      <span class="tagline-mono">PK-Bayes · Farmacocinética de Precisión UCI</span>
+    </div>
+    <div class="case-meta">ANÁLISIS DE DIVERGENCIA POSOLÓGICA · STAN C++ ENGINE</div>
+  </div>
+
+  <div class="hero-headline" data-layout-allow-overlap>
+    <h1 class="hero-title" id="h1-title">La dosis fija no sirve en la UCI</h1>
+    <p class="hero-sub" id="p-sub">Misma prescripción estándar: <span class="fixed-dose">Vancomicina 1000 mg cada 12h IV</span> en tres pacientes con cinéticas incompatibles.</p>
+  </div>
+
+  <div class="stage-layout" data-layout-allow-overlap>
+    <div class="plot-container">
+      <div class="plot-header">
+        <span class="plot-title">Perfil Cinético Dinámico (48 Horas) · Concentración Sérica (µg/mL)</span>
+        <div class="plot-legend">
+          <div class="legend-item"><span class="legend-dot" style="background: #b91c1c;"></span><span>Insuficiencia Renal (Tóxico)</span></div>
+          <div class="legend-item"><span class="legend-dot" style="background: #047857;"></span><span>Cinética Normal (Diana)</span></div>
+          <div class="legend-item"><span class="legend-dot" style="background: #92400e;"></span><span>Hiperfiltración (Subterapéutico)</span></div>
+        </div>
+      </div>
+
+      <svg class="svg-canvas" viewBox="0 0 1000 520" preserveAspectRatio="none">
+        <!-- Zones -->
+        <rect x="70" y="40" width="900" height="110" fill="rgba(185, 28, 28, 0.07)" rx="4" />
+        <text x="85" y="75" fill="#b91c1c" font-size="13" font-weight="700" letter-spacing="0.05em">ZONA DE TOXICIDAD Y DAÑO RENAL AGUDO (> 30 µg/mL)</text>
+
+        <rect x="70" y="240" width="900" height="90" fill="rgba(4, 120, 87, 0.08)" rx="4" />
+        <text x="85" y="275" fill="#047857" font-size="13" font-weight="700" letter-spacing="0.05em">VENTANA TERAPÉUTICA DIANA (15 - 20 µg/mL · AUC24 400 - 600)</text>
+
+        <rect x="70" y="410" width="900" height="80" fill="rgba(180, 83, 9, 0.07)" rx="4" />
+        <text x="85" y="445" fill="#92400e" font-size="13" font-weight="700" letter-spacing="0.05em">ZONA SUBTERAPÉUTICA Y RESISTENCIA BACTERIANA (< 10 µg/mL)</text>
+
+        <!-- Grid lines & Axes -->
+        <line x1="70" y1="40" x2="70" y2="490" stroke="#cbd5e1" stroke-width="1.5" />
+        <line x1="70" y1="490" x2="970" y2="490" stroke="#cbd5e1" stroke-width="1.5" />
+
+        <!-- Y ticks -->
+        <text x="55" y="45" fill="#475569" font-size="12" font-family="JetBrains Mono" text-anchor="end">40</text>
+        <line x1="65" y1="40" x2="970" y2="40" stroke="#e2e8f0" stroke-dasharray="3 3" />
+
+        <text x="55" y="155" fill="#475569" font-size="12" font-family="JetBrains Mono" text-anchor="end">30</text>
+        <line x1="65" y1="150" x2="970" y2="150" stroke="#e2e8f0" stroke-dasharray="3 3" />
+
+        <text x="55" y="265" fill="#475569" font-size="12" font-family="JetBrains Mono" text-anchor="end">20</text>
+        <line x1="65" y1="260" x2="970" y2="260" stroke="#047857" stroke-dasharray="4 4" stroke-opacity="0.4" />
+
+        <text x="55" y="375" fill="#475569" font-size="12" font-family="JetBrains Mono" text-anchor="end">10</text>
+        <line x1="65" y1="370" x2="970" y2="370" stroke="#e2e8f0" stroke-dasharray="3 3" />
+
+        <!-- X ticks -->
+        <text x="70" y="512" fill="#475569" font-size="12" font-family="JetBrains Mono" text-anchor="middle">0h</text>
+        <text x="295" y="512" fill="#475569" font-size="12" font-family="JetBrains Mono" text-anchor="middle">12h (Dosis 2)</text>
+        <text x="520" y="512" fill="#475569" font-size="12" font-family="JetBrains Mono" text-anchor="middle">24h (Dosis 3)</text>
+        <text x="745" y="512" fill="#475569" font-size="12" font-family="JetBrains Mono" text-anchor="middle">36h (Dosis 4)</text>
+        <text x="970" y="512" fill="#475569" font-size="12" font-family="JetBrains Mono" text-anchor="middle">48h (Valle)</text>
+
+        <!-- Curve 1: Toxic (Elena Morales baseline) -->
+        <path id="curve-toxic" d="M 70 490 Q 90 200 120 220 Q 220 300 295 280 Q 320 120 360 140 Q 450 200 520 180 Q 550 70 600 90 Q 700 130 745 110 Q 770 45 820 60 Q 900 70 970 65" 
+              fill="none" stroke="#b91c1c" stroke-width="3.5" stroke-linecap="round" />
+
+        <!-- Curve 2: Optimal Target -->
+        <path id="curve-optimal" d="M 70 490 Q 90 230 120 260 Q 220 350 295 330 Q 320 210 360 230 Q 450 320 520 300 Q 550 200 600 220 Q 700 310 745 290 Q 770 195 820 215 Q 900 305 970 285" 
+              fill="none" stroke="#047857" stroke-width="3" stroke-linecap="round" />
+
+        <!-- Curve 3: Subtherapeutic (Hyperclearance) -->
+        <path id="curve-sub" d="M 70 490 Q 90 280 120 320 Q 200 450 295 440 Q 320 320 360 340 Q 440 455 520 445 Q 550 330 600 350 Q 690 460 745 450 Q 770 340 820 360 Q 890 465 970 455" 
+              fill="none" stroke="#b45309" stroke-width="3" stroke-dasharray="6 3" stroke-linecap="round" />
+
+        <!-- Highlight Point at 48h -->
+        <circle id="dot-toxic" cx="970" cy="65" r="7" fill="#b91c1c" />
+        <circle id="dot-optimal" cx="970" cy="285" r="6" fill="#047857" />
+        <circle id="dot-sub" cx="970" cy="455" r="6" fill="#b45309" />
+      </svg>
+    </div>
+
+    <!-- Right cards column -->
+    <div class="cards-column">
+      <div class="patient-card toxic" id="card-p1">
+        <div class="card-top">
+          <span class="patient-name">Cama UCI-04 · Elena M.</span>
+          <span class="patient-tag tag-toxic">Toxicidad Aguda</span>
+        </div>
+        <div class="patient-stats">
+          <div><span class="stat-label">eGFR:</span> <span class="stat-val alert-toxic">26 mL/min</span></div>
+          <div><span class="stat-label">Valle 48h:</span> <span class="stat-val alert-toxic">38.4 µg/mL</span></div>
+          <div><span class="stat-label">AUC24:</span> <span class="stat-val alert-toxic">790 mg·h/L</span></div>
+          <div><span class="stat-label">Riesgo:</span> <span class="stat-val alert-toxic">Nefrotoxicidad</span></div>
+        </div>
+      </div>
+
+      <div class="patient-card optimal" id="card-p2">
+        <div class="card-top">
+          <span class="patient-name">Cama UCI-08 · Carlos R.</span>
+          <span class="patient-tag tag-optimal">En Diana Cl&iacute;nica</span>
+        </div>
+        <div class="patient-stats">
+          <div><span class="stat-label">eGFR:</span> <span class="stat-val alert-good">85 mL/min</span></div>
+          <div><span class="stat-label">Valle 48h:</span> <span class="stat-val alert-good">16.8 µg/mL</span></div>
+          <div><span class="stat-label">AUC24:</span> <span class="stat-val alert-good">480 mg·h/L</span></div>
+          <div><span class="stat-label">Respuesta:</span> <span class="stat-val alert-good">Curación 94%</span></div>
+        </div>
+      </div>
+
+      <div class="patient-card sub" id="card-p3">
+        <div class="card-top">
+          <span class="patient-name">Cama UCI-12 · Matías S.</span>
+          <span class="patient-tag tag-sub">Fallo Terap&eacute;utico</span>
+        </div>
+        <div class="patient-stats">
+          <div><span class="stat-label">eGFR:</span> <span class="stat-val alert-sub">145 mL/min</span></div>
+          <div><span class="stat-label">Valle 48h:</span> <span class="stat-val alert-sub">5.9 µg/mL</span></div>
+          <div><span class="stat-label">AUC24:</span> <span class="stat-val alert-sub">230 mg·h/L</span></div>
+          <div><span class="stat-label">Impacto:</span> <span class="stat-val alert-sub">Resistencia</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const tl = gsap.timeline({ paused: true });
+
+  // Init positions and stroke dash
+  const pToxic = document.getElementById("curve-toxic");
+  const pOpt = document.getElementById("curve-optimal");
+  const pSub = document.getElementById("curve-sub");
+
+  const lToxic = pToxic ? pToxic.getTotalLength() : 1200;
+  const lOpt = pOpt ? pOpt.getTotalLength() : 1200;
+  const lSub = pSub ? pSub.getTotalLength() : 1200;
+
+  if (pToxic) {
+    pToxic.style.strokeDasharray = lToxic;
+    pToxic.style.strokeDashoffset = lToxic;
+  }
+  if (pOpt) {
+    pOpt.style.strokeDasharray = lOpt;
+    pOpt.style.strokeDashoffset = lOpt;
+  }
+  if (pSub) {
+    pSub.style.strokeDasharray = lSub;
+    pSub.style.strokeDashoffset = lSub;
+  }
+
+  // Animation timeline (total 8.213s)
+  tl.from("#h1-title", { opacity: 0, y: -20, duration: 0.8, ease: "power2.out" }, 0.2)
+    .from("#p-sub", { opacity: 0, y: -10, duration: 0.8, ease: "power2.out" }, 0.5)
+    .from(".plot-container", { opacity: 0, scale: 0.98, duration: 0.9, ease: "power2.out" }, 0.8)
+    
+    // Draw curves progressively
+    .to(pToxic, { strokeDashoffset: 0, duration: 3.5, ease: "power1.inOut" }, 1.2)
+    .to(pOpt, { strokeDashoffset: 0, duration: 3.5, ease: "power1.inOut" }, 1.3)
+    .to(pSub, { strokeDashoffset: 0, duration: 3.5, ease: "power1.inOut" }, 1.4)
+
+    // Fade in telemetry cards one by one
+    .from("#card-p1", { opacity: 0, x: 30, duration: 0.7, ease: "power2.out" }, 2.5)
+    .from("#card-p2", { opacity: 0, x: 30, duration: 0.7, ease: "power2.out" }, 3.5)
+    .from("#card-p3", { opacity: 0, x: 30, duration: 0.7, ease: "power2.out" }, 4.5)
+
+    // Pulse endpoints
+    .from(["#dot-toxic", "#dot-optimal", "#dot-sub"], { scale: 0, opacity: 0, transformOrigin: "center center", duration: 0.6, stagger: 0.2, ease: "back.out(2)" }, 4.7)
+    .to("#dot-toxic", { scale: 1.3, repeat: 3, yoyo: true, duration: 0.5, ease: "sine.inOut" }, 5.5);
+
+  window.__timelines["01-hook"] = tl;
+</script>
+</template>
+</body>
+</html>

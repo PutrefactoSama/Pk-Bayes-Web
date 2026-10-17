@@ -322,6 +322,16 @@
     const crclSlider = document.getElementById("sim-crcl-slider");
     const crclText = document.getElementById("sim-crcl-text");
 
+    const drugVancoBtn = document.getElementById("drug-vanco");
+    const drugAmikaBtn = document.getElementById("drug-amika");
+    const drugFeniBtn = document.getElementById("drug-feni");
+    const drugButtons = [
+      { key: "vanco", el: drugVancoBtn },
+      { key: "amika", el: drugAmikaBtn },
+      { key: "feni", el: drugFeniBtn }
+    ].filter((item) => item.el);
+
+    const liveSvg = document.getElementById("live-sim-svg");
     const liveCurve = document.getElementById("live-sim-curve");
     const liveGlow = document.getElementById("live-sim-glow");
     const liveAuc = document.getElementById("live-sim-auc");
@@ -335,89 +345,124 @@
 
     if (!doseContainer && !crclSlider) return;
 
+    const drugModels = {
+      vanco: { vd: 50.4, keSlope: 0.00083, keInt: 0.0044, aucMin: 400, aucMax: 600, cminMax: 20, defaultDose: 750, defaultInterval: 12 },
+      amika: { vd: 24.5, keSlope: 0.00145, keInt: 0.0065, aucMin: 380, aucMax: 580, cminMax: 15, defaultDose: 1000, defaultInterval: 24 },
+      feni: { vd: 46.8, keSlope: 0.00042, keInt: 0.0115, aucMin: 360, aucMax: 560, cminMax: 18, defaultDose: 500, defaultInterval: 12 }
+    };
+
+    let selectedDrug = "vanco";
     let selectedDose = 750;
+    let lastSamplePoints = [];
+
+    function updateDrugTabStyles() {
+      drugButtons.forEach(({ key, el }) => {
+        const isActive = key === selectedDrug;
+        el.classList.toggle("active", isActive);
+        el.setAttribute("aria-pressed", String(isActive));
+        el.style.background = isActive ? "var(--primary)" : "transparent";
+        el.style.color = isActive ? "#ffffff" : "var(--text-muted)";
+        el.style.fontWeight = isActive ? "700" : "600";
+        el.style.boxShadow = isActive ? "0 2px 4px rgba(15, 23, 42, 0.12)" : "none";
+      });
+    }
+
+    function setDoseButtonActive(doseVal) {
+      selectedDose = doseVal;
+      if (!doseContainer) return;
+      doseContainer.querySelectorAll(".sim-dose-btn").forEach((b) => {
+        const d = parseFloat(b.getAttribute("data-dose"));
+        b.classList.toggle("active", d === doseVal);
+      });
+    }
 
     function recalculate() {
+      const model = drugModels[selectedDrug] || drugModels.vanco;
       const dose = selectedDose;
       const interval = parseFloat(intervalSelect ? intervalSelect.value : 12) || 12;
       const crcl = parseFloat(crclSlider ? crclSlider.value : 25) || 25;
 
       if (crclText) crclText.textContent = `${Math.round(crcl)} mL/min`;
 
-      // 1-Cpt / 2-Cpt Superposition Kinetics
-      const ke = 0.00083 * crcl + 0.0044;
-      const vd = 50.4; // 72 kg adult * 0.7 L/kg
+      const ke = model.keSlope * crcl + model.keInt;
+      const vd = model.vd;
       const dailyDose = (dose * 24) / interval;
       const auc24 = dailyDose / (ke * vd);
       const cmax = (dose / vd) / (1 - Math.exp(-ke * interval));
       const cmin = cmax * Math.exp(-ke * interval);
 
-      // DOM Value updates
       if (liveAuc) liveAuc.textContent = Math.round(auc24);
       if (liveCmin) liveCmin.textContent = `${cmin.toFixed(1)} µg/mL`;
 
-      // Clinical Zone & Target Determination
-      let statusKey, cminKey, badgeKey, themeColor, badgeClass, probVal;
+      let statusKey, cminKey, badgeKey, textColor, strokeColor, badgeClass, probVal;
 
-      if (auc24 >= 400 && auc24 <= 600 && cmin <= 20) {
-        themeColor = "#059669";
+      if (auc24 >= model.aucMin && auc24 <= model.aucMax && cmin <= model.cminMax) {
+        textColor = "var(--green-dark)";
+        strokeColor = "#047857";
         statusKey = "sim.status_target";
         cminKey = "sim.cmin_target";
         badgeKey = "sim.badge_in_target";
         badgeClass = "sim-curve-badge target";
-        probVal = Math.min(98, Math.round(92 + (1 - Math.abs(500 - auc24) / 100) * 6)) + "%";
-      } else if (auc24 > 600 || cmin > 20) {
-        themeColor = "#dc2626";
+        const midAuc = (model.aucMin + model.aucMax) / 2;
+        probVal = Math.min(98, Math.round(92 + (1 - Math.abs(midAuc - auc24) / 100) * 6)) + "%";
+      } else if (auc24 > model.aucMax || cmin > model.cminMax) {
+        textColor = "var(--red-dark)";
+        strokeColor = "#dc2626";
         statusKey = "sim.status_toxic";
         cminKey = "sim.cmin_high";
         badgeKey = "sim.badge_toxic";
         badgeClass = "sim-curve-badge toxic";
-        probVal = Math.max(18, Math.round(100 - (auc24 - 600) * 0.22)) + "%";
+        probVal = Math.max(18, Math.round(100 - (auc24 - model.aucMax) * 0.22)) + "%";
       } else {
-        themeColor = "#d97706";
+        textColor = "var(--amber-dark)";
+        strokeColor = "#b45309";
         statusKey = "sim.status_sub";
         cminKey = "sim.cmin_low";
         badgeKey = "sim.badge_sub";
         badgeClass = "sim-curve-badge sub";
-        probVal = Math.max(22, Math.round((auc24 / 400) * 75)) + "%";
+        probVal = Math.max(22, Math.round((auc24 / model.aucMin) * 75)) + "%";
       }
 
+      if (liveAuc) liveAuc.style.color = textColor;
+      if (liveCmin) liveCmin.style.color = textColor;
       setVal(liveAucStatus, statusKey);
-      if (liveAucStatus) liveAucStatus.style.color = themeColor;
+      if (liveAucStatus) liveAucStatus.style.color = textColor;
       setVal(liveCminStatus, cminKey);
-      if (liveCminStatus) liveCminStatus.style.color = themeColor;
+      if (liveCminStatus) liveCminStatus.style.color = textColor;
       if (liveProb) liveProb.textContent = probVal;
 
       if (curveBadge) {
         curveBadge.className = badgeClass;
-        if (badgeDot) badgeDot.style.background = themeColor;
+        if (badgeDot) badgeDot.style.background = strokeColor;
         setVal(badgeText, badgeKey);
       }
 
-      // Dynamic SVG Curve Generation (48h timeline, 0 to 48 hours)
-      // X: 40 to 590 (width 550)
-      // Y: 200 (baseline) to 30 (peak C=42 ug/mL)
       const graphW = 550;
       const startX = 40;
       const baseY = 200;
       const maxC = 42;
       const points = [];
 
-      for (let t = 0; t <= 48; t += 1) {
+      for (let t = 0; t <= 48; t += 0.5) {
         let conc = 0;
         for (let tau = 0; tau <= t; tau += interval) {
-          conc += (dose / vd) * Math.exp(-ke * (t - tau));
+          const dt = t - tau;
+          // Rapid 1h IV infusion rise + bi-exponential elimination
+          const infusionFactor = dt < 1 ? dt : 1;
+          conc += (dose / vd) * infusionFactor * Math.exp(-ke * Math.max(0, dt - 0.5));
         }
         const x = startX + (t / 48) * graphW;
         const clampedC = Math.min(conc, maxC);
         const y = baseY - (clampedC / maxC) * 165;
-        points.push({ x, y });
+        points.push({ t, conc, x, y, strokeColor });
       }
+
+      lastSamplePoints = points;
 
       const pathD = "M " + points.map((p) => `${p.x.toFixed(1)},${p.y.toFixed(1)}`).join(" L ");
       if (liveCurve) {
         liveCurve.setAttribute("d", pathD);
-        liveCurve.setAttribute("stroke", themeColor);
+        liveCurve.setAttribute("stroke", strokeColor);
       }
       if (liveGlow) {
         const glowD = pathD + ` L ${startX + graphW},${baseY} L ${startX},${baseY} Z`;
@@ -425,12 +470,126 @@
       }
     }
 
+    // Interactive SVG Crosshair Scrubbing
+    if (liveSvg) {
+      let chGroup = document.getElementById("sim-crosshair-group");
+      if (!chGroup) {
+        const ns = "http://www.w3.org/2000/svg";
+        chGroup = document.createElementNS(ns, "g");
+        chGroup.setAttribute("id", "sim-crosshair-group");
+        chGroup.style.opacity = "0";
+        chGroup.style.transition = "opacity 150ms ease";
+        chGroup.style.pointerEvents = "none";
+
+        const chLine = document.createElementNS(ns, "line");
+        chLine.setAttribute("id", "sim-crosshair-line");
+        chLine.setAttribute("y1", "25");
+        chLine.setAttribute("y2", "200");
+        chLine.setAttribute("stroke", "#0369a1");
+        chLine.setAttribute("stroke-width", "1.2");
+        chLine.setAttribute("stroke-dasharray", "3 3");
+
+        const chDot = document.createElementNS(ns, "circle");
+        chDot.setAttribute("id", "sim-crosshair-dot");
+        chDot.setAttribute("r", "5");
+        chDot.setAttribute("fill", "#0369a1");
+        chDot.setAttribute("stroke", "#ffffff");
+        chDot.setAttribute("stroke-width", "2");
+
+        const chRect = document.createElementNS(ns, "rect");
+        chRect.setAttribute("id", "sim-crosshair-bg");
+        chRect.setAttribute("rx", "5");
+        chRect.setAttribute("width", "134");
+        chRect.setAttribute("height", "22");
+        chRect.setAttribute("fill", "#0f172a");
+
+        const chText = document.createElementNS(ns, "text");
+        chText.setAttribute("id", "sim-crosshair-text");
+        chText.setAttribute("fill", "#ffffff");
+        chText.setAttribute("font-size", "9.5");
+        chText.setAttribute("font-family", "monospace");
+        chText.setAttribute("font-weight", "700");
+        chText.setAttribute("text-anchor", "middle");
+
+        chGroup.appendChild(chLine);
+        chGroup.appendChild(chDot);
+        chGroup.appendChild(chRect);
+        chGroup.appendChild(chText);
+        liveSvg.appendChild(chGroup);
+      }
+
+      const updateCrosshair = (clientX) => {
+        if (!lastSamplePoints.length) return;
+        const rect = liveSvg.getBoundingClientRect();
+        const relX = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+        const svgX = relX * 600;
+        if (svgX < 40 || svgX > 590) {
+          chGroup.style.opacity = "0";
+          return;
+        }
+        const idx = Math.min(
+          lastSamplePoints.length - 1,
+          Math.max(0, Math.round(((svgX - 40) / 550) * (lastSamplePoints.length - 1)))
+        );
+        const pt = lastSamplePoints[idx];
+        if (!pt) return;
+
+        chGroup.style.opacity = "1";
+        const line = document.getElementById("sim-crosshair-line");
+        const dot = document.getElementById("sim-crosshair-dot");
+        const bg = document.getElementById("sim-crosshair-bg");
+        const txt = document.getElementById("sim-crosshair-text");
+
+        if (line) {
+          line.setAttribute("x1", pt.x.toFixed(1));
+          line.setAttribute("x2", pt.x.toFixed(1));
+          line.setAttribute("stroke", pt.strokeColor);
+        }
+        if (dot) {
+          dot.setAttribute("cx", pt.x.toFixed(1));
+          dot.setAttribute("cy", pt.y.toFixed(1));
+          dot.setAttribute("fill", pt.strokeColor);
+        }
+        const badgeX = Math.min(520, Math.max(108, pt.x));
+        const badgeY = Math.max(28, pt.y - 28);
+        if (bg) {
+          bg.setAttribute("x", (badgeX - 67).toFixed(1));
+          bg.setAttribute("y", (badgeY - 15).toFixed(1));
+        }
+        if (txt) {
+          txt.setAttribute("x", badgeX.toFixed(1));
+          txt.setAttribute("y", badgeY.toFixed(1));
+          txt.textContent = `t=${pt.t.toFixed(1)}h · ${pt.conc.toFixed(1)} µg/mL`;
+        }
+      };
+
+      liveSvg.addEventListener("mousemove", (e) => updateCrosshair(e.clientX));
+      liveSvg.addEventListener("touchmove", (e) => {
+        if (e.touches && e.touches[0]) updateCrosshair(e.touches[0].clientX);
+      }, { passive: true });
+      liveSvg.addEventListener("mouseleave", () => {
+        chGroup.style.opacity = "0";
+      });
+    }
+
+    drugButtons.forEach(({ key, el }) => {
+      el.addEventListener("click", () => {
+        selectedDrug = key;
+        const model = drugModels[key];
+        if (model) {
+          setDoseButtonActive(model.defaultDose);
+          if (intervalSelect) intervalSelect.value = String(model.defaultInterval);
+        }
+        updateDrugTabStyles();
+        recalculate();
+      });
+    });
+
     if (doseContainer) {
       doseContainer.querySelectorAll(".sim-dose-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
-          doseContainer.querySelectorAll(".sim-dose-btn").forEach((b) => b.classList.remove("active"));
-          btn.classList.add("active");
-          selectedDose = parseFloat(btn.getAttribute("data-dose")) || 750;
+          const doseVal = parseFloat(btn.getAttribute("data-dose")) || 750;
+          setDoseButtonActive(doseVal);
           recalculate();
         });
       });
@@ -444,7 +603,43 @@
       crclSlider.addEventListener("input", recalculate);
     }
 
+    window.pkbayesSetSimulator = function (opts) {
+      if (!opts) return;
+      if (opts.drug && drugModels[opts.drug]) {
+        selectedDrug = opts.drug;
+        updateDrugTabStyles();
+      }
+      if (opts.dose) {
+        setDoseButtonActive(parseFloat(opts.dose));
+      }
+      if (opts.interval && intervalSelect) {
+        intervalSelect.value = String(opts.interval);
+      }
+      if (opts.crcl && crclSlider) {
+        crclSlider.value = String(opts.crcl);
+      }
+      recalculate();
+    };
+
+    // Deep-link URL query parameters (?drug=vanco&dose=750&interval=12&crcl=25)
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const qDrug = params.get("drug");
+      const qDose = params.get("dose");
+      const qInterval = params.get("interval");
+      const qCrcl = params.get("crcl");
+      if (qDrug || qDose || qInterval || qCrcl) {
+        window.pkbayesSetSimulator({
+          drug: qDrug,
+          dose: qDose,
+          interval: qInterval,
+          crcl: qCrcl
+        });
+      }
+    } catch (_) {}
+
     window.addEventListener("pkbayes_language_changed", recalculate);
+    updateDrugTabStyles();
     recalculate();
   }
 
@@ -634,12 +829,12 @@
     const scenarios = {
       a: {
         pta: "96%",
-        ptaColor: "#059669",
+        ptaColor: "#047857",
         ringDash: "96, 100",
-        ringStroke: "#059669",
+        ringStroke: "#047857",
         auc: "485",
         dotLeft: "52%",
-        dotBg: "#059669",
+        dotBg: "#047857",
         cmin: "16.2",
         cminColor: "#0f172a",
         curveStroke: "#2563eb",
@@ -676,7 +871,7 @@
         dotBg: "#2563eb",
         cmin: "18.2",
         cminColor: "#0f172a",
-        curveStroke: "#059669",
+        curveStroke: "#047857",
         curveD: "M 50,210 C 80,145 120,132 180,132 C 280,132 400,132 500,132 C 600,132 750,132 870,132",
         glowD: "M 50,210 C 80,145 120,132 180,132 C 280,132 400,132 500,132 C 600,132 750,132 870,132 L 870,215 L 50,215 Z",
         bannerClass: "zenith-curve-banner status-continuous",
@@ -685,9 +880,12 @@
       }
     };
 
+    let currentKey = "a";
+
     function applyScenario(key) {
       const s = scenarios[key];
       if (!s) return;
+      currentKey = key;
 
       [btnA, btnB, btnC].forEach((b) => b.classList.remove("active"));
       const activeBtn = key === "a" ? btnA : key === "b" ? btnB : btnC;
@@ -729,6 +927,38 @@
     btnA.addEventListener("click", () => applyScenario("a"));
     btnB.addEventListener("click", () => applyScenario("b"));
     btnC.addEventListener("click", () => applyScenario("c"));
+
+    const sandboxBtn = document.getElementById("zenith-btn-sandbox") || document.querySelector('[data-i18n="zenith.btn_sandbox"]');
+    if (sandboxBtn) {
+      sandboxBtn.addEventListener("click", () => {
+        const mapToSim = {
+          a: { drug: "vanco", dose: 750, interval: 12, crcl: 25 },
+          b: { drug: "vanco", dose: 1000, interval: 12, crcl: 25 },
+          c: { drug: "vanco", dose: 1500, interval: 24, crcl: 25 }
+        };
+        if (window.pkbayesSetSimulator) {
+          window.pkbayesSetSimulator(mapToSim[currentKey] || mapToSim.a);
+        }
+        const simSec = document.getElementById("simulador");
+        if (simSec) {
+          simSec.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+      });
+    }
+
+    const approveBtn = document.getElementById("zenith-btn-approve") || document.querySelector('[data-i18n="zenith.btn_approve"]');
+    if (approveBtn) {
+      approveBtn.addEventListener("click", () => {
+        const s = scenarios[currentKey] || scenarios.a;
+        const optNameKey = currentKey === "a" ? "zenith.opt_a_name" : currentKey === "b" ? "zenith.opt_b_name" : "zenith.opt_c_name";
+        if (window.pkbayesToast) {
+          window.pkbayesToast(
+            i18nT("zenith.btn_approve"),
+            `${i18nT(optNameKey)} · AUC₂₄ ${s.auc} mg·h/L · PTA ${s.pta}`
+          );
+        }
+      });
+    }
   }
 
   /* ---------- Interactive Clinical Workbench (funcionalidades.html) ---------- */
@@ -744,9 +974,9 @@
 
     const patientData = {
       // name/drug/badge viajan como clave i18n; trough/auc son valores que no se traducen.
-      p1: { name: "wb.triage_patient_1", drug: "wb.regimen_p1", trough: "16.2 µg/mL", auc: "485 mg·h/L", badge: "wb.badge_target_96", cls: "wb-badge-green", pinLeft: "52%", pinBg: "#059669" },
+      p1: { name: "wb.triage_patient_1", drug: "wb.regimen_p1", trough: "16.2 µg/mL", auc: "485 mg·h/L", badge: "wb.badge_target_96", cls: "wb-badge-green", pinLeft: "52%", pinBg: "#047857" },
       p2: { name: "wb.triage_patient_2", drug: "wb.regimen_p2", trough: "24.5 µg/mL", auc: "680 mg·h/L", badge: "wb.triage_status_warn", cls: "wb-badge-red", pinLeft: "88%", pinBg: "#dc2626" },
-      p3: { name: "wb.triage_patient_3", drug: "wb.regimen_p3", trough: "18.4 µg/mL", auc: "390 mg·h/L", badge: "wb.triage_status_target", cls: "wb-badge-green", pinLeft: "58%", pinBg: "#059669" },
+      p3: { name: "wb.triage_patient_3", drug: "wb.regimen_p3", trough: "18.4 µg/mL", auc: "390 mg·h/L", badge: "wb.triage_status_target", cls: "wb-badge-green", pinLeft: "58%", pinBg: "#047857" },
       p4: { name: "wb.triage_patient_4", drug: "wb.regimen_p4", trough: "0.8 µg/mL", auc: "410 mg·h/L", badge: "wb.triage_status_target", cls: "wb-badge-blue", pinLeft: "42%", pinBg: "#2563eb" }
     };
 
@@ -863,8 +1093,8 @@
         const textToCopy = codeBlock.textContent || "";
         const onSuccess = () => {
           if (copyBtnText) setVal(copyBtnText, "wb.copied");
-          copyBtn.style.borderColor = "#059669";
-          copyBtn.style.color = "#059669";
+          copyBtn.style.borderColor = "#047857";
+          copyBtn.style.color = "#047857";
           setTimeout(() => {
             if (copyBtnText) setVal(copyBtnText, "wb.copy_dataset");
             copyBtn.style.borderColor = "";
@@ -904,7 +1134,7 @@
         target: "atlas.target_vanco",
         d: "M 50,210 C 70,45 100,38 150,90 C 200,140 240,172 260,175 C 280,48 310,40 360,92 C 410,142 450,174 470,176 C 490,50 520,42 570,94 C 620,144 660,175 680,178 C 700,52 730,45 780,96 C 830,146 850,176 870,178",
         glow: "M 50,210 C 70,45 100,38 150,90 C 200,140 240,172 260,175 C 280,48 310,40 360,92 C 410,142 450,174 470,176 C 490,50 520,42 570,94 C 620,144 660,175 680,178 C 700,52 730,45 780,96 C 830,146 850,176 870,178 L 870,215 L 50,215 Z",
-        stroke: "#0284c7"
+        stroke: "#0369a1"
       },
       feni: {
         title: "atlas.title_feni",
@@ -915,7 +1145,7 @@
         target: "atlas.target_feni",
         d: "M 50,210 C 90,80 140,65 240,68 C 340,70 440,70 540,70 C 640,70 740,70 870,70",
         glow: "M 50,210 C 90,80 140,65 240,68 C 340,70 440,70 540,70 C 640,70 740,70 870,70 L 870,215 L 50,215 Z",
-        stroke: "#d97706"
+        stroke: "#b45309"
       },
       ami: {
         title: "atlas.title_ami",
@@ -983,16 +1213,20 @@
         const corr = (10 / denominator).toFixed(1);
         feniCorr.textContent = corr + " µg/mL";
         if (corr > 20) {
-          feniCorr.style.color = "#dc2626";
+          feniCorr.style.color = "var(--red-dark)";
         } else {
-          feniCorr.style.color = "#059669";
+          feniCorr.style.color = "var(--green-dark)";
         }
 
-        // Active free fraction vs Bound fraction
+        // Active free fraction vs Bound fraction (GPU scaleX compositor animation)
         const freePercentage = Math.min(60, Math.max(8, Math.round(10 / denominator)));
         const boundPercentage = 100 - freePercentage;
-        if (boundBar) boundBar.style.width = boundPercentage + "%";
-        if (freeBar) freeBar.style.width = freePercentage + "%";
+        if (boundBar) {
+          boundBar.style.transform = `scaleX(${(boundPercentage / 100).toFixed(3)})`;
+        }
+        if (freeBar) {
+          freeBar.style.transform = `scaleX(${(freePercentage / 100).toFixed(3)})`;
+        }
         if (boundPct) boundPct.textContent = boundPercentage + "%";
         if (freePct) freePct.textContent = freePercentage + "%";
       });
@@ -1029,13 +1263,13 @@
           }
           if (caseStat) {
             setVal(caseStat, "case.stat_empiric");
-            caseStat.style.color = "#dc2626";
+            caseStat.style.color = "var(--red-dark)";
           }
         } else {
           // Bayesian adjusted optimal curve
           if (caseCurve) {
             caseCurve.setAttribute("d", "M 50,210 C 70,45 100,38 150,90 C 200,140 240,172 260,175 C 280,48 310,40 360,92 C 410,142 450,174 470,176 C 490,50 520,42 570,94 C 620,144 660,175 680,178 C 700,52 730,45 780,96 C 830,146 850,176 870,178");
-            caseCurve.setAttribute("stroke", "#059669");
+            caseCurve.setAttribute("stroke", "#047857");
           }
           if (caseGlow) {
             caseGlow.setAttribute("d", "M 50,210 C 70,45 100,38 150,90 C 200,140 240,172 260,175 C 280,48 310,40 360,92 C 410,142 450,174 470,176 C 490,50 520,42 570,94 C 620,144 660,175 680,178 C 700,52 730,45 780,96 C 830,146 850,176 870,178 L 870,215 L 50,215 Z");
@@ -1046,7 +1280,7 @@
           }
           if (caseStat) {
             setVal(caseStat, "case.stat_map");
-            caseStat.style.color = "#059669";
+            caseStat.style.color = "var(--green-dark)";
           }
         }
       });
@@ -1254,6 +1488,19 @@
     }
   }
 
+  /* ---------- Formulario de Piloto Institucional ---------- */
+  function initLeadForm() {
+    const leadForm = document.getElementById("pilot-lead-form");
+    if (!leadForm) return;
+    leadForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (window.pkbayesToast) {
+        window.pkbayesToast("PK-Bayes Clinical Pilot", i18nT("lead.alert_success"));
+      }
+      leadForm.reset();
+    });
+  }
+
   // Initialize Dossier Controllers
   initEmpiricalCalc();
   initPKSimulator();
@@ -1268,5 +1515,6 @@
   initRoiCalculator();
   initFramerShowcase();
   initPromoVideo();
+  initLeadForm();
 })();
 

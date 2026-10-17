@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Frame 04: Estación Zenith Diana Posológica</title>
+</head>
+<body>
+<template>
+<style>
+  @font-face {
+    font-family: "Plus Jakarta Sans";
+    src: local("Plus Jakarta Sans");
+  }
+
+  #root {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #ffffff;
+    font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #0f172a;
+    box-sizing: border-box;
+  }
+
+  .grid-ground {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(to right, rgba(37, 99, 235, 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(37, 99, 235, 0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .hairline-top {
+    position: absolute;
+    top: 36px;
+    left: 64px;
+    right: 64px;
+    height: 1px;
+    background: #0369a1;
+    opacity: 0.35;
+  }
+
+  .hairline-bottom {
+    position: absolute;
+    bottom: 36px;
+    left: 64px;
+    right: 64px;
+    height: 1px;
+    background: #0369a1;
+    opacity: 0.35;
+  }
+
+  .frame-header {
+    position: absolute;
+    top: 54px;
+    left: 64px;
+    right: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .brand-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .brand-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+  }
+
+  .tagline-mono {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #0369a1;
+    font-weight: 700;
+  }
+
+  .badge-pta {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    background: rgba(4, 120, 87, 0.1);
+    color: #047857;
+    border: 1px solid rgba(4, 120, 87, 0.25);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-weight: 700;
+  }
+
+  .hero-headline {
+    position: absolute;
+    top: 90px;
+    left: 64px;
+    max-width: 1100px;
+  }
+
+  .hero-title {
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    margin: 0 0 6px 0;
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    line-height: 1.35;
+    color: #475569;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .hero-sub span.opt-dose {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 700;
+    color: #047857;
+    background: rgba(4, 120, 87, 0.08);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+
+  .stage-layout {
+    position: absolute;
+    top: 220px;
+    left: 64px;
+    right: 64px;
+    height: 655px;
+    display: grid;
+    grid-template-columns: 1fr 480px;
+    gap: 36px;
+  }
+
+  /* Left: Zenith Workstation Preview */
+  .workstation-frame {
+    background: #0f172a;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #334155;
+    box-shadow: 0 12px 32px rgba(15, 23, 42, 0.15);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  .window-topbar {
+    height: 38px;
+    background: #1e293b;
+    border-bottom: 1px solid #334155;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    gap: 12px;
+  }
+
+  .traffic-dots {
+    display: flex;
+    gap: 6px;
+  }
+
+  .traffic-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+
+  .window-title {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    color: #94a3b8;
+  }
+
+  .workstation-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .highlight-callout {
+    position: absolute;
+    bottom: 24px;
+    left: 24px;
+    background: rgba(15, 23, 42, 0.94);
+    border: 1px solid #38bdf8;
+    border-radius: 8px;
+    padding: 14px 18px;
+    backdrop-filter: blur(8px);
+    display: flex;
+    gap: 18px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+
+  .callout-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .callout-label {
+    font-size: 11px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  .callout-val {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 18px;
+    font-weight: 700;
+    color: #38bdf8;
+  }
+
+  .callout-val.good { color: #4ade80; }
+
+  /* Right: Decision and PTA Ring Column */
+  .decision-column {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    justify-content: center;
+  }
+
+  .dosing-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .dosing-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+    background: #047857;
+  }
+
+  .dosing-badge {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #047857;
+    letter-spacing: 0.08em;
+  }
+
+  .dosing-main {
+    font-size: 34px;
+    font-weight: 800;
+    color: #0f172a;
+    margin: 8px 0 12px 0;
+    letter-spacing: -0.01em;
+  }
+
+  .dosing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    font-size: 13px;
+    padding-top: 12px;
+    border-top: 1px solid #f1f5f9;
+  }
+
+  .dosing-meta-lbl {
+    color: #64748b;
+  }
+
+  .dosing-meta-val {
+    font-family: "JetBrains Mono", monospace;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  /* Target Attainment PTA Card with Radial SVG */
+  .pta-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+  }
+
+  .radial-box {
+    position: relative;
+    width: 110px;
+    height: 110px;
+    flex-shrink: 0;
+  }
+
+  .radial-svg {
+    transform: rotate(-90deg);
+    width: 110px;
+    height: 110px;
+  }
+
+  .radial-bg {
+    fill: none;
+    stroke: #e2e8f0;
+    stroke-width: 10;
+  }
+
+  .radial-fill {
+    fill: none;
+    stroke: #047857;
+    stroke-width: 10;
+    stroke-linecap: round;
+  }
+
+  .radial-number {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 24px;
+    font-weight: 800;
+    color: #047857;
+  }
+
+  .pta-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .pta-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .pta-sub {
+    font-size: 12px;
+    color: #64748b;
+    line-height: 1.4;
+  }
+
+  /* Safety Badge */
+  .safety-strip {
+    background: rgba(4, 120, 87, 0.08);
+    border: 1px solid rgba(4, 120, 87, 0.25);
+    border-radius: 8px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .safety-icon {
+    width: 24px;
+    height: 24px;
+    background: #047857;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 800;
+  }
+
+  .safety-text {
+    font-size: 12px;
+    font-weight: 600;
+    color: #065f46;
+  }
+</style>
+
+<div id="root" data-composition-id="04-zenith-workstation" data-width="1920" data-height="1080" data-duration="14.665">
+  <div class="grid-ground"></div>
+  <div class="hairline-top"></div>
+  <div class="hairline-bottom"></div>
+
+  <div class="frame-header" data-layout-allow-overlap>
+    <div class="brand-badge">
+      <img src="assets/logo-icon-256.png" class="brand-logo" alt="PK-Bayes">
+      <span class="tagline-mono">PK-Bayes · Estación de Precisión Zenith</span>
+    </div>
+    <div class="badge-pta">DIANA ALCANZADA · PTA 96.2%</div>
+  </div>
+
+  <div class="hero-headline" data-layout-allow-overlap>
+    <h1 class="hero-title" id="h1-title-4">Estación Zenith: Pauta Óptima en Diana</h1>
+    <p class="hero-sub" id="p-sub-4">Ajuste adaptativo individualizado: <span class="opt-dose">750 mg cada 12h IV</span>. Cobertura bacteriana máxima y protección renal.</p>
+  </div>
+
+  <div class="stage-layout" data-layout-allow-overlap>
+    <!-- Left: Zenith UI Snapshot -->
+    <div class="workstation-frame" id="workstation-card-4" data-layout-allow-overflow>
+      <div class="window-topbar">
+        <div class="traffic-dots">
+          <div class="traffic-dot" style="background: #ef4444;"></div>
+          <div class="traffic-dot" style="background: #eab308;"></div>
+          <div class="traffic-dot" style="background: #22c55e;"></div>
+        </div>
+        <div class="window-title">Zenith Minimalist Workstation · Curva 48h en Meta Terapéutica</div>
+      </div>
+      <img src="assets/08-zenith-minimalist-dashboard.png" class="workstation-img" alt="Zenith Dashboard" data-layout-allow-overflow>
+
+      <div class="highlight-callout" id="callout-box" data-layout-allow-overlap>
+        <div class="callout-item">
+          <div class="callout-label">AUC24 Proyectado</div>
+          <div class="callout-val good" id="val-auc">485 mg·h/L</div>
+        </div>
+        <div class="callout-item">
+          <div class="callout-label">Valle Estable (Cmin)</div>
+          <div class="callout-val good" id="val-cmin">16.2 µg/mL</div>
+        </div>
+        <div class="callout-item">
+          <div class="callout-label">Corredor Clínico</div>
+          <div class="callout-val" style="color:#ffffff;">400 - 600 (Óptimo)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Posology & Target Attainment -->
+    <div class="decision-column">
+      <div class="dosing-card" id="dose-card">
+        <div class="dosing-badge">Prescripción de Precisión Recomendada</div>
+        <div class="dosing-main">750 mg / 12 horas</div>
+        <div class="dosing-grid">
+          <div><span class="dosing-meta-lbl">Infusión:</span> <span class="dosing-meta-val">60 min IV</span></div>
+          <div><span class="dosing-meta-lbl">Dosis Inicial:</span> <span class="dosing-meta-val">Inmediata</span></div>
+          <div><span class="dosing-meta-lbl">Control TDM:</span> <span class="dosing-meta-val">A las 36h</span></div>
+          <div><span class="dosing-meta-lbl">Semivida:</span> <span class="dosing-meta-val">24.5 h</span></div>
+        </div>
+      </div>
+
+      <div class="pta-card" id="pta-box">
+        <div class="radial-box">
+          <svg class="radial-svg" viewBox="0 0 110 110">
+            <circle class="radial-bg" cx="55" cy="55" r="45" />
+            <circle class="radial-fill" id="radial-ring" cx="55" cy="55" r="45" stroke-dasharray="283" stroke-dashoffset="283" />
+          </svg>
+          <div class="radial-number" id="pta-num">96%</div>
+        </div>
+        <div class="pta-info">
+          <div class="pta-title">Target Attainment (PTA)</div>
+          <div class="pta-sub">Probabilidad de mantener el índice AUC24/MIC ≥ 400 frente a cepas de <i>S. aureus</i> con MIC = 1.0 µg/mL.</div>
+        </div>
+      </div>
+
+      <div class="safety-strip" id="safety-card">
+        <div class="safety-icon">✓</div>
+        <div class="safety-text">Riesgo de nefrotoxicidad reducido del 87.4% al 4.8%. Función renal preservada.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const tl = gsap.timeline({ paused: true });
+
+  const rRing = document.getElementById("radial-ring");
+  const cTarget = 283 * (1 - 0.962); // 96.2%
+
+  // Pacing to voiceover (total 14.165s)
+  tl.from("#h1-title-4", { opacity: 0, y: -20, duration: 0.8, ease: "power2.out" }, 0.2)
+    .from("#p-sub-4", { opacity: 0, y: -10, duration: 0.8, ease: "power2.out" }, 0.5)
+    .from("#workstation-card-4", { opacity: 0, scale: 0.98, duration: 0.9, ease: "power2.out" }, 0.8)
+    .from("#dose-card", { opacity: 0, x: 30, duration: 0.8, ease: "back.out(1.5)" }, 2.0)
+
+    // Callout numbers appear
+    .from("#callout-box", { opacity: 0, y: 15, duration: 0.7, ease: "power2.out" }, 3.5)
+
+    // PTA Radial Card animation
+    .from("#pta-box", { opacity: 0, x: 30, duration: 0.8, ease: "power2.out" }, 4.8)
+    .to(rRing, { strokeDashoffset: cTarget, duration: 1.8, ease: "power2.out" }, 5.2)
+    .from("#pta-num", { scale: 0.6, duration: 0.8, ease: "back.out(2)" }, 5.5)
+
+    // Safety strip confirmation
+    .from("#safety-card", { opacity: 0, y: 10, duration: 0.7, ease: "power2.out" }, 7.5);
+
+  window.__timelines["04-zenith-workstation"] = tl;
+</script>
+</template>
+</body>
+</html>

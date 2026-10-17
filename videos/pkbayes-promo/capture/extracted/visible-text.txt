@@ -1,0 +1,19 @@
+# PK-Bayes Clinical Marketing & Educational Text
+
+La dosis estándar trata al promedio. En la UCI, ningún paciente es el promedio.
+
+PK-Bayes es un sistema clínico de apoyo a la decisión (CDSS v3.2) diseñado para equipos de medicina intensiva, infectología (PROA) y farmacia clínica.
+
+Motor Bayesiano MAP:
+Combina el referente poblacional (priors de Goti, Rodvold, Thomson, Yamamoto) con las concentraciones medidas en sangre (TDM) para ajustar los parámetros farmacocinéticos individuales (Aclaramiento y Volumen de Distribución) en menos de 25 milisegundos.
+
+Alcance Farmacológico:
+- Vancomicina IV: Bicompartimental lineal, monitorización de área bajo la curva a 24 horas (AUC24/CIM 400 - 600 mg·h/L) y prevención de nefrotoxicidad.
+- Fenitoína Sódica: Cinética no lineal saturable Michaelis-Menten y corrección de albúmina por Sheiner-Tozer.
+- Aminoglucósidos (Amikacina / Gentamicina): Picos bactericidas y valles de seguridad.
+- Tacrolimus: Estrecho margen terapéutico en trasplante.
+
+Seguridad e Integración Hospitalaria:
+- Privacidad total con datos identificatorios minimizados.
+- Trazabilidad y pista de auditoría compatible con FDA 21 CFR Part 11.
+- Conectividad sin fricción mediante HL7 FHIR R4.

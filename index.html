@@ -5,7 +5,7 @@
   <title data-i18n="meta.title_index">PK-Bayes - Dosificación farmacocinética de precisión</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="PK-Bayes ayuda a equipos clínicos a individualizar tratamientos con vancomicina y fenitoína mediante estimación bayesiana y datos reales del paciente.">
-  <meta name="theme-color" content="#0284c7">
+  <meta name="theme-color" content="#0369a1">
   <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
   
@@ -16,13 +16,8 @@
   
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-<body class="mesh-gradient-darker text-slate-800 min-h-screen relative overflow-x-hidden" style="color: #1e293b; background: #f8fafc;">
+<body class="mesh-gradient-darker" style="color: var(--text); background: var(--bg);">
   <a href="#main-content" class="skip-link" data-i18n="a11y.saltar_al_contenido">Saltar al contenido principal</a>
-
-  <!-- Ambient Glow Orbs -->
-  <div class="glow-orb glow-orb-cyan pulse-glow" style="top:0; left:20%; width:500px; height:500px;"></div>
-  <div class="glow-orb glow-orb-emerald" style="top:35%; right:5%; width:550px; height:550px;"></div>
-  <div class="glow-orb glow-orb-cyan" style="bottom:10%; left:25%; width:500px; height:500px;"></div>
 
   <!-- NAVIGATION HEADER -->
   <header class="site-header">
@@ -45,7 +40,7 @@
         <div style="display: flex; justify-content: center; margin-bottom: 20px;">
           <div class="glass-card" style="display: inline-flex; align-items: center; gap: 10px; padding: 6px 18px; border-radius: 9999px; font-size: 12px; color: #334155; border: 1px solid #bae6fd; background: rgba(255, 255, 255, 0.95); box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);">
             <span class="clinical-status-dot status-blue"></span>
-            <span style="font-weight: 700; color: #0284c7;" data-i18n="hero.mcmc_pill">Stan MCMC + L-BFGS-B · Inferencia TDM en &lt; 25 ms con regularización Bayesiana</span>
+            <span style="font-weight: 700; color: var(--primary);" data-i18n="hero.mcmc_pill">Stan MCMC + L-BFGS-B · Inferencia TDM en &lt; 25 ms con regularización Bayesiana</span>
           </div>
         </div>
 
@@ -53,7 +48,7 @@
         <div style="text-align: center; max-width: 980px; margin: 0 auto 28px;">
           <h1 style="font-size: clamp(2.2rem, 4.4vw, 3.6rem); font-weight: 800; line-height: 1.12; margin-bottom: 16px; color: #091e42;">
             <span data-i18n="hero.title_p1">Dosificación de Precisión guiada por</span><br>
-            <span style="color: #0284c7;" data-i18n="hero.title_highlight">Optimización Bayesiana MAP</span>
+            <span style="color: var(--primary);" data-i18n="hero.title_highlight">Optimización Bayesiana MAP</span>
           </h1>
           <p style="font-size: clamp(1rem, 2vw, 1.25rem); color: #475569; line-height: 1.65; max-width: 680px; margin: 0 auto; text-wrap: pretty;" data-i18n-html="hero.lead">
             Plataforma clínica para individualizar la dosis de fármacos de estrecho margen terapéutico (<strong>vancomicina</strong> y <strong>fenitoína</strong>) mediante estimación bayesiana MAP sobre los datos reales de cada paciente.
@@ -61,36 +56,36 @@
 
           <!-- CTAs -->
           <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 24px;">
-            <a href="#simulador" class="btn-stitch-primary" style="padding: 13px 26px; font-size: 14px;" data-i18n="hero.cta_sim">
+            <a href="#simulador" class="btn-stitch-primary" style="padding: 13px 26px; font-size: 14px;">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
               </svg>
-              <span>Probar Simulador Interactivo</span>
+              <span data-i18n="hero.cta_sim">Probar Simulador Interactivo</span>
             </a>
-            <a href="#demo" class="btn-stitch-glass" style="padding: 13px 26px; font-size: 14px;" data-i18n="hero.cta_demo">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" aria-hidden="true">
+            <a href="#demo" class="btn-stitch-glass" style="padding: 13px 26px; font-size: 14px;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" aria-hidden="true">
                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                 <line x1="16" y1="2" x2="16" y2="6"></line>
                 <line x1="8" y1="2" x2="8" y2="6"></line>
                 <line x1="3" y1="10" x2="21" y2="10"></line>
               </svg>
-              <span>Agendar Demostración con Farmacéuticos Clínicos</span>
+              <span data-i18n="hero.cta_demo">Agendar Demostración con Farmacéuticos Clínicos</span>
             </a>
-            <a href="precios.html#video-promocional" class="btn-stitch-glass" style="padding: 13px 26px; font-size: 14px; text-decoration: none;" data-i18n="hero.cta_video">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" aria-hidden="true">
+            <a href="precios.html#video-promocional" class="btn-stitch-glass" style="padding: 13px 26px; font-size: 14px; text-decoration: none;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" aria-hidden="true">
                 <circle cx="12" cy="12" r="10"></circle>
-                <polygon points="10 8 16 12 10 16 10 8" fill="#0284c7"></polygon>
+                <polygon points="10 8 16 12 10 16 10 8" fill="var(--primary)"></polygon>
               </svg>
-              <span>Ver Video Promocional (3:24 min)</span>
+              <span data-i18n="hero.cta_video">Ver Video Promocional (3:24 min)</span>
             </a>
           </div>
 
           <!-- Trust Strip Badges -->
-          <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; margin-top: 20px; font-size: 12px; color: #64748b;">
-            <span style="display: flex; align-items: center; gap: 6px;"><svg width="14" height="14" fill="#059669" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span data-i18n="hero.trust_fda">FDA 21 CFR Part 11 Compliant</span></span>
-            <span style="display: flex; align-items: center; gap: 6px;"><svg width="14" height="14" fill="#059669" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span data-i18n="hero.trust_fhir">HL7 FHIR R4 Ready</span></span>
-            <span style="display: flex; align-items: center; gap: 6px;"><svg width="14" height="14" fill="#059669" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span data-i18n="hero.trust_gamp">GAMP 5 Categoría 4</span></span>
-            <span style="display: flex; align-items: center; gap: 6px;"><svg width="14" height="14" fill="#059669" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span data-i18n="hero.trust_iso">ISO 13485 & 27001</span></span>
+          <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; margin-top: 20px; font-size: 12px; color: #475569;">
+            <span style="display: flex; align-items: center; gap: 6px;"><svg width="14" height="14" fill="#047857" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span data-i18n="hero.trust_fda">FDA 21 CFR Part 11 Compliant</span></span>
+            <span style="display: flex; align-items: center; gap: 6px;"><svg width="14" height="14" fill="#047857" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span data-i18n="hero.trust_fhir">HL7 FHIR R4 Ready</span></span>
+            <span style="display: flex; align-items: center; gap: 6px;"><svg width="14" height="14" fill="#047857" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span data-i18n="hero.trust_gamp">GAMP 5 Categoría 4</span></span>
+            <span style="display: flex; align-items: center; gap: 6px;"><svg width="14" height="14" fill="#047857" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span data-i18n="hero.trust_iso">ISO 13485 & 27001</span></span>
           </div>
         </div>
 
@@ -106,10 +101,10 @@
                   </span>
                   <div class="zenith-patient-pill">
                     <span style="color: #0f172a; font-weight: 700;" data-i18n="zenith.patient">Elena Morales · 63a · UCI</span>
-                    <span style="color: #cbd5e1;">|</span>
+                    <span style="color: #475569;" aria-hidden="true">|</span>
                     <span style="color: #2563eb;" data-i18n="zenith.drug">Vancomicina IV (Bicompartimental)</span>
-                    <span style="color: #cbd5e1;">|</span>
-                    <span style="color: #64748b;" data-i18n="zenith.egfr">eGFR: 26 mL/min</span>
+                    <span style="color: #475569;" aria-hidden="true">|</span>
+                    <span style="color: #475569;" data-i18n="zenith.egfr">eGFR: 26 mL/min</span>
                   </div>
                 </div>
 
@@ -118,7 +113,7 @@
                     <span class="clinical-status-dot status-emerald" style="width: 6px; height: 6px;"></span>
                     <span data-i18n="zenith.status">En Diana 96%</span>
                   </span>
-                  <a href="assets/stitch/08-zenith-minimalist-dashboard.png" class="zenith-patient-pill" data-screen-lightbox aria-label="Ampliar captura 4K" data-i18n-aria-label="a11y.vista_ampliada_de_pk_bayes" data-alt="Zenith Minimalist Dashboard" style="text-decoration: none; cursor: pointer; color: #0284c7; border-color: rgba(2,132,199,0.3); font-size: 12px; display: flex; align-items: center; gap: 6px;">
+                  <a href="assets/stitch/08-zenith-minimalist-dashboard.png" class="zenith-patient-pill" data-screen-lightbox aria-label="Ampliar captura 4K" data-i18n-aria-label="a11y.vista_ampliada_de_pk_bayes" data-alt="Zenith Minimalist Dashboard" style="text-decoration: none; cursor: pointer; color: #0369a1; border-color: rgba(2,132,199,0.3); font-size: 12px; display: flex; align-items: center; gap: 6px;">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
                     <span data-i18n="zenith.view_hd">Ver Maqueta 4K</span>
                   </a>
@@ -135,17 +130,17 @@
                 <div class="zenith-kpi-card">
                   <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                     <span class="zenith-kpi-label" data-i18n="zenith.kpi_pta_label">Probabilidad en Diana (PTA)</span>
-                    <span style="background: #ecfdf5; color: #059669; font-size: 11px; font-weight: 800; font-family: var(--font-mono); padding: 2px 7px; border-radius: 9999px;" data-i18n="zenith.badge_optimal">En Meta</span>
+                    <span style="background: #ecfdf5; color: #047857; font-size: 11px; font-weight: 800; font-family: var(--font-mono); padding: 2px 7px; border-radius: 9999px;" data-i18n="zenith.badge_optimal">En Meta</span>
                   </div>
                   <div style="display: flex; align-items: center; justify-content: space-between; margin: 10px 0;">
                     <div>
-                      <div id="zenith-kpi-pta" class="zenith-kpi-num" style="color: #059669;">96%</div>
-                      <span style="font-size: 12px; color: #64748b;" data-i18n="zenith.kpi_pta_sub">Ventana AUC/CIM ≥ 400</span>
+                      <div id="zenith-kpi-pta" class="zenith-kpi-num" style="color: #047857;">96%</div>
+                      <span style="font-size: 12px; color: #475569;" data-i18n="zenith.kpi_pta_sub">Ventana AUC/CIM ≥ 400</span>
                     </div>
                     <!-- Circular SVG Progress Ring -->
                     <svg width="56" height="56" viewBox="0 0 36 36" style="transform: rotate(-90deg); flex-shrink: 0;" aria-hidden="true">
                       <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e2e8f0" stroke-width="3.5" />
-                      <path id="zenith-ring-path" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#059669" stroke-dasharray="96, 100" stroke-linecap="round" stroke-width="3.5" />
+                      <path id="zenith-ring-path" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#047857" stroke-dasharray="96, 100" stroke-linecap="round" stroke-width="3.5" />
                     </svg>
                   </div>
                 </div>
@@ -159,17 +154,17 @@
                   <div style="margin: 10px 0;">
                     <div style="display: flex; align-items: baseline; gap: 6px;">
                       <span id="zenith-kpi-auc" class="zenith-kpi-num" style="color: #0f172a;">485</span>
-                      <span style="font-size: 13px; font-weight: 600; color: #64748b; font-family: var(--font-mono);" data-i18n="zenith.unit_mghl">mg·h/L</span>
+                      <span style="font-size: 13px; font-weight: 600; color: #475569; font-family: var(--font-mono);" data-i18n="zenith.unit_mghl">mg·h/L</span>
                     </div>
                     <!-- Range Corridor Visualizer -->
                     <div style="margin-top: 10px;">
                       <div style="width: 100%; height: 6px; background: #e2e8f0; border-radius: 9999px; position: relative; overflow: hidden;">
                         <div style="position: absolute; left: 30%; width: 40%; height: 100%; background: #a7f3d0;"></div>
-                        <div id="zenith-corridor-dot" style="position: absolute; left: 52%; top: 0; width: 6px; height: 100%; background: #059669; border-radius: 2px;"></div>
+                        <div id="zenith-corridor-dot" style="position: absolute; left: 52%; top: 0; width: 6px; height: 100%; background: #047857; border-radius: 2px;"></div>
                       </div>
-                      <div style="display: flex; justify-content: space-between; font-size: 11px; font-family: var(--font-mono); color: #94a3b8; margin-top: 4px;">
+                      <div style="display: flex; justify-content: space-between; font-size: 11px; font-family: var(--font-mono); color: #475569; margin-top: 4px;">
                         <span>300</span>
-                        <span style="color: #059669; font-weight: 700;" data-i18n="zenith.kpi_auc_sub">Rango Óptimo 400 - 600</span>
+                        <span style="color: #047857; font-weight: 700;" data-i18n="zenith.kpi_auc_sub">Rango Óptimo 400 - 600</span>
                         <span>700</span>
                       </div>
                     </div>
@@ -180,22 +175,22 @@
                 <div class="zenith-kpi-card">
                   <div style="display: flex; justify-content: space-between; align-items: flex-start;">
                     <span class="zenith-kpi-label" data-i18n="zenith.kpi_cmin_label">Nivel Valle Predicho (C_mín)</span>
-                    <span style="background: #ecfdf5; color: #059669; font-size: 11px; font-weight: 800; font-family: var(--font-mono); padding: 2px 7px; border-radius: 9999px;" data-i18n="zenith.target_range">15 - 20 µg/mL</span>
+                    <span style="background: #ecfdf5; color: #047857; font-size: 11px; font-weight: 800; font-family: var(--font-mono); padding: 2px 7px; border-radius: 9999px;" data-i18n="zenith.target_range">15 - 20 µg/mL</span>
                   </div>
                   <div style="margin: 10px 0;">
                     <div style="display: flex; align-items: baseline; gap: 6px;">
                       <span id="zenith-kpi-cmin" class="zenith-kpi-num" style="color: #0f172a;">16.2</span>
-                      <span style="font-size: 13px; font-weight: 600; color: #64748b; font-family: var(--font-mono);" data-i18n="zenith.unit_ugml">µg/mL</span>
+                      <span style="font-size: 13px; font-weight: 600; color: #475569; font-family: var(--font-mono);" data-i18n="zenith.unit_ugml">µg/mL</span>
                     </div>
                     <!-- Range Corridor Visualizer for Trough Level -->
                     <div style="margin-top: 10px;">
                       <div style="width: 100%; height: 6px; background: #e2e8f0; border-radius: 9999px; position: relative; overflow: hidden;">
                         <div style="position: absolute; left: 33%; width: 34%; height: 100%; background: #a7f3d0;"></div>
-                        <div id="zenith-cmin-corridor-dot" style="position: absolute; left: 41%; top: 0; width: 6px; height: 100%; background: #059669; border-radius: 2px;"></div>
+                        <div id="zenith-cmin-corridor-dot" style="position: absolute; left: 41%; top: 0; width: 6px; height: 100%; background: #047857; border-radius: 2px;"></div>
                       </div>
-                      <div style="display: flex; justify-content: space-between; font-size: 11px; font-family: var(--font-mono); color: #94a3b8; margin-top: 4px;">
+                      <div style="display: flex; justify-content: space-between; font-size: 11px; font-family: var(--font-mono); color: #475569; margin-top: 4px;">
                         <span>10</span>
-                        <span style="color: #059669; font-weight: 700;" data-i18n="zenith.kpi_cmin_range_lbl">Rango Valle 15 - 20</span>
+                        <span style="color: #047857; font-weight: 700;" data-i18n="zenith.kpi_cmin_range_lbl">Rango Valle 15 - 20</span>
                         <span>25</span>
                       </div>
                     </div>
@@ -214,8 +209,8 @@
                       <span style="width: 14px; height: 3px; background: #2563eb; border-radius: 2px;"></span>
                       <span data-i18n="zenith.legend_fit">Ajuste MAP Bayesiano</span>
                     </span>
-                    <span style="display: flex; align-items: center; gap: 6px; color: #059669;">
-                      <span style="width: 12px; height: 8px; background: rgba(5, 150, 105, 0.18); border: 1px solid #059669; border-radius: 2px;"></span>
+                    <span style="display: flex; align-items: center; gap: 6px; color: #047857;">
+                      <span style="width: 12px; height: 8px; background: rgba(5, 150, 105, 0.18); border: 1px solid #047857; border-radius: 2px;"></span>
                       <span data-i18n="zenith.legend_window">Ventana Terapéutica (15 - 20 µg/mL)</span>
                     </span>
                     <span style="display: flex; align-items: center; gap: 6px; color: #dc2626;">
@@ -236,7 +231,7 @@
 
             <!-- Fluid Responsive SVG Curve -->
             <div style="width: 100%; height: 260px;">
-              <svg style="width: 100%; height: 100%;" viewBox="0 0 900 240" preserveAspectRatio="none">
+              <svg style="width: 100%; height: 100%;" viewBox="0 0 900 240" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Curva farmacocinética individualizada de 48 horas" data-i18n-aria-label="a11y.zenith_svg_label">
                 <defs>
                   <linearGradient id="zenithGlow" x1="0" y1="0" x2="0" y2="1">
                     <stop offset="0%" stop-color="#2563eb" stop-opacity="0.22" />
@@ -263,14 +258,14 @@
 
                 <!-- Therapeutic Target Corridor Band (15-20 ug/mL: Y=115 to Y=145) -->
                 <rect x="50" y="115" width="820" height="30" fill="url(#zenithTargetBand)" />
-                <line x1="50" y1="145" x2="870" y2="145" stroke="#059669" stroke-opacity="0.5" stroke-dasharray="4 4" stroke-width="1.2" />
+                <line x1="50" y1="145" x2="870" y2="145" stroke="#047857" stroke-opacity="0.5" stroke-dasharray="4 4" stroke-width="1.2" />
 
                 <!-- Y-Axis Ticks -->
-                <text x="42" y="34" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="end">40</text>
-                <text x="42" y="84" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="end">30</text>
-                <text x="42" y="120" fill="#059669" font-size="10" font-family="monospace" text-anchor="end" font-weight="700">20</text>
-                <text x="42" y="149" fill="#059669" font-size="10" font-family="monospace" text-anchor="end" font-weight="700">15</text>
-                <text x="42" y="218" fill="#94a3b8" font-size="10" font-family="monospace" text-anchor="end">0</text>
+                <text x="42" y="34" fill="#475569" font-size="10" font-family="monospace" text-anchor="end">40</text>
+                <text x="42" y="84" fill="#475569" font-size="10" font-family="monospace" text-anchor="end">30</text>
+                <text x="42" y="120" fill="#047857" font-size="10" font-family="monospace" text-anchor="end" font-weight="700">20</text>
+                <text x="42" y="149" fill="#047857" font-size="10" font-family="monospace" text-anchor="end" font-weight="700">15</text>
+                <text x="42" y="218" fill="#475569" font-size="10" font-family="monospace" text-anchor="end">0</text>
 
                 <!-- Gradient Under-Curve Fill -->
                 <path id="zenith-curve-glow" d="M 50,210 C 70,45 100,38 150,90 C 200,140 240,172 260,175 C 280,48 310,40 360,92 C 410,142 450,174 470,176 C 490,50 520,42 570,94 C 620,144 660,175 680,178 C 700,52 730,45 780,96 C 830,146 850,176 870,178 L 870,215 L 50,215 Z" fill="url(#zenithGlow)" />
@@ -285,29 +280,29 @@
 
                 <!-- Infusion Administration Pulse Markers -->
                 <g opacity="0.65">
-                  <line x1="50" y1="215" x2="50" y2="192" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="2 2" />
-                  <text x="54" y="200" fill="#0284c7" font-size="8" font-family="monospace">↓ IV 1h</text>
-                  <line x1="260" y1="215" x2="260" y2="192" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="2 2" />
-                  <text x="264" y="200" fill="#0284c7" font-size="8" font-family="monospace">↓ IV 1h</text>
-                  <line x1="470" y1="215" x2="470" y2="192" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="2 2" />
-                  <text x="474" y="200" fill="#0284c7" font-size="8" font-family="monospace">↓ IV 1h</text>
-                  <line x1="680" y1="215" x2="680" y2="192" stroke="#0284c7" stroke-width="1.5" stroke-dasharray="2 2" />
-                  <text x="684" y="200" fill="#0284c7" font-size="8" font-family="monospace">↓ IV 1h</text>
+                  <line x1="50" y1="215" x2="50" y2="192" stroke="#0369a1" stroke-width="1.5" stroke-dasharray="2 2" />
+                  <text x="54" y="200" fill="#0369a1" font-size="8" font-family="monospace">↓ IV 1h</text>
+                  <line x1="260" y1="215" x2="260" y2="192" stroke="#0369a1" stroke-width="1.5" stroke-dasharray="2 2" />
+                  <text x="264" y="200" fill="#0369a1" font-size="8" font-family="monospace">↓ IV 1h</text>
+                  <line x1="470" y1="215" x2="470" y2="192" stroke="#0369a1" stroke-width="1.5" stroke-dasharray="2 2" />
+                  <text x="474" y="200" fill="#0369a1" font-size="8" font-family="monospace">↓ IV 1h</text>
+                  <line x1="680" y1="215" x2="680" y2="192" stroke="#0369a1" stroke-width="1.5" stroke-dasharray="2 2" />
+                  <text x="684" y="200" fill="#0369a1" font-size="8" font-family="monospace">↓ IV 1h</text>
                 </g>
 
                 <!-- X-Axis Timestamps -->
-                <text x="50" y="232" fill="#64748b" font-size="10" font-family="monospace" text-anchor="middle" data-i18n="zenith.t_dose1">Dosis 1 (0h)</text>
-                <text x="260" y="232" fill="#64748b" font-size="10" font-family="monospace" text-anchor="middle" data-i18n="zenith.t_dose2">Dosis 2 (12h)</text>
-                <text x="470" y="232" fill="#64748b" font-size="10" font-family="monospace" text-anchor="middle" data-i18n="zenith.t_dose3">Dosis 3 (24h)</text>
-                <text x="680" y="232" fill="#64748b" font-size="10" font-family="monospace" text-anchor="middle">36h</text>
-                <text x="840" y="232" fill="#059669" font-size="10" font-family="monospace" text-anchor="middle" font-weight="700" data-i18n="zenith.t_ss">48h (Estado Estacionario)</text>
+                <text x="50" y="232" fill="#475569" font-size="10" font-family="monospace" text-anchor="middle" data-i18n="zenith.t_dose1">Dosis 1 (0h)</text>
+                <text x="260" y="232" fill="#475569" font-size="10" font-family="monospace" text-anchor="middle" data-i18n="zenith.t_dose2">Dosis 2 (12h)</text>
+                <text x="470" y="232" fill="#475569" font-size="10" font-family="monospace" text-anchor="middle" data-i18n="zenith.t_dose3">Dosis 3 (24h)</text>
+                <text x="680" y="232" fill="#475569" font-size="10" font-family="monospace" text-anchor="middle">36h</text>
+                <text x="840" y="232" fill="#047857" font-size="10" font-family="monospace" text-anchor="middle" font-weight="700" data-i18n="zenith.t_ss">48h (Estado Estacionario)</text>
               </svg>
             </div>
           </div>
 
           <!-- Linear-Style Interactive Posology Selector (Segmented Cards) -->
           <div style="margin-bottom: 8px;">
-            <span style="font-size: 11px; font-family: var(--font-mono); text-transform: uppercase; color: #64748b; font-weight: 700; letter-spacing: 0.05em;" data-i18n="zenith.posology_title">Selector Posológico Interactivo</span>
+            <span style="font-size: 11px; font-family: var(--font-mono); text-transform: uppercase; color: #475569; font-weight: 700; letter-spacing: 0.05em;" data-i18n="zenith.posology_title">Selector Posológico Interactivo</span>
           </div>
 
           <div class="zenith-posology-deck">
@@ -317,11 +312,11 @@
                 <strong style="font-size: 15px; color: #0f172a; font-family: var(--font-mono);" data-i18n="zenith.opt_a_name">750 mg IV c/ 12h</strong>
                 <span class="zenith-posology-badge recommended" data-i18n="zenith.opt_a_badge">RECOMENDADO</span>
               </div>
-              <div style="margin-top: 8px; font-size: 12px; color: #059669; font-weight: 600;" data-i18n="zenith.opt_a_sub">
+              <div style="margin-top: 8px; font-size: 12px; color: var(--green-dark); font-weight: 600;" data-i18n="zenith.opt_a_sub">
                 PTA 96% · AUC 485 · C_mín 16.2
               </div>
               <div class="zenith-posology-progress">
-                <div class="zenith-posology-progress-fill" style="width: 96%; background: #059669;"></div>
+                <div class="zenith-posology-progress-fill" style="width: 96%; background: #047857;"></div>
               </div>
             </button>
 
@@ -331,7 +326,7 @@
                 <strong style="font-size: 15px; color: #0f172a; font-family: var(--font-mono);" data-i18n="zenith.opt_b_name">1000 mg IV c/ 12h</strong>
                 <span class="zenith-posology-badge standard" data-i18n="zenith.opt_b_badge">ESTÁNDAR</span>
               </div>
-              <div style="margin-top: 8px; font-size: 12px; color: #dc2626; font-weight: 600;" data-i18n="zenith.opt_b_sub">
+              <div style="margin-top: 8px; font-size: 12px; color: var(--red-dark); font-weight: 600;" data-i18n="zenith.opt_b_sub">
                 PTA 62% · AUC 642 · Riesgo Alto
               </div>
               <div class="zenith-posology-progress">
@@ -356,18 +351,18 @@
 
           <!-- Bottom Action Bar -->
           <div class="zenith-actions-bar">
-            <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #64748b;">
-              <svg width="15" height="15" fill="#059669" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
+            <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #475569;">
+              <svg width="15" height="15" fill="#047857" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
               <span data-i18n="zenith.compliance_note">Validado bajo FDA SaMD Class II &amp; GAMP 5</span>
             </div>
 
             <div style="display: flex; align-items: center; gap: 10px;">
-              <button type="button" class="btn-stitch-glass" style="padding: 10px 18px; font-size: 12px;" data-i18n="zenith.btn_sandbox">
+              <button type="button" id="zenith-btn-sandbox" class="btn-stitch-glass" style="padding: 10px 18px; font-size: 12px;" data-i18n="zenith.btn_sandbox">
                 Simular en Sandbox
               </button>
-              <button type="button" class="btn-stitch-primary" style="padding: 10px 22px; font-size: 12px; background: #059669; border-color: #047857;" data-i18n="zenith.btn_approve">
+              <button type="button" id="zenith-btn-approve" class="btn-stitch-primary" style="padding: 10px 22px; font-size: 12px; background: #047857; border-color: #065f46;">
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <span>Aprobar Pauta Clínica</span>
+                <span data-i18n="zenith.btn_approve">Aprobar Pauta Clínica</span>
               </button>
             </div>
           </div>
@@ -426,14 +421,14 @@
               <svg viewBox="0 0 320 110" style="width: 100%; height: 100%;" fill="none" aria-hidden="true">
                 <!-- Target corridor (15-20 ug/mL) -->
                 <rect x="20" y="35" width="280" height="32" fill="rgba(16, 185, 129, 0.12)" rx="3" />
-                <line x1="20" y1="35" x2="300" y2="35" stroke="#059669" stroke-width="1" stroke-dasharray="2 2" />
-                <line x1="20" y1="67" x2="300" y2="67" stroke="#059669" stroke-width="1" stroke-dasharray="2 2" />
-                <text x="295" y="44" fill="#059669" font-size="8" font-family="monospace" text-anchor="end" data-i18n="chart.target_15_20">Diana 15-20 µg/mL</text>
+                <line x1="20" y1="35" x2="300" y2="35" stroke="#047857" stroke-width="1" stroke-dasharray="2 2" />
+                <line x1="20" y1="67" x2="300" y2="67" stroke="#047857" stroke-width="1" stroke-dasharray="2 2" />
+                <text x="295" y="44" fill="#047857" font-size="8" font-family="monospace" text-anchor="end" data-i18n="chart.target_15_20">Diana 15-20 µg/mL</text>
 
                 <!-- Kinetic wave -->
-                <path d="M 20 95 C 30 20 45 15 65 42 C 85 70 100 80 115 82 C 125 22 140 16 160 44 C 180 72 195 82 210 83 C 220 24 235 18 255 45 C 275 60 290 62 300 63" stroke="#0284c7" stroke-width="2.4" stroke-linecap="round" />
-                <circle cx="210" cy="52" r="4" fill="#059669" stroke="#ffffff" stroke-width="1.5" />
-                <text x="218" y="50" fill="#059669" font-size="8" font-family="monospace" font-weight="700">TDM 16.2</text>
+                <path d="M 20 95 C 30 20 45 15 65 42 C 85 70 100 80 115 82 C 125 22 140 16 160 44 C 180 72 195 82 210 83 C 220 24 235 18 255 45 C 275 60 290 62 300 63" stroke="#0369a1" stroke-width="2.4" stroke-linecap="round" />
+                <circle cx="210" cy="52" r="4" fill="#047857" stroke="#ffffff" stroke-width="1.5" />
+                <text x="218" y="50" fill="#047857" font-size="8" font-family="monospace" font-weight="700">TDM 16.2</text>
               </svg>
             </div>
 
@@ -441,11 +436,11 @@
             <div class="framer-metrics-deck">
               <div class="framer-metric-item">
                 <span class="framer-metric-label" data-i18n="showcase.m1_label_1">PTA Objetivo</span>
-                <strong class="framer-metric-val" style="color: #059669;">96.4%</strong>
+                <strong class="framer-metric-val" style="color: #047857;">96.4%</strong>
               </div>
               <div class="framer-metric-item">
                 <span class="framer-metric-label" data-i18n="showcase.m2_label_1">AUC24</span>
-                <strong class="framer-metric-val" style="color: #0284c7;">485</strong>
+                <strong class="framer-metric-val" style="color: #0369a1;">485</strong>
               </div>
               <div class="framer-metric-item">
                 <span class="framer-metric-label" data-i18n="showcase.m3_label_1">Nivel Valle</span>
@@ -453,7 +448,7 @@
               </div>
             </div>
 
-            <p style="font-size: 12px; color: #64748b; line-height: 1.45; margin: 0; border-top: 1px solid #f1f5f9; padding-top: 12px;" data-i18n="showcase.footer_1">
+            <p style="font-size: 12px; color: #475569; line-height: 1.45; margin: 0; border-top: 1px solid #f1f5f9; padding-top: 12px;" data-i18n="showcase.footer_1">
               Modelo bicompartimental con aclaramiento dinámico diario. Nefrotoxicidad prevenida.
             </p>
           </article>
@@ -477,12 +472,12 @@
                 <line x1="20" y1="95" x2="300" y2="95" stroke="#cbd5e1" stroke-width="1" />
                 <line x1="20" y1="15" x2="20" y2="95" stroke="#cbd5e1" stroke-width="1" />
                 <!-- Michaelis-Menten knee curve -->
-                <path d="M 20 95 C 60 95 100 88 140 60 C 180 32 230 18 300 16" stroke="#d97706" stroke-width="2.4" stroke-linecap="round" />
+                <path d="M 20 95 C 60 95 100 88 140 60 C 180 32 230 18 300 16" stroke="#b45309" stroke-width="2.4" stroke-linecap="round" />
                 <circle cx="140" cy="60" r="4.5" fill="#dc2626" stroke="#ffffff" stroke-width="1.5" />
                 <text x="150" y="58" fill="#dc2626" font-size="8" font-family="monospace" font-weight="700" data-i18n="chart.km_sat">Km Sat.</text>
                 <!-- Protein binding bar indicator -->
-                <rect x="20" y="100" width="220" height="4" fill="#0284c7" rx="2" />
-                <rect x="240" y="100" width="60" height="4" fill="#d97706" rx="2" />
+                <rect x="20" y="100" width="220" height="4" fill="#0369a1" rx="2" />
+                <rect x="240" y="100" width="60" height="4" fill="#b45309" rx="2" />
               </svg>
             </div>
 
@@ -490,7 +485,7 @@
             <div class="framer-metrics-deck">
               <div class="framer-metric-item">
                 <span class="framer-metric-label" data-i18n="showcase.m1_label_2">Cinética</span>
-                <strong class="framer-metric-val" style="color: #d97706;" data-i18n="showcase.m1_val_2">Michaelis</strong>
+                <strong class="framer-metric-val" style="color: #b45309;" data-i18n="showcase.m1_val_2">Michaelis</strong>
               </div>
               <div class="framer-metric-item">
                 <span class="framer-metric-label" data-i18n="showcase.m2_label_2">Nivel Total</span>
@@ -498,11 +493,11 @@
               </div>
               <div class="framer-metric-item">
                 <span class="framer-metric-label" data-i18n="showcase.m3_label_2">Fracc. Libre</span>
-                <strong class="framer-metric-val" style="color: #d97706;">18.5%</strong>
+                <strong class="framer-metric-val" style="color: #b45309;">18.5%</strong>
               </div>
             </div>
 
-            <p style="font-size: 12px; color: #64748b; line-height: 1.45; margin: 0; border-top: 1px solid #f1f5f9; padding-top: 12px;" data-i18n="showcase.footer_2">
+            <p style="font-size: 12px; color: #475569; line-height: 1.45; margin: 0; border-top: 1px solid #f1f5f9; padding-top: 12px;" data-i18n="showcase.footer_2">
               Detección precoz del punto Km antes de que pequeños incrementos de dosis desencadenen neurotoxicidad.
             </p>
           </article>
@@ -524,9 +519,9 @@
             <div class="framer-card-canvas">
               <svg viewBox="0 0 320 110" style="width: 100%; height: 100%;" fill="none" aria-hidden="true">
                 <!-- Residual Native Kidney Box -->
-                <rect x="20" y="15" width="110" height="38" rx="6" fill="#eff6ff" stroke="#0284c7" stroke-width="1.4" />
-                <text x="75" y="32" fill="#0284c7" font-size="9" font-family="monospace" text-anchor="middle" font-weight="700" data-i18n="showcase.m1_label_3">CL Nativo</text>
-                <text x="75" y="45" fill="#64748b" font-size="8" font-family="monospace" text-anchor="middle">0.4 L/h</text>
+                <rect x="20" y="15" width="110" height="38" rx="6" fill="#eff6ff" stroke="#0369a1" stroke-width="1.4" />
+                <text x="75" y="32" fill="#0369a1" font-size="9" font-family="monospace" text-anchor="middle" font-weight="700" data-i18n="showcase.m1_label_3">CL Nativo</text>
+                <text x="75" y="45" fill="#475569" font-size="8" font-family="monospace" text-anchor="middle">0.4 L/h</text>
 
                 <!-- Plus sign -->
                 <circle cx="160" cy="34" r="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" />
@@ -535,12 +530,12 @@
                 <!-- Extracorporeal Filter Box -->
                 <rect x="190" y="15" width="110" height="38" rx="6" fill="#faf5ff" stroke="#7c3aed" stroke-width="1.4" />
                 <text x="245" y="32" fill="#7c3aed" font-size="9" font-family="monospace" text-anchor="middle" font-weight="700" data-i18n="chart.cl_hemofilter">CL Hemofiltro</text>
-                <text x="245" y="45" fill="#64748b" font-size="8" font-family="monospace" text-anchor="middle">2.2 L/h</text>
+                <text x="245" y="45" fill="#475569" font-size="8" font-family="monospace" text-anchor="middle">2.2 L/h</text>
 
                 <!-- Summation Arrow & Total -->
-                <path d="M 160 50 L 160 70" stroke="#059669" stroke-width="1.5" stroke-dasharray="2 2" />
-                <rect x="75" y="74" width="170" height="26" rx="6" fill="#ecfdf5" stroke="#059669" stroke-width="1.2" />
-                <text x="160" y="91" fill="#059669" font-size="10" font-family="monospace" text-anchor="middle" font-weight="800" data-i18n="chart.cl_total_26">CL Total = 2.6 L/h</text>
+                <path d="M 160 50 L 160 70" stroke="#047857" stroke-width="1.5" stroke-dasharray="2 2" />
+                <rect x="75" y="74" width="170" height="26" rx="6" fill="#ecfdf5" stroke="#047857" stroke-width="1.2" />
+                <text x="160" y="91" fill="#047857" font-size="10" font-family="monospace" text-anchor="middle" font-weight="800" data-i18n="chart.cl_total_26">CL Total = 2.6 L/h</text>
               </svg>
             </div>
 
@@ -548,7 +543,7 @@
             <div class="framer-metrics-deck">
               <div class="framer-metric-item">
                 <span class="framer-metric-label" data-i18n="showcase.m1_label_3">CL Nativo</span>
-                <strong class="framer-metric-val" style="color: #0284c7;">0.4 L/h</strong>
+                <strong class="framer-metric-val" style="color: #0369a1;">0.4 L/h</strong>
               </div>
               <div class="framer-metric-item">
                 <span class="framer-metric-label" data-i18n="showcase.m2_label_3">CL Filtro</span>
@@ -556,11 +551,11 @@
               </div>
               <div class="framer-metric-item">
                 <span class="framer-metric-label" data-i18n="showcase.m3_label_3">CL Total</span>
-                <strong class="framer-metric-val" style="color: #059669;">2.6 L/h</strong>
+                <strong class="framer-metric-val" style="color: #047857;">2.6 L/h</strong>
               </div>
             </div>
 
-            <p style="font-size: 12px; color: #64748b; line-height: 1.45; margin: 0; border-top: 1px solid #f1f5f9; padding-top: 12px;" data-i18n="showcase.footer_3">
+            <p style="font-size: 12px; color: #475569; line-height: 1.45; margin: 0; border-top: 1px solid #f1f5f9; padding-top: 12px;" data-i18n="showcase.footer_3">
               Suma analítica del aclaramiento renal residual y la tasa de efluente del filtro extracorpóreo.
             </p>
           </article>
@@ -592,8 +587,8 @@
                 <text x="60" y="70" fill="#94a3b8" font-size="7" font-family="monospace" data-i18n="mockup.legend_pop">Prior Poblacional</text>
 
                 <!-- Posterior MAP narrow bell curve (solid emerald) -->
-                <path d="M 80 95 C 130 95 145 15 160 15 C 175 15 190 95 240 95" stroke="#059669" stroke-width="2.4" />
-                <text x="160" y="102" fill="#059669" font-size="8" font-family="monospace" text-anchor="middle" font-weight="700" data-i18n="chart.posterior_map">Posterior MAP</text>
+                <path d="M 80 95 C 130 95 145 15 160 15 C 175 15 190 95 240 95" stroke="#047857" stroke-width="2.4" />
+                <text x="160" y="102" fill="#047857" font-size="8" font-family="monospace" text-anchor="middle" font-weight="700" data-i18n="chart.posterior_map">Posterior MAP</text>
               </svg>
             </div>
 
@@ -605,15 +600,15 @@
               </div>
               <div class="framer-metric-item">
                 <span class="framer-metric-label" data-i18n="showcase.m2_label_4">Variabilidad</span>
-                <strong class="framer-metric-val" style="color: #059669;">-42%</strong>
+                <strong class="framer-metric-val" style="color: #047857;">-42%</strong>
               </div>
               <div class="framer-metric-item">
                 <span class="framer-metric-label" data-i18n="showcase.m3_label_4">Riesgo Rechazo</span>
-                <strong class="framer-metric-val" style="color: #059669;">&lt; 1.0%</strong>
+                <strong class="framer-metric-val" style="color: #047857;">&lt; 1.0%</strong>
               </div>
             </div>
 
-            <p style="font-size: 12px; color: #64748b; line-height: 1.45; margin: 0; border-top: 1px solid #f1f5f9; padding-top: 12px;" data-i18n="showcase.footer_4">
+            <p style="font-size: 12px; color: #475569; line-height: 1.45; margin: 0; border-top: 1px solid #f1f5f9; padding-top: 12px;" data-i18n="showcase.footer_4">
               Contracción bayesiana MAP que reduce la incertidumbre en pacientes con hematocrito fluctuante.
             </p>
           </article>
@@ -639,7 +634,7 @@
                 <circle cx="28" cy="22" r="3" fill="#ef4444" />
                 <circle cx="38" cy="22" r="3" fill="#f59e0b" />
                 <circle cx="48" cy="22" r="3" fill="#10b981" />
-                <text x="60" y="25" fill="#64748b" font-size="8" font-family="monospace">fhir-stream.hl7.org/r4</text>
+                <text x="60" y="25" fill="#475569" font-size="8" font-family="monospace">fhir-stream.hl7.org/r4</text>
                 
                 <text x="25" y="44" fill="#38bdf8" font-size="8" font-family="monospace" data-i18n="chart.fhir_post">POST /Observation (Creatinina: 1.8 mg/dL)</text>
                 <text x="25" y="58" fill="#4ade80" font-size="8" font-family="monospace" data-i18n="chart.fhir_ok">✓ 200 OK · Ingesta en 0.04s</text>
@@ -652,7 +647,7 @@
             <div class="framer-metrics-deck">
               <div class="framer-metric-item">
                 <span class="framer-metric-label" data-i18n="showcase.m1_label_5">Latencia</span>
-                <strong class="framer-metric-val" style="color: #0d9488;" data-i18n="showcase.m1_val_5">0 ms</strong>
+                <strong class="framer-metric-val" style="color: #0f766e;" data-i18n="showcase.m1_val_5">0 ms</strong>
               </div>
               <div class="framer-metric-item">
                 <span class="framer-metric-label" data-i18n="showcase.m2_label_5">Estándar</span>
@@ -660,11 +655,11 @@
               </div>
               <div class="framer-metric-item">
                 <span class="framer-metric-label" data-i18n="showcase.m3_label_5">Normativa</span>
-                <strong class="framer-metric-val" style="color: #0284c7;" data-i18n="showcase.m3_val_5">CFR 21-11</strong>
+                <strong class="framer-metric-val" style="color: #0369a1;" data-i18n="showcase.m3_val_5">CFR 21-11</strong>
               </div>
             </div>
 
-            <p style="font-size: 12px; color: #64748b; line-height: 1.45; margin: 0; border-top: 1px solid #f1f5f9; padding-top: 12px;" data-i18n="showcase.footer_5">
+            <p style="font-size: 12px; color: #475569; line-height: 1.45; margin: 0; border-top: 1px solid #f1f5f9; padding-top: 12px;" data-i18n="showcase.footer_5">
               Lectura automatizada de creatinina sérica y registro del informe en el expediente clínico sin errores.
             </p>
           </article>
@@ -700,10 +695,10 @@
           <div class="apple-bento-hero">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                <div style="width: 48px; height: 48px; border-radius: 14px; background: rgba(2, 132, 199, 0.08); border: 1px solid rgba(2, 132, 199, 0.25); display: flex; align-items: center; justify-content: center; color: #0284c7;">
+                <div style="width: 48px; height: 48px; border-radius: 14px; background: rgba(2, 132, 199, 0.08); border: 1px solid rgba(2, 132, 199, 0.25); display: flex; align-items: center; justify-content: center; color: #0369a1;">
                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
                 </div>
-                <span data-i18n="why.bento_badge_map" style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #0284c7; background: #e0f2fe; padding: 4px 10px; border-radius: 9999px;">
+                <span data-i18n="why.bento_badge_map" style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #0369a1; background: #e0f2fe; padding: 4px 10px; border-radius: 9999px;">
                   ESTIMACIÓN MAP · &lt; 25 ms
                 </span>
               </div>
@@ -714,20 +709,20 @@
 
               <!-- In-Card Mathematical Contraction Visualizer -->
               <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px 18px; margin-bottom: 16px;">
-                <div style="display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 11px; color: #64748b; margin-bottom: 8px;">
+                <div style="display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 11px; color: #475569; margin-bottom: 8px;">
                   <span data-i18n="why.bento_prior">Prior Poblacional (σ=0.42)</span>
-                  <span data-i18n="why.bento_posterior" style="color: #059669; font-weight: 700;">Posterior MAP Individual (σ=0.11)</span>
+                  <span data-i18n="why.bento_posterior" style="color: #047857; font-weight: 700;">Posterior MAP Individual (σ=0.11)</span>
                 </div>
                 <div style="height: 6px; background: #e2e8f0; border-radius: 9999px; position: relative; overflow: hidden;">
                   <div style="position: absolute; left: 15%; width: 70%; height: 100%; background: #bae6fd; opacity: 0.6;"></div>
-                  <div style="position: absolute; left: 42%; width: 16%; height: 100%; background: #0284c7; border-radius: 9999px;"></div>
+                  <div style="position: absolute; left: 42%; width: 16%; height: 100%; background: #0369a1; border-radius: 9999px;"></div>
                 </div>
               </div>
             </div>
 
-            <div style="padding-top: 14px; border-top: 1px solid #f1f5f9; font-family: var(--font-mono); font-size: 11px; color: #0284c7; font-weight: 700; display: flex; align-items: center; justify-content: space-between;">
+            <div style="padding-top: 14px; border-top: 1px solid #f1f5f9; font-family: var(--font-mono); font-size: 11px; color: #0369a1; font-weight: 700; display: flex; align-items: center; justify-content: space-between;">
               <span data-i18n="why.p1_sub">Estimación Maximum A Posteriori →</span>
-              <span data-i18n="why.bento_convergence" style="color: #059669;">✓ Convergencia garantizada</span>
+              <span data-i18n="why.bento_convergence" style="color: #047857;">✓ Convergencia garantizada</span>
             </div>
           </div>
 
@@ -737,10 +732,10 @@
             <div class="apple-bento-tile">
               <div>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                  <div style="width: 40px; height: 40px; border-radius: 12px; background: rgba(5, 150, 105, 0.08); border: 1px solid rgba(5, 150, 105, 0.25); display: flex; align-items: center; justify-content: center; color: #059669;">
+                  <div style="width: 40px; height: 40px; border-radius: 12px; background: rgba(5, 150, 105, 0.08); border: 1px solid rgba(5, 150, 105, 0.25); display: flex; align-items: center; justify-content: center; color: #047857;">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
                   </div>
-                  <span data-i18n="why.bento_badge_bias" style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #059669; background: #ecfdf5; padding: 2px 8px; border-radius: 9999px;">
+                  <span data-i18n="why.bento_badge_bias" style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #047857; background: #ecfdf5; padding: 2px 8px; border-radius: 9999px;">
                     -24% SESGO
                   </span>
                 </div>
@@ -749,7 +744,7 @@
                   El sistema aprende de los pacientes propios de su hospital, refinando las covariables de fallo renal agudo, shock séptico o hemodiálisis. El prior local se enriquece con cada caso validado por el comité de farmacia.
                 </p>
               </div>
-              <div style="margin-top: 14px; padding-top: 10px; border-top: 1px solid #f1f5f9; font-family: var(--font-mono); font-size: 11px; color: #059669; font-weight: 600;" data-i18n="why.p2_sub">
+              <div style="margin-top: 14px; padding-top: 10px; border-top: 1px solid #f1f5f9; font-family: var(--font-mono); font-size: 11px; color: #047857; font-weight: 600;" data-i18n="why.p2_sub">
                 Reducción de Sesgo en 24% →
               </div>
             </div>
@@ -758,10 +753,10 @@
             <div class="apple-bento-tile">
               <div>
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                  <div style="width: 40px; height: 40px; border-radius: 12px; background: rgba(14, 165, 233, 0.08); border: 1px solid rgba(14, 165, 233, 0.25); display: flex; align-items: center; justify-content: center; color: #0284c7;">
+                  <div style="width: 40px; height: 40px; border-radius: 12px; background: rgba(14, 165, 233, 0.08); border: 1px solid rgba(14, 165, 233, 0.25); display: flex; align-items: center; justify-content: center; color: #0369a1;">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                   </div>
-                  <span data-i18n="why.bento_badge_guidelines" style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #0284c7; background: #e0f2fe; padding: 2px 8px; border-radius: 9999px;">
+                  <span data-i18n="why.bento_badge_guidelines" style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; color: #0369a1; background: #e0f2fe; padding: 2px 8px; border-radius: 9999px;">
                     IDSA / ASHP
                   </span>
                 </div>
@@ -770,7 +765,7 @@
                   Monitoreo target AUC₂₄ / MIC (400-600 mg·h/L según guías consensuadas IDSA/ASHP) garantizando concentración bactericida con mínimo riesgo de lesión renal aguda (IRA).
                 </p>
               </div>
-              <div style="margin-top: 14px; padding-top: 10px; border-top: 1px solid #f1f5f9; font-family: var(--font-mono); font-size: 11px; color: #0284c7; font-weight: 600;" data-i18n="why.p3_sub">
+              <div style="margin-top: 14px; padding-top: 10px; border-top: 1px solid #f1f5f9; font-family: var(--font-mono); font-size: 11px; color: #0369a1; font-weight: 600;" data-i18n="why.p3_sub">
                 Guías IDSA / ASHP 2020+ →
               </div>
             </div>
@@ -792,9 +787,9 @@
           </div>
 
           <div style="display: flex; gap: 8px; padding: 6px; border-radius: 12px; background: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04);">
-            <button type="button" id="drug-vanco" style="padding: 6px 14px; border-radius: 8px; background: #0284c7; color: #ffffff; font-weight: 700; font-size: 12px; border: none; cursor: pointer; box-shadow: 0 2px 4px rgba(15, 23, 42, 0.12);" data-i18n="sim.vanco_btn">Vancomicina IV</button>
-            <button type="button" id="drug-amika" style="padding: 6px 14px; border-radius: 8px; background: transparent; color: #64748b; font-weight: 600; font-size: 12px; border: none; cursor: pointer;" data-i18n="sim.amika_btn">Amikacina</button>
-            <button type="button" id="drug-feni" style="padding: 6px 14px; border-radius: 8px; background: transparent; color: #64748b; font-weight: 600; font-size: 12px; border: none; cursor: pointer;" data-i18n="sim.feni_btn">Fenitoína</button>
+            <button type="button" id="drug-vanco" style="padding: 6px 14px; border-radius: 8px; background: #0369a1; color: #ffffff; font-weight: 700; font-size: 12px; border: none; cursor: pointer; box-shadow: 0 2px 4px rgba(15, 23, 42, 0.12);" data-i18n="sim.vanco_btn">Vancomicina IV</button>
+            <button type="button" id="drug-amika" style="padding: 6px 14px; border-radius: 8px; background: transparent; color: #475569; font-weight: 600; font-size: 12px; border: none; cursor: pointer;" data-i18n="sim.amika_btn">Amikacina</button>
+            <button type="button" id="drug-feni" style="padding: 6px 14px; border-radius: 8px; background: transparent; color: #475569; font-weight: 600; font-size: 12px; border: none; cursor: pointer;" data-i18n="sim.feni_btn">Fenitoína</button>
           </div>
         </div>
 
@@ -836,10 +831,10 @@
               <div>
                 <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; margin-bottom: 8px;">
                   <span style="font-weight: 700; text-transform: uppercase; color: #475569;" data-i18n="sim.crcl_label">Aclaramiento Renal (CrCl)</span>
-                  <span style="color: #0284c7; font-weight: 700; font-family: var(--font-mono);" id="sim-crcl-text">25 mL/min</span>
+                  <span style="color: #0369a1; font-weight: 700; font-family: var(--font-mono);" id="sim-crcl-text">25 mL/min</span>
                 </div>
                 <input type="range" id="sim-crcl-slider" min="10" max="120" value="25" class="sim-slider-track">
-                <div style="display: flex; justify-content: space-between; font-size: 11px; color: #64748b; font-family: var(--font-mono); margin-top: 4px;">
+                <div style="display: flex; justify-content: space-between; font-size: 11px; color: #475569; font-family: var(--font-mono); margin-top: 4px;">
                   <span data-i18n="sim.kdigo_stage">10 (KDIGO 5)</span>
                   <span data-i18n="sim.kdigo_mod">60 (Moderado)</span>
                   <span data-i18n="sim.kdigo_norm">120 (Normal)</span>
@@ -851,14 +846,14 @@
                 <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #475569; display: block; margin-bottom: 12px;" data-i18n="sim.res_steady">Pronóstico en Estado Estacionario</span>
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: center;">
                   <div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 10px; border-radius: 8px; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);">
-                    <span style="font-size: 11px; color: #64748b; font-family: var(--font-mono); display: block;" data-i18n="sim.res_auc_label">AUC₂₄ / MIC</span>
-                    <span style="font-size: 1.25rem; font-weight: 800; color: #0284c7; font-family: var(--font-mono);" id="live-sim-auc">512</span>
-                    <span style="font-size: 11px; color: #059669; font-weight: 600; display: block;" id="live-sim-auc-status" data-i18n="sim.status_target">En Meta (400-600)</span>
+                    <span style="font-size: 11px; color: #475569; font-family: var(--font-mono); display: block;" data-i18n="sim.res_auc_label">AUC₂₄ / MIC</span>
+                    <span style="font-size: 1.25rem; font-weight: 800; color: #0369a1; font-family: var(--font-mono);" id="live-sim-auc">512</span>
+                    <span style="font-size: 11px; color: #047857; font-weight: 600; display: block;" id="live-sim-auc-status" data-i18n="sim.status_target">En Meta (400-600)</span>
                   </div>
                   <div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 10px; border-radius: 8px; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);">
-                    <span style="font-size: 11px; color: #64748b; font-family: var(--font-mono); display: block;" data-i18n="sim.res_cmin_label">Cmin (Valle)</span>
-                    <span style="font-size: 1.25rem; font-weight: 800; color: #059669; font-family: var(--font-mono);" id="live-sim-cmin">16.8 µg/mL</span>
-                    <span style="font-size: 11px; color: #059669; font-weight: 600; display: block;" id="live-sim-cmin-status" data-i18n="sim.cmin_target">Terapéutico</span>
+                    <span style="font-size: 11px; color: #475569; font-family: var(--font-mono); display: block;" data-i18n="sim.res_cmin_label">Cmin (Valle)</span>
+                    <span style="font-size: 1.25rem; font-weight: 800; color: #047857; font-family: var(--font-mono);" id="live-sim-cmin">16.8 µg/mL</span>
+                    <span style="font-size: 11px; color: #047857; font-weight: 600; display: block;" id="live-sim-cmin-status" data-i18n="sim.cmin_target">Terapéutico</span>
                   </div>
                 </div>
 
@@ -880,75 +875,75 @@
                     <strong style="font-size: 12px; color: #091e42;" data-i18n="sim.graph_title">Proyección Multidosis a 48 Horas</strong>
                   </div>
                   <div id="sim-curve-badge" class="sim-curve-badge target">
-                    <span id="sim-badge-dot" style="width: 6px; height: 6px; border-radius: 50%; background: #059669;"></span>
+                    <span id="sim-badge-dot" style="width: 6px; height: 6px; border-radius: 50%; background: #047857;"></span>
                     <span id="sim-badge-text" data-i18n="sim.badge_in_target">En Meta (PTA 94.2%)</span>
                   </div>
                 </div>
 
                 <!-- Dynamic SVG Canvas -->
                 <div style="width: 100%; height: 210px; margin: 16px 0;">
-                  <svg id="live-sim-svg" style="width: 100%; height: 100%;" viewBox="0 0 600 220" preserveAspectRatio="none">
+                  <svg id="live-sim-svg" style="width: 100%; height: 100%; cursor: crosshair;" viewBox="0 0 600 220" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Simulación farmacocinética interactiva de 48 horas" data-i18n-aria-label="a11y.live_sim_svg_label">
                     <defs>
                       <linearGradient id="liveSimGlow" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stop-color="#0284c7" stop-opacity="0.20" />
-                        <stop offset="100%" stop-color="#0284c7" stop-opacity="0.0" />
+                        <stop offset="0%" stop-color="#0369a1" stop-opacity="0.20" />
+                        <stop offset="100%" stop-color="#0369a1" stop-opacity="0.0" />
                       </linearGradient>
                     </defs>
 
                     <!-- Toxic Warning Zone (> 20 ug/mL: Y=25 to Y=90) -->
                     <rect x="40" y="25" width="550" height="65" fill="rgba(239, 68, 68, 0.04)" />
-                    <line x1="40" y1="90" x2="590" y2="90" stroke="#ef4444" stroke-opacity="0.4" stroke-dasharray="3 3" />
-                    <text x="585" y="38" fill="#ef4444" font-size="8" font-family="monospace" text-anchor="end" data-i18n="chart.nephro_zone">Zona de Riesgo Nefrotóxico (&gt; 20 µg/mL)</text>
+                    <line x1="40" y1="90" x2="590" y2="90" stroke="#dc2626" stroke-opacity="0.4" stroke-dasharray="3 3" />
+                    <text x="585" y="38" fill="#dc2626" font-size="8" font-family="monospace" text-anchor="end" data-i18n="chart.nephro_zone">Zona de Riesgo Nefrotóxico (&gt; 20 µg/mL)</text>
 
                     <!-- Shaded safe area (15-20 ug/mL: Y=90 to Y=135) -->
                     <rect x="40" y="90" width="550" height="45" fill="rgba(16, 185, 129, 0.12)" />
-                    <line x1="40" y1="135" x2="590" y2="135" stroke="#059669" stroke-opacity="0.35" stroke-dasharray="3 3" />
-                    <text x="585" y="102" fill="#059669" font-size="8" font-family="monospace" text-anchor="end" data-i18n="chart.target_window_15_20">Ventana Diana (15-20 µg/mL)</text>
+                    <line x1="40" y1="135" x2="590" y2="135" stroke="#047857" stroke-opacity="0.35" stroke-dasharray="3 3" />
+                    <text x="585" y="102" fill="#047857" font-size="8" font-family="monospace" text-anchor="end" data-i18n="chart.target_window_15_20">Ventana Diana (15-20 µg/mL)</text>
 
                     <!-- Dynamic Glow and Polyline Path -->
                     <path id="live-sim-glow" d="M 40,200 C 50,45 65,40 70,48 C 90,110 140,150 180,158 C 190,45 205,40 210,48 C 230,105 280,145 320,150 C 330,45 345,40 350,48 C 370,105 420,140 460,145 C 470,45 485,40 490,48 C 510,105 550,138 590,142 L 590,200 L 40,200 Z" fill="url(#liveSimGlow)" />
                     <path id="live-sim-curve" d="M 40,200 C 50,45 65,40 70,48 C 90,110 140,150 180,158 C 190,45 205,40 210,48 C 230,105 280,145 320,150 C 330,45 345,40 350,48 C 370,105 420,140 460,145 C 470,45 485,40 490,48 C 510,105 550,138 590,142" 
-                          fill="none" stroke="#0284c7" stroke-width="2.8" stroke-linecap="round" />
+                          fill="none" stroke="#0369a1" stroke-width="2.8" stroke-linecap="round" />
 
                     <!-- Infusion Dosing markers -->
                     <g opacity="0.6">
-                      <line x1="40" y1="200" x2="40" y2="180" stroke="#0284c7" stroke-width="1.2" stroke-dasharray="2 2" />
-                      <text x="44" y="188" fill="#0284c7" font-size="7" font-family="monospace">↓ IV</text>
-                      <line x1="180" y1="200" x2="180" y2="180" stroke="#0284c7" stroke-width="1.2" stroke-dasharray="2 2" />
-                      <text x="184" y="188" fill="#0284c7" font-size="7" font-family="monospace">↓ IV</text>
-                      <line x1="320" y1="200" x2="320" y2="180" stroke="#0284c7" stroke-width="1.2" stroke-dasharray="2 2" />
-                      <text x="324" y="188" fill="#0284c7" font-size="7" font-family="monospace">↓ IV</text>
-                      <line x1="460" y1="200" x2="460" y2="180" stroke="#0284c7" stroke-width="1.2" stroke-dasharray="2 2" />
-                      <text x="464" y="188" fill="#0284c7" font-size="7" font-family="monospace">↓ IV</text>
+                      <line x1="40" y1="200" x2="40" y2="180" stroke="#0369a1" stroke-width="1.2" stroke-dasharray="2 2" />
+                      <text x="44" y="188" fill="#0369a1" font-size="7" font-family="monospace">↓ IV</text>
+                      <line x1="180" y1="200" x2="180" y2="180" stroke="#0369a1" stroke-width="1.2" stroke-dasharray="2 2" />
+                      <text x="184" y="188" fill="#0369a1" font-size="7" font-family="monospace">↓ IV</text>
+                      <line x1="320" y1="200" x2="320" y2="180" stroke="#0369a1" stroke-width="1.2" stroke-dasharray="2 2" />
+                      <text x="324" y="188" fill="#0369a1" font-size="7" font-family="monospace">↓ IV</text>
+                      <line x1="460" y1="200" x2="460" y2="180" stroke="#0369a1" stroke-width="1.2" stroke-dasharray="2 2" />
+                      <text x="464" y="188" fill="#0369a1" font-size="7" font-family="monospace">↓ IV</text>
                     </g>
 
                     <!-- Grid markings -->
                     <line x1="40" y1="200" x2="590" y2="200" stroke="#e2e8f0" />
-                    <text x="35" y="45" fill="#64748b" font-size="9" font-family="monospace" text-anchor="end">40</text>
-                    <text x="35" y="95" fill="#64748b" font-size="9" font-family="monospace" text-anchor="end">20</text>
-                    <text x="35" y="140" fill="#64748b" font-size="9" font-family="monospace" text-anchor="end">15</text>
-                    <text x="35" y="200" fill="#64748b" font-size="9" font-family="monospace" text-anchor="end">0</text>
+                    <text x="35" y="45" fill="#475569" font-size="9" font-family="monospace" text-anchor="end">40</text>
+                    <text x="35" y="95" fill="#475569" font-size="9" font-family="monospace" text-anchor="end">20</text>
+                    <text x="35" y="140" fill="#475569" font-size="9" font-family="monospace" text-anchor="end">15</text>
+                    <text x="35" y="200" fill="#475569" font-size="9" font-family="monospace" text-anchor="end">0</text>
 
-                    <text x="70" y="215" fill="#64748b" font-size="9" font-family="monospace" data-i18n="chart.dose_1">Dosis 1</text>
-                    <text x="210" y="215" fill="#64748b" font-size="9" font-family="monospace" data-i18n="chart.dose_2">Dosis 2</text>
-                    <text x="350" y="215" fill="#64748b" font-size="9" font-family="monospace" data-i18n="chart.dose_3">Dosis 3</text>
-                    <text x="490" y="215" fill="#0284c7" font-size="9" font-family="monospace" font-weight="700" data-i18n="chart.dose_4_css">Dosis 4 (Css)</text>
+                    <text x="70" y="215" fill="#475569" font-size="9" font-family="monospace" data-i18n="chart.dose_1">Dosis 1</text>
+                    <text x="210" y="215" fill="#475569" font-size="9" font-family="monospace" data-i18n="chart.dose_2">Dosis 2</text>
+                    <text x="350" y="215" fill="#475569" font-size="9" font-family="monospace" data-i18n="chart.dose_3">Dosis 3</text>
+                    <text x="490" y="215" fill="#0369a1" font-size="9" font-family="monospace" font-weight="700" data-i18n="chart.dose_4_css">Dosis 4 (Css)</text>
                   </svg>
                 </div>
 
-                <div style="display: flex; justify-content: space-between; font-size: 11px; color: #64748b; border-top: 1px solid #f1f5f9; padding-top: 10px;">
+                <div style="display: flex; justify-content: space-between; font-size: 11px; color: #475569; border-top: 1px solid #f1f5f9; padding-top: 10px;">
                   <span style="display: flex; align-items: center; gap: 6px;">
-                    <span style="width: 6px; height: 6px; border-radius: 50%; background: #059669;"></span>
+                    <span style="width: 6px; height: 6px; border-radius: 50%; background: #047857;"></span>
                     <span data-i18n="sim.graph_legend">Banda verde: Rango terapéutico diana (15 - 20 µg/mL)</span>
                   </span>
-                  <span style="color: #0284c7; font-family: var(--font-mono); font-weight: 600;" data-i18n="sim.graph_sub">Respuesta instantánea de modelo bicompartimental</span>
+                  <span style="color: var(--primary); font-family: var(--font-mono); font-weight: 600;" data-i18n="sim.graph_sub">Respuesta instantánea de modelo bicompartimental</span>
                 </div>
 
               </div>
 
               <!-- Note -->
               <div class="glass-card" style="margin-top: 16px; padding: 14px; display: flex; align-items: flex-start; gap: 10px; font-size: 12px; color: #475569; background: #f8fafc; border: 1px solid #e2e8f0;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0284c7" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                 <span data-i18n="sim.covar_note">
                   Integración de covariables: Al mover el aclaramiento renal (CrCl), el motor PK-Bayes adapta dinámicamente la pendiente de eliminación terminal (β) y recalcula el tiempo necesario para alcanzar el estado estacionario.
                 </span>
@@ -966,7 +961,7 @@
       <div class="container">
         
         <div style="text-align: center; max-width: 760px; margin: 0 auto 32px;">
-          <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; text-transform: uppercase; color: #059669; letter-spacing: 0.1em;" data-i18n="mod.eyebrow">Ecosistema Completo</span>
+          <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; text-transform: uppercase; color: #047857; letter-spacing: 0.1em;" data-i18n="mod.eyebrow">Ecosistema Completo</span>
           <h2 style="font-size: clamp(1.8rem, 3.5vw, 2.75rem); font-weight: 800; color: #091e42; margin-top: 8px;" data-i18n="mod.title">
             De la cabecera del paciente al gobierno hospitalario
           </h2>
@@ -981,8 +976,8 @@
           <div class="glass-card glass-card-hover" style="padding: 24px; display: flex; flex-direction: column; justify-content: space-between; background: #ffffff; border: 1px solid #e2e8f0;">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-                <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 700; padding: 2px 8px; border-radius: 6px; background: rgba(2, 132, 199, 0.1); color: #0284c7; border: 1px solid rgba(2, 132, 199, 0.25);" data-i18n="mod.m1_pill">Módulo 01</span>
-                <span style="font-size: 11px; color: #64748b;" data-i18n="mod.m1_cat">Tiempo Real</span>
+                <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 700; padding: 2px 8px; border-radius: 6px; background: rgba(2, 132, 199, 0.1); color: #0369a1; border: 1px solid rgba(2, 132, 199, 0.25);" data-i18n="mod.m1_pill">Módulo 01</span>
+                <span style="font-size: 11px; color: #475569;" data-i18n="mod.m1_cat">Tiempo Real</span>
               </div>
               <h3 style="font-size: 1.15rem; font-weight: 700; color: #091e42; margin-bottom: 8px;" data-i18n="mod.m1_t">Censo & Monitorización TDM</h3>
               <p style="font-size: 13px; color: #475569; line-height: 1.6; margin-bottom: 16px;" data-i18n="mod.m1_d">
@@ -998,7 +993,7 @@
                     <span class="mac-dot green"></span>
                   </div>
                   <span class="mac-url-pill" data-i18n="mod.m1_url">pk-bayes · censo-tdm</span>
-                  <span style="font-size: 10px; color: #059669; font-weight: 700;" data-i18n="common.live">EN VIVO</span>
+                  <span style="font-size: 10px; color: #047857; font-weight: 700;" data-i18n="common.live">EN VIVO</span>
                 </div>
                 <div style="padding: 12px; background: #f8fafc; display: flex; flex-direction: column; gap: 8px;">
                   <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 10px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 11px;">
@@ -1019,7 +1014,7 @@
             
             <div style="padding: 10px; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; font-size: 11px; font-family: var(--font-mono); display: flex; justify-content: space-between; color: #475569;">
               <span data-i18n="mod.m1_label">Pacientes en vigilancia:</span>
-              <strong style="color: #0284c7;" data-i18n="mod.m1_badge">89 pacientes activos</strong>
+              <strong style="color: #0369a1;" data-i18n="mod.m1_badge">89 pacientes activos</strong>
             </div>
           </div>
 
@@ -1027,8 +1022,8 @@
           <div class="glass-card glass-card-hover" style="padding: 24px; display: flex; flex-direction: column; justify-content: space-between; background: #ffffff; border: 1px solid #e2e8f0;">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-                <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 700; padding: 2px 8px; border-radius: 6px; background: rgba(16, 185, 129, 0.1); color: #059669; border: 1px solid rgba(16, 185, 129, 0.25);" data-i18n="mod.m2_pill">Módulo 02</span>
-                <span style="font-size: 11px; color: #64748b;" data-i18n="mod.m2_cat">Trazabilidad</span>
+                <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 700; padding: 2px 8px; border-radius: 6px; background: rgba(16, 185, 129, 0.1); color: #047857; border: 1px solid rgba(16, 185, 129, 0.25);" data-i18n="mod.m2_pill">Módulo 02</span>
+                <span style="font-size: 11px; color: #475569;" data-i18n="mod.m2_cat">Trazabilidad</span>
               </div>
               <h3 style="font-size: 1.15rem; font-weight: 700; color: #091e42; margin-bottom: 8px;" data-i18n="mod.m2_t">Ficha, Historial de Dosis & Muestras</h3>
               <p style="font-size: 13px; color: #475569; line-height: 1.6; margin-bottom: 16px;" data-i18n="mod.m2_d">
@@ -1044,15 +1039,15 @@
                     <span class="mac-dot green"></span>
                   </div>
                   <span class="mac-url-pill" data-i18n="mod.m2_url">pk-bayes · ficha-paciente</span>
-                  <span style="font-size: 10px; color: #059669; font-weight: 700;" data-i18n="wb.trust_fhir">0 Desfase LIS / HIS (HL7 FHIR)</span>
+                  <span style="font-size: 10px; color: #047857; font-weight: 700;" data-i18n="wb.trust_fhir">0 Desfase LIS / HIS (HL7 FHIR)</span>
                 </div>
                 <div style="padding: 12px; background: #f8fafc; display: flex; flex-direction: column; gap: 8px;">
                   <div style="display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 11px;">
-                    <span style="font-family: var(--font-mono); font-weight: 700; color: #0284c7;" data-i18n="wb.step1_tag">01 / REGISTRAR</span>
+                    <span style="font-family: var(--font-mono); font-weight: 700; color: #0369a1;" data-i18n="wb.step1_tag">01 / REGISTRAR</span>
                     <span style="color: #475569;" data-i18n="wb.regimen_p1">Vancomicina IV · 750mg q12h</span>
                   </div>
                   <div style="display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 11px;">
-                    <span style="font-family: var(--font-mono); font-weight: 700; color: #059669;" data-i18n="wb.step2_tag">02 / RELACIONAR</span>
+                    <span style="font-family: var(--font-mono); font-weight: 700; color: #047857;" data-i18n="wb.step2_tag">02 / RELACIONAR</span>
                     <span style="color: #475569;" data-i18n="wb.val_cl_init">2.1 L/h</span>
                   </div>
                   <div style="display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 11px;">
@@ -1065,7 +1060,7 @@
 
             <div style="padding: 10px; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; font-size: 11px; font-family: var(--font-mono); display: flex; justify-content: space-between; color: #475569;">
               <span data-i18n="mod.m2_label">Sincronización LIS / HIS:</span>
-              <strong style="color: #059669;" data-i18n="mod.m2_badge">HL7 FHIR sin desfase</strong>
+              <strong style="color: #047857;" data-i18n="mod.m2_badge">HL7 FHIR sin desfase</strong>
             </div>
           </div>
 
@@ -1073,8 +1068,8 @@
           <div class="glass-card glass-card-hover" style="padding: 24px; display: flex; flex-direction: column; justify-content: space-between; background: #ffffff; border: 1px solid #e2e8f0;">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-                <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 700; padding: 2px 8px; border-radius: 6px; background: rgba(14, 165, 233, 0.1); color: #0284c7; border: 1px solid rgba(14, 165, 233, 0.25);" data-i18n="mod.m3_pill">Módulo 03</span>
-                <span style="font-size: 11px; color: #64748b;" data-i18n="mod.m3_cat">Optimización</span>
+                <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 700; padding: 2px 8px; border-radius: 6px; background: rgba(14, 165, 233, 0.1); color: #0369a1; border: 1px solid rgba(14, 165, 233, 0.25);" data-i18n="mod.m3_pill">Módulo 03</span>
+                <span style="font-size: 11px; color: #475569;" data-i18n="mod.m3_cat">Optimización</span>
               </div>
               <h3 style="font-size: 1.15rem; font-weight: 700; color: #091e42; margin-bottom: 8px;" data-i18n="mod.m3_t">Simulación Posológica & MAP</h3>
               <p style="font-size: 13px; color: #475569; line-height: 1.6; margin-bottom: 16px;" data-i18n="mod.m3_d">
@@ -1090,16 +1085,16 @@
                     <span class="mac-dot green"></span>
                   </div>
                   <span class="mac-url-pill" data-i18n="mod.m3_url">pk-bayes · simulacion-map</span>
-                  <span style="font-size: 10px; color: #0284c7; font-weight: 700;" data-i18n="wb.trust_stan">Motor MAP Bayesiano (Stan)</span>
+                  <span style="font-size: 10px; color: #0369a1; font-weight: 700;" data-i18n="wb.trust_stan">Motor MAP Bayesiano (Stan)</span>
                 </div>
                 <div style="padding: 10px 12px; background: #f8fafc;">
                   <svg viewBox="0 0 300 110" style="width: 100%; height: auto; display: block;" aria-hidden="true">
-                    <rect x="20" y="35" width="260" height="35" fill="#0284c7" fill-opacity="0.08" rx="3"/>
-                    <line x1="20" y1="35" x2="280" y2="35" stroke="#0284c7" stroke-dasharray="3 3" stroke-opacity="0.5"/>
-                    <line x1="20" y1="70" x2="280" y2="70" stroke="#0284c7" stroke-dasharray="3 3" stroke-opacity="0.5"/>
+                    <rect x="20" y="35" width="260" height="35" fill="#0369a1" fill-opacity="0.08" rx="3"/>
+                    <line x1="20" y1="35" x2="280" y2="35" stroke="#0369a1" stroke-dasharray="3 3" stroke-opacity="0.5"/>
+                    <line x1="20" y1="70" x2="280" y2="70" stroke="#0369a1" stroke-dasharray="3 3" stroke-opacity="0.5"/>
                     <line x1="20" y1="100" x2="280" y2="100" stroke="#cbd5e1" stroke-width="1"/>
                     <path d="M 20,95 C 40,15 60,10 90,40 C 120,65 140,80 150,82 C 170,18 190,12 220,42 C 250,68 270,82 280,84" fill="none" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="2 2"/>
-                    <path d="M 20,98 C 40,40 60,35 90,52 C 120,70 140,82 150,84 C 170,42 190,38 220,54 C 250,72 270,84 280,86" fill="none" stroke="#0284c7" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M 20,98 C 40,40 60,35 90,52 C 120,70 140,82 150,84 C 170,42 190,38 220,54 C 250,72 270,84 280,86" fill="none" stroke="#0369a1" stroke-width="2.5" stroke-linecap="round"/>
                   </svg>
                 </div>
               </div>
@@ -1107,7 +1102,7 @@
 
             <div style="padding: 10px; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; font-size: 11px; font-family: var(--font-mono); display: flex; justify-content: space-between; color: #475569;">
               <span data-i18n="mod.m3_label">Motor de Inferencia:</span>
-              <strong style="color: #0284c7;" data-i18n="mod.m3_badge">L-BFGS-B + Stan</strong>
+              <strong style="color: #0369a1;" data-i18n="mod.m3_badge">L-BFGS-B + Stan</strong>
             </div>
           </div>
 
@@ -1116,7 +1111,7 @@
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
                 <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 700; padding: 2px 8px; border-radius: 6px; background: rgba(99, 102, 241, 0.1); color: #4f46e5; border: 1px solid rgba(99, 102, 241, 0.25);" data-i18n="mod.m4_pill">Módulo 04</span>
-                <span style="font-size: 11px; color: #64748b;" data-i18n="mod.m4_cat">Epidemiología</span>
+                <span style="font-size: 11px; color: #475569;" data-i18n="mod.m4_cat">Epidemiología</span>
               </div>
               <h3 style="font-size: 1.15rem; font-weight: 700; color: #091e42; margin-bottom: 8px;" data-i18n="mod.m4_t">Evolución Longitudinal de Cohorte</h3>
               <p style="font-size: 13px; color: #475569; line-height: 1.6; margin-bottom: 16px;" data-i18n="mod.m4_d">
@@ -1161,8 +1156,8 @@
           <div class="glass-card glass-card-hover" style="padding: 24px; display: flex; flex-direction: column; justify-content: space-between; background: #ffffff; border: 1px solid #e2e8f0;">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-                <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 700; padding: 2px 8px; border-radius: 6px; background: rgba(13, 148, 136, 0.1); color: #0d9488; border: 1px solid rgba(13, 148, 136, 0.25);" data-i18n="mod.m5_pill">Módulo 05</span>
-                <span style="font-size: 11px; color: #64748b;" data-i18n="mod.m5_cat">Gobierno</span>
+                <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 700; padding: 2px 8px; border-radius: 6px; background: rgba(13, 148, 136, 0.1); color: #0f766e; border: 1px solid rgba(13, 148, 136, 0.25);" data-i18n="mod.m5_pill">Módulo 05</span>
+                <span style="font-size: 11px; color: #475569;" data-i18n="mod.m5_cat">Gobierno</span>
               </div>
               <h3 style="font-size: 1.15rem; font-weight: 700; color: #091e42; margin-bottom: 8px;" data-i18n="mod.m5_t">Consola de Desempeño & Centros</h3>
               <p style="font-size: 13px; color: #475569; line-height: 1.6; margin-bottom: 16px;" data-i18n="mod.m5_d">
@@ -1178,7 +1173,7 @@
                     <span class="mac-dot green"></span>
                   </div>
                   <span class="mac-url-pill" data-i18n="mod.m5_url">pk-bayes · consola-centros</span>
-                  <span style="font-size: 10px; color: #0d9488; font-weight: 700;" data-i18n="wb.mpe_status">Calibración Óptima</span>
+                  <span style="font-size: 10px; color: #0f766e; font-weight: 700;" data-i18n="wb.mpe_status">Calibración Óptima</span>
                 </div>
                 <div style="padding: 12px; background: #0b192c; border-radius: 0 0 10px 10px;">
                   <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-family: var(--font-mono); font-size: 10px;">
@@ -1201,7 +1196,7 @@
 
             <div style="padding: 10px; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; font-size: 11px; font-family: var(--font-mono); display: flex; justify-content: space-between; color: #475569;">
               <span data-i18n="mod.m5_label">Calibración de Sesgo:</span>
-              <strong style="color: #0d9488;" data-i18n="mod.m5_badge">-3.60 mg/L (Bajo sesgo)</strong>
+              <strong style="color: #0f766e;" data-i18n="mod.m5_badge">-3.60 mg/L (Bajo sesgo)</strong>
             </div>
           </div>
 
@@ -1209,8 +1204,8 @@
           <div class="glass-card glass-card-hover" style="padding: 24px; display: flex; flex-direction: column; justify-content: space-between; background: #ffffff; border: 1px solid #e2e8f0;">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-                <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 700; padding: 2px 8px; border-radius: 6px; background: rgba(217, 119, 6, 0.1); color: #d97706; border: 1px solid rgba(217, 119, 6, 0.25);" data-i18n="mod.m6_pill">Módulo 06</span>
-                <span style="font-size: 11px; color: #64748b;" data-i18n="mod.m6_cat">Informe</span>
+                <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 700; padding: 2px 8px; border-radius: 6px; background: rgba(217, 119, 6, 0.1); color: #b45309; border: 1px solid rgba(217, 119, 6, 0.25);" data-i18n="mod.m6_pill">Módulo 06</span>
+                <span style="font-size: 11px; color: #475569;" data-i18n="mod.m6_cat">Informe</span>
               </div>
               <h3 style="font-size: 1.15rem; font-weight: 700; color: #091e42; margin-bottom: 8px;" data-i18n="mod.m6_t">Informe Clínico & Respaldo Médico</h3>
               <p style="font-size: 13px; color: #475569; line-height: 1.6; margin-bottom: 16px;" data-i18n="mod.m6_d">
@@ -1226,19 +1221,19 @@
                     <span class="mac-dot green"></span>
                   </div>
                   <span class="mac-url-pill" data-i18n="mod.m6_url">pk-bayes · informe-clinico</span>
-                  <span style="font-size: 10px; color: #d97706; font-weight: 700;" data-i18n="wb.trust_samd">SaMD Class II Validado</span>
+                  <span style="font-size: 10px; color: #b45309; font-weight: 700;" data-i18n="wb.trust_samd">SaMD Class II Validado</span>
                 </div>
                 <div style="padding: 12px; background: #f8fafc; display: flex; flex-direction: column; gap: 8px;">
                   <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 11px;">
-                    <span style="color: #64748b;" data-i18n="wb.triage_auc_label">AUC24 Proyectada:</span>
-                    <strong style="color: #0284c7; font-family: var(--font-mono);">485 mg·h/L</strong>
+                    <span style="color: #475569;" data-i18n="wb.triage_auc_label">AUC24 Proyectada:</span>
+                    <strong style="color: #0369a1; font-family: var(--font-mono);">485 mg·h/L</strong>
                   </div>
                   <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 11px;">
-                    <span style="color: #64748b;" data-i18n="wb.triage_cmin_label">Nivel Valle (C_mín):</span>
-                    <strong style="color: #059669; font-family: var(--font-mono);">16.2 µg/mL</strong>
+                    <span style="color: #475569;" data-i18n="wb.triage_cmin_label">Nivel Valle (C_mín):</span>
+                    <strong style="color: #047857; font-family: var(--font-mono);">16.2 µg/mL</strong>
                   </div>
                   <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 11px;">
-                    <span style="color: #64748b;" data-i18n="common.dose_lbl">Dosis:</span>
+                    <span style="color: #475569;" data-i18n="common.dose_lbl">Dosis:</span>
                     <strong style="color: #0f172a; font-family: var(--font-mono);" data-i18n="zenith.opt_a_name">750 mg IV c/ 12h</strong>
                   </div>
                 </div>
@@ -1247,7 +1242,7 @@
 
             <div style="padding: 10px; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; font-size: 11px; font-family: var(--font-mono); display: flex; justify-content: space-between; color: #475569;">
               <span data-i18n="mod.m6_label">Formato Exportación:</span>
-              <strong style="color: #d97706;" data-i18n="mod.m6_badge">PDF / HL7 CDA</strong>
+              <strong style="color: #b45309;" data-i18n="mod.m6_badge">PDF / HL7 CDA</strong>
             </div>
           </div>
 
@@ -1273,7 +1268,7 @@
 
             <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 24px;">
               <div class="glass-card" style="padding: 16px; display: flex; align-items: center; gap: 16px;">
-                <div style="width: 48px; height: 48px; border-radius: 12px; background: #e0f2fe; display: flex; align-items: center; justify-content: center; color: #0284c7; font-weight: 800; font-size: 1.15rem; font-family: var(--font-mono); flex-shrink: 0;">
+                <div style="width: 48px; height: 48px; border-radius: 12px; background: #e0f2fe; display: flex; align-items: center; justify-content: center; color: #0369a1; font-weight: 800; font-size: 1.15rem; font-family: var(--font-mono); flex-shrink: 0;">
                   92%
                 </div>
                 <div>
@@ -1283,7 +1278,7 @@
               </div>
 
               <div class="glass-card" style="padding: 16px; display: flex; align-items: center; gap: 16px;">
-                <div style="width: 48px; height: 48px; border-radius: 12px; background: #dcfce7; display: flex; align-items: center; justify-content: center; color: #059669; font-weight: 800; font-size: 1.15rem; font-family: var(--font-mono); flex-shrink: 0;">
+                <div style="width: 48px; height: 48px; border-radius: 12px; background: #dcfce7; display: flex; align-items: center; justify-content: center; color: #047857; font-weight: 800; font-size: 1.15rem; font-family: var(--font-mono); flex-shrink: 0;">
                   -38%
                 </div>
                 <div>
@@ -1308,10 +1303,10 @@
           <div class="mockup-mac-window" style="padding: 24px;">
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px; margin-bottom: 16px;">
               <div>
-                <span style="font-size: 11px; font-family: var(--font-mono); text-transform: uppercase; color: #64748b;" data-i18n="ev.scatter_subtitle">Diagnóstico de Ajuste Poblacional</span>
+                <span style="font-size: 11px; font-family: var(--font-mono); text-transform: uppercase; color: #475569;" data-i18n="ev.scatter_subtitle">Diagnóstico de Ajuste Poblacional</span>
                 <h3 style="font-size: 13px; font-weight: 700; color: #091e42; margin-top: 2px;" data-i18n="ev.scatter_title">Obs vs. Pred (Concentraciones Observadas vs. Estimadas)</h3>
               </div>
-              <span style="font-size: 11px; font-weight: 800; font-family: var(--font-mono); padding: 3px 8px; border-radius: 6px; background: #e0f2fe; color: #0284c7; border: 1px solid #bae6fd;">
+              <span style="font-size: 11px; font-weight: 800; font-family: var(--font-mono); padding: 3px 8px; border-radius: 6px; background: #e0f2fe; color: #0369a1; border: 1px solid #bae6fd;">
                 R² = 0.912
               </span>
             </div>
@@ -1321,41 +1316,41 @@
                 <!-- Identity Line -->
                 <line x1="40" y1="170" x2="470" y2="30" stroke="#94a3b8" stroke-dasharray="4,4" stroke-width="1.5" />
                 <!-- Confidence Band -->
-                <polygon points="40,170 470,18 470,45 40,175" fill="#0284c7" fill-opacity="0.10" />
+                <polygon points="40,170 470,18 470,45 40,175" fill="#0369a1" fill-opacity="0.10" />
                 <!-- Regression Line -->
-                <line x1="40" y1="168" x2="470" y2="33" stroke="#0284c7" stroke-width="2.5" />
+                <line x1="40" y1="168" x2="470" y2="33" stroke="#0369a1" stroke-width="2.5" />
                 
                 <!-- Scatter Points -->
-                <circle cx="70" cy="155" r="4" fill="#0284c7" />
-                <circle cx="100" cy="142" r="4" fill="#0284c7" />
-                <circle cx="120" cy="138" r="4" fill="#0284c7" />
-                <circle cx="150" cy="120" r="4" fill="#0284c7" />
-                <circle cx="180" cy="118" r="4" fill="#0284c7" />
-                <circle cx="210" cy="104" r="4" fill="#0284c7" />
-                <circle cx="240" cy="98" r="4" fill="#0284c7" />
-                <circle cx="280" cy="85" r="4" fill="#0284c7" />
-                <circle cx="310" cy="74" r="4" fill="#0284c7" />
-                <circle cx="350" cy="66" r="4" fill="#0284c7" />
-                <circle cx="390" cy="52" r="4" fill="#0284c7" />
-                <circle cx="430" cy="42" r="4" fill="#0284c7" />
+                <circle cx="70" cy="155" r="4" fill="#0369a1" />
+                <circle cx="100" cy="142" r="4" fill="#0369a1" />
+                <circle cx="120" cy="138" r="4" fill="#0369a1" />
+                <circle cx="150" cy="120" r="4" fill="#0369a1" />
+                <circle cx="180" cy="118" r="4" fill="#0369a1" />
+                <circle cx="210" cy="104" r="4" fill="#0369a1" />
+                <circle cx="240" cy="98" r="4" fill="#0369a1" />
+                <circle cx="280" cy="85" r="4" fill="#0369a1" />
+                <circle cx="310" cy="74" r="4" fill="#0369a1" />
+                <circle cx="350" cy="66" r="4" fill="#0369a1" />
+                <circle cx="390" cy="52" r="4" fill="#0369a1" />
+                <circle cx="430" cy="42" r="4" fill="#0369a1" />
 
-                <text x="40" y="190" fill="#64748b" font-size="9" font-family="monospace">0</text>
-                <text x="250" y="190" fill="#64748b" font-size="9" font-family="monospace" text-anchor="middle" data-i18n="ev.scatter_pred_axis">Predicho por Prior (mg/L)</text>
-                <text x="470" y="190" fill="#64748b" font-size="9" font-family="monospace" text-anchor="end">50</text>
+                <text x="40" y="190" fill="#475569" font-size="9" font-family="monospace">0</text>
+                <text x="250" y="190" fill="#475569" font-size="9" font-family="monospace" text-anchor="middle" data-i18n="ev.scatter_pred_axis">Predicho por Prior (mg/L)</text>
+                <text x="470" y="190" fill="#475569" font-size="9" font-family="monospace" text-anchor="end">50</text>
               </svg>
             </div>
 
             <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 16px; text-align: center; font-family: var(--font-mono);">
               <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px; border-radius: 8px;">
-                <span style="font-size: 10px; color: #64748b; display: block;" data-i18n="ev.scatter_bias">Bias / MPE</span>
-                <strong style="color: #059669; font-size: 13px;">-3.60 mg/L</strong>
+                <span style="font-size: 10px; color: #475569; display: block;" data-i18n="ev.scatter_bias">Bias / MPE</span>
+                <strong style="color: #047857; font-size: 13px;">-3.60 mg/L</strong>
               </div>
               <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px; border-radius: 8px;">
-                <span style="font-size: 10px; color: #64748b; display: block;" data-i18n="ev.scatter_mae">MAE Absoluto</span>
-                <strong style="color: #0284c7; font-size: 13px;">8.17 mg/L</strong>
+                <span style="font-size: 10px; color: #475569; display: block;" data-i18n="ev.scatter_mae">MAE Absoluto</span>
+                <strong style="color: #0369a1; font-size: 13px;">8.17 mg/L</strong>
               </div>
               <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px; border-radius: 8px;">
-                <span style="font-size: 10px; color: #64748b; display: block;" data-i18n="ev.scatter_rmse">Precisión RMSE</span>
+                <span style="font-size: 10px; color: #475569; display: block;" data-i18n="ev.scatter_rmse">Precisión RMSE</span>
                 <strong style="color: #091e42; font-size: 13px;">10.49 mg/L</strong>
               </div>
             </div>
@@ -1381,8 +1376,8 @@
           <article class="glass-card glass-card-hover drug-card-container" style="border-color: #bae6fd;">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 700; padding: 2px 8px; border-radius: 6px; background: #dcfce7; color: #059669;" data-i18n="ui.disponible">Disponible</span>
-                <div style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, #0284c7, #0369a1); color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 800; font-family: var(--font-heading);">V</div>
+                <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 700; padding: 2px 8px; border-radius: 6px; background: #dcfce7; color: #047857;" data-i18n="ui.disponible">Disponible</span>
+                <div style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, #0369a1, #0369a1); color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 800; font-family: var(--font-heading);">V</div>
               </div>
               <h3 style="font-size: 1.35rem; font-weight: 800; color: #091e42; margin-bottom: 6px;" data-i18n="common.tag_vanco">Vancomicina</h3>
               <p style="color: #475569; font-size: 13px; line-height: 1.6; margin-bottom: 12px;" data-i18n="home.modelos_de_uno_y_dos_compart">
@@ -1393,11 +1388,11 @@
               <div class="drug-telemetry-deck">
                 <div class="drug-telemetry-item">
                   <span class="drug-telemetry-label" data-i18n="home.vanco_m1_lbl">Modelo Cinético</span>
-                  <strong class="drug-telemetry-val" style="color: #0284c7;" data-i18n="home.vanco_m1_val">Bicompartimental</strong>
+                  <strong class="drug-telemetry-val" style="color: #0369a1;" data-i18n="home.vanco_m1_val">Bicompartimental</strong>
                 </div>
                 <div class="drug-telemetry-item">
                   <span class="drug-telemetry-label" data-i18n="home.vanco_m2_lbl">Diana Terapéutica</span>
-                  <strong class="drug-telemetry-val" style="color: #059669;" data-i18n="home.vanco_m2_val">AUC₂₄/CIM 400 - 600</strong>
+                  <strong class="drug-telemetry-val" style="color: #047857;" data-i18n="home.vanco_m2_val">AUC₂₄/CIM 400 - 600</strong>
                 </div>
                 <div class="drug-telemetry-item">
                   <span class="drug-telemetry-label" data-i18n="home.vanco_m3_lbl">Depuración Crítica</span>
@@ -1413,8 +1408,8 @@
           <article class="glass-card glass-card-hover drug-card-container" style="border-color: #fde68a;">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-                <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 700; padding: 2px 8px; border-radius: 6px; background: #fef3c7; color: #d97706;" data-i18n="ui.fase_1">Fase 1</span>
-                <div style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, #f59e0b, #d97706); color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 800; font-family: var(--font-heading);">F</div>
+                <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 700; padding: 2px 8px; border-radius: 6px; background: #fef3c7; color: #b45309;" data-i18n="ui.fase_1">Fase 1</span>
+                <div style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, #b45309, #92400e); color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 800; font-family: var(--font-heading);">F</div>
               </div>
               <h3 style="font-size: 1.35rem; font-weight: 800; color: #091e42; margin-bottom: 6px;" data-i18n="ui.fenitoina">Fenitoína</h3>
               <p style="color: #475569; font-size: 13px; line-height: 1.6; margin-bottom: 12px;" data-i18n="home.evaluacion_de_eliminacion_no">
@@ -1425,15 +1420,15 @@
               <div class="drug-telemetry-deck">
                 <div class="drug-telemetry-item">
                   <span class="drug-telemetry-label" data-i18n="home.feni_m1_lbl">Modelo Cinético</span>
-                  <strong class="drug-telemetry-val" style="color: #d97706;" data-i18n="home.feni_m1_val">Michaelis-Menten</strong>
+                  <strong class="drug-telemetry-val" style="color: #b45309;" data-i18n="home.feni_m1_val">Michaelis-Menten</strong>
                 </div>
                 <div class="drug-telemetry-item">
                   <span class="drug-telemetry-label" data-i18n="home.feni_m2_lbl">Ajuste por Albúmina</span>
-                  <strong class="drug-telemetry-val" style="color: #0284c7;" data-i18n="home.feni_m2_val">Winter-Tozer corregido</strong>
+                  <strong class="drug-telemetry-val" style="color: #0369a1;" data-i18n="home.feni_m2_val">Winter-Tozer corregido</strong>
                 </div>
                 <div class="drug-telemetry-item">
                   <span class="drug-telemetry-label" data-i18n="home.feni_m3_lbl">Rango Terapéutico</span>
-                  <strong class="drug-telemetry-val" style="color: #059669;" data-i18n="home.feni_m3_val">10 - 20 µg/mL</strong>
+                  <strong class="drug-telemetry-val" style="color: #047857;" data-i18n="home.feni_m3_val">10 - 20 µg/mL</strong>
                 </div>
               </div>
             </div>
@@ -1448,7 +1443,7 @@
     <section class="section" style="padding: 44px 0; background: #f8fafc; border-top: 1px solid #e2e8f0;">
       <div class="container">
         <div style="text-align: center; margin-bottom: 20px;">
-          <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; text-transform: uppercase; color: #64748b; letter-spacing: 0.1em;" data-i18n="comp.eyebrow">
+          <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 700; text-transform: uppercase; color: #475569; letter-spacing: 0.1em;" data-i18n="comp.eyebrow">
             Seguridad & Conformidad Regulatoria Internacional
           </span>
         </div>
@@ -1481,7 +1476,7 @@
           
           <!-- Left Column: Value Proposition & Benefit Points -->
           <div>
-            <div style="display: inline-flex; align-items: center; gap: 8px; padding: 4px 14px; border-radius: 9999px; background: #e0f2fe; color: #0284c7; font-family: var(--font-mono); font-size: 11px; font-weight: 700; margin-bottom: 16px;">
+            <div style="display: inline-flex; align-items: center; gap: 8px; padding: 4px 14px; border-radius: 9999px; background: #e0f2fe; color: #0369a1; font-family: var(--font-mono); font-size: 11px; font-weight: 700; margin-bottom: 16px;">
               <span class="clinical-status-dot status-blue" style="width: 6px; height: 6px;"></span>
               <span data-i18n="lead.pill">Programa Piloto Institucional 2026</span>
             </div>
@@ -1512,7 +1507,7 @@
               </li>
             </ul>
 
-            <div style="display: flex; flex-wrap: wrap; gap: 20px; font-size: 11px; color: #64748b; padding-top: 16px; border-top: 1px solid #e2e8f0;">
+            <div style="display: flex; flex-wrap: wrap; gap: 20px; font-size: 11px; color: #475569; padding-top: 16px; border-top: 1px solid #e2e8f0;">
               <span data-i18n="lead.guar1">✓ Sin costo para evaluación académica</span>
               <span data-i18n="lead.guar2">✓ Soporte en migración de covariables</span>
             </div>
@@ -1527,26 +1522,38 @@
                 <span class="mac-dot green"></span>
               </div>
               <span class="mac-url-pill" data-i18n="lead.window_url">pk-bayes · solicitud-piloto</span>
-              <span style="font-size: 11px; color: #0284c7; font-weight: 700;">2026</span>
+              <span style="font-size: 11px; color: #0369a1; font-weight: 700;">2026</span>
             </div>
 
             <form id="pilot-lead-form" style="display: flex; flex-direction: column; gap: 14px; text-align: left;">
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;" class="feature-showcase">
-                <input type="text" name="name" autocomplete="name" required placeholder="Nombre y Apellido" aria-label="Nombre y Apellido" data-i18n-placeholder="lead.name_ph" data-i18n-aria-label="lead.name_ph" style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 11px 14px; color: #0f172a; font-size: 13px;">
-                <input type="email" name="email" autocomplete="email" spellcheck="false" required placeholder="Correo Institucional / Hospital" aria-label="Correo Institucional / Hospital" data-i18n-placeholder="lead.email_ph" data-i18n-aria-label="lead.email_ph" style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 11px 14px; color: #0f172a; font-size: 13px;">
+                <div>
+                  <label for="lead-name-input" style="display: block; font-size: 11px; font-weight: 700; color: var(--text-soft); margin-bottom: 5px;" data-i18n="lead.name_ph">Nombre y Apellido</label>
+                  <input id="lead-name-input" type="text" name="name" autocomplete="name" required placeholder="Nombre y Apellido" aria-label="Nombre y Apellido" data-i18n-placeholder="lead.name_ph" data-i18n-aria-label="lead.name_ph" style="width: 100%; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 11px 14px; color: #0f172a; font-size: 13px;">
+                </div>
+                <div>
+                  <label for="lead-email-input" style="display: block; font-size: 11px; font-weight: 700; color: var(--text-soft); margin-bottom: 5px;" data-i18n="lead.email_ph">Correo Institucional / Hospital</label>
+                  <input id="lead-email-input" type="email" name="email" autocomplete="email" spellcheck="false" required placeholder="Correo Institucional / Hospital" aria-label="Correo Institucional / Hospital" data-i18n-placeholder="lead.email_ph" data-i18n-aria-label="lead.email_ph" style="width: 100%; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 11px 14px; color: #0f172a; font-size: 13px;">
+                </div>
               </div>
               <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;" class="feature-showcase">
-                <input type="text" name="organization" autocomplete="organization" placeholder="Centro Hospitalario / Clínica" aria-label="Centro Hospitalario / Clínica" data-i18n-placeholder="lead.hospital_ph" data-i18n-aria-label="lead.hospital_ph" style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 11px 14px; color: #0f172a; font-size: 13px;">
-                <select name="role" aria-label="Rol profesional" data-i18n-aria-label="a11y.rol_profesional" style="background: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 11px 14px; color: #334155; font-size: 13px;">
-                  <option data-i18n="lead.role_opt1">Rol: Farmacéutico Clínico</option>
-                  <option data-i18n="lead.role_opt2">Médico Intensivista / Infectólogo</option>
-                  <option data-i18n="lead.role_opt3">Director Médico / TI Hospitalario</option>
-                  <option data-i18n="lead.role_opt4">Investigador Farmacométrico</option>
-                </select>
+                <div>
+                  <label for="lead-org-input" style="display: block; font-size: 11px; font-weight: 700; color: var(--text-soft); margin-bottom: 5px;" data-i18n="lead.hospital_ph">Centro Hospitalario / Clínica</label>
+                  <input id="lead-org-input" type="text" name="organization" autocomplete="organization" placeholder="Centro Hospitalario / Clínica" aria-label="Centro Hospitalario / Clínica" data-i18n-placeholder="lead.hospital_ph" data-i18n-aria-label="lead.hospital_ph" style="width: 100%; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 11px 14px; color: #0f172a; font-size: 13px;">
+                </div>
+                <div>
+                  <label for="lead-role-select" style="display: block; font-size: 11px; font-weight: 700; color: var(--text-soft); margin-bottom: 5px;" data-i18n="a11y.rol_profesional">Rol profesional</label>
+                  <select id="lead-role-select" name="role" aria-label="Rol profesional" data-i18n-aria-label="a11y.rol_profesional" style="width: 100%; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 10px; padding: 11px 14px; color: #334155; font-size: 13px;">
+                    <option data-i18n="lead.role_opt1">Rol: Farmacéutico Clínico</option>
+                    <option data-i18n="lead.role_opt2">Médico Intensivista / Infectólogo</option>
+                    <option data-i18n="lead.role_opt3">Director Médico / TI Hospitalario</option>
+                    <option data-i18n="lead.role_opt4">Investigador Farmacométrico</option>
+                  </select>
+                </div>
               </div>
               
-              <button type="submit" class="btn-stitch-primary" style="margin-top: 6px; padding: 13px; font-size: 13px; justify-content: center;" data-i18n="lead.submit">
-                <span>Solicitar Piloto & Acceso a Demostración</span>
+              <button type="submit" class="btn-stitch-primary" style="margin-top: 6px; padding: 13px; font-size: 13px; justify-content: center;">
+                <span data-i18n="lead.submit">Solicitar Piloto &amp; Acceso a Demostración</span>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
               </button>
             </form>
@@ -1578,7 +1585,7 @@
             <li><a href="funcionalidades.html" style="color: #cbd5e1;" data-i18n="func.bc_func">Funcionalidades</a></li>
             <li><a href="farmacos.html" style="color: #cbd5e1;" data-i18n="farm.bc_drugs">Fármacos y modelos</a></li>
             <li><a href="ejemplos.html" style="color: #cbd5e1;" data-i18n="cases.bc_cases">Casos clínicos</a></li>
-            <li><a href="presentacion.html" style="color: #38bdf8; font-weight: 600;">Presentación (PPTX) ↗</a></li>
+            <li><a href="presentacion.html" style="color: #38bdf8; font-weight: 600;" data-i18n="footer.pptx_link">Presentación (PPTX) ↗</a></li>
           </ul>
         </div>
 
@@ -1614,132 +1621,5 @@
   <script src="assets/js/config.js"></script>
   <script src="assets/js/i18n.js"></script>
   <script src="assets/js/main.js"></script>
-
-  <!-- Interactive What-If Simulator Logic -->
-  <script>
-    (function () {
-      const doseBtns = document.querySelectorAll(".sim-dose-btn");
-      const intervalSelect = document.getElementById("sim-interval-select");
-      const crclSlider = document.getElementById("sim-crcl-slider");
-      const crclText = document.getElementById("sim-crcl-text");
-      const aucVal = document.getElementById("live-sim-auc");
-      const aucStatus = document.getElementById("live-sim-auc-status");
-      const cminVal = document.getElementById("live-sim-cmin");
-      const cminStatus = document.getElementById("live-sim-cmin-status");
-      const probVal = document.getElementById("live-sim-prob");
-      const curvePath = document.getElementById("live-sim-curve");
-
-      let currentDose = 750;
-      let currentCrcl = 25;
-      let currentInterval = 12;
-
-      function updateSimulator() {
-        const CL = Math.max(0.4, (0.045 * currentCrcl + 0.25));
-        const dailyDose = currentDose * (24 / currentInterval);
-        const auc = Math.round(dailyDose / CL);
-        const ke = CL / 20;
-        const cmax = Math.round((currentDose / 20) * 1.6 * 10) / 10;
-        const cmin = Math.round(cmax * Math.exp(-ke * (currentInterval - 1)) * 10) / 10;
-
-        if (crclText) crclText.textContent = currentCrcl + " mL/min";
-        if (aucVal) aucVal.textContent = auc;
-        if (cminVal) cminVal.textContent = cmin + " µg/mL";
-
-        function getT(k, fb) {
-          if (window.PKBAYES_I18N && typeof window.PKBAYES_I18N.t === "function") {
-            const res = window.PKBAYES_I18N.t(k);
-            if (res && res !== k) return res;
-          }
-          return fb;
-        }
-
-        if (auc >= 400 && auc <= 600) {
-          if (aucStatus) {
-            aucStatus.textContent = getT("sim.status_target", "En Meta (400-600)");
-            aucStatus.setAttribute("data-i18n", "sim.status_target");
-            aucStatus.style.color = "#34d399";
-          }
-          if (probVal) probVal.textContent = "96.4%";
-        } else if (auc < 400) {
-          if (aucStatus) {
-            aucStatus.textContent = getT("sim.status_sub", "Subterapéutico (<400)");
-            aucStatus.setAttribute("data-i18n", "sim.status_sub");
-            aucStatus.style.color = "#f43f5e";
-          }
-          if (probVal) probVal.textContent = "61.8%";
-        } else {
-          if (aucStatus) {
-            aucStatus.textContent = getT("sim.status_toxic", "Riesgo Toxicidad (>600)");
-            aucStatus.setAttribute("data-i18n", "sim.status_toxic");
-            aucStatus.style.color = "#f59e0b";
-          }
-          if (probVal) probVal.textContent = "77.2%";
-        }
-
-        if (cmin >= 15 && cmin <= 20) {
-          if (cminStatus) {
-            cminStatus.textContent = getT("sim.cmin_target", "Terapéutico");
-            cminStatus.setAttribute("data-i18n", "sim.cmin_target");
-            cminStatus.style.color = "#34d399";
-          }
-        } else if (cmin < 15) {
-          if (cminStatus) {
-            cminStatus.textContent = getT("sim.cmin_low", "Bajo (<15 µg/mL)");
-            cminStatus.setAttribute("data-i18n", "sim.cmin_low");
-            cminStatus.style.color = "#f43f5e";
-          }
-        } else {
-          if (cminStatus) {
-            cminStatus.textContent = getT("sim.cmin_high", "Elevado (>20 µg/mL)");
-            cminStatus.setAttribute("data-i18n", "sim.cmin_high");
-            cminStatus.style.color = "#f59e0b";
-          }
-        }
-
-        if (curvePath) {
-          const peakY = Math.max(30, 110 - (currentDose / 1750) * 80);
-          const valleyY = Math.min(185, Math.max(70, 190 - (cmin * 5)));
-          const d = `M 40,195 C 50,${peakY} 65,${peakY-5} 70,${peakY} C 90,${valleyY-20} 140,${valleyY} 180,${valleyY} C 190,${peakY} 205,${peakY-5} 210,${peakY} C 230,${valleyY-20} 280,${valleyY} 320,${valleyY} C 330,${peakY} 345,${peakY-5} 350,${peakY} C 370,${valleyY-20} 420,${valleyY} 460,${valleyY} C 470,${peakY} 485,${peakY-5} 490,${peakY} C 510,${valleyY-20} 550,${valleyY} 590,${valleyY}`;
-          curvePath.setAttribute("d", d);
-        }
-      }
-
-      doseBtns.forEach((btn) => {
-        btn.addEventListener("click", () => {
-          doseBtns.forEach((b) => b.classList.remove("active"));
-          btn.classList.add("active");
-          currentDose = parseInt(btn.getAttribute("data-dose"));
-          updateSimulator();
-        });
-      });
-
-      if (crclSlider) {
-        crclSlider.addEventListener("input", (e) => {
-          currentCrcl = parseInt(e.target.value);
-          updateSimulator();
-        });
-      }
-
-      if (intervalSelect) {
-        intervalSelect.addEventListener("change", (e) => {
-          currentInterval = parseInt(e.target.value);
-          updateSimulator();
-        });
-      }
-
-      const leadForm = document.getElementById("pilot-lead-form");
-      if (leadForm) {
-        leadForm.addEventListener("submit", (e) => {
-          e.preventDefault();
-          const t = window.PKBAYES_I18N ? window.PKBAYES_I18N.t : (k) => k;
-          alert(t("lead.alert_success"));
-          leadForm.reset();
-        });
-      }
-
-      updateSimulator();
-      window.addEventListener("languageChanged", updateSimulator);
-    })();
-  </script>
 </body>
 </html>

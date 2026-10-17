@@ -1,0 +1,685 @@
+{
+  "bgm": null,
+  "bgm_pending": false,
+  "voices": [
+    {
+      "frame": 1,
+      "path": "assets/voice/01-2.wav",
+      "duration_s": 8.213,
+      "words": [
+        {
+          "id": "w0",
+          "text": "Ladosis",
+          "start": 0.09,
+          "end": 0.77
+        },
+        {
+          "id": "w1",
+          "text": "estendartrata",
+          "start": 0.77,
+          "end": 2.2
+        },
+        {
+          "id": "w2",
+          "text": "al",
+          "start": 2.2,
+          "end": 2.41
+        },
+        {
+          "id": "w3",
+          "text": "promdeo.",
+          "start": 2.41,
+          "end": 3.22
+        },
+        {
+          "id": "w4",
+          "text": "Piero",
+          "start": 3.31,
+          "end": 3.68
+        },
+        {
+          "id": "w5",
+          "text": "en",
+          "start": 3.68,
+          "end": 3.86
+        },
+        {
+          "id": "w6",
+          "text": "cuidados",
+          "start": 3.86,
+          "end": 4.55
+        },
+        {
+          "id": "w7",
+          "text": "intensivos.",
+          "start": 4.63,
+          "end": 5.8
+        },
+        {
+          "id": "w8",
+          "text": "Ningen",
+          "start": 5.93,
+          "end": 6.41
+        },
+        {
+          "id": "w9",
+          "text": "passion",
+          "start": 6.41,
+          "end": 7.08
+        },
+        {
+          "id": "w10",
+          "text": "es",
+          "start": 7.08,
+          "end": 7.27
+        },
+        {
+          "id": "w11",
+          "text": "el",
+          "start": 7.27,
+          "end": 7.46
+        },
+        {
+          "id": "w12",
+          "text": "promdeo.",
+          "start": 7.46,
+          "end": 8.45
+        }
+      ]
+    },
+    {
+      "frame": 2,
+      "path": "assets/voice/02-2.wav",
+      "duration_s": 12.907,
+      "words": [
+        {
+          "id": "w0",
+          "text": "Alina",
+          "start": 0.04,
+          "end": 0.52
+        },
+        {
+          "id": "w1",
+          "text": "Morales,",
+          "start": 0.52,
+          "end": 1.56
+        },
+        {
+          "id": "w2",
+          "text": "63",
+          "start": 1.64,
+          "end": 2.56
+        },
+        {
+          "id": "w3",
+          "text": "Años",
+          "start": 2.56,
+          "end": 3.21
+        },
+        {
+          "id": "w4",
+          "text": "Usai,",
+          "start": 3.21,
+          "end": 4.02
+        },
+        {
+          "id": "w5",
+          "text": "Sepsis",
+          "start": 4.02,
+          "end": 4.46
+        },
+        {
+          "id": "w6",
+          "text": "Y.",
+          "start": 4.46,
+          "end": 4.78
+        },
+        {
+          "id": "w7",
+          "text": "Funcion,",
+          "start": 4.78,
+          "end": 5.57
+        },
+        {
+          "id": "w8",
+          "text": "Renal,",
+          "start": 5.57,
+          "end": 6.1
+        },
+        {
+          "id": "w9",
+          "text": "N.",
+          "start": 6.1,
+          "end": 6.46
+        },
+        {
+          "id": "w10",
+          "text": "Rapido,",
+          "start": 6.46,
+          "end": 7.18
+        },
+        {
+          "id": "w11",
+          "text": "Desenso,",
+          "start": 7.18,
+          "end": 8.03
+        },
+        {
+          "id": "w12",
+          "text": "Unadjust",
+          "start": 8.03,
+          "end": 8.72
+        },
+        {
+          "id": "w13",
+          "text": "Asiega's",
+          "start": 8.79,
+          "end": 9.52
+        },
+        {
+          "id": "w14",
+          "text": "Ariska,",
+          "start": 9.56,
+          "end": 11.65
+        },
+        {
+          "id": "w15",
+          "text": "Toxacidade,",
+          "start": 11.65,
+          "end": 12.08
+        },
+        {
+          "id": "w16",
+          "text": "Ofallo",
+          "start": 12.08,
+          "end": 12.3
+        },
+        {
+          "id": "w17",
+          "text": "Terpeyutico.",
+          "start": 12.3,
+          "end": 12.84
+        }
+      ]
+    },
+    {
+      "frame": 3,
+      "path": "assets/voice/03-2.wav",
+      "duration_s": 14.891,
+      "words": [
+        {
+          "id": "w0",
+          "text": "Con",
+          "start": 0.03,
+          "end": 0.8
+        },
+        {
+          "id": "w1",
+          "text": "Una",
+          "start": 0.8,
+          "end": 1.59
+        },
+        {
+          "id": "w2",
+          "text": "Sola",
+          "start": 1.59,
+          "end": 2.68
+        },
+        {
+          "id": "w3",
+          "text": "Meustrand",
+          "start": 2.68,
+          "end": 2.69
+        },
+        {
+          "id": "w4",
+          "text": "Sanger.",
+          "start": 2.69,
+          "end": 2.7
+        },
+        {
+          "id": "w5",
+          "text": "El",
+          "start": 2.7,
+          "end": 2.71
+        },
+        {
+          "id": "w6",
+          "text": "Motorbeisiano",
+          "start": 2.71,
+          "end": 2.76
+        },
+        {
+          "id": "w7",
+          "text": "MAP",
+          "start": 2.76,
+          "end": 2.78
+        },
+        {
+          "id": "w8",
+          "text": "de",
+          "start": 2.78,
+          "end": 2.79
+        },
+        {
+          "id": "w9",
+          "text": "Picay",
+          "start": 2.79,
+          "end": 3.87
+        },
+        {
+          "id": "w10",
+          "text": "Bays.",
+          "start": 3.87,
+          "end": 5.96
+        },
+        {
+          "id": "w11",
+          "text": "Contrasta",
+          "start": 5.99,
+          "end": 6.8
+        },
+        {
+          "id": "w12",
+          "text": "el",
+          "start": 6.8,
+          "end": 6.98
+        },
+        {
+          "id": "w13",
+          "text": "Referent",
+          "start": 6.98,
+          "end": 7.72
+        },
+        {
+          "id": "w14",
+          "text": "Poblecional",
+          "start": 7.72,
+          "end": 8.72
+        },
+        {
+          "id": "w15",
+          "text": "y",
+          "start": 8.72,
+          "end": 8.81
+        },
+        {
+          "id": "w16",
+          "text": "Recalcula.",
+          "start": 8.81,
+          "end": 10
+        },
+        {
+          "id": "w17",
+          "text": "Las",
+          "start": 10.03,
+          "end": 10.28
+        },
+        {
+          "id": "w18",
+          "text": "Perometros",
+          "start": 10.28,
+          "end": 11.21
+        },
+        {
+          "id": "w19",
+          "text": "Individuales",
+          "start": 11.21,
+          "end": 12.16
+        },
+        {
+          "id": "w20",
+          "text": "en",
+          "start": 12.45,
+          "end": 12.5
+        },
+        {
+          "id": "w21",
+          "text": "Minos",
+          "start": 12.7,
+          "end": 12.96
+        },
+        {
+          "id": "w22",
+          "text": "de",
+          "start": 12.96,
+          "end": 13.14
+        },
+        {
+          "id": "w23",
+          "text": "25",
+          "start": 13.14,
+          "end": 13.7
+        },
+        {
+          "id": "w24",
+          "text": "Malice",
+          "start": 13.7,
+          "end": 14.26
+        },
+        {
+          "id": "w25",
+          "text": "Gundos.",
+          "start": 14.26,
+          "end": 14.99
+        }
+      ]
+    },
+    {
+      "frame": 4,
+      "path": "assets/voice/04-2.wav",
+      "duration_s": 14.165,
+      "words": [
+        {
+          "id": "w0",
+          "text": "Lastician",
+          "start": 0.09,
+          "end": 7.06
+        },
+        {
+          "id": "w1",
+          "text": "Zenith",
+          "start": 7.06,
+          "end": 7.09
+        },
+        {
+          "id": "w2",
+          "text": "Proyectylidosis",
+          "start": 7.12,
+          "end": 7.19
+        },
+        {
+          "id": "w3",
+          "text": "Optima",
+          "start": 7.21,
+          "end": 7.23
+        },
+        {
+          "id": "w4",
+          "text": "750",
+          "start": 7.23,
+          "end": 7.3
+        },
+        {
+          "id": "w5",
+          "text": "Molygromos",
+          "start": 7.3,
+          "end": 7.36
+        },
+        {
+          "id": "w6",
+          "text": "Cata",
+          "start": 7.36,
+          "end": 7.38
+        },
+        {
+          "id": "w7",
+          "text": "12",
+          "start": 7.38,
+          "end": 7.42
+        },
+        {
+          "id": "w8",
+          "text": "Horas",
+          "start": 7.43,
+          "end": 7.64
+        },
+        {
+          "id": "w9",
+          "text": "Probabilidad",
+          "start": 7.73,
+          "end": 7.94
+        },
+        {
+          "id": "w10",
+          "text": "N.",
+          "start": 8.02,
+          "end": 8.12
+        },
+        {
+          "id": "w11",
+          "text": "Dianadel",
+          "start": 8.12,
+          "end": 8.36
+        },
+        {
+          "id": "w12",
+          "text": "96",
+          "start": 8.36,
+          "end": 8.55
+        },
+        {
+          "id": "w13",
+          "text": "Por",
+          "start": 8.55,
+          "end": 8.64
+        },
+        {
+          "id": "w14",
+          "text": "Shinto",
+          "start": 8.64,
+          "end": 8.82
+        },
+        {
+          "id": "w15",
+          "text": "Progenidolafuncian",
+          "start": 8.82,
+          "end": 12.69
+        },
+        {
+          "id": "w16",
+          "text": "Renal",
+          "start": 12.69,
+          "end": 14
+        }
+      ]
+    },
+    {
+      "frame": 5,
+      "path": "assets/voice/05.wav",
+      "duration_s": 10.816,
+      "words": [
+        {
+          "id": "w0",
+          "text": "No",
+          "start": 0.06,
+          "end": 0.25
+        },
+        {
+          "id": "w1",
+          "text": "solo",
+          "start": 0.25,
+          "end": 0.76
+        },
+        {
+          "id": "w2",
+          "text": "vancomycena.",
+          "start": 0.76,
+          "end": 2.2
+        },
+        {
+          "id": "w3",
+          "text": "Cenatica",
+          "start": 2.25,
+          "end": 2.89
+        },
+        {
+          "id": "w4",
+          "text": "no",
+          "start": 2.89,
+          "end": 3.04
+        },
+        {
+          "id": "w5",
+          "text": "lineal",
+          "start": 3.06,
+          "end": 3.58
+        },
+        {
+          "id": "w6",
+          "text": "de",
+          "start": 3.58,
+          "end": 3.72
+        },
+        {
+          "id": "w7",
+          "text": "Michaelis",
+          "start": 3.74,
+          "end": 4.54
+        },
+        {
+          "id": "w8",
+          "text": "men.",
+          "start": 4.54,
+          "end": 4.92
+        },
+        {
+          "id": "w9",
+          "text": "Ycorxian",
+          "start": 4.98,
+          "end": 5.74
+        },
+        {
+          "id": "w10",
+          "text": "de",
+          "start": 5.76,
+          "end": 5.97
+        },
+        {
+          "id": "w11",
+          "text": "albumina",
+          "start": 5.97,
+          "end": 6.55
+        },
+        {
+          "id": "w12",
+          "text": "paraphenatoina.",
+          "start": 7.15,
+          "end": 8.36
+        },
+        {
+          "id": "w13",
+          "text": "Amina",
+          "start": 8.41,
+          "end": 8.82
+        },
+        {
+          "id": "w14",
+          "text": "glucosidos",
+          "start": 8.82,
+          "end": 9.78
+        },
+        {
+          "id": "w15",
+          "text": "Ytacrolimus.",
+          "start": 9.78,
+          "end": 10.96
+        }
+      ]
+    },
+    {
+      "frame": 6,
+      "path": "assets/voice/06.wav",
+      "duration_s": 11.669,
+      "words": [
+        {
+          "id": "w0",
+          "text": "Trasabilid",
+          "start": 0.09,
+          "end": 0.95
+        },
+        {
+          "id": "w1",
+          "text": "ad",
+          "start": 0.95,
+          "end": 1.14
+        },
+        {
+          "id": "w2",
+          "text": "Normativa,",
+          "start": 1.14,
+          "end": 2.13
+        },
+        {
+          "id": "w3",
+          "text": "Interoperabilid",
+          "start": 2.13,
+          "end": 3.11
+        },
+        {
+          "id": "w4",
+          "text": "ad",
+          "start": 3.11,
+          "end": 3.28
+        },
+        {
+          "id": "w5",
+          "text": "Efher",
+          "start": 3.28,
+          "end": 3.6
+        },
+        {
+          "id": "w6",
+          "text": "Y-Menaristansha",
+          "start": 3.6,
+          "end": 4.75
+        },
+        {
+          "id": "w7",
+          "text": "NUCI.",
+          "start": 4.76,
+          "end": 6.38
+        },
+        {
+          "id": "w8",
+          "text": "Salicida",
+          "start": 6.47,
+          "end": 7.18
+        },
+        {
+          "id": "w9",
+          "text": "2",
+          "start": 7.18,
+          "end": 7.48
+        },
+        {
+          "id": "w10",
+          "text": "Piloto",
+          "start": 7.48,
+          "end": 8.06
+        },
+        {
+          "id": "w11",
+          "text": "Clinical",
+          "start": 8.47,
+          "end": 8.88
+        },
+        {
+          "id": "w12",
+          "text": "Institutional",
+          "start": 8.96,
+          "end": 10.2
+        },
+        {
+          "id": "w13",
+          "text": "NPK",
+          "start": 10.2,
+          "end": 10.5
+        },
+        {
+          "id": "w14",
+          "text": "Bays.",
+          "start": 10.5,
+          "end": 11
+        },
+        {
+          "id": "w15",
+          "text": "Calm.",
+          "start": 11.09,
+          "end": 11.52
+        }
+      ]
+    }
+  ],
+  "sfx": []
+}

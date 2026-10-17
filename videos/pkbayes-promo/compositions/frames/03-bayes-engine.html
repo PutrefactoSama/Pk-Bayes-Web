@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Frame 03: Motor Bayesiano MAP e Inferencia</title>
+</head>
+<body>
+<template>
+<style>
+  @font-face {
+    font-family: "Plus Jakarta Sans";
+    src: local("Plus Jakarta Sans");
+  }
+
+  #root {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: #ffffff;
+    font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #0f172a;
+    box-sizing: border-box;
+  }
+
+  .grid-ground {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      linear-gradient(to right, rgba(37, 99, 235, 0.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(37, 99, 235, 0.08) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+  }
+
+  .hairline-top {
+    position: absolute;
+    top: 36px;
+    left: 64px;
+    right: 64px;
+    height: 1px;
+    background: #0369a1;
+    opacity: 0.35;
+  }
+
+  .hairline-bottom {
+    position: absolute;
+    bottom: 36px;
+    left: 64px;
+    right: 64px;
+    height: 1px;
+    background: #0369a1;
+    opacity: 0.35;
+  }
+
+  .frame-header {
+    position: absolute;
+    top: 54px;
+    left: 64px;
+    right: 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .brand-badge {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .brand-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+  }
+
+  .tagline-mono {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #0369a1;
+    font-weight: 700;
+  }
+
+  .speed-badge {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    background: rgba(4, 120, 87, 0.1);
+    color: #047857;
+    border: 1px solid rgba(4, 120, 87, 0.25);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .hero-headline {
+    position: absolute;
+    top: 90px;
+    left: 64px;
+    max-width: 1100px;
+  }
+
+  .hero-title {
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: #0f172a;
+    letter-spacing: -0.02em;
+    margin: 0 0 6px 0;
+  }
+
+  .hero-sub {
+    font-size: 18px;
+    line-height: 1.35;
+    color: #475569;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  .stage-layout {
+    position: absolute;
+    top: 220px;
+    left: 64px;
+    right: 64px;
+    height: 655px;
+    display: grid;
+    grid-template-columns: 1fr 480px;
+    gap: 36px;
+  }
+
+  /* Left: Shrinkage and Density Graph */
+  .bayes-stage {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+  }
+
+  .bayes-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+
+  .bayes-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .bayes-legend {
+    display: flex;
+    gap: 16px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .svg-canvas {
+    width: 100%;
+    flex: 1;
+    overflow: visible;
+  }
+
+  /* Parameter Comparison Strip */
+  .params-strip {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .param-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px 16px;
+  }
+
+  .param-name {
+    font-size: 11px;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .param-transition {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 4px;
+  }
+
+  .param-val-prev {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    color: #475569;
+    text-decoration: line-through;
+  }
+
+  .param-val-now {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .param-val-now.highlight {
+    color: #047857;
+  }
+
+  /* Right: Stan Engine & UI screenshot */
+  .right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .engine-snapshot {
+    background: #0f172a;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #334155;
+    box-shadow: 0 10px 28px rgba(15, 23, 42, 0.15);
+  }
+
+  .snapshot-topbar {
+    height: 36px;
+    background: #e2e8f0;
+    border-bottom: 1px solid #cbd5e1;
+    display: flex;
+    align-items: center;
+    padding: 0 14px;
+    gap: 8px;
+    font-family: "JetBrains Mono", monospace;
+    font-size: 11px;
+    color: #0f172a;
+    font-weight: 700;
+  }
+
+  .engine-img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-bottom: 1px solid #334155;
+  }
+
+  /* Code / Algorithm Box */
+  .algo-box {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 2px 8px rgba(15, 23, 42, 0.03);
+  }
+
+  .algo-header {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    font-weight: 700;
+    color: #0f172a;
+  }
+
+  .algo-body {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 12px;
+    color: #334155;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 10px;
+    line-height: 1.6;
+  }
+
+  .algo-body .kw { color: #2563eb; font-weight: 700; }
+  .algo-body .hl { color: #047857; font-weight: 700; }
+</style>
+
+<div id="root" data-composition-id="03-bayes-engine" data-width="1920" data-height="1080" data-duration="15.391">
+  <div class="grid-ground"></div>
+  <div class="hairline-top"></div>
+  <div class="hairline-bottom"></div>
+
+  <div class="frame-header" data-layout-allow-overlap>
+    <div class="brand-badge">
+      <img src="assets/logo-icon-256.png" class="brand-logo" alt="PK-Bayes">
+      <span class="tagline-mono">PK-Bayes · Motor de Inferencia Bayesiana MAP</span>
+    </div>
+    <div class="speed-badge">
+      <span>●</span> TIEMPO DE CÓMPUTO: 23.4 ms (CONVERGENCIA TOTAL)
+    </div>
+  </div>
+
+  <div class="hero-headline" data-layout-allow-overlap>
+    <h1 class="hero-title" id="h1-title-3">Una sola muestra. Inferencia en 23 milisegundos.</h1>
+    <p class="hero-sub" id="p-sub-3">El algoritmo MAP contrae el prior poblacional genérico con la concentración plasmática real del paciente para aislar su verdadero aclaramiento.</p>
+  </div>
+
+  <div class="stage-layout" data-layout-allow-overlap>
+    <!-- Left: Bayesian Contraction Graphic -->
+    <div class="bayes-stage" id="bayes-card">
+      <div class="bayes-topbar">
+        <span class="bayes-title">Distribución de Probabilidad de Aclaramiento (L/h)</span>
+        <div class="bayes-legend">
+          <div class="legend-item"><span style="width:12px;height:3px;background:#64748b;display:inline-block;"></span><span>Prior Poblacional (Dispersión Alta)</span></div>
+          <div class="legend-item"><span style="width:12px;height:3px;background:#0369a1;display:inline-block;"></span><span>Posterior Individual (MAP)</span></div>
+        </div>
+      </div>
+
+      <svg class="svg-canvas" viewBox="0 0 800 360" preserveAspectRatio="none">
+        <!-- Axes -->
+        <line x1="60" y1="320" x2="760" y2="320" stroke="#cbd5e1" stroke-width="1.5" />
+        <line x1="60" y1="40" x2="60" y2="320" stroke="#cbd5e1" stroke-width="1.5" />
+
+        <!-- X labels: Clearance in L/h -->
+        <text x="60" y="342" fill="#475569" font-size="12" font-family="JetBrains Mono" text-anchor="middle">0.5</text>
+        <text x="200" y="342" fill="#475569" font-size="12" font-family="JetBrains Mono" text-anchor="middle">1.5</text>
+        <text x="340" y="342" fill="#475569" font-size="12" font-family="JetBrains Mono" text-anchor="middle">2.5</text>
+        <text x="480" y="342" fill="#475569" font-size="12" font-family="JetBrains Mono" text-anchor="middle">3.5</text>
+        <text x="620" y="342" fill="#475569" font-size="12" font-family="JetBrains Mono" text-anchor="middle">4.5</text>
+        <text x="760" y="342" fill="#475569" font-size="12" font-family="JetBrains Mono" text-anchor="middle">5.5</text>
+
+        <!-- Prior Gaussian Curve (wide, center ~4.0) -->
+        <path id="curve-prior" d="M 120 320 Q 300 310 440 240 Q 550 160 580 160 Q 610 160 700 280 L 760 320" 
+              fill="rgba(100, 116, 139, 0.12)" stroke="#64748b" stroke-width="2.5" stroke-dasharray="5 3" />
+
+        <!-- Posterior Gaussian Curve (sharp, center 1.62) -->
+        <path id="curve-post" d="M 80 320 Q 140 315 190 200 Q 220 70 230 70 Q 240 70 270 200 Q 320 315 400 320" 
+              fill="rgba(3, 105, 161, 0.16)" stroke="#0369a1" stroke-width="3.5" />
+
+        <!-- TDM Sample marker line -->
+        <line id="line-sample" x1="230" y1="40" x2="230" y2="320" stroke="#047857" stroke-width="2" stroke-dasharray="4 4" />
+        <circle id="beacon-sample" cx="230" cy="70" r="7" fill="#047857" />
+        <text id="text-sample" x="240" y="60" fill="#047857" font-size="13" font-weight="700" font-family="JetBrains Mono">
+          Muestra TDM: 24.8 µg/mL
+        </text>
+
+        <!-- Peak MAP Label -->
+        <text id="text-map" x="240" y="95" fill="#0369a1" font-size="12" font-weight="700" font-family="JetBrains Mono">
+          Aclaramiento MAP: 1.62 L/h
+        </text>
+      </svg>
+
+      <!-- Parameter Shift Strip -->
+      <div class="params-strip" data-layout-allow-overlap>
+        <div class="param-card">
+          <div class="param-name">Aclaramiento (CL)</div>
+          <div class="param-transition">
+            <span class="param-val-prev">4.20 L/h</span>
+            <span style="color:#64748b;">→</span>
+            <span class="param-val-now highlight" id="cl-shift">1.62 L/h</span>
+          </div>
+        </div>
+
+        <div class="param-card">
+          <div class="param-name">Volumen Distribución (Vd)</div>
+          <div class="param-transition">
+            <span class="param-val-prev">56.0 L</span>
+            <span style="color:#64748b;">→</span>
+            <span class="param-val-now" id="vd-shift">62.4 L</span>
+          </div>
+        </div>
+
+        <div class="param-card">
+          <div class="param-name">Contracción (Shrinkage)</div>
+          <div class="param-transition">
+            <span class="param-val-now highlight" id="sh-shift">24.1%</span>
+            <span style="font-size:11px;color:#047857;font-weight:600;">(Óptima)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: Screenshot and Algorithm panel -->
+    <div class="right-column" id="right-col">
+      <div class="engine-snapshot">
+        <div class="snapshot-topbar">
+          <span>STAN C++ ENGINE · MUESTREADOR NUTS / MAP</span>
+        </div>
+        <img src="assets/05-estimacion.png" class="engine-img" alt="Estimación Bayesiana">
+      </div>
+
+      <div class="algo-box">
+        <div class="algo-header">
+          <span>FORMULACIÓN OBJETIVO MAP</span>
+          <span style="font-family:'JetBrains Mono';color:#047857;">OBJ_MIN: 12.4</span>
+        </div>
+        <div class="algo-body">
+          <span class="kw">minimize</span> Φ(η) = Σ [ln(s_i²) + (y_i - f(t_i, η))² / s_i²] + ηᵀ Ω⁻¹ η<br>
+          <span class="hl">✓ Stan L-BFGS</span>: 18 iteraciones<br>
+          <span class="hl">✓ Gradiente residual</span>: < 1e-6<br>
+          <span class="hl">✓ Parámetros individualizados validados</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const tl = gsap.timeline({ paused: true });
+
+  // Pacing to voiceover (total 14.891s)
+  tl.from("#h1-title-3", { opacity: 0, y: -20, duration: 0.8, ease: "power2.out" }, 0.2)
+    .from("#p-sub-3", { opacity: 0, y: -10, duration: 0.8, ease: "power2.out" }, 0.5)
+    .from("#bayes-card", { opacity: 0, scale: 0.98, duration: 0.9, ease: "power2.out" }, 0.8)
+    .from("#right-col", { opacity: 0, x: 30, duration: 0.9, ease: "power2.out" }, 1.1)
+
+    // Show prior curve
+    .from("#curve-prior", { opacity: 0, duration: 1.2, ease: "power1.out" }, 1.5)
+
+    // TDM blood sample arrival beacon
+    .from(["#line-sample", "#beacon-sample", "#text-sample"], { opacity: 0, scale: 0, transformOrigin: "230px 70px", stagger: 0.2, duration: 0.8, ease: "back.out(2)" }, 3.5)
+    .to("#beacon-sample", { scale: 1.4, repeat: 2, yoyo: true, duration: 0.4, ease: "sine.inOut" }, 4.3)
+
+    // Posterior curve draws and sharpens
+    .from("#curve-post", { opacity: 0, scaleY: 0.2, transformOrigin: "bottom center", duration: 1.8, ease: "power2.out" }, 5.2)
+    .from("#text-map", { opacity: 0, y: -5, duration: 0.6, ease: "power2.out" }, 6.8)
+
+    // Shift in parameters numbers
+    .from(["#cl-shift", "#vd-shift", "#sh-shift"], { opacity: 0, y: 10, stagger: 0.3, duration: 0.8, ease: "power2.out" }, 8.0);
+
+  window.__timelines["03-bayes-engine"] = tl;
+</script>
+</template>
+</body>
+</html>
