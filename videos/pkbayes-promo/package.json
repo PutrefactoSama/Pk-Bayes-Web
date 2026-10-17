@@ -5,7 +5,9 @@
   "scripts": {
     "dev": "npx --yes hyperframes@0.8.169 preview",
     "check": "npx --yes hyperframes@0.8.169 check",
-    "render": "npx --yes hyperframes@0.8.169 render",
+    "render": "npx --yes hyperframes@0.8.169 render --resolution=4k --quality=delivery",
+    "render:1080p": "npx --yes hyperframes@0.8.169 render --resolution=1080p",
+    "render:4k": "npx --yes hyperframes@0.8.169 render --resolution=4k --quality=delivery",
     "publish": "npx --yes hyperframes@0.8.169 publish"
   }
 }
