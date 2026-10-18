@@ -1,7 +1,7 @@
 {
   "version": 1,
   "historyId": "471d7843-cd80-48ac-ace5-8e5d25118e78",
-  "currentRevision": "4f809964-77ec-43c3-9e8e-8cbbceb0af9e",
+  "currentRevision": "4711bb01-20ad-4482-b696-68fea9b2953d",
   "pendingChanges": false,
   "files": {
     ".media/manifest.jsonl": {
@@ -29,24 +29,24 @@
       "content": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/cd/cd4385df7c0b796fd4379cbf69ccec759eef81e1897b49a09b7593eadd7492ef"
     },
     "assets/01-dashboard.png": {
-      "hash": "070067ffe6fe51367f4172b7f7dd21b0081cb11e3eba35a5752563c655192b9c",
-      "content": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/07/070067ffe6fe51367f4172b7f7dd21b0081cb11e3eba35a5752563c655192b9c"
+      "hash": "6d582040a0daf03bf1176f21e784482ff963d692d62cc3af3a3af1a3f47c334f",
+      "content": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/6d/6d582040a0daf03bf1176f21e784482ff963d692d62cc3af3a3af1a3f47c334f"
     },
     "assets/03-funcion-renal.png": {
-      "hash": "fbf77536e05a5afa3a626eba34a444d4ee6709725bed2a4156c6b6dba38e09ec",
-      "content": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/fb/fbf77536e05a5afa3a626eba34a444d4ee6709725bed2a4156c6b6dba38e09ec"
+      "hash": "c21d61796f9f8967b46f5f89141a479d085b4ab75007a7acea88f9b855c591bf",
+      "content": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/c2/c21d61796f9f8967b46f5f89141a479d085b4ab75007a7acea88f9b855c591bf"
     },
     "assets/05-estimacion.png": {
-      "hash": "9e3fe7832b90a259ba9ad432289e1fd582f2e87678b0cbf2a2b7f669e4371881",
-      "content": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/9e/9e3fe7832b90a259ba9ad432289e1fd582f2e87678b0cbf2a2b7f669e4371881"
+      "hash": "d1390c08f40b37eb88d6a003f5d4ff4e18895048591aeadcc80d5eb8265f4ab7",
+      "content": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/d1/d1390c08f40b37eb88d6a003f5d4ff4e18895048591aeadcc80d5eb8265f4ab7"
     },
     "assets/07-estacion-suiza-fenitoina.png": {
       "hash": "f3e9c05f2eb7d10633303791112a4d8af541077499949d363d1b695e1f0b3f60",
       "content": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/f3/f3e9c05f2eb7d10633303791112a4d8af541077499949d363d1b695e1f0b3f60"
     },
     "assets/08-zenith-minimalist-dashboard.png": {
-      "hash": "e4bfffbb2ead2b6b76b0f921988c2236bf4e2b1f59a22220f9a19a87e4329d3e",
-      "content": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/e4/e4bfffbb2ead2b6b76b0f921988c2236bf4e2b1f59a22220f9a19a87e4329d3e"
+      "hash": "efd0af841f6727bc20d5e23bf73cec958e333627193ff04e1183a905493e65d3",
+      "content": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/ef/efd0af841f6727bc20d5e23bf73cec958e333627193ff04e1183a905493e65d3"
     },
     "assets/10-exportacion.png": {
       "hash": "cae60869b9b60d7c9a1233df3a0e13c57ecc2adc209d5abd48112c56985a39a0",
@@ -237,8 +237,8 @@
       "content": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/35/356449003c0b3daf6fcca34754fbe5e7dae9f8bae946c7ff1af91b5c972db7f2"
     },
     "package.json": {
-      "hash": "c70113ce4fcffa92f93cdd5f616dec557546d011f1e991673951a2d76f2ae8d7",
-      "content": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/c7/c70113ce4fcffa92f93cdd5f616dec557546d011f1e991673951a2d76f2ae8d7"
+      "hash": "5f85fe85ee988f5636450a1ecb6d9335f824ab796a9a6454282512ddb7d8cfbf",
+      "content": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/5f/5f85fe85ee988f5636450a1ecb6d9335f824ab796a9a6454282512ddb7d8cfbf"
     },
     "capture/assets/01-acceso-ecosistema.png": {
       "hash": "001e8b494c65dd90a6c7993d6db1603a03e670675aca05c59375c4b650d255d3",
@@ -247,6 +247,14 @@
     "capture/assets/02-datos-anonimos.png": {
       "hash": "001e8b494c65dd90a6c7993d6db1603a03e670675aca05c59375c4b650d255d3",
       "content": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/00/001e8b494c65dd90a6c7993d6db1603a03e670675aca05c59375c4b650d255d3"
+    },
+    "assets/01-notificaciones-modal.png": {
+      "hash": "66db9f60711ef85028f968c351b039d15cb1b09a68ea7d6991980c9a0714829c",
+      "content": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/66/66db9f60711ef85028f968c351b039d15cb1b09a68ea7d6991980c9a0714829c"
+    },
+    "assets/04_step2_monitoring.png": {
+      "hash": "ca81e7d2e3a0508818f2e0d65ad2a61c089f5eef193ad7361455ff4acc66ccfc",
+      "content": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/ca/ca81e7d2e3a0508818f2e0d65ad2a61c089f5eef193ad7361455ff4acc66ccfc"
     }
   },
   "revisions": {
@@ -509,12 +517,51 @@
           "after": null
         }
       }
+    },
+    "4711bb01-20ad-4482-b696-68fea9b2953d": {
+      "actor": {
+        "kind": "outside",
+        "name": "Outside"
+      },
+      "label": "Changed outside the app",
+      "startedAt": 1792334070341,
+      "endedAt": 1792334070356,
+      "files": {
+        "assets/01-dashboard.png": {
+          "before": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/07/070067ffe6fe51367f4172b7f7dd21b0081cb11e3eba35a5752563c655192b9c",
+          "after": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/6d/6d582040a0daf03bf1176f21e784482ff963d692d62cc3af3a3af1a3f47c334f"
+        },
+        "assets/01-notificaciones-modal.png": {
+          "before": null,
+          "after": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/66/66db9f60711ef85028f968c351b039d15cb1b09a68ea7d6991980c9a0714829c"
+        },
+        "assets/03-funcion-renal.png": {
+          "before": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/fb/fbf77536e05a5afa3a626eba34a444d4ee6709725bed2a4156c6b6dba38e09ec",
+          "after": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/c2/c21d61796f9f8967b46f5f89141a479d085b4ab75007a7acea88f9b855c591bf"
+        },
+        "assets/04_step2_monitoring.png": {
+          "before": null,
+          "after": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/ca/ca81e7d2e3a0508818f2e0d65ad2a61c089f5eef193ad7361455ff4acc66ccfc"
+        },
+        "assets/05-estimacion.png": {
+          "before": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/9e/9e3fe7832b90a259ba9ad432289e1fd582f2e87678b0cbf2a2b7f669e4371881",
+          "after": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/d1/d1390c08f40b37eb88d6a003f5d4ff4e18895048591aeadcc80d5eb8265f4ab7"
+        },
+        "assets/08-zenith-minimalist-dashboard.png": {
+          "before": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/e4/e4bfffbb2ead2b6b76b0f921988c2236bf4e2b1f59a22220f9a19a87e4329d3e",
+          "after": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/ef/efd0af841f6727bc20d5e23bf73cec958e333627193ff04e1183a905493e65d3"
+        },
+        "package.json": {
+          "before": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/c7/c70113ce4fcffa92f93cdd5f616dec557546d011f1e991673951a2d76f2ae8d7",
+          "after": "/Users/pablosaezriquelme/.cache/hyperframes/history/471d7843-cd80-48ac-ace5-8e5d25118e78/blobs/5f/5f85fe85ee988f5636450a1ecb6d9335f824ab796a9a6454282512ddb7d8cfbf"
+        }
+      }
     }
   },
   "checks": {
     "latest": {
-      "revision": "4f809964-77ec-43c3-9e8e-8cbbceb0af9e",
-      "id": "1218c189-8702-480c-b294-37904910eb9f"
+      "revision": "4711bb01-20ad-4482-b696-68fea9b2953d",
+      "id": "614f4e3d-7acc-4551-82ab-e17c99577c8e"
     },
     "revisions": {
       "ec7e3bfc-3815-4c86-9b01-540bd728f071": [
@@ -581,7 +628,6 @@
         {
           "id": "6a2c7baf-3fd2-406d-a524-abf3f36ba305",
           "scope": "project",
-          "report": "/Users/pablosaezriquelme/Desktop/Proyectos/PK-Bayes Web/videos/pkbayes-promo/.hyperframes/artifacts/checks/6a2c7baf-3fd2-406d-a524-abf3f36ba305.json",
           "metadata": {
             "ok": true,
             "browserSkipped": false,
@@ -603,7 +649,9 @@
           "revision": "2ef3a2ba-8c36-4c1d-97dc-ef2f5026075f",
           "inputFingerprint": "c021089d9204b01ebefab9de7536231a02d18c6329ef71001dcf68ed1bfdd4d7",
           "inputScope": "local-project-files",
-          "attribution": "recorded-revision"
+          "attribution": "recorded-revision",
+          "status": "cleaned",
+          "cleanedAfterRender": "9d8d7936-2080-4f27-bd39-107d268049c2"
         }
       ],
       "4f809964-77ec-43c3-9e8e-8cbbceb0af9e": [
@@ -631,6 +679,35 @@
           "contentHash": "ed6809eb7b34af387d25689ef8802036747038f727e5542809c55d837ea59eaf",
           "revision": "4f809964-77ec-43c3-9e8e-8cbbceb0af9e",
           "inputFingerprint": "4fdfcca121bae72ad32ea1d8f4dbc6d873a6fd6a82f08b0033824ce7bda4fd1b",
+          "inputScope": "local-project-files",
+          "attribution": "recorded-revision"
+        }
+      ],
+      "4711bb01-20ad-4482-b696-68fea9b2953d": [
+        {
+          "id": "614f4e3d-7acc-4551-82ab-e17c99577c8e",
+          "scope": "project",
+          "report": "/Users/pablosaezriquelme/Desktop/Proyectos/PK-Bayes Web/videos/pkbayes-promo/.hyperframes/artifacts/checks/614f4e3d-7acc-4551-82ab-e17c99577c8e.json",
+          "metadata": {
+            "ok": true,
+            "browserSkipped": false,
+            "options": {
+              "samples": 9,
+              "atTransitions": false,
+              "maxIssues": 80,
+              "collapseStatic": true,
+              "tolerance": 2,
+              "timeout": 3000,
+              "contrast": true,
+              "strict": false,
+              "snapshots": false,
+              "browserGpuMode": "auto"
+            }
+          },
+          "createdAt": 1792334076623,
+          "contentHash": "ed6809eb7b34af387d25689ef8802036747038f727e5542809c55d837ea59eaf",
+          "revision": "4711bb01-20ad-4482-b696-68fea9b2953d",
+          "inputFingerprint": "90faf3be2de5a9b1532a46f85b3dabaf053a6c439d164b879bdee28e49f9b5a1",
           "inputScope": "local-project-files",
           "attribution": "recorded-revision"
         }
@@ -673,15 +750,15 @@
   },
   "renders": {
     "latest": {
-      "id": "e69a6889-fe23-433b-aa7a-ef3ce191b905",
-      "completedAt": 1792269707348,
-      "output": "/Users/pablosaezriquelme/Desktop/Proyectos/PK-Bayes Web/videos/pkbayes-promo/renders/pkbayes-promo_2026-10-17_17-40-47.mp4",
+      "id": "9d8d7936-2080-4f27-bd39-107d268049c2",
+      "completedAt": 1792334158768,
+      "output": "/Users/pablosaezriquelme/Desktop/Proyectos/PK-Bayes Web/videos/pkbayes-promo/renders/pkbayes-promo_2026-10-18_11-34-43.mp4",
       "status": "completed",
-      "revision": "4f809964-77ec-43c3-9e8e-8cbbceb0af9e"
+      "revision": "4711bb01-20ad-4482-b696-68fea9b2953d"
     },
     "retainedRevisions": [
-      "4f809964-77ec-43c3-9e8e-8cbbceb0af9e",
-      "2ef3a2ba-8c36-4c1d-97dc-ef2f5026075f"
+      "4711bb01-20ad-4482-b696-68fea9b2953d",
+      "4f809964-77ec-43c3-9e8e-8cbbceb0af9e"
     ]
   },
   "pendingArtifactCleanup": []
