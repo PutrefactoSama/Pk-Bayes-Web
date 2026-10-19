@@ -16,7 +16,7 @@
   
   <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-<body class="mesh-gradient-darker" style="color: var(--text); background: var(--bg);">
+<body style="color: var(--text-primary); background: var(--bg-page);">
   <a href="#main-content" class="skip-link" data-i18n="a11y.saltar_al_contenido">Saltar al contenido principal</a>
 
   <!-- NAVIGATION HEADER -->
@@ -32,30 +32,30 @@
   </header>
 
   <main id="main-content">
-    <!-- HERO SECTION WITH WORKSTATION PREVIEW -->
-    <section class="hero mesh-gradient" style="padding-top: 40px; padding-bottom: 48px; background: #ffffff;">
+    <!-- HERO SECTION WITH ELEVATED WORKSTATION SHOWCASE -->
+    <section class="hero" style="padding-top: 56px; padding-bottom: 64px; background: #ffffff;">
       <div class="container">
         
-        <!-- Live Engine Announcement Pill -->
-        <div style="display: flex; justify-content: center; margin-bottom: 20px;">
-          <div class="glass-card" style="display: inline-flex; align-items: center; gap: 10px; padding: 6px 18px; border-radius: 9999px; font-size: 12px; color: #334155; border: 1px solid #bae6fd; background: rgba(255, 255, 255, 0.95); box-shadow: 0 2px 8px rgba(15, 23, 42, 0.06);">
-            <span class="clinical-status-dot status-blue"></span>
-            <span style="font-weight: 700; color: var(--primary);" data-i18n="hero.mcmc_pill">Stan MCMC + L-BFGS-B · Inferencia TDM en &lt; 25 ms con regularización Bayesiana</span>
+        <!-- Live Ingestion Status Pill -->
+        <div style="display: flex; justify-content: center; margin-bottom: 24px;">
+          <div style="display: inline-flex; align-items: center; gap: 10px; padding: 7px 20px; border-radius: 9999px; font-size: 12.5px; color: #1e293b; border: 1px solid #bae6fd; background: #f0f9ff; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);">
+            <span class="clinical-status-dot status-blue" style="width: 7px; height: 7px;"></span>
+            <span style="font-weight: 700; color: #0369a1;" data-i18n="hero.mcmc_pill">Stan MCMC + L-BFGS-B · Inferencia TDM en &lt; 25 ms con regularización Bayesiana</span>
           </div>
         </div>
 
         <!-- Headline & Value Proposition -->
-        <div style="text-align: center; max-width: 980px; margin: 0 auto 28px;">
-          <h1 style="font-size: clamp(2.2rem, 4.4vw, 3.6rem); font-weight: 800; line-height: 1.12; margin-bottom: 16px; color: #091e42;">
+        <div style="text-align: center; max-width: 980px; margin: 0 auto 32px;">
+          <h1 style="font-size: clamp(2.3rem, 4.6vw, 3.8rem); font-weight: 800; line-height: 1.12; letter-spacing: -0.03em; margin-bottom: 18px; color: #091e42;">
             <span data-i18n="hero.title_p1">Dosificación de Precisión guiada por</span><br>
-            <span style="color: var(--primary);" data-i18n="hero.title_highlight">Optimización Bayesiana MAP</span>
+            <span style="color: #0369a1;" data-i18n="hero.title_highlight">Optimización Bayesiana MAP</span>
           </h1>
-          <p style="font-size: clamp(1rem, 2vw, 1.25rem); color: #475569; line-height: 1.65; max-width: 680px; margin: 0 auto; text-wrap: pretty;" data-i18n-html="hero.lead">
+          <p style="font-size: clamp(1.05rem, 1.8vw, 1.25rem); color: #475569; line-height: 1.65; max-width: 700px; margin: 0 auto; text-wrap: pretty;" data-i18n-html="hero.lead">
             Plataforma clínica para individualizar la dosis de fármacos de estrecho margen terapéutico (<strong>vancomicina</strong> y <strong>fenitoína</strong>) mediante estimación bayesiana MAP sobre los datos reales de cada paciente.
           </p>
 
           <!-- CTAs -->
-          <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; margin-top: 24px;">
+          <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; margin-top: 28px;">
             <a href="#simulador" class="btn-stitch-primary" style="padding: 13px 26px; font-size: 14px;">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true">
                 <polygon points="5 3 19 12 5 21 5 3"></polygon>
@@ -63,7 +63,7 @@
               <span data-i18n="hero.cta_sim">Probar Simulador Interactivo</span>
             </a>
             <a href="#demo" class="btn-stitch-glass" style="padding: 13px 26px; font-size: 14px;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2" aria-hidden="true">
                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                 <line x1="16" y1="2" x2="16" y2="6"></line>
                 <line x1="8" y1="2" x2="8" y2="6"></line>
@@ -72,16 +72,16 @@
               <span data-i18n="hero.cta_demo">Agendar Demostración con Farmacéuticos Clínicos</span>
             </a>
             <a href="precios.html#video-promocional" class="btn-stitch-glass" style="padding: 13px 26px; font-size: 14px; text-decoration: none;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2" aria-hidden="true">
                 <circle cx="12" cy="12" r="10"></circle>
-                <polygon points="10 8 16 12 10 16 10 8" fill="var(--primary)"></polygon>
+                <polygon points="10 8 16 12 10 16 10 8" fill="#0369a1"></polygon>
               </svg>
               <span data-i18n="hero.cta_video">Ver Video Promocional (3:24 min)</span>
             </a>
           </div>
 
           <!-- Trust Strip Badges -->
-          <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; margin-top: 20px; font-size: 12px; color: #475569;">
+          <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; margin-top: 24px; font-size: 12px; color: #475569;">
             <span style="display: flex; align-items: center; gap: 6px;"><svg width="14" height="14" fill="#047857" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span data-i18n="hero.trust_fda">FDA 21 CFR Part 11 Compliant</span></span>
             <span style="display: flex; align-items: center; gap: 6px;"><svg width="14" height="14" fill="#047857" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span data-i18n="hero.trust_fhir">HL7 FHIR R4 Ready</span></span>
             <span style="display: flex; align-items: center; gap: 6px;"><svg width="14" height="14" fill="#047857" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg> <span data-i18n="hero.trust_gamp">GAMP 5 Categoría 4</span></span>
@@ -89,154 +89,149 @@
           </div>
         </div>
 
-        <!-- ZENITH MINIMALIST CLINICAL DASHBOARD (APPLE HEALTH + LINEAR STYLE) -->
-        <div class="double-bezel-tray">
-          <div class="double-bezel-core">
-            <div id="zenith-workstation" class="zenith-dashboard">
-              <!-- Top Bar: Brand + Patient Capsule + Status & 4K Modal Trigger -->
-              <div class="zenith-header">
-                <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
-                  <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #2563eb; background: rgba(37, 99, 235, 0.08); padding: 4px 10px; border-radius: 6px;" data-i18n="zenith.brand">
-                    PK-BAYES // ZENITH CLINICAL
-                  </span>
-                  <div class="zenith-patient-pill">
-                    <span style="color: #0f172a; font-weight: 700;" data-i18n="zenith.patient">Elena Morales · 63a · UCI</span>
-                    <span style="color: #475569;" aria-hidden="true">|</span>
-                    <span style="color: #2563eb;" data-i18n="zenith.drug">Vancomicina IV (Bicompartimental)</span>
-                    <span style="color: #475569;" aria-hidden="true">|</span>
-                    <span style="color: #475569;" data-i18n="zenith.egfr">eGFR: 26 mL/min</span>
-                  </div>
-                </div>
-
-                <div style="display: flex; align-items: center; gap: 10px;">
-                  <span class="zenith-status-badge">
-                    <span class="clinical-status-dot status-emerald" style="width: 6px; height: 6px;"></span>
-                    <span data-i18n="zenith.status">En Diana 96%</span>
-                  </span>
-                  <a href="assets/stitch/08-zenith-minimalist-dashboard.png" class="zenith-patient-pill" data-screen-lightbox aria-label="Ampliar captura 4K" data-i18n-aria-label="a11y.vista_ampliada_de_pk_bayes" data-alt="Zenith Minimalist Dashboard" style="text-decoration: none; cursor: pointer; color: #0369a1; border-color: rgba(2,132,199,0.3); font-size: 12px; display: flex; align-items: center; gap: 6px;">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-                    <span data-i18n="zenith.view_hd">Ver Maqueta 4K</span>
-                  </a>
-                  <a href="precios.html#video-promocional" class="zenith-patient-pill" aria-label="Ver vídeo promocional clínico" data-i18n-aria-label="a11y.ver_video_promocional" style="text-decoration: none; cursor: pointer; color: #0369a1; border-color: rgba(3,105,161,0.3); font-size: 12px; display: flex; align-items: center; gap: 6px;">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3" fill="#0369a1"></polygon></svg>
-                    <span data-i18n="zenith.view_video">Ver Video (3 min)</span>
-                  </a>
-                </div>
+        <!-- ZENITH UNIFIED CLINICAL WORKSTATION -->
+        <div id="zenith-workstation" class="zenith-unified-chassis">
+          <!-- Top Telemetry Chrome Bar -->
+          <div class="zenith-top-chrome">
+            <div style="display: flex; align-items: center; gap: 12px; flex-wrap: wrap;">
+              <span style="font-family: var(--font-mono); font-size: 11px; font-weight: 800; letter-spacing: 0.1em; color: #0369a1; background: #e0f2fe; padding: 4px 10px; border-radius: 6px;" data-i18n="zenith.brand">
+                PK-BAYES // ZENITH CLINICAL
+              </span>
+              <div class="zenith-patient-pill">
+                <span style="color: #0f172a; font-weight: 700;" data-i18n="zenith.patient">Elena Morales · 63a · UCI</span>
+                <span style="color: #94a3b8;" aria-hidden="true">|</span>
+                <span style="color: #0369a1;" data-i18n="zenith.drug">Vancomicina IV (Bicompartimental)</span>
+                <span style="color: #94a3b8;" aria-hidden="true">|</span>
+                <span style="color: #475569;" data-i18n="zenith.egfr">eGFR: 26 mL/min</span>
               </div>
+            </div>
 
-              <!-- Three Hero Glance Tiles (Big Bold Numbers, Zero Text Saturation) -->
-              <div class="zenith-glance-grid">
-                <!-- Tile 1: PTA Target Attainment -->
-                <div class="zenith-kpi-card">
-                  <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                    <span class="zenith-kpi-label" data-i18n="zenith.kpi_pta_label">Probabilidad en Diana (PTA)</span>
-                    <span style="background: #ecfdf5; color: #047857; font-size: 11px; font-weight: 800; font-family: var(--font-mono); padding: 2px 7px; border-radius: 9999px;" data-i18n="zenith.badge_optimal">En Meta</span>
-                  </div>
-                  <div style="display: flex; align-items: center; justify-content: space-between; margin: 10px 0;">
-                    <div>
-                      <div id="zenith-kpi-pta" class="zenith-kpi-num" style="color: #047857;">96%</div>
-                      <span style="font-size: 12px; color: #475569;" data-i18n="zenith.kpi_pta_sub">Ventana AUC/CIM ≥ 400</span>
-                    </div>
-                    <!-- Circular SVG Progress Ring -->
-                    <svg width="56" height="56" viewBox="0 0 36 36" style="transform: rotate(-90deg); flex-shrink: 0;" aria-hidden="true">
-                      <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e2e8f0" stroke-width="3.5" />
-                      <path id="zenith-ring-path" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#047857" stroke-dasharray="96, 100" stroke-linecap="round" stroke-width="3.5" />
-                    </svg>
-                  </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+              <span class="zenith-status-badge">
+                <span class="clinical-status-dot status-emerald" style="width: 6px; height: 6px;"></span>
+                <span data-i18n="zenith.status">En Diana 96%</span>
+              </span>
+              <a href="assets/stitch/08-zenith-minimalist-dashboard.png" class="zenith-patient-pill" data-screen-lightbox aria-label="Ampliar captura 4K" data-i18n-aria-label="a11y.vista_ampliada_de_pk_bayes" data-alt="Zenith Minimalist Dashboard" style="text-decoration: none; cursor: pointer; color: #0369a1; border-color: rgba(2,132,199,0.3); font-size: 12px; display: flex; align-items: center; gap: 6px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+                <span data-i18n="zenith.view_hd">Ver Maqueta 4K</span>
+              </a>
+              <a href="precios.html#video-promocional" class="zenith-patient-pill" aria-label="Ver vídeo promocional clínico" data-i18n-aria-label="a11y.ver_video_promocional" style="text-decoration: none; cursor: pointer; color: #0369a1; border-color: rgba(3,105,161,0.3); font-size: 12px; display: flex; align-items: center; gap: 6px;">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3" fill="#0369a1"></polygon></svg>
+                <span data-i18n="zenith.view_video">Ver Video (3 min)</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Integrated Single-Layer HUD Bar (3 Columns, No Nested Cards) -->
+          <div class="zenith-hud-bar">
+            <!-- Col 1: PTA Target Attainment -->
+            <div class="zenith-hud-col">
+              <div class="zenith-hud-meta">
+                <span data-i18n="zenith.kpi_pta_label">Probabilidad en Diana (PTA)</span>
+                <span style="background: #ecfdf5; color: #047857; font-size: 11px; font-weight: 800; padding: 2px 7px; border-radius: 9999px;" data-i18n="zenith.badge_optimal">En Meta</span>
+              </div>
+              <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 4px;">
+                <div>
+                  <div id="zenith-kpi-pta" class="zenith-hud-num" style="color: #047857;">96%</div>
+                  <div class="zenith-hud-sub" data-i18n="zenith.kpi_pta_sub">Ventana AUC/CIM ≥ 400</div>
                 </div>
+                <svg width="52" height="52" viewBox="0 0 36 36" style="transform: rotate(-90deg); flex-shrink: 0;" aria-hidden="true">
+                  <path d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#e2e8f0" stroke-width="3.5" />
+                  <path id="zenith-ring-path" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="#047857" stroke-dasharray="96, 100" stroke-linecap="round" stroke-width="3.5" />
+                </svg>
+              </div>
+            </div>
 
-                <!-- Tile 2: AUC24 Exposure -->
-                <div class="zenith-kpi-card">
-                  <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                    <span class="zenith-kpi-label" data-i18n="zenith.kpi_auc_label">Exposición Acumulada AUC₂₄</span>
-                    <span style="background: #eff6ff; color: #2563eb; font-size: 11px; font-weight: 800; font-family: var(--font-mono); padding: 2px 7px; border-radius: 9999px;">400 - 600</span>
-                  </div>
-                  <div style="margin: 10px 0;">
-                    <div style="display: flex; align-items: baseline; gap: 6px;">
-                      <span id="zenith-kpi-auc" class="zenith-kpi-num" style="color: #0f172a;">485</span>
-                      <span style="font-size: 13px; font-weight: 600; color: #475569; font-family: var(--font-mono);" data-i18n="zenith.unit_mghl">mg·h/L</span>
-                    </div>
-                    <!-- Range Corridor Visualizer -->
-                    <div style="margin-top: 10px;">
-                      <div style="width: 100%; height: 6px; background: #e2e8f0; border-radius: 9999px; position: relative; overflow: hidden;">
-                        <div style="position: absolute; left: 30%; width: 40%; height: 100%; background: #a7f3d0;"></div>
-                        <div id="zenith-corridor-dot" style="position: absolute; left: 52%; top: 0; width: 6px; height: 100%; background: #047857; border-radius: 2px;"></div>
-                      </div>
-                      <div style="display: flex; justify-content: space-between; font-size: 11px; font-family: var(--font-mono); color: #475569; margin-top: 4px;">
-                        <span>300</span>
-                        <span style="color: #047857; font-weight: 700;" data-i18n="zenith.kpi_auc_sub">Rango Óptimo 400 - 600</span>
-                        <span>700</span>
-                      </div>
-                    </div>
-                  </div>
+            <!-- Col 2: AUC24 Exposure -->
+            <div class="zenith-hud-col">
+              <div class="zenith-hud-meta">
+                <span data-i18n="zenith.kpi_auc_label">Exposición Acumulada AUC₂₄</span>
+                <span style="background: #f0f9ff; color: #0369a1; font-size: 11px; font-weight: 800; padding: 2px 7px; border-radius: 9999px;">400 - 600</span>
+              </div>
+              <div>
+                <div class="zenith-hud-reading">
+                  <span id="zenith-kpi-auc" class="zenith-hud-num">485</span>
+                  <span style="font-size: 13px; font-weight: 600; color: #64748b;" data-i18n="zenith.unit_mghl">mg·h/L</span>
                 </div>
-
-                <!-- Tile 3: Predicted Trough Level (C_min) -->
-                <div class="zenith-kpi-card">
-                  <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                    <span class="zenith-kpi-label" data-i18n="zenith.kpi_cmin_label">Nivel Valle Predicho (C_mín)</span>
-                    <span style="background: #ecfdf5; color: #047857; font-size: 11px; font-weight: 800; font-family: var(--font-mono); padding: 2px 7px; border-radius: 9999px;" data-i18n="zenith.target_range">15 - 20 µg/mL</span>
+                <div style="margin-top: 8px;">
+                  <div style="width: 100%; height: 5px; background: #e2e8f0; border-radius: 9999px; position: relative; overflow: hidden;">
+                    <div style="position: absolute; left: 30%; width: 40%; height: 100%; background: #a7f3d0;"></div>
+                    <div id="zenith-corridor-dot" style="position: absolute; left: 52%; top: 0; width: 6px; height: 100%; background: #047857; border-radius: 2px;"></div>
                   </div>
-                  <div style="margin: 10px 0;">
-                    <div style="display: flex; align-items: baseline; gap: 6px;">
-                      <span id="zenith-kpi-cmin" class="zenith-kpi-num" style="color: #0f172a;">16.2</span>
-                      <span style="font-size: 13px; font-weight: 600; color: #475569; font-family: var(--font-mono);" data-i18n="zenith.unit_ugml">µg/mL</span>
-                    </div>
-                    <!-- Range Corridor Visualizer for Trough Level -->
-                    <div style="margin-top: 10px;">
-                      <div style="width: 100%; height: 6px; background: #e2e8f0; border-radius: 9999px; position: relative; overflow: hidden;">
-                        <div style="position: absolute; left: 33%; width: 34%; height: 100%; background: #a7f3d0;"></div>
-                        <div id="zenith-cmin-corridor-dot" style="position: absolute; left: 41%; top: 0; width: 6px; height: 100%; background: #047857; border-radius: 2px;"></div>
-                      </div>
-                      <div style="display: flex; justify-content: space-between; font-size: 11px; font-family: var(--font-mono); color: #475569; margin-top: 4px;">
-                        <span>10</span>
-                        <span style="color: #047857; font-weight: 700;" data-i18n="zenith.kpi_cmin_range_lbl">Rango Valle 15 - 20</span>
-                        <span>25</span>
-                      </div>
-                    </div>
+                  <div style="display: flex; justify-content: space-between; font-size: 11px; font-family: var(--font-mono); color: #64748b; margin-top: 4px;">
+                    <span>300</span>
+                    <span style="color: #047857; font-weight: 700;" data-i18n="zenith.kpi_auc_sub">Rango Óptimo 400 - 600</span>
+                    <span>700</span>
                   </div>
                 </div>
               </div>
+            </div>
 
-              <!-- Central Canvas: Large Expansive Fluid Concentration-Time Curve (0 - 48h) -->
-              <div class="zenith-curve-panel">
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
-                  <div>
-                    <h2 style="font-size: 14px; font-weight: 800; color: #0f172a; margin: 0;" data-i18n="zenith.curve_title">Perfil Concentración-Tiempo (0-48h)</h2>
+            <!-- Col 3: Predicted Trough Level (C_min) -->
+            <div class="zenith-hud-col">
+              <div class="zenith-hud-meta">
+                <span data-i18n="zenith.kpi_cmin_label">Nivel Valle Predicho (C_mín)</span>
+                <span style="background: #ecfdf5; color: #047857; font-size: 11px; font-weight: 800; padding: 2px 7px; border-radius: 9999px;" data-i18n="zenith.target_range">15 - 20 µg/mL</span>
+              </div>
+              <div>
+                <div class="zenith-hud-reading">
+                  <span id="zenith-kpi-cmin" class="zenith-hud-num">16.2</span>
+                  <span style="font-size: 13px; font-weight: 600; color: #64748b;" data-i18n="zenith.unit_ugml">µg/mL</span>
+                </div>
+                <div style="margin-top: 8px;">
+                  <div style="width: 100%; height: 5px; background: #e2e8f0; border-radius: 9999px; position: relative; overflow: hidden;">
+                    <div style="position: absolute; left: 33%; width: 34%; height: 100%; background: #a7f3d0;"></div>
+                    <div id="zenith-cmin-corridor-dot" style="position: absolute; left: 41%; top: 0; width: 6px; height: 100%; background: #047857; border-radius: 2px;"></div>
                   </div>
-                  <div style="display: flex; align-items: center; gap: 16px; font-size: 11px; font-family: var(--font-mono); flex-wrap: wrap;">
-                    <span style="display: flex; align-items: center; gap: 6px; color: #2563eb;">
-                      <span style="width: 14px; height: 3px; background: #2563eb; border-radius: 2px;"></span>
-                      <span data-i18n="zenith.legend_fit">Ajuste MAP Bayesiano</span>
-                    </span>
-                    <span style="display: flex; align-items: center; gap: 6px; color: #047857;">
-                      <span style="width: 12px; height: 8px; background: rgba(5, 150, 105, 0.18); border: 1px solid #047857; border-radius: 2px;"></span>
-                      <span data-i18n="zenith.legend_window">Ventana Terapéutica (15 - 20 µg/mL)</span>
-                    </span>
-                    <span style="display: flex; align-items: center; gap: 6px; color: #dc2626;">
-                      <span style="width: 8px; height: 8px; border-radius: 50%; background: #dc2626; border: 2px solid #ffffff; box-shadow: 0 0 0 1px #dc2626;"></span>
-                      <span data-i18n="zenith.legend_tdm">Muestra TDM (15.2 µg/mL a 23.5h)</span>
-                    </span>
+                  <div style="display: flex; justify-content: space-between; font-size: 11px; font-family: var(--font-mono); color: #64748b; margin-top: 4px;">
+                    <span>10</span>
+                    <span style="color: #047857; font-weight: 700;" data-i18n="zenith.kpi_cmin_range_lbl">Rango Valle 15 - 20</span>
+                    <span>25</span>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
 
-                <!-- Dynamic In-Canvas Telemetry Status Banner -->
-                <div id="zenith-curve-banner" class="zenith-curve-banner status-target">
-                  <div style="display: flex; align-items: center; gap: 8px;">
-                    <span class="clinical-status-dot status-emerald" id="zenith-banner-dot"></span>
-                    <strong id="zenith-banner-title" data-i18n="zenith.banner_a_title">Pauta Óptima en Diana</strong>
-                  </div>
-                  <span id="zenith-banner-desc" data-i18n="zenith.banner_a_desc">Exposición AUC 485 mg·h/L dentro del rango seguro (400-600) / Riesgo de nefrotoxicidad mínimo (&lt;1.8%)</span>
-                </div>
+          <!-- Central Curve Stage -->
+          <div class="zenith-curve-stage">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 10px;">
+              <div>
+                <h2 style="font-size: 14px; font-weight: 800; color: #0f172a; margin: 0;" data-i18n="zenith.curve_title">Perfil Concentración-Tiempo (0-48h)</h2>
+              </div>
+              <div style="display: flex; align-items: center; gap: 16px; font-size: 11px; font-family: var(--font-mono); flex-wrap: wrap;">
+                <span style="display: flex; align-items: center; gap: 6px; color: #0369a1;">
+                  <span style="width: 14px; height: 3px; background: #0369a1; border-radius: 2px;"></span>
+                  <span data-i18n="zenith.legend_fit">Ajuste MAP Bayesiano</span>
+                </span>
+                <span style="display: flex; align-items: center; gap: 6px; color: #047857;">
+                  <span style="width: 12px; height: 8px; background: rgba(5, 150, 105, 0.18); border: 1px solid #047857; border-radius: 2px;"></span>
+                  <span data-i18n="zenith.legend_window">Ventana Terapéutica (15 - 20 µg/mL)</span>
+                </span>
+                <span style="display: flex; align-items: center; gap: 6px; color: #dc2626;">
+                  <span style="width: 8px; height: 8px; border-radius: 50%; background: #dc2626; border: 2px solid #ffffff; box-shadow: 0 0 0 1px #dc2626;"></span>
+                  <span data-i18n="zenith.legend_tdm">Muestra TDM (15.2 µg/mL a 23.5h)</span>
+                </span>
+              </div>
+            </div>
+
+            <!-- Dynamic In-Canvas Telemetry Status Banner -->
+            <div id="zenith-curve-banner" class="zenith-curve-banner status-target">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <span class="clinical-status-dot status-emerald" id="zenith-banner-dot"></span>
+                <strong id="zenith-banner-title" data-i18n="zenith.banner_a_title">Pauta Óptima en Diana</strong>
+              </div>
+              <span id="zenith-banner-desc" data-i18n="zenith.banner_a_desc">Exposición AUC 485 mg·h/L dentro del rango seguro (400-600) / Riesgo de nefrotoxicidad mínimo (&lt;1.8%)</span>
+            </div>
 
             <!-- Fluid Responsive SVG Curve -->
             <div style="width: 100%; height: 260px;">
               <svg style="width: 100%; height: 100%;" viewBox="0 0 900 240" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Curva farmacocinética individualizada de 48 horas" data-i18n-aria-label="a11y.zenith_svg_label">
                 <defs>
                   <linearGradient id="zenithGlow" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#2563eb" stop-opacity="0.22" />
-                    <stop offset="70%" stop-color="#2563eb" stop-opacity="0.03" />
-                    <stop offset="100%" stop-color="#2563eb" stop-opacity="0.0" />
+                    <stop offset="0%" stop-color="#0369a1" stop-opacity="0.22" />
+                    <stop offset="70%" stop-color="#0369a1" stop-opacity="0.03" />
+                    <stop offset="100%" stop-color="#0369a1" stop-opacity="0.0" />
                   </linearGradient>
                   <linearGradient id="zenithTargetBand" x1="0" y1="0" x2="1" y2="0">
                     <stop offset="0%" stop-color="#a7f3d0" stop-opacity="0.35" />
@@ -270,8 +265,8 @@
                 <!-- Gradient Under-Curve Fill -->
                 <path id="zenith-curve-glow" d="M 50,210 C 70,45 100,38 150,90 C 200,140 240,172 260,175 C 280,48 310,40 360,92 C 410,142 450,174 470,176 C 490,50 520,42 570,94 C 620,144 660,175 680,178 C 700,52 730,45 780,96 C 830,146 850,176 870,178 L 870,215 L 50,215 Z" fill="url(#zenithGlow)" />
 
-                <!-- Electric Sapphire Main Fitted Curve -->
-                <path id="zenith-curve-line" d="M 50,210 C 70,45 100,38 150,90 C 200,140 240,172 260,175 C 280,48 310,40 360,92 C 410,142 450,174 470,176 C 490,50 520,42 570,94 C 620,144 660,175 680,178 C 700,52 730,45 780,96 C 830,146 850,176 870,178" fill="none" stroke="#2563eb" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+                <!-- Sapphire Main Fitted Curve -->
+                <path id="zenith-curve-line" d="M 50,210 C 70,45 100,38 150,90 C 200,140 240,172 260,175 C 280,48 310,40 360,92 C 410,142 450,174 470,176 C 490,50 520,42 570,94 C 620,144 660,175 680,178 C 700,52 730,45 780,96 C 830,146 850,176 870,178" fill="none" stroke="#0369a1" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
 
                 <!-- Measured TDM Node at 23.5h (x=460, y=140) -->
                 <circle cx="460" cy="140" r="5" fill="#dc2626" stroke="#ffffff" stroke-width="2" />
@@ -300,16 +295,16 @@
             </div>
           </div>
 
-          <!-- Linear-Style Interactive Posology Selector (Segmented Cards) -->
-          <div style="margin-bottom: 8px;">
+          <!-- Tactile Posology Segment Bar -->
+          <div style="padding: 0 24px 8px;">
             <span style="font-size: 11px; font-family: var(--font-mono); text-transform: uppercase; color: #475569; font-weight: 700; letter-spacing: 0.05em;" data-i18n="zenith.posology_title">Selector Posológico Interactivo</span>
           </div>
 
-          <div class="zenith-posology-deck">
+          <div class="zenith-posology-bar">
             <!-- Option A: RECOMMENDED (Active State) -->
-            <button type="button" class="zenith-posology-card active" id="posology-btn-a" data-posology="a">
+            <button type="button" class="zenith-posology-segment active" id="posology-btn-a" data-posology="a">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <strong style="font-size: 15px; color: #0f172a; font-family: var(--font-mono);" data-i18n="zenith.opt_a_name">750 mg IV c/ 12h</strong>
+                <strong style="font-size: 14.5px; color: #0f172a; font-family: var(--font-mono);" data-i18n="zenith.opt_a_name">750 mg IV c/ 12h</strong>
                 <span class="zenith-posology-badge recommended" data-i18n="zenith.opt_a_badge">RECOMENDADO</span>
               </div>
               <div style="margin-top: 8px; font-size: 12px; color: var(--green-dark); font-weight: 600;" data-i18n="zenith.opt_a_sub">
@@ -321,9 +316,9 @@
             </button>
 
             <!-- Option B: STANDARD -->
-            <button type="button" class="zenith-posology-card" id="posology-btn-b" data-posology="b">
+            <button type="button" class="zenith-posology-segment" id="posology-btn-b" data-posology="b">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <strong style="font-size: 15px; color: #0f172a; font-family: var(--font-mono);" data-i18n="zenith.opt_b_name">1000 mg IV c/ 12h</strong>
+                <strong style="font-size: 14.5px; color: #0f172a; font-family: var(--font-mono);" data-i18n="zenith.opt_b_name">1000 mg IV c/ 12h</strong>
                 <span class="zenith-posology-badge standard" data-i18n="zenith.opt_b_badge">ESTÁNDAR</span>
               </div>
               <div style="margin-top: 8px; font-size: 12px; color: var(--red-dark); font-weight: 600;" data-i18n="zenith.opt_b_sub">
@@ -335,22 +330,22 @@
             </button>
 
             <!-- Option C: CONTINUOUS -->
-            <button type="button" class="zenith-posology-card" id="posology-btn-c" data-posology="c">
+            <button type="button" class="zenith-posology-segment" id="posology-btn-c" data-posology="c">
               <div style="display: flex; justify-content: space-between; align-items: center;">
-                <strong style="font-size: 15px; color: #0f172a; font-family: var(--font-mono);" data-i18n="zenith.opt_c_name">1500 mg / 24h</strong>
+                <strong style="font-size: 14.5px; color: #0f172a; font-family: var(--font-mono);" data-i18n="zenith.opt_c_name">1500 mg / 24h</strong>
                 <span class="zenith-posology-badge continuous" data-i18n="zenith.opt_c_badge">CONTINUA</span>
               </div>
-              <div style="margin-top: 8px; font-size: 12px; color: #2563eb; font-weight: 600;" data-i18n="zenith.opt_c_sub">
+              <div style="margin-top: 8px; font-size: 12px; color: #0369a1; font-weight: 600;" data-i18n="zenith.opt_c_sub">
                 PTA 98% · AUC 492 · Css 18.2
               </div>
               <div class="zenith-posology-progress">
-                <div class="zenith-posology-progress-fill" style="width: 98%; background: #2563eb;"></div>
+                <div class="zenith-posology-progress-fill" style="width: 98%; background: #0369a1;"></div>
               </div>
             </button>
           </div>
 
-          <!-- Bottom Action Bar -->
-          <div class="zenith-actions-bar">
+          <!-- Bottom Action Tray -->
+          <div class="zenith-bottom-tray">
             <div style="display: flex; align-items: center; gap: 8px; font-size: 12px; color: #475569;">
               <svg width="15" height="15" fill="#047857" viewBox="0 0 20 20" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg>
               <span data-i18n="zenith.compliance_note">Validado bajo FDA SaMD Class II &amp; GAMP 5</span>
@@ -367,10 +362,9 @@
             </div>
           </div>
         </div>
-      </div>
 
-    </div>
-  </section>
+      </div>
+    </section>
 
     <!-- FRAMER-STYLE LIVE CLINICAL SHOWCASE CAROUSEL -->
     <section class="framer-showcase-section" aria-roledescription="carousel" data-i18n-aria-label="showcase.aria_label" aria-label="Showcase interactivo de escenarios clínicos de PK-Bayes">
@@ -507,8 +501,8 @@
             <div>
               <div class="framer-card-header">
                 <span class="framer-tag-pill" data-i18n="showcase.tag_3">NEFROLOGÍA CRÍTICA</span>
-                <span class="framer-live-badge live-purple">
-                  <span class="clinical-status-dot status-purple" style="width: 6px; height: 6px;"></span>
+                <span class="framer-live-badge live-teal">
+                  <span class="clinical-status-dot status-teal" style="width: 6px; height: 6px;"></span>
                   <span data-i18n="showcase.badge_3">● CIRCUITO CRRT ACTIVO</span>
                 </span>
               </div>
@@ -528,8 +522,8 @@
                 <text x="160" y="38" fill="#0f172a" font-size="11" font-family="monospace" text-anchor="middle" font-weight="800">+</text>
 
                 <!-- Extracorporeal Filter Box -->
-                <rect x="190" y="15" width="110" height="38" rx="6" fill="#faf5ff" stroke="#7c3aed" stroke-width="1.4" />
-                <text x="245" y="32" fill="#7c3aed" font-size="9" font-family="monospace" text-anchor="middle" font-weight="700" data-i18n="chart.cl_hemofilter">CL Hemofiltro</text>
+                <rect x="190" y="15" width="110" height="38" rx="6" fill="#f0fdfa" stroke="#0d9488" stroke-width="1.4" />
+                <text x="245" y="32" fill="#0d9488" font-size="9" font-family="monospace" text-anchor="middle" font-weight="700" data-i18n="chart.cl_hemofilter">CL Hemofiltro</text>
                 <text x="245" y="45" fill="#475569" font-size="8" font-family="monospace" text-anchor="middle">2.2 L/h</text>
 
                 <!-- Summation Arrow & Total -->
@@ -547,7 +541,7 @@
               </div>
               <div class="framer-metric-item">
                 <span class="framer-metric-label" data-i18n="showcase.m2_label_3">CL Filtro</span>
-                <strong class="framer-metric-val" style="color: #7c3aed;">2.2 L/h</strong>
+                <strong class="framer-metric-val" style="color: #0d9488;">2.2 L/h</strong>
               </div>
               <div class="framer-metric-item">
                 <span class="framer-metric-label" data-i18n="showcase.m3_label_3">CL Total</span>
@@ -631,14 +625,12 @@
               <svg viewBox="0 0 320 110" style="width: 100%; height: 100%;" fill="none" aria-hidden="true">
                 <!-- Terminal block -->
                 <rect x="15" y="10" width="290" height="90" rx="8" fill="#0f172a" />
-                <circle cx="28" cy="22" r="3" fill="#ef4444" />
-                <circle cx="38" cy="22" r="3" fill="#f59e0b" />
-                <circle cx="48" cy="22" r="3" fill="#10b981" />
-                <text x="60" y="25" fill="#475569" font-size="8" font-family="monospace">fhir-stream.hl7.org/r4</text>
+                <rect x="25" y="18" width="16" height="6" rx="2" fill="#0284c7" />
+                <text x="50" y="24" fill="#94a3b8" font-size="8" font-family="monospace">fhir-stream.hl7.org/r4</text>
                 
                 <text x="25" y="44" fill="#38bdf8" font-size="8" font-family="monospace" data-i18n="chart.fhir_post">POST /Observation (Creatinina: 1.8 mg/dL)</text>
                 <text x="25" y="58" fill="#4ade80" font-size="8" font-family="monospace" data-i18n="chart.fhir_ok">✓ 200 OK · Ingesta en 0.04s</text>
-                <text x="25" y="72" fill="#a78bfa" font-size="8" font-family="monospace" data-i18n="chart.fhir_put">PUT /MedicationRequest (Pauta: 750mg q12h)</text>
+                <text x="25" y="72" fill="#38bdf8" font-size="8" font-family="monospace" data-i18n="chart.fhir_put">PUT /MedicationRequest (Pauta: 750mg q12h)</text>
                 <text x="25" y="86" fill="#94a3b8" font-size="8" font-family="monospace" data-i18n="chart.fhir_audit">Audit Trail: FDA 21 CFR Part 11 Valid</text>
               </svg>
             </div>
@@ -707,8 +699,8 @@
                 Combina los modelos poblacionales canónicos con la farmacocinética única del paciente y las concentraciones plasmáticas reales, actualizando instantáneamente el aclaramiento (CL) y volumen de distribución (Vd).
               </p>
 
-              <!-- In-Card Mathematical Contraction Visualizer -->
-              <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px 18px; margin-bottom: 16px;">
+              <!-- Mathematical Contraction Indicator -->
+              <div style="border-top: 1px solid #f1f5f9; padding-top: 14px; margin-bottom: 16px;">
                 <div style="display: flex; justify-content: space-between; align-items: center; font-family: var(--font-mono); font-size: 11px; color: #475569; margin-bottom: 8px;">
                   <span data-i18n="why.bento_prior">Prior Poblacional (σ=0.42)</span>
                   <span data-i18n="why.bento_posterior" style="color: #047857; font-weight: 700;">Posterior MAP Individual (σ=0.11)</span>
@@ -794,7 +786,7 @@
         </div>
 
         <!-- Simulator Grid -->
-        <div class="mockup-mac-window" style="padding: 24px; background: #ffffff; border: 1px solid #e2e8f0; box-shadow: 0 20px 50px -10px rgba(15, 23, 42, 0.08);">
+        <div class="sim-chassis">
           <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 24px;" class="feature-showcase">
             
             <!-- Controls (Left) -->
@@ -841,23 +833,23 @@
                 </div>
               </div>
 
-              <!-- Simulated Target Result Cards -->
-              <div class="glass-card" style="padding: 16px; background: #f8fafc; border: 1px solid #e2e8f0;">
-                <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #475569; display: block; margin-bottom: 12px;" data-i18n="sim.res_steady">Pronóstico en Estado Estacionario</span>
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: center;">
-                  <div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 10px; border-radius: 8px; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);">
+              <!-- Simulated Target Result Bar -->
+              <div style="margin-top: 18px; border-top: 1px solid #e2e8f0; padding-top: 14px;">
+                <span style="font-size: 11px; font-weight: 700; text-transform: uppercase; color: #475569; display: block; margin-bottom: 10px; font-family: var(--font-mono);" data-i18n="sim.res_steady">Pronóstico en Estado Estacionario</span>
+                <div class="sim-hud-strip" style="margin-top: 0;">
+                  <div class="sim-kpi-cell">
                     <span style="font-size: 11px; color: #475569; font-family: var(--font-mono); display: block;" data-i18n="sim.res_auc_label">AUC₂₄ / MIC</span>
                     <span style="font-size: 1.25rem; font-weight: 800; color: #0369a1; font-family: var(--font-mono);" id="live-sim-auc">512</span>
                     <span style="font-size: 11px; color: #047857; font-weight: 600; display: block;" id="live-sim-auc-status" data-i18n="sim.status_target">En Meta (400-600)</span>
                   </div>
-                  <div style="background: #ffffff; border: 1px solid #e2e8f0; padding: 10px; border-radius: 8px; box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);">
+                  <div class="sim-kpi-cell">
                     <span style="font-size: 11px; color: #475569; font-family: var(--font-mono); display: block;" data-i18n="sim.res_cmin_label">Cmin (Valle)</span>
                     <span style="font-size: 1.25rem; font-weight: 800; color: #047857; font-family: var(--font-mono);" id="live-sim-cmin">16.8 µg/mL</span>
                     <span style="font-size: 11px; color: #047857; font-weight: 600; display: block;" id="live-sim-cmin-status" data-i18n="sim.cmin_target">Terapéutico</span>
                   </div>
                 </div>
 
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 12px; font-size: 11px; color: #475569; padding-top: 8px; border-top: 1px solid #e2e8f0;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 10px; font-size: 11px; color: #475569;">
                   <span data-i18n="sim.res_prob_label">Probabilidad de Éxito Clínico:</span>
                   <strong style="color: #091e42; font-family: var(--font-mono);" id="live-sim-prob">94.2%</strong>
                 </div>
@@ -867,7 +859,7 @@
 
             <!-- Dynamic Graph (Right) -->
             <div style="display: flex; flex-direction: column; justify-content: space-between;">
-              <div class="glass-card" style="padding: 20px; background: #ffffff; border: 1px solid #e2e8f0; flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
+              <div class="sim-viewport">
                 
                 <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #f1f5f9; padding-bottom: 12px; flex-wrap: wrap; gap: 8px;">
                   <div style="display: flex; align-items: center; gap: 8px;">
@@ -942,7 +934,7 @@
               </div>
 
               <!-- Note -->
-              <div class="glass-card" style="margin-top: 16px; padding: 14px; display: flex; align-items: flex-start; gap: 10px; font-size: 12px; color: #475569; background: #f8fafc; border: 1px solid #e2e8f0;">
+              <div style="margin-top: 16px; padding: 14px 18px; display: flex; align-items: flex-start; gap: 10px; font-size: 12px; color: #475569; background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 12px;">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2" style="flex-shrink: 0; margin-top: 2px;"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
                 <span data-i18n="sim.covar_note">
                   Integración de covariables: Al mover el aclaramiento renal (CrCl), el motor PK-Bayes adapta dinámicamente la pendiente de eliminación terminal (β) y recalcula el tiempo necesario para alcanzar el estado estacionario.
@@ -970,13 +962,13 @@
           </p>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 20px;">
+        <div class="clinical-arch-grid">
           
           <!-- Module 1 -->
-          <div class="glass-card glass-card-hover" style="padding: 24px; display: flex; flex-direction: column; justify-content: space-between; background: #ffffff; border: 1px solid #e2e8f0;">
+          <article class="clinical-arch-card">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-                <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 700; padding: 2px 8px; border-radius: 6px; background: rgba(2, 132, 199, 0.1); color: #0369a1; border: 1px solid rgba(2, 132, 199, 0.25);" data-i18n="mod.m1_pill">Módulo 01</span>
+                <span class="arch-card-badge" data-i18n="mod.m1_pill">Módulo 01</span>
                 <span style="font-size: 11px; color: #475569;" data-i18n="mod.m1_cat">Tiempo Real</span>
               </div>
               <h3 style="font-size: 1.15rem; font-weight: 700; color: #091e42; margin-bottom: 8px;" data-i18n="mod.m1_t">Censo & Monitorización TDM</h3>
@@ -985,17 +977,12 @@
               </p>
               
               <!-- Micro-Triage Console -->
-              <div class="feature-mockup-window" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; margin-bottom: 16px;">
-                <div class="mockup-mac-bar mini-bar">
-                  <div class="mac-dots">
-                    <span class="mac-dot red"></span>
-                    <span class="mac-dot amber"></span>
-                    <span class="mac-dot green"></span>
-                  </div>
-                  <span class="mac-url-pill" data-i18n="mod.m1_url">pk-bayes · censo-tdm</span>
-                  <span style="font-size: 10px; color: #047857; font-weight: 700;" data-i18n="common.live">EN VIVO</span>
+              <div class="arch-card-preview">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-family: var(--font-mono); font-size: 11px;">
+                  <span style="color: #475569;" data-i18n="mod.m1_url">pk-bayes · censo-tdm</span>
+                  <span style="color: #047857; font-weight: 700;" data-i18n="common.live">EN VIVO</span>
                 </div>
-                <div style="padding: 12px; background: #f8fafc; display: flex; flex-direction: column; gap: 8px;">
+                <div style="display: flex; flex-direction: column; gap: 8px;">
                   <div style="display: flex; justify-content: space-between; align-items: center; padding: 8px 10px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 11px;">
                     <span style="font-weight: 600; color: #0f172a;" data-i18n="wb.triage_patient_1">Elena Morales · UCI-04</span>
                     <span class="wb-badge-pill wb-badge-green" data-i18n="wb.triage_status_target">En Meta</span>
@@ -1012,17 +999,17 @@
               </div>
             </div>
             
-            <div style="padding: 10px; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; font-size: 11px; font-family: var(--font-mono); display: flex; justify-content: space-between; color: #475569;">
+            <div class="arch-card-footer">
               <span data-i18n="mod.m1_label">Pacientes en vigilancia:</span>
               <strong style="color: #0369a1;" data-i18n="mod.m1_badge">89 pacientes activos</strong>
             </div>
-          </div>
+          </article>
 
           <!-- Module 2 -->
-          <div class="glass-card glass-card-hover" style="padding: 24px; display: flex; flex-direction: column; justify-content: space-between; background: #ffffff; border: 1px solid #e2e8f0;">
+          <article class="clinical-arch-card">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-                <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 700; padding: 2px 8px; border-radius: 6px; background: rgba(16, 185, 129, 0.1); color: #047857; border: 1px solid rgba(16, 185, 129, 0.25);" data-i18n="mod.m2_pill">Módulo 02</span>
+                <span class="arch-card-badge" style="background: #ecfdf5; color: #047857;" data-i18n="mod.m2_pill">Módulo 02</span>
                 <span style="font-size: 11px; color: #475569;" data-i18n="mod.m2_cat">Trazabilidad</span>
               </div>
               <h3 style="font-size: 1.15rem; font-weight: 700; color: #091e42; margin-bottom: 8px;" data-i18n="mod.m2_t">Ficha, Historial de Dosis & Muestras</h3>
@@ -1031,17 +1018,12 @@
               </p>
 
               <!-- Micro-Timeline Console -->
-              <div class="feature-mockup-window" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; margin-bottom: 16px;">
-                <div class="mockup-mac-bar mini-bar">
-                  <div class="mac-dots">
-                    <span class="mac-dot red"></span>
-                    <span class="mac-dot amber"></span>
-                    <span class="mac-dot green"></span>
-                  </div>
-                  <span class="mac-url-pill" data-i18n="mod.m2_url">pk-bayes · ficha-paciente</span>
-                  <span style="font-size: 10px; color: #047857; font-weight: 700;" data-i18n="wb.trust_fhir">0 Desfase LIS / HIS (HL7 FHIR)</span>
+              <div class="arch-card-preview">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-family: var(--font-mono); font-size: 11px;">
+                  <span style="color: #475569;" data-i18n="mod.m2_url">pk-bayes · ficha-paciente</span>
+                  <span style="color: #047857; font-weight: 700;" data-i18n="wb.trust_fhir">0 Desfase LIS / HIS (HL7 FHIR)</span>
                 </div>
-                <div style="padding: 12px; background: #f8fafc; display: flex; flex-direction: column; gap: 8px;">
+                <div style="display: flex; flex-direction: column; gap: 8px;">
                   <div style="display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 11px;">
                     <span style="font-family: var(--font-mono); font-weight: 700; color: #0369a1;" data-i18n="wb.step1_tag">01 / REGISTRAR</span>
                     <span style="color: #475569;" data-i18n="wb.regimen_p1">Vancomicina IV · 750mg q12h</span>
@@ -1051,24 +1033,24 @@
                     <span style="color: #475569;" data-i18n="wb.val_cl_init">2.1 L/h</span>
                   </div>
                   <div style="display: flex; align-items: center; gap: 8px; padding: 8px 10px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 8px; font-size: 11px;">
-                    <span style="font-family: var(--font-mono); font-weight: 700; color: #7c3aed;" data-i18n="wb.step3_tag">03 / ACTUALIZAR</span>
+                    <span style="font-family: var(--font-mono); font-weight: 700; color: #0369a1;" data-i18n="wb.step3_tag">03 / ACTUALIZAR</span>
                     <span style="color: #475569;" data-i18n="wb.val_auc_post">485 mg·h/L (En Meta)</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div style="padding: 10px; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; font-size: 11px; font-family: var(--font-mono); display: flex; justify-content: space-between; color: #475569;">
+            <div class="arch-card-footer">
               <span data-i18n="mod.m2_label">Sincronización LIS / HIS:</span>
               <strong style="color: #047857;" data-i18n="mod.m2_badge">HL7 FHIR sin desfase</strong>
             </div>
-          </div>
+          </article>
 
           <!-- Module 3 -->
-          <div class="glass-card glass-card-hover" style="padding: 24px; display: flex; flex-direction: column; justify-content: space-between; background: #ffffff; border: 1px solid #e2e8f0;">
+          <article class="clinical-arch-card">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-                <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 700; padding: 2px 8px; border-radius: 6px; background: rgba(14, 165, 233, 0.1); color: #0369a1; border: 1px solid rgba(14, 165, 233, 0.25);" data-i18n="mod.m3_pill">Módulo 03</span>
+                <span class="arch-card-badge" data-i18n="mod.m3_pill">Módulo 03</span>
                 <span style="font-size: 11px; color: #475569;" data-i18n="mod.m3_cat">Optimización</span>
               </div>
               <h3 style="font-size: 1.15rem; font-weight: 700; color: #091e42; margin-bottom: 8px;" data-i18n="mod.m3_t">Simulación Posológica & MAP</h3>
@@ -1077,17 +1059,12 @@
               </p>
 
               <!-- Micro-MAP Optimization Curve -->
-              <div class="feature-mockup-window" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; margin-bottom: 16px;">
-                <div class="mockup-mac-bar mini-bar">
-                  <div class="mac-dots">
-                    <span class="mac-dot red"></span>
-                    <span class="mac-dot amber"></span>
-                    <span class="mac-dot green"></span>
-                  </div>
-                  <span class="mac-url-pill" data-i18n="mod.m3_url">pk-bayes · simulacion-map</span>
-                  <span style="font-size: 10px; color: #0369a1; font-weight: 700;" data-i18n="wb.trust_stan">Motor MAP Bayesiano (Stan)</span>
+              <div class="arch-card-preview">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-family: var(--font-mono); font-size: 11px;">
+                  <span style="color: #475569;" data-i18n="mod.m3_url">pk-bayes · simulacion-map</span>
+                  <span style="color: #0369a1; font-weight: 700;" data-i18n="wb.trust_stan">Motor MAP Bayesiano (Stan)</span>
                 </div>
-                <div style="padding: 10px 12px; background: #f8fafc;">
+                <div>
                   <svg viewBox="0 0 300 110" style="width: 100%; height: auto; display: block;" aria-hidden="true">
                     <rect x="20" y="35" width="260" height="35" fill="#0369a1" fill-opacity="0.08" rx="3"/>
                     <line x1="20" y1="35" x2="280" y2="35" stroke="#0369a1" stroke-dasharray="3 3" stroke-opacity="0.5"/>
@@ -1100,17 +1077,17 @@
               </div>
             </div>
 
-            <div style="padding: 10px; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; font-size: 11px; font-family: var(--font-mono); display: flex; justify-content: space-between; color: #475569;">
+            <div class="arch-card-footer">
               <span data-i18n="mod.m3_label">Motor de Inferencia:</span>
               <strong style="color: #0369a1;" data-i18n="mod.m3_badge">L-BFGS-B + Stan</strong>
             </div>
-          </div>
+          </article>
 
           <!-- Module 4 -->
-          <div class="glass-card glass-card-hover" style="padding: 24px; display: flex; flex-direction: column; justify-content: space-between; background: #ffffff; border: 1px solid #e2e8f0;">
+          <article class="clinical-arch-card">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-                <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 700; padding: 2px 8px; border-radius: 6px; background: rgba(99, 102, 241, 0.1); color: #4f46e5; border: 1px solid rgba(99, 102, 241, 0.25);" data-i18n="mod.m4_pill">Módulo 04</span>
+                <span class="arch-card-badge" style="background: #e0f2fe; color: #0284c7;" data-i18n="mod.m4_pill">Módulo 04</span>
                 <span style="font-size: 11px; color: #475569;" data-i18n="mod.m4_cat">Epidemiología</span>
               </div>
               <h3 style="font-size: 1.15rem; font-weight: 700; color: #091e42; margin-bottom: 8px;" data-i18n="mod.m4_t">Evolución Longitudinal de Cohorte</h3>
@@ -1119,44 +1096,39 @@
               </p>
 
               <!-- Micro-Steady State Curve -->
-              <div class="feature-mockup-window" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; margin-bottom: 16px;">
-                <div class="mockup-mac-bar mini-bar">
-                  <div class="mac-dots">
-                    <span class="mac-dot red"></span>
-                    <span class="mac-dot amber"></span>
-                    <span class="mac-dot green"></span>
-                  </div>
-                  <span class="mac-url-pill" data-i18n="mod.m4_url">pk-bayes · curva-longitudinal</span>
-                  <span style="font-size: 10px; color: #4f46e5; font-weight: 700;" data-i18n="wb.steady_state_badge">Estado Estacionario (Steady State)</span>
+              <div class="arch-card-preview">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-family: var(--font-mono); font-size: 11px;">
+                  <span style="color: #475569;" data-i18n="mod.m4_url">pk-bayes · curva-longitudinal</span>
+                  <span style="color: #0284c7; font-weight: 700;" data-i18n="wb.steady_state_badge">Estado Estacionario (Steady State)</span>
                 </div>
-                <div style="padding: 10px 12px; background: #f8fafc;">
+                <div>
                   <svg viewBox="0 0 300 110" style="width: 100%; height: auto; display: block;" aria-hidden="true">
                     <defs>
                       <linearGradient id="idxLongGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                        <stop offset="0%" stop-color="#4f46e5" stop-opacity="0.25"/>
-                        <stop offset="100%" stop-color="#4f46e5" stop-opacity="0.0"/>
+                        <stop offset="0%" stop-color="#0284c7" stop-opacity="0.25"/>
+                        <stop offset="100%" stop-color="#0284c7" stop-opacity="0.0"/>
                       </linearGradient>
                     </defs>
-                    <rect x="20" y="30" width="260" height="40" fill="#4f46e5" fill-opacity="0.08" rx="3"/>
+                    <rect x="20" y="30" width="260" height="40" fill="#0284c7" fill-opacity="0.08" rx="3"/>
                     <line x1="20" y1="100" x2="280" y2="100" stroke="#cbd5e1" stroke-width="1"/>
                     <path d="M 20,98 C 35,55 50,45 70,60 C 90,80 100,90 105,92 C 120,40 135,32 155,48 C 175,70 185,82 190,85 C 205,32 220,28 240,42 C 260,65 270,78 280,80 L 280,100 L 20,100 Z" fill="url(#idxLongGrad)"/>
-                    <path d="M 20,98 C 35,55 50,45 70,60 C 90,80 100,90 105,92 C 120,40 135,32 155,48 C 175,70 185,82 190,85 C 205,32 220,28 240,42 C 260,65 270,78 280,80" fill="none" stroke="#4f46e5" stroke-width="2.5" stroke-linecap="round"/>
+                    <path d="M 20,98 C 35,55 50,45 70,60 C 90,80 100,90 105,92 C 120,40 135,32 155,48 C 175,70 185,82 190,85 C 205,32 220,28 240,42 C 260,65 270,78 280,80" fill="none" stroke="#0284c7" stroke-width="2.5" stroke-linecap="round"/>
                   </svg>
                 </div>
               </div>
             </div>
 
-            <div style="padding: 10px; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; font-size: 11px; font-family: var(--font-mono); display: flex; justify-content: space-between; color: #475569;">
+            <div class="arch-card-footer">
               <span data-i18n="mod.m4_label">Eventos Auditados:</span>
-              <strong style="color: #4f46e5;" data-i18n="mod.m4_badge">1,577 dosis analizadas</strong>
+              <strong style="color: #0284c7;" data-i18n="mod.m4_badge">1,577 dosis analizadas</strong>
             </div>
-          </div>
+          </article>
 
           <!-- Module 5 -->
-          <div class="glass-card glass-card-hover" style="padding: 24px; display: flex; flex-direction: column; justify-content: space-between; background: #ffffff; border: 1px solid #e2e8f0;">
+          <article class="clinical-arch-card">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-                <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 700; padding: 2px 8px; border-radius: 6px; background: rgba(13, 148, 136, 0.1); color: #0f766e; border: 1px solid rgba(13, 148, 136, 0.25);" data-i18n="mod.m5_pill">Módulo 05</span>
+                <span class="arch-card-badge" style="background: #f0fdfa; color: #0f766e;" data-i18n="mod.m5_pill">Módulo 05</span>
                 <span style="font-size: 11px; color: #475569;" data-i18n="mod.m5_cat">Gobierno</span>
               </div>
               <h3 style="font-size: 1.15rem; font-weight: 700; color: #091e42; margin-bottom: 8px;" data-i18n="mod.m5_t">Consola de Desempeño & Centros</h3>
@@ -1165,25 +1137,20 @@
               </p>
 
               <!-- Micro-Bias Dashboard -->
-              <div class="feature-mockup-window" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; margin-bottom: 16px;">
-                <div class="mockup-mac-bar mini-bar">
-                  <div class="mac-dots">
-                    <span class="mac-dot red"></span>
-                    <span class="mac-dot amber"></span>
-                    <span class="mac-dot green"></span>
-                  </div>
-                  <span class="mac-url-pill" data-i18n="mod.m5_url">pk-bayes · consola-centros</span>
-                  <span style="font-size: 10px; color: #0f766e; font-weight: 700;" data-i18n="wb.mpe_status">Calibración Óptima</span>
+              <div class="arch-card-preview">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-family: var(--font-mono); font-size: 11px;">
+                  <span style="color: #475569;" data-i18n="mod.m5_url">pk-bayes · consola-centros</span>
+                  <span style="color: #0f766e; font-weight: 700;" data-i18n="wb.mpe_status">Calibración Óptima</span>
                 </div>
-                <div style="padding: 12px; background: #0b192c; border-radius: 0 0 10px 10px;">
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-family: var(--font-mono); font-size: 10px;">
+                <div style="padding: 12px; background: #0b192c; border-radius: 8px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-family: var(--font-mono); font-size: 11px;">
                     <span style="color: #94a3b8;" data-i18n="wb.mpe_label">Sesgo Medio (MPE):</span>
                     <span style="color: #2dd4bf; font-weight: 700;">-3.60%</span>
                   </div>
                   <div style="height: 6px; border-radius: 9999px; background: #1e293b; overflow: hidden; margin-bottom: 10px;">
                     <div style="width: 88%; height: 100%; background: #2dd4bf;"></div>
                   </div>
-                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-family: var(--font-mono); font-size: 10px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-family: var(--font-mono); font-size: 11px;">
                     <span style="color: #94a3b8;" data-i18n="wb.rmse_label">Precisión (RMSE):</span>
                     <span style="color: #38bdf8; font-weight: 700;">2.14 mg/L</span>
                   </div>
@@ -1194,17 +1161,17 @@
               </div>
             </div>
 
-            <div style="padding: 10px; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; font-size: 11px; font-family: var(--font-mono); display: flex; justify-content: space-between; color: #475569;">
+            <div class="arch-card-footer">
               <span data-i18n="mod.m5_label">Calibración de Sesgo:</span>
               <strong style="color: #0f766e;" data-i18n="mod.m5_badge">-3.60 mg/L (Bajo sesgo)</strong>
             </div>
-          </div>
+          </article>
 
           <!-- Module 6 -->
-          <div class="glass-card glass-card-hover" style="padding: 24px; display: flex; flex-direction: column; justify-content: space-between; background: #ffffff; border: 1px solid #e2e8f0;">
+          <article class="clinical-arch-card">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
-                <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 700; padding: 2px 8px; border-radius: 6px; background: rgba(217, 119, 6, 0.1); color: #b45309; border: 1px solid rgba(217, 119, 6, 0.25);" data-i18n="mod.m6_pill">Módulo 06</span>
+                <span class="arch-card-badge" style="background: #fffbeb; color: #b45309;" data-i18n="mod.m6_pill">Módulo 06</span>
                 <span style="font-size: 11px; color: #475569;" data-i18n="mod.m6_cat">Informe</span>
               </div>
               <h3 style="font-size: 1.15rem; font-weight: 700; color: #091e42; margin-bottom: 8px;" data-i18n="mod.m6_t">Informe Clínico & Respaldo Médico</h3>
@@ -1213,17 +1180,12 @@
               </p>
 
               <!-- Micro-Report Card -->
-              <div class="feature-mockup-window" style="background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; margin-bottom: 16px;">
-                <div class="mockup-mac-bar mini-bar">
-                  <div class="mac-dots">
-                    <span class="mac-dot red"></span>
-                    <span class="mac-dot amber"></span>
-                    <span class="mac-dot green"></span>
-                  </div>
-                  <span class="mac-url-pill" data-i18n="mod.m6_url">pk-bayes · informe-clinico</span>
-                  <span style="font-size: 10px; color: #b45309; font-weight: 700;" data-i18n="wb.trust_samd">SaMD Class II Validado</span>
+              <div class="arch-card-preview">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; font-family: var(--font-mono); font-size: 11px;">
+                  <span style="color: #475569;" data-i18n="mod.m6_url">pk-bayes · informe-clinico</span>
+                  <span style="color: #b45309; font-weight: 700;" data-i18n="wb.trust_samd">SaMD Class II Validado</span>
                 </div>
-                <div style="padding: 12px; background: #f8fafc; display: flex; flex-direction: column; gap: 8px;">
+                <div style="display: flex; flex-direction: column; gap: 8px;">
                   <div style="display: flex; justify-content: space-between; align-items: center; padding: 6px 10px; background: #ffffff; border: 1px solid #e2e8f0; border-radius: 6px; font-size: 11px;">
                     <span style="color: #475569;" data-i18n="wb.triage_auc_label">AUC24 Proyectada:</span>
                     <strong style="color: #0369a1; font-family: var(--font-mono);">485 mg·h/L</strong>
@@ -1240,11 +1202,11 @@
               </div>
             </div>
 
-            <div style="padding: 10px; border-radius: 8px; background: #f8fafc; border: 1px solid #e2e8f0; font-size: 11px; font-family: var(--font-mono); display: flex; justify-content: space-between; color: #475569;">
+            <div class="arch-card-footer">
               <span data-i18n="mod.m6_label">Formato Exportación:</span>
               <strong style="color: #b45309;" data-i18n="mod.m6_badge">PDF / HL7 CDA</strong>
             </div>
-          </div>
+          </article>
 
         </div>
 
@@ -1267,7 +1229,7 @@
             </p>
 
             <div style="display: flex; flex-direction: column; gap: 16px; margin-top: 24px;">
-              <div class="glass-card" style="padding: 16px; display: flex; align-items: center; gap: 16px;">
+              <div class="cohort-stat-row">
                 <div style="width: 48px; height: 48px; border-radius: 12px; background: #e0f2fe; display: flex; align-items: center; justify-content: center; color: #0369a1; font-weight: 800; font-size: 1.15rem; font-family: var(--font-mono); flex-shrink: 0;">
                   92%
                 </div>
@@ -1277,7 +1239,7 @@
                 </div>
               </div>
 
-              <div class="glass-card" style="padding: 16px; display: flex; align-items: center; gap: 16px;">
+              <div class="cohort-stat-row">
                 <div style="width: 48px; height: 48px; border-radius: 12px; background: #dcfce7; display: flex; align-items: center; justify-content: center; color: #047857; font-weight: 800; font-size: 1.15rem; font-family: var(--font-mono); flex-shrink: 0;">
                   -38%
                 </div>
@@ -1287,7 +1249,7 @@
                 </div>
               </div>
 
-              <div class="glass-card" style="padding: 16px; display: flex; align-items: center; gap: 16px;">
+              <div class="cohort-stat-row">
                 <div style="width: 48px; height: 48px; border-radius: 12px; background: #e0f2fe; display: flex; align-items: center; justify-content: center; color: #0369a1; font-weight: 800; font-size: 1.15rem; font-family: var(--font-mono); flex-shrink: 0;">
                   2.1
                 </div>
@@ -1300,7 +1262,7 @@
           </div>
 
           <!-- Right: Diagnostic Scatter Plot (Obs vs. Pred) -->
-          <div class="mockup-mac-window" style="padding: 24px;">
+          <div class="clinical-arch-card" style="padding: 24px;">
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 12px; margin-bottom: 16px;">
               <div>
                 <span style="font-size: 11px; font-family: var(--font-mono); text-transform: uppercase; color: #475569;" data-i18n="ev.scatter_subtitle">Diagnóstico de Ajuste Poblacional</span>
@@ -1340,17 +1302,17 @@
               </svg>
             </div>
 
-            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-top: 16px; text-align: center; font-family: var(--font-mono);">
-              <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px; border-radius: 8px;">
-                <span style="font-size: 10px; color: #475569; display: block;" data-i18n="ev.scatter_bias">Bias / MPE</span>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; margin-top: 16px; text-align: center; font-family: var(--font-mono); background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 8px 4px;">
+              <div style="border-right: 1px solid #e2e8f0; padding: 4px 8px;">
+                <span style="font-size: 11px; color: #475569; display: block;" data-i18n="ev.scatter_bias">Bias / MPE</span>
                 <strong style="color: #047857; font-size: 13px;">-3.60 mg/L</strong>
               </div>
-              <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px; border-radius: 8px;">
-                <span style="font-size: 10px; color: #475569; display: block;" data-i18n="ev.scatter_mae">MAE Absoluto</span>
+              <div style="border-right: 1px solid #e2e8f0; padding: 4px 8px;">
+                <span style="font-size: 11px; color: #475569; display: block;" data-i18n="ev.scatter_mae">MAE Absoluto</span>
                 <strong style="color: #0369a1; font-size: 13px;">8.17 mg/L</strong>
               </div>
-              <div style="background: #f8fafc; border: 1px solid #e2e8f0; padding: 8px; border-radius: 8px;">
-                <span style="font-size: 10px; color: #475569; display: block;" data-i18n="ev.scatter_rmse">Precisión RMSE</span>
+              <div style="padding: 4px 8px;">
+                <span style="font-size: 11px; color: #475569; display: block;" data-i18n="ev.scatter_rmse">Precisión RMSE</span>
                 <strong style="color: #091e42; font-size: 13px;">10.49 mg/L</strong>
               </div>
             </div>
@@ -1377,7 +1339,7 @@
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                 <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 700; padding: 2px 8px; border-radius: 6px; background: #dcfce7; color: #047857;" data-i18n="ui.disponible">Disponible</span>
-                <div style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, #0369a1, #0369a1); color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 800; font-family: var(--font-heading);">V</div>
+                <div style="width: 40px; height: 40px; border-radius: 12px; background: #0369a1; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 800; font-family: var(--font-heading);">V</div>
               </div>
               <h3 style="font-size: 1.35rem; font-weight: 800; color: #091e42; margin-bottom: 6px;" data-i18n="common.tag_vanco">Vancomicina</h3>
               <p style="color: #475569; font-size: 13px; line-height: 1.6; margin-bottom: 12px;" data-i18n="home.modelos_de_uno_y_dos_compart">
@@ -1409,7 +1371,7 @@
             <div>
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                 <span style="font-size: 11px; font-family: var(--font-mono); font-weight: 700; padding: 2px 8px; border-radius: 6px; background: #fef3c7; color: #b45309;" data-i18n="ui.fase_1">Fase 1</span>
-                <div style="width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, #b45309, #92400e); color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 800; font-family: var(--font-heading);">F</div>
+                <div style="width: 40px; height: 40px; border-radius: 12px; background: #b45309; color: #ffffff; display: flex; align-items: center; justify-content: center; font-size: 1.25rem; font-weight: 800; font-family: var(--font-heading);">F</div>
               </div>
               <h3 style="font-size: 1.35rem; font-weight: 800; color: #091e42; margin-bottom: 6px;" data-i18n="ui.fenitoina">Fenitoína</h3>
               <p style="color: #475569; font-size: 13px; line-height: 1.6; margin-bottom: 12px;" data-i18n="home.evaluacion_de_eliminacion_no">
@@ -1514,15 +1476,10 @@
           </div>
 
           <!-- Right Column: Form Container Card -->
-          <div class="mockup-mac-window" style="padding: 28px 24px; border-color: #bae6fd; box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08);">
-            <div class="mockup-mac-bar mini-bar" style="margin-bottom: 20px;">
-              <div class="mac-dots">
-                <span class="mac-dot red"></span>
-                <span class="mac-dot amber"></span>
-                <span class="mac-dot green"></span>
-              </div>
-              <span class="mac-url-pill" data-i18n="lead.window_url">pk-bayes · solicitud-piloto</span>
-              <span style="font-size: 11px; color: #0369a1; font-weight: 700;">2026</span>
+          <div class="clinical-arch-card" style="padding: 28px 24px; border-color: #bae6fd;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #e2e8f0; font-family: var(--font-mono); font-size: 11px;">
+              <span style="color: #475569;" data-i18n="lead.window_url">pk-bayes · solicitud-piloto</span>
+              <span style="color: #0369a1; font-weight: 700;">2026</span>
             </div>
 
             <form id="pilot-lead-form" style="display: flex; flex-direction: column; gap: 14px; text-align: left;">

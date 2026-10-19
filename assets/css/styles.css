@@ -5,9 +5,11 @@
 
 :root {
   /* --- Paleta oficial app.pk-bayes.com --- */
+  --bg: #f8fafc;
   --bg-page: #f8fafc;
   --bg-card: #ffffff;
   --bg-subtle: #f1f5f9;
+  --text: #091e42;
   --bg-surface-glass: rgba(255, 255, 255, 0.88);
   --bg-modal-backdrop: rgba(10, 25, 47, 0.55);
 
@@ -375,11 +377,7 @@ body.menu-open .mobile-menu {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background-image:
-    linear-gradient(rgba(15, 23, 42, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
-  background-size: 42px 42px;
-  mask-image: radial-gradient(700px 400px at 20% 20%, black, transparent 70%);
+  background: radial-gradient(circle at 18% 18%, rgba(2, 132, 199, 0.04) 0%, transparent 60%);
 }
 .hero-grid {
   position: relative;
@@ -1060,8 +1058,8 @@ select.control-select {
    ========================================================================= */
 .flow-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; position: relative; }
 .flow-steps::before {
-  content: ""; position: absolute; top: 27px; left: 12.5%; right: 12.5%; height: 2px;
-  background: repeating-linear-gradient(90deg, var(--border-strong) 0 8px, transparent 8px 14px);
+  content: ""; position: absolute; top: 27px; left: 12.5%; right: 12.5%; height: 0;
+  border-top: 2px dashed var(--border-strong);
 }
 .flow-step { position: relative; padding: 0 14px; text-align: center; }
 .flow-step .flow-dot {
@@ -2355,7 +2353,7 @@ select.control-select {
 .sales-icon-box.teal { background: var(--teal-light); color: var(--teal-strong); }
 .sales-icon-box.green { background: var(--green-light); color: var(--green-dark); }
 .sales-icon-box.amber { background: var(--amber-light); color: var(--amber-dark); }
-.sales-icon-box.purple { background: #f3e8ff; color: #7e22ce; }
+.sales-icon-box.sky { background: #e0f2fe; color: #0284c7; }
 
 .sales-card-title {
   font-size: 1.05rem;
@@ -2959,12 +2957,7 @@ select.control-select {
   height: 760px;
   border: 1px solid rgba(148, 163, 184, .24);
   border-radius: 34px;
-  background:
-    linear-gradient(rgba(255,255,255,.72), rgba(255,255,255,.72)),
-    linear-gradient(90deg, rgba(11,92,173,.05) 1px, transparent 1px),
-    linear-gradient(rgba(11,92,173,.05) 1px, transparent 1px),
-    #edf4fa;
-  background-size: auto, 32px 32px, 32px 32px, auto;
+  background: #f1f5f9;
   box-shadow: inset 0 1px 0 #fff, 0 30px 80px rgba(15, 23, 42, .09);
 }
 .story-canvas::before {
@@ -3463,7 +3456,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   border-radius: 20px;
   background: #ffffff;
   border: 1px solid #e2e8f0;
-  box-shadow: 0 25px 65px -12px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(15, 23, 42, 0.03);
+  box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.08), 0 1px 3px rgba(15, 23, 42, 0.04);
   overflow: hidden;
   position: relative;
 }
@@ -4047,7 +4040,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
   border: 1px solid #cbd5e1;
   border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 25px 65px -12px rgba(15, 23, 42, 0.1), 0 4px 18px rgba(15, 23, 42, 0.04);
+  box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.07), 0 2px 6px rgba(15, 23, 42, 0.03);
   color: #0f172a;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
@@ -4589,7 +4582,7 @@ h1, h2, h3, .brand-title, .plan-head h2, .sales-title {
 }
 
 .wb-clearance-dialysis {
-  background: #7c3aed;
+  background: #2563eb;
   transform-origin: left;
   transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
@@ -4996,10 +4989,10 @@ input[type="range"]:focus-visible::-webkit-slider-thumb,
   border: 1px solid rgba(217, 119, 6, 0.25);
 }
 
-.framer-live-badge.live-purple {
-  background: #faf5ff;
-  color: #7c3aed;
-  border: 1px solid rgba(124, 58, 237, 0.25);
+.framer-live-badge.live-sky {
+  background: #f0f9ff;
+  color: #0284c7;
+  border: 1px solid rgba(2, 132, 199, 0.25);
 }
 
 .framer-live-badge.live-blue {
@@ -5029,16 +5022,23 @@ input[type="range"]:focus-visible::-webkit-slider-thumb,
 .framer-metrics-deck {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  gap: 8px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 8px 4px;
   margin-bottom: 12px;
 }
 
 .framer-metric-item {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 7px;
+  background: transparent;
+  border: none;
+  border-right: 1px solid #e2e8f0;
+  padding: 2px 6px;
   text-align: center;
+}
+
+.framer-metric-item:last-child {
+  border-right: none;
 }
 
 .framer-metric-label {
@@ -5297,9 +5297,9 @@ input[type="range"]:focus-visible::-webkit-slider-thumb,
   background: #b45309;
   box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.18);
 }
-.clinical-status-dot.status-purple {
-  background: #7c3aed;
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.18);
+.clinical-status-dot.status-sky {
+  background: #0284c7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.18);
 }
 .clinical-status-dot.status-teal {
   background: #0f766e;
@@ -5405,7 +5405,7 @@ input[type="range"]:focus-visible::-webkit-slider-thumb,
   background: #0369a1;
   color: #ffffff;
   border-color: #0369a1;
-  box-shadow: 0 2px 8px rgba(3, 105, 161, 0.28);
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.16);
 }
 
 .video-chapter-btn .chapter-time {
@@ -5510,5 +5510,267 @@ input[type="range"]:focus-visible::-webkit-slider-thumb,
     margin-bottom: 24px;
   }
 }
+
+/* =========================================================================
+   PK-BAYES HIGH-CRAFT REDESIGN (APPLE PRO & EMIL KOWALSKI CRAFT FLOOR)
+   ========================================================================= */
+
+/* Unified Single-Layer Zenith Workstation */
+.zenith-unified-chassis {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  box-shadow: 0 20px 48px -12px rgba(15, 23, 42, 0.08), 0 2px 8px rgba(15, 23, 42, 0.03);
+  overflow: hidden;
+  max-width: 1140px;
+  margin: 0 auto;
+  color: #0f172a;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.zenith-top-chrome {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 16px 24px;
+  background: #ffffff;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.zenith-hud-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+@media (max-width: 860px) {
+  .zenith-hud-bar {
+    grid-template-columns: 1fr;
+  }
+}
+
+.zenith-hud-col {
+  padding: 18px 24px;
+  border-right: 1px solid #e2e8f0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.zenith-hud-col:last-child {
+  border-right: none;
+}
+
+@media (max-width: 860px) {
+  .zenith-hud-col {
+    border-right: none;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .zenith-hud-col:last-child {
+    border-bottom: none;
+  }
+}
+
+.zenith-hud-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: #475569;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 8px;
+}
+
+.zenith-hud-reading {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--font-mono);
+}
+
+.zenith-hud-num {
+  font-size: clamp(32px, 3.2vw, 42px);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: #0f172a;
+}
+
+.zenith-hud-sub {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 6px;
+}
+
+.zenith-curve-stage {
+  padding: 22px 24px 18px;
+  background: #ffffff;
+}
+
+.zenith-posology-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  padding: 0 24px 20px;
+  background: #ffffff;
+}
+
+@media (max-width: 860px) {
+  .zenith-posology-bar {
+    grid-template-columns: 1fr;
+  }
+}
+
+.zenith-posology-segment {
+  border: 1.5px solid #e2e8f0;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 14px 16px;
+  cursor: pointer;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.zenith-posology-segment:hover {
+  border-color: #0369a1;
+  background: #f8fafc;
+}
+
+.zenith-posology-segment:active {
+  transform: scale(0.98);
+}
+
+.zenith-posology-segment.active {
+  border-color: #0369a1;
+  background: #f0f9ff;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+}
+
+.zenith-bottom-tray {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  padding: 14px 24px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+}
+
+/* Architecture Clean Module Cards (No Fake OS Chrome, Zero Nested Containers) */
+.clinical-arch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 24px;
+}
+
+.clinical-arch-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04);
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.clinical-arch-card:hover {
+  transform: translateY(-3px);
+  border-color: #0369a1;
+  box-shadow: 0 16px 36px -8px rgba(15, 23, 42, 0.09);
+}
+
+.arch-card-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 6px;
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+.arch-card-preview {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin: 18px 0;
+}
+
+.arch-card-footer {
+  padding-top: 14px;
+  border-top: 1px solid #f1f5f9;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: #475569;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Simulator Clean Workstation Layout */
+.sim-chassis {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  padding: 28px;
+  box-shadow: 0 20px 48px -12px rgba(15, 23, 42, 0.08);
+}
+
+.sim-hud-strip {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  padding: 14px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  margin-top: 18px;
+}
+
+.sim-viewport {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.sim-kpi-cell {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 12px;
+  text-align: center;
+}
+
+.cohort-stat-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 20px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+}
+
 
 
